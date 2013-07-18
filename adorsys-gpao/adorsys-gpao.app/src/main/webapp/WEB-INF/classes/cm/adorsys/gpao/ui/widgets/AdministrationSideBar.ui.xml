@@ -1,0 +1,48 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:b="urn:import:com.github.gwtbootstrap.client.ui">
+	<ui:style>
+		
+	</ui:style>
+	<g:HTMLPanel>
+	   <!-- .user-media -->
+                <div class="media user-media hidden-phone">
+                    <a href="" class="user-link">
+                        <img src="App/assets/img/user.png" style="width: 70px; height: 70px;" alt="" class="media-object img-polaroid user-img" />
+                    </a>
+
+                    <div class="media-body hidden-tablet">
+                        <h5 class="media-heading">Clovis Gakam</h5>
+                        <ul class="unstyled user-info">
+                            <li><a href="">Administrateur</a></li>
+                            <li><a href="">Changer de password</a></li>
+                            <li>Derniere connection : <br/>
+                                <small><i class="icon-calendar"></i> 16 juillet 2013 16:32</small>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- /.user-media -->
+
+                <!-- BEGIN MAIN NAVIGATION -->
+                <ul id="menu" class="unstyled accordion collapse in">
+                    <li class="accordion-group active">
+                        <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle collapsed" data-target="#form-nav">
+                            <i class="icon-pencil icon-large"></i> Catalogues <span class="label label-inverse pull-right">3</span>
+                        </a>
+                        <ul class="collapse " id="form-nav">
+                            <li><a href="form-general.html"><i class="icon-angle-right"></i> Familles de Produits</a></li>
+                            <li><a href="form-validation.html"><i class="icon-angle-right"></i> Sous Familles de Produits</a></li>
+                            <li><a href="form-wysiwyg.html"><i class="icon-angle-right"></i> Liste des Produits</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="maps.html"><i class="icon-map-marker icon-large"></i>  Unites de Mesure</a></li>
+                    <li><a href="chart.html"><i class="icon-bar-chart icon-large"></i>  Devises</a></li>
+                    <li><a href="calendar.html"><i class="icon-calendar icon-large"></i>  Entrepots</a></li>
+                    <li><a href="calendar.html"><i class="icon-calendar icon-large"></i>  Taxes</a></li>
+                </ul>
+                <!-- END MAIN NAVIGATION -->
+	    
+	</g:HTMLPanel>
+</ui:UiBinder> 

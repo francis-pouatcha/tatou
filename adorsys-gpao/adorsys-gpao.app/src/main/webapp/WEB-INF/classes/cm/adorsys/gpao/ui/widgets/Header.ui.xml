@@ -1,0 +1,61 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:b="urn:import:com.github.gwtbootstrap.client.ui">
+	<ui:style>
+		
+	</ui:style>
+	<g:HTMLPanel>
+	    <div class="navbar navbar-inverse navbar-fixed-top">
+                    <div class="navbar-inner">
+                        <div class="container-fluid">
+                            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </a>
+                            <a class="brand" href="#DashBordPage">TATOU-GPAO</a>
+                            <!-- .topnav -->
+                            <div class="btn-toolbar topnav">
+                                <div class="btn-group">
+                                    <a class="btn btn-inverse" rel="tooltip" data-original-title="E-mail" data-placement="bottom">
+                                        <i class="icon-envelope"></i>
+                                        <span class="label label-warning">5</span>
+                                    </a>
+                                    <a class="btn btn-inverse" rel="tooltip" href="#" data-original-title="Messages"
+                                       data-placement="bottom">
+                                        <i class="icon-comments"></i>
+                                        <span class="label label-important">4</span>
+                                    </a>
+                                </div>
+                                <div class="btn-group">
+                                    <a class="btn btn-inverse" rel="tooltip" href="#" data-original-title="Document"
+                                       data-placement="bottom">
+                                        <i class="icon-file"></i>
+                                    </a>
+                                    <g:Anchor ui:field="help" styleName="btn btn-inverse">
+                                        <i class="icon-question-sign"></i>
+                                    </g:Anchor>
+                                </div>
+                                <div class="btn-group">
+                                    <a class="btn btn-inverse" data-placement="bottom" data-original-title="Logout" rel="tooltip"
+                                       href="#LoginPage"><i class="icon-off"></i></a></div>
+                            </div>
+                            <!-- /.topnav -->
+                            <div class="nav-collapse collapse">
+                                <!-- .nav -->
+                                <ul class="nav">
+                                    <li><g:Anchor href="#DashBordPage" ui:field="dashbordLink">Dashboard </g:Anchor> </li>
+                                    <li><g:Anchor ui:field="buyLink" href="#">Achats </g:Anchor> </li>
+                                    <li><g:Anchor ui:field="productLink" href="#">Production</g:Anchor> </li>
+                                    <li><g:Anchor ui:field="saleLink" href="#">Ventes</g:Anchor> </li>
+                                    <li><g:Anchor ui:field="stockLink" href="#">Stock</g:Anchor> </li>
+                                    <li><g:Anchor ui:field="adminLink" href="#ProductFamillyPage">Administration</g:Anchor> </li>
+                                </ul>
+                                <!-- /.nav -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+	</g:HTMLPanel>
+</ui:UiBinder> 

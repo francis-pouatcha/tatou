@@ -1,6 +1,18 @@
 *.class
-
 # Package Files #
 *.jar
 *.war
 *.ear
+*.log
+target/
+*/target/
+*.class
+bin/
+*/bin/
+.settings/
+.classpath
+.project
+org.eclipse.jdt.core.prefs
+*/org.eclipse.jdt.core.prefs
+.metadata
+*~

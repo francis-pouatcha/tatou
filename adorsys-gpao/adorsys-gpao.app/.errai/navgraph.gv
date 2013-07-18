@@ -1,0 +1,5 @@
+digraph Navigation {
+"LoginPage" [penwidth=3]
+"ProductFamillyPage"
+"DashBordPage"
+}
