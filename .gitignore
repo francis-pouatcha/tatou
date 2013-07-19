@@ -3,6 +3,8 @@
 *.jar
 *.war
 *.ear
+*.errai
+*/.errai
 *.log
 target/
 */target/

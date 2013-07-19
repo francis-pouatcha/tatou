@@ -10,26 +10,28 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import cm.adorsys.gpao.api.model.Users;
+import cm.adorsys.gpao.api.model.UdmGroup;
+import cm.adorsys.gpao.api.model.UnitOfMesure;
 
-@Path("/users")
-public interface UsersResosurces {
+@Path("unit-group")
+public interface UdmGroupRessources {
 
 	@POST
-	@Path("/create")
+	@Path("/create") 
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void create(Users users) ;
+	public UnitOfMesure save(UdmGroup udmGroup) ;
 
 	@GET
 	@Path("/list")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Users> list() ;
+	public List<UnitOfMesure> list() ;
 
-	@POST
-	@Path("/login/{userName}/{password}")
+	@GET
+	@Path("/findByName/{name}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Boolean login(@PathParam("userName") String userName,@PathParam("password") String password) ;
+	public List<UnitOfMesure> findByName(@PathParam("name") String name) ;
+	
 
 
 }

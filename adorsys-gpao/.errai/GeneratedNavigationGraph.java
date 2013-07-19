@@ -2,10 +2,41 @@ package org.jboss.errai.ui.nav.client.local.spi;
 
 import cm.adorsys.gpao.ui.pages.DashBordPage;
 import cm.adorsys.gpao.ui.pages.LoginPage;
+import cm.adorsys.gpao.ui.pages.ProductFamillyPage;
+import cm.adorsys.gpao.ui.pages.UnitOfMesurePage;
 import org.jboss.errai.ui.nav.client.local.HistoryToken;
 
 public class GeneratedNavigationGraph extends NavigationGraph {
   public GeneratedNavigationGraph() {
+    pagesByName.put("ProductFamillyPage", new PageNode<ProductFamillyPage>() {
+      public String name() {
+        return "ProductFamillyPage";
+      }
+
+      public Class contentType() {
+        return ProductFamillyPage.class;
+      }
+
+      public ProductFamillyPage content() {
+        return bm.lookupBean(ProductFamillyPage.class).getInstance();
+      }
+
+      public void pageHiding(ProductFamillyPage widget) {
+
+      }
+
+      public void pageHidden(ProductFamillyPage widget) {
+
+      }
+
+      public void pageShowing(ProductFamillyPage widget, HistoryToken state) {
+
+      }
+
+      public void pageShown(ProductFamillyPage widget, HistoryToken state) {
+
+      }
+    });
     pagesByName.put("DashBordPage", new PageNode<DashBordPage>() {
       public String name() {
         return "DashBordPage";
@@ -32,6 +63,35 @@ public class GeneratedNavigationGraph extends NavigationGraph {
       }
 
       public void pageShown(DashBordPage widget, HistoryToken state) {
+
+      }
+    });
+    pagesByName.put("UnitOfMesurePage", new PageNode<UnitOfMesurePage>() {
+      public String name() {
+        return "UnitOfMesurePage";
+      }
+
+      public Class contentType() {
+        return UnitOfMesurePage.class;
+      }
+
+      public UnitOfMesurePage content() {
+        return bm.lookupBean(UnitOfMesurePage.class).getInstance();
+      }
+
+      public void pageHiding(UnitOfMesurePage widget) {
+
+      }
+
+      public void pageHidden(UnitOfMesurePage widget) {
+
+      }
+
+      public void pageShowing(UnitOfMesurePage widget, HistoryToken state) {
+
+      }
+
+      public void pageShown(UnitOfMesurePage widget, HistoryToken state) {
 
       }
     });

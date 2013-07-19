@@ -50,10 +50,17 @@ public abstract class AbstractHibernateJpaRepository<K, E> implements JpaReposit
 		return getEntityManager().find(entityClass, id);
 	}
 
-	public E flush(E entity) {
-		getEntityManager().flush();
-		return entity;
+	public void flush() {
+		 try {
+				userTransaction.begin();
+				getEntityManager().flush();
+				userTransaction.commit();
+			    } catch (Exception ex) {
+				ex.printStackTrace();
+			    }
+		
 	}
+	
 
 	@SuppressWarnings("unchecked")
 	public List<E> findAll() {

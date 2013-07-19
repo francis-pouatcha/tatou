@@ -1,5 +1,5 @@
 
-tatou
+tatou-GPAO
 =====
 <pre>
 Needs : jboos-as7 , maven 3.x.x 
@@ -11,5 +11,7 @@ Needs : jboos-as7 , maven 3.x.x
 5- cd adorsys-gpao/adorsys-gpao.app
 6- maven jboss-as:deploy
 7- run http://localhost:8080/adorsys-gpao.tatou
-9- get fun ....
+8- userName: gakam 
+9- password: clovis
+10- get fun ....
 </pre>

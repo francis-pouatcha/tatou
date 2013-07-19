@@ -17,7 +17,7 @@ public E merge(E entity) ;
 
 public E findById(K id) ;
 
-public E flush(E entity) ;
+public void flush() ;
 
 public List<E> findAll();
 

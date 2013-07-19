@@ -17,8 +17,8 @@
    <inherits name="org.jboss.errai.databinding.DataBinding" />
    <inherits name="org.jboss.errai.enterprise.CDI" />
    <inherits name="org.jboss.errai.enterprise.Jaxrs" />
-   <!--  <inherits name="org.jboss.errai.security.Security"/>  --> 
-   <inherits name="org.jboss.errai.jpa.JPA" />
+   <!--  <inherits name="org.jboss.errai.security.Security"/> 
+   <inherits name="org.jboss.errai.jpa.JPA" /> --> 
     <!--  <inherits name="org.jboss.errai.jpa.sync.DataSync" />  --> 
 	<inherits name="com.google.gwt.validation.Validation" />
 	<inherits name='org.hibernate.validator.HibernateValidator' />

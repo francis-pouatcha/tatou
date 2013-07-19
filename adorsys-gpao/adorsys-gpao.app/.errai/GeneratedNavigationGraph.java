@@ -3,6 +3,7 @@ package org.jboss.errai.ui.nav.client.local.spi;
 import cm.adorsys.gpao.ui.pages.DashBordPage;
 import cm.adorsys.gpao.ui.pages.LoginPage;
 import cm.adorsys.gpao.ui.pages.ProductFamillyPage;
+import cm.adorsys.gpao.ui.pages.UnitOfMesurePage;
 import org.jboss.errai.ui.nav.client.local.HistoryToken;
 
 public class GeneratedNavigationGraph extends NavigationGraph {
@@ -62,6 +63,39 @@ public class GeneratedNavigationGraph extends NavigationGraph {
       }
 
       public void pageShown(DashBordPage widget, HistoryToken state) {
+
+      }
+    });
+    pagesByName.put("UnitOfMesurePage", new PageNode<UnitOfMesurePage>() {
+      public String name() {
+        return "UnitOfMesurePage";
+      }
+
+      public Class contentType() {
+        return UnitOfMesurePage.class;
+      }
+
+      public UnitOfMesurePage content() {
+        return bm.lookupBean(UnitOfMesurePage.class).getInstance();
+      }
+
+      public void pageHiding(UnitOfMesurePage widget) {
+
+      }
+
+      public void pageHidden(UnitOfMesurePage widget) {
+
+      }
+
+      public native void _1667708175_onPageShown(UnitOfMesurePage instance) /*-{
+        instance.@cm.adorsys.gpao.ui.pages.UnitOfMesurePage::onPageShown()();
+      }-*/;
+
+      public void pageShowing(UnitOfMesurePage widget, HistoryToken state) {
+        _1667708175_onPageShown(widget);
+      }
+
+      public void pageShown(UnitOfMesurePage widget, HistoryToken state) {
 
       }
     });

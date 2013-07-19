@@ -1,6 +1,7 @@
 package cm.adorsys.gpao.ui.widgets;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.Dependent;
 
 import org.jboss.errai.ui.shared.api.annotations.DataField;
 import org.jboss.errai.ui.shared.api.annotations.EventHandler;
@@ -18,7 +19,7 @@ import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 
-@ApplicationScoped
+@Dependent
 public class AdministrationSideBar extends Composite {
 	
 

@@ -31,7 +31,7 @@ public class MainToolBar extends Composite  {
     
     @PostConstruct
     public void init(){
-	toolbar.setHTML("<h3><i class='icon-home'></i> Dashboard</h3>");
+	toolbar.setHTML("<h3><i class='icon-home'></i>Dashboard</h3>");
     }
     
 

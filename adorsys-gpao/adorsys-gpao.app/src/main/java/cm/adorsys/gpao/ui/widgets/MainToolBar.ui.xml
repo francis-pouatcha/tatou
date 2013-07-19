@@ -33,7 +33,7 @@
                     <div class="container-fluid">
                         <div class="row-fluid">
                         <div class="span12">
-                            <g:HTML styleName="span4" ui:field="toolbar">
+                            <g:HTML  ui:field="toolbar">
                                 <h3><i class="icon-home"></i> Dashboard</h3>
                                
                             </g:HTML> 

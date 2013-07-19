@@ -15,8 +15,10 @@ import cm.adorsys.gpao.api.ressources.UsersResosurces;
 import cm.adorsys.gpao.support.Val;
 import cm.adorsys.gpao.ui.pages.DashBordPage;
 
+import com.github.gwtbootstrap.client.ui.Alert;
 import com.github.gwtbootstrap.client.ui.Button;
 import com.github.gwtbootstrap.client.ui.Modal;
+import com.github.gwtbootstrap.client.ui.SimplePager.TextLocation;
 import com.github.gwtbootstrap.client.ui.TextBox;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -55,8 +57,8 @@ public class Login extends Composite {
     @UiField
     Button signIn;
     
+    
    public ErrorCallback errorCallback = new ErrorCallback() {
-        
         @Override
         public boolean error(Message message, Throwable throwable) {
     	 Modal modal = new Modal(true);
@@ -93,8 +95,11 @@ public class Login extends Composite {
     @UiHandler("signIn")
     public void onLogin(ClickEvent clickEvent){
 	if(val.validate(users)) {
-	    
+	    if(login(users)) {
 		dashBordPageTransition.go();
+	    }else {
+		
+	    }
 	   
     }
     }
@@ -106,6 +111,10 @@ public class Login extends Composite {
     public void bindToUI(){
 	users = userBinder.bind(userName, "userName").
 	bind(password, "password").getModel();
+    }
+    
+    public boolean login(Users users){
+	return("gakam".equals(users.getUserName()) && "clovis".equals(users.getPassword())) ;
     }
 
     public Users getUsers() {

@@ -29,7 +29,7 @@
                 <ul id="menu" class="unstyled accordion collapse in">
                     <li class="accordion-group active">
                         <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle collapsed" data-target="#form-nav">
-                            <i class="icon-pencil icon-large"></i> Catalogues <span class="label label-inverse pull-right">3</span>
+                            <i class="icon-book icon-large"></i> Catalogues <span class="label label-inverse pull-right">3</span>
                         </a>
                         <ul class="collapse " id="form-nav">
                             <li><a href="form-general.html"><i class="icon-angle-right"></i> Familles de Produits</a></li>
@@ -37,10 +37,11 @@
                             <li><a href="form-wysiwyg.html"><i class="icon-angle-right"></i> Liste des Produits</a></li>
                         </ul>
                     </li>
-                    <li><a href="maps.html"><i class="icon-map-marker icon-large"></i>  Unites de Mesure</a></li>
+                    <li><a href="#UnitOfMesurePage"><i class="icon-glass icon-large"></i>  Unites de Mesure</a></li>
                     <li><a href="chart.html"><i class="icon-bar-chart icon-large"></i>  Devises</a></li>
-                    <li><a href="calendar.html"><i class="icon-calendar icon-large"></i>  Entrepots</a></li>
-                    <li><a href="calendar.html"><i class="icon-calendar icon-large"></i>  Taxes</a></li>
+                    <li><a href="calendar.html"><i class="icon-home icon-large"></i>  Entrepots</a></li>
+                    <li><a href="calendar.html"><i class="icon-gift icon-large"></i>  Taxes</a></li>
+                    <li><a href="calendar.html"><i class="icon-user icon-large"></i>  Utilisateurs</a></li>
                 </ul>
                 <!-- END MAIN NAVIGATION -->
 	    

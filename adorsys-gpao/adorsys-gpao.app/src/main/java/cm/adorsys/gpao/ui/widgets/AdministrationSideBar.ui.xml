@@ -37,7 +37,7 @@
                             <li><a href="form-wysiwyg.html"><i class="icon-angle-right"></i> Liste des Produits</a></li>
                         </ul>
                     </li>
-                    <li><a href="maps.html"><i class="icon-glass icon-large"></i>  Unites de Mesure</a></li>
+                    <li><a href="#UnitOfMesurePage"><i class="icon-glass icon-large"></i>  Unites de Mesure</a></li>
                     <li><a href="chart.html"><i class="icon-bar-chart icon-large"></i>  Devises</a></li>
                     <li><a href="calendar.html"><i class="icon-home icon-large"></i>  Entrepots</a></li>
                     <li><a href="calendar.html"><i class="icon-gift icon-large"></i>  Taxes</a></li>

@@ -1,5 +1,7 @@
 package org.jboss.errai.marshalling.client.api;
 
+import cm.adorsys.gpao.api.model.UdmGroup;
+import cm.adorsys.gpao.api.model.UnitOfMesure;
 import cm.adorsys.gpao.api.model.Users;
 import java.io.IOException;
 import java.util.AbstractMap;
@@ -70,8 +72,8 @@ import org.jboss.errai.marshalling.client.marshallers.TimestampMarshaller;
   private TimestampMarshaller java_sql_Timestamp;
   private SortedSetMarshaller java_util_TreeSet;
   private QualifyingMarshallerWrapper<SortedMap> java_util_SortedMap;
-  private BigDecimalMarshaller java_math_BigDecimal;
   private SQLDateMarshaller java_sql_Date;
+  private BigDecimalMarshaller java_math_BigDecimal;
   private StringMarshaller java_lang_String;
   private QualifyingMarshallerWrapper<HashMap> java_util_HashMap;
   private SetMarshaller java_util_AbstractSet;
@@ -91,6 +93,8 @@ import org.jboss.errai.marshalling.client.marshallers.TimestampMarshaller;
   private Marshaller<Throwable> java_lang_Throwable;
   private Marshaller<IllegalArgumentException> java_lang_IllegalArgumentException;
   private Marshaller<UnsupportedOperationException> java_lang_UnsupportedOperationException;
+  private Marshaller<UdmGroup> cm_adorsys_gpao_api_model_UdmGroup;
+  private Marshaller<UnitOfMesure> cm_adorsys_gpao_api_model_UnitOfMesure;
   private Marshaller<AssertionError> java_lang_AssertionError;
   private Marshaller<ArrayStoreException> java_lang_ArrayStoreException;
   private Marshaller<IOException> java_io_IOException;
@@ -195,10 +199,10 @@ import org.jboss.errai.marshalling.client.marshallers.TimestampMarshaller;
     marshallers.put("java.util.Collections$SynchronizedSortedMap", java_util_SortedMap);
     marshallers.put("java.util.Collections$UnmodifiableSortedMap", java_util_SortedMap);
     marshallers.put("java.util.TreeMap", java_util_SortedMap);
-    java_math_BigDecimal = new BigDecimalMarshaller();
-    marshallers.put("java.math.BigDecimal", java_math_BigDecimal);
     java_sql_Date = new SQLDateMarshaller();
     marshallers.put("java.sql.Date", java_sql_Date);
+    java_math_BigDecimal = new BigDecimalMarshaller();
+    marshallers.put("java.math.BigDecimal", java_math_BigDecimal);
     java_lang_String = new StringMarshaller();
     marshallers.put("java.lang.String", java_lang_String);
     java_util_HashMap = new QualifyingMarshallerWrapper(new MapMarshaller());
@@ -418,6 +422,116 @@ import org.jboss.errai.marshalling.client.marshallers.TimestampMarshaller;
       }
     };
     marshallers.put("java.lang.UnsupportedOperationException", java_lang_UnsupportedOperationException);
+    cm_adorsys_gpao_api_model_UdmGroup = new Marshaller<UdmGroup>() {
+      private UdmGroup[] EMPTY_ARRAY = new UdmGroup[0];
+      public UdmGroup[] getEmptyArray() {
+        return EMPTY_ARRAY;
+      }
+      public Class getTypeHandled() {
+        return UdmGroup.class;
+      }
+      public UdmGroup demarshall(EJValue a0, MarshallingSession a1) {
+        try {
+          if (a0.isNull()) {
+            return null;
+          }
+          EJObject obj = a0.isObject();
+          String objId = obj.get("^ObjectID").isString().stringValue();
+          if (a1.hasObject(objId)) {
+            return a1.getObject(UdmGroup.class, objId);
+          }
+          UdmGroup entity = new UdmGroup();
+          a1.recordObject(objId, entity);
+          if ((obj.containsKey("id")) && (!obj.get("id").isNull())) {
+            entity.setId(java_lang_Long.demarshall(obj.get("id"), a1));
+          }
+          if ((obj.containsKey("version")) && (!obj.get("version").isNull())) {
+            entity.setVersion(java_lang_Integer.demarshall(obj.get("version"), a1));
+          }
+          if ((obj.containsKey("name")) && (!obj.get("name").isNull())) {
+            entity.setName(java_lang_String.demarshall(obj.get("name"), a1));
+          }
+          return entity;
+        } catch (Throwable t) {
+          t.printStackTrace();
+          throw new RuntimeException("error demarshalling entity: cm.adorsys.gpao.api.model.UdmGroup", t);
+        }
+      }
+      public String marshall(UdmGroup a0, MarshallingSession a1) {
+        if (a0 == null) {
+          return "null";
+        }
+        if (a1.hasObject(a0)) {
+          String objId = a1.getObject(a0);
+          return new StringBuilder(128).append("{\"^EncodedType\":\"cm.adorsys.gpao.api.model.UdmGroup\"").append(",").append("\"^ObjectID\":\"").append(objId).append("\"}").toString();
+        }
+        String objId = a1.getObject(a0);
+        a1.recordObject(objId, objId);
+        return new StringBuilder(512).append("{\"^EncodedType\":\"cm.adorsys.gpao.api.model.UdmGroup\",\"^ObjectID\":\"").append(objId).append("\"").append(",").append("\"id\" : ").append(java_lang_Long.marshall(a0.getId(), a1)).append(",").append("\"version\" : ").append(java_lang_Integer.marshall(a0.getVersion(), a1)).append(",").append("\"name\" : ").append(java_lang_String.marshall(a0.getName(), a1)).append("}").toString();
+      }
+    };
+    marshallers.put("cm.adorsys.gpao.api.model.UdmGroup", cm_adorsys_gpao_api_model_UdmGroup);
+    cm_adorsys_gpao_api_model_UnitOfMesure = new Marshaller<UnitOfMesure>() {
+      private UnitOfMesure[] EMPTY_ARRAY = new UnitOfMesure[0];
+      public UnitOfMesure[] getEmptyArray() {
+        return EMPTY_ARRAY;
+      }
+      public Class getTypeHandled() {
+        return UnitOfMesure.class;
+      }
+      public UnitOfMesure demarshall(EJValue a0, MarshallingSession a1) {
+        try {
+          if (a0.isNull()) {
+            return null;
+          }
+          EJObject obj = a0.isObject();
+          String objId = obj.get("^ObjectID").isString().stringValue();
+          if (a1.hasObject(objId)) {
+            return a1.getObject(UnitOfMesure.class, objId);
+          }
+          UnitOfMesure entity = new UnitOfMesure();
+          a1.recordObject(objId, entity);
+          if ((obj.containsKey("id")) && (!obj.get("id").isNull())) {
+            entity.setId(java_lang_Long.demarshall(obj.get("id"), a1));
+          }
+          if ((obj.containsKey("version")) && (!obj.get("version").isNull())) {
+            entity.setVersion(java_lang_Integer.demarshall(obj.get("version"), a1));
+          }
+          if ((obj.containsKey("name")) && (!obj.get("name").isNull())) {
+            entity.setName(java_lang_String.demarshall(obj.get("name"), a1));
+          }
+          if ((obj.containsKey("unitGroup")) && (!obj.get("unitGroup").isNull())) {
+            entity.setUnitGroup(cm_adorsys_gpao_api_model_UdmGroup.demarshall(obj.get("unitGroup"), a1));
+          }
+          if ((obj.containsKey("enabled")) && (!obj.get("enabled").isNull())) {
+            entity.setEnabled(java_lang_Boolean.demarshall(obj.get("enabled"), a1));
+          }
+          if ((obj.containsKey("ratio")) && (!obj.get("ratio").isNull())) {
+            entity.setRatio(java_math_BigDecimal.demarshall(obj.get("ratio"), a1));
+          }
+          if ((obj.containsKey("isRefUdm")) && (!obj.get("isRefUdm").isNull())) {
+            entity.setIsRefUdm(java_lang_Boolean.demarshall(obj.get("isRefUdm"), a1));
+          }
+          return entity;
+        } catch (Throwable t) {
+          t.printStackTrace();
+          throw new RuntimeException("error demarshalling entity: cm.adorsys.gpao.api.model.UnitOfMesure", t);
+        }
+      }
+      public String marshall(UnitOfMesure a0, MarshallingSession a1) {
+        if (a0 == null) {
+          return "null";
+        }
+        if (a1.hasObject(a0)) {
+          String objId = a1.getObject(a0);
+          return new StringBuilder(128).append("{\"^EncodedType\":\"cm.adorsys.gpao.api.model.UnitOfMesure\"").append(",").append("\"^ObjectID\":\"").append(objId).append("\"}").toString();
+        }
+        String objId = a1.getObject(a0);
+        a1.recordObject(objId, objId);
+        return new StringBuilder(1408).append("{\"^EncodedType\":\"cm.adorsys.gpao.api.model.UnitOfMesure\",\"^ObjectID\":\"").append(objId).append("\"").append(",").append("\"id\" : ").append(java_lang_Long.marshall(a0.getId(), a1)).append(",").append("\"version\" : ").append(java_lang_Integer.marshall(a0.getVersion(), a1)).append(",").append("\"name\" : ").append(java_lang_String.marshall(a0.getName(), a1)).append(",").append("\"unitGroup\" : ").append(cm_adorsys_gpao_api_model_UdmGroup.marshall(a0.getUnitGroup(), a1)).append(",").append("\"enabled\" : ").append(java_lang_Boolean.marshall(a0.getEnabled(), a1)).append(",").append("\"ratio\" : ").append(java_math_BigDecimal.marshall(a0.getRatio(), a1)).append(",").append("\"isRefUdm\" : ").append(java_lang_Boolean.marshall(a0.getIsRefUdm(), a1)).append("}").toString();
+      }
+    };
+    marshallers.put("cm.adorsys.gpao.api.model.UnitOfMesure", cm_adorsys_gpao_api_model_UnitOfMesure);
     java_lang_AssertionError = new Marshaller<AssertionError>() {
       private AssertionError[] EMPTY_ARRAY = new AssertionError[0];
       public AssertionError[] getEmptyArray() {

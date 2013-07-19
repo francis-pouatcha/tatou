@@ -12,7 +12,7 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.UIObject;
 import com.google.gwt.user.client.ui.Widget;
 
-@ApplicationScoped
+@Dependent
 public class Dashboard extends Composite {
 
     private static DashboardUiBinder uiBinder = GWT.create(DashboardUiBinder.class);
