@@ -1,6 +1,0 @@
-digraph Navigation {
-"LoginPage" [penwidth=3]
-"UnitOfMesurePage"
-"ProductFamillyPage"
-"DashBordPage"
-}
