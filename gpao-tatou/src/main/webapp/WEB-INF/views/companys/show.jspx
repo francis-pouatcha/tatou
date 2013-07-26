@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_cm_adorsys_gpao_model_Company" object="${company}" path="/companys" z="NNZCg3FGilLZwkWngsK7I1Oqewg=">
+        <field:display field="name" id="s_cm_adorsys_gpao_model_Company_name" object="${company}" z="HDxHHH2PmMxLf+cq6GVJ+6D2mdw="/>
+        <field:display field="taxePayerNumber" id="s_cm_adorsys_gpao_model_Company_taxePayerNumber" object="${company}" z="d9hHTZ0LxmBsgH5WtCK3APNbah0="/>
+        <field:display field="phone" id="s_cm_adorsys_gpao_model_Company_phone" object="${company}" z="lAwUj0/gfOub5QpIRj9B6axrJx4="/>
+        <field:display field="mobile" id="s_cm_adorsys_gpao_model_Company_mobile" object="${company}" z="M4/qc9SBLcbMGhTS3+Q90/l8+6w="/>
+        <field:display field="fax" id="s_cm_adorsys_gpao_model_Company_fax" object="${company}" z="J5ahmCokcue5EG5okzBtGNPGyFU="/>
+        <field:display field="email" id="s_cm_adorsys_gpao_model_Company_email" object="${company}" z="T75zxQJ4Fgs/o6VuXOBPn9T387g="/>
+        <field:display field="webSite" id="s_cm_adorsys_gpao_model_Company_webSite" object="${company}" z="UrPdORWvcgGs9AGdvhaqVX6W8uk="/>
+        <field:display field="logoPath" id="s_cm_adorsys_gpao_model_Company_logoPath" object="${company}" z="krzCAQd74JLWRvCBAjZWI+g6kHI="/>
+        <field:display field="devise" id="s_cm_adorsys_gpao_model_Company_devise" object="${company}" z="zOydfTJoUVFqi17o9YL7Y/9n8LY="/>
+    </page:show>
+</div>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_cm_adorsys_gpao_model_Location" items="${locations}" z="V9X+UX60iaFKgwmJDPajs2m9gpw=">
+        <table:table data="${locations}" id="l_cm_adorsys_gpao_model_Location" path="/locations" z="h7iJXhmVAWzEiM9b7RzzOLCB+z0=">
+            <table:column id="c_cm_adorsys_gpao_model_Location_name" property="name" z="qGfhfvdm2onkJNDulu3CnkCoJ/4="/>
+            <table:column id="c_cm_adorsys_gpao_model_Location_hallWay" property="hallWay" z="8xIRaSHH0bx3FzczSeOu0wtEiTM="/>
+            <table:column id="c_cm_adorsys_gpao_model_Location_locationRow" property="locationRow" z="33KXePMEisSvjy4fMWHjGWg4aoc="/>
+            <table:column id="c_cm_adorsys_gpao_model_Location_locationHeigth" property="locationHeigth" z="M5gnw9xI7aKJLqZgL9PWZEpuOks="/>
+            <table:column id="c_cm_adorsys_gpao_model_Location_wareHouse" property="wareHouse" z="XGp1QBB4mvDhMnrK7Zkp0gjWThw="/>
+        </table:table>
+    </page:list>
+</div>

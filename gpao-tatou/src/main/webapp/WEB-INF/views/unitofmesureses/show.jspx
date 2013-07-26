@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_cm_adorsys_gpao_model_UnitOfMesures" object="${unitofmesures}" path="/unitofmesureses" z="4li82ZU+3yO5x3OZeS1kXAAB0oI=">
+        <field:display field="name" id="s_cm_adorsys_gpao_model_UnitOfMesures_name" object="${unitofmesures}" z="mGURLQEf0R/IlDvyUvYd1JsoV0Q="/>
+        <field:display field="ratio" id="s_cm_adorsys_gpao_model_UnitOfMesures_ratio" object="${unitofmesures}" z="dLkjSld6cDjKE7xRJQnma6EmuB0="/>
+        <field:display field="unitGroup" id="s_cm_adorsys_gpao_model_UnitOfMesures_unitGroup" object="${unitofmesures}" z="K91elR4Ppxt4GYxZ8HlmTa49NgA="/>
+        <field:display field="isActive" id="s_cm_adorsys_gpao_model_UnitOfMesures_isActive" object="${unitofmesures}" z="hazjK7o9EDVjJnjNKuf+NjZXB2g="/>
+        <field:display field="isRefUnit" id="s_cm_adorsys_gpao_model_UnitOfMesures_isRefUnit" object="${unitofmesures}" z="6NRZNkQKwLOF05Itb8O9nctsK0U="/>
+    </page:show>
+</div>

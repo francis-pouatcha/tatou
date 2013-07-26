@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_cm_adorsys_gpao_model_ProductFamily" items="${productfamilys}" z="iU1wZ/5LXzXdcZCGAn5KGjKBzBA=">
+        <table:table data="${productfamilys}" id="l_cm_adorsys_gpao_model_ProductFamily" path="/productfamilys" z="/veJLBjGbmaJZEiNs2SIvxe7Z4I=">
+            <table:column id="c_cm_adorsys_gpao_model_ProductFamily_name" property="name" z="FnZ7mN0/fiTeVfYHhKwDcU9gVQU="/>
+            <table:column id="c_cm_adorsys_gpao_model_ProductFamily_description" property="description" z="v/jwdoRpOAOcCA7CiaubqDusFAI="/>
+            <table:column id="c_cm_adorsys_gpao_model_ProductFamily_productSubFamily" property="productSubFamily" z="egkC40hIABrNepMFwaSREGVztBA="/>
+        </table:table>
+    </page:list>
+</div>

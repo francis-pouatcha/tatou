@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_cm_adorsys_gpao_model_Devise" object="${devise}" path="/devises" z="0Ar5QqyMqSycp/cGJpdkblJJk+A=">
+        <field:display field="name" id="s_cm_adorsys_gpao_model_Devise_name" object="${devise}" z="OtMD4PFgO3rpSybWzf+51TqGqqY="/>
+        <field:display field="shortName" id="s_cm_adorsys_gpao_model_Devise_shortName" object="${devise}" z="QLLY0NUrXVb1ILDr7zEgZK9IksY="/>
+        <field:display field="ratio" id="s_cm_adorsys_gpao_model_Devise_ratio" object="${devise}" z="920p0DlsPBODrTjFNhAYPWmPfmE="/>
+    </page:show>
+</div>

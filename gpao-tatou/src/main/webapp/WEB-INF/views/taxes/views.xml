@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+    <definition extends="default" name="taxes/list">
+        <put-attribute name="body" value="/WEB-INF/views/taxes/list.jspx"/>
+    </definition>
+<definition extends="default" name="taxes/show">
+        <put-attribute name="body" value="/WEB-INF/views/taxes/show.jspx"/>
+    </definition>
+<definition extends="default" name="taxes/create">
+        <put-attribute name="body" value="/WEB-INF/views/taxes/create.jspx"/>
+    </definition>
+<definition extends="default" name="taxes/update">
+        <put-attribute name="body" value="/WEB-INF/views/taxes/update.jspx"/>
+    </definition>
+    <definition extends="admin" name="taxes/config">
+        <put-attribute name="body" value="/WEB-INF/views/taxes/taxeView.jspx"/>
+    </definition>
+    
+    
+    
+</tiles-definitions>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:create id="fc_cm_adorsys_gpao_model_Location" modelAttribute="location" path="/locations" render="${empty dependencies}" z="L7gg6kFC+/ZPHaHsHY4eUdoYU9w=">
+        <field:input field="name" id="c_cm_adorsys_gpao_model_Location_name" required="true" z="z0MFyhNo1rMtNNA/vN5C++L6cFo="/>
+        <field:input field="hallWay" id="c_cm_adorsys_gpao_model_Location_hallWay" min="0" required="true" validationMessageCode="field_invalid_number" z="ZT5gD6N5c2RFVYIXwB6dQVj0NjI="/>
+        <field:input field="locationRow" id="c_cm_adorsys_gpao_model_Location_locationRow" min="0" required="true" validationMessageCode="field_invalid_number" z="ai0mncqS+k1HK+pjIQ260BD8xVc="/>
+        <field:input field="locationHeigth" id="c_cm_adorsys_gpao_model_Location_locationHeigth" min="0" required="true" validationMessageCode="field_invalid_number" z="6nKeeSckJ+ww8hVd+jgJDwfZC7w="/>
+        <field:select field="wareHouse" id="c_cm_adorsys_gpao_model_Location_wareHouse" itemValue="id" items="${warehouseses}" path="/warehouseses" required="true" z="pyoGCsINdNsBHGgnesoqJtO8ZMU="/>
+    </form:create>
+    <form:dependency dependencies="${dependencies}" id="d_cm_adorsys_gpao_model_Location" render="${not empty dependencies}" z="dkhqanikzyFPkcXom8R2XevUnSs="/>
+</div>

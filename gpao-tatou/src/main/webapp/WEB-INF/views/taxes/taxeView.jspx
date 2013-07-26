@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:page="urn:jsptagdir:/WEB-INF/tags/form"
+	xmlns:form="urn:jsptagdir:/WEB-INF/tags/form"
+	xmlns:spring="http://www.springframework.org/tags"
+	xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+	<jsp:directive.page contentType="text/html;charset=UTF-8" />
+	<jsp:output omit-xml-declaration="yes" />
+	<spring:url value="/taxes/findByNameAndType"
+		var="search_url"></spring:url>
+	<div class="row-fluid">
+		<DIV class="span5">
+			<form:create  label="Ajouter / Modifer des Taxes" showInPanel="false" id="fc_cm_adorsys_gpao_model_Taxe" modelAttribute="taxe"
+				path="/taxes/save" render="${empty dependencies}"
+				z="user-managed">
+				<field:input field="name" id="c_cm_adorsys_gpao_model_Taxe_name"
+					required="true" z="user-managed" />
+				<field:input field="shortName"
+					id="c_cm_adorsys_gpao_model_Taxe_shortName" min="2" required="true"
+					z="user-managed" />
+				<field:input field="taxeValue"
+					id="c_cm_adorsys_gpao_model_Taxe_taxeValue" min="0" required="true"
+					validationMessageCode="field_invalid_number" z="user-managed" />
+				<field:checkbox field="isActive"
+					id="c_cm_adorsys_gpao_model_Taxe_isActive" z="user-managed" />
+				<field:select field="taxeType"
+					id="c_cm_adorsys_gpao_model_Taxe_taxeType" items="${taxetypes}"
+					path="taxetypes" required="true" z="user-managed" />
+			</form:create>
+			<form:dependency dependencies="${dependencies}"
+				id="d_cm_adorsys_gpao_model_Taxe" render="${not empty dependencies}"
+				z="user-managed" />
+
+			<HR />
+			<jsp:include page="../gpaoMessages.jspx" />
+
+		</DIV>
+
+		<DIV class="span7">
+			<page:list labelPlural="Liste des Taxes " id="pl_cm_adorsys_gpao_model_Taxe" items="${taxes}"
+				showInPanel="false" z="user-managed">
+				<div class="div-box-medium"  >
+				<table:table show="false" create="false" delete="false" data="${taxes}" id="l_cm_adorsys_gpao_model_Taxe"
+					path="/taxes/save" z="user-managed">
+					<table:column id="c_cm_adorsys_gpao_model_Taxe_name"
+						property="name" z="user-managed" />
+					<table:column id="c_cm_adorsys_gpao_model_Taxe_shortName"
+						property="shortName" z="user-managed" />
+					<table:column id="c_cm_adorsys_gpao_model_Taxe_taxeValue"
+						property="taxeValue" z="user-managed" />
+					<table:column id="c_cm_adorsys_gpao_model_Taxe_isActive"
+						property="isActive" z="user-managed" />
+					<table:column id="c_cm_adorsys_gpao_model_Taxe_taxeType"
+						property="taxeType" z="user-managed" />
+				</table:table>
+				</div>
+			</page:list>
+			<HR />
+
+			<div>
+				<legend> Zone De Recherche</legend>
+				<form action="${search_url }" method="post" class="form-inline">
+				<select name="taxeType" class=" span5">
+						<c:forEach items="${taxetypes }" var="taxe">
+							<option  value="${taxe}">${ taxe}</option>
+						</c:forEach>
+
+					</select>
+					<div style="margin-left: 1%;" class="block input-append">
+						<input name="name" class="input-large" placeholder="libelle"
+							id="appendedInputButton" size="16" type="text" />
+						<button class="btn btn-primary" type="submit">Ok!</button>
+					</div>
+
+				</form>
+			</div>
+		</DIV>
+
+
+	</div>
+</div>

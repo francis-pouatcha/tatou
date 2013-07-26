@@ -1,0 +1,86 @@
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-07-25 08:25:35
+project --topLevelPackage cm.adorsys.gpao --projectName adorsys-gpao
+persistence setup --provider HIBERNATE --database H2_IN_MEMORY 
+entity jpa --class cm.adorsys.gpao.model.UdmGroup
+field string --fieldName name --notNull 
+field string --fieldName description 
+entity jpa --class ~.model.UnitOfMesures 
+field string --fieldName name --notNull 
+field number --fieldName ratio --type java.math.BigDecimal --min 0 
+field reference --fieldName unitGroup --type ~.model.UdmGroup --notNull 
+field boolean --fieldName isActive --value true 
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-07-25 08:37:53
+entity jpa --class ~.model.Devise 
+field string --fieldName name --notNull 
+field string --fieldName shortName --notNull --sizeMin 2 
+field number --fieldName ratio --type java.math.BigDecimal --notNull --min 0
+entity jpa --class ~.model.Taxe 
+field string --fieldName name --notNull 
+field string --fieldName shortName --notNull --sizeMin 2
+field number --fieldName taxeValue --type java.math.BigDecimal --notNull --min 0 
+field boolean --fieldName isActive --value true 
+enum type --class ~.model.TaxeType 
+enum constant --name BY_PERCENT 
+enum constant --name BY_AMOUNT
+focus --class ~.model.Taxe
+field enum --fieldName taxeType --type ~.model.TaxeType --notNull 
+entity jpa --class ~.model.Company 
+field string --fieldName name --notNull 
+field string --fieldName taxePayerNumber 
+field string --fieldName phone 
+field string --fieldName mobile 
+field string --fieldName fax
+field string --fieldName email 
+field string --fieldName webSite 
+field string --fieldName logoPath 
+field reference --fieldName devise --type ~.model.Devise --notNull 
+entity jpa --class WareHouses 
+field string --fieldName name --notNull 
+field string --fieldName description 
+entity jpa --class ~.model.Location
+field string --fieldName name --notNull 
+field number --fieldName hallWay --type java.math.BigDecimal --min 0 
+// [failed] field number --fieldName row --type java.math.BigDecimal --min 0
+// [failed] field number --fieldName rows --type java.math.BigDecimal --min 0
+field number --fieldName locationRow --type java.math.BigDecimal --min 0
+field number --fieldName locationHeigth --type java.math.BigDecimal --min 0
+focus --class ~.model.WareHouses
+field set --fieldName location --type ~.model.Location --mappedBy wareHouse --cardinality ONE_TO_MANY 
+focus --class ~.model.Location
+field reference --fieldName wareHouse --type ~.model.WareHouses --notNull 
+entity jpa --class ~.model.ProductFamily
+field string --fieldName name --notNull 
+field string --fieldName description 
+entity jpa --class ~.model.ProductSubFamily 
+field string --fieldName name --notNull 
+field string --fieldName description 
+field boolean --fieldName isActive --value true 
+focus --class ~.model.ProductFamily
+field set --fieldName productSubFamily --type ~.model.ProductSubFamily --mappedBy productFamily
+focus --class ~.model.ProductSubFamily
+field reference --fieldName productFamily --type ~.model.ProductFamily --notNull 
+web mvc setup
+security setup
+web mvc all --package cm.adorsys.gpao.web
+finder list --class ~.model.UnitOfMesures --depth 2 --filter udmGroup
+finder add findUnitOfMesuresesByNameLikeAndUnitGroup
+finder add findUnitOfMesuresesByNameLikeAndUnitGroup
+finder add findUnitOfMesuresesByNameLikeAndUnitGroup
+class --class ~.uiModels.UinitOfMesureUiModels 
+field string --fieldName unitName 
+field reference --fieldName udmGroup --type ~.model.UdmGroup
+field set --fieldName unitOfMesures --type ~.model.UnitOfMesures
+field reference --fieldName selectedUnit --type ~.model.UnitOfMesures
+interface --class ~.services.IUdmManageServices
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-07-25 14:18:15
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-07-25 14:41:58
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-07-25 15:00:51
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-07-25 15:04:35
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-07-25 15:15:39
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-07-25 15:22:54
+web mvc all --package cm.adorsys.gpao.web
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-07-25 22:08:42
+help selenium test 
+selenium test --controller ~.web.UnitOfMesuresController --serverUrl http://localhost:8080/
+enum type --class ~.utils.MessageType 
+addon search selenium

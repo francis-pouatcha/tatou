@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_cm_adorsys_gpao_model_UnitOfMesures" items="${unitofmesureses}" z="25Yb6xiytSPkEakK5eBMOycHyUI=">
+        <table:table data="${unitofmesureses}" id="l_cm_adorsys_gpao_model_UnitOfMesures" path="/unitofmesureses" z="TCSvLol/o36FXkkF7fqYeYc2Rc0=">
+            <table:column id="c_cm_adorsys_gpao_model_UnitOfMesures_name" property="name" z="/qbmVx1OGKzxGk39pcB7PNx4sZ0="/>
+            <table:column id="c_cm_adorsys_gpao_model_UnitOfMesures_ratio" property="ratio" z="+O+k1JruTytUIKwddqviStZBHhQ="/>
+            <table:column id="c_cm_adorsys_gpao_model_UnitOfMesures_unitGroup" property="unitGroup" z="YBlVI27NZYTD4KBj5gA+2sYBbxs="/>
+            <table:column id="c_cm_adorsys_gpao_model_UnitOfMesures_isActive" property="isActive" z="j0IS7Ffw8uk+BH6z5MiRHwP6mNs="/>
+            <table:column id="c_cm_adorsys_gpao_model_UnitOfMesures_isRefUnit" property="isRefUnit" z="/f7M3JiJMmaEtLushLWzF5iskgQ="/>
+        </table:table>
+    </page:list>
+</div>

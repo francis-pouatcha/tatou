@@ -1,0 +1,44 @@
+<div xmlns:spring="http://www.springframework.org/tags"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+	<jsp:directive.page contentType="text/html;charset=UTF-8" />
+	<jsp:output omit-xml-declaration="yes" />
+
+	<center style="text-transform: uppercase;">
+	<!-- error message  -->
+		<c:if test="${not empty errorMessages}">
+			<div class="alert alert-block alert-error">
+				<button type="button" class="close" data-dismiss="alert">×</button>
+				<h4>Warning!</h4>
+				<c:forEach var="error" items="${errorMessages}">
+				        ${error}
+			   </c:forEach>
+			</div>
+		</c:if>
+		
+		<!-- success message  -->
+		<c:if test="${not empty successMessages}">
+			<div class="alert alert-block alert-success">
+				<button type="button" class="close" data-dismiss="alert">×</button>
+				<h4>Success!</h4>
+				<c:forEach var="success" items="${successMessages}">
+				        ${success}
+			   </c:forEach>
+			</div>
+		</c:if>
+		
+		<!-- infos message  -->
+		<c:if test="${not empty infosMessages}">
+			<div class="alert alert-block alert-info">
+				<button type="button" class="close" data-dismiss="alert">×</button>
+				<h4>Success!</h4>
+				<c:forEach var="info" items="${infosMessages}">
+				        ${infos}
+			   </c:forEach>
+			</div>
+		</c:if>
+		
+
+		
+	</center>
+</div>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_cm_adorsys_gpao_model_Taxe" object="${taxe}" path="/taxes" z="AK1LZEmalimaKiGvVVIYczYkQow=">
+        <field:display field="name" id="s_cm_adorsys_gpao_model_Taxe_name" object="${taxe}" z="l7nTGdKjpWxSqvefvr1j60LHRpg="/>
+        <field:display field="shortName" id="s_cm_adorsys_gpao_model_Taxe_shortName" object="${taxe}" z="Yooz+8VEimSqBRX7CYFthtCXunw="/>
+        <field:display field="taxeValue" id="s_cm_adorsys_gpao_model_Taxe_taxeValue" object="${taxe}" z="7C5ZS4yRUjFknxF39hI2FkfZJ0o="/>
+        <field:display field="isActive" id="s_cm_adorsys_gpao_model_Taxe_isActive" object="${taxe}" z="luKAO6HtIZA9ut+FkE3TozbktB4="/>
+        <field:display field="taxeType" id="s_cm_adorsys_gpao_model_Taxe_taxeType" object="${taxe}" z="wfeGt7/41WjwC/gZR1B+Gm3ki1o="/>
+    </page:show>
+</div>

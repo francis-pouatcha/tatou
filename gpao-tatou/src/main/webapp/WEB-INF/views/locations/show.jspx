@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_cm_adorsys_gpao_model_Location" object="${location}" path="/locations" z="eKtd1eBG8+ovQheZYu7MTGy+qHM=">
+        <field:display field="name" id="s_cm_adorsys_gpao_model_Location_name" object="${location}" z="yQXFKKEkVztAll0AuWpL1txusHk="/>
+        <field:display field="hallWay" id="s_cm_adorsys_gpao_model_Location_hallWay" object="${location}" z="CrAWpyDEvsEKUf9S1Ps5BTBXhpE="/>
+        <field:display field="locationRow" id="s_cm_adorsys_gpao_model_Location_locationRow" object="${location}" z="SK9o4P7CSr3cBAWp8zL0NYDfChM="/>
+        <field:display field="locationHeigth" id="s_cm_adorsys_gpao_model_Location_locationHeigth" object="${location}" z="sm2g5u04cVl/mHpPOrEnrmk6R1s="/>
+        <field:display field="wareHouse" id="s_cm_adorsys_gpao_model_Location_wareHouse" object="${location}" z="s+KJn+/y8d+WRHHRIdTlJg4A+Ws="/>
+    </page:show>
+</div>

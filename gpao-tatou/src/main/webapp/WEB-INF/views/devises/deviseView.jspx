@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:page="urn:jsptagdir:/WEB-INF/tags/form"
+	xmlns:form="urn:jsptagdir:/WEB-INF/tags/form"
+	xmlns:spring="http://www.springframework.org/tags"
+	xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+	<jsp:directive.page contentType="text/html;charset=UTF-8" />
+	<jsp:output omit-xml-declaration="yes" />
+	<spring:url value="/devises/findByNameOrShortName" var="search_url"></spring:url>
+	<div class="row-fluid">
+		<DIV class="span5">
+			<form:create showInPanel="false" label="Ajouter/Modifier une Devise" id="fc_cm_adorsys_gpao_model_Devise"
+				modelAttribute="devise" path="/devises/save"
+				render="${empty dependencies}" z="user-managed">
+				<field:input field="name" id="c_cm_adorsys_gpao_model_Devise_name"
+					required="true" z="user-managed" />
+				<field:input field="shortName"
+					id="c_cm_adorsys_gpao_model_Devise_shortName" min="2"
+					required="true" z="user-managed" />
+				<field:input field="ratio" id="c_cm_adorsys_gpao_model_Devise_ratio"
+					min="0" required="true"
+					validationMessageCode="field_invalid_number"
+					z="user-managed" />
+			</form:create>
+			<form:dependency dependencies="${dependencies}"
+				id="d_cm_adorsys_gpao_model_Devise"
+				render="${not empty dependencies}" z="user-managed" />
+
+
+			<HR />
+			<jsp:include page="../gpaoMessages.jspx" />
+
+		</DIV>
+
+		<DIV class="span7">
+			<page:list labelPlural="Liste des Devises" showInPanel="false" id="pl_cm_adorsys_gpao_model_Devise"
+				items="${devises}" z="user-managed">
+				<table:table create="false" delete="false" show="false"
+					data="${devises}" id="l_cm_adorsys_gpao_model_Devise"
+					path="/devises/save" z="user-managed">
+					<table:column id="c_cm_adorsys_gpao_model_Devise_name"
+						property="name" z="user-managed" />
+					<table:column id="c_cm_adorsys_gpao_model_Devise_shortName"
+						property="shortName" z="user-managed" />
+					<table:column id="c_cm_adorsys_gpao_model_Devise_ratio"
+						property="ratio" z="user-managed" />
+				</table:table>
+			</page:list>
+			<HR />
+
+			<div>
+				<legend> Zone De Recherche</legend>
+				<form action="${search_url }" method="post" class="form-inline">
+					<input name="shortName" class="input-large dijitTextBox" placeholder="Symbole"  />
+					<div style="margin-left: 1%;" class="block input-append">
+						<input name="name" class="input-large" placeholder="libelle"
+							id="appendedInputButton" size="16" type="text" />
+						<button class="btn btn-primary" type="submit">Ok!</button>
+					</div>
+
+				</form>
+			</div>
+		</DIV>
+
+
+	</div>
+</div>

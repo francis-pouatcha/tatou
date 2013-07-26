@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_cm_adorsys_gpao_model_ProductSubFamily" modelAttribute="productSubFamily" path="/productsubfamilys" versionField="Version" z="r2c7XZfd9JICxGaf7A9r9SQ/LKw=">
+        <field:input field="name" id="c_cm_adorsys_gpao_model_ProductSubFamily_name" required="true" z="vK5NxQ53mjyqeudI+a6OsRiKugY="/>
+        <field:input field="description" id="c_cm_adorsys_gpao_model_ProductSubFamily_description" z="O1Bz4HsCh8UQeLb4gjRuGMOUh6M="/>
+        <field:checkbox field="isActive" id="c_cm_adorsys_gpao_model_ProductSubFamily_isActive" z="mhn1/MFrE7QnAQn+zr8AQsyUtOU="/>
+        <field:select field="productFamily" id="c_cm_adorsys_gpao_model_ProductSubFamily_productFamily" itemValue="id" items="${productfamilys}" path="/productfamilys" required="true" z="yS+aKJJ3Ioj4s8Fplo48OWNc3hE="/>
+    </form:update>
+</div>

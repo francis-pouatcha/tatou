@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_cm_adorsys_gpao_model_Company" items="${companys}" z="sle3vmyqMFBcd6vMi9rKB0/7sJI=">
+        <table:table data="${companys}" id="l_cm_adorsys_gpao_model_Company" path="/companys" z="IHtn6mWYCNoAt4I+G/UlbOmWiCE=">
+            <table:column id="c_cm_adorsys_gpao_model_Company_name" property="name" z="O/vQbOxrvtjPd0Jk+07Mm4Y5YYQ="/>
+            <table:column id="c_cm_adorsys_gpao_model_Company_taxePayerNumber" property="taxePayerNumber" z="Q2V/WqFLJLbfIeoY4dXJJRjXaL4="/>
+            <table:column id="c_cm_adorsys_gpao_model_Company_phone" property="phone" z="IA5T+6/NLh6YbteM6ievGm3VwGQ="/>
+            <table:column id="c_cm_adorsys_gpao_model_Company_mobile" property="mobile" z="zjEaPOqyV8M/DRrdVWJ48E+dbPU="/>
+            <table:column id="c_cm_adorsys_gpao_model_Company_fax" property="fax" z="LAnli33y2VWPQM+rW/g65RX0018="/>
+            <table:column id="c_cm_adorsys_gpao_model_Company_email" property="email" z="m/mvySeWw6oGYhro5i/gw3fAvwQ="/>
+        </table:table>
+    </page:list>
+</div>

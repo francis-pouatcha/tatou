@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:create ortherButton="udmGroupCancelBtn.jspx" showInPanel="false" id="fc_cm_adorsys_gpao_model_UdmGroup" modelAttribute="udmGroup" path="/udmgroups" render="${empty dependencies}" z="user-managed">
+        <field:input field="name" id="c_cm_adorsys_gpao_model_UdmGroup_name" required="true" z="pQpTrRqhyCWFCAn6qtA6ch8rJKE="/>
+        <field:textarea field="description" id="c_cm_adorsys_gpao_model_UdmGroup_description" z="user-managed"/>
+    </form:create>
+    <form:dependency dependencies="${dependencies}" id="d_cm_adorsys_gpao_model_UdmGroup" render="${not empty dependencies}" z="xkfR9i5iEupvNZ9c6CJHOhfRuqU="/>
+</div>

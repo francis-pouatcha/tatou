@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_cm_adorsys_gpao_model_Taxe" modelAttribute="taxe" path="/taxes" versionField="Version" z="5ZH8ADBiUQBLMZHreqge33+m3Tc=">
+        <field:input field="name" id="c_cm_adorsys_gpao_model_Taxe_name" required="true" z="cg3fIdkWRGZHoz9/Y1r9bRMSYiw="/>
+        <field:input field="shortName" id="c_cm_adorsys_gpao_model_Taxe_shortName" min="2" required="true" z="yjkfJpn8KfHra3pY4vD+AKGDmCw="/>
+        <field:input field="taxeValue" id="c_cm_adorsys_gpao_model_Taxe_taxeValue" min="0" required="true" validationMessageCode="field_invalid_number" z="OzqPWvbTmNPXn8MTv1FgcQQJ4z0="/>
+        <field:checkbox field="isActive" id="c_cm_adorsys_gpao_model_Taxe_isActive" z="9G5QzV/G9+z2ESATgXdgItstD5E="/>
+        <field:select field="taxeType" id="c_cm_adorsys_gpao_model_Taxe_taxeType" items="${taxetypes}" path="taxetypes" required="true" z="3PCRr7hyNTtIO2dxHjCYAMQpA9s="/>
+    </form:update>
+</div>

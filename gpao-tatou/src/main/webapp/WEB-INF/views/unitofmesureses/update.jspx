@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_cm_adorsys_gpao_model_UnitOfMesures" modelAttribute="unitOfMesures" path="/unitofmesureses" versionField="Version" z="qq8d27ooXNa/XhL0idwRP+9csaM=">
+        <field:input field="name" id="c_cm_adorsys_gpao_model_UnitOfMesures_name" required="true" z="oFf2Gh5LW4oBrTliaRV9gZ3LM6s="/>
+        <field:input field="ratio" id="c_cm_adorsys_gpao_model_UnitOfMesures_ratio" min="0" required="true" validationMessageCode="field_invalid_number" z="jSN9qC1GKy8k6MrVv0lYetx4Im0="/>
+        <field:select field="unitGroup" id="c_cm_adorsys_gpao_model_UnitOfMesures_unitGroup" itemValue="id" items="${udmgroups}" path="/udmgroups" required="true" z="lzWYY3kwT5f2Qvuxaa+o//QW4L0="/>
+        <field:checkbox field="isActive" id="c_cm_adorsys_gpao_model_UnitOfMesures_isActive" z="7U68Xveuqyla3vjlm1GkkTELfXw="/>
+        <field:checkbox field="isRefUnit" id="c_cm_adorsys_gpao_model_UnitOfMesures_isRefUnit" z="w3667kCC0wddMAjHb1wjubghIM4="/>
+    </form:update>
+</div>

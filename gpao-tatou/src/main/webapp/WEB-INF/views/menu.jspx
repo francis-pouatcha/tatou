@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:menu="urn:jsptagdir:/WEB-INF/tags/menu" class="well" id="menu" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <menu:menu id="_menu" z="nZaf43BjUg1iM0v70HJVEsXDopc=">
+        <menu:category id="c_location" z="RvMgx8apsPylYygCQ4tMBVfulVw=">
+            <menu:item id="i_location_new" messageCode="global_menu_new" url="/locations?form" z="sW8KSnwNnd9wjssI0lLV1kzOguk="/>
+            <menu:item id="i_location_list" messageCode="global_menu_list" url="/locations?page=1&amp;size=${empty param.size ? 10 : param.size}" z="VdKLEljpeTLil2W6A3GdWmSBzXI="/>
+        </menu:category>
+        <menu:category id="c_unitofmesures" z="3gZ/3XthKcCbz3quGzbiOt4/Dok=">
+            <menu:item id="i_unitofmesures_new" messageCode="global_menu_new" url="/unitofmesureses?form" z="ntTIopVI63zqYIp6e8Y47kuw6fg="/>
+            <menu:item id="i_unitofmesures_list" messageCode="global_menu_list" url="/unitofmesureses?page=1&amp;size=${empty param.size ? 10 : param.size}" z="OhsXgYhutJZ2i87fIP3nBWRzvrg="/>
+        </menu:category>
+        <menu:category id="c_taxe" z="/oAM2JxRLS3SFmc6EU+OMb78DbU=">
+            <menu:item id="i_taxe_new" messageCode="global_menu_new" url="/taxes?form" z="rXYLG+XSWqnkDtoocAEwwwPIRNg="/>
+            <menu:item id="i_taxe_list" messageCode="global_menu_list" url="/taxes?page=1&amp;size=${empty param.size ? 10 : param.size}" z="A7oqcy3uZh3TiJ22Bf31ma1WLFo="/>
+        </menu:category>
+        <menu:category id="c_productfamily" z="vDsMuu5ew8tvw7visHs/boI8deE=">
+            <menu:item id="i_productfamily_new" messageCode="global_menu_new" url="/productfamilys?form" z="Kxjol8btY9yC/V5UIjDUi6ukafc="/>
+            <menu:item id="i_productfamily_list" messageCode="global_menu_list" url="/productfamilys?page=1&amp;size=${empty param.size ? 10 : param.size}" z="rsnXMcxMtC/Ql33O262YbzQVaJk="/>
+        </menu:category>
+        <menu:category id="c_udmgroup" z="j6NkractXad/LYlCSoAfX9TveRQ=">
+            <menu:item id="i_udmgroup_new" messageCode="global_menu_new" url="/udmgroups?form" z="lTqU5xYVCspr7KNnHBhmd2qVEqs="/>
+            <menu:item id="i_udmgroup_list" messageCode="global_menu_list" url="/udmgroups?page=1&amp;size=${empty param.size ? 10 : param.size}" z="T0HVyjyiMFEtoMBseFv21tcIRl0="/>
+        </menu:category>
+        <menu:category id="c_productsubfamily" z="pZNGzIWDCYL0Fm0upzhsByfYMWs=">
+            <menu:item id="i_productsubfamily_new" messageCode="global_menu_new" url="/productsubfamilys?form" z="eEuiMohpjZknHlX/d6Ef23IJXlA="/>
+            <menu:item id="i_productsubfamily_list" messageCode="global_menu_list" url="/productsubfamilys?page=1&amp;size=${empty param.size ? 10 : param.size}" z="R3oI3PrPUNNNTDuxj1mcErcOMtg="/>
+        </menu:category>
+        <menu:category id="c_devise" z="ucT5pkmGWN4PlZ/KRt7dZLFhPW4=">
+            <menu:item id="i_devise_new" messageCode="global_menu_new" url="/devises?form" z="U1b1RAgmKkPCWAUkIv4ZCGjPB2s="/>
+            <menu:item id="i_devise_list" messageCode="global_menu_list" url="/devises?page=1&amp;size=${empty param.size ? 10 : param.size}" z="ozAWJApRDAVZ0sNXZw61ZwsPD7Y="/>
+        </menu:category>
+        <menu:category id="c_warehouses" z="0RtwSoblDpWfGy01pc/4S6RZfq8=">
+            <menu:item id="i_warehouses_new" messageCode="global_menu_new" url="/warehouseses?form" z="7f/YalPW1nL1AVYbhbCiT2hb2qQ="/>
+            <menu:item id="i_warehouses_list" messageCode="global_menu_list" url="/warehouseses?page=1&amp;size=${empty param.size ? 10 : param.size}" z="C7u6Yhkp1oxfGRaJTb9lOyPFH3s="/>
+        </menu:category>
+        <menu:category id="c_company" z="tmJjNcrRZwdZqruFqwG+TB5GMek=">
+            <menu:item id="i_company_new" messageCode="global_menu_new" url="/companys?form" z="SWjXbZ96+4L3yJZ+Q7yyqEFQPV4="/>
+            <menu:item id="i_company_list" messageCode="global_menu_list" url="/companys?page=1&amp;size=${empty param.size ? 10 : param.size}" z="vk1qspgPYbGCO4tYu2Ikm8DhmbY="/>
+        </menu:category>
+        <menu:category id="c_seleniumtests" z="PPLMd2yNB6/LSbjIWogAacRPU+Q=">
+            <menu:item id="si_seleniumtests_test" messageCode="selenium_menu_test_suite" url="/resources/selenium/test-suite.xhtml" z="wwunW/IPDcunN97u41MvMJZQ2to="/>
+        </menu:category>
+    </menu:menu>
+</div>

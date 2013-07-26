@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:menu="urn:jsptagdir:/WEB-INF/tags/menu" xmlns:spring="http://www.springframework.org/tags" class="well" id="menu" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+     <spring:url value="/resources/images/user.png" var="user_url"></spring:url>
+  
+    <menu:menu id="_menu" z="ser-managed">
+   <div class="row-fluid">
+   <div class="span6"> <img src="${user_url}" class="img-polaroid"  alt="" /> </div>
+   <div class="span6">
+                        <ul class="unstyled user-info">
+                        <li><a href=""><small>Administrateur </small></a></li>
+                            <li><a href=""><small>Gakam clovis </small></a></li>
+                            <li><a href=""><small>Password </small></a></li>
+                        </ul>
+   </div>
+    </div>
+        <menu:category id="c_configuration" z="user-managed">
+            <menu:item id="i_unitofmesures_new" messageCode="global_menu_gpao" url="/unitofmesureses/config" z="user-managed"/>
+            <menu:item id="i_taxe_new" messageCode="global_menu_gpao" url="/taxes/config" z="user-managed"/>
+            <menu:item id="i_productfamily_new" messageCode="global_menu_gpao" url="/productfamilys/config" z="user-managed"/>
+            <menu:item id="i_devise_new" messageCode="global_menu_gpao" url="/devises/config" z="user-managed"/>
+            <menu:item id="i_warehouses_new" messageCode="global_menu_gpao" url="/warehouseses/config" z="user-managed"/>
+            <menu:item id="i_company_new" messageCode="global_menu_gpao" url="/companys/config" z="user-managed"/>
+        </menu:category>
+        <menu:category id="c_utilisateurs" z="user-managed">
+            <menu:item  label="Utilisateurs" id="i_unitofmesures_new" messageCode="global_menu_gpao" url="/unitofmesureses?form" z="ser-managed"/>
+            <menu:item  label="Groupes Utilisateurs" id="i_unitofmesures_new" messageCode="global_menu_gpao" url="/unitofmesureses?form" z="ser-managed"/>
+        </menu:category>
+    </menu:menu>
+</div>

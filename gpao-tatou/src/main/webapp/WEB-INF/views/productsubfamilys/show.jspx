@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_cm_adorsys_gpao_model_ProductSubFamily" object="${productsubfamily}" path="/productsubfamilys" z="giY+Wo97XGPxFo5EV8hHEU8r3vk=">
+        <field:display field="name" id="s_cm_adorsys_gpao_model_ProductSubFamily_name" object="${productsubfamily}" z="nZm8C7MGdZa69TexRroi3tO2GJY="/>
+        <field:display field="description" id="s_cm_adorsys_gpao_model_ProductSubFamily_description" object="${productsubfamily}" z="dLh/W5Wk1oCIDGIM2ln9yeFJp9c="/>
+        <field:display field="isActive" id="s_cm_adorsys_gpao_model_ProductSubFamily_isActive" object="${productsubfamily}" z="aB84c3fEMPexzWcuCRHsKfG2mrU="/>
+        <field:display field="productFamily" id="s_cm_adorsys_gpao_model_ProductSubFamily_productFamily" object="${productsubfamily}" z="/JQUXkbWScV6O0CYozq+9mHp4Bk="/>
+    </page:show>
+</div>
