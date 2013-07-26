@@ -14,6 +14,9 @@ body {
 #header {
 	margin-bottom: 1em;
 }
+table tr:HOVER {
+	cursor: pointer;
+}
 
 input[type="text"] {
    height: 20px;

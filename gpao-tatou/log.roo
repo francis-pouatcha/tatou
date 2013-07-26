@@ -84,3 +84,4 @@ help selenium test
 selenium test --controller ~.web.UnitOfMesuresController --serverUrl http://localhost:8080/
 enum type --class ~.utils.MessageType 
 addon search selenium
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-07-26 13:23:43

@@ -3,6 +3,7 @@ package cm.adorsys.gpao.model;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import org.springframework.roo.addon.javabean.RooJavaBean;
@@ -15,6 +16,7 @@ import org.springframework.roo.addon.tostring.RooToString;
 public class WareHouses {
 
     @NotNull
+    @Column(unique=true)
     private String name;
 
     private String description;

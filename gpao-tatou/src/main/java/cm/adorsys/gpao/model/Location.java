@@ -1,7 +1,11 @@
 package cm.adorsys.gpao.model;
 
 import java.math.BigDecimal;
+
+import javax.persistence.Column;
+import javax.persistence.EntityManager;
 import javax.persistence.ManyToOne;
+import javax.persistence.TypedQuery;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import org.springframework.roo.addon.javabean.RooJavaBean;
@@ -14,6 +18,7 @@ import org.springframework.roo.addon.tostring.RooToString;
 public class Location {
 
     @NotNull
+    @Column(unique=true)
     private String name;
 
     @Min(0L)
@@ -28,4 +33,19 @@ public class Location {
     @NotNull
     @ManyToOne
     private WareHouses wareHouse;
+    
+    
+ //finders
+    
+    public static TypedQuery<Location> findLocationsByNameLikeAndWareHouses(String name, WareHouses  wareHouses) {
+        if (name == null || name.length() == 0) name = "*";
+        name = name.replace('*', '%');
+            name = name + "%";
+        if (wareHouses == null) throw new IllegalArgumentException("The wareHouses argument is required");
+        EntityManager em = Taxe.entityManager();
+        TypedQuery<Location> q = em.createQuery("SELECT o FROM Location AS o WHERE LOWER(o.name) LIKE LOWER(:name)  AND o.wareHouse = :wareHouse ORDER BY o.name ", Location.class);
+        q.setParameter("name", name);
+        q.setParameter("wareHouse", wareHouses);
+        return q;
+    }
 }

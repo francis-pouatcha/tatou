@@ -4,7 +4,7 @@
     <jsp:output omit-xml-declaration="yes"/>
     <form:update id="fu_cm_adorsys_gpao_model_Devise" modelAttribute="devise" path="/devises" versionField="Version" z="K5NwE1Hl2lzOjV4FuYxXMpJACkU=">
         <field:input field="name" id="c_cm_adorsys_gpao_model_Devise_name" required="true" z="BOgv8BLkfNrUOD9Io/nxlfpK2ms="/>
-        <field:input field="shortName" id="c_cm_adorsys_gpao_model_Devise_shortName" min="2" required="true" z="RF8rsPXYuXL9uJ8euVOLJcSlQTw="/>
+        <field:input field="shortName" id="c_cm_adorsys_gpao_model_Devise_shortName" min="1" required="true" z="fs+IWbGUOOj1wBJ1iGmTbANVjUs="/>
         <field:input field="ratio" id="c_cm_adorsys_gpao_model_Devise_ratio" min="0" required="true" validationMessageCode="field_invalid_number" z="bZSX8OLvAsdXcdYrOP6IrpT9/E8="/>
     </form:update>
 </div>

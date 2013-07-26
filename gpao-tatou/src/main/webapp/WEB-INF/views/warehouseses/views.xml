@@ -7,10 +7,10 @@
 <definition extends="default" name="warehouseses/show">
         <put-attribute name="body" value="/WEB-INF/views/warehouseses/show.jspx"/>
     </definition>
-<definition extends="default" name="warehouseses/create">
+<definition extends="admin" name="warehouseses/create">
         <put-attribute name="body" value="/WEB-INF/views/warehouseses/create.jspx"/>
     </definition>
-<definition extends="default" name="warehouseses/update">
+<definition extends="admin" name="warehouseses/update">
         <put-attribute name="body" value="/WEB-INF/views/warehouseses/update.jspx"/>
     </definition>
 </tiles-definitions>

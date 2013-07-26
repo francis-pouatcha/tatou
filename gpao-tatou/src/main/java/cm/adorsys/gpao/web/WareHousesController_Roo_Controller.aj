@@ -8,9 +8,7 @@ import cm.adorsys.gpao.model.WareHouses;
 import cm.adorsys.gpao.web.WareHousesController;
 import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,17 +17,6 @@ import org.springframework.web.util.UriUtils;
 import org.springframework.web.util.WebUtils;
 
 privileged aspect WareHousesController_Roo_Controller {
-    
-    @RequestMapping(method = RequestMethod.POST, produces = "text/html")
-    public String WareHousesController.create(@Valid WareHouses wareHouses, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
-        if (bindingResult.hasErrors()) {
-            populateEditForm(uiModel, wareHouses);
-            return "warehouseses/create";
-        }
-        uiModel.asMap().clear();
-        wareHouses.persist();
-        return "redirect:/warehouseses/" + encodeUrlPathSegment(wareHouses.getId().toString(), httpServletRequest);
-    }
     
     @RequestMapping(params = "form", produces = "text/html")
     public String WareHousesController.createForm(Model uiModel) {
@@ -56,17 +43,6 @@ privileged aspect WareHousesController_Roo_Controller {
             uiModel.addAttribute("warehouseses", WareHouses.findAllWareHouseses());
         }
         return "warehouseses/list";
-    }
-    
-    @RequestMapping(method = RequestMethod.PUT, produces = "text/html")
-    public String WareHousesController.update(@Valid WareHouses wareHouses, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
-        if (bindingResult.hasErrors()) {
-            populateEditForm(uiModel, wareHouses);
-            return "warehouseses/update";
-        }
-        uiModel.asMap().clear();
-        wareHouses.merge();
-        return "redirect:/warehouseses/" + encodeUrlPathSegment(wareHouses.getId().toString(), httpServletRequest);
     }
     
     @RequestMapping(value = "/{id}", params = "form", produces = "text/html")

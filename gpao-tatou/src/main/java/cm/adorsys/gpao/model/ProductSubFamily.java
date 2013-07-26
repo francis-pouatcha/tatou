@@ -1,6 +1,8 @@
 package cm.adorsys.gpao.model;
 
+import javax.persistence.EntityManager;
 import javax.persistence.ManyToOne;
+import javax.persistence.TypedQuery;
 import javax.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.roo.addon.javabean.RooJavaBean;
@@ -23,4 +25,19 @@ public class ProductSubFamily {
     @NotNull
     @ManyToOne
     private ProductFamily productFamily;
+    
+    
+//finders
+    
+    public static TypedQuery<ProductSubFamily> findProductSubFamilyByNameLikeProductFamily(String name, ProductFamily  productFamily) {
+        if (name == null || name.length() == 0) name = "*";
+        name = name.replace('*', '%');
+            name = name + "%";
+        if (productFamily == null) throw new IllegalArgumentException("The productFamily argument is required");
+        EntityManager em = ProductSubFamily.entityManager();
+        TypedQuery<ProductSubFamily> q = em.createQuery("SELECT o FROM ProductSubFamily AS o WHERE LOWER(o.name) LIKE LOWER(:name)  AND o.productFamily = :productFamily ORDER BY o.name ", ProductSubFamily.class);
+        q.setParameter("name", name);
+        q.setParameter("productFamily", productFamily);
+        return q;
+    }
 }

@@ -3,14 +3,14 @@
   <jsp:output omit-xml-declaration="yes" />
   <spring:message var="app_name" code="application_name" htmlEscape="false" />
   <spring:message var="title" code="welcome_titlepane" arguments="${app_name}" htmlEscape="false" />
-  <util:panel id="title" title="${title}">
-    <h3>
-    hhh
-      <spring:message code="welcome_h3" arguments="${app_name}" />
-    </h3>
-    <p>
-    
-      <spring:message code="welcome_text" />
-    </p>
-  </util:panel>
+  <div class="hero-unit">
+						<h1>Admin Dashbord</h1>
+						<p>Vestibulum id ligula porta felis euismod semper. Integer
+							posuere erat a ante venenatis dapibus posuere velit aliquet. Duis
+							mollis, est non commodo luctus, nisi erat porttitor ligula, eget
+							lacinia odio sem nec elit.</p>
+						<p>
+							<a class="btn primary large">Learn more &#187;</a>
+						</p>
+</div>
 </div>

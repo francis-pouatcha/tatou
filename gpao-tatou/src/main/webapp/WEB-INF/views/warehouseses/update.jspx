@@ -2,9 +2,9 @@
 <div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    <form:update id="fu_cm_adorsys_gpao_model_WareHouses" modelAttribute="wareHouses" path="/warehouseses" versionField="Version" z="MARYuj8AlALjsuKea4VYhxV7SIc=">
-        <field:input field="name" id="c_cm_adorsys_gpao_model_WareHouses_name" required="true" z="warV/6Ilppw8WcJJBkxys/4YYUs="/>
-        <field:input field="description" id="c_cm_adorsys_gpao_model_WareHouses_description" z="Qot0rkOI9N7xggnNnaGtwQSG6FY="/>
-        <field:simple field="location" id="c_cm_adorsys_gpao_model_WareHouses_location" messageCode="entity_reference_not_managed" messageCodeAttribute="Location" z="NRzprAqOKNxJ+pzGAQdTYdEMiXI="/>
+    <form:update showInPanel="false"  id="fu_cm_adorsys_gpao_model_WareHouses" modelAttribute="wareHouses" path="/warehouseses" versionField="Version" z="user-managed">
+        <field:input field="name" id="c_cm_adorsys_gpao_model_WareHouses_name" required="true" z="user-managed"/>
+        <field:input field="description" id="c_cm_adorsys_gpao_model_WareHouses_description" z="user-managed"/>
+        <field:simple field="location" id="c_cm_adorsys_gpao_model_WareHouses_location" messageCode="entity_reference_not_managed" messageCodeAttribute="Location" z="user-managed"/>
     </form:update>
 </div>

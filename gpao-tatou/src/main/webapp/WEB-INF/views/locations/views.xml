@@ -13,4 +13,9 @@
 <definition extends="default" name="locations/update">
         <put-attribute name="body" value="/WEB-INF/views/locations/update.jspx"/>
     </definition>
+    <definition extends="admin" name="locations/config">
+        <put-attribute name="body" value="/WEB-INF/views/locations/locationView.jspx"/>
+    </definition>
+    
+    
 </tiles-definitions>

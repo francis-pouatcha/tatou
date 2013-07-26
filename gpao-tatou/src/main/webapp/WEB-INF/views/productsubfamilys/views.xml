@@ -13,4 +13,8 @@
 <definition extends="default" name="productsubfamilys/update">
         <put-attribute name="body" value="/WEB-INF/views/productsubfamilys/update.jspx"/>
     </definition>
+    
+    <definition extends="admin" name="productsubfamilys/config">
+        <put-attribute name="body" value="/WEB-INF/views/productsubfamilys/subFamilyView.jspx"/>
+    </definition>
 </tiles-definitions>

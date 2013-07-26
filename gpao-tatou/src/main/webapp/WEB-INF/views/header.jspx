@@ -9,7 +9,7 @@
 	<jsp:output omit-xml-declaration="yes" />
 	
 	<spring:url var="home" value="/" />
-	<spring:url var="Admin_url" value="/unitofmesureses/config" />
+	<spring:url var="Admin_url" value="/adminHome" />
 	<spring:message code="button_home" var="home_label" htmlEscape="false" />
 	<spring:message code="application_name" var="app_name" htmlEscape="false"/>
 	<div class="navbar-inner">
