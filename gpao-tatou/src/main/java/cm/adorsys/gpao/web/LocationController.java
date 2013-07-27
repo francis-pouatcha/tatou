@@ -14,22 +14,23 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import cm.adorsys.gpao.model.Location;
 import cm.adorsys.gpao.model.UdmGroup;
 import cm.adorsys.gpao.model.WareHouses;
 import cm.adorsys.gpao.utils.MessageType;
-
 @RequestMapping("/locations")
 @Controller
 @RooWebScaffold(path = "locations", formBackingObject = Location.class)
 public class LocationController {
-	
+
 	@RequestMapping(value = "/config", produces = "text/html")
-	public String configLocation(@RequestParam(value="id",required=false) Long id, Model uiModel) {
+	public String configLocation(@RequestParam(value="id",required=false) Long id, Model uiModel,HttpServletRequest httpServletRequest) {
 		WareHouses wareHouse = null ;
 		if(id!=null) wareHouse = WareHouses.findWareHouses(id);
 		populateView(uiModel, null,null,wareHouse);
+		uiModel.addAttribute(MessageType.SUCCESS_MESSAGE,httpServletRequest.getAttribute(MessageType.SUCCESS_MESSAGE));
 		return "locations/config";
 	}
 
@@ -40,19 +41,24 @@ public class LocationController {
 	}
 
 	@RequestMapping(value = "/save", produces = "text/html" ,method = RequestMethod.POST)
-	public String configLocation(@Valid Location location, BindingResult bindingResult , Model uiModel,HttpServletRequest httpServletRequest) {
+	public String configLocation(@Valid Location location, BindingResult bindingResult , Model uiModel,HttpServletRequest httpServletRequest,RedirectAttributes redirectAttributes) {
 		if (bindingResult.hasErrors()) {
 			populateView(uiModel, location,null,new WareHouses());
 			uiModel.addAttribute(MessageType.ERROR_MESSAGE,Arrays.asList("Une erreur est Survenue durant l'enregistrement !"));
 			return "locations/config";
 		}
+
+		if(location.getId()!=null){
+			System.out.println(location);
+			location.merge();
+		}else {
+			location.persist();
+		}
 		uiModel.asMap().clear();
-		Location merge =location.merge();
-		 populateView(uiModel, null,null ,null);
-	     uiModel.addAttribute(MessageType.SUCCESS_MESSAGE,Arrays.asList("Emplacement enregistrer avec success !"));
-        return "locations/config";
+		httpServletRequest.setAttribute(MessageType.SUCCESS_MESSAGE, Arrays.asList("Emplacement enregistrer avec success !"));
+		return "forward:/locations/config?id=" + encodeUrlPathSegment(location.getId().toString(), httpServletRequest);
 	}
-	
+
 	@RequestMapping(value = "/findByNameAndWareHouse", produces = "text/html" ,method = RequestMethod.POST)
 	public String findLocation(Location location , Model uiModel) {
 		List<Location> locations = Location.findLocationsByNameLikeAndWareHouses(location.getName(), location.getWareHouse()).getResultList();

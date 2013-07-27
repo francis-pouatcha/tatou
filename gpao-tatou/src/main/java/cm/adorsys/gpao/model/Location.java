@@ -18,7 +18,6 @@ import org.springframework.roo.addon.tostring.RooToString;
 public class Location {
 
     @NotNull
-    @Column(unique=true)
     private String name;
 
     @Min(0L)

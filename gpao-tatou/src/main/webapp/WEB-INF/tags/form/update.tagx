@@ -12,6 +12,7 @@
   <jsp:directive.attribute name="openPane" type="java.lang.Boolean" required="false" rtexprvalue="true" description="Control if the title pane is opened or closed by default (default: true)" />
   <jsp:directive.attribute name="z" type="java.lang.String" required="false" description="Used for checking if element has been modified (to recalculate simply provide empty string value)" />
 	  <jsp:directive.attribute name="showInPanel" type="java.lang.Boolean" required="false" description="show in Panel ?"/>
+<jsp:directive.attribute name="ortherButton" type="java.lang.String" required="false" description="orther button to add ?"/>
 
   <c:if test="${empty render or render}">
     <c:if test="${empty label}">
@@ -56,7 +57,10 @@
         <div class="submit" id="${fn:escapeXml(id)}_submit">
           <spring:message code="button_save" var="save_button" htmlEscape="false" />
           <script type="text/javascript">Spring.addDecoration(new Spring.ValidateAllDecoration({elementId:'proceed', event:'onclick'}));</script>
-          <input id="proceed" class="btn-primary" type="submit" value="${fn:escapeXml(save_button)}" />
+          <input id="proceed" class="btn-primary span3" type="submit" value="${fn:escapeXml(save_button)}" />
+           <c:if test="${not empty ortherButton}">
+            <jsp:include page="${ortherButton}"/>
+          </c:if>
         </div>
         <form:hidden id="_${fn:escapeXml(idField)}_id" path="${fn:escapeXml(idField)}" />
         <c:if test="${versionField ne 'none'}">

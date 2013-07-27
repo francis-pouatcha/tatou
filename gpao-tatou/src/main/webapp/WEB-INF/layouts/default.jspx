@@ -39,11 +39,11 @@
 
 	<body class="tundra spring">
 	
-		<tiles:insertAttribute name="header" ignore="true" />
+		<tiles:insertAttribute name="header" ignore="false" />
 	
 		<div class="container-fluid">
 			<div class="row-fluid">
-				<div class="span3">
+				<div class="span3" >
 					<tiles:insertAttribute name="menu" ignore="true" />
 				</div>
 				<!--/span-->
@@ -52,12 +52,10 @@
 					<div class="row-fluid">
 						<tiles:insertAttribute name="body" />
 					</div>
-	
-					<footer>
+				</div>
+				<footer>
 						<tiles:insertAttribute name="footer" ignore="true" />
 					</footer>
-	
-				</div>
 				
 			</div>
 			

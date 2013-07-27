@@ -5,10 +5,18 @@ body,div,td {
 	font-size: 12px;
 	color: #666;
 }
+.header-link{
+	font-size: 22px;
+	font-weight: bold;
+	font-family: fantasy;
+	color: blue;
+	padding-top: 10px;
+}
 
 body {
 	background-color: #fff;
 	text-align: center;
+	
 }
 
 #header {
@@ -100,7 +108,7 @@ a{
 	text-decoration: none;
 }
 #menu a:hover {
-	color: #648C1D;
+	color: blue ;
 	background: #fff;
 }
 
@@ -143,6 +151,13 @@ input {
 
 input, textarea, select {
 	border:1px solid #B3B3B3;
+}
+select{
+	width: 13.2em;
+}
+
+select :HOVER{
+	cursor:  pointer;
 }
 
 input.image {

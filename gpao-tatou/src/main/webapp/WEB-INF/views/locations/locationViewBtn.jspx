@@ -10,6 +10,7 @@
     <jsp:output omit-xml-declaration="yes"/>
        <!-- liste of link to use on this page  -->
        <spring:url value="/warehouseses?form"  var="add_url" />
+       <spring:url value="/warehouseses/"  var="edit_url" />
        
        <input id="add" style="margin-left: 1%;" class="btn-warning span4 small-marge-left" type="button" value="Creer Magasin"/>
        <input id="edit" style="margin-left: 3%;" class="btn-warning span3 small-marge-left" type="button" value="Edit Magasin"/>
@@ -19,8 +20,8 @@
           });
           
           $("#edit").click(function(){
-        	 var grpId = $("#_unitGroup_id").val();
-        	  window.alert( grpId);
+        	  var selectVal = $('#_wareHouse_id :selected').val();
+        	  window.location ="${edit_url}"+selectVal+"?form" ;
           });
           
           

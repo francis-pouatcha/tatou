@@ -7,7 +7,7 @@
   <spring:url value="/resources/dojo/dojo.js" var="dojo_url" />
   <spring:url value="/resources/styles/bootstrap.css" var="bootstrap_url" />
   <spring:url value="/resources/styles/bootstrap-responsive.css" var="bootstrapr_url" />
-  <spring:url value="/resources/styles/gpao.css" var="gpao_url" />
+  <spring:url value="/resources/styles/docs.css" var="gpao_url" />
   <spring:url value="/resources/bootstrap/js/bootstrap.js" var="bootstrapjs_url" />
   <spring:url value="/resources/bootstrap/js/jquery-1.9.1.min.js" var="jquery_url" />
   
@@ -17,7 +17,6 @@
   <spring:url value="/resources/spring/Spring-Dojo.js" var="spring_dojo_url" />
   <spring:url value="/resources/images/favicon.ico" var="favicon" />
   
-  <link rel="stylesheet" href="${gpao_url}"/>
   <link rel="stylesheet" href="${bootstrap_url}"/>
   <link rel="stylesheet" href="${bootstrapr_url}"/>
   <link rel="stylesheet" type="text/css" href="${tundra_url}" />
