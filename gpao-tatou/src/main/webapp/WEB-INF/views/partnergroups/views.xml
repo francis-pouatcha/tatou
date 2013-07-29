@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+    <definition extends="default" name="partnergroups/list">
+        <put-attribute name="body" value="/WEB-INF/views/partnergroups/list.jspx"/>
+    </definition>
+<definition extends="default" name="partnergroups/show">
+        <put-attribute name="body" value="/WEB-INF/views/partnergroups/show.jspx"/>
+    </definition>
+<definition extends="purchase" name="partnergroups/create">
+        <put-attribute name="body" value="/WEB-INF/views/partnergroups/create.jspx"/>
+    </definition>
+<definition extends="purchase" name="partnergroups/update">
+        <put-attribute name="body" value="/WEB-INF/views/partnergroups/update.jspx"/>
+</definition>
+
+</tiles-definitions>

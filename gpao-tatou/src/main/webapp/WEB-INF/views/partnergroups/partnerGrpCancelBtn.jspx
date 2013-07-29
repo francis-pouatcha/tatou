@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<span xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" 
+	xmlns:spring="http://www.springframework.org/tags" 
+	xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" 
+	xmlns:jsp="http://java.sun.com/JSP/Page" 	xmlns:security="http://www.springframework.org/security/tags"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"  
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions" version="2.0"
+	style=" margin: 10px;">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+       <!-- liste of link to use on this page  -->
+       <spring:url value="/partners/addOrEditForm"  var="cancel_url" />
+       
+       <input id="cancel" style="margin-left: 2%;" class="btn-danger span2 small-marge-left" type="button" value="Anuller"/>
+          <script type="text/javascript"> $("#cancel").click(function(){
+        	  window.location ="${cancel_url}" ;
+          })</script>
+   
+</span>
+
+

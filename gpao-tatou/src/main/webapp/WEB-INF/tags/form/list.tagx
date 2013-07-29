@@ -38,7 +38,9 @@
           <jsp:doBody />
         </c:when>
         <c:otherwise>
+        <p class="msg">
           <spring:message arguments="${label}" code="entity_not_found" />
+         </p>
         </c:otherwise>
       </c:choose>
     </c:otherwise>

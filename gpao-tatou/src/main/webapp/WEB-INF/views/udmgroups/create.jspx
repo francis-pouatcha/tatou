@@ -3,12 +3,13 @@
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <div class="row-fluid">
-		<div class="span6">
-    <form:create ortherButton="udmGroupCancelBtn.jspx" showInPanel="false" id="fc_cm_adorsys_gpao_model_UdmGroup" modelAttribute="udmGroup" path="/udmgroups" render="${empty dependencies}" z="user-managed">
-        <field:input field="name" id="c_cm_adorsys_gpao_model_UdmGroup_name" required="true" z="pQpTrRqhyCWFCAn6qtA6ch8rJKE="/>
-        <field:textarea field="description" id="c_cm_adorsys_gpao_model_UdmGroup_description" z="user-managed"/>
-    </form:create>
-    <form:dependency dependencies="${dependencies}" id="d_cm_adorsys_gpao_model_UdmGroup" render="${not empty dependencies}" z="xkfR9i5iEupvNZ9c6CJHOhfRuqU="/>
-</div>
-</div>
+        <div class="span6">
+            <form:create id="fc_cm_adorsys_gpao_model_UdmGroup" modelAttribute="udmGroup" ortherButton="udmGroupCancelBtn.jspx" path="/udmgroups" render="${empty dependencies}" showInPanel="false" z="user-managed">
+                <field:input field="name" id="c_cm_adorsys_gpao_model_UdmGroup_name" required="true" z="pQpTrRqhyCWFCAn6qtA6ch8rJKE="/>
+                <field:textarea field="description" id="c_cm_adorsys_gpao_model_UdmGroup_description" z="user-managed"/>
+                <field:simple field="unitOfMesures" id="c_cm_adorsys_gpao_model_UdmGroup_unitOfMesures" messageCode="entity_reference_not_managed" messageCodeAttribute="Unit Of Mesures" render="false" z="user-managed"/>
+            </form:create>
+            <form:dependency dependencies="${dependencies}" id="d_cm_adorsys_gpao_model_UdmGroup" render="${not empty dependencies}" z="xkfR9i5iEupvNZ9c6CJHOhfRuqU="/>
+        </div>
+    </div>
 </div>

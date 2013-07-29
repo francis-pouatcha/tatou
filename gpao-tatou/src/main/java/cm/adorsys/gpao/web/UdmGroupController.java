@@ -1,9 +1,8 @@
 package cm.adorsys.gpao.web;
 
+import cm.adorsys.gpao.model.UdmGroup;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-
-import cm.adorsys.gpao.model.UdmGroup;
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RooWebScaffold(path = "udmgroups", formBackingObject = UdmGroup.class)
 public class UdmGroupController {
-	
-	@RequestMapping(method = RequestMethod.POST, produces = "text/html")
+
+    @RequestMapping(method = RequestMethod.POST, produces = "text/html")
     public String create(@Valid UdmGroup udmGroup, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, udmGroup);
@@ -26,8 +25,8 @@ public class UdmGroupController {
         udmGroup.persist();
         return "redirect:/unitofmesureses/config?id=" + encodeUrlPathSegment(udmGroup.getId().toString(), httpServletRequest);
     }
-	
-	@RequestMapping(method = RequestMethod.PUT, produces = "text/html")
+
+    @RequestMapping(method = RequestMethod.PUT, produces = "text/html")
     public String update(@Valid UdmGroup udmGroup, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, udmGroup);
@@ -38,5 +37,3 @@ public class UdmGroupController {
         return "redirect:/unitofmesureses/config?id=" + encodeUrlPathSegment(udmGroup.getId().toString(), httpServletRequest);
     }
 }
-
-

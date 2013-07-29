@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_cm_adorsys_gpao_model_Contacts" items="${contactses}" z="58Fp6VHt6kUOql5jyLn7CtIWieU=">
+        <table:table data="${contactses}" id="l_cm_adorsys_gpao_model_Contacts" path="/contactses" z="ZH6n+FutwbrDQXEXdkDmAACwfb4=">
+            <table:column id="c_cm_adorsys_gpao_model_Contacts_name" property="name" z="BUERgA/5l2STkQ25Cb2umdVxFYc="/>
+            <table:column id="c_cm_adorsys_gpao_model_Contacts_phone" property="phone" z="QABn51bwIRJkD02yNHP4zqjQqKY="/>
+            <table:column id="c_cm_adorsys_gpao_model_Contacts_email" property="email" z="yt6wAsI13C2whp7hpki5r23Utdo="/>
+            <table:column id="c_cm_adorsys_gpao_model_Contacts_contactFunction" property="contactFunction" z="SGOviH9LnHFeqDX8u8SXSnQ4iN4="/>
+            <table:column id="c_cm_adorsys_gpao_model_Contacts_partner" property="partner" z="+Z6o7dwkLyBsAIGnLyF/ozVwujg="/>
+        </table:table>
+    </page:list>
+</div>

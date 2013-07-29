@@ -22,7 +22,10 @@
         <put-attribute name="body" value="/WEB-INF/views/login.jspx"/>
     </definition>
     <definition extends="admin" name="adminHome">
-        <put-attribute name="body" value="/WEB-INF/views/admin-home.jspx"/>
+        <put-attribute name="body" value="/WEB-INF/views/home-admin.jspx"/>
+    </definition>
+     <definition extends="purchase" name="purchaseHome">
+        <put-attribute name="body" value="/WEB-INF/views/home-purchase.jspx"/>
     </definition>
 </tiles-definitions>
 

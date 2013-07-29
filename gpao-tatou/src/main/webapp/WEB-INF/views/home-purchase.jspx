@@ -1,0 +1,16 @@
+<div xmlns:spring="http://www.springframework.org/tags" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+  <jsp:directive.page contentType="text/html;charset=UTF-8" />
+  <jsp:output omit-xml-declaration="yes" />
+  <spring:message var="app_name" code="application_name" htmlEscape="false" />
+  <spring:message var="title" code="welcome_titlepane" arguments="${app_name}" htmlEscape="false" />
+  <div class="hero-unit">
+						<h1>Achats Dashbord</h1>
+						<p>Vestibulum id ligula porta felis euismod semper. Integer
+							posuere erat a ante venenatis dapibus posuere velit aliquet. Duis
+							mollis, est non commodo luctus, nisi erat porttitor ligula, eget
+							lacinia odio sem nec elit.</p>
+						<p>
+							<a class="btn primary large">Learn more &#187;</a>
+						</p>
+</div>
+</div>

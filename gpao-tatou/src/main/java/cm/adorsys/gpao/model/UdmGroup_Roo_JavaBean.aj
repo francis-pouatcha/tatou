@@ -4,6 +4,8 @@
 package cm.adorsys.gpao.model;
 
 import cm.adorsys.gpao.model.UdmGroup;
+import cm.adorsys.gpao.model.UnitOfMesures;
+import java.util.Set;
 
 privileged aspect UdmGroup_Roo_JavaBean {
     
@@ -21,6 +23,14 @@ privileged aspect UdmGroup_Roo_JavaBean {
     
     public void UdmGroup.setDescription(String description) {
         this.description = description;
+    }
+    
+    public Set<UnitOfMesures> UdmGroup.getUnitOfMesures() {
+        return this.unitOfMesures;
+    }
+    
+    public void UdmGroup.setUnitOfMesures(Set<UnitOfMesures> unitOfMesures) {
+        this.unitOfMesures = unitOfMesures;
     }
     
 }

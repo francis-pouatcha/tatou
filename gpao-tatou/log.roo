@@ -85,3 +85,43 @@ selenium test --controller ~.web.UnitOfMesuresController --serverUrl http://loca
 enum type --class ~.utils.MessageType 
 addon search selenium
 // Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-07-26 13:23:43
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-07-27 15:35:33
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-07-29 10:39:45
+entity jpa --class ~.model.partnerGroup
+field string --fieldName name --notNull yes
+field string --fieldName description --sizeMin 256
+enum type --class ~.model.PartnerType 
+enum constant --name CORPORATION
+enum constant --name INDIVIDUAL
+entity jpa --class ~.model.Partner
+field string --fieldName name --notNull 
+field boolean --fieldName isCustomer --value false
+field boolean --fieldName isProvider --value false
+field string --fieldName contactName 
+field string --fieldName contactFunction 
+field string --fieldName phone
+field string --fieldName mobile
+field string --fieldName fax
+field string --fieldName email
+field string --fieldName webSite
+field enum --fieldName partnerType --type ~.model.PartnerType
+field reference --fieldName partnerGroup --type ~.model.PartnerGroup
+entity jpa --class ~.model.Contacts
+field string --fieldName name --notNull 
+field string --fieldName phone
+field string --fieldName email 
+// [failed] field string --fieldName function
+field string --fieldName contactFunction
+focus --class ~.model.Partner
+field set --fieldName contacts --type ~.model.Contacts --mappedBy partner
+focus --class ~.model.Contacts
+field reference --fieldName partner --type ~.model.Partner
+focus --class ~.model.Partner
+field string --fieldName city
+field string --fieldName country
+web mvc all --package cm.adorsys.gpao.web
+focus --class ~.model.Partner
+field reference --fieldName partnerDevise --type ~.model.Devise
+field string --fieldName logoPath 
+field boolean --fieldName isActive --value true
+field string --fieldName code

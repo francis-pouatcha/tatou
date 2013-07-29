@@ -9,18 +9,19 @@
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
        <!-- liste of link to use on this page  -->
-       <spring:url value="/udmgroups?form"  var="add_udm_url" />
+       <spring:url value="/udmgroups?form"  var="add_url" />
+       <spring:url value="/udmgroups/"  var="edit_url" />
        
        <input id="add" style="margin-left: 1%;" class="btn-warning span4 small-marge-left" type="button" value="Creer udmgrp"/>
        <input id="edit" style="margin-left: 3%;" class="btn-warning span3 small-marge-left" type="button" value="Edit udmgrp"/>
           <script type="text/javascript">
           $("#add").click(function(){
-        	  window.location ="${add_udm_url}" ;
+        	  window.location ="${add_url}" ;
           });
           
           $("#edit").click(function(){
         	 var grpId = $("#_unitGroup_id").val();
-        	  window.alert( grpId);
+        	 window.location ="${edit_url}"+grpId+"?form" ;
           });
           
           

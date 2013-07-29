@@ -1,10 +1,9 @@
 package cm.adorsys.gpao.web;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
-
 import cm.adorsys.gpao.model.UdmGroup;
 import cm.adorsys.gpao.model.WareHouses;
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RooWebScaffold(path = "warehouseses", formBackingObject = WareHouses.class)
 public class WareHousesController {
-	
-	@RequestMapping(method = RequestMethod.POST, produces = "text/html")
+
+    @RequestMapping(method = RequestMethod.POST, produces = "text/html")
     public String create(@Valid WareHouses wareHouses, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, wareHouses);
@@ -27,8 +26,8 @@ public class WareHousesController {
         wareHouses.persist();
         return "redirect:/locations/config?id=" + encodeUrlPathSegment(wareHouses.getId().toString(), httpServletRequest);
     }
-	
-	@RequestMapping(method = RequestMethod.PUT, produces = "text/html")
+
+    @RequestMapping(method = RequestMethod.PUT, produces = "text/html")
     public String update(@Valid WareHouses wareHouses, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, wareHouses);

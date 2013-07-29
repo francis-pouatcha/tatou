@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:create id="fc_cm_adorsys_gpao_model_Partner" modelAttribute="partner" path="/partners" render="${empty dependencies}" z="w7MDT5+9+mo5DSC8JEMizC+yc3Y=">
+        <field:input field="name" id="c_cm_adorsys_gpao_model_Partner_name" required="true" z="HzGRAc4swmNY2gh+gKeYB8VPy1k="/>
+        <field:checkbox field="isCustomer" id="c_cm_adorsys_gpao_model_Partner_isCustomer" z="HqY5OmVoLAWHezWORpoG32iD4XU="/>
+        <field:checkbox field="isProvider" id="c_cm_adorsys_gpao_model_Partner_isProvider" z="w6InJS1K2uxDxxvUTh0gr66cz2U="/>
+        <field:input field="contactName" id="c_cm_adorsys_gpao_model_Partner_contactName" z="t2qS+eqbNWiku9i6y+WvYiY/72M="/>
+        <field:input field="contactFunction" id="c_cm_adorsys_gpao_model_Partner_contactFunction" z="vCKB7E20EbA3PiCzswtvuUfJzoo="/>
+        <field:input field="phone" id="c_cm_adorsys_gpao_model_Partner_phone" z="pla2nAVkGOy40tuQSJ7yEPrph9A="/>
+        <field:input field="mobile" id="c_cm_adorsys_gpao_model_Partner_mobile" z="r/LmtsyazPXr0qxhgd3EINyV9IY="/>
+        <field:input field="fax" id="c_cm_adorsys_gpao_model_Partner_fax" z="/EuQ2qtELM3PHFAQE0RtXQvmJSE="/>
+        <field:input field="email" id="c_cm_adorsys_gpao_model_Partner_email" validationMessageCode="field_invalid_email" z="0ynUn4JnUwM9H3LvKjRIUwBgV/4="/>
+        <field:input field="webSite" id="c_cm_adorsys_gpao_model_Partner_webSite" z="cziWkPAGGsYbZmIEdsisNN0LNvc="/>
+        <field:select field="partnerType" id="c_cm_adorsys_gpao_model_Partner_partnerType" items="${partnertypes}" path="partnertypes" z="uV6kAjQP5qcIns+GAuaFpNLvZ60="/>
+        <field:select field="partnerGroup" id="c_cm_adorsys_gpao_model_Partner_partnerGroup" itemValue="id" items="${partnergroups}" path="/partnergroups" z="xFbhMApLX/CjHVMWNa+no10O/xE="/>
+        <field:select field="contacts" id="c_cm_adorsys_gpao_model_Partner_contacts" itemValue="id" items="${contactses}" multiple="true" path="/contactses" z="D/RerdE3Wbg0PR/CKEKe3BHkfGc="/>
+        <field:input field="city" id="c_cm_adorsys_gpao_model_Partner_city" z="A2Gr8bqNnvwTWtruObqFkzH4BSo="/>
+        <field:input field="country" id="c_cm_adorsys_gpao_model_Partner_country" z="KFqfu+KvF5WbcC1YewYge3aGnG4="/>
+        <field:select field="partnerDevise" id="c_cm_adorsys_gpao_model_Partner_partnerDevise" itemValue="id" items="${devises}" path="/devises" z="YzFPx9MCe3+LceLDTzGfHMzraPM="/>
+        <field:input field="logoPath" id="c_cm_adorsys_gpao_model_Partner_logoPath" z="B91S8MroRtS5fjuc6ZuUI0g0duo="/>
+        <field:checkbox field="isActive" id="c_cm_adorsys_gpao_model_Partner_isActive" z="sYAPTj7Q6UmTdoMu3vHBsb/tcwk="/>
+        <field:input field="code" id="c_cm_adorsys_gpao_model_Partner_code" z="VkiDBIoabCFogg5Xgh2gshmB2lw="/>
+    </form:create>
+    <form:dependency dependencies="${dependencies}" id="d_cm_adorsys_gpao_model_Partner" render="${not empty dependencies}" z="+P0LVjfYc+T1K5Xr9zC/TAgB1nM="/>
+</div>

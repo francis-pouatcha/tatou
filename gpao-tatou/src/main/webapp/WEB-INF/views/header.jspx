@@ -9,7 +9,8 @@
 	<jsp:output omit-xml-declaration="yes" />
 	<spring:url value="/resources/images/tatou.png" var="logo_url"></spring:url>
 	<spring:url var="home" value="/" />
-	<spring:url var="Admin_url" value="/unitofmesureses/config" />
+	<spring:url var="Admin_url" value="/adminHome" />
+	<spring:url var="purchase_url" value="/purchaseHome" />
 	<spring:message code="button_home" var="home_label" htmlEscape="false" />
 	<spring:message code="application_name" var="app_name" htmlEscape="false"/>
 	<div class="navbar-inner">
@@ -27,7 +28,7 @@
               <li class="active" ><a class="header-link" href="${Admin_url}">Administration</a></li>
               <li><a class="header-link" href="#">Facturations</a></li>
               <li><a class="header-link" href="#">Productions</a></li>
-               <li><a class="header-link" href="#">Achats</a></li>
+               <li><a class="header-link" href="${purchase_url}">Achats</a></li>
                <li><a class="header-link" href="#">Ventes</a></li>
                <li><a class="header-link" href="#">Stocks</a></li>
             </ul>

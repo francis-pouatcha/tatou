@@ -4,6 +4,7 @@
 package cm.adorsys.gpao.web;
 
 import cm.adorsys.gpao.model.UdmGroup;
+import cm.adorsys.gpao.model.UnitOfMesures;
 import cm.adorsys.gpao.web.UdmGroupController;
 import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpServletRequest;
@@ -62,6 +63,7 @@ privileged aspect UdmGroupController_Roo_Controller {
     
     void UdmGroupController.populateEditForm(Model uiModel, UdmGroup udmGroup) {
         uiModel.addAttribute("udmGroup", udmGroup);
+        uiModel.addAttribute("unitofmesureses", UnitOfMesures.findAllUnitOfMesureses());
     }
     
     String UdmGroupController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

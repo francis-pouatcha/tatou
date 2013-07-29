@@ -9,13 +9,13 @@
    <div class="span6"> <img src="${user_url}" class="img-polaroid"  alt="" /> </div>
    <div class="span6">
                         <ul class="unstyled user-info">
-                        <li><a href=""><small>Administrateur </small></a></li>
-                            <li><a href=""><small>Gakam clovis </small></a></li>
-                            <li><a href=""><small>Password </small></a></li>
+                        <li><a href=""><small class="user-link">Gakam clovis </small></a></li>
+                            <li><a href=""><small class="user-link">Infos Personnels </small></a></li>
+                            <li><a href=""><small class="user-link">Changer Password </small></a></li>
                         </ul>
    </div>
     </div>
-        <menu:category id="c_configuration" z="user-managed">
+        <menu:category label="Donnees de Base" id="c_configuration" z="user-managed">
             <menu:item id="i_unitofmesures_new" messageCode="global_menu_gpao" url="/unitofmesureses/config" z="user-managed"/>
             <menu:item id="i_taxe_new" messageCode="global_menu_gpao" url="/taxes/config" z="user-managed"/>
             <menu:item id="i_productsubfamily_new" label="Familles et SousFamilles de Produits" messageCode="global_menu_gpao" url="/productsubfamilys/config" z="user-managed"/>

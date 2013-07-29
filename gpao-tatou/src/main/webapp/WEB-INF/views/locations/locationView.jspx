@@ -12,11 +12,10 @@
 		var="search_url"></spring:url>
 	<div class="row-fluid">
 		<DIV class="span5">
-			<form:create id="fc_cm_adorsys_gpao_model_Location" label="Creer/Modifier Emplacement"
-				ortherButton="locationViewBtn.jspx" showInPanel="false"
+			<form:update id="fc_cm_adorsys_gpao_model_Location" label="Creer/Modifier Emplacement"
+				ortherButton="locationViewBtn.jspx" showInPanel="false" versionField="Version"
 				modelAttribute="location" path="/locations/save"
 				render="${empty dependencies}" z="user-managed">
-				<field:input-hidden field="id" id="c_cm_adorsys_gpao_model_Location_id" />
 				<field:input field="name" id="c_cm_adorsys_gpao_model_Location_name"
 					required="true" z="user-managed" />
 				<field:input field="hallWay"
@@ -35,7 +34,7 @@
 					id="c_cm_adorsys_gpao_model_Location_wareHouse"   itemValue="id"
 					items="${warehouseses}" itemLabel="name" path="/warehouseses" required="true"
 					z="user-managed" />
-			</form:create>
+			</form:update>
 			<form:dependency dependencies="${dependencies}"
 				id="d_cm_adorsys_gpao_model_Location"
 				render="${not empty dependencies}" z="dkhqanikzyFPkcXom8R2XevUnSs=" />

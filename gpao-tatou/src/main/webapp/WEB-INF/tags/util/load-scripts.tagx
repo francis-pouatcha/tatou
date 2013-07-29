@@ -5,8 +5,8 @@
   <spring:theme code="styleSheet" var="roo_css" />
   <spring:url value="/${roo_css}" var="roo_css_url" />
   <spring:url value="/resources/dojo/dojo.js" var="dojo_url" />
-  <spring:url value="/resources/styles/bootstrap.css" var="bootstrap_url" />
-  <spring:url value="/resources/styles/bootstrap-responsive.css" var="bootstrapr_url" />
+  <spring:url value="/resources/bootstrap/css/bootstrap.css" var="bootstrap_url" />
+  <spring:url value="/resources/bootstrap/css/bootstrap-responsive.css" var="bootstrapr_url" />
   <spring:url value="/resources/styles/docs.css" var="gpao_url" />
   <spring:url value="/resources/bootstrap/js/bootstrap.js" var="bootstrapjs_url" />
   <spring:url value="/resources/bootstrap/js/jquery-1.9.1.min.js" var="jquery_url" />

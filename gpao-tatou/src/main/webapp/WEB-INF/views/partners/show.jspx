@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_cm_adorsys_gpao_model_Partner" object="${partner}" path="/partners" z="jzVf8AqlfoWFGi5HiSrRVtNeFZk=">
+        <field:display field="name" id="s_cm_adorsys_gpao_model_Partner_name" object="${partner}" z="f/nVh4Hgi2N0oIkuHH7wzX+ZJ4Q="/>
+        <field:display field="isCustomer" id="s_cm_adorsys_gpao_model_Partner_isCustomer" object="${partner}" z="9nTnmts+kx3M4PwWxSIYrNS6TMg="/>
+        <field:display field="isProvider" id="s_cm_adorsys_gpao_model_Partner_isProvider" object="${partner}" z="9sRQa+2qV9jYbXM2picfB6aBzyM="/>
+        <field:display field="contactName" id="s_cm_adorsys_gpao_model_Partner_contactName" object="${partner}" z="4OlaQ5sb3M19gow1KfafC67eIxc="/>
+        <field:display field="contactFunction" id="s_cm_adorsys_gpao_model_Partner_contactFunction" object="${partner}" z="lM9XLXj1HmsEwIB6Ae/+6WKUEVw="/>
+        <field:display field="phone" id="s_cm_adorsys_gpao_model_Partner_phone" object="${partner}" z="BDMfzPkOW0D03+bTZv4wdBiPHQY="/>
+        <field:display field="mobile" id="s_cm_adorsys_gpao_model_Partner_mobile" object="${partner}" z="E8Jkjg3WgAosr6P0B5eqbr670m8="/>
+        <field:display field="fax" id="s_cm_adorsys_gpao_model_Partner_fax" object="${partner}" z="K4GKt77FsWAMTBqlk2zLsEHO58o="/>
+        <field:display field="email" id="s_cm_adorsys_gpao_model_Partner_email" object="${partner}" z="/izG5afn4EIbbMARXSLuWNux2sE="/>
+        <field:display field="webSite" id="s_cm_adorsys_gpao_model_Partner_webSite" object="${partner}" z="lNdbLDvK+y7pejMUbsC6KlTiKY4="/>
+        <field:display field="partnerType" id="s_cm_adorsys_gpao_model_Partner_partnerType" object="${partner}" z="oTVpHs+phUfGgXr6Gtll/uDhMIM="/>
+        <field:display field="partnerGroup" id="s_cm_adorsys_gpao_model_Partner_partnerGroup" object="${partner}" z="8n7EcGq8AJEyChhrH1bM3R2Zcag="/>
+        <field:display field="contacts" id="s_cm_adorsys_gpao_model_Partner_contacts" object="${partner}" z="aVfCUoDzdlpTt/X6wi9CNTqY5ss="/>
+        <field:display field="city" id="s_cm_adorsys_gpao_model_Partner_city" object="${partner}" z="1xV2pi3u/4BYPAP9WmPvB1DszT0="/>
+        <field:display field="country" id="s_cm_adorsys_gpao_model_Partner_country" object="${partner}" z="hs302mKn/cLR513QEQfbKq4V8eo="/>
+        <field:display field="partnerDevise" id="s_cm_adorsys_gpao_model_Partner_partnerDevise" object="${partner}" z="lUeS28MkKL9z3BvWqmLQHozzg9c="/>
+        <field:display field="logoPath" id="s_cm_adorsys_gpao_model_Partner_logoPath" object="${partner}" z="2de+EBbUTnivaYVfCE0UvuRG2pg="/>
+        <field:display field="isActive" id="s_cm_adorsys_gpao_model_Partner_isActive" object="${partner}" z="jCNIN9/XJidSBaz88lf5UwDEOKA="/>
+        <field:display field="code" id="s_cm_adorsys_gpao_model_Partner_code" object="${partner}" z="8QOx7scDPRgHLHCCR85BuITh8IE="/>
+    </page:show>
+</div>

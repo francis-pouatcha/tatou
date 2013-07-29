@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_cm_adorsys_gpao_model_PartnerGroup" items="${partnergroups}" z="2LrBbVG+UAg445sBUPTDiedmuSI=">
+        <table:table data="${partnergroups}" id="l_cm_adorsys_gpao_model_PartnerGroup" path="/partnergroups" z="3CI2UbO2O0rNBTHSwAc7Z0djk60=">
+            <table:column id="c_cm_adorsys_gpao_model_PartnerGroup_name" property="name" z="Wue94/s8gfcEACZ7/d/R3WjUbtw="/>
+            <table:column id="c_cm_adorsys_gpao_model_PartnerGroup_description" property="description" z="xX8U6f7mTUp4xytgLzd2oXGZljA="/>
+        </table:table>
+    </page:list>
+</div>

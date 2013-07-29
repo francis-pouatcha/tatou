@@ -1,4 +1,4 @@
-package cm.adorsys.gpao.uimodels;
+package cm.adorsys.gpao.model.uiModels;
 
 import cm.adorsys.gpao.model.UdmGroup;
 import cm.adorsys.gpao.model.UnitOfMesures;

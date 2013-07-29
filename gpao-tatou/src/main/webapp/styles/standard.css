@@ -6,16 +6,70 @@ body,div,td {
 	color: #666;
 }
 .header-link{
-	font-size: 22px;
+	font-size: 21px;
 	font-weight: bold;
 	font-family: fantasy;
 	color: blue;
-	padding-top: 10px;
+	margin-top: 3px;
+	margin-bottom: 3px;
 }
 
+
+
+.a-btn{
+	text-decoration: none;
+	color: black;
+}
+.btn-group{
+	margin-bottom: 3px;
+}
+.header-link:HOVER{
+	background-color: black;
+}
+.user-link{
+	color: blue;
+}
+.user-link:HOVER{
+	text-decoration: underline;
+}
+.user-icon{
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-top: 1px;
+  *margin-right: .3em;
+  line-height: 14px;
+  vertical-align: text-top;
+  background-image: url("/resources/images/delete.png");
+  background-position: 14px 14px;
+  background-repeat: no-repeat;
+}
 body {
-	background-color: #fff;
+	/*background-color:teal;*/
 	text-align: center;
+	
+}
+legend {
+	font-size: 16px;
+	color: maroon;
+	font-family:Helvetica ;
+	padding-top: 3px;
+	padding-bottom: 2px;
+	
+	
+}
+nav-tabs a {
+	color: blue;
+}
+
+.msg {
+	color:blue;
+	
+}
+
+label {
+	color: black;
+	font-family:Helvetica ;
 	
 }
 
@@ -139,7 +193,7 @@ table.navigation {
 }
 
 label {
-	width:100px;
+	width:120px;
 	float:left;
 	margin-left: 5px;
 	margin-top: 0px;
@@ -212,7 +266,7 @@ h4 {
 }
 
 .errors {
-	color: red;
+	color: white;
 	font-weight: bold;
 	display: block;
 	margin-left: 105px;
@@ -233,7 +287,7 @@ tr:nth-child(odd) {
 }
 
 tr:nth-child(even) {
-	background-color: #EFEFEF;
+	background-color: #f5f5dc ;
 }
 
 a:link {

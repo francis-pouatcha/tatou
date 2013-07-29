@@ -42,5 +42,17 @@
         <menu:category id="c_seleniumtests" z="PPLMd2yNB6/LSbjIWogAacRPU+Q=">
             <menu:item id="si_seleniumtests_test" messageCode="selenium_menu_test_suite" url="/resources/selenium/test-suite.xhtml" z="wwunW/IPDcunN97u41MvMJZQ2to="/>
         </menu:category>
+        <menu:category id="c_contacts" z="VaJG7yzquO9stIGP/0Rf7J4TKZw=">
+            <menu:item id="i_contacts_new" messageCode="global_menu_new" url="/contactses?form" z="cFQejwUnPtpG7dpoRptMW0GkW9Y="/>
+            <menu:item id="i_contacts_list" messageCode="global_menu_list" url="/contactses?page=1&amp;size=${empty param.size ? 10 : param.size}" z="ojH1k772PElGBMeW38rK4E3hEjA="/>
+        </menu:category>
+        <menu:category id="c_partner" z="1c5SWl9hgTSNPwpm3ec/i3c8Mpo=">
+            <menu:item id="i_partner_new" messageCode="global_menu_new" url="/partners?form" z="4xjV01xDZ9Kh11CbimGNrPY2LQw="/>
+            <menu:item id="i_partner_list" messageCode="global_menu_list" url="/partners?page=1&amp;size=${empty param.size ? 10 : param.size}" z="lbpoRNR4iI77PzeiPBiRRca9fgQ="/>
+        </menu:category>
+        <menu:category id="c_partnergroup" z="RJjofIRyXHzjXGHn+5xTQkANYKI=">
+            <menu:item id="i_partnergroup_new" messageCode="global_menu_new" url="/partnergroups?form" z="oWqR2ILs4s5g1EIwBixCbklSrWY="/>
+            <menu:item id="i_partnergroup_list" messageCode="global_menu_list" url="/partnergroups?page=1&amp;size=${empty param.size ? 10 : param.size}" z="yOc8gbH3pw3KXj7CtcT6BX6U2Tc="/>
+        </menu:category>
     </menu:menu>
 </div>
