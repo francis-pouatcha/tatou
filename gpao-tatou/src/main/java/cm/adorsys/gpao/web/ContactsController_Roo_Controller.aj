@@ -4,7 +4,6 @@
 package cm.adorsys.gpao.web;
 
 import cm.adorsys.gpao.model.Contacts;
-import cm.adorsys.gpao.model.Partner;
 import cm.adorsys.gpao.web.ContactsController;
 import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpServletRequest;
@@ -87,7 +86,6 @@ privileged aspect ContactsController_Roo_Controller {
     
     void ContactsController.populateEditForm(Model uiModel, Contacts contacts) {
         uiModel.addAttribute("contacts", contacts);
-        uiModel.addAttribute("partners", Partner.findAllPartners());
     }
     
     String ContactsController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

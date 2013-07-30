@@ -7,8 +7,8 @@
     <a class="btn a-btn" href="${add_url}">Nouveau</a>
     </div>
     <div class="row-fluid">
-       <page:list labelPlural="liste Des Partenaires"   id="pl_cm_adorsys_gpao_model_Partner" items="${partners}" z="user-managed">
-        <table:table  data="${partners}" id="l_cm_adorsys_gpao_model_Partner" path="/partners" z="user-managed">
+       <page:list labelPlural="liste Des Partenaires"   showInPanel="false" id="pl_cm_adorsys_gpao_model_Partner" items="${partners}" z="user-managed">
+        <table:table queryParam="true"  delete="false" create="false" show="false" data="${partners}" id="l_cm_adorsys_gpao_model_Partner" path="/partners/addOrEditForm" z="user-managed">
             <table:column id="c_cm_adorsys_gpao_model_Partner_name" property="name" z="user-managed"/>
             <table:column id="c_cm_adorsys_gpao_model_Partner_isCustomer" property="isCustomer" z="user-managed"/>
             <table:column id="c_cm_adorsys_gpao_model_Partner_isProvider" property="isProvider" z="user-managed"/>

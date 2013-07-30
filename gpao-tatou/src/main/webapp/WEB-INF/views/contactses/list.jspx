@@ -8,7 +8,6 @@
             <table:column id="c_cm_adorsys_gpao_model_Contacts_phone" property="phone" z="QABn51bwIRJkD02yNHP4zqjQqKY="/>
             <table:column id="c_cm_adorsys_gpao_model_Contacts_email" property="email" z="yt6wAsI13C2whp7hpki5r23Utdo="/>
             <table:column id="c_cm_adorsys_gpao_model_Contacts_contactFunction" property="contactFunction" z="SGOviH9LnHFeqDX8u8SXSnQ4iN4="/>
-            <table:column id="c_cm_adorsys_gpao_model_Contacts_partner" property="partner" z="+Z6o7dwkLyBsAIGnLyF/ozVwujg="/>
         </table:table>
     </page:list>
 </div>

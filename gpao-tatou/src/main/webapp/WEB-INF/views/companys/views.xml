@@ -13,4 +13,8 @@
 <definition extends="default" name="companys/update">
         <put-attribute name="body" value="/WEB-INF/views/companys/update.jspx"/>
     </definition>
+    
+<definition extends="admin" name="companys/companyView">
+        <put-attribute name="body" value="/WEB-INF/views/companys/companyView.jspx"/>
+</definition>
 </tiles-definitions>

@@ -1,5 +1,10 @@
 package cm.adorsys.gpao.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import org.springframework.roo.addon.javabean.RooJavaBean;
@@ -13,6 +18,10 @@ public class Company {
 
     @NotNull
     private String name;
+    
+    private String contactName;
+
+    private String contactFunction;
 
     private String taxePayerNumber;
 
@@ -27,6 +36,13 @@ public class Company {
     private String webSite;
 
     private String logoPath;
+    
+    @ManyToMany(cascade = CascadeType.ALL)
+    private Set<Contacts> contacts = new HashSet<Contacts>();
+
+    private String city;
+
+    private String country;
 
     @NotNull
     @ManyToOne

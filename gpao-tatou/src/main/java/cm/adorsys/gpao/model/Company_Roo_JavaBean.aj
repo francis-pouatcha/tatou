@@ -4,7 +4,9 @@
 package cm.adorsys.gpao.model;
 
 import cm.adorsys.gpao.model.Company;
+import cm.adorsys.gpao.model.Contacts;
 import cm.adorsys.gpao.model.Devise;
+import java.util.Set;
 
 privileged aspect Company_Roo_JavaBean {
     
@@ -14,6 +16,22 @@ privileged aspect Company_Roo_JavaBean {
     
     public void Company.setName(String name) {
         this.name = name;
+    }
+    
+    public String Company.getContactName() {
+        return this.contactName;
+    }
+    
+    public void Company.setContactName(String contactName) {
+        this.contactName = contactName;
+    }
+    
+    public String Company.getContactFunction() {
+        return this.contactFunction;
+    }
+    
+    public void Company.setContactFunction(String contactFunction) {
+        this.contactFunction = contactFunction;
     }
     
     public String Company.getTaxePayerNumber() {
@@ -70,6 +88,30 @@ privileged aspect Company_Roo_JavaBean {
     
     public void Company.setLogoPath(String logoPath) {
         this.logoPath = logoPath;
+    }
+    
+    public Set<Contacts> Company.getContacts() {
+        return this.contacts;
+    }
+    
+    public void Company.setContacts(Set<Contacts> contacts) {
+        this.contacts = contacts;
+    }
+    
+    public String Company.getCity() {
+        return this.city;
+    }
+    
+    public void Company.setCity(String city) {
+        this.city = city;
+    }
+    
+    public String Company.getCountry() {
+        return this.country;
+    }
+    
+    public void Company.setCountry(String country) {
+        this.country = country;
     }
     
     public Devise Company.getDevise() {

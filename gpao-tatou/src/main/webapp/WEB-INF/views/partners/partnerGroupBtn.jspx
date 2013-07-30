@@ -13,7 +13,7 @@
        <spring:url value="/partnergroups/"  var="edit_url" />
        
        <input id="add" style="margin-left: 1%;" class="btn-warning span2 small-marge-left" type="button" value="Creer Groupe"/>
-       <input id="edit" style="margin-left: 3%;" class="btn-warning span2 small-marge-left" type="button" value="Edit Groupe"/>
+       <input id="edit" style="margin-left: 1%;" class="btn-warning span2 small-marge-left" type="button" value="Edit Groupe"/>
           <script type="text/javascript">
           $("#add").click(function(){
         	  window.location ="${add_url}" ;

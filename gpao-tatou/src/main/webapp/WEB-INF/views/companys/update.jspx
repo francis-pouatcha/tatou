@@ -12,5 +12,10 @@
         <field:input field="webSite" id="c_cm_adorsys_gpao_model_Company_webSite" z="e17vCscJ862+ALsiBauROxhShjo="/>
         <field:input field="logoPath" id="c_cm_adorsys_gpao_model_Company_logoPath" z="W8OdSuiwBkygPDWKd4t4yA75Wos="/>
         <field:select field="devise" id="c_cm_adorsys_gpao_model_Company_devise" itemValue="id" items="${devises}" path="/devises" required="true" z="PaWNmQ+C3whzR33M9YzlWGH0iFE="/>
+        <field:input field="contactName" id="c_cm_adorsys_gpao_model_Company_contactName" z="R+jAw6N1ZF+k9OR4sbp9AoAyv6M="/>
+        <field:input field="contactFunction" id="c_cm_adorsys_gpao_model_Company_contactFunction" z="1V4AvD/toN+aqqd3KJjhbWjpACM="/>
+        <field:select field="contacts" id="c_cm_adorsys_gpao_model_Company_contacts" itemValue="id" items="${contactses}" multiple="true" path="/contactses" z="I/PtcYagr2sUE12Ah7WEDfYh5ZQ="/>
+        <field:input field="city" id="c_cm_adorsys_gpao_model_Company_city" z="2nRF85Ewx46m42+xZzQV+IG42yM="/>
+        <field:input field="country" id="c_cm_adorsys_gpao_model_Company_country" z="YLmLQo0sJeUXbE20d+nTesyysTg="/>
     </form:update>
 </div>

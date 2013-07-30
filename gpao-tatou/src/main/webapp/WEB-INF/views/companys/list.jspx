@@ -8,8 +8,8 @@
             <table:column id="c_cm_adorsys_gpao_model_Company_taxePayerNumber" property="taxePayerNumber" z="Q2V/WqFLJLbfIeoY4dXJJRjXaL4="/>
             <table:column id="c_cm_adorsys_gpao_model_Company_phone" property="phone" z="IA5T+6/NLh6YbteM6ievGm3VwGQ="/>
             <table:column id="c_cm_adorsys_gpao_model_Company_mobile" property="mobile" z="zjEaPOqyV8M/DRrdVWJ48E+dbPU="/>
-            <table:column id="c_cm_adorsys_gpao_model_Company_fax" property="fax" z="LAnli33y2VWPQM+rW/g65RX0018="/>
-            <table:column id="c_cm_adorsys_gpao_model_Company_email" property="email" z="m/mvySeWw6oGYhro5i/gw3fAvwQ="/>
+            <table:column id="c_cm_adorsys_gpao_model_Company_contactName" property="contactName" z="4HEgCdUoE6DRmS3njFZLzk4ZWnE="/>
+            <table:column id="c_cm_adorsys_gpao_model_Company_contactFunction" property="contactFunction" z="nQXcvu6ZwWwFVW5UakYqb/fwv4I="/>
         </table:table>
     </page:list>
 </div>

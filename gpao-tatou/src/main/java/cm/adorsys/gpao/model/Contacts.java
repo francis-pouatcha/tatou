@@ -20,6 +20,5 @@ public class Contacts {
 
     private String contactFunction;
 
-    @ManyToOne
-    private Partner partner;
+   
 }

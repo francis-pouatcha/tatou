@@ -12,6 +12,7 @@
   <jsp:directive.attribute name="render" type="java.lang.Boolean" required="false" rtexprvalue="true" description="Indicate if the contents of this tag and all enclosed tags should be rendered (default 'true')" />
   <jsp:directive.attribute name="z" type="java.lang.String" required="false" description="Used for checking if element has been modified (to recalculate simply provide empty string value)" />
   <jsp:directive.attribute name="show" type="java.lang.Boolean" required="false" rtexprvalue="true" description="Include 'delete' link into table (default true)" />
+  <jsp:directive.attribute name="queryParam" type="java.lang.Boolean" required="false" rtexprvalue="true" description="change " />
 
   <c:if test="${empty render or render}">
 
@@ -26,6 +27,16 @@
     <c:if test="${empty typeIdFieldName}">
       <c:set var="typeIdFieldName" value="id" />
     </c:if>
+     <c:choose>
+       <c:when test="${ queryParam}">
+        <c:set var="path" value="${path}?id=" />
+       </c:when>
+       <c:otherwise>
+       <c:set var="path" value="${path}/" />
+       </c:otherwise>
+     </c:choose>
+    
+   
 
     <c:if test="${empty update}">
       <c:set var="update" value="true" />
@@ -101,7 +112,7 @@
           <c:set var="itemId"><spring:eval expression="item[typeIdFieldName]"/></c:set>
          <c:if test="${show}">
           <td class="utilbox">
-            <spring:url value="${path}/${itemId}" var="show_form_url" />
+            <spring:url value="${path}${itemId}" var="show_form_url" />
             <spring:url value="/resources/images/show.png" var="show_image_url" />
             <spring:message arguments="${typeName}" code="entity_show" var="show_label" htmlEscape="false" />
             <a href="${show_form_url}" alt="${fn:escapeXml(show_label)}" title="${fn:escapeXml(show_label)}">
@@ -111,7 +122,7 @@
          </c:if>
           <c:if test="${update}">
             <td class="utilbox">
-              <spring:url value="${path}/${itemId}" var="update_form_url">
+              <spring:url value="${path}${itemId}" var="update_form_url">
                 <spring:param name="form" />
               </spring:url>
               <spring:url value="/resources/images/update.png" var="update_image_url" />
@@ -123,7 +134,7 @@
           </c:if>
           <c:if test="${delete}">
             <td class="utilbox">
-              <spring:url value="${path}/${itemId}" var="delete_form_url" />
+              <spring:url value="${path}${itemId}" var="delete_form_url" />
               <spring:url value="/resources/images/delete.png" var="delete_image_url" />
               <form:form action="${delete_form_url}" method="DELETE">
                 <spring:message arguments="${typeName}" code="entity_delete" var="delete_label" htmlEscape="false" />

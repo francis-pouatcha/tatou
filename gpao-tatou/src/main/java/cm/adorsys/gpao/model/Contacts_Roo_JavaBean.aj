@@ -4,7 +4,6 @@
 package cm.adorsys.gpao.model;
 
 import cm.adorsys.gpao.model.Contacts;
-import cm.adorsys.gpao.model.Partner;
 
 privileged aspect Contacts_Roo_JavaBean {
     
@@ -38,14 +37,6 @@ privileged aspect Contacts_Roo_JavaBean {
     
     public void Contacts.setContactFunction(String contactFunction) {
         this.contactFunction = contactFunction;
-    }
-    
-    public Partner Contacts.getPartner() {
-        return this.partner;
-    }
-    
-    public void Contacts.setPartner(Partner partner) {
-        this.partner = partner;
     }
     
 }

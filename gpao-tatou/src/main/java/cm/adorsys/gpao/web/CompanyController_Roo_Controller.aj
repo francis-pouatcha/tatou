@@ -92,11 +92,6 @@ privileged aspect CompanyController_Roo_Controller {
         return "redirect:/companys";
     }
     
-    void CompanyController.populateEditForm(Model uiModel, Company company) {
-        uiModel.addAttribute("company", company);
-        uiModel.addAttribute("devises", Devise.findAllDevises());
-    }
-    
     String CompanyController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {
         String enc = httpServletRequest.getCharacterEncoding();
         if (enc == null) {

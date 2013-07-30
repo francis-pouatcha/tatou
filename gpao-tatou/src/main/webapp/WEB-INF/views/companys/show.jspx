@@ -12,5 +12,10 @@
         <field:display field="webSite" id="s_cm_adorsys_gpao_model_Company_webSite" object="${company}" z="UrPdORWvcgGs9AGdvhaqVX6W8uk="/>
         <field:display field="logoPath" id="s_cm_adorsys_gpao_model_Company_logoPath" object="${company}" z="krzCAQd74JLWRvCBAjZWI+g6kHI="/>
         <field:display field="devise" id="s_cm_adorsys_gpao_model_Company_devise" object="${company}" z="zOydfTJoUVFqi17o9YL7Y/9n8LY="/>
+        <field:display field="contactName" id="s_cm_adorsys_gpao_model_Company_contactName" object="${company}" z="HDIlUMwX9p79OdLY6YPrnAt467g="/>
+        <field:display field="contactFunction" id="s_cm_adorsys_gpao_model_Company_contactFunction" object="${company}" z="r1R5a4PqJPO6KSlPCDYPhjqjrxY="/>
+        <field:display field="contacts" id="s_cm_adorsys_gpao_model_Company_contacts" object="${company}" z="/R3KJxINPPlwkcbzEtkSBdU6+x8="/>
+        <field:display field="city" id="s_cm_adorsys_gpao_model_Company_city" object="${company}" z="dS3PV0dM6NR++0C/Rypc/hTRMGs="/>
+        <field:display field="country" id="s_cm_adorsys_gpao_model_Company_country" object="${company}" z="z9ckNkJank9B8LKuucPyO3X0keY="/>
     </page:show>
 </div>
