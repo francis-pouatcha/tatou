@@ -9,6 +9,7 @@ import cm.adorsys.gpao.model.Partner;
 import cm.adorsys.gpao.model.PartnerGroup;
 import cm.adorsys.gpao.model.PartnerType;
 import java.util.Set;
+import org.springframework.web.multipart.MultipartFile;
 
 privileged aspect Partner_Roo_JavaBean {
     
@@ -90,6 +91,14 @@ privileged aspect Partner_Roo_JavaBean {
     
     public void Partner.setWebSite(String webSite) {
         this.webSite = webSite;
+    }
+    
+    public MultipartFile Partner.getPartnerLogo() {
+        return this.partnerLogo;
+    }
+    
+    public void Partner.setPartnerLogo(MultipartFile partnerLogo) {
+        this.partnerLogo = partnerLogo;
     }
     
     public PartnerType Partner.getPartnerType() {

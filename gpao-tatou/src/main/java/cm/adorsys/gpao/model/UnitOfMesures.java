@@ -50,6 +50,16 @@ public class UnitOfMesures implements BussinessValidation {
 		
 	}
 	
+	public static void init(){
+		if(UnitOfMesures.countUnitOfMesureses() <= 0){
+			UdmGroup.init();
+			UnitOfMesures unitOfMesures = new UnitOfMesures();
+			unitOfMesures.setName("Kg") ;
+			unitOfMesures.setUnitGroup(UdmGroup.findAllUdmGroups().iterator().next());
+			unitOfMesures.persist();
+		}
+	} 
+	
 //finders
     
     public static TypedQuery<UnitOfMesures> findUnitOfMesuressByNameEquals(String name) {

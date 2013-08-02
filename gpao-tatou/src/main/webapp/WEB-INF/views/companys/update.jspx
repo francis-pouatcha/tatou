@@ -17,5 +17,6 @@
         <field:select field="contacts" id="c_cm_adorsys_gpao_model_Company_contacts" itemValue="id" items="${contactses}" multiple="true" path="/contactses" z="I/PtcYagr2sUE12Ah7WEDfYh5ZQ="/>
         <field:input field="city" id="c_cm_adorsys_gpao_model_Company_city" z="2nRF85Ewx46m42+xZzQV+IG42yM="/>
         <field:input field="country" id="c_cm_adorsys_gpao_model_Company_country" z="YLmLQo0sJeUXbE20d+nTesyysTg="/>
+        <field:input field="uploadedLogo" id="c_cm_adorsys_gpao_model_Company_uploadedLogo" z="EfqbC2x5a3NIzQII1NG8QFESmrc="/>
     </form:update>
 </div>

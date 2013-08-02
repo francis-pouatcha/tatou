@@ -35,8 +35,17 @@ public class Taxe {
 
     @NotNull
     @Enumerated(EnumType.STRING)
-    private TaxeType taxeType;
+    private TaxeType taxeType = TaxeType.BY_PERCENT;
     
+    public static void init(){
+		if(Taxe.countTaxes() <= 0){
+			Taxe taxe = new Taxe();
+			taxe.setName("Taxes sur la valeur Ajoutee  ") ;
+			taxe.setShortName("TVA");
+			taxe.setTaxeValue(BigDecimal.valueOf(19.25));
+			taxe.persist();
+		}
+	}
     
     //finders
     

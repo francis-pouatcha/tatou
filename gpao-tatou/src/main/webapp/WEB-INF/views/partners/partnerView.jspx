@@ -11,37 +11,37 @@
 	<spring:url value="/partners/addOrEditForm" var="add_url"></spring:url>
 	<spring:url value="/partners/next/${ partner.id}" var="next_url"></spring:url>
 	<spring:url value="/partners/previous/${partner.id}" var="previous_url"></spring:url>
+	<spring:url value="/resources/${partner.logoPath}" var="logo_url"></spring:url>
 
-	<form:update ortherButton="partnerGroupBtn.jspx" showInPanel="false"
+	<form:update multipart="true" ortherButton="partnerGroupBtn.jspx" showInPanel="false"
 		id="fc_cm_adorsys_gpao_model_Partner" modelAttribute="partner"
 		path="/partners/addOrEdit" render="${empty dependencies}"
 		z="w7MDT5+9+mo5DSC8JEMizC+yc3Y=">
 		<div class="row-fluid ">
 			<div class="span5">
-			<c:if test="${not empty partner.id}">
-			<field:input field="code" 
-			id="c_cm_adorsys_gpao_model_Partner_code"
-			z="VkiDBIoabCFogg5Xgh2gshmB2lw=" />
-			</c:if>
+				<c:if test="${not empty partner.id}">
+					<field:input field="code" id="c_cm_adorsys_gpao_model_Partner_code"
+						z="VkiDBIoabCFogg5Xgh2gshmB2lw=" />
+				</c:if>
 				<field:input field="name" id="c_cm_adorsys_gpao_model_Partner_name"
 					required="true" z="HzGRAc4swmNY2gh+gKeYB8VPy1k=" />
-					
+
 			</div>
 			<div class="span4">
 				<jsp:include page="../gpaoMessages.jspx" />
 			</div>
 			<div style="vertical-align: top;" class="span3">
-			<c:if test="${not empty partner.id}">
-				<div class="pagination">
-					<ul>
-					    <li><a title="vider le formulaire" href="${add_url }">Add</a></li>
-						<li><a title="Partenaire preccedant" href="${previous_url }">Prev</a></li>
-						<li><a title="Partenaire suivant " href="${next_url}">Next</a></li>
-					</ul>
-				</div>
-			</c:if>
+				<c:if test="${not empty partner.id}">
+					<div class="pagination">
+						<ul>
+							<li><a title="vider le formulaire" href="${add_url }">Add</a></li>
+							<li><a title="Partenaire preccedant" href="${previous_url }">Prev</a></li>
+							<li><a title="Partenaire suivant " href="${next_url}">Next</a></li>
+						</ul>
+					</div>
+				</c:if>
 			</div>
-			
+
 		</div>
 		<ul class="nav nav-tabs" id="tab">
 			<li class="active"><a href="#infos">infos-generales</a></li>
@@ -77,14 +77,26 @@
 				</div>
 				<div class="span3">
 					<ul class="thumbnails">
-						<li class="span10"><a href="#" class="thumbnail"> <img
-								src="http://placehold.it/300x200" alt="" /></a></li>
+						<li class="span10"> <c:choose>
+									<c:when test="${not empty partner.logoPath }">
+										<img src="${logo_url}" class="img-polaroid" alt="" />
+									</c:when>
+									<c:otherwise>
+										<img src="http://placehold.it/300x200" alt="" />
+									</c:otherwise>
+								</c:choose>
+
+					   </li>
 					</ul>
-					<field:input field="logoPath" type="file" disableFormBinding="true"
+					<field:input field="partnerLogo" type="file" disableFormBinding="true" label="Changer de Logo"
+						id="c_cm_adorsys_gpao_model_Partner_partnerLogo"
+						z="7Hh2f6YBBnzUXZ1HpuQkPmp79Pk=" />
+
+					<field:input-hidden field="logoPath"
 						id="c_cm_adorsys_gpao_model_Partner_logoPath"
-						z="B91S8MroRtS5fjuc6ZuUI0g0duo=" />
+						/>
 				</div>
-				
+
 
 
 			</div>
@@ -163,7 +175,7 @@
 					</table>
 					<hr />
 					<div class="btn-group">
-						
+
 						<button class="btn">Ajouter</button>
 						<button class="btn">Modifier</button>
 						<button class="btn">Suprimer</button>
@@ -192,7 +204,7 @@
 
 
 
-		
+
 		<hr />
 	</form:update>
 	<form:dependency dependencies="${dependencies}"
@@ -211,10 +223,10 @@
 
 
 	<script>
-    $('#tab a').click(function (e) {
-        e.preventDefault();
-        $(this).tab('show');
-        })
-    </script>
+		$('#tab a').click(function(e) {
+			e.preventDefault();
+			$(this).tab('show');
+		})
+	</script>
 
 </div>

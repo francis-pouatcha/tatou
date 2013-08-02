@@ -3,16 +3,19 @@ package cm.adorsys.gpao.model;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.EntityManager;
 import javax.persistence.Enumerated;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 import javax.persistence.TypedQuery;
 import javax.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
+import org.springframework.web.multipart.MultipartFile;
 
 @RooJavaBean
 @RooToString
@@ -20,6 +23,7 @@ import org.springframework.roo.addon.tostring.RooToString;
 public class Partner {
 
     @NotNull
+    @Column(unique=true)
     private String name;
 
     @Value("false")
@@ -41,6 +45,9 @@ public class Partner {
     private String email;
 
     private String webSite;
+    
+    @Transient
+    private MultipartFile partnerLogo ;
 
     @Enumerated
     private PartnerType partnerType;
@@ -65,9 +72,11 @@ public class Partner {
 
     private String code;
     
+    
+    
 //finders
     
-    public static TypedQuery<Partner> findPartnersByNameEquals(String name) {
+	public static TypedQuery<Partner> findPartnersByNameEquals(String name) {
         EntityManager em = Partner.entityManager();
         TypedQuery<Partner> q = em.createQuery("SELECT o FROM Partner AS o WHERE LOWER(o.name) LIKE LOWER(:name) ORDER BY o.name ", Partner.class);
         q.setParameter("name", name);

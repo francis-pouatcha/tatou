@@ -27,6 +27,15 @@ public class Devise {
     @Min(0L)
     private BigDecimal ratio;
     
+    public static void init(){
+    	if(Devise.countDevises() <= 0){
+    		Devise devise = new Devise();
+    		devise.setName("FRANCS CFA");
+    		devise.setShortName("CFA");
+    		devise.setRatio(BigDecimal.ONE);
+    		devise.persist();
+    	}
+    }
     
     //finders
     public static TypedQuery<Devise> findTaxeByNameOrShortName(String name,String shortName) {
@@ -42,4 +51,6 @@ public class Devise {
         q.setParameter("shortName", shortName);
         return q;
     }
+    
+    
 }

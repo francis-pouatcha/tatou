@@ -24,6 +24,13 @@ public class UdmGroup {
     private Set<UnitOfMesures> unitOfMesures = new HashSet<UnitOfMesures>();
     
 	
+    public static void init(){
+		if(UdmGroup.countUdmGroups() <= 0){
+			UdmGroup udmGroup = new UdmGroup();
+			udmGroup.setName("POID") ;
+			udmGroup.persist();
+		}
+	}
     
     
 }

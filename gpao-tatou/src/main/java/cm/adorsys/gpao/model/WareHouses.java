@@ -23,4 +23,12 @@ public class WareHouses {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "wareHouse")
     private Set<Location> location = new HashSet<Location>();
+    
+    public static void init(){
+    	if(WareHouses.countWareHouseses() <= 0){
+    		WareHouses wareHouses = new WareHouses();
+    		wareHouses.setName("CHAUSSURES") ;
+    		wareHouses.persist();
+    	}
+}
 }

@@ -125,3 +125,9 @@ field reference --fieldName partnerDevise --type ~.model.Devise
 field string --fieldName logoPath 
 field boolean --fieldName isActive --value true
 field string --fieldName code
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-08-01 09:01:23
+enum type --class ~.model.ProductType 
+enum constant --name STOCKABLE
+enum constant --name SERVICES
+entity jpa --class ~.model.Product
+field enum --fieldName productType --type ~.model.ProductType

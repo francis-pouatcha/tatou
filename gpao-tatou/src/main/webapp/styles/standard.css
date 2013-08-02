@@ -6,7 +6,7 @@ body,div,td {
 	color: #666;
 }
 .header-link{
-	font-size: 21px;
+	font-size: 18px;
 	font-weight: bold;
 	font-family: fantasy;
 	color: blue;
@@ -45,12 +45,12 @@ body,div,td {
   background-repeat: no-repeat;
 }
 body {
-	/*background-color:teal;*/
+	/*background-color:rgb(231,235,242);*/
 	text-align: center;
 	
 }
 legend {
-	font-size: 16px;
+	font-size: 15px;
 	color: maroon;
 	font-family:Helvetica ;
 	padding-top: 3px;
@@ -80,9 +80,12 @@ table tr:HOVER {
 	cursor: pointer;
 }
 
-input[type="text"] {
+input[type="text"] ,input[type="password"]{
    height: 20px;
    font-size: 16px;
+   line-height: 20px;
+}
+.btn{
    line-height: 20px;
 }
 
@@ -208,6 +211,7 @@ input, textarea, select {
 }
 select{
 	width: 13.2em;
+	line-height:18px;
 }
 
 select :HOVER{
@@ -434,11 +438,11 @@ fieldset th {
 }
 
 .dijitArrowButton  {
-	height: 28px;
+	height: 25px;
 }
 
 .dijitTextBoxError  {
-	height: 25px;
+	height: 22px;
 }
 
 

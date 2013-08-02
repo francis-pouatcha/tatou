@@ -14,11 +14,20 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooJpaActiveRecord
 public class ProductFamily {
 
-    @NotNull
-    private String name;
+	@NotNull
+	private String name;
 
-    private String description;
+	private String description;
 
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "productFamily")
-    private Set<ProductSubFamily> productSubFamily = new HashSet<ProductSubFamily>();
+	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "productFamily")
+	private Set<ProductSubFamily> productSubFamily = new HashSet<ProductSubFamily>();
+
+	public static void init(){
+		if(ProductFamily.countProductFamilys() <= 0){
+			ProductFamily productFamily = new ProductFamily();
+			productFamily.setName("CHAUSSURES") ;
+			productFamily.persist();
+		}
+	}
+
 }

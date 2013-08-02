@@ -7,6 +7,7 @@ import cm.adorsys.gpao.model.Company;
 import cm.adorsys.gpao.model.Contacts;
 import cm.adorsys.gpao.model.Devise;
 import java.util.Set;
+import org.springframework.web.multipart.MultipartFile;
 
 privileged aspect Company_Roo_JavaBean {
     
@@ -80,6 +81,14 @@ privileged aspect Company_Roo_JavaBean {
     
     public void Company.setWebSite(String webSite) {
         this.webSite = webSite;
+    }
+    
+    public MultipartFile Company.getUploadedLogo() {
+        return this.uploadedLogo;
+    }
+    
+    public void Company.setUploadedLogo(MultipartFile uploadedLogo) {
+        this.uploadedLogo = uploadedLogo;
     }
     
     public String Company.getLogoPath() {

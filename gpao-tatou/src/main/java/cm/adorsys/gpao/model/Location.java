@@ -33,6 +33,16 @@ public class Location {
     @ManyToOne
     private WareHouses wareHouse;
     
+    public static void init(){
+    	if(Location.countLocations() <= 0){
+    		WareHouses.init();
+    		Location location = new Location();
+    		location.setName("CHAUSSURES") ;
+    		location.setWareHouse(WareHouses.findAllWareHouseses().iterator().next());
+    		location.persist();
+    	}
+    }
+    
     
  //finders
     

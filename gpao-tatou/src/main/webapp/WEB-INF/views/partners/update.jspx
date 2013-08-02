@@ -22,5 +22,6 @@
         <field:input field="logoPath" id="c_cm_adorsys_gpao_model_Partner_logoPath" z="B91S8MroRtS5fjuc6ZuUI0g0duo="/>
         <field:checkbox field="isActive" id="c_cm_adorsys_gpao_model_Partner_isActive" z="sYAPTj7Q6UmTdoMu3vHBsb/tcwk="/>
         <field:input field="code" id="c_cm_adorsys_gpao_model_Partner_code" z="VkiDBIoabCFogg5Xgh2gshmB2lw="/>
+        <field:input field="partnerLogo" id="c_cm_adorsys_gpao_model_Partner_partnerLogo" z="7Hh2f6YBBnzUXZ1HpuQkPmp79Pk="/>
     </form:update>
 </div>

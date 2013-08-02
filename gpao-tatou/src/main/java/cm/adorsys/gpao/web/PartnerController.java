@@ -14,11 +14,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import cm.adorsys.gpao.model.Devise;
 import cm.adorsys.gpao.model.Partner;
 import cm.adorsys.gpao.model.PartnerGroup;
 import cm.adorsys.gpao.model.PartnerType;
+import cm.adorsys.gpao.utils.GpaoDocumentDirectories;
+import cm.adorsys.gpao.utils.GpaoFileUtils;
 import cm.adorsys.gpao.utils.MessageType;
 
 @RequestMapping("/partners")
@@ -33,16 +36,22 @@ public class PartnerController {
 		return "partners/partnerView";
 	}
 
-	@RequestMapping(value = "/addOrEdit",method = RequestMethod.PUT, produces = "text/html")
+	@RequestMapping(value = "/addOrEdit",method = RequestMethod.POST, produces = "text/html")
 	public String addOrEditPartners(@Valid Partner partner, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
 		if (bindingResult.hasErrors()) {
 			populateEditForm(uiModel, partner);
 			uiModel.addAttribute(MessageType.ERROR_MESSAGE,"une erreur est Survenue durant l'enregistrement !");
 			return "partners/update";
 		}
-		uiModel.asMap().clear();
+		MultipartFile uploadegLogo = partner.getPartnerLogo();
+		if(uploadegLogo!=null){
+			if(!uploadegLogo.isEmpty()){
+				String saveFileName = GpaoFileUtils.saveFile(GpaoDocumentDirectories.COMPANY_LOGO_PATH, uploadegLogo, "logo_"+partner.getName()) ;
+				if(saveFileName !=null) partner.setLogoPath(saveFileName);
+			}
+		}
 		Partner merge =	partner.merge();
-		populateEditForm(uiModel, new Partner());
+		populateEditForm(uiModel, merge);
 		uiModel.addAttribute(MessageType.SUCCESS_MESSAGE, "Enregistre avec success !");
 		return "partners/partnerView";
 	}
