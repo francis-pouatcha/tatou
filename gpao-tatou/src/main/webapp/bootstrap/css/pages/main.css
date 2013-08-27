@@ -1,0 +1,32 @@
+/* 
+    Document   : main
+    Created on : 1 août 2013, 16:08:16
+    Author     : thewizard
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+.navbar{
+    border-bottom: 5px solid #e3e3e3;
+}
+
+.navbar li a{
+    opacity: .8;
+}
+
+.navbar li a:hover{
+    opacity: 1;
+}
+
+.navbar i{
+    margin-right: 1em;    
+}
+
+.active{
+    opacity: 1;
+}
+

@@ -131,3 +131,6 @@ enum constant --name STOCKABLE
 enum constant --name SERVICES
 entity jpa --class ~.model.Product
 field enum --fieldName productType --type ~.model.ProductType
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-08-23 11:27:12
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-08-23 16:37:08
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-08-26 15:45:43

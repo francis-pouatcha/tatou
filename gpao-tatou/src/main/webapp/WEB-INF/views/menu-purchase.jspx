@@ -15,12 +15,23 @@
                         </ul>
    </div>
     </div>
-        <menu:category label="Partenaires" id="c_configuration" z="user-managed">
+        <menu:category label="Carnet D'adresses" id="c_configuration" z="user-managed">
           <menu:item id="i_partner_list" label="Fournisseurs" messageCode="global_menu_gpao" url="/partners?page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
+           <menu:item id="i_partner_list" label="Clients" messageCode="global_menu_gpao" url="/partners?page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
+                  <menu:item id="i_partner_list" label="groupes de partenaires" messageCode="global_menu_gpao" url="/partners?page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
+       
         </menu:category>
-        <menu:category id="c_utilisateurs" z="user-managed">
-            <menu:item  label="Utilisateurs" id="i_unitofmesures_new" messageCode="global_menu_gpao" url="/unitofmesureses?form" z="ser-managed"/>
-            <menu:item  label="Groupes Utilisateurs" id="i_unitofmesures_new" messageCode="global_menu_gpao" url="/unitofmesureses?form" z="ser-managed"/>
+        
+        <menu:category label="Gestion des Achats" id="c_configuration" z="user-managed">
+          <menu:item id="i_partner_list" label="Bons de commandes" messageCode="global_menu_gpao" url="/partners?page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
+           <menu:item id="i_partner_list" label="Appels d'offres" messageCode="global_menu_gpao" url="/partners?page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
+                  <menu:item id="i_partner_list" label="Articles" messageCode="global_menu_gpao" url="/partners?page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
+       
         </menu:category>
+        
+         <menu:category label="Reception de produits" id="c_configuration" z="user-managed">
+          <menu:item id="i_partner_list" label="Livraisons entrantes" messageCode="global_menu_gpao" url="/partners?page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
+        </menu:category>
+        
     </menu:menu>
 </div>

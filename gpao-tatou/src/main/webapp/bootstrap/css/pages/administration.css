@@ -1,0 +1,17 @@
+/* 
+    Document   : administration
+    Created on : 19 août 2013, 15:22:21
+    Author     : thewizard
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+.admin-img{
+    width: 270px;
+    height: 170px;
+    margin: 0 auto;
+}

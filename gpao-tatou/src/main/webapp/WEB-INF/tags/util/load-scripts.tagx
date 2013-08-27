@@ -8,6 +8,10 @@
   <spring:url value="/resources/bootstrap/css/bootstrap.css" var="bootstrap_url" />
   <spring:url value="/resources/bootstrap/css/bootstrap-responsive.css" var="bootstrapr_url" />
   <spring:url value="/resources/styles/docs.css" var="gpao_url" />
+  <spring:url value="/resources/bootstrap/css/prettify.css" var="pretty_css_url" />
+  <spring:url value="/resources/bootstrap/css/pages/index.css" var="index_url" />
+  
+ 
   <spring:url value="/resources/bootstrap/js/bootstrap.js" var="bootstrapjs_url" />
   <spring:url value="/resources/bootstrap/js/jquery-1.9.1.min.js" var="jquery_url" />
   
@@ -19,6 +23,8 @@
   
   <link rel="stylesheet" href="${bootstrap_url}"/>
   <link rel="stylesheet" href="${bootstrapr_url}"/>
+   <link rel="stylesheet" href="${pretty_css_url}"/>
+   <link rel="stylesheet" href="${gpao_url}"/>
   <link rel="stylesheet" type="text/css" href="${tundra_url}" />
   <link rel="stylesheet" type="text/css" media="screen" href="${roo_css_url}" />
   

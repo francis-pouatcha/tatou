@@ -81,12 +81,12 @@ table tr:HOVER {
 }
 
 input[type="text"] ,input[type="password"]{
-   height: 20px;
+   height: 18px;
    font-size: 16px;
-   line-height: 20px;
+   line-height: 18px;
 }
 .btn{
-   line-height: 20px;
+   line-height: 18px;
 }
 
 .div-box-medium{
@@ -391,7 +391,7 @@ fieldset label {
 
 fieldset textfield {
 	margin: 3px;
-	height: 20px;
+	height: 18px;
 	background: #e0e7d3;
 }
 
@@ -403,7 +403,7 @@ fieldset textarea {
 
 fieldset input {
 	margin: 3px;
-	height: 20px;
+	height: 18px;
 	background: #e0e7d3;
 }
 
@@ -438,11 +438,11 @@ fieldset th {
 }
 
 .dijitArrowButton  {
-	height: 25px;
+	height: 20px;
 }
 
 .dijitTextBoxError  {
-	height: 22px;
+	height: 20px;
 }
 
 

@@ -36,9 +36,9 @@
             
                          
 			<c:if test="${pageContext['request'].userPrincipal != null}">
-				<p class="pull-right">
+				<p style="padding-top:1%;" class="pull-right">
 					<spring:url value="/resources/j_spring_security_logout" var="logout" />
-					<a href="${logout}">
+					<a class="header-link" href="${logout}">
 						<spring:message code="security_logout" />
 					</a>
 				</p>

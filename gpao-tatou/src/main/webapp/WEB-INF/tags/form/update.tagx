@@ -43,7 +43,7 @@
         <div class="submit" id="${fn:escapeXml(id)}_submit">
           <spring:message code="button_save" var="save_button" htmlEscape="false" />
           <script type="text/javascript">Spring.addDecoration(new Spring.ValidateAllDecoration({elementId:'proceed', event:'onclick'}));</script>
-          <input id="proceed" class="btn-primary" type="submit" value="${fn:escapeXml(save_button)}" />
+          <input id="proceed" class="btn-primary span3" type="submit" value="${fn:escapeXml(save_button)}" />
         </div>
         <form:hidden id="_${fn:escapeXml(idField)}_id" path="${fn:escapeXml(idField)}" />
         <c:if test="${versionField ne 'none'}">
@@ -61,7 +61,7 @@
         <div class="submit" id="${fn:escapeXml(id)}_submit">
           <spring:message code="button_save" var="save_button" htmlEscape="false" />
           <script type="text/javascript">Spring.addDecoration(new Spring.ValidateAllDecoration({elementId:'proceed', event:'onclick'}));</script>
-          <input id="proceed" class="btn-primary span2" type="submit" value="${fn:escapeXml(save_button)}" />
+          <input id="proceed" class="btn-primary span3" type="submit" value="${fn:escapeXml(save_button)}" />
            <c:if test="${not empty ortherButton}">
             <jsp:include page="${ortherButton}"/>
           </c:if>

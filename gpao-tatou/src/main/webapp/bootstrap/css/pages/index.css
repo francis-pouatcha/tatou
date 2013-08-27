@@ -1,0 +1,149 @@
+/* 
+    Document   : index
+    Created on : 14 août 2013, 11:53:19
+    Author     : thewizard
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+body{
+    background-image: url("../../img/body-bg.png");
+}
+
+div{    
+    width: 400px;    
+    margin: 0 auto;
+    padding-bottom: 1em;
+    position: relative;
+    top: 180px;
+    border-radius: 0 0 0 0;
+    background-image: url("../../img/form-bg.png");    
+    background-repeat: repeat;
+    /*background: linear-gradient(black, white);*/
+    
+}
+
+.curve:before, .curve:after{
+    content: " ";  
+    position: absolute;  
+    width: 50%;  
+    height: 100px;  
+    z-index: -10; 
+    display: block;
+}
+
+.curve:after{
+    top:121px;  
+    left: 3px;  
+    transform: rotate(-4deg);  
+    box-shadow: 7px 6px 17px #333; 
+}
+
+.curve:before {  
+    top: 121px;  
+    right: 3px;  
+    transform: rotate(4deg);  
+    box-shadow: -7px 6px 17px #333;
+}  
+
+fieldset{   
+    margin: 0 auto;
+}
+
+legend{
+    text-align: center;
+    color: white;
+    /*text-shadow: 2px -1px 1px wheat;*/
+}
+
+form{       
+    margin: 0 auto;
+    width: 300px;
+}
+
+form ul{
+    list-style: none;
+    display: block;
+}
+
+.input-prepend span,input{
+    margin: 10px 0;
+}
+
+form ul li.input-prepend{
+    display: block;
+}
+
+form ul li span{
+    display: block;
+}
+
+.btn-warning{
+    margin-left: 40px;
+}
+
+footer{
+    position: relative;
+    top: 200px;
+    margin: 0 auto;
+    width: 50%;
+}
+
+/*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+
+.connex-form{
+    margin: 0 auto;
+    border: 1px solid blue;
+    /*width: 40%;*/
+    position: relative;
+    top: 13em;
+}
+
+.control-group{
+    border: 1px solid red;
+    padding: 0;
+    margin: 0;
+}
+
+.control-group label{
+    margin-left: 20%;
+    padding: 0;
+    position: relative;
+    left: 12%;
+}
+
+.controls{
+    border: 1px solid yellow;
+    padding: 0;
+    margin: 0;
+}
+
+div.input-prepend{
+    margin: 0;
+    position: initial;
+}
+
+.controls input,span{
+    margin: 0;
+}
+
+.input-prepend{
+    margin: 0;
+    padding: 0;
+}
+
+.control-group .controls label,.btn-primary{
+    /*margin-left: 27.3%;*/
+}
+
+.control-group .controls .btn-primary{
+    /*margin-left: 32.3%;*/
+}
+
+.control-group .controls .btn-inverse{
+    /*margin-left: 5%;*/    
+}

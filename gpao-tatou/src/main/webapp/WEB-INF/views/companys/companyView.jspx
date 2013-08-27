@@ -59,7 +59,7 @@
 					<ul class="thumbnails">
 						<li class="span10">
 						<c:choose>
-						  <c:when test="${not empty company.logoPath }"> <img src="${logo_url}" alt="" /></c:when>
+						  <c:when test="${not empty company.logoPath }"> <img width="250px" height="160px"  src="${logo_url}" alt="" /></c:when>
 						  <c:otherwise><img src="http://placehold.it/300x200" alt="" /></c:otherwise>
 						</c:choose>
 						
