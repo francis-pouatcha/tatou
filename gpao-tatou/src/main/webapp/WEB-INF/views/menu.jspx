@@ -54,5 +54,25 @@
             <menu:item id="i_partnergroup_new" messageCode="global_menu_new" url="/partnergroups?form" z="oWqR2ILs4s5g1EIwBixCbklSrWY="/>
             <menu:item id="i_partnergroup_list" messageCode="global_menu_list" url="/partnergroups?page=1&amp;size=${empty param.size ? 10 : param.size}" z="yOc8gbH3pw3KXj7CtcT6BX6U2Tc="/>
         </menu:category>
+        <menu:category id="c_product" z="vJ6efqiSxFssuvqFTsXpvZ3AvA8=">
+            <menu:item id="i_product_new" messageCode="global_menu_new" url="/products?form" z="Ezf8cTW61d2RkMNEcYkDJpG01kc="/>
+            <menu:item id="i_product_list" messageCode="global_menu_list" url="/products?page=1&amp;size=${empty param.size ? 10 : param.size}" z="kEeyCmUUYXShbDEWwOLheaAkM50="/>
+        </menu:category>
+        <menu:category id="c_purchaseorder" z="LdgN+Z53I4kIOyJx+mc8CFmbIuU=">
+            <menu:item id="i_purchaseorder_new" messageCode="global_menu_new" url="/purchaseorders?form" z="I6gpOtV3+H+iGlPgmv55Zhufszk="/>
+            <menu:item id="i_purchaseorder_list" messageCode="global_menu_list" url="/purchaseorders?page=1&amp;size=${empty param.size ? 10 : param.size}" z="DHer7WK9MJB49FXJX9B6Kds2DxY="/>
+        </menu:category>
+        <menu:category id="c_orderitems" z="r21naBePoJMwCRMePki8NFToaMk=">
+            <menu:item id="i_orderitems_new" messageCode="global_menu_new" url="/orderitemses?form" z="k5OPq24wlDVWY9aF9RbvnbzTdLc="/>
+            <menu:item id="i_orderitems_list" messageCode="global_menu_list" url="/orderitemses?page=1&amp;size=${empty param.size ? 10 : param.size}" z="/UCblxiNZX93X8uy71zRHVVFClo="/>
+        </menu:category>
+        <menu:category id="c_gpaouser" z="SaaPobLFROLJsqRKqPBup7f2ku4=">
+            <menu:item id="i_gpaouser_new" messageCode="global_menu_new" url="/gpaousers?form" z="WauW9hJdZ/w64M3rQ9Dc0PIIY/c="/>
+            <menu:item id="i_gpaouser_list" messageCode="global_menu_list" url="/gpaousers?page=1&amp;size=${empty param.size ? 10 : param.size}" z="f5B5laBJou9MLCcuKs0HHEZRvns="/>
+        </menu:category>
+        <menu:category id="c_gpaousergroup" z="dhiH1vfy/ZGoeilUmmRXV1wqbSE=">
+            <menu:item id="i_gpaousergroup_new" messageCode="global_menu_new" url="/gpaousergroups?form" z="G7YvvweH24bFQd6LhuaXHN/DsfQ="/>
+            <menu:item id="i_gpaousergroup_list" messageCode="global_menu_list" url="/gpaousergroups?page=1&amp;size=${empty param.size ? 10 : param.size}" z="/UVLEw0rgStZWlsB167k1S/i5Kg="/>
+        </menu:category>
     </menu:menu>
 </div>

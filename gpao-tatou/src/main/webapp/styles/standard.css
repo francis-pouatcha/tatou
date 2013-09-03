@@ -1,4 +1,40 @@
+/* icons */
+[class^="cus-"],
+[class*=" cus-"] {
+  display: inline-block;
+  width: 17px;
+  height: 16px;
+  *margin-right: .3em;
+  line-height: 14px;
+  vertical-align: text-top;
+  background-image: url("icons/famfamfam-icons.png");
+  background-position: 14px 14px;
+  background-repeat: no-repeat;
+}
+[class^="cus-"]:last-child,
+[class*=" cus-"]:last-child {
+  *margin-left: 0;
+}
+.gpao-accept {
+  background-image: url("icons/accept.png");
+  background-position:left;
+  background-repeat:no-repeat;
+}
+.gpao-cancel {
+  background-image: url("icons/cancel.png");
+  background-position:left;
+  background-repeat:no-repeat;
+}
+
+
+/* icons code below */
+.cus-accept{ background-position: 0 0;  } 
+.cus-add{ background-position: -21px 0;  } 
+.cus-anchor{ background-position: -42px 0;  } 
+.cus-application{ background-position: -63px 0;  } 
+
 /* main elements */
+
 
 body,div,td {
 	font-family: Arial, Helvetica, sans-serif;
@@ -14,6 +50,13 @@ body,div,td {
 	margin-bottom: 3px;
 }
 
+.no-space [class*="span"] {
+    margin-left: 0;
+}
+
+.no-space {
+    margin-left:0;
+}
 
 
 .a-btn{
@@ -82,7 +125,7 @@ table tr:HOVER {
 
 input[type="text"] ,input[type="password"]{
    height: 18px;
-   font-size: 16px;
+   font-size: 13px;
    line-height: 18px;
 }
 .btn{
@@ -97,9 +140,9 @@ input[type="text"] ,input[type="password"]{
 
 
 #wrapper {
-	width:800px;
-	min-width: 800px;
-	max-width: 800px;
+	width:900px;
+	min-width: 900px;
+	max-width: 900px;
 	margin-right: auto;
 	margin-left: auto;
 
@@ -148,7 +191,7 @@ input[type="text"] ,input[type="password"]{
 	background: black;
 	text-transform: uppercase;
 	font-weight:bold;
-	font-size: 12px;
+	font-size: 12px;z
 }
 
 #menu a {

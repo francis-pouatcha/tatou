@@ -32,17 +32,16 @@
                <li><a class="header-link" href="#">Ventes</a></li>
                <li><a class="header-link" href="#">Stocks</a></li>
             </ul>
+            <ul class="nav pull-right">
+                            <c:if test="${pageContext['request'].userPrincipal != null}">
+               <spring:url value="/resources/j_spring_security_logout" var="logout" />
+               <li class="pull-right"><a style="color: green;" class="header-link " href="${logout}"> <spring:message code="security_logout" /></a></li>
+               </c:if>                                                    
+                        </ul> 
             </div>
             
                          
-			<c:if test="${pageContext['request'].userPrincipal != null}">
-				<p style="padding-top:1%;" class="pull-right">
-					<spring:url value="/resources/j_spring_security_logout" var="logout" />
-					<a class="header-link" href="${logout}">
-						<spring:message code="security_logout" />
-					</a>
-				</p>
-			</c:if>
+			
 
 		</div>
 	</div>

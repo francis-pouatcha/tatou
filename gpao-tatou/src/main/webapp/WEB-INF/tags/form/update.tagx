@@ -1,6 +1,5 @@
 <jsp:root xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" xmlns:form="http://www.springframework.org/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
   <jsp:output omit-xml-declaration="yes" />
-
   <jsp:directive.attribute name="method" type="java.lang.String" required="false" description="Used for checking if element has been modified (to recalculate simply provide empty string value)" />
   <jsp:directive.attribute name="id" type="java.lang.String" required="true" rtexprvalue="true" description="The identifier for this tag (do not change!)" />
   <jsp:directive.attribute name="modelAttribute" type="java.lang.String" required="true" rtexprvalue="true" description="The name of the model attribute for form binding" />
@@ -14,6 +13,7 @@
   <jsp:directive.attribute name="z" type="java.lang.String" required="false" description="Used for checking if element has been modified (to recalculate simply provide empty string value)" />
 	  <jsp:directive.attribute name="showInPanel" type="java.lang.Boolean" required="false" description="show in Panel ?"/>
 <jsp:directive.attribute name="ortherButton" type="java.lang.String" required="false" description="orther button to add ?"/>
+  <jsp:directive.attribute name="showLabel" type="java.lang.Boolean" required="false" rtexprvalue="true" description="Control if the title pane is opened or closed by default (default: true)" />
 
   <c:if test="${empty render or render}">
     <c:if test="${empty label}">
@@ -25,6 +25,11 @@
      <c:if test="${empty method}">
       <c:set value="PUT" var="method" />
     </c:if>
+    <c:if test="${empty showLabel}">
+      <c:set value="true" var="showLabel" />
+    </c:if>
+    
+    
     <c:if test="${empty versionField}">
       <c:set value="version" var="versionField" />
     </c:if>
@@ -32,8 +37,10 @@
     <c:if test="${multipart}">
       <c:set var="enctype" value="multipart/form-data"/>
     </c:if>
+    <c:if test="${showLabel }">
     <spring:message arguments="${label}" code="entity_update" var="title_msg" htmlEscape="false" />
-    <c:choose >
+    </c:if>
+    <c:choose>
      <c:when test="${empty showInPanel or showInPanel }">
     <util:panel id="${id}" title="${title_msg}" openPane="${openPane}">
       <spring:url value="${path}" var="form_url" />
@@ -43,7 +50,7 @@
         <div class="submit" id="${fn:escapeXml(id)}_submit">
           <spring:message code="button_save" var="save_button" htmlEscape="false" />
           <script type="text/javascript">Spring.addDecoration(new Spring.ValidateAllDecoration({elementId:'proceed', event:'onclick'}));</script>
-          <input id="proceed" class="btn-primary span3" type="submit" value="${fn:escapeXml(save_button)}" />
+          <input id="proceed" class="span2 btn-primary" type="submit" value="${fn:escapeXml(save_button)}" />
         </div>
         <form:hidden id="_${fn:escapeXml(idField)}_id" path="${fn:escapeXml(idField)}" />
         <c:if test="${versionField ne 'none'}">
@@ -61,7 +68,7 @@
         <div class="submit" id="${fn:escapeXml(id)}_submit">
           <spring:message code="button_save" var="save_button" htmlEscape="false" />
           <script type="text/javascript">Spring.addDecoration(new Spring.ValidateAllDecoration({elementId:'proceed', event:'onclick'}));</script>
-          <input id="proceed" class="btn-primary span3" type="submit" value="${fn:escapeXml(save_button)}" />
+          <input id="proceed" class="span2 btn-primary" type="submit" value="${fn:escapeXml(save_button)}" />
            <c:if test="${not empty ortherButton}">
             <jsp:include page="${ortherButton}"/>
           </c:if>

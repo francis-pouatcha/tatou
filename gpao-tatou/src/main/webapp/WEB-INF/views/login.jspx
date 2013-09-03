@@ -59,15 +59,15 @@ xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:jsp="http://java.sun.com/JSP/P
       <div class="submit">
         <script type="text/javascript">Spring.addDecoration(new Spring.ValidateAllDecoration({elementId:'proceed', event:'onclick'}));</script>
         <spring:message code="button_login" var="submit_label" htmlEscape="false" />
-        <input id="proceed" class="btn btn-primary span3" type="submit" value="${fn:escapeXml(submit_label)}" />
+         <input id="proceed" class=" gpao-accept btn btn-primary span3" type="submit" value="${fn:escapeXml(submit_label)}" />
         <spring:message code="button_reset" var="reset_label" htmlEscape="false" />
-        <input id="reset" style="margin-left: 2%;" class="btn btn-danger span3" type="reset" value="${fn:escapeXml(reset_label)}" />
+        <input id="reset" style="margin-left: 2%;" class=" gpao-cancel btn btn-danger span3" type="reset" value="${fn:escapeXml(reset_label)}" />
       </div>
     </form>
      <hr />
      </div>
      
-     <div class=" hero-unit span7">
+     <div style="margin-left: 25px;" class=" hero-unit span7">
 						<h1>Login Page</h1>
 						<p>Vestibulum id ligula porta felis euismod semper. Integer
 							posuere erat a ante venenatis dapibus posuere velit aliquet. Duis

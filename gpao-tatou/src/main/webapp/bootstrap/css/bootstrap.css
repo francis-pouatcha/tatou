@@ -343,7 +343,7 @@ a:hover {
   display: block;
   float: left;
   width: 100%;
-  min-height: 30px;
+  min-height: 25px;
   margin-left: 2.127659574468085%;
   *margin-left: 2.074468085106383%;
   -webkit-box-sizing: border-box;
@@ -3084,7 +3084,6 @@ button.close {
   *background-color: #d9d9d9;
   /* Buttons in IE7 don't get borders, so darken on hover */
 
-  background-position: 0 -15px;
   -webkit-transition: background-position 0.1s linear;
      -moz-transition: background-position 0.1s linear;
        -o-transition: background-position 0.1s linear;
@@ -3179,6 +3178,7 @@ input[type="button"].btn-block {
 }
 
 .btn {
+  padding-left:10px;
   border-color: #c5c5c5;
   border-color: rgba(0, 0, 0, 0.15) rgba(0, 0, 0, 0.15) rgba(0, 0, 0, 0.25);
 }
@@ -4754,7 +4754,7 @@ input[type="submit"].btn.btn-mini {
 .pagination ul > li > span {
   float: left;
   padding: 0 14px;
-  line-height: 38px;
+  line-height: 25px;
   text-decoration: none;
   background-color: #ffffff;
   border: 1px solid #dddddd;
@@ -4945,10 +4945,14 @@ input[type="submit"].btn.btn-mini {
 }
 
 .modal-body {
-  max-height: 400px;
   padding: 15px;
   overflow-y: auto;
+  width:auto;
+    height:auto ;
+    max-height:100% ;
 }
+
+
 
 .modal-form {
   margin-bottom: 0;

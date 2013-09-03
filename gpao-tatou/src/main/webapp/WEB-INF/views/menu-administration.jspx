@@ -10,8 +10,6 @@
    <div class="span6">
                         <ul class="unstyled user-info">
                         <li><a href=""><small class="user-link">Gakam clovis </small></a></li>
-                            <li><a href=""><small class="user-link">Infos Personnels </small></a></li>
-                            <li><a href=""><small class="user-link">Changer Password </small></a></li>
                         </ul>
    </div>
     </div>
@@ -24,8 +22,11 @@
             <menu:item id="i_company_new" messageCode="global_msg_gpao" label="Informations Entreprise" url="/companys/config" z="user-managed"/>
         </menu:category>
         <menu:category id="c_utilisateurs" z="user-managed">
-            <menu:item  label="Utilisateurs" id="i_unitofmesures_new" messageCode="global_menu_gpao" url="/unitofmesureses?form" z="ser-managed"/>
-            <menu:item  label="Groupes Utilisateurs" id="i_unitofmesures_new" messageCode="global_menu_gpao" url="/unitofmesureses?form" z="ser-managed"/>
+            <menu:item  label="Utilisateurs" id="i_gpaouser_list" messageCode="global_menu_gpao" url="/gpaousers?page=1&amp;size=${empty param.size ? 10 : param.size}" z="ser-managed"/>
+            <menu:item  label="Groupes Utilisateurs" id="i_gpaousergroup_list" messageCode="global_menu_gpao" url="/gpaousergroups?page=1&amp;size=${empty param.size ? 10 : param.size}" z="ser-managed"/>
+                  <menu:item  label="Information Personneles" id="i_gpaousergroup_list" messageCode="global_msg_gpao" url="#" z="ser-managed"/>
+                  <menu:item  label="Changer votre Password"  id="i_gpaousergroup_list" messageCode="global_msg_gpao" url="/passwordresets?form" z="ser-managed"/>
+       
         </menu:category>
     </menu:menu>
 </div>

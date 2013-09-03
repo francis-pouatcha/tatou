@@ -134,3 +134,91 @@ field enum --fieldName productType --type ~.model.ProductType
 // Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-08-23 11:27:12
 // Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-08-23 16:37:08
 // Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-08-26 15:45:43
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-08-28 08:37:19
+focus --class ~.model.Product
+field string --fieldName reference --notNull 
+field string --fieldName name --notNull 
+field reference --fieldName famille --type ~.model.ProductSubFamily 
+field reference --fieldName warehouse --type ~.model.WareHouses
+field boolean --fieldName canBebuy --value true
+field boolean --fieldName canBeSale --value true
+field number --fieldName virtualStock --type java.math.BigInteger --min 0 --value 0
+field number --fieldName minStock --type java.math.BigInteger --value 0 --min 0
+field reference --fieldName defaultUdm --type ~.model.UnitOfMesures
+field reference --fieldName defaultCurrency --type ~.model.Devise --notNull 
+field number --fieldName purchasePrice --type java.math.BigDecimal --value 0 
+field number --fieldName salePrice --type java.math.BigDecimal --value 0
+field string --fieldName epaisseur 
+field string --fieldName color
+field string --fieldName description --sizeMin 255
+field set --fieldName saleTaxes --type ~.model.Taxe
+field set --fieldName purchaseTaxes --type ~.model.Taxe
+web mvc all --package cm.adorsys.gpao.web
+focus --class ~.model.Product
+field boolean --fieldName actived --value true
+web mvc all --package cm.adorsys.gpao.web
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-08-28 12:20:52
+focus --class ~.model.Product
+field file --fieldName productImage --contentType PNG
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-08-28 15:07:03
+focus --class ~.model.Product
+field string --fieldName codeBare
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-08-29 10:25:48
+enum type --class ~.model.DocumentStates
+enum constant --name Draft
+// [failed] enum constant --name open
+// [failed] enum constant --name OPEN
+// [failed] enum constant --name CLOSE
+enum constant --name VALIDATED
+enum constant --name OPENED
+enum constant --name CLOSED
+enum constant --name CANCEL
+enum constant --name CANCELED
+entity jpa --class ~.model.PurchaseOrder
+field string --fieldName reference --notNull 
+field reference --fieldName supplier --type ~.model.Partner --notNull 
+field date --fieldName orderDate --type java.util.Date 
+field boolean --fieldName received --value false
+field boolean --fieldName invoiced --value false
+field string --fieldName validatedBy 
+field date --fieldName validateDate --type java.util.Date
+field number --fieldName amountHt --type java.math.BigDecimal --min 0
+field number --fieldName taxeAmount --type java.math.BigDecimal --min 0
+field number --fieldName totalAmount --type java.math.BigDecimal
+field enum --fieldName orderState --type ~.model.DocumentStates 
+web mvc all --package cm.adorsys.gpao.web
+focus --class ~.model.PurchaseOrder
+field string --fieldName createdBy 
+field date --fieldName created --type java.util.Date 
+field reference --fieldName currency --type ~.model.Devise --notNull 
+entity jpa --class ~.model.OrderItems 
+field string --fieldName reference --notNull 
+field reference --fieldName product --type ~.model.Product --notNull 
+field reference --fieldName udm --type ~.model.UnitOfMesures
+field number --fieldName quantity --type java.math.BigInteger --value 1
+web mvc all --package cm.adorsys.gpao.web
+focus --class ~.model.OrderItems
+field number --fieldName subTotal --type java.math.BigDecimal --value 0
+field number --fieldName taxeAmount --type java.math.BigDecimal --value 0
+focus --class ~.model.PurchaseOrder
+field set --fieldName orderItems --type ~.model.OrderItems --mappedBy purchaseOrder --cardinality ONE_TO_MANY 
+focus --class ~.model.OrderItems
+field reference --fieldName purchaseOrder --type ~.model.PurchaseOrder --notNull 
+web mvc all --package cm.adorsys.gpao.web
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-08-29 22:55:27
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-09-01 16:51:41
+enum type --class ~.model.Gender 
+enum type --class ~.model.RoleNames
+enum constant --name ROLE_ADMINISTRATOR
+entity jpa --class ~.GpaoUserGroup
+field string --fieldName name --notNull 
+field string --fieldName description 
+field set --fieldName roleNames --type ~.model.RoleNames
+entity jpa --class ~.model.GpaoUser 
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-09-01 18:25:12
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-09-01 18:28:45
+web mvc all --package cm.adorsys.gpao.web
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-09-01 20:35:07
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-09-02 14:05:12
+class --class ~.model.uiModels.PasswordReset
+class --class ~.model.uimodels.PasswordReset

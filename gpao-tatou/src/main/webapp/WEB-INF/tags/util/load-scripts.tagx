@@ -14,7 +14,9 @@
  
   <spring:url value="/resources/bootstrap/js/bootstrap.js" var="bootstrapjs_url" />
   <spring:url value="/resources/bootstrap/js/jquery-1.9.1.min.js" var="jquery_url" />
-  
+    <spring:url value="/resources/jqdatatable/js/jquery.dataTables.js" var="jqdatatablejs_url" />
+   <spring:url value="/resources/jqdatatable/css/demo_table_jui.css" var="jqdatatable_css_url" />
+   <spring:url value="/resources/jqdatatable/themes/smoothness/jquery-ui-1.8.4.custom.css" var="jqdatatable_soothness_css_url" />
   
   <spring:url value="/resources/dijit/themes/tundra/tundra.css" var="tundra_url" />
   <spring:url value="/resources/spring/Spring.js" var="spring_url" />
@@ -23,6 +25,8 @@
   
   <link rel="stylesheet" href="${bootstrap_url}"/>
   <link rel="stylesheet" href="${bootstrapr_url}"/>
+  <link rel="stylesheet" href="${jqdatatable_css_url}"/>
+   <link rel="stylesheet" href="${jqdatatable_soothness_css_url}"/>
    <link rel="stylesheet" href="${pretty_css_url}"/>
    <link rel="stylesheet" href="${gpao_url}"/>
   <link rel="stylesheet" type="text/css" href="${tundra_url}" />
@@ -48,6 +52,7 @@
   </c:set>
 
   <script src="${jquery_url}" type="text/javascript"><!-- required for FF3 and Opera --></script>
+    <script src="${jqdatatablejs_url}" type="text/javascript"><!-- required for FF3 and Opera --></script>
   <script src="${bootstrapjs_url}" type="text/javascript"><!-- required for FF3 and Opera --></script>
   <script type="text/javascript">var djConfig = {parseOnLoad: false, isDebug: false, locale: '${fn:toLowerCase(userLocale)}'};</script>
   <script src="${dojo_url}" type="text/javascript"><!-- required for FF3 and Opera --></script>

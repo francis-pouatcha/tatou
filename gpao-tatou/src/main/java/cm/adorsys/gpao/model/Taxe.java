@@ -60,4 +60,12 @@ public class Taxe {
         q.setParameter("taxeType", taxeType);
         return q;
     }
+    
+    
+    public static TypedQuery<Taxe> findActivedTaxe() {
+        EntityManager em = Taxe.entityManager();
+        TypedQuery<Taxe> q = em.createQuery("SELECT o FROM Taxe AS o WHERE  o.isActive = :isActive ORDER BY o.name ", Taxe.class);
+        q.setParameter("isActive", Boolean.TRUE);
+        return q;
+    }
 }

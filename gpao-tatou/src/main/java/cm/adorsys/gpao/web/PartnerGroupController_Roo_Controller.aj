@@ -7,7 +7,9 @@ import cm.adorsys.gpao.model.PartnerGroup;
 import cm.adorsys.gpao.web.PartnerGroupController;
 import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,6 +18,17 @@ import org.springframework.web.util.UriUtils;
 import org.springframework.web.util.WebUtils;
 
 privileged aspect PartnerGroupController_Roo_Controller {
+    
+    @RequestMapping(method = RequestMethod.POST, produces = "text/html")
+    public String PartnerGroupController.create(@Valid PartnerGroup partnerGroup, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
+        if (bindingResult.hasErrors()) {
+            populateEditForm(uiModel, partnerGroup);
+            return "partnergroups/create";
+        }
+        uiModel.asMap().clear();
+        partnerGroup.persist();
+        return "redirect:/partnergroups/" + encodeUrlPathSegment(partnerGroup.getId().toString(), httpServletRequest);
+    }
     
     @RequestMapping(params = "form", produces = "text/html")
     public String PartnerGroupController.createForm(Model uiModel) {
@@ -42,6 +55,17 @@ privileged aspect PartnerGroupController_Roo_Controller {
             uiModel.addAttribute("partnergroups", PartnerGroup.findAllPartnerGroups());
         }
         return "partnergroups/list";
+    }
+    
+    @RequestMapping(method = RequestMethod.PUT, produces = "text/html")
+    public String PartnerGroupController.update(@Valid PartnerGroup partnerGroup, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
+        if (bindingResult.hasErrors()) {
+            populateEditForm(uiModel, partnerGroup);
+            return "partnergroups/update";
+        }
+        uiModel.asMap().clear();
+        partnerGroup.merge();
+        return "redirect:/partnergroups/" + encodeUrlPathSegment(partnerGroup.getId().toString(), httpServletRequest);
     }
     
     @RequestMapping(value = "/{id}", params = "form", produces = "text/html")

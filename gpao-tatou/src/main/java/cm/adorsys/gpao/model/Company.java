@@ -10,6 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
+import org.slf4j.Logger;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
@@ -19,7 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 @RooToString
 @RooJpaActiveRecord
 public class Company {
-
+	
     @NotNull
     @Column(unique=true)
     private String name;
@@ -56,9 +57,17 @@ public class Company {
     @ManyToOne
     private Devise devise;
     
+    public Company() {
+		// TODO Auto-generated constructor stub
+	}
+    public Company(String name) {
+		this.name = name ;
+	}
+    
+    
 	public static void init(){
     	if(Company.countCompanys() <= 0){
-    		Company company = new Company();
+    		Company company = new Company("TATOU SA");
     		company.setDevise(Devise.findAllDevises().iterator().next());
     		company.persist();
     	}

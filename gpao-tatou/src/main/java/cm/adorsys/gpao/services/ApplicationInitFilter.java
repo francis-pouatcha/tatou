@@ -11,7 +11,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import cm.adorsys.gpao.model.Company;
 import cm.adorsys.gpao.model.Devise;
+import cm.adorsys.gpao.model.GpaoUser;
+import cm.adorsys.gpao.model.GpaoUserGroup;
 import cm.adorsys.gpao.model.Location;
 import cm.adorsys.gpao.model.ProductSubFamily;
 import cm.adorsys.gpao.model.Taxe;
@@ -31,6 +34,9 @@ public class ApplicationInitFilter extends OncePerRequestFilter {
 			UnitOfMesures.init();
 			ProductSubFamily.init();
 			Location.init();
+			Company.init();
+			GpaoUserGroup.init();
+			GpaoUser.init();
 			done=true;
 		}
 		filterChain.doFilter(request, response);

@@ -6,11 +6,16 @@ package cm.adorsys.gpao.web;
 import cm.adorsys.gpao.model.Company;
 import cm.adorsys.gpao.model.Contacts;
 import cm.adorsys.gpao.model.Devise;
+import cm.adorsys.gpao.model.GpaoUser;
+import cm.adorsys.gpao.model.GpaoUserGroup;
 import cm.adorsys.gpao.model.Location;
+import cm.adorsys.gpao.model.OrderItems;
 import cm.adorsys.gpao.model.Partner;
 import cm.adorsys.gpao.model.PartnerGroup;
+import cm.adorsys.gpao.model.Product;
 import cm.adorsys.gpao.model.ProductFamily;
 import cm.adorsys.gpao.model.ProductSubFamily;
+import cm.adorsys.gpao.model.PurchaseOrder;
 import cm.adorsys.gpao.model.Taxe;
 import cm.adorsys.gpao.model.UdmGroup;
 import cm.adorsys.gpao.model.UnitOfMesures;
@@ -96,6 +101,54 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         };
     }
     
+    public Converter<GpaoUser, String> ApplicationConversionServiceFactoryBean.getGpaoUserToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<cm.adorsys.gpao.model.GpaoUser, java.lang.String>() {
+            public String convert(GpaoUser gpaoUser) {
+                return new StringBuilder().append(gpaoUser.getUserNumber()).append(' ').append(gpaoUser.getUserName()).append(' ').append(gpaoUser.getFirstName()).append(' ').append(gpaoUser.getLastName()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, GpaoUser> ApplicationConversionServiceFactoryBean.getIdToGpaoUserConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, cm.adorsys.gpao.model.GpaoUser>() {
+            public cm.adorsys.gpao.model.GpaoUser convert(java.lang.Long id) {
+                return GpaoUser.findGpaoUser(id);
+            }
+        };
+    }
+    
+    public Converter<String, GpaoUser> ApplicationConversionServiceFactoryBean.getStringToGpaoUserConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, cm.adorsys.gpao.model.GpaoUser>() {
+            public cm.adorsys.gpao.model.GpaoUser convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), GpaoUser.class);
+            }
+        };
+    }
+    
+    public Converter<GpaoUserGroup, String> ApplicationConversionServiceFactoryBean.getGpaoUserGroupToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<cm.adorsys.gpao.model.GpaoUserGroup, java.lang.String>() {
+            public String convert(GpaoUserGroup gpaoUserGroup) {
+                return new StringBuilder().append(gpaoUserGroup.getName()).append(' ').append(gpaoUserGroup.getDescription()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, GpaoUserGroup> ApplicationConversionServiceFactoryBean.getIdToGpaoUserGroupConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, cm.adorsys.gpao.model.GpaoUserGroup>() {
+            public cm.adorsys.gpao.model.GpaoUserGroup convert(java.lang.Long id) {
+                return GpaoUserGroup.findGpaoUserGroup(id);
+            }
+        };
+    }
+    
+    public Converter<String, GpaoUserGroup> ApplicationConversionServiceFactoryBean.getStringToGpaoUserGroupConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, cm.adorsys.gpao.model.GpaoUserGroup>() {
+            public cm.adorsys.gpao.model.GpaoUserGroup convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), GpaoUserGroup.class);
+            }
+        };
+    }
+    
     public Converter<Location, String> ApplicationConversionServiceFactoryBean.getLocationToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<cm.adorsys.gpao.model.Location, java.lang.String>() {
             public String convert(Location location) {
@@ -116,6 +169,30 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         return new org.springframework.core.convert.converter.Converter<java.lang.String, cm.adorsys.gpao.model.Location>() {
             public cm.adorsys.gpao.model.Location convert(String id) {
                 return getObject().convert(getObject().convert(id, Long.class), Location.class);
+            }
+        };
+    }
+    
+    public Converter<OrderItems, String> ApplicationConversionServiceFactoryBean.getOrderItemsToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<cm.adorsys.gpao.model.OrderItems, java.lang.String>() {
+            public String convert(OrderItems orderItems) {
+                return new StringBuilder().append(orderItems.getReference()).append(' ').append(orderItems.getQuantity()).append(' ').append(orderItems.getSubTotal()).append(' ').append(orderItems.getTaxeAmount()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, OrderItems> ApplicationConversionServiceFactoryBean.getIdToOrderItemsConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, cm.adorsys.gpao.model.OrderItems>() {
+            public cm.adorsys.gpao.model.OrderItems convert(java.lang.Long id) {
+                return OrderItems.findOrderItems(id);
+            }
+        };
+    }
+    
+    public Converter<String, OrderItems> ApplicationConversionServiceFactoryBean.getStringToOrderItemsConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, cm.adorsys.gpao.model.OrderItems>() {
+            public cm.adorsys.gpao.model.OrderItems convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), OrderItems.class);
             }
         };
     }
@@ -168,6 +245,30 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         };
     }
     
+    public Converter<Product, String> ApplicationConversionServiceFactoryBean.getProductToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<cm.adorsys.gpao.model.Product, java.lang.String>() {
+            public String convert(Product product) {
+                return new StringBuilder().append(product.getReference()).append(' ').append(product.getName()).append(' ').append(product.getVirtualStock()).append(' ').append(product.getMinStock()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, Product> ApplicationConversionServiceFactoryBean.getIdToProductConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, cm.adorsys.gpao.model.Product>() {
+            public cm.adorsys.gpao.model.Product convert(java.lang.Long id) {
+                return Product.findProduct(id);
+            }
+        };
+    }
+    
+    public Converter<String, Product> ApplicationConversionServiceFactoryBean.getStringToProductConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, cm.adorsys.gpao.model.Product>() {
+            public cm.adorsys.gpao.model.Product convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), Product.class);
+            }
+        };
+    }
+    
     public Converter<ProductFamily, String> ApplicationConversionServiceFactoryBean.getProductFamilyToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<cm.adorsys.gpao.model.ProductFamily, java.lang.String>() {
             public String convert(ProductFamily productFamily) {
@@ -212,6 +313,30 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         return new org.springframework.core.convert.converter.Converter<java.lang.String, cm.adorsys.gpao.model.ProductSubFamily>() {
             public cm.adorsys.gpao.model.ProductSubFamily convert(String id) {
                 return getObject().convert(getObject().convert(id, Long.class), ProductSubFamily.class);
+            }
+        };
+    }
+    
+    public Converter<PurchaseOrder, String> ApplicationConversionServiceFactoryBean.getPurchaseOrderToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<cm.adorsys.gpao.model.PurchaseOrder, java.lang.String>() {
+            public String convert(PurchaseOrder purchaseOrder) {
+                return new StringBuilder().append(purchaseOrder.getReference()).append(' ').append(purchaseOrder.getOrderDate()).append(' ').append(purchaseOrder.getValidatedBy()).append(' ').append(purchaseOrder.getValidateDate()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, PurchaseOrder> ApplicationConversionServiceFactoryBean.getIdToPurchaseOrderConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, cm.adorsys.gpao.model.PurchaseOrder>() {
+            public cm.adorsys.gpao.model.PurchaseOrder convert(java.lang.Long id) {
+                return PurchaseOrder.findPurchaseOrder(id);
+            }
+        };
+    }
+    
+    public Converter<String, PurchaseOrder> ApplicationConversionServiceFactoryBean.getStringToPurchaseOrderConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, cm.adorsys.gpao.model.PurchaseOrder>() {
+            public cm.adorsys.gpao.model.PurchaseOrder convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), PurchaseOrder.class);
             }
         };
     }
@@ -322,21 +447,36 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         registry.addConverter(getDeviseToStringConverter());
         registry.addConverter(getIdToDeviseConverter());
         registry.addConverter(getStringToDeviseConverter());
+        registry.addConverter(getGpaoUserToStringConverter());
+        registry.addConverter(getIdToGpaoUserConverter());
+        registry.addConverter(getStringToGpaoUserConverter());
+        registry.addConverter(getGpaoUserGroupToStringConverter());
+        registry.addConverter(getIdToGpaoUserGroupConverter());
+        registry.addConverter(getStringToGpaoUserGroupConverter());
         registry.addConverter(getLocationToStringConverter());
         registry.addConverter(getIdToLocationConverter());
         registry.addConverter(getStringToLocationConverter());
+        registry.addConverter(getOrderItemsToStringConverter());
+        registry.addConverter(getIdToOrderItemsConverter());
+        registry.addConverter(getStringToOrderItemsConverter());
         registry.addConverter(getPartnerToStringConverter());
         registry.addConverter(getIdToPartnerConverter());
         registry.addConverter(getStringToPartnerConverter());
         registry.addConverter(getPartnerGroupToStringConverter());
         registry.addConverter(getIdToPartnerGroupConverter());
         registry.addConverter(getStringToPartnerGroupConverter());
+        registry.addConverter(getProductToStringConverter());
+        registry.addConverter(getIdToProductConverter());
+        registry.addConverter(getStringToProductConverter());
         registry.addConverter(getProductFamilyToStringConverter());
         registry.addConverter(getIdToProductFamilyConverter());
         registry.addConverter(getStringToProductFamilyConverter());
         registry.addConverter(getProductSubFamilyToStringConverter());
         registry.addConverter(getIdToProductSubFamilyConverter());
         registry.addConverter(getStringToProductSubFamilyConverter());
+        registry.addConverter(getPurchaseOrderToStringConverter());
+        registry.addConverter(getIdToPurchaseOrderConverter());
+        registry.addConverter(getStringToPurchaseOrderConverter());
         registry.addConverter(getTaxeToStringConverter());
         registry.addConverter(getIdToTaxeConverter());
         registry.addConverter(getStringToTaxeConverter());

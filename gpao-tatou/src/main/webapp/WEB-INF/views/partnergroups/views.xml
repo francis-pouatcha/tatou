@@ -13,5 +13,8 @@
 <definition extends="purchase" name="partnergroups/update">
         <put-attribute name="body" value="/WEB-INF/views/partnergroups/update.jspx"/>
 </definition>
+ <definition extends="purchase" name="partnergroups/config">
+        <put-attribute name="body" value="/WEB-INF/views/partnergroups/partnerGroupView.jspx"/>
+    </definition>
 
 </tiles-definitions>

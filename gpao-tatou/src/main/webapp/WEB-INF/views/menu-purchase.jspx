@@ -10,22 +10,20 @@
    <div class="span6">
                         <ul class="unstyled user-info">
                         <li><a href=""><small class="user-link">Gakam clovis </small></a></li>
-                            <li><a href=""><small class="user-link">Infos Personnels </small></a></li>
-                            <li><a href=""><small class="user-link">Changer Password </small></a></li>
                         </ul>
    </div>
     </div>
         <menu:category label="Carnet D'adresses" id="c_configuration" z="user-managed">
           <menu:item id="i_partner_list" label="Fournisseurs" messageCode="global_menu_gpao" url="/partners?page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
            <menu:item id="i_partner_list" label="Clients" messageCode="global_menu_gpao" url="/partners?page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
-                  <menu:item id="i_partner_list" label="groupes de partenaires" messageCode="global_menu_gpao" url="/partners?page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
+                  <menu:item id="i_partner_list" label="groupes de partenaires" messageCode="global_menu_gpao" url="/partnergroups/config" z="user-managed"/>
        
         </menu:category>
         
         <menu:category label="Gestion des Achats" id="c_configuration" z="user-managed">
-          <menu:item id="i_partner_list" label="Bons de commandes" messageCode="global_menu_gpao" url="/partners?page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
+          <menu:item id="i_purchaseorder_list" label="Bons de commandes" messageCode="global_menu_gpao" url="/purchaseorders?page=1&amp;size=${empty param.size ? 10 : param.size}" z="DHer7WK9MJB49FXJX9B6Kds2DxY="/>
            <menu:item id="i_partner_list" label="Appels d'offres" messageCode="global_menu_gpao" url="/partners?page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
-                  <menu:item id="i_partner_list" label="Articles" messageCode="global_menu_gpao" url="/partners?page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
+            <menu:item id="i_product_list" label="Articles" messageCode="global_menu_gpao" url="/products?page=1&amp;size=${empty param.size ? 10 : param.size}" z="kEeyCmUUYXShbDEWwOLheaAkM50="/>
        
         </menu:category>
         

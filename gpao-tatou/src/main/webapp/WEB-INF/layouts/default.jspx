@@ -41,14 +41,12 @@
 	
 		<tiles:insertAttribute name="header" ignore="false" />
 	
-		<div class="container-fluid">
-			<div class="row-fluid">
-				<div class="span3" >
+			<div class="row-fluid no-space">
+				<div style="position: fixed;" class="span3" >
 					<tiles:insertAttribute name="menu" ignore="true" />
 				</div>
 				<!--/span-->
-				<div class="span9">
-	
+				<div style="margin-left: 295px;" class="span9">
 					<div class="row-fluid">
 						<tiles:insertAttribute name="body" />
 					</div>
@@ -59,7 +57,6 @@
 				
 			</div>
 			
-		</div>
 
 		<!-- Prompt IE 6 users to install Chrome Frame. Remove this if you want to support IE 6.
 		     chromium.org/developers/how-tos/chrome-frame-getting-started -->

@@ -41,8 +41,8 @@
 	
 		<tiles:insertAttribute name="header" ignore="true" />
 	
-		<div class="container-fluid">
-			<div class="row-fluid">
+		<div class="container-fluid no-space">
+			<div class="row-fluid no-space">
 			
 				<div class="span12">
 						<tiles:insertAttribute name="body" />
