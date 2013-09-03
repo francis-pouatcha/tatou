@@ -74,6 +74,7 @@ body,div,td {
 }
 .user-link:HOVER{
 	text-decoration: underline;
+	
 }
 .user-icon{
   display: inline-block;

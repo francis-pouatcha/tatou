@@ -222,3 +222,4 @@ web mvc all --package cm.adorsys.gpao.web
 // Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-09-02 14:05:12
 class --class ~.model.uiModels.PasswordReset
 class --class ~.model.uimodels.PasswordReset
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-09-03 10:25:51

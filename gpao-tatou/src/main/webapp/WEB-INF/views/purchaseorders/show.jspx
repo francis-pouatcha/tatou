@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_cm_adorsys_gpao_model_PurchaseOrder" object="${purchaseorder}" path="/purchaseorders" z="HmuqvFFD+fHo0qPOromzmWXC25I=">
+        <field:display field="reference" id="s_cm_adorsys_gpao_model_PurchaseOrder_reference" object="${purchaseorder}" z="d9mhBoOgGpHVD4L2FWSMA5wNdYg="/>
+        <field:display field="supplier" id="s_cm_adorsys_gpao_model_PurchaseOrder_supplier" object="${purchaseorder}" z="o979AAnXqzZPOlydSTrv9S3TChU="/>
+        <field:display date="true" dateTimePattern="${purchaseOrder_orderdate_date_format}" field="orderDate" id="s_cm_adorsys_gpao_model_PurchaseOrder_orderDate" object="${purchaseorder}" z="5k97toeE7fOs5G/GZ30zIOs5Vpc="/>
+        <field:display field="received" id="s_cm_adorsys_gpao_model_PurchaseOrder_received" object="${purchaseorder}" z="ZsejB2u1AGUqWQjn/+d0c4WawM8="/>
+        <field:display field="invoiced" id="s_cm_adorsys_gpao_model_PurchaseOrder_invoiced" object="${purchaseorder}" z="ajby0BqS/QpgsdIvvIur7ocrXaA="/>
+        <field:display field="validatedBy" id="s_cm_adorsys_gpao_model_PurchaseOrder_validatedBy" object="${purchaseorder}" z="fYSJQCZfHL1n1zQBnK9146LU/Qs="/>
+        <field:display date="true" dateTimePattern="${purchaseOrder_validatedate_date_format}" field="validateDate" id="s_cm_adorsys_gpao_model_PurchaseOrder_validateDate" object="${purchaseorder}" z="3TcJMLnxo/xJwpN2VFygFk8qK2w="/>
+        <field:display field="amountHt" id="s_cm_adorsys_gpao_model_PurchaseOrder_amountHt" object="${purchaseorder}" z="u5X2yTaFmJVV5eP08CkhuWSZcv0="/>
+        <field:display field="taxeAmount" id="s_cm_adorsys_gpao_model_PurchaseOrder_taxeAmount" object="${purchaseorder}" z="Rjl0r39ujwvcdW/pHFfkM2vVruk="/>
+        <field:display field="totalAmount" id="s_cm_adorsys_gpao_model_PurchaseOrder_totalAmount" object="${purchaseorder}" z="0ZaN1y05xApVh8SJI+4i3fWPIUQ="/>
+        <field:display field="orderState" id="s_cm_adorsys_gpao_model_PurchaseOrder_orderState" object="${purchaseorder}" z="OCvd3LYuyjbKWgaH2ybEMMoOds8="/>
+        <field:display field="createdBy" id="s_cm_adorsys_gpao_model_PurchaseOrder_createdBy" object="${purchaseorder}" z="fp0Agm+PAy66ISYZwWlHCa7yTJg="/>
+        <field:display field="currency" id="s_cm_adorsys_gpao_model_PurchaseOrder_currency" object="${purchaseorder}" z="pHKaH385PvQ9jmImYR/J7mO1eYI="/>
+    </page:show>
+</div>

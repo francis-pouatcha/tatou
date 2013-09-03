@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_cm_adorsys_gpao_model_OrderItems" modelAttribute="orderItems" path="/orderitemses" versionField="Version" z="+HEiR0OoKOYRft4OxyA0fawoaNU=">
+        <field:input field="reference" id="c_cm_adorsys_gpao_model_OrderItems_reference" required="true" z="JKN6JNTNEvwU1UJX0gRAH4zCiyk="/>
+        <field:select field="product" id="c_cm_adorsys_gpao_model_OrderItems_product" itemValue="id" items="${products}" path="/products" required="true" z="Yxuxq+usY99o8bVpqpcxL2Gu/4Y="/>
+        <field:select field="udm" id="c_cm_adorsys_gpao_model_OrderItems_udm" itemValue="id" items="${unitofmesureses}" path="/unitofmesureses" z="ZbMcy6XO7/Vwsz5h64qRpBenxmg="/>
+        <field:input field="quantity" id="c_cm_adorsys_gpao_model_OrderItems_quantity" validationMessageCode="field_invalid_integer" z="2QZphjgH7uWcfYPJ22BaEQnORN8="/>
+        <field:input field="subTotal" id="c_cm_adorsys_gpao_model_OrderItems_subTotal" validationMessageCode="field_invalid_number" z="IYwHrEuEGQ6x0QZlT9G7ZO/3vEw="/>
+        <field:input field="taxeAmount" id="c_cm_adorsys_gpao_model_OrderItems_taxeAmount" validationMessageCode="field_invalid_number" z="X2UcX1ATaD7YZy2aTa0+QWyrGYQ="/>
+        <field:select field="purchaseOrder" id="c_cm_adorsys_gpao_model_OrderItems_purchaseOrder" itemValue="id" items="${purchaseorders}" path="/purchaseorders" required="true" z="y7VsUaDVigJIGj3fjHFNUXqeOi8="/>
+    </form:update>
+</div>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_cm_adorsys_gpao_model_OrderItems" object="${orderitems}" path="/orderitemses" z="MpJKnPYJXdNj/DLtb5btTRcRw8Y=">
+        <field:display field="reference" id="s_cm_adorsys_gpao_model_OrderItems_reference" object="${orderitems}" z="XvKOXh1ZkhMfG16i6+Iz/5s9NTM="/>
+        <field:display field="product" id="s_cm_adorsys_gpao_model_OrderItems_product" object="${orderitems}" z="GC4Tw4rkSQf73Tf5Rvw1CpQrhp4="/>
+        <field:display field="udm" id="s_cm_adorsys_gpao_model_OrderItems_udm" object="${orderitems}" z="zpSkaYRc1TBZvmkkM7CZOTMyVok="/>
+        <field:display field="quantity" id="s_cm_adorsys_gpao_model_OrderItems_quantity" object="${orderitems}" z="72JBPGgshSlb/FJvNqR+VB0bpuo="/>
+        <field:display field="subTotal" id="s_cm_adorsys_gpao_model_OrderItems_subTotal" object="${orderitems}" z="punI2jGGdrhzEATMfBFMajaykMA="/>
+        <field:display field="taxeAmount" id="s_cm_adorsys_gpao_model_OrderItems_taxeAmount" object="${orderitems}" z="72H/VWTWYu0FicsvjJlyJt/37QU="/>
+        <field:display field="purchaseOrder" id="s_cm_adorsys_gpao_model_OrderItems_purchaseOrder" object="${orderitems}" z="VJjyZjLW/0e+TR00rM8fIb8ACpk="/>
+    </page:show>
+</div>

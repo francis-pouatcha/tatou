@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_cm_adorsys_gpao_model_GpaoUser" object="${gpaouser}" path="/gpaousers" z="YmPX3gJbnBWsvQkR5FD/bDpr9tA=">
+        <field:display field="gpaoUserGroups" id="s_cm_adorsys_gpao_model_GpaoUser_gpaoUserGroups" object="${gpaouser}" z="aNuTq6y7OYANEt1XOZmW0dYVXow="/>
+        <field:display field="userNumber" id="s_cm_adorsys_gpao_model_GpaoUser_userNumber" object="${gpaouser}" z="jzPSaHckhGx80fdaxKrVMN6/8/A="/>
+        <field:display field="gender" id="s_cm_adorsys_gpao_model_GpaoUser_gender" object="${gpaouser}" z="5VYslitnDLLSL0b2lcwukiY5vZU="/>
+        <field:display field="userName" id="s_cm_adorsys_gpao_model_GpaoUser_userName" object="${gpaouser}" z="gLtEg15Z5C+q62wcOxp8KwPJmuo="/>
+        <field:display field="firstName" id="s_cm_adorsys_gpao_model_GpaoUser_firstName" object="${gpaouser}" z="ND5VgIWZNDB6imas0MlTTS0+IX8="/>
+        <field:display field="lastName" id="s_cm_adorsys_gpao_model_GpaoUser_lastName" object="${gpaouser}" z="Bu2JH86prgh0xn00B2PD5OQ1QjQ="/>
+        <field:display field="fullName" id="s_cm_adorsys_gpao_model_GpaoUser_fullName" object="${gpaouser}" z="VzMFcVLVCjpXnOYsNYnpLPjjkls="/>
+        <field:display field="password" id="s_cm_adorsys_gpao_model_GpaoUser_password" object="${gpaouser}" z="JUpw1i9p2/qzWEfhOup1XANjtXY="/>
+        <field:display field="phoneNumber" id="s_cm_adorsys_gpao_model_GpaoUser_phoneNumber" object="${gpaouser}" z="iQnvCZFcBBJSXSX4QVQ+CYae+FM="/>
+        <field:display date="true" dateTimePattern="${gpaoUser_accountexpiration_date_format}" field="accountExpiration" id="s_cm_adorsys_gpao_model_GpaoUser_accountExpiration" object="${gpaouser}" z="sEfvnaM6MlMEr9XCgl7av2xSbEA="/>
+        <field:display field="disableLogin" id="s_cm_adorsys_gpao_model_GpaoUser_disableLogin" object="${gpaouser}" z="RRNhoYTGHtb4uIavv+GLjOTpRrs="/>
+        <field:display field="accountLocked" id="s_cm_adorsys_gpao_model_GpaoUser_accountLocked" object="${gpaouser}" z="LalGSTDfjV3etPNPyZe3aECjyvI="/>
+        <field:display date="true" dateTimePattern="${gpaoUser_credentialexpiration_date_format}" field="credentialExpiration" id="s_cm_adorsys_gpao_model_GpaoUser_credentialExpiration" object="${gpaouser}" z="VbjiMD4+I7X5j33boZtY6gORgng="/>
+        <field:display field="roleNames" id="s_cm_adorsys_gpao_model_GpaoUser_roleNames" object="${gpaouser}" z="gZiyO9nVAPTx5zH9/tpeWSOIVsQ="/>
+        <field:display field="adresse" id="s_cm_adorsys_gpao_model_GpaoUser_adresse" object="${gpaouser}" z="VrUka8LM30gkz/ShkWxKkYh6Xmw="/>
+        <field:display field="email" id="s_cm_adorsys_gpao_model_GpaoUser_email" object="${gpaouser}" z="0rER3Kurgx9SEJrIToO641GO4BE="/>
+        <field:display field="company" id="s_cm_adorsys_gpao_model_GpaoUser_company" object="${gpaouser}" z="gu7H88WxH50uLqHOJFLnlNU/1Q0="/>
+        <field:display field="userImagePath" id="s_cm_adorsys_gpao_model_GpaoUser_userImagePath" object="${gpaouser}" z="JGS9ECBlriAGxxtatuReB1nFhf0="/>
+        <field:display field="userImage" id="s_cm_adorsys_gpao_model_GpaoUser_userImage" object="${gpaouser}" z="BYzZIGXuCBfy0/3bdVOpDgFpECs="/>
+    </page:show>
+</div>

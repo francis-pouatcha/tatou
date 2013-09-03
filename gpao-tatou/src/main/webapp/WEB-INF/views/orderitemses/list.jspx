@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_cm_adorsys_gpao_model_OrderItems" items="${orderitemses}" z="fUlywYc5EdrdmoWS/5OQkgGaLtM=">
+        <table:table data="${orderitemses}" id="l_cm_adorsys_gpao_model_OrderItems" path="/orderitemses" z="iYlSwuc6mWTAkOE/6/LU8f66oFA=">
+            <table:column id="c_cm_adorsys_gpao_model_OrderItems_reference" property="reference" z="wdInJW/2vAvBo8xEtd8HtWp2n8o="/>
+            <table:column id="c_cm_adorsys_gpao_model_OrderItems_product" property="product" z="0JqhT2eE0d3AVP+PtQ7+rmuvt6c="/>
+            <table:column id="c_cm_adorsys_gpao_model_OrderItems_udm" property="udm" z="wb5t2oaFjT8OC+AUPGosAFXrO3k="/>
+            <table:column id="c_cm_adorsys_gpao_model_OrderItems_quantity" property="quantity" z="SmGPkEwbCmdlB9yac3vBLsNyGgY="/>
+            <table:column id="c_cm_adorsys_gpao_model_OrderItems_subTotal" property="subTotal" z="8SxWlw4ZTYbUT9JwDc5MZtz1O88="/>
+            <table:column id="c_cm_adorsys_gpao_model_OrderItems_taxeAmount" property="taxeAmount" z="rNrq0PsvmB2AYO1r/jgPA9hn8G8="/>
+        </table:table>
+    </page:list>
+</div>

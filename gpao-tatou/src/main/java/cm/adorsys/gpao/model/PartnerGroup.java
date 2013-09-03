@@ -11,8 +11,24 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooJpaActiveRecord
 public class PartnerGroup {
 
-    @NotNull
-    private String name;
+	@NotNull
+	private String name;
 
-    private String description;
+	private String description;
+
+	public PartnerGroup() {
+		// TODO Auto-generated constructor stub
+	}
+	public PartnerGroup( String name ) {
+		this.name = name ;
+	}
+
+	public static void init(){
+		if(PartnerGroup.countPartnerGroups()<= 0){
+			PartnerGroup partnerGroup = new PartnerGroup("Groupe par defaut");
+			partnerGroup.setDescription("le groupe de partenaire par default ");
+			partnerGroup.persist() ;
+			
+		}
+	}
 }

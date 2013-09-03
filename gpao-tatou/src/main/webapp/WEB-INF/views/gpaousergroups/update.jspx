@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_cm_adorsys_gpao_model_GpaoUserGroup" modelAttribute="gpaoUserGroup" path="/gpaousergroups" versionField="Version" z="2bTTx5QzdhWoqRPdsO3r9aZhdio=">
+        <field:input field="name" id="c_cm_adorsys_gpao_model_GpaoUserGroup_name" required="true" z="HqBkecu7GBMhl1XOaw2dRPZtmw0="/>
+        <field:input field="description" id="c_cm_adorsys_gpao_model_GpaoUserGroup_description" z="Ww5TkIsPp5aMjhcJafSCD6X85GY="/>
+        <field:select field="roleNames" id="c_cm_adorsys_gpao_model_GpaoUserGroup_roleNames" items="${rolenameses}" path="rolenameses" z="9a+qUVZ4CCSH0aIKUoeZ/+imj/E="/>
+    </form:update>
+</div>

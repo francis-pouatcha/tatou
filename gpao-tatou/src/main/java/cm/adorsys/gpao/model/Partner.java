@@ -50,7 +50,7 @@ public class Partner {
     private MultipartFile partnerLogo ;
 
     @Enumerated
-    private PartnerType partnerType;
+    private PartnerType partnerType = PartnerType.CORPORATION;
 
     @ManyToOne
     private PartnerGroup partnerGroup;
@@ -72,7 +72,18 @@ public class Partner {
 
     private String code;
     
+    public Partner() {
+	}
     
+    public Partner(String name) {
+    	this.name = name ;
+	}
+    
+    public static void init(){
+		if(Partner.countPartners()<= 0){
+			Partner partner = new Partner("Fournisseur Diver");
+		}
+	}
     
 //finders
     

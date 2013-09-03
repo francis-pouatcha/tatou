@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_cm_adorsys_gpao_model_Product" object="${product}" path="/products" z="scpptFwxXPjNcXmkYnzY3kVl62M=">
+        <field:display field="productType" id="s_cm_adorsys_gpao_model_Product_productType" object="${product}" z="kh/1TWgjKFcP2eb9hnnHhZHfXW0="/>
+        <field:display field="reference" id="s_cm_adorsys_gpao_model_Product_reference" object="${product}" z="gIcEX8cujq4hZBrfMfeXUbwlSx8="/>
+        <field:display field="name" id="s_cm_adorsys_gpao_model_Product_name" object="${product}" z="ghSMB4t6d7Aw9Fa7GXUdMmj9exM="/>
+        <field:display field="famille" id="s_cm_adorsys_gpao_model_Product_famille" object="${product}" z="UxDAoAbRI+LWHNE8Tcbt+08y+Mw="/>
+        <field:display field="warehouse" id="s_cm_adorsys_gpao_model_Product_warehouse" object="${product}" z="eMq7ic25oqvo9/pVKkwmfy3RMBg="/>
+        <field:display field="canBebuy" id="s_cm_adorsys_gpao_model_Product_canBebuy" object="${product}" z="1Cgak2rWIryszVJKwPiOlrZcvVI="/>
+        <field:display field="canBeSale" id="s_cm_adorsys_gpao_model_Product_canBeSale" object="${product}" z="yRF3jnOzuO6jGCo9UrI7Gg9yI8o="/>
+        <field:display field="virtualStock" id="s_cm_adorsys_gpao_model_Product_virtualStock" object="${product}" z="PQTjECVlgd5Yn0AdpPkoIunJITg="/>
+        <field:display field="minStock" id="s_cm_adorsys_gpao_model_Product_minStock" object="${product}" z="mkz2l9HOFWZoARxA4LgWKGEzXAw="/>
+        <field:display field="defaultUdm" id="s_cm_adorsys_gpao_model_Product_defaultUdm" object="${product}" z="pnNHSo5AQzWjSqf+AVWOdMsEn08="/>
+        <field:display field="defaultCurrency" id="s_cm_adorsys_gpao_model_Product_defaultCurrency" object="${product}" z="7u4Uk2vaecFrH27hCwRKPEFB7rU="/>
+        <field:display field="purchasePrice" id="s_cm_adorsys_gpao_model_Product_purchasePrice" object="${product}" z="QyCg9XcXOVU970BTFEGBWMvh0rM="/>
+        <field:display field="salePrice" id="s_cm_adorsys_gpao_model_Product_salePrice" object="${product}" z="CwWjw30MRwlfV4HIGw5+Pp2+wzE="/>
+        <field:display field="epaisseur" id="s_cm_adorsys_gpao_model_Product_epaisseur" object="${product}" z="+u4CWMH94O8mCGW9uBnVLZ8tZtY="/>
+        <field:display field="color" id="s_cm_adorsys_gpao_model_Product_color" object="${product}" z="6vyU9PFMMQX61z78lUVOzgwmm90="/>
+        <field:display field="description" id="s_cm_adorsys_gpao_model_Product_description" object="${product}" z="o+of7zgMJ1R8rPbopq3suhCCzI0="/>
+        <field:display field="saleTaxes" id="s_cm_adorsys_gpao_model_Product_saleTaxes" object="${product}" z="lXfFG4huS+kPeQvNzCMhG+k6p6E="/>
+        <field:display field="purchaseTaxes" id="s_cm_adorsys_gpao_model_Product_purchaseTaxes" object="${product}" z="o3atPVhCLMMuYEJIWLRIiOjfK3U="/>
+        <field:display field="actived" id="s_cm_adorsys_gpao_model_Product_actived" object="${product}" z="igNXaqGftJhLGcrdvH9/6IuTUac="/>
+        <field:display field="productImage" id="s_cm_adorsys_gpao_model_Product_productImage" object="${product}" z="nQlDp81bVjYvR9etdrxS2qm0lxs="/>
+        <field:display field="productImagePath" id="s_cm_adorsys_gpao_model_Product_productImagePath" object="${product}" z="YQ7DpJoPt9wQpHmhQ7Qew+OyDw8="/>
+        <field:display field="codeBare" id="s_cm_adorsys_gpao_model_Product_codeBare" object="${product}" z="yqPNtYHV5P+mgB5EY7f6uf4CPng="/>
+    </page:show>
+</div>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+    <definition extends="admin" name="gpaousergroups/list">
+        <put-attribute name="body" value="/WEB-INF/views/gpaousergroups/list.jspx"/>
+    </definition>
+<definition extends="default" name="gpaousergroups/show">
+        <put-attribute name="body" value="/WEB-INF/views/gpaousergroups/show.jspx"/>
+    </definition>
+<definition extends="default" name="gpaousergroups/create">
+        <put-attribute name="body" value="/WEB-INF/views/gpaousergroups/create.jspx"/>
+    </definition>
+<definition extends="default" name="gpaousergroups/update">
+        <put-attribute name="body" value="/WEB-INF/views/gpaousergroups/update.jspx"/>
+    </definition>
+    <definition extends="admin" name="gpaousergroups/gpaousergroupView">
+        <put-attribute name="body" value="/WEB-INF/views/gpaousergroups/gpaousergroupView.jspx"/>
+    </definition>
+</tiles-definitions>

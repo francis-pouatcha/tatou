@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:page="urn:jsptagdir:/WEB-INF/tags/form"
+	xmlns:form="urn:jsptagdir:/WEB-INF/tags/form"
+	xmlns:spring="http://www.springframework.org/tags"
+	xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+	<jsp:directive.page contentType="text/html;charset=UTF-8" />
+	<jsp:output omit-xml-declaration="yes" />
+	<div class="row">
+		<div class="span6">
+			<form:update label="Ajouter / Modifer des groupes de partenaires"
+				showInPanel="false" id="fc_cm_adorsys_gpao_model_PartnerGroup"
+				modelAttribute="partnerGroup" path="/partnergroups/save"
+				render="${empty dependencies}" z="user-managed">
+				<field:input field="name"
+					id="c_cm_adorsys_gpao_model_PartnerGroup_name" required="true"
+					z="user-managed" />
+				<field:textarea field="description"
+					id="c_cm_adorsys_gpao_model_PartnerGroup_description"
+					required="true" z="user-managed" />
+			</form:update>
+			<form:dependency dependencies="${dependencies}"
+				id="d_cm_adorsys_gpao_model_PartnerGroup"
+				render="${not empty dependencies}" z="user-managed" />
+            <HR />
+		</div>
+
+		<div style="margin-left: 2%;" class="span6">
+			<page:list labelPlural="Liste des groupes "
+				id="pl_cm_adorsys_gpao_model_PartnerGroup" items="${partnergroups}"
+				showInPanel="false" z="user-managed">
+				<div class="div-box-medium"  >
+					<table:table show="false" create="false" delete="false"
+						data="${partnergroups}" id="l_cm_adorsys_gpao_model_PartnerGroup"
+						path="/partnergroups/save" z="user-managed">
+						<table:column id="c_cm_adorsys_gpao_model_PartnerGroup_name"
+							property="name" z="Wue94/s8gfcEACZ7/d/R3WjUbtw=" />
+						<table:column
+							id="c_cm_adorsys_gpao_model_PartnerGroup_description"
+							property="description" z="xX8U6f7mTUp4xytgLzd2oXGZljA=" />
+
+					</table:table>
+			</div>
+			</page:list>
+			<HR />
+		</div>
+		<HR />
+	</div>
+	<jsp:include page="../gpaoMessages.jspx" />
+</div>
