@@ -12,45 +12,50 @@
 	<spring:url value="/partners/next/${ partner.id}" var="next_url"></spring:url>
 	<spring:url value="/partners/previous/${partner.id}" var="previous_url"></spring:url>
 	<spring:url value="/resources/${partner.logoPath}" var="logo_url"></spring:url>
+<div class="row-fluid">
+		<div class="span3">
+			<ul class="thumbnails">
+				<li class="span6"><c:choose>
+						<c:when test="${not empty partner.logoPath }">
+							<img src="${logo_url}" class="img-polaroid" alt="" />
+						</c:when>
+						<c:otherwise>
+							<img src="http://placehold.it/300x200" class="img-polaroid"  alt="" /> 
+						</c:otherwise>
+					</c:choose></li>
+			</ul>
+		</div>
+		   <div class="span6">
+		 <STRONG style="font-size: 25px;">${partner.name} </STRONG> 
+		   <jsp:include page="../gpaoMessages.jspx" />
+		   </div>
+		   <div style="vertical-align: top; margin-left: 2%;" class="span3">
+			<c:if test="${not empty partner.id}">
+				<div style="float: right;" class="pagination">
+					<ul>
+						<li><a title="vider le formulaire" href="${add_url }">Add</a></li>
+						<li><a title="Groupe preccedant" href="${previous_url }">Prev</a></li>
+						<li><a title="Groupe suivant " href="${next_url}">Next</a></li>
+					</ul>
+				</div>
+			</c:if>
+				
+		</div>
+		</div>
 
-	<form:update multipart="true" showInPanel="false"
+
+
+
+
+	<form:update showLabel="false" multipart="true" showInPanel="false"
 		id="fc_cm_adorsys_gpao_model_Partner" modelAttribute="partner"
 		path="/partners/addOrEdit" render="${empty dependencies}"
 		z="w7MDT5+9+mo5DSC8JEMizC+yc3Y=">
-		<div class="row-fluid ">
-			<div class="span5">
-				<c:if test="${not empty partner.id}">
-					<field:input field="code" id="c_cm_adorsys_gpao_model_Partner_code"
-						z="VkiDBIoabCFogg5Xgh2gshmB2lw=" />
-				</c:if>
+				<div class="span6">
+					<field:input-hidden field="code" id="c_cm_adorsys_gpao_model_Partner_code" />
 				<field:input field="name" id="c_cm_adorsys_gpao_model_Partner_name"
 					required="true" z="HzGRAc4swmNY2gh+gKeYB8VPy1k=" />
-
-			</div>
-			<div class="span4">
-				<jsp:include page="../gpaoMessages.jspx" />
-			</div>
-			<div style="vertical-align: top;" class="span3">
-				<c:if test="${not empty partner.id}">
-					<div class="pagination">
-						<ul>
-							<li><a title="vider le formulaire" href="${add_url }">Add</a></li>
-							<li><a title="Partenaire preccedant" href="${previous_url }">Prev</a></li>
-							<li><a title="Partenaire suivant " href="${next_url}">Next</a></li>
-						</ul>
-					</div>
-				</c:if>
-			</div>
-
-		</div>
-		<ul class="nav nav-tabs" id="tab">
-			<li class="active"><a href="#infos">infos-generales</a></li>
-			<li><a href="#Contact">Contacts</a></li>
-			<li><a href="#Communication">Communication</a></li>
-		</ul>
-		<div class="tab-content">
-			<div class="tab-pane active" id="infos">
-				<div class="span6">
+				
 					<field:select desableDojo="true" field="partnerType"
 						id="c_cm_adorsys_gpao_model_Partner_partnerType"
 						items="${partnertypes}" path="partnertypes"
@@ -98,11 +103,7 @@
 						/>
 				</div>
 
-
-
-			</div>
-			<div class="tab-pane " id="Contact">
-				<div class="span6">
+				<div  class="span6">
 					<legend> Contact Par Defaut :</legend>
 					<field:input field="contactName"
 						id="c_cm_adorsys_gpao_model_Partner_contactName"
@@ -117,75 +118,9 @@
 						z="KFqfu+KvF5WbcC1YewYge3aGnG4=" />
 
 				</div>
-				<div class="span6">
-					<legend> autres Contacts:</legend>
-					<table class="">
-						<thead>
-							<tr>
-								<th>Name</th>
-								<th>Phone</th>
-								<th>Email</th>
-								<th>Function</th>
-								<th style="text-align: center;"><input type="checkbox" />
-								</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>Name</td>
-								<td>Phone</td>
-								<td>Email</td>
-								<td>Function</td>
-								<td style="text-align: center;"><input type="checkbox" />
-								</td>
-							</tr>
-							<tr>
-								<td>Name</td>
-								<td>Phone</td>
-								<td>Email</td>
-								<td>Function</td>
-								<td style="text-align: center;"><input type="checkbox" />
-								</td>
-							</tr>
-							<tr>
-								<td>Name</td>
-								<td>Phone</td>
-								<td>Email</td>
-								<td>Function</td>
-								<td style="text-align: center;"><input type="checkbox" />
-								</td>
-							</tr>
-							<tr>
-								<td>Name</td>
-								<td>Phone</td>
-								<td>Email</td>
-								<td>Function</td>
-								<td style="text-align: center;"><input type="checkbox" />
-								</td>
-							</tr>
-							<tr>
-								<td>Name</td>
-								<td>Phone</td>
-								<td>Email</td>
-								<td>Function</td>
-								<td style="text-align: center;"><input type="checkbox" />
-								</td>
-							</tr>
-
-						</tbody>
-					</table>
-					<hr />
-					<div class="btn-group">
-
-						<button class="btn">Ajouter</button>
-						<button class="btn">Modifier</button>
-						<button class="btn">Suprimer</button>
-					</div>
-				</div>
-
-			</div>
-			<div class="tab-pane" id="Communication">
-				<field:input field="phone"
+				<div style="margin-left: 10%;" class="span5">
+					<legend> Communication :</legend>
+					<field:input field="phone"
 					id="c_cm_adorsys_gpao_model_Partner_phone"
 					z="pla2nAVkGOy40tuQSJ7yEPrph9A=" />
 				<field:input field="mobile"
@@ -200,13 +135,7 @@
 				<field:input field="webSite"
 					id="c_cm_adorsys_gpao_model_Partner_webSite"
 					z="cziWkPAGGsYbZmIEdsisNN0LNvc=" />
-			</div>
-		</div>
-
-
-
-
-		<hr />
+				</div>
 	</form:update>
 	<form:dependency dependencies="${dependencies}"
 		id="d_cm_adorsys_gpao_model_Partner"
@@ -219,15 +148,4 @@
 
 
 	</div>
-
-
-
-
-	<script>
-		$('#tab a').click(function(e) {
-			e.preventDefault();
-			$(this).tab('show');
-		})
-	</script>
-
 </div>

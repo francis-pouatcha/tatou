@@ -10,5 +10,6 @@
         <field:display field="subTotal" id="s_cm_adorsys_gpao_model_OrderItems_subTotal" object="${orderitems}" z="punI2jGGdrhzEATMfBFMajaykMA="/>
         <field:display field="taxeAmount" id="s_cm_adorsys_gpao_model_OrderItems_taxeAmount" object="${orderitems}" z="72H/VWTWYu0FicsvjJlyJt/37QU="/>
         <field:display field="purchaseOrder" id="s_cm_adorsys_gpao_model_OrderItems_purchaseOrder" object="${orderitems}" z="VJjyZjLW/0e+TR00rM8fIb8ACpk="/>
+        <field:display field="taxedSubTotal" id="s_cm_adorsys_gpao_model_OrderItems_taxedSubTotal" object="${orderitems}" z="9badc/dPq8LiMbwiF6dghFVAuew="/>
     </page:show>
 </div>

@@ -68,4 +68,11 @@ public class UnitOfMesures implements BussinessValidation {
         q.setParameter("name", name);
         return q;
     }
+    
+    public static TypedQuery<UnitOfMesures> findUnitOfMesuressByGroupEquals(UdmGroup group) {
+        EntityManager em = UnitOfMesures.entityManager();
+        TypedQuery<UnitOfMesures> q = em.createQuery("SELECT o FROM UnitOfMesures AS o WHERE  o.unitGroup = :unitGroup  ", UnitOfMesures.class);
+        q.setParameter("unitGroup", group);
+        return q;
+    }
 }

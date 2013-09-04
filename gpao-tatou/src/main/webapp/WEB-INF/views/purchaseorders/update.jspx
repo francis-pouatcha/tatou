@@ -17,5 +17,6 @@
         <field:input field="createdBy" id="c_cm_adorsys_gpao_model_PurchaseOrder_createdBy" z="PWmDXqmpd6Z2qH8DzX5b8JUOXEc="/>
         <field:select field="currency" id="c_cm_adorsys_gpao_model_PurchaseOrder_currency" itemValue="id" items="${devises}" path="/devises" required="true" z="PLIJofbnx5PVAfq8dRyQhC90BsY="/>
         <field:simple field="orderItems" id="c_cm_adorsys_gpao_model_PurchaseOrder_orderItems" messageCode="entity_reference_not_managed" messageCodeAttribute="Order Items" z="eL34QFkGb689fEtGDevyfofrCYY="/>
+        <field:checkbox field="isValided" id="c_cm_adorsys_gpao_model_PurchaseOrder_isValided" z="8JNOgYNQjG67zAZh9zJ0JgOp33g="/>
     </form:update>
 </div>

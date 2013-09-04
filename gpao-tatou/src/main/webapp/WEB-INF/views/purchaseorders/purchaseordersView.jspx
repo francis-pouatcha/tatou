@@ -4,36 +4,158 @@
 	xmlns:jsp="http://java.sun.com/JSP/Page"
 	xmlns:page="urn:jsptagdir:/WEB-INF/tags/form"
 	xmlns:form="urn:jsptagdir:/WEB-INF/tags/form"
+	xmlns:util="urn:jsptagdir:/WEB-INF/tags/util"
 	xmlns:spring="http://www.springframework.org/tags"
 	xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
 	<jsp:directive.page contentType="text/html;charset=UTF-8" />
 	<jsp:output omit-xml-declaration="yes" />
 	<spring:url value="/purchaseOrders/addOrEditForm" var="add_url"></spring:url>
 	<spring:url value="/products/next/${ purchaseOrder.id}" var="next_url"></spring:url>
-	<spring:url value="/purchaseOrders/previous/${purchaseOrder.id}" var="previous_url"></spring:url>
-				<jsp:include page="../gpaoMessages.jspx" />
-	
-	<form:update  showInPanel="false"  id="fu_cm_adorsys_gpao_model_PurchaseOrder" modelAttribute="purchaseOrder" path="/purchaseorders/addOrEdit" versionField="Version" z="b6dqb2JiUknS+bzjek9tabLjDro=">
-        <field:input field="reference" id="c_cm_adorsys_gpao_model_PurchaseOrder_reference" required="true" z="1XeOXSLooNOjseitPMORlZaz/sQ="/>
-        <field:select field="supplier" id="c_cm_adorsys_gpao_model_PurchaseOrder_supplier" itemValue="id" items="${partners}" path="/partners" required="true" z="mdsFQRFpH6R1j+nnYjhtxhAtmYs="/>
-        <field:datetime dateTimePattern="${purchaseOrder_orderdate_date_format}" field="orderDate" id="c_cm_adorsys_gpao_model_PurchaseOrder_orderDate" z="diAbfwj735pSkm1LTDfWET9Ps0A="/>
-        <field:checkbox field="received" id="c_cm_adorsys_gpao_model_PurchaseOrder_received" z="PiY3py5cVnxO4kMJJx6neUmAuds="/>
-        <field:checkbox field="invoiced" id="c_cm_adorsys_gpao_model_PurchaseOrder_invoiced" z="e4tblqapg6x+YLprom8JO24Pe8g="/>
-        <field:input field="validatedBy" id="c_cm_adorsys_gpao_model_PurchaseOrder_validatedBy" z="OTuNNdfHKLZQyvSMb0lVisKljuw="/>
-        <field:datetime dateTimePattern="${purchaseOrder_validatedate_date_format}" field="validateDate" id="c_cm_adorsys_gpao_model_PurchaseOrder_validateDate" z="4WbOvgXO9dkqls26NUNWJtp6NI0="/>
-        <field:input field="amountHt" id="c_cm_adorsys_gpao_model_PurchaseOrder_amountHt" min="0" required="true" validationMessageCode="field_invalid_number" z="ROLQ4+bxfLTeKrA4qGuduLpWW30="/>
-        <field:input field="taxeAmount" id="c_cm_adorsys_gpao_model_PurchaseOrder_taxeAmount" min="0" required="true" validationMessageCode="field_invalid_number" z="piz46ybx1T37HSmZx949Et7KITo="/>
-        <field:input field="totalAmount" id="c_cm_adorsys_gpao_model_PurchaseOrder_totalAmount" validationMessageCode="field_invalid_number" z="NLAPW4aM0O5xUQq9w8N3Qv4B2QY="/>
-        <field:select field="orderState" id="c_cm_adorsys_gpao_model_PurchaseOrder_orderState" items="${documentstateses}" path="documentstateses" z="IKz/RF9TErefsF0xRU2ho7x63pY="/>
-        <field:input field="createdBy" id="c_cm_adorsys_gpao_model_PurchaseOrder_createdBy" z="PWmDXqmpd6Z2qH8DzX5b8JUOXEc="/>
-        <field:select field="currency" id="c_cm_adorsys_gpao_model_PurchaseOrder_currency" itemValue="id" items="${devises}" path="/devises" required="true" z="PLIJofbnx5PVAfq8dRyQhC90BsY="/>
-        <field:simple field="orderItems" id="c_cm_adorsys_gpao_model_PurchaseOrder_orderItems" messageCode="entity_reference_not_managed" messageCodeAttribute="Order Items" z="eL34QFkGb689fEtGDevyfofrCYY="/>
-    </form:update>
-	<script>
-		$('#tab a').click(function(e) {
-			e.preventDefault();
-			$(this).tab('show');
-		});
-	</script>
+	<spring:url value="/purchaseOrders/previous/${purchaseOrder.id}"
+		var="previous_url"></spring:url>
+	<div class="row-fluid">
+		<div class="span3">
+			<B style="font-size: 15px; color: blue;"> Reference : </B> <STRONG
+				style="font-size: 15px;">${purchaseOrder.reference} </STRONG>
+		</div>
+		<div class="span6">
 
+			<jsp:include page="../gpaoMessages.jspx" />
+		</div>
+		<div style="vertical-align: top; margin-left: 2%;" class="span3">
+			<c:if test="${not empty purchaseOrder.id}">
+				<div style="float: right;" class="pagination">
+					<ul>
+						<li><a title="vider le formulaire" href="${add_url }">Add</a></li>
+						<li><a title="Groupe preccedant" href="${previous_url }">Prev</a></li>
+						<li><a title="Groupe suivant " href="${next_url}">Next</a></li>
+					</ul>
+				</div>
+			</c:if>
+
+		</div>
+	</div>
+
+	<form:update showLabel="false" showInPanel="false"
+		id="fu_cm_adorsys_gpao_model_PurchaseOrder"
+		modelAttribute="purchaseOrder" path="/purchaseorders/addOrEdit"
+		versionField="Version" z="b6dqb2JiUknS+bzjek9tabLjDro=">
+		<div class="row-fluid">
+			<div class="span5">
+				<field:input-hidden field="reference"
+					id="c_cm_adorsys_gpao_model_PurchaseOrder_reference" />
+				<field:select field="supplier"
+					id="c_cm_adorsys_gpao_model_PurchaseOrder_supplier" itemValue="id"
+					items="${partners}" path="/partners" required="true"
+					z="mdsFQRFpH6R1j+nnYjhtxhAtmYs=" />
+				<field:checkbox field="received"
+					id="c_cm_adorsys_gpao_model_PurchaseOrder_received"
+					z="PiY3py5cVnxO4kMJJx6neUmAuds=" />
+				<field:checkbox field="invoiced"
+					id="c_cm_adorsys_gpao_model_PurchaseOrder_invoiced"
+					z="e4tblqapg6x+YLprom8JO24Pe8g=" />
+				<field:input-hidden field="validatedBy"
+					id="c_cm_adorsys_gpao_model_PurchaseOrder_validatedBy" />
+				<field:input-hidden field="validateDate"
+					id="c_cm_adorsys_gpao_model_PurchaseOrder_validateDate" />
+
+
+			</div>
+			<div style="margin-left: 5%;" class="span6">
+				<field:input-hidden field="amountHt"
+					id="c_cm_adorsys_gpao_model_PurchaseOrder_amountHt" />
+				<field:input-hidden field="taxeAmount"
+					id="c_cm_adorsys_gpao_model_PurchaseOrder_taxeAmount" />
+				<field:input-hidden field="totalAmount"
+					id="c_cm_adorsys_gpao_model_PurchaseOrder_totalAmount" />
+				<field:select field="orderState"
+					id="c_cm_adorsys_gpao_model_PurchaseOrder_orderState"
+					items="${documentstateses}" path="documentstateses"
+					z="IKz/RF9TErefsF0xRU2ho7x63pY=" />
+				<field:input-hidden field="createdBy"
+					id="c_cm_adorsys_gpao_model_PurchaseOrder_createdBy" />
+				<field:select field="currency"
+					id="c_cm_adorsys_gpao_model_PurchaseOrder_currency" itemValue="id"
+					items="${devises}" path="/devises" required="true"
+					z="PLIJofbnx5PVAfq8dRyQhC90BsY=" />
+				<field:simple field="orderItems" render="false"
+					id="c_cm_adorsys_gpao_model_PurchaseOrder_orderItems"
+					messageCode="entity_reference_not_managed"
+					messageCodeAttribute="Order Items" z="eL34QFkGb689fEtGDevyfofrCYY=" />
+				<field:datetime
+					dateTimePattern="${purchaseOrder_orderdate_date_format}"
+					field="orderDate"
+					id="c_cm_adorsys_gpao_model_PurchaseOrder_orderDate"
+					z="diAbfwj735pSkm1LTDfWET9Ps0A=" />
+
+			</div>
+			<div class="span1">
+				<p>
+					<button id="delete" class="btn-success" style="width: 100%;"
+						type="button">valider</button>
+				</p>
+				<p>
+					<button class="btn-info" style="width: 100%;" type="button">Imprimer</button>
+				</p>
+				<p>
+					<button class="btn-danger" style="width: 100%;" type="button">Annuler</button>
+				</p>
+				<p>
+					<button class="btn-info" style="width: 100%;" type="button">Facture</button>
+				</p>
+				<p>
+					<button class="btn-info" style="width: 100%;" type="button">Livraison</button>
+				</p>
+
+			</div>
+			<div class="span11">
+
+				<legend> Lignes de commande </legend>
+				<div class="btn-group pull-rigth" data-toggle="buttons-checkbox">
+					<button id="addBtn" type="button" class=" btn-success">Ajouter</button>
+					<button type="button" class=" btn-danger">Suprimer</button>
+					<button type="button" class=" btn-info">Calculer</button>
+				</div>
+				<table id="orderIdems">
+					<thead>
+						<tr>
+							<th style="text-align: center;">#</th>
+							<th style="text-align: center;">reference</th>
+							<th style="text-align: center;">qte</th>
+							<th style="text-align: center;">udm</th>
+							<th style="text-align: center;">prix</th>
+							<th style="text-align: center;">taxe</th>
+							<th style="text-align: center;"><input type="checkbox" /></th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${purchaseOrder.orderItems}" var="items">
+							<tr id="${items.id}">
+								<td style="text-align: center;">${items.id}</td>
+								<td style="text-align: center;">${items.id}</td>
+								<td style="text-align: center;">${items.id}</td>
+								<td style="text-align: center;">${items.id}</td>
+								<td style="text-align: center;">${items.id}</td>
+								<td style="text-align: center;">${items.id}</td>
+								<td style="text-align: center;"><input type="checkbox" /></td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+				<br />
+				<div style="float: right;" class="span3">
+					<p>
+						<b> MontantHT : </b> ${purchaseOrder.amountHt }
+					</p>
+					<p>
+						<b> Taxes : </b> ${purchaseOrder.taxeAmount }
+					</p>
+					<p>
+						<b> MontantTTC : </b> ${purchaseOrder.totalAmount }
+					</p>
+				</div>
+			</div>
+		</div>
+	</form:update>
+	<jsp:include page="purchaseorder-js.jspx"  />
 </div>

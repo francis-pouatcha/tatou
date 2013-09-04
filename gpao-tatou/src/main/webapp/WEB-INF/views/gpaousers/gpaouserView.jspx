@@ -28,7 +28,9 @@
 			</ul>
 		</div>
 		   <div class="span6">
-		 <STRONG style="font-size: 25px;">${gpaoUser.fullName} </STRONG> 
+		   <p>
+		 <span class="label label-info">${gpaoUser.fullName} </span> 
+		 </p>
 		   <jsp:include page="../gpaoMessages.jspx" />
 		   </div>
 		   <div style="vertical-align: top; margin-left: 2%;" class="span3">
@@ -82,4 +84,6 @@
           });
           
           </script>
+          
+          
 </div>

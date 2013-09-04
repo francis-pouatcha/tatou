@@ -54,6 +54,14 @@ privileged aspect PurchaseOrder_Roo_JavaBean {
         this.invoiced = invoiced;
     }
     
+    public Boolean PurchaseOrder.getIsValided() {
+        return this.isValided;
+    }
+    
+    public void PurchaseOrder.setIsValided(Boolean isValided) {
+        this.isValided = isValided;
+    }
+    
     public String PurchaseOrder.getValidatedBy() {
         return this.validatedBy;
     }

@@ -2,6 +2,7 @@ package cm.adorsys.gpao.model;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
@@ -22,9 +23,13 @@ import org.springframework.roo.addon.tostring.RooToString;
 import org.springframework.roo.classpath.operations.jsr303.RooUploadedFile;
 import org.springframework.web.multipart.MultipartFile;
 
+import cm.adorsys.gpao.model.uimodels.OrderItemUimodel;
+
+import flexjson.JSONSerializer;
+
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord
+@RooJpaActiveRecord(finders = { "findProductsByNameLike" })
 public class Product {
 
     @Enumerated
@@ -90,7 +95,15 @@ public class Product {
     private String productImagePath;
 
     private String codeBare;
+    
+    public String toJson() {
+        return new JSONSerializer().exclude("*.class").serialize(this);
+    }
 
+    public static String toJsonArray(Collection<Product> collection) {
+        return new JSONSerializer().exclude("*.class").serialize(collection);
+    }
+    
     public static TypedQuery<cm.adorsys.gpao.model.Product> findProductsByIdUpperThan(Long id) {
         EntityManager em = Product.entityManager();
         TypedQuery<Product> q = em.createQuery("SELECT o FROM Product AS o WHERE  o.id > :id ORDER BY o.id ", Product.class);
@@ -102,6 +115,20 @@ public class Product {
         EntityManager em = Product.entityManager();
         TypedQuery<Product> q = em.createQuery("SELECT o FROM Product AS o WHERE  o.id < :id ORDER BY o.id DESC ", Product.class);
         q.setParameter("id", id);
+        return q;
+    }
+    public static TypedQuery<Product> findProductsByNameLike(String name) {
+        if (name == null || name.length() == 0) throw new IllegalArgumentException("The name argument is required");
+        name = name.replace('*', '%');
+        if (name.charAt(0) != '%') {
+            name = "%" + name;
+        }
+        if (name.charAt(name.length() - 1) != '%') {
+            name = name + "%";
+        }
+        EntityManager em = Product.entityManager();
+        TypedQuery<Product> q = em.createQuery("SELECT o FROM Product AS o WHERE LOWER(o.name) LIKE LOWER(:name)", Product.class);
+        q.setParameter("name", name);
         return q;
     }
 }

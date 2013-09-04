@@ -14,30 +14,34 @@ import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
 
+/**
+ * @author clovisgakam
+ *
+ */
 @RooJavaBean
 @RooToString
 @RooJpaActiveRecord
 public class Taxe {
 
-    @NotNull
-    private String name;
+	@NotNull
+	private String name;
 
-    @NotNull
-    @Size(min = 2)
-    private String shortName;
+	@NotNull
+	@Size(min = 2)
+	private String shortName;
 
-    @NotNull
-    @Min(0L)
-    private BigDecimal taxeValue;
+	@NotNull
+	@Min(0L)
+	private BigDecimal taxeValue;
 
-    @Value("true")
-    private Boolean isActive;
+	@Value("true")
+	private Boolean isActive;
 
-    @NotNull
-    @Enumerated(EnumType.STRING)
-    private TaxeType taxeType = TaxeType.BY_PERCENT;
-    
-    public static void init(){
+	@NotNull
+	@Enumerated(EnumType.STRING)
+	private TaxeType taxeType = TaxeType.BY_PERCENT;
+
+	public static void init(){
 		if(Taxe.countTaxes() <= 0){
 			Taxe taxe = new Taxe();
 			taxe.setName("Taxes sur la valeur Ajoutee  ") ;
@@ -46,26 +50,42 @@ public class Taxe {
 			taxe.persist();
 		}
 	}
-    
-    //finders
-    
-    public static TypedQuery<Taxe> findTaxeByNameLikeTaxeType(String name, TaxeType  taxeType) {
-        if (name == null || name.length() == 0) name = "*";
-        name = name.replace('*', '%');
-            name = name + "%";
-        if (taxeType == null) throw new IllegalArgumentException("The taxeType argument is required");
-        EntityManager em = Taxe.entityManager();
-        TypedQuery<Taxe> q = em.createQuery("SELECT o FROM Taxe AS o WHERE LOWER(o.name) LIKE LOWER(:name)  AND o.taxeType = :taxeType ORDER BY o.name ", Taxe.class);
-        q.setParameter("name", name);
-        q.setParameter("taxeType", taxeType);
-        return q;
-    }
-    
-    
-    public static TypedQuery<Taxe> findActivedTaxe() {
-        EntityManager em = Taxe.entityManager();
-        TypedQuery<Taxe> q = em.createQuery("SELECT o FROM Taxe AS o WHERE  o.isActive = :isActive ORDER BY o.name ", Taxe.class);
-        q.setParameter("isActive", Boolean.TRUE);
-        return q;
-    }
+
+	/**
+	 * get taxe for the given amount 
+	 * @param amount
+	 * @return
+	 */
+	public BigDecimal getTaxeFromAmount(BigDecimal amount){
+		BigDecimal taxeAmount = BigDecimal.ZERO ;
+		if(isActive){
+			if(taxeType == taxeType.BY_AMOUNT) {
+				taxeAmount = taxeValue ;
+			}else {
+				taxeAmount = (amount.multiply(taxeValue)).divide(BigDecimal.valueOf(100),2);
+			}
+		}
+		return taxeAmount ;
+	}
+	//finders
+
+	public static TypedQuery<Taxe> findTaxeByNameLikeTaxeType(String name, TaxeType  taxeType) {
+		if (name == null || name.length() == 0) name = "*";
+		name = name.replace('*', '%');
+		name = name + "%";
+		if (taxeType == null) throw new IllegalArgumentException("The taxeType argument is required");
+		EntityManager em = Taxe.entityManager();
+		TypedQuery<Taxe> q = em.createQuery("SELECT o FROM Taxe AS o WHERE LOWER(o.name) LIKE LOWER(:name)  AND o.taxeType = :taxeType ORDER BY o.name ", Taxe.class);
+		q.setParameter("name", name);
+		q.setParameter("taxeType", taxeType);
+		return q;
+	}
+
+
+	public static TypedQuery<Taxe> findActivedTaxe() {
+		EntityManager em = Taxe.entityManager();
+		TypedQuery<Taxe> q = em.createQuery("SELECT o FROM Taxe AS o WHERE  o.isActive = :isActive ORDER BY o.name ", Taxe.class);
+		q.setParameter("isActive", Boolean.TRUE);
+		return q;
+	}
 }

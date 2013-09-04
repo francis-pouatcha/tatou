@@ -14,7 +14,7 @@
             <table:column date="true" dateTimePattern="${purchaseOrder_orderdate_date_format}" id="c_cm_adorsys_gpao_model_PurchaseOrder_orderDate" property="orderDate" z="Ihv1iWUd3svwMpuw4y5SUGNPsm0="/>
             <table:column id="c_cm_adorsys_gpao_model_PurchaseOrder_received" property="received" z="Mk3kJqo0jr9ybqu5/hAa6+7LqyQ="/>
             <table:column id="c_cm_adorsys_gpao_model_PurchaseOrder_invoiced" property="invoiced" z="6EoaROs0nw0ikt48cwbvvip4Dx0="/>
-            <table:column id="c_cm_adorsys_gpao_model_PurchaseOrder_validatedBy" property="validatedBy" z="1W5jt49IgEdZatxgZDa64KooIb0="/>
+            <table:column id="c_cm_adorsys_gpao_model_PurchaseOrder_isValided" property="isValided" z="+r00of/T2J37b1B0wpSCEGw+I7s="/>
         </table:table>
     </page:list>
 </div>

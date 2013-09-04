@@ -176,7 +176,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<OrderItems, String> ApplicationConversionServiceFactoryBean.getOrderItemsToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<cm.adorsys.gpao.model.OrderItems, java.lang.String>() {
             public String convert(OrderItems orderItems) {
-                return new StringBuilder().append(orderItems.getReference()).append(' ').append(orderItems.getQuantity()).append(' ').append(orderItems.getSubTotal()).append(' ').append(orderItems.getTaxeAmount()).toString();
+                return new StringBuilder().append(orderItems.getReference()).append(' ').append(orderItems.getQuantity()).append(' ').append(orderItems.getSubTotal()).append(' ').append(orderItems.getTaxedSubTotal()).toString();
             }
         };
     }

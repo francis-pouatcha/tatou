@@ -17,15 +17,25 @@
 }
 .gpao-accept {
   background-image: url("icons/accept.png");
-  background-position:left;
+  background-position:center;
   background-repeat:no-repeat;
 }
 .gpao-cancel {
   background-image: url("icons/cancel.png");
-  background-position:left;
+  background-position:center;
   background-repeat:no-repeat;
 }
-
+.modal {
+    width: 900px ;
+    height :550px;
+    overflow-y : auto;
+    margin: -250px 0 0 -430px;
+    background-color: #f6f5ed;
+    position: absolute;
+    border: 1px solid #cdc4b2;
+    top: 50%;
+    left: 50%;
+}
 
 /* icons code below */
 .cus-accept{ background-position: 0 0;  } 
@@ -339,6 +349,13 @@ tr:nth-child(even) {
 	background-color: #f5f5dc ;
 }
 
+tr:HOVER {
+	background: #999;
+}
+tr:HOVER td {
+	color: white;
+}
+
 a:link {
 	color: #7db223;
 }
@@ -404,7 +421,13 @@ table thead {
 	font-style: italic;
 	background-color: #BBBBBB;
 }
-
+.row-selected{
+   font-size: 0.9em;
+	text-align: left;
+	font-weight: bold;
+	color: #FFF;
+	background: #999;
+}
 table a:link {color: #303030;}
 
 .utilbox {width: 18px;}

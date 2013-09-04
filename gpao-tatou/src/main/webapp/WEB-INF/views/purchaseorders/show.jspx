@@ -16,5 +16,6 @@
         <field:display field="orderState" id="s_cm_adorsys_gpao_model_PurchaseOrder_orderState" object="${purchaseorder}" z="OCvd3LYuyjbKWgaH2ybEMMoOds8="/>
         <field:display field="createdBy" id="s_cm_adorsys_gpao_model_PurchaseOrder_createdBy" object="${purchaseorder}" z="fp0Agm+PAy66ISYZwWlHCa7yTJg="/>
         <field:display field="currency" id="s_cm_adorsys_gpao_model_PurchaseOrder_currency" object="${purchaseorder}" z="pHKaH385PvQ9jmImYR/J7mO1eYI="/>
+        <field:display field="isValided" id="s_cm_adorsys_gpao_model_PurchaseOrder_isValided" object="${purchaseorder}" z="OGSKnMOxtW7vmptFhD7vUJ7nUyI="/>
     </page:show>
 </div>

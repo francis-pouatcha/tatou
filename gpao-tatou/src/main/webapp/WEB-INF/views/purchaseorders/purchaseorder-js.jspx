@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<span xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields"
+	xmlns:spring="http://www.springframework.org/tags"
+	xmlns:form="urn:jsptagdir:/WEB-INF/tags/form"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:security="http://www.springframework.org/security/tags"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions" version="2.0"
+	style="margin: 10px;"> <jsp:directive.page
+		contentType="text/html;charset=UTF-8" /> <jsp:output
+		omit-xml-declaration="yes" /> <!-- liste of link to use on this page  -->
+	<spring:url value="/purchaseorders/findProductByNameLike/"
+		var="search_url" /> <spring:url
+		value="/purchaseorders/getSelectedProduct/" var="selected_url" /> 
+		<spring:url value="/resources/images/ajax-loader.gif" var="loadimage" /><!-- Modal -->
+	<div id="search" class="modal hide fade" tabindex="-1" role="dialog"
+		style="width: 60%;" align="center">
+		<div class="modal-body">
+			<div class="row-fluid">
+				<div class="span4 controls-row">
+					<legend> details produit</legend>
+					<form id="orderitem" class="form-vertical">
+						<div class="control-group">
+							<label class="control-label" for="productName">designation</label>
+							<div class="controls">
+								<input type="text" id="productName" name="productName" placeholder="designation" />
+								<input type="hidden" id="productId" name="productId" />
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="unitPrice">prix
+								Unitaire</label>
+							<div class="controls">
+								<input type="text" id="unitPrice" name="unitPrice"
+									placeholder="prix Unitaire" />
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="udm">Udm</label>
+							<div class="controls">
+								<select id="udm" name="udm" class="span11">
+									<option>1</option>
+									<option>2</option>
+									<option>3</option>
+									<option>4</option>
+									<option>5</option>
+								</select>
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="Quantity">quantite</label>
+							<div class="controls">
+								<input type="text" id="Quantity" name="Quantity"
+									placeholder="quantite" />
+							</div>
+						</div>
+
+					</form>
+					<button id="details" class="btn-info">plus de details</button>
+				</div>
+				<div style="height: 450px; overflow-y: auto; margin-left: 2%;"
+					class="span8">
+					<div class="input-append">
+						<input class="input-xlarge" id="searchText" type="text" />
+						<button id="search" class="btn gpao-accept" type="button">.</button>
+					</div>
+					<table id="products">
+						<thead>
+							<tr>
+								<th style="text-align: center;">#</th>
+								<th style="text-align: center;">reference</th>
+								<th style="text-align: center;">udm</th>
+								<th style="text-align: center;">Devise</th>
+								<th style="text-align: center;">prix</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td style="text-align: center;">1</td>
+								<td style="text-align: center;">chaussures securite</td>
+								<td style="text-align: center;">devise</td>
+								<td style="text-align: center;">prix</td>
+								<td style="text-align: center;">udm</td>
+
+							</tr>
+							<tr>
+								<td style="text-align: center;">1</td>
+								<td style="text-align: center;">chaussures securite</td>
+								<td style="text-align: center;">devise</td>
+								<td style="text-align: center;">prix</td>
+								<td style="text-align: center;">udm</td>
+
+							</tr>
+							<tr>
+								<td style="text-align: center;">1</td>
+								<td style="text-align: center;">chaussures securite</td>
+								<td style="text-align: center;">devise</td>
+								<td style="text-align: center;">prix</td>
+								<td style="text-align: center;">udm</td>
+
+							</tr>
+							<tr>
+								<td style="text-align: center;">1</td>
+								<td style="text-align: center;">chaussures securite</td>
+								<td style="text-align: center;">devise</td>
+								<td style="text-align: center;">prix</td>
+								<td style="text-align: center;">udm</td>
+
+							</tr>
+							<tr>
+								<td style="text-align: center;">1</td>
+								<td style="text-align: center;">chaussures securite</td>
+								<td style="text-align: center;">devise</td>
+								<td style="text-align: center;">prix</td>
+								<td style="text-align: center;">udm</td>
+
+							</tr>
+							<tr>
+								<td style="text-align: center;">1</td>
+								<td style="text-align: center;">chaussures securite</td>
+								<td style="text-align: center;">devise</td>
+								<td style="text-align: center;">prix</td>
+								<td style="text-align: center;">udm</td>
+
+							</tr>
+							<tr>
+								<td style="text-align: center;">1</td>
+								<td style="text-align: center;">chaussures securite</td>
+								<td style="text-align: center;">devise</td>
+								<td style="text-align: center;">prix</td>
+								<td style="text-align: center;">udm</td>
+
+							</tr>
+							<tr>
+								<td style="text-align: center;">1</td>
+								<td style="text-align: center;">chaussures securite</td>
+								<td style="text-align: center;">devise</td>
+								<td style="text-align: center;">prix</td>
+								<td style="text-align: center;">udm</td>
+
+							</tr>
+							<tr>
+								<td style="text-align: center;">1</td>
+								<td style="text-align: center;">chaussures securite</td>
+								<td style="text-align: center;">devise</td>
+								<td style="text-align: center;">prix</td>
+								<td style="text-align: center;">udm</td>
+
+							</tr>
+							<tr>
+								<td style="text-align: center;">10</td>
+								<td style="text-align: center;">chaussures securite</td>
+								<td style="text-align: center;">devise</td>
+								<td style="text-align: center;">prix</td>
+								<td style="text-align: center;">udm</td>
+
+							</tr>
+
+						</tbody>
+					</table>
+				</div>
+
+			</div>
+		</div>
+		<div class="modal-footer">
+		 <center>	<IMG alt="loading ..." src="${loadimage } " class="loadimage" style="display: none;" /></center>
+			<button id="save" class="btn-success">Enregistrer</button>
+			<button style="margin-left: 2%;" class="btn-danger"
+				data-dismiss="modal" aria-hidden="true">Close</button>
+		</div>
+	</div> <SCRIPT type="text/javascript">
+		function selectRow(row) {
+			unselectRow(row);
+			$(row).addClass('row-selected');
+		};
+
+		function unselectRow() {
+			$(row).removeClass("row-selected");
+		};
+
+		function addRowClickListener(tableid) {
+			var table = '#' + tableid + ' tr' ;
+			$(table).each(function() {
+				var current = this;
+				this.onclick = function(event) {
+					getSelected(this.id);
+				};
+			});
+
+		};
+		function addrow(data){
+			var table = '#' + data +' tbody';
+			 $(table).append(rowTemplate) ;
+		};
+		
+		function cleartable(tableid){
+			var table = '#' + tableid +' tbody';
+			$(table).empty();
+			
+		};
+		$('#addBtn').click(function() {
+			$('#search').modal('show');
+			return false;
+		});
+		$('#details').click(function() {
+			cleartable('products');
+		});
+		$('#save').click(function() {
+			var form = $('#orderitem').serialize() ;
+			alert(form) ;
+		});
+		
+		$('#search').click(function() {
+			searchProduct();
+		});
+		
+		
+		function searchProduct(){
+			var url = '${search_url}'+$('#searchText').val();
+			var table = '#products tbody' ;
+			cleartable('products');
+			$.getJSON( url,
+	                function(data){
+						$(data).each(function(){
+							$('#products tbody').append(
+							 '<tr id="'+this.id+'">
+							      <td>'+this.id+'</td>
+								  <td>'+this.name+'</td>
+								  <td>'+this.defaultUdm.name+'</td>
+								  <td>'+this.defaultCurrency.name+'</td>
+								  <td>'+this.purchasePrice+'</td>
+								  </tr>'
+						);
+							
+						});
+						addRowClickListener	('products');
+
+					});
+			
+		} ;
+		function getSelected(id){
+			var url = '${selected_url}'+id;
+			$.getJSON( url,
+	                function(data){
+							$('#productId').val(data.productId) ;
+							$('#productName').val(data.productName) ;
+							$('#unitPrice').val(data.unitPrice) ;
+							$('#Quantity').val('1') ;
+						});
+						addRowClickListener	('products');
+
+					};
+		
+		$('img.loadimage').ajaxStart(function(){
+			$(this).show();
+		});
+		
+		$('img.loadimage').ajaxStop(function(){
+			$(this).hide();
+		});
+
+		
+		
+	</SCRIPT>
+
+</span>
+
+

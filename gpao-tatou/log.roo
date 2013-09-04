@@ -223,3 +223,12 @@ web mvc all --package cm.adorsys.gpao.web
 class --class ~.model.uiModels.PasswordReset
 class --class ~.model.uimodels.PasswordReset
 // Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-09-03 10:25:51
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-09-03 19:32:45
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-09-04 08:52:04
+focus --class ~.model.Product
+finder list 
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-09-04 09:46:35
+focus --class ~.model.Product
+finder add --finderName findProductsByNameLike
+focus --class ~.model.uimodels.OrderItemUimodel
+json add 
