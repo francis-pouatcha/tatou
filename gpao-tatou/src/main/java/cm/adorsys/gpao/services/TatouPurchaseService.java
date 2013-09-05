@@ -64,6 +64,7 @@ public class TatouPurchaseService implements IPurchaseServices {
 	@Override
 	public void calculatePurchaseTaxAndAmount(PurchaseOrder purchaseOrder) {
 		Set<OrderItems> orderItems = purchaseOrder.getOrderItems();
+		purchaseOrder.initAmount();
 		for (OrderItems orderItems2 : orderItems) {
 			orderItems2.calculateTaxAndAmout();
 			purchaseOrder.increaseAmountFromOrderItem(orderItems2);
@@ -105,6 +106,7 @@ public class TatouPurchaseService implements IPurchaseServices {
 		}else {
 			OrderItems orderItems = new OrderItems(purchaseOrder, itemUimodel);
 			orderItems.persist();
+			purchaseOrder.getOrderItems().add(orderItems);
 		}
 
 

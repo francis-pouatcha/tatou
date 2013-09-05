@@ -29,6 +29,7 @@
 						<li><a title="vider le formulaire" href="${add_url }">Add</a></li>
 						<li><a title="Groupe preccedant" href="${previous_url }">Prev</a></li>
 						<li><a title="Groupe suivant " href="${next_url}">Next</a></li>
+						<li><a title="Groupe suivant " href="#">Filtre</a></li>
 					</ul>
 				</div>
 			</c:if>
@@ -113,8 +114,8 @@
 				<legend> Lignes de commande </legend>
 				<div class="btn-group pull-rigth" data-toggle="buttons-checkbox">
 					<button id="addBtn" type="button" class=" btn-success">Ajouter</button>
-					<button type="button" class=" btn-danger">Suprimer</button>
-					<button type="button" class=" btn-info">Calculer</button>
+					<button id="delBtn" type="button" class=" btn-danger">Suprimer</button>
+					<button id="calculBtn" type="button" class=" btn-info">Calculer</button>
 				</div>
 				<table id="orderIdems">
 					<thead>
@@ -125,18 +126,18 @@
 							<th style="text-align: center;">udm</th>
 							<th style="text-align: center;">prix</th>
 							<th style="text-align: center;">taxe</th>
-							<th style="text-align: center;"><input type="checkbox" /></th>
+							<th style="text-align: center;"><input id="checkall" type="checkbox" /></th>
 						</tr>
 					</thead>
 					<tbody>
 						<c:forEach items="${purchaseOrder.orderItems}" var="items">
 							<tr id="${items.id}">
 								<td style="text-align: center;">${items.id}</td>
-								<td style="text-align: center;">${items.id}</td>
-								<td style="text-align: center;">${items.id}</td>
-								<td style="text-align: center;">${items.id}</td>
-								<td style="text-align: center;">${items.id}</td>
-								<td style="text-align: center;">${items.id}</td>
+								<td >${items.product.name}</td>
+								<td style="text-align: center;">${items.quantity}</td>
+								<td style="text-align: center;">${items.udm.name}</td>
+								<td style="text-align: center;">${items.subTotal}</td>
+								<td style="text-align: center;">${items.taxeAmount}</td>
 								<td style="text-align: center;"><input type="checkbox" /></td>
 							</tr>
 						</c:forEach>
@@ -145,13 +146,13 @@
 				<br />
 				<div style="float: right;" class="span3">
 					<p>
-						<b> MontantHT : </b> ${purchaseOrder.amountHt }
+						<b> MontantHT : </b> <span class="label label-info">${purchaseOrder.amountHt} ${purchaseOrder.currency.shortName} </span>
 					</p>
 					<p>
-						<b> Taxes : </b> ${purchaseOrder.taxeAmount }
+						<b> Taxes : </b><span class="label label-important">${purchaseOrder.taxeAmount } ${purchaseOrder.currency.shortName}</span> 
 					</p>
 					<p>
-						<b> MontantTTC : </b> ${purchaseOrder.totalAmount }
+						<b> MontantTTC : </b><span class="label label-success">${purchaseOrder.totalAmount } ${purchaseOrder.currency.shortName}</span>
 					</p>
 				</div>
 			</div>

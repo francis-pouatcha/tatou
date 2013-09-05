@@ -232,3 +232,4 @@ focus --class ~.model.Product
 finder add --finderName findProductsByNameLike
 focus --class ~.model.uimodels.OrderItemUimodel
 json add 
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-09-05 08:13:28

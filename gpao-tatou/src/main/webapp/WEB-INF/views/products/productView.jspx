@@ -28,6 +28,7 @@
 			</ul>
 		</div>
 		<div class="span6">
+		<STRONG style="font-size: 25px;"><span class="label label-info">${product.name}</span></STRONG> 
 			<jsp:include page="../gpaoMessages.jspx" />
 		</div>
 		<div style="vertical-align: top;" class="span3">
@@ -37,6 +38,7 @@
 						<li><a title="vider le formulaire" href="${add_url }">Add</a></li>
 						<li><a title="Partenaire preccedant" href="${previous_url }">Prev</a></li>
 						<li><a title="Partenaire suivant " href="${next_url}">Next</a></li>
+						<li><a title="Partenaire suivant " href="${next_url}">Filtre</a></li>
 					</ul>
 				</div>
 			</c:if>
@@ -156,63 +158,20 @@
 						<div class="row-fluid">
 							<div class="span6">
 								<legend>Taxes a la vente </legend>
-								<!-- 
-								<field:select field="saleTaxes"
+								<field:select style="width: 100%; height: 250px;" field="saleTaxes"
 									id="c_cm_adorsys_gpao_model_Product_saleTaxes" itemValue="id"
 									items="${taxes}" multiple="true" path="/taxes"
 									z="q9EkUwy8WNaO+rY81waJ49P1B3I=" />
-									 -->
-								<div class="div-box-medium">
-									<table:table show="false" update="false" create="false"
-										delete="false" data="${product.saleTaxes}"
-										id="l_cm_adorsys_gpao_model_Taxe" path="/taxes/save"
-										z="user-managed">
-										<table:column id="c_cm_adorsys_gpao_model_Taxe_name"
-											property="name" z="user-managed" />
-										<table:column id="c_cm_adorsys_gpao_model_Taxe_shortName"
-											property="shortName" z="user-managed" />
-										<table:column id="c_cm_adorsys_gpao_model_Taxe_taxeValue"
-											property="taxeValue" z="user-managed" />
-										<table:column id="c_cm_adorsys_gpao_model_Taxe_taxeType"
-											property="taxeType" z="user-managed" />
-									</table:table>
-								</div>
-								<div class="btn-group">
-									<a href="#myModal" role="button" class="btn"
-										data-toggle="modal">Ajouter</a>
-									<button class="btn">Suprimer</button>
-								</div>
 							</div>
 							<div style="margin-left: 10px;" class="span6">
 								<legend>taxes a l'Achat </legend>
-								<!-- 
-								<field:select field="purchaseTaxes"
+								<field:select style="width: 100%; height: 250px;" field="purchaseTaxes"
 									id="c_cm_adorsys_gpao_model_Product_purchaseTaxes"
 									itemValue="id" items="${taxes}" multiple="true" path="/taxes"
 									z="v4ezpxdZWiQ+v9ssFENvdBbRxoc=" />
-									 -->
-								<div class="div-box-medium">
-									<table:table show="false" update="false" create="false"
-										delete="false" data="${product.purchaseTaxes}"
-										id="l_cm_adorsys_gpao_model_Taxe" path="/taxes/save"
-										z="user-managed">
-										<table:column id="c_cm_adorsys_gpao_model_Taxe_name"
-											property="name" z="user-managed" />
-										<table:column id="c_cm_adorsys_gpao_model_Taxe_shortName"
-											property="shortName" z="user-managed" />
-										<table:column id="c_cm_adorsys_gpao_model_Taxe_taxeValue"
-											property="taxeValue" z="user-managed" />
-										<table:column id="c_cm_adorsys_gpao_model_Taxe_taxeType"
-											property="taxeType" z="user-managed" />
-									</table:table>
-								</div>
+								
 								<field:input-hidden field="productImagePath"
 									id="c_cm_adorsys_gpao_model_Product_productImagePath" />
-								<div class="btn-group">
-
-									<button class="btn">Ajouter</button>
-									<button class="btn">Suprimer</button>
-								</div>
 							</div>
 
 						</div>
@@ -224,7 +183,7 @@
 		</div>
 		<div style="padding-top: 5%;" class="pull-rigth span1">
 			<p>
-				<button id="delete" class="btn-primary" type="button">Imprimer</button>
+				<button id="delete" class="btn-primary" type="button">Lots</button>
 			</p>
 			<p>
 				<button class="btn-primary" type="button">Imprimer</button>
@@ -238,63 +197,7 @@
 
 		</div>
 	</div>
-	<!-- Modal -->
-	<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal"
-				aria-hidden="true">×</button>
-			<h3 id="myModalLabel">Taxe Active</h3>
-		</div>
-		<div class="modal-body">
-			<table id="listtaxe" class="">
-				<thead>
-					<tr>
-						<th>Name</th>
-						<th>Phone</th>
-						<th>Email</th>
-						<th>Function</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>Name</td>
-						<td>Phone</td>
-						<td>Email</td>
-						<td>Function</td>
-					</tr>
-					<tr>
-						<td>Name</td>
-						<td>Phone</td>
-						<td>Email</td>
-						<td>Function</td>
-					</tr>
-					<tr>
-						<td>Name</td>
-						<td>Phone</td>
-						<td>Email</td>
-						<td>Function</td>
-					</tr>
-					<tr>
-						<td>Name</td>
-						<td>Phone</td>
-						<td>Email</td>
-						<td>Function</td>
-					</tr>
-					<tr>
-						<td>Name</td>
-						<td>Phone</td>
-						<td>Email</td>
-						<td>Function</td>
-					</tr>
-
-				</tbody>
-			</table>
-		</div>
-		<div class="modal-footer">
-			<center>Selectionner une taxe</center>
-		</div>
-	</div>
+	
 	<script>
 		$('#tab a').click(function(e) {
 			e.preventDefault();

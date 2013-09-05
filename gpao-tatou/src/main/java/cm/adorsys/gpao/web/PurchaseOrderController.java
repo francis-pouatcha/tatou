@@ -2,6 +2,7 @@ package cm.adorsys.gpao.web;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -23,14 +24,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import cm.adorsys.gpao.model.Devise;
 import cm.adorsys.gpao.model.DocumentStates;
+import cm.adorsys.gpao.model.OrderItems;
 import cm.adorsys.gpao.model.Partner;
 import cm.adorsys.gpao.model.Product;
 import cm.adorsys.gpao.model.PurchaseOrder;
+import cm.adorsys.gpao.model.UdmGroup;
+import cm.adorsys.gpao.model.UnitOfMesures;
 import cm.adorsys.gpao.model.uimodels.OrderItemUimodel;
 import cm.adorsys.gpao.services.TatouPurchaseService;
 import cm.adorsys.gpao.utils.MessageType;
 
-@Transactional
 @RequestMapping("/purchaseorders")
 @Controller
 @RooWebScaffold(path = "purchaseorders", formBackingObject = PurchaseOrder.class)
@@ -98,21 +101,29 @@ public class PurchaseOrderController {
 		OrderItemUimodel selectedProduct = purchaseService.findSelectedProduct(productId);
 		return selectedProduct.toJson() ;
 	}
+	@RequestMapping(value = "/getUdmListFromUdmGroup/{groupId}" , method = RequestMethod.GET,produces="application/json; charset=utf-8")
+	@ResponseBody
+	public String getUdmListFromUdmGroup(@PathVariable("groupId") Long groupId) {
+		List<UnitOfMesures> resultList = UnitOfMesures.findUnitOfMesuressByGroupEquals(UdmGroup.findUdmGroup(groupId)).getResultList();
+		return UnitOfMesures.toJsonArray(resultList);
+	}
 
 
 	@RequestMapping(value = "/{purchaseId}/addOrderItem" , method = RequestMethod.GET)
+	@ResponseBody
 	public String addOrderItem(@PathVariable("purchaseId") Long purchaseId ,OrderItemUimodel itemUimodel,Model uiModel) {
 		PurchaseOrder purchaseOrder = PurchaseOrder.findPurchaseOrder(purchaseId);
 		purchaseService.addOrderItems(purchaseOrder, itemUimodel);
 		purchaseService.calculatePurchaseTaxAndAmount(purchaseOrder);
 		PurchaseOrder merge = purchaseOrder.merge();
-		populateEditForm(uiModel, merge);
-		return "products/purchaseordersView";
+		Set<OrderItems> orderItems = merge.getOrderItems();
+		return OrderItems.toJsonArray(orderItems);
+		
 	}
 	@RequestMapping(value = "/{purchaseId}/removeOrderItem" , method = RequestMethod.GET)
-	public String removeOrderItems(@PathVariable("purchaseId") Long purchaseId ,List<Long> orderItemIds,Model uiModel) {
+	public String removeOrderItems(@PathVariable("purchaseId") Long purchaseId ,@RequestParam("itemid") Long[] orderItemIds,Model uiModel) {
 		PurchaseOrder purchaseOrder = PurchaseOrder.findPurchaseOrder(purchaseId);
-		purchaseService.deleteOrderItems(purchaseOrder, orderItemIds);
+		purchaseService.deleteOrderItems(purchaseOrder, Arrays.asList(orderItemIds));
 		purchaseService.calculatePurchaseTaxAndAmount(purchaseOrder);
 		PurchaseOrder merge = purchaseOrder.merge();
 		populateEditForm(uiModel, merge);
@@ -125,6 +136,7 @@ public class PurchaseOrderController {
 		purchaseService.calculatePurchaseTaxAndAmount(purchaseOrder);
 		PurchaseOrder merge = purchaseOrder.merge();
 		populateEditForm(uiModel, merge);
+		uiModel.addAttribute(MessageType.SUCCESS_MESSAGE, "Calcul des taxes effectues avec success !");
 		return "products/purchaseordersView";
 	}
 

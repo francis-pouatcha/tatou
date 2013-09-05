@@ -22,8 +22,6 @@ public class OrderItemUimodel {
 
     private BigInteger Quantity = BigInteger.ONE;
     
-    private List<UnitOfMesures> udmList = new ArrayList<UnitOfMesures>() ;
-    
     public OrderItemUimodel() { }
     
     public OrderItemUimodel(Product product) {
@@ -31,7 +29,6 @@ public class OrderItemUimodel {
 		udm = product.getDefaultUdm();
 		productName = product.getName();
 		unitPrice = product.getPurchasePrice();
-		
 		
 	}
 
@@ -75,13 +72,5 @@ public class OrderItemUimodel {
 		Quantity = quantity;
 	}
 
-	public List<UnitOfMesures> getUdmList() {
-		return udmList;
-	}
-
-	public void setUdmList(List<UnitOfMesures> udmList) {
-		this.udmList = udmList;
-	}
-    
     
 }

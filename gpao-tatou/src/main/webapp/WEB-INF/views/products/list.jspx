@@ -8,7 +8,7 @@
         <a class="btn a-btn" href="#">Filtre</a>
     </div>
     <page:list id="pl_cm_adorsys_gpao_model_Product" items="${products}" labelPlural="liste Des Produits" showInPanel="false" z="user-managed">
-        <table:table queryParam="true" data="${products}" id="l_cm_adorsys_gpao_model_Product" path="/products/addOrEditForm" z="user-managed">
+        <table:table delete="false" create="false" show="false" queryParam="true" data="${products}" id="l_cm_adorsys_gpao_model_Product" path="/products/addOrEditForm" z="user-managed">
             <table:column id="c_cm_adorsys_gpao_model_Product_productType" property="productType" z="user-managed"/>
             <table:column id="c_cm_adorsys_gpao_model_Product_reference" property="reference" z="user-managed"/>
             <table:column id="c_cm_adorsys_gpao_model_Product_name" property="name" z="user-managed"/>

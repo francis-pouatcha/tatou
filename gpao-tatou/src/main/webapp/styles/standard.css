@@ -27,14 +27,12 @@
 }
 .modal {
     width: 900px ;
-    height :550px;
+    height :500px;
     overflow-y : auto;
     margin: -250px 0 0 -430px;
     background-color: #f6f5ed;
     position: absolute;
     border: 1px solid #cdc4b2;
-    top: 50%;
-    left: 50%;
 }
 
 /* icons code below */
@@ -352,9 +350,7 @@ tr:nth-child(even) {
 tr:HOVER {
 	background: #999;
 }
-tr:HOVER td {
-	color: white;
-}
+
 
 a:link {
 	color: #7db223;

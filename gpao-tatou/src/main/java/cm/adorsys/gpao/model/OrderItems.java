@@ -2,6 +2,7 @@ package cm.adorsys.gpao.model;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.Collection;
 import java.util.Set;
 
 import javax.persistence.ManyToOne;
@@ -13,6 +14,8 @@ import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
 
 import cm.adorsys.gpao.model.uimodels.OrderItemUimodel;
+import flexjson.JSONDeserializer;
+import flexjson.JSONSerializer;
 
 @RooJavaBean
 @RooToString
@@ -50,13 +53,20 @@ public class OrderItems {
 		// TODO Auto-generated constructor stub
 	}
 	
+	  public String toJson() {
+	        return new JSONSerializer().exclude("*.class").serialize(this);
+	    }
+	    
+	    public static String toJsonArray(Collection<OrderItems> collection) {
+	        return new JSONSerializer().exclude("*.class").serialize(collection);
+	    }
 	public OrderItems(PurchaseOrder order,OrderItemUimodel itemUimodel) {
 		product = Product.findProduct(itemUimodel.getProductId());
 		udm = itemUimodel.getUdm();
 		quantity = itemUimodel.getQuantity();
 		purchaseOrder = order ;
 		reference = ""+order.getOrderItems().size()+1;
-		subTotal = itemUimodel.getUnitPrice();
+		subTotal = itemUimodel.getUnitPrice().multiply(BigDecimal.valueOf(quantity.longValue()));
 	}
 	
 	public void reset(OrderItemUimodel itemUimodel) {
@@ -65,8 +75,6 @@ public class OrderItems {
 		quantity = itemUimodel.getQuantity();
 		subTotal = itemUimodel.getUnitPrice();
 	}
-	
-
 
 	public void calculateTaxAndAmout(){
 		taxeAmount = BigDecimal.ZERO ;

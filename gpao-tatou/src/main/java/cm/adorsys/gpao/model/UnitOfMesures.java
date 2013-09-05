@@ -1,6 +1,7 @@
 package cm.adorsys.gpao.model;
 
 import java.math.BigDecimal;
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -18,6 +19,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 
 import cm.adorsys.gpao.utils.BussinessValidation;
+import flexjson.JSONSerializer;
 
 @RooJavaBean
 @RooToString
@@ -49,6 +51,14 @@ public class UnitOfMesures implements BussinessValidation {
 	     }
 		
 	}
+	
+	 public String toJson() {
+	        return new JSONSerializer().exclude("*.class").serialize(this);
+	    }
+	    
+	    public static String toJsonArray(Collection<UnitOfMesures> collection) {
+	        return new JSONSerializer().exclude("*.class").serialize(collection);
+	    }
 	
 	public static void init(){
 		if(UnitOfMesures.countUnitOfMesureses() <= 0){
