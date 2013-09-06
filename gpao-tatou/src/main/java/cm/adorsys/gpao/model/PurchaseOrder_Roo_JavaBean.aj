@@ -3,6 +3,7 @@
 
 package cm.adorsys.gpao.model;
 
+import cm.adorsys.gpao.model.Company;
 import cm.adorsys.gpao.model.Devise;
 import cm.adorsys.gpao.model.DocumentStates;
 import cm.adorsys.gpao.model.OrderItems;
@@ -140,6 +141,14 @@ privileged aspect PurchaseOrder_Roo_JavaBean {
     
     public void PurchaseOrder.setOrderItems(Set<OrderItems> orderItems) {
         this.orderItems = orderItems;
+    }
+    
+    public Company PurchaseOrder.getCompany() {
+        return this.company;
+    }
+    
+    public void PurchaseOrder.setCompany(Company company) {
+        this.company = company;
     }
     
 }

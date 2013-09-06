@@ -17,6 +17,8 @@
 		var="add_url" /> 
 		<spring:url value="/purchaseorders/${purchaseOrder.id}/caculated"
 		var="calcul_url" /> 
+		<spring:url value="/purchaseorders/${purchaseOrder.id}/validatedOrder"
+		var="validated_url" /> 
 		<spring:url value="/purchaseorders/${purchaseOrder.id}/removeOrderItem?itemid="
 		var="remove_url" /> 
 		<spring:url
@@ -134,6 +136,12 @@
 			window.location = urlFromSelectedRow('orderIdems');
 			return false;
 		});
+		$('#validerBtn').click(function() {
+			var url = '${validated_url}';
+			window.location = url ;
+		});
+		
+		
 		$('#checkall').change(function() {
 			toggleAllRowFrom('orderIdems');
 			return false;

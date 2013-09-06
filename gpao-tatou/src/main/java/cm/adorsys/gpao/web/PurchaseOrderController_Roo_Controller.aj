@@ -3,6 +3,7 @@
 
 package cm.adorsys.gpao.web;
 
+import cm.adorsys.gpao.model.Company;
 import cm.adorsys.gpao.model.Devise;
 import cm.adorsys.gpao.model.Partner;
 import cm.adorsys.gpao.model.PurchaseOrder;
@@ -45,6 +46,9 @@ privileged aspect PurchaseOrderController_Roo_Controller {
         }
         if (Devise.countDevises() == 0) {
             dependencies.add(new String[] { "devise", "devises" });
+        }
+        if (Company.countCompanys() == 0) {
+            dependencies.add(new String[] { "company", "companys" });
         }
         uiModel.addAttribute("dependencies", dependencies);
         return "purchaseorders/create";

@@ -93,6 +93,21 @@ public class Partner {
         q.setParameter("name", name);
         return q;
     }
+	
+	public static TypedQuery<Partner> findAllActiveProviders() {
+        EntityManager em = Partner.entityManager();
+        TypedQuery<Partner> q = em.createQuery("SELECT o FROM Partner AS o WHERE o.isProvider IS :isProvider AND o.isActive IS :isActive  ORDER BY o.name ", Partner.class);
+        q.setParameter("isProvider", Boolean.TRUE);
+        q.setParameter("isActive", Boolean.TRUE);
+        return q;
+    }
+	public static TypedQuery<Partner> findAllActiveCustomers() {
+        EntityManager em = Partner.entityManager();
+        TypedQuery<Partner> q = em.createQuery("SELECT o FROM Partner AS o WHERE o.isCustomer IS :isCustomer AND o.isActive IS :isActive ORDER BY o.name ", Partner.class);
+        q.setParameter("isCustomer", Boolean.TRUE);
+        q.setParameter("isActive", Boolean.TRUE);
+        return q;
+    }
     public static TypedQuery<Partner> findPartnersByIdUpperThan(Long id) {
         EntityManager em = Partner.entityManager();
         TypedQuery<Partner> q = em.createQuery("SELECT o FROM Partner AS o WHERE  o.id > :id ORDER BY o.id ", Partner.class);

@@ -4,8 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import cm.adorsys.gpao.model.Delivery;
+import cm.adorsys.gpao.model.DeliveryItems;
 import cm.adorsys.gpao.model.DocumentStates;
 import cm.adorsys.gpao.model.OrderItems;
 import cm.adorsys.gpao.model.Product;
@@ -14,6 +18,9 @@ import cm.adorsys.gpao.model.uimodels.OrderItemUimodel;
 
 @Service
 public class TatouPurchaseService implements IPurchaseServices {
+
+	@Autowired
+	TatouDeliveryService deliveryService;
 
 	@Override
 	public List<Product> findProductByNameLike(String productName) {
@@ -71,10 +78,18 @@ public class TatouPurchaseService implements IPurchaseServices {
 		}
 
 	}
-
+	@Transactional
 	@Override
 	public void validatedPurchase(PurchaseOrder purchaseOrder) {
-
+		if(DocumentStates.DRAFT.equals(purchaseOrder.getOrderState())){
+			Delivery delivery = deliveryService.getDeliveryFromOrder(purchaseOrder);
+			delivery.persist();
+			Set<DeliveryItems> deliveryItems = deliveryService.getDeliveryItems(purchaseOrder,delivery);
+			delivery.setDeliveryItems(deliveryItems);
+			deliveryService.calCulateDeliveryAmout(delivery);
+			purchaseOrder.setOrderState(DocumentStates.VALIDATED);
+			delivery.merge();
+		}
 
 	}
 
@@ -84,17 +99,6 @@ public class TatouPurchaseService implements IPurchaseServices {
 
 	}
 
-	@Override
-	public void generateOrderReceipt(PurchaseOrder purchaseOrder) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void generateOrderInvoice(PurchaseOrder purchaseOrder) {
-		// TODO Auto-generated method stub
-
-	}
 
 	@Override
 	public void addOrderItems(PurchaseOrder purchaseOrder, OrderItemUimodel itemUimodel) {

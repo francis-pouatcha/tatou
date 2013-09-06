@@ -233,3 +233,58 @@ finder add --finderName findProductsByNameLike
 focus --class ~.model.uimodels.OrderItemUimodel
 json add 
 // Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-09-05 08:13:28
+// [failed] persistence setup --provider HIBERNATE --database MYSQL --databaseName gpaodb --userName root --password clovis431982
+persistence setup --provider HIBERNATE --database MYSQL --databaseName gpaodb --userName root --password clovis431982
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-09-05 19:36:10
+persistence setup --provider HIBERNATE --database H2_IN_MEMORY 
+// [failed] enum type --class ~.model.DeliveryOrigin
+// [failed] enum type --class ~.model.DeliveryOrigin
+// [failed] enum constant --name PORCHASE
+// [failed] enum constant --name PRODUCTION
+// [failed] entity jpa --class ~.model.Delivery
+// [failed] field string --fieldName docOrigine --notNull 
+// [failed] field string --fieldName docOrigine --notNull 
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-09-05 21:34:51
+enum type --class ~.model.DeliveryOrigin 
+enum constant --name PORCHASE
+enum constant --name PRODUCTION
+entity jpa --class ~.model.Delivery
+field string --fieldName reference --notNull 
+field string --fieldName createBy --notNull 
+field string --fieldName receiveBy 
+field date --fieldName receivedDate --type java.util.Date
+field string --fieldName createdate 
+field enum --fieldName origin --type ~.model.DeliveryOrigin --notNull 
+// [failed] field enum --fieldName state --type ~.model.DocumentStates
+field enum --fieldName status  --type ~.model.DocumentStates
+field number --fieldName unTaxeAmount --type java.math.BigDecimal
+field number --fieldName taxAmount --type java.math.BigDecimal --min 0
+field number --fieldName taxedAmount --type java.math.BigDecimal --min 0
+entity jpa --class ~.model.DeliveryItems 
+field string --fieldName reference --notNull 
+field reference --fieldName product --type ~.model.Product --notNull 
+field number --fieldName orderQte --type java.math.BigInteger --min 0
+field number --fieldName  qteReceive --type java.math.BigInteger --min 0
+field number --fieldName qteUnreceive --type java.math.BigDecimal --min 0
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-09-06 07:51:07
+addon list 
+addon search mysql
+osgi obr url add --url http://spring-roo-repository.springsource.org/repository.xml
+osgi obr start --bundleSymbolicName org.springframework.roo.wrapping.mysql-connector-java
+osgi obr url remove --url http://spring-roo-repository.springsource.org/repository.xml
+addon install id --searchResultId 01
+focus --class ~.model.Delivery
+field set --fieldName deliveryItems --type ~.model.DeliveryItems --mappedBy delivery 
+focus --class ~.model.DeliveryItems
+field reference --fieldName delivery --type ~.model.Delivery --notNull 
+field number --fieldName amountHt --type java.math.BigDecimal
+field number --fieldName taxAmount --type java.math.BigDecimal --min 0
+field number --fieldName taxedAmount --type java.math.BigDecimal
+focus --class ~.model.Delivery
+field reference --fieldName currency --type ~.model.Devise --notNull 
+field reference --fieldName company --type ~.model.Company --notNull 
+field string --fieldName docRef --notNull 
+focus --class ~.model.PurchaseOrder
+field reference --fieldName company --type ~.model.Company --notNull 
+focus --class ~.model.DeliveryItems
+field date --fieldName expirationDate --type java.util.Date

@@ -43,16 +43,18 @@
 		versionField="Version" z="b6dqb2JiUknS+bzjek9tabLjDro=">
 		<div class="row-fluid">
 			<div class="span5">
+			    <field:select field="company" id="c_cm_adorsys_gpao_model_PurchaseOrder_company" itemValue="id" items="${companys}" path="/companys" required="true" z="L+KZ3eEZnbU2o4CC6TP4Z5d4xos="/>
+			
 				<field:input-hidden field="reference"
 					id="c_cm_adorsys_gpao_model_PurchaseOrder_reference" />
 				<field:select field="supplier"
 					id="c_cm_adorsys_gpao_model_PurchaseOrder_supplier" itemValue="id"
 					items="${partners}" path="/partners" required="true"
 					z="mdsFQRFpH6R1j+nnYjhtxhAtmYs=" />
-				<field:checkbox field="received"
-					id="c_cm_adorsys_gpao_model_PurchaseOrder_received"
+				<field:gpao-display hiddenfield="true" isBoolean="true" object="${purchaseOrder }" field="received"
+					id="c_cm_adorsys_gpao_model_PurchaseOrder_received" 
 					z="PiY3py5cVnxO4kMJJx6neUmAuds=" />
-				<field:checkbox field="invoiced"
+				<field:gpao-display field="invoiced" hiddenfield="true" isBoolean="true" object="${purchaseOrder }" 
 					id="c_cm_adorsys_gpao_model_PurchaseOrder_invoiced"
 					z="e4tblqapg6x+YLprom8JO24Pe8g=" />
 				<field:input-hidden field="validatedBy"
@@ -91,10 +93,11 @@
 
 			</div>
 			<div class="span1">
+			<c:if test="${purchaseOrder.orderState eq 'DRAFT' }">
 				<p>
-					<button id="delete" class="btn-success" style="width: 100%;"
-						type="button">valider</button>
+					<button id="validerBtn" class="btn-success" style="width: 100%;" type="button">valider</button>
 				</p>
+				</c:if>
 				<p>
 					<button class="btn-info" style="width: 100%;" type="button">Imprimer</button>
 				</p>
@@ -109,8 +112,10 @@
 				</p>
 
 			</div>
+						
+			
 			<div class="span11">
-
+<c:if test="${not empty purchaseOrder.id }">
 				<legend> Lignes de commande </legend>
 				<div class="btn-group pull-rigth" data-toggle="buttons-checkbox">
 					<button id="addBtn" type="button" class=" btn-success">Ajouter</button>
@@ -155,7 +160,10 @@
 						<b> MontantTTC : </b><span class="label label-success">${purchaseOrder.totalAmount } ${purchaseOrder.currency.shortName}</span>
 					</p>
 				</div>
+				</c:if>
 			</div>
+					
+			
 		</div>
 	</form:update>
 	<jsp:include page="purchaseorder-js.jspx"  />

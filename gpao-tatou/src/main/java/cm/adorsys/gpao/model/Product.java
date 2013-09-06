@@ -6,16 +6,21 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.EntityManager;
 import javax.persistence.Enumerated;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.PostPersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Transient;
 import javax.persistence.TypedQuery;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
@@ -24,6 +29,7 @@ import org.springframework.roo.classpath.operations.jsr303.RooUploadedFile;
 import org.springframework.web.multipart.MultipartFile;
 
 import cm.adorsys.gpao.model.uimodels.OrderItemUimodel;
+import cm.adorsys.gpao.utils.GpaoSequenceGenerator;
 
 import flexjson.JSONSerializer;
 
@@ -39,6 +45,7 @@ public class Product {
     private String reference;
 
     @NotNull
+    @Column(unique=true)
     private String name;
 
     @ManyToOne
@@ -102,6 +109,16 @@ public class Product {
 
     public static String toJsonArray(Collection<Product> collection) {
         return new JSONSerializer().exclude("*.class").serialize(collection);
+    }
+    
+    @PostPersist
+    public void postPersist(){
+    	reference = GpaoSequenceGenerator.getSequence(getId(), GpaoSequenceGenerator.ARTICLE_SEQUENCE_PREFIX);
+    	name = name.toUpperCase();
+    }
+    @PreUpdate
+    public void preUpdate(){
+    	name = name.toUpperCase();
     }
     
     public static TypedQuery<cm.adorsys.gpao.model.Product> findProductsByIdUpperThan(Long id) {

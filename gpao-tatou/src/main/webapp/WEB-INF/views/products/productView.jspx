@@ -28,7 +28,7 @@
 			</ul>
 		</div>
 		<div class="span6">
-		<STRONG style="font-size: 25px;"><span class="label label-info">${product.name}</span></STRONG> 
+		<STRONG style="font-size: 25px;"><span class="label label-info">${product.reference} : ${product.name}</span></STRONG> 
 			<jsp:include page="../gpaoMessages.jspx" />
 		</div>
 		<div style="vertical-align: top;" class="span3">

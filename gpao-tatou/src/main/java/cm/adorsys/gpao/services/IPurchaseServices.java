@@ -16,8 +16,6 @@ public interface IPurchaseServices {
 	public void calculatePurchaseTaxAndAmount(PurchaseOrder purchaseOrder);
 	public void validatedPurchase(PurchaseOrder purchaseOrder);
 	public void cancelPurchase(PurchaseOrder purchaseOrder);
-	public void generateOrderReceipt(PurchaseOrder purchaseOrder);
-	public void generateOrderInvoice(PurchaseOrder purchaseOrder);
 	public void addOrderItems(PurchaseOrder purchaseOrder , OrderItemUimodel itemUimodel );
 
 }
