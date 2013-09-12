@@ -10,33 +10,41 @@
 	<jsp:output omit-xml-declaration="yes" />
 	<spring:url value="/partners/addOrEditForm" var="add_url"></spring:url>
      <spring:url value="/resources/${company.logoPath}" var="logo_url"></spring:url>
-
-
+     <spring:url value="/resources/images/300x200.gif" var="def_logo_url"></spring:url>
 	<form:update multipart="true" showInPanel="false"
 		id="fc_cm_adorsys_gpao_model_Company" modelAttribute="company"
 		path="/companys/saveOrEdit" render="${empty dependencies}"
 		z="w7MDT5+9+mo5DSC8JEMizC+yc3Y=">
-		<div class="row-fluid " style="z-index: 10000px;">
-			<jsp:include page="../gpaoMessages.jspx" />
-		</div>
 		<div class="row-fluid ">
 			<div class="span5">
 				<field:input field="name" id="c_cm_adorsys_gpao_model_Company_name"
 					required="true" z="BcdZ0JmX6WJeOjQCyE/WdeSstWE=" />
-			</div>
-			<div class="span5">
-				<field:input field="taxePayerNumber"
+					<field:input field="taxePayerNumber"
 					id="c_cm_adorsys_gpao_model_Company_taxePayerNumber"
 					z="Waob7paaoJoQ5F9UCPhZ9PJRz8Q=" />
 			</div>
+			<div class="span5">
+			<field:input field="uploadedLogo" label="changer de logo" disableFormBinding="true"
+						type="file" id="c_cm_adorsys_gpao_model_Company_uploadedLogo"
+						z="user-managed" />
+				<jsp:include page="../gpaoMessages.jspx" />
+			</div>
+			<div style="margin-left: 1%;" class="span2">
+			<ul class="thumbnails">
+				<li class="span8"><c:choose>
+						<c:when test="${not empty company.logoPath }">
+							<img src="${logo_url}" class="img-polaroid" alt="" />
+						</c:when>
+						<c:otherwise>
+							<img src="${def_logo_url}" class="img-polaroid"  alt="" /> 
+						</c:otherwise>
+					</c:choose></li>
+			</ul>
 		</div>
-		<ul class="nav nav-tabs" id="tab">
-			<li class="active"><a href="#infos">infos-generales</a></li>
-			<li><a href="#Contact">Contacts</a></li>
-		</ul>
-		<div class="tab-content">
-			<div class="tab-pane active" id="infos">
-				<div class="span7">
+		</div>
+			<div class="row-fluid">
+				<div class="span6">
+				<legend> Infos Generales </legend>
 					<field:input field="contactName" label="Responsable"
 						id="c_cm_adorsys_gpao_model_Company_contactName"
 						z="R+jAw6N1ZF+k9OR4sbp9AoAyv6M=" />
@@ -55,30 +63,8 @@
 
 
 				</div>
-				<div class="span4 offset1">
-					<ul class="thumbnails">
-						<li class="span10">
-						<c:choose>
-						  <c:when test="${not empty company.logoPath }"> <img width="250px" height="160px"  src="${logo_url}" alt="" /></c:when>
-						  <c:otherwise><img src="http://placehold.it/300x200" alt="" /></c:otherwise>
-						</c:choose>
-						
-						
-						</li>
-					</ul>
-					<field:input field="uploadedLogo" label="changer de logo" disableFormBinding="true"
-						type="file" id="c_cm_adorsys_gpao_model_Company_uploadedLogo"
-						z="user-managed" />
-					<field:input-hidden field="logoPath"
-						id="c_cm_adorsys_gpao_model_Company_logoPath" />
-						
-				</div>
-
-
-			</div>
-			<div class="tab-pane " id="Contact">
-				<div class="span6">
-					<legend> Contact Par Defaut :</legend>
+				<div style="margin-left: 1%;" class="span6">
+				<legend> Communication </legend>
 					<field:input field="phone"
 						id="c_cm_adorsys_gpao_model_Company_phone"
 						z="oaxhwm2HT/py+viC5HLoETZ1udc=" />
@@ -94,91 +80,13 @@
 					<field:input field="webSite"
 						id="c_cm_adorsys_gpao_model_Company_webSite"
 						z="e17vCscJ862+ALsiBauROxhShjo=" />
-
+					<field:input-hidden object="${company }" field="logoPath"
+						id="c_cm_adorsys_gpao_model_Company_logoPath" />
 				</div>
-				<div class="span6">
-					<legend> autres Contacts:</legend>
-					<table class="">
-						<thead>
-							<tr>
-								<th>Name</th>
-								<th>Phone</th>
-								<th>Email</th>
-								<th>Function</th>
-								<th style="text-align: center;"><input type="checkbox" />
-								</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>Name</td>
-								<td>Phone</td>
-								<td>Email</td>
-								<td>Function</td>
-								<td style="text-align: center;"><input type="checkbox" />
-								</td>
-							</tr>
-							<tr>
-								<td>Name</td>
-								<td>Phone</td>
-								<td>Email</td>
-								<td>Function</td>
-								<td style="text-align: center;"><input type="checkbox" />
-								</td>
-							</tr>
-							<tr>
-								<td>Name</td>
-								<td>Phone</td>
-								<td>Email</td>
-								<td>Function</td>
-								<td style="text-align: center;"><input type="checkbox" />
-								</td>
-							</tr>
-							<tr>
-								<td>Name</td>
-								<td>Phone</td>
-								<td>Email</td>
-								<td>Function</td>
-								<td style="text-align: center;"><input type="checkbox" />
-								</td>
-							</tr>
-							<tr>
-								<td>Name</td>
-								<td>Phone</td>
-								<td>Email</td>
-								<td>Function</td>
-								<td style="text-align: center;"><input type="checkbox" />
-								</td>
-							</tr>
-
-						</tbody>
-					</table>
-					<hr />
-					<div class="btn-group">
-
-						<button class="btn">Ajouter</button>
-						<button class="btn">Modifier</button>
-						<button class="btn">Suprimer</button>
-					</div>
-				</div>
-
 			</div>
-		</div>
-
-
-
-
-		<hr />
 	</form:update>
 	<form:dependency dependencies="${dependencies}"
 		id="d_cm_adorsys_gpao_model_Company"
 		render="${not empty dependencies}" z="wYpPjY1fK6UShr/xFufeQiRPDac=" />
-
-	<script>
-		$('#tab a').click(function(e) {
-			e.preventDefault();
-			$(this).tab('show');
-		})
-	</script>
 
 </div>

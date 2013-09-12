@@ -15,7 +15,7 @@
         <menu:category id="c_utilisateurs" z="user-managed">
             <menu:item  label="Utilisateurs" id="i_gpaouser_list" messageCode="global_menu_gpao" url="/gpaousers?page=1&amp;size=${empty param.size ? 10 : param.size}" z="ser-managed"/>
             <menu:item  label="Groupes Utilisateurs" id="i_gpaousergroup_list" messageCode="global_menu_gpao" url="/gpaousergroups?page=1&amp;size=${empty param.size ? 10 : param.size}" z="ser-managed"/>
-                  <menu:item  label="Information Personneles" id="i_gpaousergroup_list" messageCode="global_msg_gpao" url="#" z="ser-managed"/>
+                  <menu:item  label="Information Personneles" id="i_gpaousergroup_list" messageCode="global_msg_gpao" url="/gpaousers/changePersonalInfoForm" z="ser-managed"/>
                   <menu:item  label="Changer votre Password"  id="i_gpaousergroup_list" messageCode="global_msg_gpao" url="/passwordresets?form" z="ser-managed"/>
        
         </menu:category>

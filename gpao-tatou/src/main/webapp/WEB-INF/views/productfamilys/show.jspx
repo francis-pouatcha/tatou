@@ -5,6 +5,5 @@
     <page:show id="ps_cm_adorsys_gpao_model_ProductFamily" object="${productfamily}" path="/productfamilys" z="Ldi7F2RkTz/brJyou7ENgMfOlVo=">
         <field:display field="name" id="s_cm_adorsys_gpao_model_ProductFamily_name" object="${productfamily}" z="B1vo83INfvBeP2NIwZwsQDlPFCY="/>
         <field:display field="description" id="s_cm_adorsys_gpao_model_ProductFamily_description" object="${productfamily}" z="qv+pegjDmBNuIEV2Y8qzfdG815M="/>
-        <field:display field="productSubFamily" id="s_cm_adorsys_gpao_model_ProductFamily_productSubFamily" object="${productfamily}" z="Fj/157FgXIxOHsKHg1h3qcVoapo="/>
     </page:show>
 </div>

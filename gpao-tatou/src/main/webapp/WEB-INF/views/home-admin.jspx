@@ -3,14 +3,14 @@
   <jsp:output omit-xml-declaration="yes" />
   <spring:message var="app_name" code="application_name" htmlEscape="false" />
   <spring:message var="title" code="welcome_titlepane" arguments="${app_name}" htmlEscape="false" />
-  <div class="hero-unit">
-						<h1>Admin Dashbord</h1>
-						<p>Vestibulum id ligula porta felis euismod semper. Integer
-							posuere erat a ante venenatis dapibus posuere velit aliquet. Duis
-							mollis, est non commodo luctus, nisi erat porttitor ligula, eget
-							lacinia odio sem nec elit.</p>
+ <spring:url value="/resources/images/tatou.png" var="default_logo_url" />
+  
+  <div style="padding: 10px;" class="hero-unit">
+						<h1 >Espace Administration</h1>
 						<p>
-							<a class="btn primary large">Learn more &#187;</a>
+					<img src="${default_logo_url}" style="width: 100%; height: 450px;"  alt="" /> 
+						
 						</p>
+						
 </div>
 </div>

@@ -10,16 +10,27 @@
 	<jsp:directive.page contentType="text/html;charset=UTF-8" />
 	<jsp:output omit-xml-declaration="yes" />
 	<spring:url value="/purchaseOrders/addOrEditForm" var="add_url"></spring:url>
-	<spring:url value="/products/next/${ purchaseOrder.id}" var="next_url"></spring:url>
+	<spring:url value="/purchaseOrders/next/${ purchaseOrder.id}" var="next_url"></spring:url>
 	<spring:url value="/purchaseOrders/previous/${purchaseOrder.id}"
 		var="previous_url"></spring:url>
 	<div class="row-fluid">
 		<div class="span3">
-			<B style="font-size: 15px; color: blue;"> Reference : </B> <STRONG
-				style="font-size: 15px;">${purchaseOrder.reference} </STRONG>
+		<c:if test="${not empty purchaseOrder.id}">
+		<P>
+			Facturee ? :<span class="label label-info">${purchaseOrder.invoiced}</span>
+			Livree ? :<span class="label label-info">${purchaseOrder.received}</span> 
+			</P>
+		</c:if>
+			
 		</div>
+		
 		<div class="span6">
-
+		<c:if test="${not empty purchaseOrder.id}">
+		<p>
+			Reference :<span class="label label-info">${purchaseOrder.reference}</span>
+			Etat :<span class="label label-info">${purchaseOrder.orderState}</span> 
+		</p>
+		</c:if>
 			<jsp:include page="../gpaoMessages.jspx" />
 		</div>
 		<div style="vertical-align: top; margin-left: 2%;" class="span3">
@@ -45,37 +56,33 @@
 			<div class="span5">
 			    <field:select field="company" id="c_cm_adorsys_gpao_model_PurchaseOrder_company" itemValue="id" items="${companys}" path="/companys" required="true" z="L+KZ3eEZnbU2o4CC6TP4Z5d4xos="/>
 			
-				<field:input-hidden field="reference"
+				<field:input-hidden object="${purchaseOrder}" field="reference"
 					id="c_cm_adorsys_gpao_model_PurchaseOrder_reference" />
 				<field:select field="supplier"
 					id="c_cm_adorsys_gpao_model_PurchaseOrder_supplier" itemValue="id"
 					items="${partners}" path="/partners" required="true"
 					z="mdsFQRFpH6R1j+nnYjhtxhAtmYs=" />
-				<field:gpao-display hiddenfield="true" isBoolean="true" object="${purchaseOrder }" field="received"
-					id="c_cm_adorsys_gpao_model_PurchaseOrder_received" 
-					z="PiY3py5cVnxO4kMJJx6neUmAuds=" />
-				<field:gpao-display field="invoiced" hiddenfield="true" isBoolean="true" object="${purchaseOrder }" 
-					id="c_cm_adorsys_gpao_model_PurchaseOrder_invoiced"
-					z="e4tblqapg6x+YLprom8JO24Pe8g=" />
-				<field:input-hidden field="validatedBy"
+				<field:input-hidden   isBoolean="true" object="${purchaseOrder }" field="received"
+					id="c_cm_adorsys_gpao_model_PurchaseOrder_received"  />
+				<field:input-hidden field="invoiced" isBoolean="true" object="${purchaseOrder }" 
+					id="c_cm_adorsys_gpao_model_PurchaseOrder_invoiced" />
+				<field:input-hidden object="${purchaseOrder}" field="validatedBy"
 					id="c_cm_adorsys_gpao_model_PurchaseOrder_validatedBy" />
-				<field:input-hidden field="validateDate"
+				<field:input-hidden object="${purchaseOrder}" field="validateDate"
 					id="c_cm_adorsys_gpao_model_PurchaseOrder_validateDate" />
 
 
 			</div>
-			<div style="margin-left: 5%;" class="span6">
-				<field:input-hidden field="amountHt"
+			<div class="span5">
+				<field:input-hidden object="${purchaseOrder}" field="amountHt"
 					id="c_cm_adorsys_gpao_model_PurchaseOrder_amountHt" />
-				<field:input-hidden field="taxeAmount"
+				<field:input-hidden object="${purchaseOrder}" field="taxeAmount"
 					id="c_cm_adorsys_gpao_model_PurchaseOrder_taxeAmount" />
-				<field:input-hidden field="totalAmount"
+				<field:input-hidden object="${purchaseOrder}" field="totalAmount"
 					id="c_cm_adorsys_gpao_model_PurchaseOrder_totalAmount" />
-				<field:select field="orderState"
-					id="c_cm_adorsys_gpao_model_PurchaseOrder_orderState"
-					items="${documentstateses}" path="documentstateses"
-					z="IKz/RF9TErefsF0xRU2ho7x63pY=" />
-				<field:input-hidden field="createdBy"
+				<field:input-hidden object="${purchaseOrder}" isEnum="true"  field="orderState"
+					id="c_cm_adorsys_gpao_model_PurchaseOrder_orderState"  />
+				<field:input-hidden object="${purchaseOrder}" field="createdBy"
 					id="c_cm_adorsys_gpao_model_PurchaseOrder_createdBy" />
 				<field:select field="currency"
 					id="c_cm_adorsys_gpao_model_PurchaseOrder_currency" itemValue="id"
@@ -92,8 +99,9 @@
 					z="diAbfwj735pSkm1LTDfWET9Ps0A=" />
 
 			</div>
-			<div class="span1">
-			<c:if test="${purchaseOrder.orderState eq 'DRAFT' }">
+			<div class="span2">
+			<c:if test="${ not empty purchaseOrder.id}">
+			<c:if test="${purchaseOrder.orderState eq 'DRAFT'}">
 				<p>
 					<button id="validerBtn" class="btn-success" style="width: 100%;" type="button">valider</button>
 				</p>
@@ -110,10 +118,10 @@
 				<p>
 					<button class="btn-info" style="width: 100%;" type="button">Livraison</button>
 				</p>
-
+             </c:if>
 			</div>
 						
-			
+			</div>
 			<div class="span11">
 <c:if test="${not empty purchaseOrder.id }">
 				<legend> Lignes de commande </legend>
@@ -163,8 +171,6 @@
 				</c:if>
 			</div>
 					
-			
-		</div>
 	</form:update>
 	<jsp:include page="purchaseorder-js.jspx"  />
 </div>

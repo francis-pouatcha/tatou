@@ -15,6 +15,9 @@
 [class*=" cus-"]:last-child {
   *margin-left: 0;
 }
+.img-polaroid{
+	width: 238px;
+}
 .gpao-accept {
   background-image: url("icons/accept.png");
   background-position:center;
@@ -323,7 +326,7 @@ h4 {
 }
 
 .errors {
-	color: white;
+	color: red;
 	font-weight: bold;
 	display: block;
 	margin-left: 105px;

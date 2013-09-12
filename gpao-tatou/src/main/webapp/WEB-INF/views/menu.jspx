@@ -74,5 +74,13 @@
             <menu:item id="i_gpaousergroup_new" messageCode="global_menu_new" url="/gpaousergroups?form" z="G7YvvweH24bFQd6LhuaXHN/DsfQ="/>
             <menu:item id="i_gpaousergroup_list" messageCode="global_menu_list" url="/gpaousergroups?page=1&amp;size=${empty param.size ? 10 : param.size}" z="/UVLEw0rgStZWlsB167k1S/i5Kg="/>
         </menu:category>
+        <menu:category id="c_delivery" z="bE4SbPWnpdF2UKowVFn5+8GXoMs=">
+            <menu:item id="i_delivery_new" messageCode="global_menu_new" url="/deliverys?form" z="GEU4eIH4+lT3NUZJKd6wdWNy/E8="/>
+            <menu:item id="i_delivery_list" messageCode="global_menu_list" url="/deliverys?page=1&amp;size=${empty param.size ? 10 : param.size}" z="xQYVdurkOjcRUci3EbGJN/nh3lU="/>
+        </menu:category>
+        <menu:category id="c_deliveryitems" z="LA+DVH+BC7KtnyDTPxhqWhPn5hw=">
+            <menu:item id="i_deliveryitems_new" messageCode="global_menu_new" url="/deliveryitemses?form" z="yji+5OwjixmHXHEK7l/LAUQCDVM="/>
+            <menu:item id="i_deliveryitems_list" messageCode="global_menu_list" url="/deliveryitemses?page=1&amp;size=${empty param.size ? 10 : param.size}" z="sjbn8PJjmux3IevxVgghkHUTBFw="/>
+        </menu:category>
     </menu:menu>
 </div>

@@ -7,7 +7,7 @@
 	
 	<jsp:directive.page contentType="text/html;charset=UTF-8" />
 	<jsp:output omit-xml-declaration="yes" />
-	<spring:url value="/resources/images/tatou.png" var="logo_url"></spring:url>
+	<spring:url value="/resources/images/tatou.png" var="logo_url" />
 	<spring:url var="home" value="/" />
 	<spring:url var="Admin_url" value="/adminHome" />
 	<spring:url var="purchase_url" value="/purchaseHome" />
@@ -24,7 +24,7 @@
           <div class="nav-collapse collapse">
             <ul class="nav ">
               <li class="hidden-phone">
-                <a  href="#"><img src="${logo_url }" style="height: 27px;" class="logo" /> </a>
+                <a  href="${home}"><img src="${logo_url }" style="height: 27px;" class="logo" /> </a>
               </li>
               <li class="active" ><a class="header-link" href="${Admin_url}">Administration</a></li>
               <li><a class="header-link" href="#">Facturations</a></li>

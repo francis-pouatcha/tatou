@@ -11,7 +11,8 @@
 	<spring:url value="/partners/addOrEditForm" var="add_url"></spring:url>
 	<spring:url value="/partners/next/${ partner.id}" var="next_url"></spring:url>
 	<spring:url value="/partners/previous/${partner.id}" var="previous_url"></spring:url>
-	<spring:url value="/resources/${partner.logoPath}" var="logo_url"></spring:url>
+	<spring:url value="/resources/${partner.logoPath}" var="logo_url" />
+	<spring:url value="/resources/images/300x200.gif" var="default_logo_url" />
 <div class="row-fluid">
 		<div class="span3">
 			<ul class="thumbnails">
@@ -20,7 +21,7 @@
 							<img src="${logo_url}" class="img-polaroid" alt="" />
 						</c:when>
 						<c:otherwise>
-							<img src="http://placehold.it/300x200" class="img-polaroid"  alt="" /> 
+							<img src="${default_logo_url}" class="img-polaroid"  alt="" /> 
 						</c:otherwise>
 					</c:choose></li>
 			</ul>
@@ -52,7 +53,7 @@
 		path="/partners/addOrEdit" render="${empty dependencies}"
 		z="w7MDT5+9+mo5DSC8JEMizC+yc3Y=">
 				<div class="span6">
-					<field:input-hidden field="code" id="c_cm_adorsys_gpao_model_Partner_code" />
+					<field:input-hidden object="${partner }" field="code" id="c_cm_adorsys_gpao_model_Partner_code" />
 				<field:input field="name" id="c_cm_adorsys_gpao_model_Partner_name"
 					required="true" z="HzGRAc4swmNY2gh+gKeYB8VPy1k=" />
 				
@@ -88,7 +89,7 @@
 										<img src="${logo_url}" class="img-polaroid" alt="" />
 									</c:when>
 									<c:otherwise>
-										<img src="http://placehold.it/300x200" alt="" />
+										<img src="${default_logo_url}" class="img-polaroid"  alt="" /> 
 									</c:otherwise>
 								</c:choose>
 
@@ -98,9 +99,7 @@
 						id="c_cm_adorsys_gpao_model_Partner_partnerLogo"
 						z="7Hh2f6YBBnzUXZ1HpuQkPmp79Pk=" />
 
-					<field:input-hidden field="logoPath"
-						id="c_cm_adorsys_gpao_model_Partner_logoPath"
-						/>
+					<field:input-hidden object="${partner }" field="logoPath" id="c_cm_adorsys_gpao_model_Partner_logoPath"/>
 				</div>
 
 				<div  class="span6">

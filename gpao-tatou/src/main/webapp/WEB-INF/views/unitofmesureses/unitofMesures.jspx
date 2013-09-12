@@ -8,13 +8,14 @@
 	xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
 	<jsp:directive.page contentType="text/html;charset=UTF-8" />
 	<jsp:output omit-xml-declaration="yes" />
-	<spring:url value="/unitofmesureses/findByNameAndGroup" var="search_url"></spring:url>
-	
+	<spring:url value="/unitofmesureses/findByNameAndGroup"
+		var="search_url"></spring:url>
+
 	<div class="row-fluid">
-		<DIV class="span5">
-			<form:update versionField="Version" label="Creer / Modifier Udm"
-				ortherButton="udmGroupBtn.jspx" showInPanel="false"
-				id="fc_cm_adorsys_gpao_model_UnitOfMesures"
+		<DIV class="span6">
+			<form:update method="POST" versionField="Version"
+				label="Creer / Modifier Udm" ortherButton="udmGroupBtn.jspx"
+				showInPanel="false" id="fc_cm_adorsys_gpao_model_UnitOfMesures"
 				modelAttribute="unitOfMesures" path="/unitofmesureses/save"
 				render="${empty dependencies}" z="user-managed">
 				<field:input field="name"
@@ -44,7 +45,7 @@
 
 		</DIV>
 
-		<DIV class="span7">
+		<DIV class="span6" style="margin-left: 1%;">
 			<page:list labelPlural="Liste des Udms" showInPanel="false"
 				id="pl_cm_adorsys_gpao_model_UnitOfMesures"
 				items="${unitofmesureses}" z="user-managed">
@@ -53,14 +54,16 @@
 						data="${unitofmesureses}"
 						id="l_cm_adorsys_gpao_model_UnitOfMesures"
 						path="/unitofmesureses/save" z="user-managed">
-						<table:column id="c_cm_adorsys_gpao_model_UnitOfMesures_name"
+						<table:column maxLength="-1" id="c_cm_adorsys_gpao_model_UnitOfMesures_name"
 							property="name" z="user-managed" />
 						<table:column id="c_cm_adorsys_gpao_model_UnitOfMesures_ratio"
 							property="ratio" z="user-managed" />
-						<table:column id="c_cm_adorsys_gpao_model_UnitOfMesures_unitGroup"
+						<table:column maxLength="-1" id="c_cm_adorsys_gpao_model_UnitOfMesures_unitGroup"
 							property="unitGroup" z="user-managed" />
 						<table:column id="c_cm_adorsys_gpao_model_UnitOfMesures_isActive"
 							property="isActive" z="user-managed" />
+						<table:column label="Ref" id="c_cm_adorsys_gpao_model_UnitOfMesures_isRefUnit"
+							property="isRefUnit" z="/f7M3JiJMmaEtLushLWzF5iskgQ=" />
 
 					</table:table>
 				</div>

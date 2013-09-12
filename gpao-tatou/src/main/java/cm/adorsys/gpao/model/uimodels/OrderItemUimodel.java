@@ -20,7 +20,7 @@ public class OrderItemUimodel {
 
     private BigDecimal unitPrice;
 
-    private BigInteger Quantity = BigInteger.ONE;
+    private BigInteger quantity = BigInteger.ONE;
     
     public OrderItemUimodel() { }
     
@@ -29,6 +29,7 @@ public class OrderItemUimodel {
 		udm = product.getDefaultUdm();
 		productName = product.getName();
 		unitPrice = product.getPurchasePrice();
+		
 		
 	}
 
@@ -65,11 +66,11 @@ public class OrderItemUimodel {
 	}
 
 	public BigInteger getQuantity() {
-		return Quantity;
+		return quantity;
 	}
 
 	public void setQuantity(BigInteger quantity) {
-		Quantity = quantity;
+		quantity = quantity;
 	}
 
     

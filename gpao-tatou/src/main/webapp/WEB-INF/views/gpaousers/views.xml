@@ -16,4 +16,7 @@
     <definition extends="admin" name="gpaousers/gpaouserView">
         <put-attribute name="body" value="/WEB-INF/views/gpaousers/gpaouserView.jspx"/>
     </definition>
+    <definition extends="admin" name="gpaousers/infos">
+        <put-attribute name="body" value="/WEB-INF/views/gpaousers/gpaousrinfoView.jspx"/>
+    </definition>
 </tiles-definitions>

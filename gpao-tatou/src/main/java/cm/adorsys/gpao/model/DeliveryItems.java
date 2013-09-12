@@ -50,10 +50,13 @@ public class DeliveryItems {
     @DateTimeFormat(style = "M-")
     private Date expirationDate;
 
+    @ManyToOne
+    private UnitOfMesures udm;
+
     public DeliveryItems() {
     }
 
-    public DeliveryItems(OrderItems items,Delivery delivery) {
+    public DeliveryItems(OrderItems items, Delivery delivery) {
         this.reference = reference;
         this.product = items.getProduct();
         this.orderQte = items.getQuantity();
@@ -62,6 +65,8 @@ public class DeliveryItems {
         this.taxAmount = items.getTaxeAmount();
         this.taxedAmount = items.getTaxedSubTotal();
         this.delivery = delivery;
+        this.udm = items.getUdm();
+        
     }
 
     @PostPersist

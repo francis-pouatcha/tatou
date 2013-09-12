@@ -35,6 +35,11 @@ public class ProductSubFamily {
 			productSubFamily.persist();
 		}
 	} 
+	
+	public String toString(){
+		return name;
+		
+	}
 
 	//finders
 

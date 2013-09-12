@@ -2,9 +2,11 @@ package cm.adorsys.gpao.model;
 
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.CascadeType;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
@@ -19,7 +21,7 @@ public class ProductFamily {
 
 	private String description;
 
-	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "productFamily")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "productFamily")
 	private Set<ProductSubFamily> productSubFamily = new HashSet<ProductSubFamily>();
 
 	public static void init(){
@@ -28,6 +30,11 @@ public class ProductFamily {
 			productFamily.setName("CHAUSSURES") ;
 			productFamily.persist();
 		}
+	}
+	
+	public String toString(){
+		return name;
+		
 	}
 
 }

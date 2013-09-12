@@ -6,6 +6,7 @@ package cm.adorsys.gpao.model;
 import cm.adorsys.gpao.model.Delivery;
 import cm.adorsys.gpao.model.DeliveryItems;
 import cm.adorsys.gpao.model.Product;
+import cm.adorsys.gpao.model.UnitOfMesures;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;
@@ -90,6 +91,14 @@ privileged aspect DeliveryItems_Roo_JavaBean {
     
     public void DeliveryItems.setExpirationDate(Date expirationDate) {
         this.expirationDate = expirationDate;
+    }
+    
+    public UnitOfMesures DeliveryItems.getUdm() {
+        return this.udm;
+    }
+    
+    public void DeliveryItems.setUdm(UnitOfMesures udm) {
+        this.udm = udm;
     }
     
 }

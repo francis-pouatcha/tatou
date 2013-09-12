@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_cm_adorsys_gpao_model_DeliveryItems" items="${deliveryitemses}" z="EdSPFY/6gIM2kro863jcl2xhxRo=">
+        <table:table data="${deliveryitemses}" id="l_cm_adorsys_gpao_model_DeliveryItems" path="/deliveryitemses" z="4+rSDsEjCl7E6m4rEuSCY1w77FA=">
+            <table:column id="c_cm_adorsys_gpao_model_DeliveryItems_reference" property="reference" z="VrtsaT090uWR18PZ6ygWDaGLLxg="/>
+            <table:column id="c_cm_adorsys_gpao_model_DeliveryItems_product" property="product" z="BGDHoSOYHg8G7kRe4AL0MNotVV8="/>
+            <table:column id="c_cm_adorsys_gpao_model_DeliveryItems_orderQte" property="orderQte" z="U5o2R5duZmF2JVkyreICxMBk3Xk="/>
+            <table:column id="c_cm_adorsys_gpao_model_DeliveryItems_qteReceive" property="qteReceive" z="VKPqja0TY2y60GXNvPNk75XxBrs="/>
+            <table:column id="c_cm_adorsys_gpao_model_DeliveryItems_qteUnreceive" property="qteUnreceive" z="5uhdFGK6T2oC0hP26L1kIy+UVt4="/>
+            <table:column id="c_cm_adorsys_gpao_model_DeliveryItems_delivery" property="delivery" z="hRENFn21CBarkpomFRqUv2RvWcE="/>
+        </table:table>
+    </page:list>
+</div>

@@ -37,6 +37,10 @@ public class Devise {
     	}
     }
     
+    public String toString(){
+    	return name ;
+    }
+    
     //finders
     public static TypedQuery<Devise> findTaxeByNameOrShortName(String name,String shortName) {
         if (name == null || name.length() == 0) name = "*";

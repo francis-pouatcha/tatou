@@ -26,10 +26,10 @@ public class Partner {
     @Column(unique=true)
     private String name;
 
-    @Value("false")
+    @Value("true")
     private Boolean isCustomer;
 
-    @Value("false")
+    @Value("true")
     private Boolean isProvider;
 
     private String contactName;

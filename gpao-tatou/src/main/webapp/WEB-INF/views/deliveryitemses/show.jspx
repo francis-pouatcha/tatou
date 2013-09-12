@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_cm_adorsys_gpao_model_DeliveryItems" object="${deliveryitems}" path="/deliveryitemses" z="R89MulF82zj9UHZ7jRoBKr57YcI=">
+        <field:display field="reference" id="s_cm_adorsys_gpao_model_DeliveryItems_reference" object="${deliveryitems}" z="tdEh7sPHh7Z27OjmMmSXqUC6qm4="/>
+        <field:display field="product" id="s_cm_adorsys_gpao_model_DeliveryItems_product" object="${deliveryitems}" z="XaoBwDtckg5wODFK57RGSKM24ss="/>
+        <field:display field="orderQte" id="s_cm_adorsys_gpao_model_DeliveryItems_orderQte" object="${deliveryitems}" z="ohjgPEciJ5MOafwuiNlfbwvtOrY="/>
+        <field:display field="qteReceive" id="s_cm_adorsys_gpao_model_DeliveryItems_qteReceive" object="${deliveryitems}" z="sRTDgQzJ4iLIVu6fB3UbnxMLLGs="/>
+        <field:display field="qteUnreceive" id="s_cm_adorsys_gpao_model_DeliveryItems_qteUnreceive" object="${deliveryitems}" z="2FKe3H2IXya+SUregSbi/oj94kA="/>
+        <field:display field="delivery" id="s_cm_adorsys_gpao_model_DeliveryItems_delivery" object="${deliveryitems}" z="K9q5ceQhePYTd7graralPydCxRs="/>
+        <field:display field="amountHt" id="s_cm_adorsys_gpao_model_DeliveryItems_amountHt" object="${deliveryitems}" z="GoZ5a/6C3tTyvESi1G+HN6P6VVA="/>
+        <field:display field="taxAmount" id="s_cm_adorsys_gpao_model_DeliveryItems_taxAmount" object="${deliveryitems}" z="mHU6vojWnYSibME6kSHMrwUbQP8="/>
+        <field:display field="taxedAmount" id="s_cm_adorsys_gpao_model_DeliveryItems_taxedAmount" object="${deliveryitems}" z="4JWoYpMqlcSv47ngl6mfKnvMYpc="/>
+        <field:display date="true" dateTimePattern="${deliveryItems_expirationdate_date_format}" field="expirationDate" id="s_cm_adorsys_gpao_model_DeliveryItems_expirationDate" object="${deliveryitems}" z="d+j3D1Dcp7ebd+xyYeYuINm+rMA="/>
+        <field:display field="udm" id="s_cm_adorsys_gpao_model_DeliveryItems_udm" object="${deliveryitems}" z="4jbIC2eUMJRip3X3AKYF0+3cOHo="/>
+    </page:show>
+</div>

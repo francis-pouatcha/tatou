@@ -20,7 +20,8 @@
         </menu:category>
         
          <menu:category label="Reception de produits" id="c_configuration" z="user-managed">
-          <menu:item id="i_partner_list" label="Livraisons entrantes" messageCode="global_menu_gpao" url="/partners?page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
+          <menu:item id="i_deliveryitems_list" label="Livraisons entrantes" messageCode="global_menu_gpao"  url="/deliverys?page=1&amp;size=${empty param.size ? 10 : param.size}" z="sjbn8PJjmux3IevxVgghkHUTBFw="/>
+        
         </menu:category>
         
     </menu:menu>

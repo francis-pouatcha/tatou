@@ -5,6 +5,6 @@
     <form:update id="fu_cm_adorsys_gpao_model_ProductFamily" modelAttribute="productFamily" path="/productfamilys" versionField="Version" z="ASnzcTg97sSh5V0BhadEXlMoiUE=">
         <field:input field="name" id="c_cm_adorsys_gpao_model_ProductFamily_name" required="true" z="z9NzNkK+etUAmNQX7gzKYliY54M="/>
         <field:input field="description" id="c_cm_adorsys_gpao_model_ProductFamily_description" z="eifBNzLiWGhBNSYSElhu6uBDwY4="/>
-        <field:select field="productSubFamily" id="c_cm_adorsys_gpao_model_ProductFamily_productSubFamily" itemValue="id" items="${productsubfamilys}" multiple="true" path="/productsubfamilys" z="LKZMFvchFASOyhOOcizS8vXanXk="/>
+        <field:simple field="productSubFamily" id="c_cm_adorsys_gpao_model_ProductFamily_productSubFamily" messageCode="entity_reference_not_managed" messageCodeAttribute="Product Sub Family" z="vM8Wy3PpvBKllyM5pR/91uiCMZU="/>
     </form:update>
 </div>

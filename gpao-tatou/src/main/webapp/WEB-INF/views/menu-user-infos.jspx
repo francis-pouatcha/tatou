@@ -5,17 +5,29 @@
 	xmlns:jsp="http://java.sun.com/JSP/Page"
 	xmlns:security="http://www.springframework.org/security/tags"
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
-	xmlns:fn="http://java.sun.com/jsp/jstl/functions" version="2.0"> 
-	<jsp:directive.page contentType="text/html;charset=UTF-8" />
-	 <jsp:output omit-xml-declaration="yes" />
-	<spring:url value="/resources/images/user.jpeg" var="user_url" />
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions" version="2.0">
+	<jsp:directive.page contentType="text/html;charset=UTF-8" /> <jsp:output
+		omit-xml-declaration="yes" /> <spring:url
+		value="/resources/images/user.png" var="user_url" /> <spring:url
+		value="/resources/${currentUser.userImagePath}" var="user_url" /> <spring:url
+		value="/resources/images/user.jpeg" var="default_logo_url" />
+
+
 	<div class="row-fluid" style="margin-bottom: 2%;">
 		<div class="span6">
-			<img src="${user_url}" class="img-polaroid" alt="" />
+			<c:choose>
+				<c:when test="${not empty currentUser.userImagePath }">
+					<img src="${user_url}"  class="img-polaroid" alt="" />
+				</c:when>
+				<c:otherwise>
+					<img src="${default_logo_url}" class="img-polaroid" alt="" />
+				</c:otherwise>
+			</c:choose>
 		</div>
 		<div class="span6">
 			<ul class="unstyled user-info">
-				<li><a style="margin-left: 10px;" href=""><small class="user-link">Gakam clovis </small></a></li>
+				<li><a style="margin-left: 10px;" href=""><small
+						class="user-link">${currentUser.userName}</small></a></li>
 			</ul>
 		</div>
 	</div>

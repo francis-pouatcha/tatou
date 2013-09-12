@@ -10,8 +10,8 @@
 	<jsp:output omit-xml-declaration="yes" />
 	<spring:url value="/devises/findByNameOrShortName" var="search_url"></spring:url>
 	<div class="row-fluid">
-		<DIV class="span5">
-			<form:create showInPanel="false" label="Ajouter/Modifier une Devise" id="fc_cm_adorsys_gpao_model_Devise"
+		<DIV class="span6">
+			<form:update method="POST" showInPanel="false" label="Ajouter/Modifier une Monnaie" id="fc_cm_adorsys_gpao_model_Devise"
 				modelAttribute="devise" path="/devises/save"
 				render="${empty dependencies}" z="user-managed">
 				<field:input field="name" id="c_cm_adorsys_gpao_model_Devise_name"
@@ -23,7 +23,7 @@
 					min="0" required="true"
 					validationMessageCode="field_invalid_number"
 					z="user-managed" />
-			</form:create>
+			</form:update>
 			<form:dependency dependencies="${dependencies}"
 				id="d_cm_adorsys_gpao_model_Devise"
 				render="${not empty dependencies}" z="user-managed" />
@@ -34,7 +34,7 @@
 
 		</DIV>
 
-		<DIV class="span7">
+		<DIV style="margin-left: 1%;" class="span6">
 			<page:list labelPlural="Liste des Devises" showInPanel="false" id="pl_cm_adorsys_gpao_model_Devise"
 				items="${devises}" z="user-managed">
 				<table:table create="false" delete="false" show="false"
@@ -53,9 +53,9 @@
 			<div>
 				<legend> Zone De Recherche</legend>
 				<form action="${search_url }" method="post" class="form-inline">
-					<input name="shortName" class="input-large dijitTextBox" placeholder="Symbole"  />
+					<input name="shortName" class="span5" placeholder="Symbole"  />
 					<div style="margin-left: 1%;" class="block input-append">
-						<input name="name" class="input-large" placeholder="libelle"
+						<input name="name" class="" placeholder="libelle"
 							id="appendedInputButton" size="16" type="text" />
 						<button class="btn btn-primary" type="submit">Ok!</button>
 					</div>

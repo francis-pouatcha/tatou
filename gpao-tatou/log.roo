@@ -288,3 +288,18 @@ focus --class ~.model.PurchaseOrder
 field reference --fieldName company --type ~.model.Company --notNull 
 focus --class ~.model.DeliveryItems
 field date --fieldName expirationDate --type java.util.Date
+web mvc all --package ~.web
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-09-06 18:57:22
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-09-08 20:19:52
+focus --class ~.model.DeliveryItems
+field reference --fieldName udm --type ~.model.UnitOfMesures
+persistence setup --provider HIBERNATE --database MYSQL 
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-09-08 21:47:29
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-09-08 21:48:18
+persistence setup --provider HIBERNATE --database MYSQL --databaseName gpaodb
+persistence setup --provider HIBERNATE --database H2_IN_MEMORY 
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-09-10 11:40:23
+persistence setup --provider HIBERNATE --database MYSQL --databaseName gpaodb --userName root --password clovis431982
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-09-12 08:58:45
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-09-12 09:04:23
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-09-12 09:06:02

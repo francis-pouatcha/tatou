@@ -11,11 +11,11 @@
 	<spring:url value="/taxes/findByNameAndType"
 		var="search_url"></spring:url>
 	<div class="row-fluid">
-		<DIV class="span5">
-			<form:create  label="Ajouter / Modifer des Taxes" showInPanel="false" id="fc_cm_adorsys_gpao_model_Taxe" modelAttribute="taxe"
+		<DIV class="span6">
+			<form:update  method="POST" label="Ajouter / Modifer des Taxes" showInPanel="false" id="fc_cm_adorsys_gpao_model_Taxe" modelAttribute="taxe"
 				path="/taxes/save" render="${empty dependencies}"
 				z="user-managed">
-				<field:input field="name" id="c_cm_adorsys_gpao_model_Taxe_name"
+				<field:input field="name"  id="c_cm_adorsys_gpao_model_Taxe_name"
 					required="true" z="user-managed" />
 				<field:input field="shortName"
 					id="c_cm_adorsys_gpao_model_Taxe_shortName" min="2" required="true"
@@ -28,7 +28,7 @@
 				<field:select field="taxeType"
 					id="c_cm_adorsys_gpao_model_Taxe_taxeType" items="${taxetypes}"
 					path="taxetypes" required="true" z="user-managed" />
-			</form:create>
+			</form:update>
 			<form:dependency dependencies="${dependencies}"
 				id="d_cm_adorsys_gpao_model_Taxe" render="${not empty dependencies}"
 				z="user-managed" />
@@ -38,14 +38,14 @@
 
 		</DIV>
 
-		<DIV class="span7">
+		<DIV style="margin-left: 1%;" class="span6">
 			<page:list labelPlural="Liste des Taxes " id="pl_cm_adorsys_gpao_model_Taxe" items="${taxes}"
 				showInPanel="false" z="user-managed">
 				<div class="div-box-medium"  >
 				<table:table show="false" create="false" delete="false" data="${taxes}" id="l_cm_adorsys_gpao_model_Taxe"
 					path="/taxes/save" z="user-managed">
 					<table:column id="c_cm_adorsys_gpao_model_Taxe_name"
-						property="name" z="user-managed" />
+						property="name" z="user-managed" maxLength="-1" />
 					<table:column id="c_cm_adorsys_gpao_model_Taxe_shortName"
 						property="shortName" z="user-managed" />
 					<table:column id="c_cm_adorsys_gpao_model_Taxe_taxeValue"

@@ -12,7 +12,8 @@
 	<spring:url value="/products/next/${ product.id}" var="next_url"></spring:url>
 	<spring:url value="/products/previous/${product.id}" var="previous_url"></spring:url>
 	<spring:url value="/resources/${product.productImagePath}"
-		var="logo_url"></spring:url>
+		var="logo_url" />
+		<spring:url value="/resources/images/300x200.gif" var="default_logo_url" />
 
 	<div class="row-fluid ">
 		<div class="span3">
@@ -22,7 +23,7 @@
 							<img src="${logo_url}" class="img-polaroid" alt="" />
 						</c:when>
 						<c:otherwise>
-							<img src="http://placehold.it/300x200" alt="" />
+							<img src="${default_logo_url}" class="img-polaroid"  alt="" /> 
 						</c:otherwise>
 					</c:choose></li>
 			</ul>
@@ -58,9 +59,11 @@
 							id="c_cm_adorsys_gpao_model_Product_productType"
 							items="${producttypes}" path="producttypes"
 							z="lG7QIxVME9KcY1HO5KZRyhVRjEc=" />
-						<field:input field="reference"
-							id="c_cm_adorsys_gpao_model_Product_reference" required="true"
-							z="1jejKyx05KQmIClWWziTrNZApM4=" />
+						<field:input-hidden object="${product }" field="reference"
+							id="c_cm_adorsys_gpao_model_Product_reference"  />
+							<field:input field="codeBare"
+									id="c_cm_adorsys_gpao_model_Product_codeBare"
+									z="DeMlgiUNsIOyzTIxwQVcZWfZhlA=" />
 						<field:input field="name"
 							id="c_cm_adorsys_gpao_model_Product_name" required="true"
 							z="USsMssaSX/R0kZPFQADs184CFF8=" />
@@ -130,9 +133,6 @@
 								<field:input field="productImage" disableFormBinding="true"
 									type="file" id="c_cm_adorsys_gpao_model_Product_productImage"
 									z="ttfpYHs/kdownLPkl6YWPumzaoU=" />
-								<field:input field="codeBare"
-									id="c_cm_adorsys_gpao_model_Product_codeBare"
-									z="DeMlgiUNsIOyzTIxwQVcZWfZhlA=" />
 
 							</div>
 							<div style="margin-left: 10px;" class="span6">
@@ -170,7 +170,7 @@
 									itemValue="id" items="${taxes}" multiple="true" path="/taxes"
 									z="v4ezpxdZWiQ+v9ssFENvdBbRxoc=" />
 								
-								<field:input-hidden field="productImagePath"
+								<field:input-hidden object="${product }"   field="productImagePath"
 									id="c_cm_adorsys_gpao_model_Product_productImagePath" />
 							</div>
 

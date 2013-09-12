@@ -40,7 +40,7 @@ public class SecurityUtil {
 
 	public static GpaoUser getGpaoUser(){
 		UserDetails userDetails = getUserDetails();
-		if(userDetails==null) return null;
+		if(userDetails==null) return new GpaoUser();
 		String username = userDetails.getUsername();
 		TypedQuery<GpaoUser> query = GpaoUser.findGpaoUsersByUserNameEquals(username) ;
 		return query.getSingleResult();

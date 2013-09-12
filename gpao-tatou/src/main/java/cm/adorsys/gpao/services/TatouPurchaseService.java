@@ -3,11 +3,9 @@ package cm.adorsys.gpao.services;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import cm.adorsys.gpao.model.Delivery;
 import cm.adorsys.gpao.model.DeliveryItems;
 import cm.adorsys.gpao.model.DocumentStates;
@@ -109,7 +107,7 @@ public class TatouPurchaseService implements IPurchaseServices {
 			hasProduct.merge();
 		}else {
 			OrderItems orderItems = new OrderItems(purchaseOrder, itemUimodel);
-			orderItems.persist();
+			//orderItems.persist();
 			purchaseOrder.getOrderItems().add(orderItems);
 		}
 

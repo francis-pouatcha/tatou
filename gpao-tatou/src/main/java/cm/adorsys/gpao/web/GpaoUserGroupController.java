@@ -1,11 +1,5 @@
 package cm.adorsys.gpao.web;
 
-import java.util.Arrays;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
-
 import cm.adorsys.gpao.model.Devise;
 import cm.adorsys.gpao.model.GpaoUserGroup;
 import cm.adorsys.gpao.model.RoleNames;
@@ -15,7 +9,10 @@ import cm.adorsys.gpao.model.WareHouses;
 import cm.adorsys.gpao.utils.GpaoDocumentDirectories;
 import cm.adorsys.gpao.utils.GpaoFileUtils;
 import cm.adorsys.gpao.utils.MessageType;
-
+import java.util.Arrays;
+import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,6 +34,7 @@ public class GpaoUserGroupController {
         populateEditForm(uiModel, gpaoUserGroup);
         return "gpaousergroups/gpaousergroupView";
     }
+
     @RequestMapping(value = "/addOrEdit", method = RequestMethod.PUT, produces = "text/html")
     public String addOrEditGpaoUserGroups(@Valid GpaoUserGroup gpaoUserGroup, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {

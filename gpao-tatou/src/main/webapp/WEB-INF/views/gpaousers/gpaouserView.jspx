@@ -56,7 +56,7 @@
         <field:input field="firstName" id="c_cm_adorsys_gpao_model_GpaoUser_firstName" required="true" z="5NRM71NrKjIrmgtI8e9+h91onZQ="/>
         <field:input field="lastName" id="c_cm_adorsys_gpao_model_GpaoUser_lastName" required="true" z="IbF6yuwYZaTPMzjz+GAZPnneEKQ="/>
         <field:input field="fullName" render="false" id="c_cm_adorsys_gpao_model_GpaoUser_fullName" z="2paE6gmAdFzLHSofIBrOdhbzzjw="/>
-        <field:input-hidden field="password" id="c_cm_adorsys_gpao_model_GpaoUser_password" />
+        <field:input-hidden object="${gpaoUser }" field="password" id="c_cm_adorsys_gpao_model_GpaoUser_password" />
         <legend> Communication </legend>
         <field:input field="phoneNumber" id="c_cm_adorsys_gpao_model_GpaoUser_phoneNumber" z="kQ5iH8CzWOlECjWr6dZB4tJ06fA="/>
         <field:input field="adresse" id="c_cm_adorsys_gpao_model_GpaoUser_adresse" z="cXQg7XGUNMbAMQP5k0P53zSp/f0="/>
@@ -65,13 +65,13 @@
             </div>
              <div style="margin-left: 2%;" class="span6">
              <legend>infos du compte</legend>
-         <field:input-hidden  field="accountExpiration" id="c_cm_adorsys_gpao_model_GpaoUser_accountExpiration" />
+         <field:input-hidden object="${gpaoUser }"  field="accountExpiration" id="c_cm_adorsys_gpao_model_GpaoUser_accountExpiration" />
         <field:input field="userName" id="c_cm_adorsys_gpao_model_GpaoUser_userName" required="true" z="g6oAA4VOnihKHT8I3tvv02cpYoY="/>
-       <field:input-hidden field="userImagePath" id="c_cm_adorsys_gpao_model_GpaoUser_userImagePath" />
+       <field:input-hidden object="${gpaoUser }" field="userImagePath" id="c_cm_adorsys_gpao_model_GpaoUser_userImagePath" />
         <field:input type="file" disableFormBinding="true" field="userImage" id="c_cm_adorsys_gpao_model_GpaoUser_userImage" z="DGR9Fjvf7PUD/sjnQ/oxrgIPH/o="/>
         <field:checkbox field="disableLogin" id="c_cm_adorsys_gpao_model_GpaoUser_disableLogin" z="ENMJ29haDGnaD5RaSairaCB8xYo="/>
         <field:checkbox field="accountLocked" id="c_cm_adorsys_gpao_model_GpaoUser_accountLocked" z="8E7nOB1ifd4yx9kEojdJmsFkfvI="/>
-        <field:input-hidden  field="credentialExpiration" id="c_cm_adorsys_gpao_model_GpaoUser_credentialExpiration" />
+        <field:input-hidden object="${gpaoUser }"  field="credentialExpiration" id="c_cm_adorsys_gpao_model_GpaoUser_credentialExpiration" />
         <legend>Groupe Utilisateur</legend>
         <field:select field="gpaoUserGroups" style="width: 100%; height: 190px;" id="c_cm_adorsys_gpao_model_GpaoUser_gpaoUserGroups" itemValue="id" items="${gpaousergroups}" multiple="true" path="/gpaousergroups" z="lsXnjezvOneLgBb0w3Fll2sScj4="/>
            </div>

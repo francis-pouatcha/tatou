@@ -80,6 +80,7 @@
           </c:if>
         </tr>
       </thead>
+      
       <c:forEach items="${data}" var="item">
         <tr id="${item.id}" >
           <c:forTokens items="${columnProperties}" delims="${'&#9999;'}" var="column" varStatus="num">

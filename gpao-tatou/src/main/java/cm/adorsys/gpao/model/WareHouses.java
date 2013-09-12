@@ -31,4 +31,7 @@ public class WareHouses {
     		wareHouses.persist();
     	}
 }
+    public String toString(){
+    	return name ;
+    }
 }

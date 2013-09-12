@@ -11,6 +11,8 @@ import javax.persistence.TypedQuery;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
@@ -31,7 +33,8 @@ public class UnitOfMesures implements BussinessValidation {
     private String name;
 
     @Min(0L)
-    private BigDecimal ratio;
+    @NotNull
+    private BigDecimal ratio = BigDecimal.ONE;
 
     @NotNull
     @ManyToOne
@@ -42,12 +45,17 @@ public class UnitOfMesures implements BussinessValidation {
     
     @Value("false")
     private Boolean isRefUnit;
-
+    
+    
+    public String toString() {
+        return name;
+    }
+    
 	@Override
 	public void validate(BindingResult bindingResult, Model uiModel) {
 	     List<UnitOfMesures> resultList = findUnitOfMesuressByNameEquals(name).getResultList();
 	     if(!resultList.isEmpty()){
-	    	 bindingResult.reject("name", "ce libelle existe deja !");
+	    	// bindingResult.reject("name", "ce libelle existe deja !");
 	     }
 		
 	}
@@ -78,6 +86,14 @@ public class UnitOfMesures implements BussinessValidation {
         q.setParameter("name", name);
         return q;
     }
+    public static TypedQuery<UnitOfMesures> findUnitOfMesuressByGroupEqualsAndReference(UdmGroup group,Boolean isRefUnit) {
+        EntityManager em = UnitOfMesures.entityManager();
+        TypedQuery<UnitOfMesures> q = em.createQuery("SELECT o FROM UnitOfMesures AS o WHERE  o.unitGroup = :unitGroup AND  o.isRefUnit = :isRefUnit ", UnitOfMesures.class);
+        q.setParameter("unitGroup", group);
+        q.setParameter("isRefUnit", isRefUnit);
+        return q;
+    }
+    
     
     public static TypedQuery<UnitOfMesures> findUnitOfMesuressByGroupEquals(UdmGroup group) {
         EntityManager em = UnitOfMesures.entityManager();

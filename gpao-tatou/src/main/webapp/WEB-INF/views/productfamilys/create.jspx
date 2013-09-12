@@ -3,25 +3,13 @@
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <div class="row-fluid">
-        <div class="span5">
+        <div class="span6">
             <form:create id="fc_cm_adorsys_gpao_model_ProductFamily" label="Creer Une Famille" modelAttribute="productFamily" ortherButton="subFamilyCancelBtn.jspx" path="/productfamilys" render="${empty dependencies}" showInPanel="false" z="user-managed">
                 <field:input field="name" id="c_cm_adorsys_gpao_model_ProductFamily_name" required="true" z="user-managed"/>
                 <field:textarea field="description" id="c_cm_adorsys_gpao_model_ProductFamily_description" z="user-managed"/>
-                <field:select field="productSubFamily" id="c_cm_adorsys_gpao_model_ProductFamily_productSubFamily" itemValue="id" items="${productsubfamilys}" multiple="true" path="/productsubfamilys" z="LKZMFvchFASOyhOOcizS8vXanXk="/>
+                <field:simple field="productSubFamily" id="c_cm_adorsys_gpao_model_ProductFamily_productSubFamily" messageCode="entity_reference_not_managed" messageCodeAttribute="Product Sub Family" render="false" z="user-managed"/>
             </form:create>
             <form:dependency dependencies="${dependencies}" id="d_cm_adorsys_gpao_model_ProductFamily" render="${not empty dependencies}" z="user-managed"/>
-        </div>
-        <div class="span7">
-            <page:list id="pl_cm_adorsys_gpao_model_ProductSubFamily" items="${productFamily.productSubFamily}" labelPlural="Liste des Sous Familles" showInPanel="false" z="user-managed">
-                <div class="div-box-medium">
-                    <table:table create="false" data="${productFamily.productSubFamily}" delete="false" id="l_cm_adorsys_gpao_model_ProductSubFamily" path="/productsubfamilys/save" show="delete" z="user-managed">
-                        <table:column id="c_cm_adorsys_gpao_model_ProductSubFamily_name" property="name" z="user-managed"/>
-                        <table:column id="c_cm_adorsys_gpao_model_ProductSubFamily_description" property="description" z="user-managed"/>
-                        <table:column id="c_cm_adorsys_gpao_model_ProductSubFamily_isActive" property="isActive" z="user-managed"/>
-                        <table:column id="c_cm_adorsys_gpao_model_ProductSubFamily_productFamily" property="productFamily" z="user-managed"/>
-                    </table:table>
-                </div>
-            </page:list>
         </div>
     </div>
 </div>

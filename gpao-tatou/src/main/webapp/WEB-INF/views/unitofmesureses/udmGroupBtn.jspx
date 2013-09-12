@@ -12,8 +12,8 @@
        <spring:url value="/udmgroups?form"  var="add_url" />
        <spring:url value="/udmgroups/"  var="edit_url" />
        
-       <input id="add" style="margin-left: 1%;" class="btn-warning span4 small-marge-left" type="button" value="Creer udmgrp"/>
-       <input id="edit" style="margin-left: 3%;" class="btn-warning span3 small-marge-left" type="button" value="Edit udmgrp"/>
+       <input id="add" style="margin-left: 1%;" class="btn-warning span2 small-marge-left" type="button" value="Aj udmgrp"/>
+       <input id="edit" style="margin-left: 1%;" class="btn-warning span2 small-marge-left" type="button" value="Mod udmgrp"/>
           <script type="text/javascript">
           $("#add").click(function(){
         	  window.location ="${add_url}" ;

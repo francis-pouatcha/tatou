@@ -23,6 +23,9 @@ public class UdmGroup {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "unitGroup")
     private Set<UnitOfMesures> unitOfMesures = new HashSet<UnitOfMesures>();
     
+    public String toString(){
+    	return name;
+    }
 	
     public static void init(){
 		if(UdmGroup.countUdmGroups() <= 0){
