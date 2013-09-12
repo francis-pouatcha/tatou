@@ -62,6 +62,7 @@ public class Product {
 
     @Value("0")
     @Min(0L)
+    @NotNull
     private BigInteger virtualStock;
 
     @Value("0")
@@ -74,10 +75,12 @@ public class Product {
     @NotNull
     @ManyToOne
     private Devise defaultCurrency;
-
+    
+    @NotNull
     @Value("0")
     private BigDecimal purchasePrice;
 
+    @NotNull
     @Value("0")
     private BigDecimal salePrice;
 

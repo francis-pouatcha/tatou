@@ -39,12 +39,12 @@ public class DeliveryItems {
     @ManyToOne
     private Delivery delivery;
 
-    private BigDecimal amountHt;
+    private BigDecimal amountHt = BigDecimal.ZERO;
 
     @Min(0L)
-    private BigDecimal taxAmount;
+    private BigDecimal taxAmount= BigDecimal.ZERO;
 
-    private BigDecimal taxedAmount;
+    private BigDecimal taxedAmount= BigDecimal.ZERO;
 
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(style = "M-")

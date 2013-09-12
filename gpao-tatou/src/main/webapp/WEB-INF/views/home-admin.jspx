@@ -3,7 +3,7 @@
   <jsp:output omit-xml-declaration="yes" />
   <spring:message var="app_name" code="application_name" htmlEscape="false" />
   <spring:message var="title" code="welcome_titlepane" arguments="${app_name}" htmlEscape="false" />
- <spring:url value="/resources/images/tatou.png" var="default_logo_url" />
+ <spring:url value="/resources/images/admin.jpeg" var="default_logo_url" />
   
   <div style="padding: 10px;" class="hero-unit">
 						<h1 >Espace Administration</h1>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_cm_adorsys_gpao_model_InventoryItems" modelAttribute="inventoryItems" path="/inventoryitemses" versionField="Version" z="10V7l+qxE4GcD4Z4LTKUoKZG3bs=">
+        <field:select field="product" id="c_cm_adorsys_gpao_model_InventoryItems_product" itemValue="id" items="${products}" path="/products" required="true" z="QzoqwtamHbE3pJoMGVMIJ4ACT6s="/>
+        <field:input field="virtualStock" id="c_cm_adorsys_gpao_model_InventoryItems_virtualStock" min="0" required="true" validationMessageCode="field_invalid_integer" z="gfmye1/DqjU9abv/83zm3My2eOw="/>
+        <field:input field="realStock" id="c_cm_adorsys_gpao_model_InventoryItems_realStock" min="0" required="true" validationMessageCode="field_invalid_integer" z="OvOz8+eZ160jZ6o53FSfrOHTrIY="/>
+        <field:input field="stockGap" id="c_cm_adorsys_gpao_model_InventoryItems_stockGap" validationMessageCode="field_invalid_integer" z="vGs3znsmBCav/O3sJGlKem984aU="/>
+        <field:input field="gapAmount" id="c_cm_adorsys_gpao_model_InventoryItems_gapAmount" validationMessageCode="field_invalid_number" z="S328kxG3cYqigcZU4g9eNV6Znno="/>
+        <field:select field="inventory" id="c_cm_adorsys_gpao_model_InventoryItems_inventory" itemValue="id" items="${inventorys}" path="/inventorys" required="true" z="bcSwzBylznV6oPlRsMlVOJq0Q40="/>
+        <field:input field="productPrice" id="c_cm_adorsys_gpao_model_InventoryItems_productPrice" validationMessageCode="field_invalid_number" z="y079LQ71D3Bfv7reE442y5zfvGw="/>
+        <field:select field="udm" id="c_cm_adorsys_gpao_model_InventoryItems_udm" itemValue="id" items="${unitofmesureses}" path="/unitofmesureses" required="true" z="wC/gYoRcUElRyugGM9zC07QxfOc="/>
+    </form:update>
+</div>

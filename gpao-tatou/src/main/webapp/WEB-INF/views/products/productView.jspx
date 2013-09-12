@@ -46,7 +46,7 @@
 		</div>
 	</div>
 	<div class="row-fluid ">
-		<div class="span11">
+		<div class="span10">
 
 
 			<form:update multipart="true" showInPanel="false"
@@ -93,10 +93,18 @@
 						<div class="row-fluid">
 							<div class="span6">
 								<legend>Stock</legend>
+								<c:choose>
+								<c:when test="${empty product.id}">
 								<field:input field="virtualStock"
 									id="c_cm_adorsys_gpao_model_Product_virtualStock" min="0"
 									required="true" validationMessageCode="field_invalid_integer"
 									z="uB4+maWipvw1Dxwf+OKuOaaNUzA=" />
+								</c:when>
+								<c:otherwise>
+								<field:display id="c_cm_adorsys_gpao_model_Product_virtualStock" object="${product}" field="virtualStock" />
+								<field:input-hidden id="c_cm_adorsys_gpao_model_Product_virtualStock" object="${product}" field="virtualStock" />
+								</c:otherwise>
+								</c:choose>
 								<field:input field="minStock"
 									id="c_cm_adorsys_gpao_model_Product_minStock" min="0"
 									required="true" validationMessageCode="field_invalid_integer"
@@ -120,7 +128,6 @@
 									id="c_cm_adorsys_gpao_model_Product_salePrice"
 									validationMessageCode="field_invalid_number"
 									z="tAq7jVolP0yzFls2GexWkQ9aLF0=" />
-
 							</div>
 
 						</div>
@@ -181,21 +188,22 @@
 				<br />
 			</form:update>
 		</div>
-		<div style="padding-top: 5%;" class="pull-rigth span1">
+		<div style="text-align: center;" class="span2">
 			<p>
-				<button id="delete" class="btn-primary" type="button">Lots</button>
+				<button style="width: 100%;" class="btn-success" type="button">Fiche du Produit</button>
 			</p>
 			<p>
-				<button class="btn-primary" type="button">Imprimer</button>
+				<button style="width: 100%;" class="btn-success" type="button">Visualiser les lots</button>
 			</p>
 			<p>
-				<button class="btn-primary" type="button">Imprimer</button>
+				<button style="width: 100%;" class="btn-success" type="button">Mouvements Stocks</button>
 			</p>
 			<p>
-				<button class="btn-primary" type="button">Imprimer</button>
+				<button style="width: 100%;" class="btn-success" type="button">statistiques Achats</button>
 			</p>
 
 		</div>
+		
 	</div>
 	
 	<script>

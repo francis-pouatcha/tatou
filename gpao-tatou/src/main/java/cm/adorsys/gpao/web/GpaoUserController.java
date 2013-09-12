@@ -57,12 +57,14 @@ public class GpaoUserController {
         uiModel.addAttribute(MessageType.SUCCESS_MESSAGE, "Enregistre avec success !");
         return "gpaousers/gpaouserView";
     }
+
     @RequestMapping(value = "/changePersonalInfoForm", method = RequestMethod.GET, produces = "text/html")
-    public String changePersonalInfoForm( Model uiModel) {
-    	GpaoUser gpaoUser = SecurityUtil.getGpaoUser();
+    public String changePersonalInfoForm(Model uiModel) {
+        GpaoUser gpaoUser = SecurityUtil.getGpaoUser();
         populateEditForm(uiModel, gpaoUser);
         return "gpaousers/infos";
     }
+
     @RequestMapping(value = "/changePersonalInfo", method = RequestMethod.POST, produces = "text/html")
     public String changePersonalInfo(@Valid GpaoUser gpaoUser, BindingResult bindingResult, Model uiModel, HttpSession session) {
         if (bindingResult.hasErrors()) {
@@ -81,7 +83,7 @@ public class GpaoUserController {
         gpaoUser.setGpaoUserGroups(GpaoUser.findGpaoUser(gpaoUser.getId()).getGpaoUserGroups());
         GpaoUser merge = gpaoUser.merge();
         populateEditForm(uiModel, merge);
-		if(session != null) session.setAttribute("currentUser", gpaoUser);
+        if (session != null) session.setAttribute("currentUser", gpaoUser);
         uiModel.addAttribute(MessageType.SUCCESS_MESSAGE, "Enregistre avec success !");
         return "gpaousers/infos";
     }

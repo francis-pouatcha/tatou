@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_cm_adorsys_gpao_model_Inventory" items="${inventorys}" z="p8TM+B5E29tKqe1zgnL0kyAkrNs=">
+        <table:table data="${inventorys}" id="l_cm_adorsys_gpao_model_Inventory" path="/inventorys" z="OJS/suqe9G5JVKFK6KDPQGSYoaw=">
+            <table:column id="c_cm_adorsys_gpao_model_Inventory_reference" property="reference" z="KlypKLRLVc4QRbv0OL57eoZkZuk="/>
+            <table:column date="true" dateTimePattern="${inventory_created_date_format}" id="c_cm_adorsys_gpao_model_Inventory_created" property="created" z="2tYbvhEej6sol3woTZlxu11TsIY="/>
+            <table:column id="c_cm_adorsys_gpao_model_Inventory_createdBy" property="createdBy" z="aUmNrexiIuwziiP+gTyMUHfoocA="/>
+            <table:column date="true" dateTimePattern="${inventory_closed_date_format}" id="c_cm_adorsys_gpao_model_Inventory_closed" property="closed" z="ruMoRLirqUs+nx/jty6z/LtjZbU="/>
+            <table:column id="c_cm_adorsys_gpao_model_Inventory_closedBy" property="closedBy" z="fka6bQ5rmWklzCROyT0W4tbXW+U="/>
+            <table:column id="c_cm_adorsys_gpao_model_Inventory_status" property="status" z="w9MulT8aUQvRHHaOq0hM5IshUA0="/>
+        </table:table>
+    </page:list>
+</div>

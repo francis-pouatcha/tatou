@@ -303,3 +303,39 @@ persistence setup --provider HIBERNATE --database MYSQL --databaseName gpaodb --
 // Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-09-12 08:58:45
 // Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-09-12 09:04:23
 // Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-09-12 09:06:02
+entity jpa --class ~.model.Inventory
+field string --fieldName reference --notNull 
+field date --fieldName created --type java.util.Date 
+field string --fieldName createdBy --notNull 
+field date --fieldName closed --type java.util.Date
+field string --fieldName closedBy 
+field enum --fieldName status --type ~.model.DocumentStates 
+entity jpa --class ~.model.InventoryItems
+field reference --fieldName product --type ~.model.Product --notNull 
+field number --fieldName virtualStock --type java.math.BigInteger --min 0 --notNull 
+field number --fieldName realStock --type java.math.BigInteger --min 0 --notNull 
+field number --fieldName stockGap --type java.math.BigInteger --value 0
+field number --fieldName gapAmount --type java.math.BigDecimal --value 0
+focus --class ~.model.Inventory
+field set --fieldName inventoryItems --type ~.model.InventoryItems --mappedBy inventory --cardinality ONE_TO_MANY 
+focus --class ~.model.InventoryItems
+field reference --fieldName inventory --type ~.model.Inventory --notNull 
+web mvc all --package ~.web
+focus --class ~.model.InventoryItems
+field number --fieldName productPrice --type java.math.BigDecimal --value 0
+focus --class ~.model.Inventory
+field number --fieldName gapAmount --type java.math.BigDecimal --value 0 
+focus --class ~.model.InventoryItems
+field reference --fieldName udm --type ~.model.UnitOfMesures --notNull 
+focus --class ~.model.Inventory
+field reference --fieldName currency --type ~.model.Devise
+entity jpa --class ~.model.Tenders
+field string --fieldName reference 
+field date --fieldName created --type java.util.Date
+field date --fieldName createBy --type java.util.Date
+field date --fieldName closed --type java.util.Date
+field string --fieldName closedBy 
+field date --fieldName beginDate --type java.util.Date
+field date --fieldName endDate --type java.util.Date
+field enum --fieldName status --type ~.model.DocumentStates
+web mvc all --package cm.adorsys.gpao.web

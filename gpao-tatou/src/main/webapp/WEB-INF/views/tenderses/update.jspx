@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_cm_adorsys_gpao_model_Tenders" modelAttribute="tenders" path="/tenderses" versionField="Version" z="WFPM+8kpbaFVuMdn75pGIOUG6zo=">
+        <field:input field="reference" id="c_cm_adorsys_gpao_model_Tenders_reference" z="fxy6X5yuf7Ekne62lTzZn7l7O1o="/>
+        <field:datetime dateTimePattern="${tenders_createby_date_format}" field="createBy" id="c_cm_adorsys_gpao_model_Tenders_createBy" z="cO+OcMb1Iy/pOppLNb2/KVIENkM="/>
+        <field:datetime dateTimePattern="${tenders_closed_date_format}" field="closed" id="c_cm_adorsys_gpao_model_Tenders_closed" z="lZNPKKGsx/9NpVI39oO3uFm98Zc="/>
+        <field:input field="closedBy" id="c_cm_adorsys_gpao_model_Tenders_closedBy" z="uOO6wE29tmbOATdllKCrYCvIYsk="/>
+        <field:datetime dateTimePattern="${tenders_begindate_date_format}" field="beginDate" id="c_cm_adorsys_gpao_model_Tenders_beginDate" z="SxQtc2K51Z9/oy2YvpftbT04DoQ="/>
+        <field:datetime dateTimePattern="${tenders_enddate_date_format}" field="endDate" id="c_cm_adorsys_gpao_model_Tenders_endDate" z="zg55YlIbaTKRD8pDNgUKMQ8g+o0="/>
+        <field:select field="status" id="c_cm_adorsys_gpao_model_Tenders_status" items="${documentstateses}" path="documentstateses" z="xxZGNl4GVna/M7LQuu1krlzSjeM="/>
+    </form:update>
+</div>

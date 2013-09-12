@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_cm_adorsys_gpao_model_Inventory" object="${inventory}" path="/inventorys" z="jUp5MLwxK5SnH/WmRiK9asRkAr8=">
+        <field:display field="reference" id="s_cm_adorsys_gpao_model_Inventory_reference" object="${inventory}" z="dJkzwBM/L1xixOpZXQ7X0owcDdg="/>
+        <field:display field="createdBy" id="s_cm_adorsys_gpao_model_Inventory_createdBy" object="${inventory}" z="jysbq36/wuvmof8PWqNGIpO4N9o="/>
+        <field:display date="true" dateTimePattern="${inventory_closed_date_format}" field="closed" id="s_cm_adorsys_gpao_model_Inventory_closed" object="${inventory}" z="tCQNKo5ztm+Jc/eFFYndAxrJkns="/>
+        <field:display field="closedBy" id="s_cm_adorsys_gpao_model_Inventory_closedBy" object="${inventory}" z="SivuU0x2rE3/1iFKCxW9lzDelxQ="/>
+        <field:display field="status" id="s_cm_adorsys_gpao_model_Inventory_status" object="${inventory}" z="9Er+z8PjfbbPgzJ/isZEeJpc8Hk="/>
+        <field:display field="gapAmount" id="s_cm_adorsys_gpao_model_Inventory_gapAmount" object="${inventory}" z="RoVMkGbWDjYK1rjM+O8R4EAeeis="/>
+        <field:display field="currency" id="s_cm_adorsys_gpao_model_Inventory_currency" object="${inventory}" z="g/0GmYIL+p2S1cRSCOmzBPHeaAU="/>
+    </page:show>
+</div>

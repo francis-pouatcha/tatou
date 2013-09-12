@@ -1,13 +1,5 @@
 package cm.adorsys.gpao.web;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
-
 import cm.adorsys.gpao.model.Company;
 import cm.adorsys.gpao.model.Delivery;
 import cm.adorsys.gpao.model.DeliveryItems;
@@ -17,13 +9,17 @@ import cm.adorsys.gpao.model.DocumentStates;
 import cm.adorsys.gpao.model.OrderItems;
 import cm.adorsys.gpao.model.Partner;
 import cm.adorsys.gpao.model.Product;
-import cm.adorsys.gpao.model.Delivery;
 import cm.adorsys.gpao.model.UdmGroup;
 import cm.adorsys.gpao.model.UnitOfMesures;
 import cm.adorsys.gpao.model.uimodels.OrderItemUimodel;
 import cm.adorsys.gpao.services.TatouPurchaseService;
 import cm.adorsys.gpao.utils.MessageType;
-
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
 import org.springframework.stereotype.Controller;
@@ -39,20 +35,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RooWebScaffold(path = "deliverys", formBackingObject = Delivery.class)
 public class DeliveryController {
-	
-	@Autowired
+
+    @Autowired
     TatouPurchaseService purchaseService;
 
     @RequestMapping(value = "/addOrEditForm", method = RequestMethod.GET, produces = "text/html")
     public String addOrEditdeliverysForm(@RequestParam(value = "id", required = false) Long id, Model uiModel) {
-    	Delivery deliverys = id == null ? new Delivery() : Delivery.findDelivery(id);
+        Delivery deliverys = id == null ? new Delivery() : Delivery.findDelivery(id);
         populateEditForm(uiModel, deliverys);
         return "deliverys/deliverysView";
     }
 
     @RequestMapping(value = "/addOrEdit", method = RequestMethod.PUT, produces = "text/html")
     public String addOrEditdeliverys(@Valid Delivery delivery, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
-    	delivery.setCompany(Company.findCompany(Long.valueOf(1)));
+        delivery.setCompany(Company.findCompany(Long.valueOf(1)));
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, delivery);
             uiModel.addAttribute(MessageType.ERROR_MESSAGE, "une erreur est Survenue durant l'enregistrement ! \n " + bindingResult.getFieldErrors());
@@ -89,7 +85,6 @@ public class DeliveryController {
         populateEditForm(uiModel, next);
         return "deliverys/deliverysView";
     }
-
 
     void populateEditForm(Model uiModel, Delivery delivery) {
         uiModel.addAttribute("delivery", delivery);

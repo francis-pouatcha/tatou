@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_cm_adorsys_gpao_model_InventoryItems" items="${inventoryitemses}" z="FiDmT6sePa6OfryZaPaPdZoH7R8=">
+        <table:table data="${inventoryitemses}" id="l_cm_adorsys_gpao_model_InventoryItems" path="/inventoryitemses" z="vNPBafzjVuSJCFfd1RUrBozNKXA=">
+            <table:column id="c_cm_adorsys_gpao_model_InventoryItems_product" property="product" z="eeauM+MYfkswcXT9D89F1iXe6Rs="/>
+            <table:column id="c_cm_adorsys_gpao_model_InventoryItems_virtualStock" property="virtualStock" z="b9GohUEk39uUzQ+nKmAPodEamqk="/>
+            <table:column id="c_cm_adorsys_gpao_model_InventoryItems_realStock" property="realStock" z="NzZ1JXi5DerTXDuiyjxMfQjoWgU="/>
+            <table:column id="c_cm_adorsys_gpao_model_InventoryItems_stockGap" property="stockGap" z="a5E+W94f1xkmQzpp9CK99zD47QQ="/>
+            <table:column id="c_cm_adorsys_gpao_model_InventoryItems_gapAmount" property="gapAmount" z="EAfA8aABQifIXr2N+DAnFITC8Tc="/>
+            <table:column id="c_cm_adorsys_gpao_model_InventoryItems_inventory" property="inventory" z="/lZ4wHbzl8MFi80cCpiXlZfmOvc="/>
+        </table:table>
+    </page:list>
+</div>

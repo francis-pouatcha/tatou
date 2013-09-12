@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_cm_adorsys_gpao_model_Tenders" items="${tenderses}" z="1s6M6CdV7NoeM8yCPDsm0VkLVXg=">
+        <table:table data="${tenderses}" id="l_cm_adorsys_gpao_model_Tenders" path="/tenderses" z="NorO8nyMiaNWtzfjUMOEQHWiOGU=">
+            <table:column id="c_cm_adorsys_gpao_model_Tenders_reference" property="reference" z="fAq8FaQzOntXNusLEwU/hz4AXY0="/>
+            <table:column date="true" dateTimePattern="${tenders_created_date_format}" id="c_cm_adorsys_gpao_model_Tenders_created" property="created" z="8iQ2aW5G2OGcECSrglQO8VZYf84="/>
+            <table:column date="true" dateTimePattern="${tenders_createby_date_format}" id="c_cm_adorsys_gpao_model_Tenders_createBy" property="createBy" z="Ox5sRxmJaJ+laW14QlcdYsO6g3c="/>
+            <table:column date="true" dateTimePattern="${tenders_closed_date_format}" id="c_cm_adorsys_gpao_model_Tenders_closed" property="closed" z="yt7jrZY7ylZYCCwAIsqpD+P+W/M="/>
+            <table:column id="c_cm_adorsys_gpao_model_Tenders_closedBy" property="closedBy" z="2uXqguLPJk/6erKy23rJIcpjiuE="/>
+            <table:column date="true" dateTimePattern="${tenders_begindate_date_format}" id="c_cm_adorsys_gpao_model_Tenders_beginDate" property="beginDate" z="XFZDWJWQvR8V2QdsvdsUKw8m20E="/>
+        </table:table>
+    </page:list>
+</div>

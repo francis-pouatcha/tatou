@@ -6,6 +6,8 @@ public class GpaoSequenceGenerator {
 	public static String DELIVERY_SEQUENCE_PREFIX = "DE";
 	public static String LOT_SEQUENCE_PREFIX = "LO";
 	public static String ARTICLE_SEQUENCE_PREFIX = "AR";
+	public static String INVENTORY_SEQUENCE_PREFIX = "IN";
+
 
 	public static String getSequence(Long index ,String prefixe){
 		String sequence  = prefixe+"-"+GpaoDateUtil.getYear() +"-"+ formatNumber(index.toString(), 4) ;

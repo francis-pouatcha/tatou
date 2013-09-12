@@ -4,7 +4,10 @@
 package cm.adorsys.gpao.web;
 
 import cm.adorsys.gpao.model.Company;
+import cm.adorsys.gpao.model.Inventory;
+import cm.adorsys.gpao.model.InventoryItems;
 import cm.adorsys.gpao.model.Location;
+import cm.adorsys.gpao.model.Tenders;
 import cm.adorsys.gpao.web.ApplicationConversionServiceFactoryBean;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.core.convert.converter.Converter;
@@ -29,6 +32,54 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         };
     }
     
+    public Converter<Inventory, String> ApplicationConversionServiceFactoryBean.getInventoryToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<cm.adorsys.gpao.model.Inventory, java.lang.String>() {
+            public String convert(Inventory inventory) {
+                return new StringBuilder().append(inventory.getReference()).append(' ').append(inventory.getCreated()).append(' ').append(inventory.getCreatedBy()).append(' ').append(inventory.getClosed()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, Inventory> ApplicationConversionServiceFactoryBean.getIdToInventoryConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, cm.adorsys.gpao.model.Inventory>() {
+            public cm.adorsys.gpao.model.Inventory convert(java.lang.Long id) {
+                return Inventory.findInventory(id);
+            }
+        };
+    }
+    
+    public Converter<String, Inventory> ApplicationConversionServiceFactoryBean.getStringToInventoryConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, cm.adorsys.gpao.model.Inventory>() {
+            public cm.adorsys.gpao.model.Inventory convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), Inventory.class);
+            }
+        };
+    }
+    
+    public Converter<InventoryItems, String> ApplicationConversionServiceFactoryBean.getInventoryItemsToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<cm.adorsys.gpao.model.InventoryItems, java.lang.String>() {
+            public String convert(InventoryItems inventoryItems) {
+                return new StringBuilder().append(inventoryItems.getVirtualStock()).append(' ').append(inventoryItems.getRealStock()).append(' ').append(inventoryItems.getStockGap()).append(' ').append(inventoryItems.getGapAmount()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, InventoryItems> ApplicationConversionServiceFactoryBean.getIdToInventoryItemsConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, cm.adorsys.gpao.model.InventoryItems>() {
+            public cm.adorsys.gpao.model.InventoryItems convert(java.lang.Long id) {
+                return InventoryItems.findInventoryItems(id);
+            }
+        };
+    }
+    
+    public Converter<String, InventoryItems> ApplicationConversionServiceFactoryBean.getStringToInventoryItemsConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, cm.adorsys.gpao.model.InventoryItems>() {
+            public cm.adorsys.gpao.model.InventoryItems convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), InventoryItems.class);
+            }
+        };
+    }
+    
     public Converter<Location, String> ApplicationConversionServiceFactoryBean.getLocationToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<cm.adorsys.gpao.model.Location, java.lang.String>() {
             public String convert(Location location) {
@@ -49,6 +100,30 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         return new org.springframework.core.convert.converter.Converter<java.lang.String, cm.adorsys.gpao.model.Location>() {
             public cm.adorsys.gpao.model.Location convert(String id) {
                 return getObject().convert(getObject().convert(id, Long.class), Location.class);
+            }
+        };
+    }
+    
+    public Converter<Tenders, String> ApplicationConversionServiceFactoryBean.getTendersToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<cm.adorsys.gpao.model.Tenders, java.lang.String>() {
+            public String convert(Tenders tenders) {
+                return new StringBuilder().append(tenders.getReference()).append(' ').append(tenders.getCreated()).append(' ').append(tenders.getCreateBy()).append(' ').append(tenders.getClosed()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, Tenders> ApplicationConversionServiceFactoryBean.getIdToTendersConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, cm.adorsys.gpao.model.Tenders>() {
+            public cm.adorsys.gpao.model.Tenders convert(java.lang.Long id) {
+                return Tenders.findTenders(id);
+            }
+        };
+    }
+    
+    public Converter<String, Tenders> ApplicationConversionServiceFactoryBean.getStringToTendersConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, cm.adorsys.gpao.model.Tenders>() {
+            public cm.adorsys.gpao.model.Tenders convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), Tenders.class);
             }
         };
     }

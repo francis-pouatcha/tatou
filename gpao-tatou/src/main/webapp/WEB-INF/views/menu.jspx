@@ -82,5 +82,17 @@
             <menu:item id="i_deliveryitems_new" messageCode="global_menu_new" url="/deliveryitemses?form" z="yji+5OwjixmHXHEK7l/LAUQCDVM="/>
             <menu:item id="i_deliveryitems_list" messageCode="global_menu_list" url="/deliveryitemses?page=1&amp;size=${empty param.size ? 10 : param.size}" z="sjbn8PJjmux3IevxVgghkHUTBFw="/>
         </menu:category>
+        <menu:category id="c_inventoryitems" z="aXxeKH5LyKlFQYRpNueXH0ilZtU=">
+            <menu:item id="i_inventoryitems_new" messageCode="global_menu_new" url="/inventoryitemses?form" z="R26+07xHK6M6TkZwVtGG/vnhSsE="/>
+            <menu:item id="i_inventoryitems_list" messageCode="global_menu_list" url="/inventoryitemses?page=1&amp;size=${empty param.size ? 10 : param.size}" z="VAIv+VKk3Qg5m//2Mng5JUMocWo="/>
+        </menu:category>
+        <menu:category id="c_inventory" z="dpXK3aH5NiHnKowdp9T2TJGiUTA=">
+            <menu:item id="i_inventory_new" messageCode="global_menu_new" url="/inventorys?form" z="PhQNSPm2bvTAU+ufWBo6KbkjUYw="/>
+            <menu:item id="i_inventory_list" messageCode="global_menu_list" url="/inventorys?page=1&amp;size=${empty param.size ? 10 : param.size}" z="dNfFgPYMPmoxgj8ejqr5GlPAnRY="/>
+        </menu:category>
+        <menu:category id="c_tenders" z="B7m00NEzqOQYbV2Pg9Q7YmqiMLw=">
+            <menu:item id="i_tenders_new" messageCode="global_menu_new" url="/tenderses?form" z="ji8k0Gv3UJmT1cRx9f4jwGLKRrY="/>
+            <menu:item id="i_tenders_list" messageCode="global_menu_list" url="/tenderses?page=1&amp;size=${empty param.size ? 10 : param.size}" z="YjdlOKyNMnpyW/4gqcCC63wQ1d4="/>
+        </menu:category>
     </menu:menu>
 </div>

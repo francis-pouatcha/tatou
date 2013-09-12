@@ -50,6 +50,10 @@ public class Taxe {
 			taxe.persist();
 		}
 	}
+	
+	public String toString(){
+		return name +" , "+ shortName+" , "+taxeValue;
+	}
 
 	/**
 	 * get taxe for the given amount 
