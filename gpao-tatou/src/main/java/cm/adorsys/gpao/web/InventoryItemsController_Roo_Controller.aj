@@ -39,12 +39,6 @@ privileged aspect InventoryItemsController_Roo_Controller {
     public String InventoryItemsController.createForm(Model uiModel) {
         populateEditForm(uiModel, new InventoryItems());
         List<String[]> dependencies = new ArrayList<String[]>();
-        if (Product.countProducts() == 0) {
-            dependencies.add(new String[] { "product", "products" });
-        }
-        if (Inventory.countInventorys() == 0) {
-            dependencies.add(new String[] { "inventory", "inventorys" });
-        }
         if (UnitOfMesures.countUnitOfMesureses() == 0) {
             dependencies.add(new String[] { "unitofmesures", "unitofmesureses" });
         }

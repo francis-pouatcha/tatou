@@ -8,7 +8,6 @@ import cm.adorsys.gpao.model.InventoryItems;
 import cm.adorsys.gpao.model.Product;
 import cm.adorsys.gpao.model.UnitOfMesures;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 
 privileged aspect InventoryItems_Roo_JavaBean {
     
@@ -20,27 +19,27 @@ privileged aspect InventoryItems_Roo_JavaBean {
         this.product = product;
     }
     
-    public BigInteger InventoryItems.getVirtualStock() {
+    public BigDecimal InventoryItems.getVirtualStock() {
         return this.virtualStock;
     }
     
-    public void InventoryItems.setVirtualStock(BigInteger virtualStock) {
+    public void InventoryItems.setVirtualStock(BigDecimal virtualStock) {
         this.virtualStock = virtualStock;
     }
     
-    public BigInteger InventoryItems.getRealStock() {
+    public BigDecimal InventoryItems.getRealStock() {
         return this.realStock;
     }
     
-    public void InventoryItems.setRealStock(BigInteger realStock) {
+    public void InventoryItems.setRealStock(BigDecimal realStock) {
         this.realStock = realStock;
     }
     
-    public BigInteger InventoryItems.getStockGap() {
+    public BigDecimal InventoryItems.getStockGap() {
         return this.stockGap;
     }
     
-    public void InventoryItems.setStockGap(BigInteger stockGap) {
+    public void InventoryItems.setStockGap(BigDecimal stockGap) {
         this.stockGap = stockGap;
     }
     

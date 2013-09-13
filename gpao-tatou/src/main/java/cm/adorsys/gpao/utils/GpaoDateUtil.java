@@ -27,6 +27,7 @@ public class GpaoDateUtil {
 	public static final String DATETIME_PATTERN_SHORT_SEC = "dd-MM HH:mm:ss";
 	public static final String DATETIME_PATTERN_SHORT_LIT_SEC = "HH:mm:ss EEE, dd MMM";
 	public static final String DATE_PATTERN_YEAR = "yyyy";
+	public static final String DATE_PATTERN_MONTH_YEAR = "MMyy";
 
 	public static final String dateToString(Date date, String pattern){
 		if (date == null) {
@@ -63,6 +64,9 @@ public class GpaoDateUtil {
 	
 	public static String getYear(){
 		return dateToString(new Date(), DATE_PATTERN_YEAR);
+	}
+	public static String getMonthYear(){
+		return dateToString(new Date(), DATE_PATTERN_MONTH_YEAR);
 	}
 
 

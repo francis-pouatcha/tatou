@@ -11,7 +11,6 @@ import cm.adorsys.gpao.model.Taxe;
 import cm.adorsys.gpao.model.UnitOfMesures;
 import cm.adorsys.gpao.model.WareHouses;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.Set;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -73,19 +72,19 @@ privileged aspect Product_Roo_JavaBean {
         this.canBeSale = canBeSale;
     }
     
-    public BigInteger Product.getVirtualStock() {
+    public BigDecimal Product.getVirtualStock() {
         return this.virtualStock;
     }
     
-    public void Product.setVirtualStock(BigInteger virtualStock) {
+    public void Product.setVirtualStock(BigDecimal virtualStock) {
         this.virtualStock = virtualStock;
     }
     
-    public BigInteger Product.getMinStock() {
+    public BigDecimal Product.getMinStock() {
         return this.minStock;
     }
     
-    public void Product.setMinStock(BigInteger minStock) {
+    public void Product.setMinStock(BigDecimal minStock) {
         this.minStock = minStock;
     }
     

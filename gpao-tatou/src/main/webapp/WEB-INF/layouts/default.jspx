@@ -42,7 +42,7 @@
 		<tiles:insertAttribute name="header" ignore="false" />
 	
 			<div class="row-fluid no-space">
-				<div style="position: fixed;" class="span3" >
+				<div style="position: fixed; overflow: auto;" class="span3" >
 					<tiles:insertAttribute name="menu" ignore="true" />
 				</div>
 				<!--/span-->

@@ -18,7 +18,6 @@ import org.springframework.roo.addon.tostring.RooToString;
 import org.springframework.web.multipart.MultipartFile;
 
 @RooJavaBean
-@RooToString
 @RooJpaActiveRecord
 public class Partner {
 
@@ -84,6 +83,9 @@ public class Partner {
 			Partner partner = new Partner("Fournisseur Diver");
 		}
 	}
+    public String toString(){
+    	return name ;
+    }
     
 //finders
     

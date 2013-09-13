@@ -1,4 +1,4 @@
-package cm.adorsys.gpao.services;
+package cm.adorsys.gpao.services.Impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +13,7 @@ import cm.adorsys.gpao.model.OrderItems;
 import cm.adorsys.gpao.model.Product;
 import cm.adorsys.gpao.model.PurchaseOrder;
 import cm.adorsys.gpao.model.uimodels.OrderItemUimodel;
+import cm.adorsys.gpao.services.IPurchaseServices;
 
 @Service
 public class TatouPurchaseService implements IPurchaseServices {

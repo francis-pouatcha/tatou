@@ -10,7 +10,7 @@ import cm.adorsys.gpao.model.PurchaseOrder;
 import cm.adorsys.gpao.model.UdmGroup;
 import cm.adorsys.gpao.model.UnitOfMesures;
 import cm.adorsys.gpao.model.uimodels.OrderItemUimodel;
-import cm.adorsys.gpao.services.TatouPurchaseService;
+import cm.adorsys.gpao.services.Impl.TatouPurchaseService;
 import cm.adorsys.gpao.utils.MessageType;
 import java.util.Arrays;
 import java.util.List;

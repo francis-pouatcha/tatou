@@ -7,7 +7,6 @@ import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
 
 @RooJavaBean
-@RooToString
 @RooJpaActiveRecord
 public class PartnerGroup {
 
@@ -22,13 +21,16 @@ public class PartnerGroup {
 	public PartnerGroup( String name ) {
 		this.name = name ;
 	}
+	public String toString(){
+		return name;
+	}
 
 	public static void init(){
 		if(PartnerGroup.countPartnerGroups()<= 0){
 			PartnerGroup partnerGroup = new PartnerGroup("Groupe par defaut");
 			partnerGroup.setDescription("le groupe de partenaire par default ");
 			partnerGroup.persist() ;
-			
+
 		}
 	}
 }

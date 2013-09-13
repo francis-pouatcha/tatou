@@ -2,14 +2,15 @@ package cm.adorsys.gpao.utils;
 
 import java.math.BigDecimal;
 
+import cm.adorsys.gpao.model.Company;
 import cm.adorsys.gpao.model.Devise;
 
 public class CurrencyUtils {
 
-	public static BigDecimal convertAmount(Devise amountCurrency,Devise targetCurrency,BigDecimal amount){
-		if(amountCurrency==null||targetCurrency==null||amount==null) throw new IllegalArgumentException("all the parameters are required !");
+	public static BigDecimal convertAmount(Devise amountCurrency,Devise target,BigDecimal amount){
+		if(amountCurrency==null||target==null||amount==null) throw new IllegalArgumentException("all the parameters are required !");
 		BigDecimal companyAmount = convertToCompanyCurrency(amountCurrency, amount);
-		BigDecimal targetAmount = companyAmount.divide(targetCurrency.getRatio(),2);
+		BigDecimal targetAmount = companyAmount.divide(target.getRatio(),2);
 		return targetAmount ;
 	}
 
@@ -18,5 +19,7 @@ public class CurrencyUtils {
 		return amount.multiply(amountCurrency.getRatio());
 	}
 
-
+   public static Devise getCompanyCurrency(){
+	   return Company.getOwnComapny().getDevise();
+   }
 }

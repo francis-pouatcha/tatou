@@ -41,7 +41,6 @@ public class Product {
     @Enumerated
     private ProductType productType;
 
-    @NotNull
     private String reference;
 
     @NotNull
@@ -63,11 +62,11 @@ public class Product {
     @Value("0")
     @Min(0L)
     @NotNull
-    private BigInteger virtualStock;
+    private BigDecimal virtualStock;
 
     @Value("0")
     @Min(0L)
-    private BigInteger minStock;
+    private BigDecimal minStock;
 
     @ManyToOne
     private UnitOfMesures defaultUdm;
@@ -105,6 +104,14 @@ public class Product {
     private String productImagePath;
 
     private String codeBare;
+    
+    public String toString(){
+    	return reference+":"+name;
+    }
+    
+    public boolean isInitialEntry(){
+		return getId() == null && getVirtualStock().intValue()!=0;
+	}
     
     public String toJson() {
         return new JSONSerializer().exclude("*.class").serialize(this);

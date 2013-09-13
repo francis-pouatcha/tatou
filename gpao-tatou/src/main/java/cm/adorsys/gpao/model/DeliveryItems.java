@@ -26,14 +26,11 @@ public class DeliveryItems {
     @ManyToOne
     private Product product;
 
-    @Min(0L)
-    private BigInteger orderQte;
+    private BigDecimal orderQte =BigDecimal.ZERO;
 
-    @Min(0L)
-    private BigInteger qteReceive;
+    private BigDecimal qteReceive =BigDecimal.ZERO;
 
-    @Min(0L)
-    private BigDecimal qteUnreceive;
+    private BigDecimal qteUnreceive  =BigDecimal.ZERO;
 
     @NotNull
     @ManyToOne
@@ -41,7 +38,6 @@ public class DeliveryItems {
 
     private BigDecimal amountHt = BigDecimal.ZERO;
 
-    @Min(0L)
     private BigDecimal taxAmount= BigDecimal.ZERO;
 
     private BigDecimal taxedAmount= BigDecimal.ZERO;

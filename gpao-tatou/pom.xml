@@ -61,7 +61,57 @@
             <url>http://spring-roo-repository.springsource.org/release</url>
         </pluginRepository>
     </pluginRepositories>
+    
     <dependencies>
+    <dependency>
+    <!-- jassperreport dependency   -->
+        <groupId>jasperreports</groupId>
+        <artifactId>jasperreports</artifactId>
+        <version>4.7.0</version>
+        <exclusions>
+            <exclusion>
+                <groupId>commons-collections</groupId>
+                <artifactId>commons-collections</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>commons-logging</groupId>
+                <artifactId>commons-logging</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>bouncycastle</groupId>
+                <artifactId>bcmail-jdk14</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>bouncycastle</groupId>
+                <artifactId>bcprov-jdk14</artifactId>
+            </exclusion>
+        </exclusions>
+    </dependency>
+    	<!-- apache poi dependency -->
+    	
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.6</version>
+		</dependency>
+		<dependency>
+            <groupId>com.lowagie</groupId>
+            <artifactId>itext</artifactId>
+            <version>2.1.7</version>
+
+
+	<exclusions>
+            <exclusion>
+                <groupId>bouncycastle</groupId>
+                <artifactId>bcmail-jdk14</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>bouncycastle</groupId>
+                <artifactId>bcprov-jdk14</artifactId>
+            </exclusion>
+        </exclusions>
+
+        </dependency>
         <!-- General dependencies for standard applications -->
         <dependency>
             <groupId>junit</groupId>

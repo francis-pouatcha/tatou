@@ -1,5 +1,7 @@
 package cm.adorsys.gpao.model;
 
+import cm.adorsys.gpao.security.SecurityUtil;
+import cm.adorsys.gpao.utils.CurrencyUtils;
 import cm.adorsys.gpao.utils.GpaoSequenceGenerator;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -21,11 +23,9 @@ import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
 
 @RooJavaBean
-@RooToString
 @RooJpaActiveRecord
 public class Inventory {
 
-    @NotNull
     private String reference;
 
     @Column(updatable = false)
@@ -33,7 +33,6 @@ public class Inventory {
     @DateTimeFormat(style = "M-")
     private Date created = new Date();
 
-    @NotNull
     private String createdBy;
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -43,7 +42,7 @@ public class Inventory {
     private String closedBy;
 
     @Enumerated
-    private DocumentStates status;
+    private DocumentStates status = DocumentStates.OPENED;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "inventory")
     private Set<InventoryItems> inventoryItems = new HashSet<InventoryItems>();
@@ -54,8 +53,27 @@ public class Inventory {
     @ManyToOne
     private Devise currency;
 
+    @ManyToOne
+    private Company company;
+
+    public Inventory() {
+    }
+
+    public String toString() {
+        return reference;
+    }
+
+    public void calculateGapAmount() {
+        gapAmount = BigDecimal.ZERO;
+        for (InventoryItems items : inventoryItems) {
+            gapAmount = gapAmount.add(items.getGapAmount());
+        }
+    }
+    
+
     @PostPersist
     public void postPersist() {
         reference = GpaoSequenceGenerator.getSequence(getId(), GpaoSequenceGenerator.INVENTORY_SEQUENCE_PREFIX);
+        createdBy = SecurityUtil.getUserName();
     }
 }

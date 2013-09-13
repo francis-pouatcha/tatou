@@ -8,7 +8,6 @@ import cm.adorsys.gpao.model.Product;
 import cm.adorsys.gpao.model.PurchaseOrder;
 import cm.adorsys.gpao.model.UnitOfMesures;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 
 privileged aspect OrderItems_Roo_JavaBean {
     
@@ -36,11 +35,11 @@ privileged aspect OrderItems_Roo_JavaBean {
         this.udm = udm;
     }
     
-    public BigInteger OrderItems.getQuantity() {
+    public BigDecimal OrderItems.getQuantity() {
         return this.quantity;
     }
     
-    public void OrderItems.setQuantity(BigInteger quantity) {
+    public void OrderItems.setQuantity(BigDecimal quantity) {
         this.quantity = quantity;
     }
     

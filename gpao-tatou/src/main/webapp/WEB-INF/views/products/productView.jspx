@@ -61,12 +61,13 @@
 							z="lG7QIxVME9KcY1HO5KZRyhVRjEc=" />
 						<field:input-hidden object="${product }" field="reference"
 							id="c_cm_adorsys_gpao_model_Product_reference"  />
+							<field:input field="name"
+							id="c_cm_adorsys_gpao_model_Product_name" required="true"
+							z="USsMssaSX/R0kZPFQADs184CFF8=" />
 							<field:input field="codeBare"
 									id="c_cm_adorsys_gpao_model_Product_codeBare"
 									z="DeMlgiUNsIOyzTIxwQVcZWfZhlA=" />
-						<field:input field="name"
-							id="c_cm_adorsys_gpao_model_Product_name" required="true"
-							z="USsMssaSX/R0kZPFQADs184CFF8=" />
+						
 
 					</div>
 					<div class="span6">
@@ -96,13 +97,12 @@
 								<c:choose>
 								<c:when test="${empty product.id}">
 								<field:input field="virtualStock"
-									id="c_cm_adorsys_gpao_model_Product_virtualStock" min="0"
+									id="c_cm_adorsys_gpao_model_Product_virtualStock" 
 									required="true" validationMessageCode="field_invalid_integer"
 									z="uB4+maWipvw1Dxwf+OKuOaaNUzA=" />
 								</c:when>
 								<c:otherwise>
-								<field:display id="c_cm_adorsys_gpao_model_Product_virtualStock" object="${product}" field="virtualStock" />
-								<field:input-hidden id="c_cm_adorsys_gpao_model_Product_virtualStock" object="${product}" field="virtualStock" />
+								<field:gpao-display  hiddenfield="true" id="c_cm_adorsys_gpao_model_Product_virtualStock"  object="${product}" field="virtualStock" />
 								</c:otherwise>
 								</c:choose>
 								<field:input field="minStock"
@@ -211,40 +211,6 @@
 			e.preventDefault();
 			$(this).tab('show');
 		});
-		/* Get the rows which are currently selected */
-		function fnGetSelected(oTableLocal) {
-			return oTableLocal.$('tr.row_selected');
-		};
-		var oTable;
-
-		$(document).ready(function() {
-			/* Add a click handler to the rows - this could be used as a callback */
-			$("#listtaxe tbody tr").click(function(e) {
-				if ($(this).hasClass('row_selected')) {
-					$(this).removeClass('row_selected');
-				} else {
-					oTable.$('tr.row_selected').removeClass('row_selected');
-					$(this).addClass('row_selected');
-				}
-			});
-
-			/* Add a click handler for the delete row */
-			$('#delete').click(function() {
-				var anSelected = fnGetSelected(oTable);
-				if (anSelected.length !== 0) {
-					oTable.fnDeleteRow(anSelected[0]);
-				}
-			});
-
-			/* Init the table */
-			oTable = $('#listtaxe').dataTable({
-				"bJQueryUI" : true,
-				"sPaginationType" : "full_numbers"
-			});
-		});
-
-		
-
 		
 	</script>
 

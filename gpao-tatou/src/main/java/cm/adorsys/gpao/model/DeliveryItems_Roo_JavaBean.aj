@@ -8,7 +8,6 @@ import cm.adorsys.gpao.model.DeliveryItems;
 import cm.adorsys.gpao.model.Product;
 import cm.adorsys.gpao.model.UnitOfMesures;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.Date;
 
 privileged aspect DeliveryItems_Roo_JavaBean {
@@ -29,19 +28,19 @@ privileged aspect DeliveryItems_Roo_JavaBean {
         this.product = product;
     }
     
-    public BigInteger DeliveryItems.getOrderQte() {
+    public BigDecimal DeliveryItems.getOrderQte() {
         return this.orderQte;
     }
     
-    public void DeliveryItems.setOrderQte(BigInteger orderQte) {
+    public void DeliveryItems.setOrderQte(BigDecimal orderQte) {
         this.orderQte = orderQte;
     }
     
-    public BigInteger DeliveryItems.getQteReceive() {
+    public BigDecimal DeliveryItems.getQteReceive() {
         return this.qteReceive;
     }
     
-    public void DeliveryItems.setQteReceive(BigInteger qteReceive) {
+    public void DeliveryItems.setQteReceive(BigDecimal qteReceive) {
         this.qteReceive = qteReceive;
     }
     

@@ -3,6 +3,7 @@
 
 package cm.adorsys.gpao.model;
 
+import cm.adorsys.gpao.model.Company;
 import cm.adorsys.gpao.model.Devise;
 import cm.adorsys.gpao.model.DocumentStates;
 import cm.adorsys.gpao.model.Inventory;
@@ -83,6 +84,14 @@ privileged aspect Inventory_Roo_JavaBean {
     
     public void Inventory.setCurrency(Devise currency) {
         this.currency = currency;
+    }
+    
+    public Company Inventory.getCompany() {
+        return this.company;
+    }
+    
+    public void Inventory.setCompany(Company company) {
+        this.company = company;
     }
     
 }

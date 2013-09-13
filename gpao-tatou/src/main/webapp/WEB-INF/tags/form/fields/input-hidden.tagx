@@ -35,7 +35,7 @@
 										value="${object[field][item_id] }" />
 								</c:when>
 								<!--  check if the field is enum -->
-								<c:when test="${isList }">
+								<c:when test="${isEnum }">
 									<c:set var="hidden_field" value="rayon.id" />
 									<input type="hidden" id="_${sec_field}_id" name="${field}"
 										value="${object[field] }" />

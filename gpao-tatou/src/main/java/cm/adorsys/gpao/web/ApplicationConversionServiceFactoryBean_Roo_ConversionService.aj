@@ -11,31 +11,16 @@ import cm.adorsys.gpao.model.Tenders;
 import cm.adorsys.gpao.web.ApplicationConversionServiceFactoryBean;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.format.FormatterRegistry;
 
 privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService {
     
     declare @type: ApplicationConversionServiceFactoryBean: @Configurable;
     
-    public Converter<Company, String> ApplicationConversionServiceFactoryBean.getCompanyToStringConverter() {
-        return new org.springframework.core.convert.converter.Converter<cm.adorsys.gpao.model.Company, java.lang.String>() {
-            public String convert(Company company) {
-                return new StringBuilder().append(company.getName()).append(' ').append(company.getContactName()).append(' ').append(company.getContactFunction()).append(' ').append(company.getTaxePayerNumber()).toString();
-            }
-        };
-    }
-    
     public Converter<Long, Company> ApplicationConversionServiceFactoryBean.getIdToCompanyConverter() {
         return new org.springframework.core.convert.converter.Converter<java.lang.Long, cm.adorsys.gpao.model.Company>() {
             public cm.adorsys.gpao.model.Company convert(java.lang.Long id) {
                 return Company.findCompany(id);
-            }
-        };
-    }
-    
-    public Converter<Inventory, String> ApplicationConversionServiceFactoryBean.getInventoryToStringConverter() {
-        return new org.springframework.core.convert.converter.Converter<cm.adorsys.gpao.model.Inventory, java.lang.String>() {
-            public String convert(Inventory inventory) {
-                return new StringBuilder().append(inventory.getReference()).append(' ').append(inventory.getCreated()).append(' ').append(inventory.getCreatedBy()).append(' ').append(inventory.getClosed()).toString();
             }
         };
     }
@@ -126,6 +111,80 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
                 return getObject().convert(getObject().convert(id, Long.class), Tenders.class);
             }
         };
+    }
+    
+    public void ApplicationConversionServiceFactoryBean.installLabelConverters(FormatterRegistry registry) {
+        registry.addConverter(getCompanyToStringConverter());
+        registry.addConverter(getIdToCompanyConverter());
+        registry.addConverter(getStringToCompanyConverter());
+        registry.addConverter(getContactsToStringConverter());
+        registry.addConverter(getIdToContactsConverter());
+        registry.addConverter(getStringToContactsConverter());
+        registry.addConverter(getDeliveryToStringConverter());
+        registry.addConverter(getIdToDeliveryConverter());
+        registry.addConverter(getStringToDeliveryConverter());
+        registry.addConverter(getDeliveryItemsToStringConverter());
+        registry.addConverter(getIdToDeliveryItemsConverter());
+        registry.addConverter(getStringToDeliveryItemsConverter());
+        registry.addConverter(getDeviseToStringConverter());
+        registry.addConverter(getIdToDeviseConverter());
+        registry.addConverter(getStringToDeviseConverter());
+        registry.addConverter(getGpaoUserToStringConverter());
+        registry.addConverter(getIdToGpaoUserConverter());
+        registry.addConverter(getStringToGpaoUserConverter());
+        registry.addConverter(getGpaoUserGroupToStringConverter());
+        registry.addConverter(getIdToGpaoUserGroupConverter());
+        registry.addConverter(getStringToGpaoUserGroupConverter());
+        registry.addConverter(getInventoryToStringConverter());
+        registry.addConverter(getIdToInventoryConverter());
+        registry.addConverter(getStringToInventoryConverter());
+        registry.addConverter(getInventoryItemsToStringConverter());
+        registry.addConverter(getIdToInventoryItemsConverter());
+        registry.addConverter(getStringToInventoryItemsConverter());
+        registry.addConverter(getLocationToStringConverter());
+        registry.addConverter(getIdToLocationConverter());
+        registry.addConverter(getStringToLocationConverter());
+        registry.addConverter(getOrderItemsToStringConverter());
+        registry.addConverter(getIdToOrderItemsConverter());
+        registry.addConverter(getStringToOrderItemsConverter());
+        registry.addConverter(getPartnerToStringConverter());
+        registry.addConverter(getIdToPartnerConverter());
+        registry.addConverter(getStringToPartnerConverter());
+        registry.addConverter(getPartnerGroupToStringConverter());
+        registry.addConverter(getIdToPartnerGroupConverter());
+        registry.addConverter(getStringToPartnerGroupConverter());
+        registry.addConverter(getProductToStringConverter());
+        registry.addConverter(getIdToProductConverter());
+        registry.addConverter(getStringToProductConverter());
+        registry.addConverter(getProductFamilyToStringConverter());
+        registry.addConverter(getIdToProductFamilyConverter());
+        registry.addConverter(getStringToProductFamilyConverter());
+        registry.addConverter(getProductSubFamilyToStringConverter());
+        registry.addConverter(getIdToProductSubFamilyConverter());
+        registry.addConverter(getStringToProductSubFamilyConverter());
+        registry.addConverter(getPurchaseOrderToStringConverter());
+        registry.addConverter(getIdToPurchaseOrderConverter());
+        registry.addConverter(getStringToPurchaseOrderConverter());
+        registry.addConverter(getTaxeToStringConverter());
+        registry.addConverter(getIdToTaxeConverter());
+        registry.addConverter(getStringToTaxeConverter());
+        registry.addConverter(getTendersToStringConverter());
+        registry.addConverter(getIdToTendersConverter());
+        registry.addConverter(getStringToTendersConverter());
+        registry.addConverter(getUdmGroupToStringConverter());
+        registry.addConverter(getIdToUdmGroupConverter());
+        registry.addConverter(getStringToUdmGroupConverter());
+        registry.addConverter(getUnitOfMesuresToStringConverter());
+        registry.addConverter(getIdToUnitOfMesuresConverter());
+        registry.addConverter(getStringToUnitOfMesuresConverter());
+        registry.addConverter(getWareHousesToStringConverter());
+        registry.addConverter(getIdToWareHousesConverter());
+        registry.addConverter(getStringToWareHousesConverter());
+    }
+    
+    public void ApplicationConversionServiceFactoryBean.afterPropertiesSet() {
+        super.afterPropertiesSet();
+        installLabelConverters(getObject());
     }
     
 }

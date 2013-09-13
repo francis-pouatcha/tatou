@@ -339,3 +339,13 @@ field date --fieldName beginDate --type java.util.Date
 field date --fieldName endDate --type java.util.Date
 field enum --fieldName status --type ~.model.DocumentStates
 web mvc all --package cm.adorsys.gpao.web
+web mvc all --package ~.web
+web mvc all --package ~.web
+web mvc all --package ~.web
+persistence setup --provider HIBERNATE --database H2_IN_MEMORY 
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-09-12 21:56:31
+persistence setup --provider HIBERNATE --database MYSQL --userName root --password clovis431982 --databaseName gpaodb
+focus --class ~.model.Inventory
+field reference --fieldName company --type ~.model.Company
+web mvc all --package ~.web
+web mvc all --package ~.web

@@ -10,36 +10,30 @@ import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
 
+import cm.adorsys.gpao.utils.CurrencyUtils;
+
 @RooJavaBean
 @RooToString
 @RooJpaActiveRecord
 public class InventoryItems {
 
-    @NotNull
     @ManyToOne
     private Product product;
 
     @NotNull
-    @Min(0L)
-    private BigInteger virtualStock;
+    private BigDecimal virtualStock = BigDecimal.ZERO;
 
     @NotNull
-    @Min(0L)
-    @Value("0")
-    private BigInteger realStock;
+    private BigDecimal realStock = BigDecimal.ZERO;
 
-    @Value("0")
-    private BigInteger stockGap;
+    private BigDecimal stockGap= BigDecimal.ZERO;
 
-    @Value("0")
-    private BigDecimal gapAmount;
+    private BigDecimal gapAmount= BigDecimal.ZERO;
 
-    @NotNull
     @ManyToOne
     private Inventory inventory;
 
-    @Value("0")
-    private BigDecimal productPrice;
+    private BigDecimal productPrice= BigDecimal.ZERO;
 
     @NotNull
     @ManyToOne
@@ -49,15 +43,15 @@ public class InventoryItems {
     }
 
     public InventoryItems(Product product, Inventory inventory) {
-        super();
         this.product = product;
         this.inventory = inventory;
-        this.productPrice = product.getSalePrice();
+        this.productPrice = CurrencyUtils.convertAmount(product.getDefaultCurrency(), inventory.getCurrency(), product.getSalePrice());
         this.virtualStock = product.getVirtualStock();
         this.realStock = product.getVirtualStock();
         this.udm = product.getDefaultUdm();
         calculateStockGapAndGapAmount();
     }
+    
 
     public void calculateStockGapAndGapAmount() {
         stockGap = virtualStock.subtract(realStock);

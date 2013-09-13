@@ -4,18 +4,18 @@
     <jsp:output omit-xml-declaration="yes"/>
     <form:create id="fc_cm_adorsys_gpao_model_Product" modelAttribute="product" path="/products" render="${empty dependencies}" z="dwu0TPQMHOb+RmCrvaS8NhGfP04=">
         <field:select field="productType" id="c_cm_adorsys_gpao_model_Product_productType" items="${producttypes}" path="producttypes" z="lG7QIxVME9KcY1HO5KZRyhVRjEc="/>
-        <field:input field="reference" id="c_cm_adorsys_gpao_model_Product_reference" required="true" z="1jejKyx05KQmIClWWziTrNZApM4="/>
+        <field:input field="reference" id="c_cm_adorsys_gpao_model_Product_reference" z="nCnO/4Wrpzu9evXZygux7cSPbPA="/>
         <field:input field="name" id="c_cm_adorsys_gpao_model_Product_name" required="true" z="USsMssaSX/R0kZPFQADs184CFF8="/>
         <field:select field="famille" id="c_cm_adorsys_gpao_model_Product_famille" itemValue="id" items="${productsubfamilys}" path="/productsubfamilys" z="lx3lLgZL06xPzwC1TTBjbtf00aQ="/>
         <field:select field="warehouse" id="c_cm_adorsys_gpao_model_Product_warehouse" itemValue="id" items="${warehouseses}" path="/warehouseses" z="PDjeJPfM5kAtM+nX20hEQfzJf9o="/>
         <field:checkbox field="canBebuy" id="c_cm_adorsys_gpao_model_Product_canBebuy" z="9OuEMFw4bSmbVhYgJV/aMbmSXpQ="/>
         <field:checkbox field="canBeSale" id="c_cm_adorsys_gpao_model_Product_canBeSale" z="5MM8lpV0n78GsS+uIJovoBgrYwI="/>
-        <field:input field="virtualStock" id="c_cm_adorsys_gpao_model_Product_virtualStock" min="0" required="true" validationMessageCode="field_invalid_integer" z="uB4+maWipvw1Dxwf+OKuOaaNUzA="/>
-        <field:input field="minStock" id="c_cm_adorsys_gpao_model_Product_minStock" min="0" required="true" validationMessageCode="field_invalid_integer" z="f5hRhzmEeiTVCvZcYj8zIpPS2GE="/>
+        <field:input field="virtualStock" id="c_cm_adorsys_gpao_model_Product_virtualStock" min="0" required="true" validationMessageCode="field_invalid_number" z="ksc1CVwp5Uc0q0xzdgUJcTGrT0s="/>
+        <field:input field="minStock" id="c_cm_adorsys_gpao_model_Product_minStock" min="0" required="true" validationMessageCode="field_invalid_number" z="cHMxsBCeOqvLN+tjelkPN+pwg8w="/>
         <field:select field="defaultUdm" id="c_cm_adorsys_gpao_model_Product_defaultUdm" itemValue="id" items="${unitofmesureses}" path="/unitofmesureses" z="CKUudAFCgXCa6eHEH9uO//B6usk="/>
         <field:select field="defaultCurrency" id="c_cm_adorsys_gpao_model_Product_defaultCurrency" itemValue="id" items="${devises}" path="/devises" required="true" z="8bauiTLzA7nNujLsZYZRnJ5uTJ8="/>
-        <field:input field="purchasePrice" id="c_cm_adorsys_gpao_model_Product_purchasePrice" validationMessageCode="field_invalid_number" z="V227mhwGOXfaWVAem1Sirm+cHRQ="/>
-        <field:input field="salePrice" id="c_cm_adorsys_gpao_model_Product_salePrice" validationMessageCode="field_invalid_number" z="tAq7jVolP0yzFls2GexWkQ9aLF0="/>
+        <field:input field="purchasePrice" id="c_cm_adorsys_gpao_model_Product_purchasePrice" required="true" validationMessageCode="field_invalid_number" z="1HIUbitGkP/3iNG5sFlnHtRO9OQ="/>
+        <field:input field="salePrice" id="c_cm_adorsys_gpao_model_Product_salePrice" required="true" validationMessageCode="field_invalid_number" z="ubKTjP+6+mRSUl3hy7gMD1W/lc4="/>
         <field:input field="epaisseur" id="c_cm_adorsys_gpao_model_Product_epaisseur" z="9/z9TJ3hjMhAy18kE4pPB3GM1KU="/>
         <field:input field="color" id="c_cm_adorsys_gpao_model_Product_color" z="OUx2XbAoHfZtdFbjHKuUdhPxRKw="/>
         <field:input field="description" id="c_cm_adorsys_gpao_model_Product_description" z="j3LSEvLw7oBDAecKpEswtlya43Q="/>

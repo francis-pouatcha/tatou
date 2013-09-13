@@ -32,17 +32,12 @@ public class OrderItems {
 	@ManyToOne
 	private UnitOfMesures udm;
 
-	@Value("1")
-	private BigInteger quantity;
+	private BigDecimal quantity = BigDecimal.ONE;;
 
-	@Value("0")
 	private BigDecimal subTotal;
 	
-	@Value("0")
 	private BigDecimal taxedSubTotal;
 
-
-	@Value("0")
 	private BigDecimal taxeAmount;
 
 	@NotNull

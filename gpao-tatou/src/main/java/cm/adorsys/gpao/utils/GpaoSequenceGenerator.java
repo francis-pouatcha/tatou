@@ -10,7 +10,7 @@ public class GpaoSequenceGenerator {
 
 
 	public static String getSequence(Long index ,String prefixe){
-		String sequence  = prefixe+"-"+GpaoDateUtil.getYear() +"-"+ formatNumber(index.toString(), 4) ;
+		String sequence  = prefixe+"-"+GpaoDateUtil.getMonthYear() +"-"+ formatNumber(index.toString(), 4) ;
 		return sequence;
 	}
 	

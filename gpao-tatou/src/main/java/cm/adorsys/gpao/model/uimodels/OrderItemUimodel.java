@@ -20,7 +20,7 @@ public class OrderItemUimodel {
 
     private BigDecimal unitPrice;
 
-    private BigInteger quantity = BigInteger.ONE;
+    private BigDecimal quantity = BigDecimal.ONE;
     
     public OrderItemUimodel() { }
     
@@ -65,11 +65,11 @@ public class OrderItemUimodel {
 		this.unitPrice = unitPrice;
 	}
 
-	public BigInteger getQuantity() {
+	public BigDecimal getQuantity() {
 		return quantity;
 	}
 
-	public void setQuantity(BigInteger quantity) {
+	public void setQuantity(BigDecimal quantity) {
 		quantity = quantity;
 	}
 

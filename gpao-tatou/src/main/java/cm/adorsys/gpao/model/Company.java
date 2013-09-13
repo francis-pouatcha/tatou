@@ -17,7 +17,6 @@ import org.springframework.roo.addon.tostring.RooToString;
 import org.springframework.web.multipart.MultipartFile;
 
 @RooJavaBean
-@RooToString
 @RooJpaActiveRecord
 public class Company {
 	
@@ -57,12 +56,20 @@ public class Company {
     @ManyToOne
     private Devise devise;
     
+    public String toString(){
+    	return name ;
+    }
+    
     public Company() {
 		// TODO Auto-generated constructor stub
 	}
     public Company(String name) {
 		this.name = name ;
 	}
+    
+    public static Company getOwnComapny(){
+    	return Company.findCompany(new Long(1));
+    }
     
     
 	public static void init(){

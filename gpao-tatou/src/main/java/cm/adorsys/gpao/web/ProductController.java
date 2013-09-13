@@ -1,12 +1,14 @@
 package cm.adorsys.gpao.web;
 
 import cm.adorsys.gpao.model.Devise;
+import cm.adorsys.gpao.model.Inventory;
 import cm.adorsys.gpao.model.Product;
 import cm.adorsys.gpao.model.ProductSubFamily;
 import cm.adorsys.gpao.model.ProductType;
 import cm.adorsys.gpao.model.Taxe;
 import cm.adorsys.gpao.model.UnitOfMesures;
 import cm.adorsys.gpao.model.WareHouses;
+import cm.adorsys.gpao.services.Impl.TatouInventoryService;
 import cm.adorsys.gpao.utils.GpaoDocumentDirectories;
 import cm.adorsys.gpao.utils.GpaoFileUtils;
 import cm.adorsys.gpao.utils.MessageType;
@@ -14,6 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,6 +31,9 @@ import org.springframework.web.multipart.MultipartFile;
 @Controller
 @RooWebScaffold(path = "products", formBackingObject = Product.class)
 public class ProductController {
+
+    @Autowired
+    TatouInventoryService inventoryService;
 
     @RequestMapping(value = "/addOrEditForm", method = RequestMethod.GET, produces = "text/html")
     public String addOrEditProductsForm(@RequestParam(value = "id", required = false) Long id, Model uiModel) {
@@ -50,7 +56,14 @@ public class ProductController {
                 if (saveFileName != null) product.setProductImagePath(saveFileName);
             }
         }
+        boolean initialEntry = product.isInitialEntry();
+        System.out.println("virtual stock : " + product.getVirtualStock());
         Product merge = product.merge();
+        System.out.println("virtual stock after merge : " + merge.getVirtualStock());
+        if (initialEntry) {
+            Inventory inventoryFormProduct = inventoryService.buildInitialInventoryFormProduct(merge);
+            if (inventoryFormProduct != null) inventoryService.closeInventory(inventoryFormProduct);
+        }
         populateEditForm(uiModel, merge);
         uiModel.addAttribute(MessageType.SUCCESS_MESSAGE, "Enregistre avec success !");
         return "products/productView";

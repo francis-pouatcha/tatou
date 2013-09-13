@@ -30,7 +30,6 @@ public class Delivery {
 
 	private String reference;
 
-	@NotNull
 	private String createBy;
 
 	private String receiveBy;
@@ -47,16 +46,14 @@ public class Delivery {
 	@Enumerated(EnumType.STRING)
 	private DeliveryOrigin origin;
 
-	@Enumerated
-	private DocumentStates status;
+	@Enumerated(EnumType.STRING)
+	private DocumentStates status = DocumentStates.OPENED;
 
 	private BigDecimal unTaxeAmount = BigDecimal.ZERO;
 
-	@Min(0L)
-	private BigDecimal taxAmount;
+	private BigDecimal taxAmount  = BigDecimal.ZERO;
 
-	@Min(0L)
-	private BigDecimal taxedAmount;
+	private BigDecimal taxedAmount  = BigDecimal.ZERO;
 
 	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "delivery")
 	private Set<DeliveryItems> deliveryItems = new HashSet<DeliveryItems>();
@@ -73,11 +70,15 @@ public class Delivery {
 	private String docRef;
 
 	public Delivery() {
-		this.company = Company.findCompany(Long.valueOf(1));
-		currency = company.getDevise();
-		createBy = SecurityUtil.getUserName();
 
 	}
+	public Delivery( Company company) {
+		this.company = Company.findCompany(Long.valueOf(1));
+		currency = company.getDevise();
+
+	}
+
+
 
 	public Delivery(PurchaseOrder order) {
 		this.createBy = SecurityUtil.getUserName();
@@ -93,6 +94,7 @@ public class Delivery {
 	@PostPersist
 	public void postPersist() {
 		reference =GpaoSequenceGenerator.getSequence(getId(), GpaoSequenceGenerator.DELIVERY_SEQUENCE_PREFIX);
+		createBy = SecurityUtil.getUserName();
 	}
 
 	public void initAmount() {
@@ -111,6 +113,13 @@ public class Delivery {
 		EntityManager em = Delivery.entityManager();
 		TypedQuery<Delivery> q = em.createQuery("SELECT o FROM Delivery AS o WHERE  o.id > :id ORDER BY o.id ", Delivery.class);
 		q.setParameter("id", id);
+		return q;
+	}
+	
+	public static TypedQuery<cm.adorsys.gpao.model.Delivery> findDeliverysByReferenceEquals(String reference) {
+		EntityManager em = Delivery.entityManager();
+		TypedQuery<Delivery> q = em.createQuery("SELECT o FROM Delivery AS o WHERE  o.reference = :reference ", Delivery.class);
+		q.setParameter("reference", reference);
 		return q;
 	}
 
