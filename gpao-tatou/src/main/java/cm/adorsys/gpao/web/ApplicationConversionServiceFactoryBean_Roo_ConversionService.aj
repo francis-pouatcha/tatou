@@ -7,6 +7,7 @@ import cm.adorsys.gpao.model.Company;
 import cm.adorsys.gpao.model.Inventory;
 import cm.adorsys.gpao.model.InventoryItems;
 import cm.adorsys.gpao.model.Location;
+import cm.adorsys.gpao.model.TenderItems;
 import cm.adorsys.gpao.model.Tenders;
 import cm.adorsys.gpao.web.ApplicationConversionServiceFactoryBean;
 import org.springframework.beans.factory.annotation.Configurable;
@@ -89,10 +90,26 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         };
     }
     
-    public Converter<Tenders, String> ApplicationConversionServiceFactoryBean.getTendersToStringConverter() {
-        return new org.springframework.core.convert.converter.Converter<cm.adorsys.gpao.model.Tenders, java.lang.String>() {
-            public String convert(Tenders tenders) {
-                return new StringBuilder().append(tenders.getReference()).append(' ').append(tenders.getCreated()).append(' ').append(tenders.getCreateBy()).append(' ').append(tenders.getClosed()).toString();
+    public Converter<TenderItems, String> ApplicationConversionServiceFactoryBean.getTenderItemsToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<cm.adorsys.gpao.model.TenderItems, java.lang.String>() {
+            public String convert(TenderItems tenderItems) {
+                return new StringBuilder().append(tenderItems.getQuantity()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, TenderItems> ApplicationConversionServiceFactoryBean.getIdToTenderItemsConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, cm.adorsys.gpao.model.TenderItems>() {
+            public cm.adorsys.gpao.model.TenderItems convert(java.lang.Long id) {
+                return TenderItems.findTenderItems(id);
+            }
+        };
+    }
+    
+    public Converter<String, TenderItems> ApplicationConversionServiceFactoryBean.getStringToTenderItemsConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, cm.adorsys.gpao.model.TenderItems>() {
+            public cm.adorsys.gpao.model.TenderItems convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), TenderItems.class);
             }
         };
     }
@@ -168,6 +185,9 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         registry.addConverter(getTaxeToStringConverter());
         registry.addConverter(getIdToTaxeConverter());
         registry.addConverter(getStringToTaxeConverter());
+        registry.addConverter(getTenderItemsToStringConverter());
+        registry.addConverter(getIdToTenderItemsConverter());
+        registry.addConverter(getStringToTenderItemsConverter());
         registry.addConverter(getTendersToStringConverter());
         registry.addConverter(getIdToTendersConverter());
         registry.addConverter(getStringToTendersConverter());

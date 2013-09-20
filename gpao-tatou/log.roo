@@ -349,3 +349,39 @@ focus --class ~.model.Inventory
 field reference --fieldName company --type ~.model.Company
 web mvc all --package ~.web
 web mvc all --package ~.web
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-09-13 18:22:12
+persistence setup --provider HIBERNATE --database H2_IN_MEMORY 
+persistence setup --provider HIBERNATE --database H2_IN_MEMORY --jndiDataSource java:jboss/datasources/ExampleDS 
+persistence setup --provider HIBERNATE --database MYSQL --databaseName gpaodb --userName root --password clovis431982
+focus --class ~.model.Tenders
+field string --fieldName description
+focus --class ~.model.PurchaseOrder
+field reference --fieldName tender --type ~.model.Tenders
+web mvc all --package ~.web
+web mvc all --package ~.web
+web mvc all --package ~.web
+web mvc all --package ~.web
+focus --class ~.model.Tenders
+field reference --fieldName company --type ~.model.Company
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-09-17 12:20:03
+entity jpa --class ~.model.TenderItems 
+field reference --fieldName products --type ~.model.Product
+field number --fieldName quantity --type java.math.BigDecimal --min 0
+field reference --fieldName udm --type ~.model.UnitOfMesures 
+web mvc all --package ~.web
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-09-17 17:33:07
+focus --class ~.model.Tenders
+field set --fieldName tenderItems --type ~.model.TenderItems --mappedBy tender --cardinality ONE_TO_MANY 
+focus --class ~.model.TenderItems
+// [failed] field reference --fieldName tender --type ~.model.Tender --notNull 
+// [failed] field reference --fieldName tender --type ~.model.Tender --notNull 
+// [failed] field reference --fieldName tender --type ~.model.Tender --notNull 
+field reference --fieldName tender --type ~.model.Tenders --notNull 
+web mvc all --package ~.web
+web mvc all --package ~.web
+web mvc all --package ~.web
+web mvc all --package ~.web
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-09-18 11:59:13
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-09-19 08:57:14
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-09-19 13:02:04
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-09-19 19:46:45

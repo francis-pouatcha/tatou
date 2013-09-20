@@ -64,9 +64,9 @@ public class Taxe {
 		BigDecimal taxeAmount = BigDecimal.ZERO ;
 		if(isActive){
 			if(taxeType == taxeType.BY_AMOUNT) {
-				taxeAmount = taxeValue ;
+				taxeAmount = taxeAmount.add(taxeValue) ;
 			}else {
-				taxeAmount = (amount.multiply(taxeValue)).divide(BigDecimal.valueOf(100),2);
+				taxeAmount = taxeAmount.add((amount.multiply(taxeValue)).divide(BigDecimal.valueOf(100),2));
 			}
 		}
 		return taxeAmount ;

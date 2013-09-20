@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_cm_adorsys_gpao_model_TenderItems" modelAttribute="tenderItems" path="/tenderitemses" versionField="Version" z="xM3WvklkivW8C6kMPYSHVTJ2JZ0=">
+        <field:select field="products" id="c_cm_adorsys_gpao_model_TenderItems_products" itemValue="id" items="${products}" path="/products" z="kB4DHKN162nNyhNRPpl2rfnoGfE="/>
+        <field:input field="quantity" id="c_cm_adorsys_gpao_model_TenderItems_quantity" min="0" required="true" validationMessageCode="field_invalid_number" z="IDU//SmBLaHVbuhgOwqWSn0V10Y="/>
+        <field:select field="udm" id="c_cm_adorsys_gpao_model_TenderItems_udm" itemValue="id" items="${unitofmesureses}" path="/unitofmesureses" z="awNHWiXjIPf6phLHEKXJhQrKEj0="/>
+    </form:update>
+</div>

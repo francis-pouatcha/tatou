@@ -3,9 +3,12 @@
 
 package cm.adorsys.gpao.model;
 
+import cm.adorsys.gpao.model.Company;
 import cm.adorsys.gpao.model.DocumentStates;
+import cm.adorsys.gpao.model.TenderItems;
 import cm.adorsys.gpao.model.Tenders;
 import java.util.Date;
+import java.util.Set;
 
 privileged aspect Tenders_Roo_JavaBean {
     
@@ -25,11 +28,11 @@ privileged aspect Tenders_Roo_JavaBean {
         this.created = created;
     }
     
-    public Date Tenders.getCreateBy() {
+    public String Tenders.getCreateBy() {
         return this.createBy;
     }
     
-    public void Tenders.setCreateBy(Date createBy) {
+    public void Tenders.setCreateBy(String createBy) {
         this.createBy = createBy;
     }
     
@@ -71,6 +74,30 @@ privileged aspect Tenders_Roo_JavaBean {
     
     public void Tenders.setStatus(DocumentStates status) {
         this.status = status;
+    }
+    
+    public String Tenders.getDescription() {
+        return this.description;
+    }
+    
+    public void Tenders.setDescription(String description) {
+        this.description = description;
+    }
+    
+    public Company Tenders.getCompany() {
+        return this.company;
+    }
+    
+    public void Tenders.setCompany(Company company) {
+        this.company = company;
+    }
+    
+    public Set<TenderItems> Tenders.getTenderItems() {
+        return this.tenderItems;
+    }
+    
+    public void Tenders.setTenderItems(Set<TenderItems> tenderItems) {
+        this.tenderItems = tenderItems;
     }
     
 }

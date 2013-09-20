@@ -19,6 +19,7 @@
         <field:simple field="orderItems" id="c_cm_adorsys_gpao_model_PurchaseOrder_orderItems" messageCode="entity_reference_not_managed" messageCodeAttribute="Order Items" z="eL34QFkGb689fEtGDevyfofrCYY="/>
         <field:checkbox field="isValided" id="c_cm_adorsys_gpao_model_PurchaseOrder_isValided" z="8JNOgYNQjG67zAZh9zJ0JgOp33g="/>
         <field:select field="company" id="c_cm_adorsys_gpao_model_PurchaseOrder_company" itemValue="id" items="${companys}" path="/companys" required="true" z="L+KZ3eEZnbU2o4CC6TP4Z5d4xos="/>
+        <field:select field="tender" id="c_cm_adorsys_gpao_model_PurchaseOrder_tender" itemValue="id" items="${tenderses}" path="/tenderses" z="p8WGD0a+Si+Z+zGe5MiRHe87TBw="/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_cm_adorsys_gpao_model_PurchaseOrder" render="${not empty dependencies}" z="WZWuLbTqT/PN/xmWMGD7uMAg4jc="/>
 </div>

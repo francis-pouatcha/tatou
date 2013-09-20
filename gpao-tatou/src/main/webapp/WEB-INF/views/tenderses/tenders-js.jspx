@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<span xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields"
+	xmlns:spring="http://www.springframework.org/tags"
+	xmlns:form="urn:jsptagdir:/WEB-INF/tags/form"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:security="http://www.springframework.org/security/tags"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions" version="2.0"
+	style="margin: 10px;"> <jsp:directive.page
+		contentType="text/html;charset=UTF-8" /> <jsp:output
+		omit-xml-declaration="yes" /> <!-- liste of link to use on this page  -->
+	<spring:url value="/tenderses/findProductByNameLike/"
+		var="search_url" /> <spring:url
+		value="/tenderses/getSelectedProduct/" var="selected_url" /> <spring:url
+		value="/tenderses/getUdmListFromUdmGroup/" var="udmList_url" />
+	<spring:url value="/tenderses/${tenders.id}/addTenderItem?"
+		var="add_url" /> 
+		<spring:url value="/tenderses/${tenders.id}/caculated"
+		var="calcul_url" /> 
+		<spring:url value="/tenderses/${tenders.id}/validatedOrder"
+		var="validated_url" /> 
+		<spring:url value="/tenderses/${tenders.id}/removeTenderItem?itemid="
+		var="remove_url" /> 
+		<spring:url
+		value="/resources/images/ajax-loader.gif" var="loadimage" /> <!-- Modal -->
+	<div id="search" class="modal hide fade"  role="dialog"
+		style="width: 60%;" align="center">
+		<div class="modal-body">
+			<div class="row-fluid">
+				<div class="span4 controls-row">
+					<legend> details produit</legend>
+					<form id="orderitem" class="form-vertical">
+						<div class="control-group">
+							<label class="control-label" for="productName">designation</label>
+							<div class="controls">
+								<input type="text" id="productName" name="productName"
+									placeholder="designation" /> <input type="hidden"
+									id="productId" name="productId" />
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="unitPrice">prix
+								Unitaire</label>
+							<div class="controls">
+								<input type="text" id="unitPrice" name="unitPrice"
+									placeholder="prix Unitaire" />
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="udm">Udm</label>
+							<div class="controls">
+								<select id="udm" name="udm" class="span11">
+									
+								</select>
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="quantity">quantite</label>
+							<div class="controls">
+								<input type="text" id="quantity" name="quantity"
+									placeholder="quantite" />
+							</div>
+						</div>
+
+					</form>
+					<button id="details" class="btn-info">plus de details</button>
+					<button id="save" style="margin-left: 2%;" class="btn-success">Enregistrer</button>
+				</div>
+				<div style="height: 400px; overflow-y: auto; margin-left: 2%;"
+					class="span8">
+					<div class="input-append">
+						<input  class="input-xlarge" id="searchText" type="text" />
+						<button id="searchBtn" class="btn" type="button">Rechercher</button>
+					</div>
+					<table id="products">
+						<thead>
+							<tr>
+								<th style="text-align: center;">reference</th>
+								<th style="text-align: center;">udm</th>
+								<th style="text-align: center;">Devise</th>
+								<th style="text-align: center;">prix</th>
+							</tr>
+						</thead>
+						<tbody>
+
+
+						</tbody>
+					</table>
+				</div>
+
+			</div>
+		</div>
+		<div class="modal-footer">
+			<center>
+				<IMG alt="loading ..." src="${loadimage } " class="loadimage"
+					style="display: none;" />
+			</center>
+			<button style="margin-left: 2%;" class="btn-danger"
+				data-dismiss="modal" aria-hidden="true">Close</button>
+		</div>
+	</div> <SCRIPT type="text/javascript">
+		function selectRow(row) {
+			unselectRow(row);
+			$(row).addClass('row-selected');
+		};
+
+		function unselectRow() {
+			$(row).removeClass("row-selected");
+		};
+
+		function addRowClickListener(tableid) {
+			var table = '#' + tableid + ' tr' ;
+			$(table).each(function() {
+				this.onclick = function(event) {
+					getSelected(this.id);
+				};
+			});
+
+		};
+		function addrow(data){
+			var table = '#' + data +' tbody';
+			 $(table).append(rowTemplate) ;
+		};
+		
+		function cleartable(tableid){
+			var table = '#' + tableid +' tbody';
+			$(table).empty();
+			
+		};
+		$('#addBtn').click(function() {
+			$('#search').modal('show');
+			return false;
+		});
+		$('#delBtn').click(function() {
+			window.location = urlFromSelectedRow('tenderIdems');
+			return false;
+		});
+		$('#validerBtn').click(function() {
+			var url = '${validated_url}';
+			window.location = url ;
+		});
+		
+		
+		$('#checkall').change(function() {
+			toggleAllRowFrom('tenderIdems');
+			return false;
+		});
+		$('#calculBtn').click(function() {
+			var url = '${calcul_url}';
+			window.location = url ;
+		});
+		
+		
+		$('#save').click(function() {
+			addOrderItem();
+		});
+		
+		$('#searchBtn').click(function() {
+			searchProduct();
+		});
+		
+		function removeSelectedRows(tableid) {
+			var table = '#' + tableid + ' tbody input:checkbox:checked' ;
+			$(table).parents("tr").remove();
+			$('#checkall').prop('checked', false);
+
+		};
+		
+		function toggleAllRowFrom(tableid){
+			var check = '#' + tableid + ' tbody input[type=checkbox]' ;
+			$(check).each(function() {
+			    $(this).prop('checked', $('#checkall').is(':checked'));
+			});
+			
+		}
+		
+		function urlFromSelectedRow(tableid){
+			var  url = '${remove_url}' ;
+			var check = '#' + tableid + ' tbody input:checkbox:checked' ;
+			$(check).each(function() {
+				url = url+$(this).parents("tr").attr('id')+',' ;
+			});
+			return url ;
+		}
+		
+		
+		function searchProduct(){
+			var url = '${search_url}'+$('#searchText').val();
+			var table = '#products tbody' ;
+			cleartable('products');
+			$.getJSON( url,
+	                function(data){
+						$(data).each(function(){
+							$('#products tbody').append(
+							 '<tr id="'+this.id+'">
+								  <td>'+this.name+'</td>
+								  <td>'+this.defaultUdm.name+'</td>
+								  <td>'+this.defaultCurrency.name+'</td>
+								  <td>'+this.purchasePrice+'</td>
+								  </tr>'
+						);
+							
+						});
+						addRowClickListener	('products');
+
+					});
+			
+		} ;
+		function getSelected(id){
+			var url = '${selected_url}'+id;
+			$.getJSON( url,
+	                function(data){
+							$('#productId').val(data.productId) ;
+							$('#productName').val(data.productName) ;
+							$('#unitPrice').val(data.unitPrice) ;
+							$('#quantity').val(data.quantity) ;
+							$("#udm").empty();
+							getUdmList(data.udm.unitGroup.id);
+						});
+					};
+					function addOrderItem(){
+						var url = '${add_url}'+$('#orderitem').serialize() ;
+						$.getJSON( url,
+				                function(data){
+							if(data){
+							$("#tenderIdems tbody").empty();
+							$(data).each(function(){
+								$('#tenderIdems tbody').append(
+								 '<tr id="'+this.id+'">
+									  <td>'+this.products.name+'</td>
+									  <td style="text-align: center;">'+this.quantity+'</td>
+									  <td style="text-align: center;">'+this.udm.name+'</td>
+									  <td  style="text-align: center;" ><input type="checkbox" /></td>
+									  </tr>'
+							);
+								
+							});
+							alert('enregistrer avec success !');
+						}
+									});
+								};
+					
+					function getUdmList(id){
+						var url = '${udmList_url}'+id;
+						$.getJSON( url,
+				                function(data){
+										$("#udm").empty();
+										$(data).each(function(){
+											var option = $('<option></option>').attr("value", this.id).text(this.name);	
+											$("#udm").append(option);
+											
+										});
+										
+									});
+								};
+		
+	</SCRIPT>
+
+</span>
+
+

@@ -1,23 +1,41 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:menu="urn:jsptagdir:/WEB-INF/tags/menu" xmlns:spring="http://www.springframework.org/tags" class="well" id="menu" version="2.0">
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:menu="urn:jsptagdir:/WEB-INF/tags/menu" xmlns:spring="http://www.springframework.org/tags" xmlns:security="http://www.springframework.org/security/tags"  class="well" id="menu" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <menu:menu id="_menu" z="ser-managed">
         <jsp:include page="menu-user-infos.jspx"  />
+      
         <menu:category label="Donnees de Base" id="c_configuration" z="user-managed">
+        <security:authorize ifAnyGranted="ROLE_ACCESS_UDM">
             <menu:item id="i_unitofmesures_new" messageCode="global_menu_gpao" url="/unitofmesureses/config" z="user-managed"/>
+            </security:authorize>
+             <security:authorize ifAnyGranted="ROLE_ACCESS_TAXE">
             <menu:item id="i_taxe_new" messageCode="global_menu_gpao" url="/taxes/config" z="user-managed"/>
-            <menu:item id="i_productsubfamily_new" label="Familles et SousFamilles de Produits" messageCode="global_menu_gpao" url="/productsubfamilys/config" z="user-managed"/>
+            </security:authorize>
+            <security:authorize ifAnyGranted="ROLE_ACCESS_FAMILLE_PRODUIT">
+            <menu:item id="i_productsubfamily_new" label="Familles et SousFamilles de Produits" messageCode="global_menu_gpao" url="/productsubfamilys/config/admin" z="user-managed"/>
+            </security:authorize>
+            <security:authorize ifAnyGranted="ROLE_ACCESS_MONNAIE">
             <menu:item id="i_devise_new" messageCode="global_menu_gpao" url="/devises/config" z="user-managed"/>
+            </security:authorize>
+             <security:authorize ifAnyGranted="ROLE_ACCESS_EMPLACEMENT">
             <menu:item id="i_location_new" label="Emplacements"  messageCode="global_menu_gpao" url="/locations/config" z="user-managed"/>
+            </security:authorize>
+             <security:authorize ifAnyGranted="ROLE_ACCESS_COMPANY">
             <menu:item id="i_company_new" messageCode="global_msg_gpao" label="Informations Entreprise" url="/companys/config" z="user-managed"/>
+        </security:authorize>
         </menu:category>
         <menu:category id="c_utilisateurs" z="user-managed">
+        <security:authorize ifAnyGranted="ROLE_ACCESS_UTILISATEUR">
             <menu:item  label="Utilisateurs" id="i_gpaouser_list" messageCode="global_menu_gpao" url="/gpaousers?page=1&amp;size=${empty param.size ? 10 : param.size}" z="ser-managed"/>
+            </security:authorize>
+             <security:authorize ifAnyGranted="ROLE_ACCESS_GROUPE_UTILISATEUR">
             <menu:item  label="Groupes Utilisateurs" id="i_gpaousergroup_list" messageCode="global_menu_gpao" url="/gpaousergroups?page=1&amp;size=${empty param.size ? 10 : param.size}" z="ser-managed"/>
+               </security:authorize> 
+               <security:authorize access="isAuthenticated()">
                   <menu:item  label="Information Personneles" id="i_gpaousergroup_list" messageCode="global_msg_gpao" url="/gpaousers/changePersonalInfoForm" z="ser-managed"/>
                   <menu:item  label="Changer votre Password"  id="i_gpaousergroup_list" messageCode="global_msg_gpao" url="/passwordresets?form" z="ser-managed"/>
-       
+       </security:authorize>
         </menu:category>
     </menu:menu>
 </div>

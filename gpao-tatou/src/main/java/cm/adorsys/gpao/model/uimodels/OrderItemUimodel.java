@@ -30,7 +30,6 @@ public class OrderItemUimodel {
 		productName = product.getName();
 		unitPrice = product.getPurchasePrice();
 		
-		
 	}
 
 	public Long getProductId() {
@@ -70,7 +69,7 @@ public class OrderItemUimodel {
 	}
 
 	public void setQuantity(BigDecimal quantity) {
-		quantity = quantity;
+		this.quantity = quantity;
 	}
 
     

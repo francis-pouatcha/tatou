@@ -9,28 +9,32 @@
 	xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
 	<jsp:directive.page contentType="text/html;charset=UTF-8" />
 	<jsp:output omit-xml-declaration="yes" />
-	<spring:url value="/purchaseOrders/addOrEditForm" var="add_url"></spring:url>
-	<spring:url value="/purchaseOrders/next/${ purchaseOrder.id}" var="next_url"></spring:url>
-	<spring:url value="/purchaseOrders/previous/${purchaseOrder.id}"
-		var="previous_url"></spring:url>
+	<spring:url value="/purchaseorders/addOrEditForm" var="add_url"></spring:url>
+	<spring:url value="/purchaseorders/next/${ purchaseOrder.id}"
+		var="next_url" />
+		<spring:url value="/purchaseorders/orderNote/${ purchaseOrder.reference}.pdf"
+		var="print_order_url" />
+	<spring:url value="/purchaseorders/previous/${purchaseOrder.id}"
+		var="previous_url" />
 	<div class="row-fluid">
 		<div class="span3">
-		<c:if test="${not empty purchaseOrder.id}">
-		<P>
-			Facturee ? :<span class="label label-info">${purchaseOrder.invoiced}</span>
-			Livree ? :<span class="label label-info">${purchaseOrder.received}</span> 
-			</P>
-		</c:if>
-			
+			<c:if test="${not empty purchaseOrder.id}">
+				<p>
+					Reference :<span class="label label-info">${purchaseOrder.reference}</span>
+				</p>
+				<P>
+					Status ? :<span class="label label-info">${purchaseOrder.orderState}</span>
+				</P>
+				<c:if test="${not empty purchaseOrder.tender}">
+					<P>
+						Appel d'offre:<span class="label label-info">${purchaseOrder.tender.reference}</span>
+					</P>
+				</c:if>
+			</c:if>
+
 		</div>
-		
+
 		<div class="span6">
-		<c:if test="${not empty purchaseOrder.id}">
-		<p>
-			Reference :<span class="label label-info">${purchaseOrder.reference}</span>
-			Etat :<span class="label label-info">${purchaseOrder.orderState}</span> 
-		</p>
-		</c:if>
 			<jsp:include page="../gpaoMessages.jspx" />
 		</div>
 		<div style="vertical-align: top; margin-left: 2%;" class="span3">
@@ -48,129 +52,195 @@
 		</div>
 	</div>
 
-	<form:update showLabel="false" showInPanel="false"
+	<form:update showLabel="false" showInPanel="false" method="POST"
 		id="fu_cm_adorsys_gpao_model_PurchaseOrder"
 		modelAttribute="purchaseOrder" path="/purchaseorders/addOrEdit"
 		versionField="Version" z="b6dqb2JiUknS+bzjek9tabLjDro=">
 		<div class="row-fluid">
-			<div class="span5">
-			    <field:select field="company" id="c_cm_adorsys_gpao_model_PurchaseOrder_company" itemValue="id" items="${companys}" path="/companys" required="true" z="L+KZ3eEZnbU2o4CC6TP4Z5d4xos="/>
-			
-				<field:input-hidden object="${purchaseOrder}" field="reference"
-					id="c_cm_adorsys_gpao_model_PurchaseOrder_reference" />
-				<field:select field="supplier"
-					id="c_cm_adorsys_gpao_model_PurchaseOrder_supplier" itemValue="id"
-					items="${partners}" path="/partners" required="true"
-					z="mdsFQRFpH6R1j+nnYjhtxhAtmYs=" />
-				<field:input-hidden   isBoolean="true" object="${purchaseOrder }" field="received"
-					id="c_cm_adorsys_gpao_model_PurchaseOrder_received"  />
-				<field:input-hidden field="invoiced" isBoolean="true" object="${purchaseOrder }" 
-					id="c_cm_adorsys_gpao_model_PurchaseOrder_invoiced" />
-				<field:input-hidden object="${purchaseOrder}" field="validatedBy"
-					id="c_cm_adorsys_gpao_model_PurchaseOrder_validatedBy" />
-				<field:input-hidden object="${purchaseOrder}" field="validateDate"
-					id="c_cm_adorsys_gpao_model_PurchaseOrder_validateDate" />
+			<ul class="nav nav-tabs" id="tab">
+				<li class="active"><a href="#ligne">lignes de commande</a></li>
+				<li><a href="#infos">infos-generales</a></li>
+			</ul>
+			<div class="tab-content">
+				<div class="tab-pane " id="infos">
+					<div class="span6">
+						<field:select field="company"
+							id="c_cm_adorsys_gpao_model_PurchaseOrder_company" itemValue="id"
+							items="${companys}" path="/companys" required="true"
+							z="L+KZ3eEZnbU2o4CC6TP4Z5d4xos=" />
+						<field:datetime
+							dateTimePattern="${purchaseOrder_orderdate_date_format}"
+							field="orderDate"
+							id="c_cm_adorsys_gpao_model_PurchaseOrder_orderDate"
+							z="diAbfwj735pSkm1LTDfWET9Ps0A=" />
+						<field:input-hidden object="${purchaseOrder}" field="reference"
+							id="c_cm_adorsys_gpao_model_PurchaseOrder_reference" />
+						<field:select field="supplier"
+							id="c_cm_adorsys_gpao_model_PurchaseOrder_supplier"
+							itemValue="id" items="${partners}" path="/partners"
+							required="true" z="mdsFQRFpH6R1j+nnYjhtxhAtmYs=" />
+						<field:input-hidden isBoolean="true" object="${purchaseOrder }"
+							field="received"
+							id="c_cm_adorsys_gpao_model_PurchaseOrder_received" />
+						<field:input-hidden field="invoiced" isBoolean="true"
+							object="${purchaseOrder}"
+							id="c_cm_adorsys_gpao_model_PurchaseOrder_invoiced" />
 
+					</div>
+					<div class="span6">
+						<field:input-hidden object="${purchaseOrder}" field="amountHt"
+							id="c_cm_adorsys_gpao_model_PurchaseOrder_amountHt" />
+						<field:input-hidden object="${purchaseOrder}" field="taxeAmount"
+							id="c_cm_adorsys_gpao_model_PurchaseOrder_taxeAmount" />
+						<field:input-hidden object="${purchaseOrder}" field="totalAmount"
+							id="c_cm_adorsys_gpao_model_PurchaseOrder_totalAmount" />
+						<field:input-hidden object="${purchaseOrder}" field="createdBy"
+							id="c_cm_adorsys_gpao_model_PurchaseOrder_createdBy" />
+						<c:choose>
+							<c:when test="${not empty purchaseOrder.id }">
+								<field:gpao-display hiddenfield="true" isList="true"
+									field="currency" object="${purchaseOrder}"
+									id="c_cm_adorsys_gpao_model_PurchaseOrder_currency" />
+								<field:gpao-display hiddenfield="true" isList="true"
+									object="${purchaseOrder}" field="tender"
+									id="c_cm_adorsys_gpao_model_PurchaseOrder_tender" />
+							</c:when>
+							<c:otherwise>
+								<field:select field="currency"
+									id="c_cm_adorsys_gpao_model_PurchaseOrder_currency"
+									itemValue="id" items="${devises}" path="/devises"
+									required="true" z="PLIJofbnx5PVAfq8dRyQhC90BsY=" />
+								<field:select field="tender"
+									id="c_cm_adorsys_gpao_model_PurchaseOrder_tender"
+									itemValue="id" items="${tenderses}" path="/tenderses"
+									z="L+KZ3eEZnbU2o4CC6TP4Z5d4xos=" />
+									
+							</c:otherwise>
+						</c:choose>
 
-			</div>
-			<div class="span5">
-				<field:input-hidden object="${purchaseOrder}" field="amountHt"
-					id="c_cm_adorsys_gpao_model_PurchaseOrder_amountHt" />
-				<field:input-hidden object="${purchaseOrder}" field="taxeAmount"
-					id="c_cm_adorsys_gpao_model_PurchaseOrder_taxeAmount" />
-				<field:input-hidden object="${purchaseOrder}" field="totalAmount"
-					id="c_cm_adorsys_gpao_model_PurchaseOrder_totalAmount" />
-				<field:input-hidden object="${purchaseOrder}" isEnum="true"  field="orderState"
-					id="c_cm_adorsys_gpao_model_PurchaseOrder_orderState"  />
-				<field:input-hidden object="${purchaseOrder}" field="createdBy"
-					id="c_cm_adorsys_gpao_model_PurchaseOrder_createdBy" />
-				<field:select field="currency"
-					id="c_cm_adorsys_gpao_model_PurchaseOrder_currency" itemValue="id"
-					items="${devises}" path="/devises" required="true"
-					z="PLIJofbnx5PVAfq8dRyQhC90BsY=" />
-				<field:simple field="orderItems" render="false"
-					id="c_cm_adorsys_gpao_model_PurchaseOrder_orderItems"
-					messageCode="entity_reference_not_managed"
-					messageCodeAttribute="Order Items" z="eL34QFkGb689fEtGDevyfofrCYY=" />
-				<field:datetime
-					dateTimePattern="${purchaseOrder_orderdate_date_format}"
-					field="orderDate"
-					id="c_cm_adorsys_gpao_model_PurchaseOrder_orderDate"
-					z="diAbfwj735pSkm1LTDfWET9Ps0A=" />
+						<field:simple field="orderItems" render="false"
+							id="c_cm_adorsys_gpao_model_PurchaseOrder_orderItems"
+							messageCode="entity_reference_not_managed"
+							messageCodeAttribute="Order Items"
+							z="eL34QFkGb689fEtGDevyfofrCYY=" />
+						<field:input-hidden  object="${purchaseOrder}"
+							isEnum="true" field="orderState"
+							id="c_cm_adorsys_gpao_model_PurchaseOrder_orderState" />
+							<field:gpao-display hiddenfield="true" object="${purchaseOrder}" field="validatedBy"
+							id="c_cm_adorsys_gpao_model_PurchaseOrder_validatedBy" />
+							<field:gpao-display hiddenfield="true" object="${purchaseOrder}" field="validateDate"
+							id="c_cm_adorsys_gpao_model_PurchaseOrder_validateDate" />
 
-			</div>
-			<div class="span2">
-			<c:if test="${ not empty purchaseOrder.id}">
-			<c:if test="${purchaseOrder.orderState eq 'DRAFT'}">
-				<p>
-					<button id="validerBtn" class="btn-success" style="width: 100%;" type="button">valider</button>
-				</p>
-				</c:if>
-				<p>
-					<button class="btn-info" style="width: 100%;" type="button">Imprimer</button>
-				</p>
-				<p>
-					<button class="btn-danger" style="width: 100%;" type="button">Annuler</button>
-				</p>
-				<p>
-					<button class="btn-info" style="width: 100%;" type="button">Facture</button>
-				</p>
-				<p>
-					<button class="btn-info" style="width: 100%;" type="button">Livraison</button>
-				</p>
-             </c:if>
-			</div>
-						
-			</div>
-			<div class="span11">
-<c:if test="${not empty purchaseOrder.id }">
-				<legend> Lignes de commande </legend>
-				<div class="btn-group pull-rigth" data-toggle="buttons-checkbox">
-					<button id="addBtn" type="button" class=" btn-success">Ajouter</button>
-					<button id="delBtn" type="button" class=" btn-danger">Suprimer</button>
-					<button id="calculBtn" type="button" class=" btn-info">Calculer</button>
+					</div>
+
 				</div>
-				<table id="orderIdems">
-					<thead>
-						<tr>
-							<th style="text-align: center;">#</th>
-							<th style="text-align: center;">reference</th>
-							<th style="text-align: center;">qte</th>
-							<th style="text-align: center;">udm</th>
-							<th style="text-align: center;">prix</th>
-							<th style="text-align: center;">taxe</th>
-							<th style="text-align: center;"><input id="checkall" type="checkbox" /></th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach items="${purchaseOrder.orderItems}" var="items">
-							<tr id="${items.id}">
-								<td style="text-align: center;">${items.id}</td>
-								<td >${items.product.name}</td>
-								<td style="text-align: center;">${items.quantity}</td>
-								<td style="text-align: center;">${items.udm.name}</td>
-								<td style="text-align: center;">${items.subTotal}</td>
-								<td style="text-align: center;">${items.taxeAmount}</td>
-								<td style="text-align: center;"><input type="checkbox" /></td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-				<br />
-				<div style="float: right;" class="span3">
-					<p>
-						<b> MontantHT : </b> <span class="label label-info">${purchaseOrder.amountHt} ${purchaseOrder.currency.shortName} </span>
-					</p>
-					<p>
-						<b> Taxes : </b><span class="label label-important">${purchaseOrder.taxeAmount } ${purchaseOrder.currency.shortName}</span> 
-					</p>
-					<p>
-						<b> MontantTTC : </b><span class="label label-success">${purchaseOrder.totalAmount } ${purchaseOrder.currency.shortName}</span>
-					</p>
+				<div class="tab-pane active" id="ligne">
+					<div style="padding-right: 2%;" class="span10">
+						<c:if test="${not empty purchaseOrder.id }">
+							<c:if test="${purchaseOrder.orderState eq 'BROULLON'}">
+								<div class="btn-group pull-rigth" data-toggle="buttons-checkbox">
+									<c:choose>
+										<c:when test="${not empty purchaseOrder.tender }">
+											<button id="addBtn" type="button" class=" btn-success">Traiter</button>
+										</c:when>
+										<c:otherwise>
+											<button id="addBtn" type="button" class=" btn-success">Ajouter</button>
+											<button id="delBtn" type="button" class=" btn-danger">Suprimer</button>
+
+										</c:otherwise>
+									</c:choose>
+									<button id="calculBtn" type="button" class=" btn-info">Calculer</button>
+								</div>
+							</c:if>
+						</c:if>
+						<table id="orderIdems">
+							<thead>
+								<tr>
+									<th style="text-align: center; width: 40%;">reference</th>
+									<th style="text-align: center;">qte</th>
+									<th style="text-align: center;">udm</th>
+									<th style="text-align: center;">prix</th>
+									<th style="text-align: center;">taxe</th>
+									<th style="text-align: center;"><input id="checkall"
+										type="checkbox" /></th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach items="${purchaseOrder.orderItems}" var="items">
+									<tr id="${items.id}">
+										<td>${items.product.name}</td>
+										<td style="text-align: center;">${items.quantity}</td>
+										<td style="text-align: center;">${items.udm.name}</td>
+										<td style="text-align: center;">${items.subTotal}</td>
+										<td style="text-align: center;">${items.taxeAmount}</td>
+										<td style="text-align: center;"><input type="checkbox" /></td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+						<br />
+						<div style="float: right;" class="span3">
+							<p>
+								<b> MontantHT : </b> <span class="label label-info">${purchaseOrder.amountHt}
+									${purchaseOrder.currency.shortName} </span>
+							</p>
+							<p>
+								<b> Taxes : </b><span class="label label-important">${purchaseOrder.taxeAmount
+									} ${purchaseOrder.currency.shortName}</span>
+							</p>
+							<p>
+								<b> MontantTTC : </b><span class="label label-success">${purchaseOrder.totalAmount
+									} ${purchaseOrder.currency.shortName}</span>
+							</p>
+						</div>
+
+					</div>
+					<div class="span2">
+                            <p>
+								<button class="btn-info" id="print_tender_btn"
+									style="width: 100%;" type="button">Visu appel d'offre</button>
+							</p>
+						<c:if test="${ not empty purchaseOrder.id}">
+							<c:if test="${purchaseOrder.orderState eq 'BROULLON'}">
+								<p>
+									<button id="validerBtn" class="btn-success"
+										style="width: 100%;" type="button">valider la
+										commande</button>
+								</p>
+							</c:if>
+							<p>
+								<button id="print_order_btn" class="btn-info" style="width: 100%;" type="button">Imprimer
+									le bon</button>
+							</p>
+							<p>
+								<button class="btn-danger" style="width: 100%;" type="button">Annuler
+									commande</button>
+							</p>
+							<c:if test="${purchaseOrder.orderState eq 'VALIDER'}">
+								<p>
+									<button class="btn-info" id="deliveryBtn" style="width: 100%;"
+										type="button">Lister les livraisons</button>
+								</p>
+							</c:if>
+						</c:if>
+					</div>
 				</div>
-				</c:if>
 			</div>
-					
+
+
+		</div>
+
+
 	</form:update>
-	<jsp:include page="purchaseorder-js.jspx"  />
+	<script>
+		$('#tab a').click(function(e) {
+			e.preventDefault();
+			$(this).tab('show');
+		});
+		$('#print_order_btn').click(function() {
+			var url = '${print_order_url}';
+			window.location = url ;
+		});
+	</script>
+	<jsp:include page="purchaseorder-js.jspx" />
 </div>

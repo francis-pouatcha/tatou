@@ -4,11 +4,13 @@
     <jsp:output omit-xml-declaration="yes"/>
     <page:show id="ps_cm_adorsys_gpao_model_Tenders" object="${tenders}" path="/tenderses" z="CUK1Le/gFr12K90tbSihlpnbrzY=">
         <field:display field="reference" id="s_cm_adorsys_gpao_model_Tenders_reference" object="${tenders}" z="DnaqBtBXdExR40XuxS8twTDOaTU="/>
-        <field:display date="true" dateTimePattern="${tenders_createby_date_format}" field="createBy" id="s_cm_adorsys_gpao_model_Tenders_createBy" object="${tenders}" z="OEC9R0LA9bZXqJidwc8satFR7ew="/>
+        <field:display field="createBy" id="s_cm_adorsys_gpao_model_Tenders_createBy" object="${tenders}" z="lp1g+M6BE23POd6vL04WsacaJqE="/>
         <field:display date="true" dateTimePattern="${tenders_closed_date_format}" field="closed" id="s_cm_adorsys_gpao_model_Tenders_closed" object="${tenders}" z="agzn7DEgB1aWHhjLPfmOOlms3jE="/>
         <field:display field="closedBy" id="s_cm_adorsys_gpao_model_Tenders_closedBy" object="${tenders}" z="Qs+qkpNB/uVcPXNodFdpfHDjBEI="/>
         <field:display date="true" dateTimePattern="${tenders_begindate_date_format}" field="beginDate" id="s_cm_adorsys_gpao_model_Tenders_beginDate" object="${tenders}" z="Vi6SaPWoaJ23lZsEdtOG6O2Xa70="/>
         <field:display date="true" dateTimePattern="${tenders_enddate_date_format}" field="endDate" id="s_cm_adorsys_gpao_model_Tenders_endDate" object="${tenders}" z="mX8OCOPeCNaG6GjK4Zp6sdjmTyg="/>
         <field:display field="status" id="s_cm_adorsys_gpao_model_Tenders_status" object="${tenders}" z="oYOz9AZBSZ/bCWG380Gsygc5ksU="/>
+        <field:display field="description" id="s_cm_adorsys_gpao_model_Tenders_description" object="${tenders}" z="s8gf2BsQRuWV6ibeYnIakctsnxQ="/>
+        <field:display field="company" id="s_cm_adorsys_gpao_model_Tenders_company" object="${tenders}" z="cUDoWHUoocw1j7ajpP14KgRk2mg="/>
     </page:show>
 </div>

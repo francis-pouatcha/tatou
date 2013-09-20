@@ -8,14 +8,14 @@
 	xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
 	<jsp:directive.page contentType="text/html;charset=UTF-8" />
 	<jsp:output omit-xml-declaration="yes" />
-	<spring:url value="/productsubfamilys/findByNameAndFamily"
+	<spring:url value="/productsubfamilys/findByNameAndFamily/${module}"
 		var="search_url"></spring:url>
 	<div class="row-fluid">
-		<DIV class="span6">
+		<DIV class="span5">
 			<form:update method="POST" id="fc_cm_adorsys_gpao_model_ProductSubFamily"
 				label="Creer/Modifier Sous Famille"
 				ortherButton="subFamilyViewBtn.jspx" showInPanel="false"
-				modelAttribute="productsubfamily" path="/productsubfamilys/save"
+				modelAttribute="productsubfamily" path="/productsubfamilys/save/${module}"
 				render="${empty dependencies}" z="user-managed">
 				<field:input field="name" 
 					id="c_cm_adorsys_gpao_model_ProductSubFamily_name" required="true"
@@ -42,14 +42,14 @@
 
 		</DIV>
 
-		<DIV style="margin-left: 1%;" class="span6">
+		<DIV style="margin-left: 1%;" class="span7">
 			<page:list id="pl_cm_adorsys_gpao_model_ProductSubFamily"
 				labelPlural="Liste des Sous Familles" showInPanel="false"
 				items="${productsubfamilys}" z="user-managed">
 				<div class="div-box-medium">
 					<table:table delete="false" create="false" show="delete" data="${productsubfamilys}"
 						id="l_cm_adorsys_gpao_model_ProductSubFamily"
-						path="/productsubfamilys/save" z="user-managed">
+						path="/productsubfamilys/save/${module}" z="user-managed">
 						<table:column maxLength="-1" id="c_cm_adorsys_gpao_model_ProductSubFamily_name"
 							property="name" z="user-managed" />
 							<table:column

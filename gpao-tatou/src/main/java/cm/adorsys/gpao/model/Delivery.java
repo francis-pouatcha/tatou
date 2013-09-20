@@ -47,7 +47,7 @@ public class Delivery {
 	private DeliveryOrigin origin;
 
 	@Enumerated(EnumType.STRING)
-	private DocumentStates status = DocumentStates.OPENED;
+	private DocumentStates status = DocumentStates.OUVERT;
 
 	private BigDecimal unTaxeAmount = BigDecimal.ZERO;
 
@@ -83,8 +83,8 @@ public class Delivery {
 	public Delivery(PurchaseOrder order) {
 		this.createBy = SecurityUtil.getUserName();
 		this.createdate = new Date();
-		this.origin = DeliveryOrigin.PORCHASE;
-		this.status = DocumentStates.OPENED;
+		this.origin = DeliveryOrigin.ACHAT;
+		this.status = DocumentStates.OUVERT;
 		this.currency = order.getCurrency();
 		this.company = order.getCompany();
 		this.docRef = order.getReference();
@@ -127,6 +127,12 @@ public class Delivery {
 		EntityManager em = Delivery.entityManager();
 		TypedQuery<Delivery> q = em.createQuery("SELECT o FROM Delivery AS o WHERE  o.id < :id ORDER BY o.id DESC ", Delivery.class);
 		q.setParameter("id", id);
+		return q;
+	}
+	public static TypedQuery<cm.adorsys.gpao.model.Delivery> findDeliverysByDocRef(String docRef) {
+		EntityManager em = Delivery.entityManager();
+		TypedQuery<Delivery> q = em.createQuery("SELECT o FROM Delivery AS o WHERE  o.docRef = :docRef ORDER BY o.id DESC ", Delivery.class);
+		q.setParameter("docRef", docRef);
 		return q;
 	}
 }

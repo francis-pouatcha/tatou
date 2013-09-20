@@ -18,12 +18,6 @@ import org.springframework.web.util.WebUtils;
 
 privileged aspect ProductFamilyController_Roo_Controller {
     
-    @RequestMapping(params = "form", produces = "text/html")
-    public String ProductFamilyController.createForm(Model uiModel) {
-        populateEditForm(uiModel, new ProductFamily());
-        return "productfamilys/create";
-    }
-    
     @RequestMapping(value = "/{id}", produces = "text/html")
     public String ProductFamilyController.show(@PathVariable("id") Long id, Model uiModel) {
         uiModel.addAttribute("productfamily", ProductFamily.findProductFamily(id));
@@ -43,12 +37,6 @@ privileged aspect ProductFamilyController_Roo_Controller {
             uiModel.addAttribute("productfamilys", ProductFamily.findAllProductFamilys());
         }
         return "productfamilys/list";
-    }
-    
-    @RequestMapping(value = "/{id}", params = "form", produces = "text/html")
-    public String ProductFamilyController.updateForm(@PathVariable("id") Long id, Model uiModel) {
-        populateEditForm(uiModel, ProductFamily.findProductFamily(id));
-        return "productfamilys/update";
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = "text/html")

@@ -109,6 +109,9 @@ public class Product {
     	return reference+":"+name;
     }
     
+    public void increaseVirtualQuantity(BigDecimal qte){
+    	 virtualStock = virtualStock.add(qte);
+    }
     public boolean isInitialEntry(){
 		return getId() == null && getVirtualStock().intValue()!=0;
 	}

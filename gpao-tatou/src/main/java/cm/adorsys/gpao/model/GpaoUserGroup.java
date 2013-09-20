@@ -16,7 +16,6 @@ import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
 
 @RooJavaBean
-@RooToString
 @RooJpaActiveRecord
 public class GpaoUserGroup {
 
@@ -34,6 +33,10 @@ public class GpaoUserGroup {
 	public GpaoUserGroup(String name) {
 		super();
 		this.name = name;
+	}
+	
+	public String toString(){
+		return name  ;
 	}
 	public static void init(){
 		if(GpaoUserGroup.countGpaoUserGroups() <= 0){

@@ -14,5 +14,7 @@ public interface IDeliveryService {
 	public Set<DeliveryItems> getDeliveryItems(Inventory inventory ,Delivery delivery) ;
 	public Delivery closeDelivery(Delivery delivery);
 	public void calCulateDeliveryAmout(Delivery delivery) ;
+	public Delivery accepAllDeliveryItems(Delivery delivery) ;
 
+	
 }

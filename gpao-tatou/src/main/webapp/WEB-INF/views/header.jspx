@@ -11,6 +11,7 @@
 	<spring:url var="home" value="/" />
 	<spring:url var="Admin_url" value="/adminHome" />
 	<spring:url var="purchase_url" value="/purchaseHome" />
+	<spring:url var="stock_url" value="/stockHome" />
 	<spring:message code="button_home" var="home_label" htmlEscape="false" />
 	<spring:message code="application_name" var="app_name" htmlEscape="false"/>
 	<div class="navbar-inner">
@@ -22,16 +23,19 @@
             <span class="icon-bar"></span>
           </button>
           <div class="nav-collapse collapse">
-            <ul class="nav ">
+            <ul id="headerLink" class="nav ">
               <li class="hidden-phone">
                 <a  href="${home}"><img src="${logo_url }" style="height: 27px;" class="logo" /> </a>
               </li>
-              <li class="active" ><a class="header-link" href="${Admin_url}">Administration</a></li>
-              <li><a class="header-link" href="#">Facturations</a></li>
-              <li><a class="header-link" href="#">Productions</a></li>
-               <li><a class="header-link" href="${purchase_url}">Achats</a></li>
-               <li><a class="header-link" href="#">Ventes</a></li>
-               <li><a class="header-link" href="#">Stocks</a></li>
+              <security:authorize ifAnyGranted="ROLE__MODULE_ADMINISTRATION">
+              <li onclick="activateLink(this);" class="active" ><a class="header-link" href="${Admin_url}">Administration</a></li>
+              </security:authorize>
+              <security:authorize ifAnyGranted="ROLE_MODULE_ACHAT">
+               <li onclick="activateLink(this);"><a class="header-link" href="${purchase_url}">Achats</a></li>
+               </security:authorize>
+                <security:authorize ifAnyGranted="ROLE_MODULE_STOCK">
+               <li onclick="activateLink(this);"><a class="header-link" href="${stock_url}">Stocks</a></li>
+               </security:authorize>
             </ul>
             <ul class="nav pull-right">
                             <c:if test="${pageContext['request'].userPrincipal != null}">
@@ -46,6 +50,20 @@
 
 		</div>
 	</div>
+	<SCRIPT type="text/javascript">
+	function activateLink(link) {
+		unactivateLink();
+		$(link).addClass('active');
+	};
+	
+	function unactivateLink() {
+		$('ul#headerLink li').each(function() {
+			$(this).removeClass('active');
+		});
+		
+	};
+	
+	</SCRIPT>
 	    
 
 </div> 

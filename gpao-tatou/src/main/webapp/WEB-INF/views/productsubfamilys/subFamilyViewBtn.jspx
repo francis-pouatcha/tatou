@@ -9,7 +9,8 @@
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
        <!-- liste of link to use on this page  -->
-       <spring:url value="/productfamilys?form"  var="add_url" />
+       <spring:url value="/productfamilys/${module}?form"  var="add_url" />
+       <spring:url value="/productfamilys/${module}/"  var="edit_url" />
        
        <input id="add" style="margin-left: 1%;" class="btn-warning span3" type="button" value="Creer Famille"/>
        <input id="edit" style="margin-left: 1%;" class="btn-warning span2 small-marge-left" type="button" value="Edit Famille"/>
@@ -19,8 +20,9 @@
           });
           
           $("#edit").click(function(){
-        	 var grpId = $("#_unitGroup_id").val();
-        	  window.alert( grpId);
+        	 var grpId = $("#_productFamily_id :selected").val();
+        	 var url = "${edit_url}"+grpId+"?form";
+        	 window.location =url ;
           });
           
           

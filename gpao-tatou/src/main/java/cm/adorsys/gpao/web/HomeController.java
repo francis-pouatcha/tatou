@@ -13,14 +13,16 @@ import cm.adorsys.gpao.model.RoleNames;
 import cm.adorsys.gpao.security.SecurityUtil;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping(value={"/","/index"})
 public class HomeController {
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public String gotoHomePage(HttpSession session,  Model uiModel){
 		GpaoUser gpaoUser = SecurityUtil.getGpaoUser();
 		if(session != null) session.setAttribute("currentUser", gpaoUser);
-		if(gpaoUser.hasRole(RoleNames.ROLE_ADMINISTRATOR))  return "adminHome";
+		if(gpaoUser.hasRole(RoleNames.ROLE__MODULE_ADMINISTRATION))  return "adminHome";
+		if(gpaoUser.hasRole(RoleNames.ROLE_MODULE_ACHAT))  return "purchaseHome";
+		if(gpaoUser.hasRole(RoleNames.ROLE_MODULE_STOCK))  return "stockHome";
 		return "login" ;
 		
 	}

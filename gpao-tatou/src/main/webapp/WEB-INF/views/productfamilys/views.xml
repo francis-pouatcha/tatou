@@ -7,10 +7,17 @@
 <definition extends="default" name="productfamilys/show">
         <put-attribute name="body" value="/WEB-INF/views/productfamilys/show.jspx"/>
     </definition>
-<definition extends="admin" name="productfamilys/create">
+<definition extends="admin" name="productfamilys/admin/create">
         <put-attribute name="body" value="/WEB-INF/views/productfamilys/create.jspx"/>
     </definition>
-<definition extends="admin" name="productfamilys/update">
+<definition extends="admin" name="productfamilys/admin/update">
+        <put-attribute name="body" value="/WEB-INF/views/productfamilys/update.jspx"/>
+    </definition>
+    
+    <definition extends="stock" name="productfamilys/stock/create">
+        <put-attribute name="body" value="/WEB-INF/views/productfamilys/create.jspx"/>
+    </definition>
+<definition extends="stock" name="productfamilys/stock/update">
         <put-attribute name="body" value="/WEB-INF/views/productfamilys/update.jspx"/>
     </definition>
 </tiles-definitions>

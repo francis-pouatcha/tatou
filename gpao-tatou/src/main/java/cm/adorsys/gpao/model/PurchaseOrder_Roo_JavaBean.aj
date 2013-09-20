@@ -9,6 +9,7 @@ import cm.adorsys.gpao.model.DocumentStates;
 import cm.adorsys.gpao.model.OrderItems;
 import cm.adorsys.gpao.model.Partner;
 import cm.adorsys.gpao.model.PurchaseOrder;
+import cm.adorsys.gpao.model.Tenders;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Set;
@@ -149,6 +150,14 @@ privileged aspect PurchaseOrder_Roo_JavaBean {
     
     public void PurchaseOrder.setCompany(Company company) {
         this.company = company;
+    }
+    
+    public Tenders PurchaseOrder.getTender() {
+        return this.tender;
+    }
+    
+    public void PurchaseOrder.setTender(Tenders tender) {
+        this.tender = tender;
     }
     
 }

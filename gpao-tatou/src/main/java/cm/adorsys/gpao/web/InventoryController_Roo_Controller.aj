@@ -3,13 +3,9 @@
 
 package cm.adorsys.gpao.web;
 
-import cm.adorsys.gpao.model.Devise;
-import cm.adorsys.gpao.model.DocumentStates;
 import cm.adorsys.gpao.model.Inventory;
-import cm.adorsys.gpao.model.InventoryItems;
 import cm.adorsys.gpao.web.InventoryController;
 import java.io.UnsupportedEncodingException;
-import java.util.Arrays;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.joda.time.format.DateTimeFormat;
@@ -95,14 +91,6 @@ privileged aspect InventoryController_Roo_Controller {
     void InventoryController.addDateTimeFormatPatterns(Model uiModel) {
         uiModel.addAttribute("inventory_created_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
         uiModel.addAttribute("inventory_closed_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
-    }
-    
-    void InventoryController.populateEditForm(Model uiModel, Inventory inventory) {
-        uiModel.addAttribute("inventory", inventory);
-        addDateTimeFormatPatterns(uiModel);
-        uiModel.addAttribute("devises", Devise.findAllDevises());
-        uiModel.addAttribute("documentstateses", Arrays.asList(DocumentStates.values()));
-        uiModel.addAttribute("inventoryitemses", InventoryItems.findAllInventoryItemses());
     }
     
     String InventoryController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

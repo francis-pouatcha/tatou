@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.hibernate.loader.custom.Return;
 import org.springframework.stereotype.Service;
 
 import cm.adorsys.gpao.model.Company;
@@ -15,9 +16,12 @@ import cm.adorsys.gpao.model.DocumentStates;
 import cm.adorsys.gpao.model.Inventory;
 import cm.adorsys.gpao.model.InventoryItems;
 import cm.adorsys.gpao.model.OrderItems;
+import cm.adorsys.gpao.model.Product;
 import cm.adorsys.gpao.model.PurchaseOrder;
+import cm.adorsys.gpao.model.excepions.UnmatchUnitOfMesureGroupException;
 import cm.adorsys.gpao.security.SecurityUtil;
 import cm.adorsys.gpao.services.IDeliveryService;
+import cm.adorsys.gpao.utils.UdmUtils;
 
 @Service
 public class TatouDeliveryService implements IDeliveryService {
@@ -51,7 +55,7 @@ public class TatouDeliveryService implements IDeliveryService {
 		Delivery delivery = new Delivery(Company.getOwnComapny());
 		delivery.setDocRef(inventory.getReference());
 		delivery.setCurrency(inventory.getCurrency()) ;
-		delivery.setOrigin(DeliveryOrigin.INVENTORY) ;
+		delivery.setOrigin(DeliveryOrigin.INVENTAIRE) ;
 		return delivery;
 	}
 
@@ -83,11 +87,30 @@ public class TatouDeliveryService implements IDeliveryService {
 	}
 
 	@Override
-	public Delivery closeDelivery(Delivery delivery) {
-		if(DocumentStates.OPENED.equals(delivery.getStatus())){
-			delivery.setStatus(DocumentStates.CLOSED)	;
+	public Delivery closeDelivery(Delivery delivery) throws UnmatchUnitOfMesureGroupException {
+		if(DocumentStates.OUVERT.equals(delivery.getStatus())){
+			Set<DeliveryItems> deliveryItems = delivery.getDeliveryItems();
+			for (DeliveryItems deliveryItems2 : deliveryItems) {
+				Product product = deliveryItems2.getProduct();
+				BigDecimal convert = UdmUtils.convert(deliveryItems2.getUdm(), product.getDefaultUdm(), deliveryItems2.getQteReceive());
+				product.increaseVirtualQuantity(convert);
+				product.merge();
+			}
+			delivery.setStatus(DocumentStates.FERMER)	;
 			delivery.setReceivedDate(new Date());
 			delivery.setReceiveBy(SecurityUtil.getUserName());
+			delivery = delivery.merge();
+		}
+		return delivery ;
+	}
+	@Override
+	public Delivery accepAllDeliveryItems(Delivery delivery)  {
+		if(DocumentStates.OUVERT.equals(delivery.getStatus())){
+			Set<DeliveryItems> deliveryItems = delivery.getDeliveryItems();
+			for (DeliveryItems deliveryItems2 : deliveryItems) {
+				deliveryItems2.acceptAllOrderQte();
+				deliveryItems2.merge();
+			}
 			delivery = delivery.merge();
 		}
 		return delivery ;

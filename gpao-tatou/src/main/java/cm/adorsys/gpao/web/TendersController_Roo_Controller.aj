@@ -3,11 +3,9 @@
 
 package cm.adorsys.gpao.web;
 
-import cm.adorsys.gpao.model.DocumentStates;
 import cm.adorsys.gpao.model.Tenders;
 import cm.adorsys.gpao.web.TendersController;
 import java.io.UnsupportedEncodingException;
-import java.util.Arrays;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.joda.time.format.DateTimeFormat;
@@ -92,16 +90,9 @@ privileged aspect TendersController_Roo_Controller {
     
     void TendersController.addDateTimeFormatPatterns(Model uiModel) {
         uiModel.addAttribute("tenders_created_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
-        uiModel.addAttribute("tenders_createby_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
         uiModel.addAttribute("tenders_closed_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
         uiModel.addAttribute("tenders_begindate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
         uiModel.addAttribute("tenders_enddate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
-    }
-    
-    void TendersController.populateEditForm(Model uiModel, Tenders tenders) {
-        uiModel.addAttribute("tenders", tenders);
-        addDateTimeFormatPatterns(uiModel);
-        uiModel.addAttribute("documentstateses", Arrays.asList(DocumentStates.values()));
     }
     
     String TendersController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

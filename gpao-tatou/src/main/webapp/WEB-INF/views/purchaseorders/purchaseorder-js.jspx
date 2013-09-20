@@ -11,18 +11,26 @@
 		omit-xml-declaration="yes" /> <!-- liste of link to use on this page  -->
 	<spring:url value="/purchaseorders/findProductByNameLike/"
 		var="search_url" /> <spring:url
+		value="/purchaseorders/findProductFromPurcharseOrder/${purchaseOrder.id}"
+		var="search_fromOrder_url" /> <spring:url
 		value="/purchaseorders/getSelectedProduct/" var="selected_url" /> <spring:url
 		value="/purchaseorders/getUdmListFromUdmGroup/" var="udmList_url" />
 	<spring:url value="/purchaseorders/${purchaseOrder.id}/addOrderItem?"
-		var="add_url" /> 
-		<spring:url value="/purchaseorders/${purchaseOrder.id}/caculated"
-		var="calcul_url" /> 
-		<spring:url value="/purchaseorders/${purchaseOrder.id}/validatedOrder"
-		var="validated_url" /> 
-		<spring:url value="/purchaseorders/${purchaseOrder.id}/removeOrderItem?itemid="
-		var="remove_url" /> 
-		<spring:url
+		var="add_url" /> <spring:url
+		value="/purchaseorders/${purchaseOrder.id}/caculated" var="calcul_url" />
+	<spring:url value="/purchaseorders/${purchaseOrder.id}/validatedOrder"
+		var="validated_url" /> <spring:url
+		value="/purchaseorders/${purchaseOrder.id}/removeOrderItem?itemid="
+		var="remove_url" /> <spring:url value="/tenderses/tenderNote/"
+		var="print_tender_url" /> <spring:url
 		value="/resources/images/ajax-loader.gif" var="loadimage" /> <!-- Modal -->
+	<spring:url value="/deliverys/listByDocRef/${purchaseOrder.reference}"
+		var="delivery_url" /> <c:set value="false" var="whithTender" />
+   <c:if test="${not empty purchaseOrder.tender }">
+		<c:set value="true" var="whithTender" />
+		<c:set value="${purchaseOrder.tender.reference }" var="tenderRef" />
+		
+	</c:if>
 	<div id="search" class="modal hide fade" tabindex="-1" role="dialog"
 		style="width: 60%;" align="center">
 		<div class="modal-body">
@@ -50,7 +58,7 @@
 							<label class="control-label" for="udm">Udm</label>
 							<div class="controls">
 								<select id="udm" name="udm" class="span11">
-									
+
 								</select>
 							</div>
 						</div>
@@ -68,9 +76,10 @@
 				</div>
 				<div style="height: 400px; overflow-y: auto; margin-left: 2%;"
 					class="span8">
-					<div class="input-append">
-						<input autofocus="true" class="input-xlarge" id="searchText" type="text" />
-						<button id="search" class="btn" type="button">Rechercher</button>
+					<div id="searchzone" class="input-append">
+						<input autofocus="true" class="input-xlarge" id="searchText"
+							type="text" />
+						<button id="searchBtn" class="btn" type="button">Rechercher</button>
 					</div>
 					<table id="products">
 						<thead>
@@ -132,6 +141,13 @@
 			$('#search').modal('show');
 			return false;
 		});
+	    $('#search').on('shown', function () {
+	    	var whithtender = ${whithTender} ;
+	    	if(whithtender){
+	    		$('div#searchzone').hide();
+	    		searchProduct();
+	    	}
+	        });
 		$('#delBtn').click(function() {
 			window.location = urlFromSelectedRow('orderIdems');
 			return false;
@@ -140,6 +156,25 @@
 			var url = '${validated_url}';
 			window.location = url ;
 		});
+		$('#deliveryBtn').click(function() {
+			var url = '${delivery_url}';
+			window.open(url) ;
+		});
+		$('#print_tender_btn').click(function() {
+			var selected_tender = $('#_tender_id :selected').text();
+			var whithtender = ${whithTender} ;
+	    	if(whithtender){
+	    		selected_tender = '${tenderRef}';
+	    	};
+			if(selected_tender){
+				var url = '${print_tender_url}'+selected_tender+'.pdf';
+				window.location = url ;
+			}else{
+				alert("selectionner un appel d offre");
+			}
+			
+		});
+		
 		
 		
 		$('#checkall').change(function() {
@@ -156,7 +191,7 @@
 			addOrderItem();
 		});
 		
-		$('#search').click(function() {
+		$('#searchBtn').click(function() {
 			searchProduct();
 		});
 		
@@ -186,7 +221,11 @@
 		
 		
 		function searchProduct(){
+			var whithtender = ${whithTender} ;
 			var url = '${search_url}'+$('#searchText').val();
+	    	if(whithtender){
+	    		url = '${search_fromOrder_url}';
+	    	}
 			var table = '#products tbody' ;
 			cleartable('products');
 			$.getJSON( url,
@@ -208,6 +247,9 @@
 					});
 			
 		} ;
+		
+		
+		
 		function getSelected(id){
 			var url = '${selected_url}'+id;
 			$.getJSON( url,
@@ -229,7 +271,6 @@
 							$(data).each(function(){
 								$('#orderIdems tbody').append(
 								 '<tr id="'+this.id+'">
-								      <td style="text-align: center;">'+this.id+'</td>
 									  <td>'+this.product.name+'</td>
 									  <td style="text-align: center;">'+this.quantity+'</td>
 									  <td style="text-align: center;">'+this.udm.name+'</td>
@@ -260,7 +301,6 @@
 								};
 		
 	</SCRIPT>
-
 </span>
 
 

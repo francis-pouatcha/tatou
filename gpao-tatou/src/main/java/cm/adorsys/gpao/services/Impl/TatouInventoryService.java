@@ -42,7 +42,7 @@ public class TatouInventoryService implements IInventoryService {
 	public void closeInventory(Inventory inventory){
 		inventory.setClosed(new Date());
 		inventory.setClosedBy(SecurityUtil.getUserName());
-		inventory.setStatus(DocumentStates.CLOSED);
+		inventory.setStatus(DocumentStates.FERMER);
 		Delivery delivery = deliveryService.getDeliveryFromInventory(inventory);
 		delivery.persist();
 		Set<DeliveryItems> deliveryItems = deliveryService.getDeliveryItems(inventory, delivery);

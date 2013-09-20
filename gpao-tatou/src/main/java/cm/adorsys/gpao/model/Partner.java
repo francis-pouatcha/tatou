@@ -49,7 +49,7 @@ public class Partner {
     private MultipartFile partnerLogo ;
 
     @Enumerated
-    private PartnerType partnerType = PartnerType.CORPORATION;
+    private PartnerType partnerType = PartnerType.ENTREPRISE;
 
     @ManyToOne
     private PartnerGroup partnerGroup;

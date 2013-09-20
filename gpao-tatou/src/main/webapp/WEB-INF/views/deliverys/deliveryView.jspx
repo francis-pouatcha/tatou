@@ -13,6 +13,8 @@
 	<spring:url value="/deliverys/next/${ delivery.id}" var="next_url" />
 	<spring:url value="/deliverys/previous/${delivery.id}"	var="previous_url" />
 	<spring:url value="/deliverys/close/${delivery.id}"	var="close_url" />
+	<spring:url value="/deliverys/acceptAll/${delivery.id}"	var="acceptAll_url" />
+	
 	<spring:url value="/deliverys/deliveryNote/${delivery.reference}.pdf"	var="print_url" />
 	<div class="row-fluid">
 		<div class="span4">
@@ -65,12 +67,12 @@
       <div class="span2">
       
 				<p>
-					<button id="printBtn" class="btn-info" style="width: 100%;" type="button">Imprimer</button>
+					<button id="printBtn" class="btn-info" style="width: 100%;" type="button">Imprimer le bon de reception</button>
 				</p>
 				
-	<c:if test="${ not (delivery.status eq 'CLOSED') }">
+	<c:if test="${ not (delivery.status eq 'FERMER') }">
 				<p>
-					<button class="btn-danger" id="closeBtn" style="width: 100%;" type="button">Cloturer</button>
+					<button class="btn-success" id="closeBtn" style="width: 100%;" type="button">cloturer la livraison</button>
 				</p>
 	</c:if>
 			</div>
@@ -80,21 +82,22 @@
          <div class="row-fluid">
 <c:if test="${not empty delivery.id }">
 				<legend>Produits a livrer  </legend>
-				<c:if test="${ not (delivery.status eq 'CLOSED') }">
+				<c:if test="${ not (delivery.status eq 'FERMER') }">
 				<div class="btn-group pull-rigth" data-toggle="buttons-checkbox">
-					<button id="addBtn" type="button" class=" btn-success">traiter</button>
+					<button id="traiterBtn" type="button" class=" btn-success">traiter tous</button>
 				</div>
 				</c:if>
 				<table id="orderIdems">
 					<thead>
 						<tr>
-							<th style="text-align: center;">#</th>
-							<th style="text-align: center;">reference</th>
-							<th style="text-align: center;">qte</th>
+							<th style="text-align: center; width: 17%;">reference</th>
+							<th style="text-align: center; ">Libelle</th>
+							<th style="text-align: center;">Cmd</th>
+							<th style="text-align: center;">Recue</th>
 							<th style="text-align: center;">udm</th>
 							<th style="text-align: center;">totalHt</th>
 							<th style="text-align: center;">totalTTC</th>
-							<c:if test="${ not (delivery.status eq 'CLOSED') }">
+							<c:if test="${ not (delivery.status eq 'FERMER') }">
 							<th style="text-align: center;"></th>
 							</c:if>
 						</tr>
@@ -102,13 +105,14 @@
 					<tbody>
 						<c:forEach items="${delivery.deliveryItems}" var="items">
 							<tr id="${items.id}">
-								<td style="text-align: center;">${items.id}</td>
-								<td >${items.product.name}</td>
+								<td style="text-align: center;">${items.reference}</td>
+								<td style="width: 40%;" >${items.product.name}</td>
 								<td style="text-align: center;">${items.orderQte}</td>
+								<td style="text-align: center;">${items.qteReceive}</td>
 								<td style="text-align: center;">${items.udm.name}</td>
 								<td style="text-align: center;">${items.amountHt}</td>
 								<td style="text-align: center;">${items.taxedAmount}</td>
-								<c:if test="${ not (delivery.status eq 'CLOSED') }">
+								<c:if test="${ not (delivery.status eq 'FERMER') }">
 								<td style="text-align: center;"><input type="checkbox" /></td>
 								</c:if>
 							</tr>
@@ -124,6 +128,12 @@
 			var url = '${close_url}' ;
 			window.location = url ;
 		});
+		$('#traiterBtn').click(function(e) {
+			var url = '${acceptAll_url}' ;
+			window.location = url ;
+		});
+		
+		
 		$('#printBtn').click(function(e) {
 			var url = '${print_url}' ;
 			window.location = url ;

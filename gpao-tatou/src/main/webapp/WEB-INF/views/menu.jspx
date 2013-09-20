@@ -94,5 +94,9 @@
             <menu:item id="i_tenders_new" messageCode="global_menu_new" url="/tenderses?form" z="ji8k0Gv3UJmT1cRx9f4jwGLKRrY="/>
             <menu:item id="i_tenders_list" messageCode="global_menu_list" url="/tenderses?page=1&amp;size=${empty param.size ? 10 : param.size}" z="YjdlOKyNMnpyW/4gqcCC63wQ1d4="/>
         </menu:category>
+        <menu:category id="c_tenderitems" z="jrRCIFLUPlU/36pECYRisQkm7lg=">
+            <menu:item id="i_tenderitems_new" messageCode="global_menu_new" url="/tenderitemses?form" z="pBR5SeBpP2Liw5Y5MJ5jqohIjgQ="/>
+            <menu:item id="i_tenderitems_list" messageCode="global_menu_list" url="/tenderitemses?page=1&amp;size=${empty param.size ? 10 : param.size}" z="kJaEMLM0W/wJL5Vx9f9rJyOCqH8="/>
+        </menu:category>
     </menu:menu>
 </div>

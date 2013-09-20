@@ -1,28 +1,38 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:menu="urn:jsptagdir:/WEB-INF/tags/menu" xmlns:spring="http://www.springframework.org/tags" class="well" id="menu" version="2.0">
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:menu="urn:jsptagdir:/WEB-INF/tags/menu" xmlns:security="http://www.springframework.org/security/tags" xmlns:spring="http://www.springframework.org/tags" class="well" id="menu" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
   
     <menu:menu id="_menu" z="ser-managed">
    <jsp:include page="menu-user-infos.jspx" />
         <menu:category label="Carnet D'adresses" id="c_configuration" z="user-managed">
+          <security:authorize ifAnyGranted="ROLE_ACCESS_FOURNISSEUR">
           <menu:item id="i_partner_list" label="Fournisseurs" messageCode="global_menu_gpao" url="/partners?page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
+           </security:authorize>
+           <security:authorize ifAnyGranted="ROLE_ACCESS_CLIENT">
            <menu:item id="i_partner_list" label="Clients" messageCode="global_menu_gpao" url="/partners?page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
-                  <menu:item id="i_partner_list" label="groupes de partenaires" messageCode="global_menu_gpao" url="/partnergroups/config" z="user-managed"/>
-       
+            </security:authorize>
+            <security:authorize ifAnyGranted="ROLE_ACCESS_GROUPE_PARTENAIRE">
+             <menu:item id="i_partner_list" label="groupes de partenaires" messageCode="global_menu_gpao" url="/partnergroups/config" z="user-managed"/>
+       </security:authorize>
         </menu:category>
         
         <menu:category label="Gestion des Achats" id="c_configuration" z="user-managed">
+         <security:authorize ifAnyGranted="ROLE_ACCESS_BON_COMANDE">
           <menu:item id="i_purchaseorder_list" label="Bons de commandes" messageCode="global_menu_gpao" url="/purchaseorders?page=1&amp;size=${empty param.size ? 10 : param.size}" z="DHer7WK9MJB49FXJX9B6Kds2DxY="/>
-           <menu:item id="i_partner_list" label="Appels d'offres" messageCode="global_menu_gpao" url="/partners?page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
-            <menu:item id="i_product_list" label="Articles" messageCode="global_menu_gpao" url="/products?page=1&amp;size=${empty param.size ? 10 : param.size}" z="kEeyCmUUYXShbDEWwOLheaAkM50="/>
-       
+          </security:authorize>
+           <security:authorize ifAnyGranted="ROLE_ACCESS_APPEL_OFFRE">
+           <menu:item id="i_tenders_list" label="Appels d'offres" messageCode="global_menu_gpao" url="/tenderses?page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
+            </security:authorize>
+             <security:authorize ifAnyGranted="ROLE_ACCESS_PRODUIT">
+            <menu:item id="i_product_list" label="Produits" messageCode="global_menu_gpao" url="/products/list/achat?page=1&amp;size=${empty param.size ? 10 : param.size}" z="kEeyCmUUYXShbDEWwOLheaAkM50="/>
+       </security:authorize>
         </menu:category>
         
          <menu:category label="Reception de produits" id="c_configuration" z="user-managed">
-          <menu:item id="i_deliveryitems_list" label="Livraisons en cours" messageCode="global_menu_gpao"  url="/deliverys?page=1&amp;size=${empty param.size ? 10 : param.size}" z="sjbn8PJjmux3IevxVgghkHUTBFw="/>
-          <menu:item id="i_deliveryitems_list" label="Livraisons  cloturees" messageCode="global_menu_gpao"  url="/deliverys?page=1&amp;size=${empty param.size ? 10 : param.size}" z="sjbn8PJjmux3IevxVgghkHUTBFw="/>
-        
+          <security:authorize ifAnyGranted="ROLE_ACCESS_LIVRAISON">
+          <menu:item id="i_deliveryitems_list" label="Livraisons" messageCode="global_menu_gpao"  url="/deliverys?page=1&amp;size=${empty param.size ? 10 : param.size}" z="sjbn8PJjmux3IevxVgghkHUTBFw="/>
+        </security:authorize>
         </menu:category>
         
     </menu:menu>

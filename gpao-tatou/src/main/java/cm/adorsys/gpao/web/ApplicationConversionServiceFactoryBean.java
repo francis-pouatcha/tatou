@@ -22,6 +22,7 @@ import cm.adorsys.gpao.model.ProductFamily;
 import cm.adorsys.gpao.model.ProductSubFamily;
 import cm.adorsys.gpao.model.PurchaseOrder;
 import cm.adorsys.gpao.model.Taxe;
+import cm.adorsys.gpao.model.Tenders;
 import cm.adorsys.gpao.model.UdmGroup;
 import cm.adorsys.gpao.model.UnitOfMesures;
 import cm.adorsys.gpao.model.WareHouses;
@@ -42,6 +43,13 @@ public class ApplicationConversionServiceFactoryBean extends FormattingConversio
 	            public String convert(Inventory inventory) {
 	                return new StringBuilder().append(inventory.toString()).toString();
 	            }
+	        };
+	    }
+	 public Converter<Tenders, String> getTendersToStringConverter() {
+	        return new org.springframework.core.convert.converter.Converter<cm.adorsys.gpao.model.Tenders, java.lang.String>() {
+	            public String convert(Tenders tenders) {
+	            	return new StringBuilder().append(tenders.toString()).toString();
+	            	}
 	        };
 	    }
 	public Converter<String, Company> getStringToCompanyConverter() {

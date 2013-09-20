@@ -10,8 +10,9 @@
     <page:list  id="pl_cm_adorsys_gpao_model_GpaoUserGroup" items="${gpaousergroups}" labelPlural="Liste des groupes d'utilisateurs" showInPanel="false" z="user-managed">
         <table:table queryParam="true" create="false" data="${gpaousergroups}" delete="false" id="l_cm_adorsys_gpao_model_GpaoUserGroup" path="/gpaousergroups/addOrEditForm" show="false" z="user-managed">
             <table:column id="c_cm_adorsys_gpao_model_GpaoUserGroup_name" property="name" z="user-managed"/>
-            <table:column id="c_cm_adorsys_gpao_model_GpaoUserGroup_description" property="description" z="user-managed"/>
-            <table:column id="c_cm_adorsys_gpao_model_GpaoUserGroup_roleNames" property="roleNames" z="user-managed"/>
+            <table:column id="c_cm_adorsys_gpao_model_GpaoUserGroup_roleNames" maxLength="50"  property="roleNames" z="user-managed"/>
+                <table:column id="c_cm_adorsys_gpao_model_GpaoUserGroup_description" property="description" z="user-managed"/>
+            
         </table:table>
     </page:list>
 </div>

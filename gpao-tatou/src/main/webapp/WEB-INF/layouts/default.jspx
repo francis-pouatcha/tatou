@@ -46,7 +46,7 @@
 					<tiles:insertAttribute name="menu" ignore="true" />
 				</div>
 				<!--/span-->
-				<div style="margin-left: 295px;" class="span9">
+				<div style="margin-left:23%;" class="span9">
 					<div class="row-fluid">
 						<tiles:insertAttribute name="body" />
 					</div>

@@ -1,12 +1,110 @@
 package cm.adorsys.gpao.web;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
+
+import cm.adorsys.gpao.model.Company;
+import cm.adorsys.gpao.model.Delivery;
+import cm.adorsys.gpao.model.DeliveryItems;
+import cm.adorsys.gpao.model.DeliveryOrigin;
+import cm.adorsys.gpao.model.Devise;
+import cm.adorsys.gpao.model.DocumentStates;
 import cm.adorsys.gpao.model.Inventory;
+import cm.adorsys.gpao.model.InventoryItems;
+import cm.adorsys.gpao.utils.GpaoPdfProducer;
+import cm.adorsys.gpao.utils.GpaoRepportPath;
+import cm.adorsys.gpao.utils.MessageType;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @RequestMapping("/inventorys")
 @Controller
 @RooWebScaffold(path = "inventorys", formBackingObject = Inventory.class)
 public class InventoryController {
+	@Autowired
+    GpaoPdfProducer pdfProducer;
+	
+	@RequestMapping(value = "/addOrEditForm", method = RequestMethod.GET, produces = "text/html")
+    public String addOrEditInventoryForm(@RequestParam(value = "id", required = false) Long id, Model uiModel) {
+		Inventory inventory = id == null ? new Inventory() : Inventory.findInventory(id);
+        populateEditForm(uiModel, inventory);
+        return "inventorys/inventoryView";
+    }
+
+    @RequestMapping(value = "/addOrEdit", method = RequestMethod.POST, produces = "text/html")
+    public String addOrEditInventory(@Valid Inventory inventory, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
+    	inventory.setCompany(Company.findCompany(Long.valueOf(1)));
+        if (bindingResult.hasErrors()) {
+            populateEditForm(uiModel, inventory);
+            uiModel.addAttribute(MessageType.ERROR_MESSAGE, "une erreur est Survenue durant l'enregistrement ! \n " + bindingResult.getFieldErrors());
+            return "inventorys/inventoryView";
+        }
+        Inventory merge = inventory.merge();
+        populateEditForm(uiModel, merge);
+        uiModel.addAttribute(MessageType.SUCCESS_MESSAGE, "Enregistre avec success !");
+        return "inventorys/inventoryView";
+    }
+
+//    @RequestMapping(value = "/next/{id}", method = RequestMethod.GET, produces = "text/html")
+//    public String getNextDelivery(@PathVariable("id") Long id, Model uiModel) {
+//        List<Delivery> nextDelivery = Delivery.findDeliverysByIdUpperThan(id).setMaxResults(1).getResultList();
+//        if (nextDelivery.isEmpty()) {
+//            populateEditForm(uiModel, Delivery.findDelivery(id));
+//            uiModel.addAttribute(MessageType.ERROR_MESSAGE, "Aucun bon de commande  trouve !");
+//            return "inventorys/inventoryView";
+//        }
+//        Delivery next = nextDelivery.iterator().next();
+//        populateEditForm(uiModel, next);
+//        return "inventorys/inventoryView";
+//    }
+//
+//    @RequestMapping(value = "/previous/{id}", method = RequestMethod.GET, produces = "text/html")
+//    public String getPreviousDelivery(@PathVariable("id") Long id, Model uiModel) {
+//        List<Delivery> nextDelivery = Delivery.findDeliverysByIdLowerThan(id).setMaxResults(1).getResultList();
+//        if (nextDelivery.isEmpty()) {
+//            populateEditForm(uiModel, Delivery.findDelivery(id));
+//            uiModel.addAttribute(MessageType.ERROR_MESSAGE, "Aucun bon de commande  trouve !");
+//            return "inventorys/inventoryView";
+//        }
+//        Delivery next = nextDelivery.iterator().next();
+//        populateEditForm(uiModel, next);
+//        return "inventorys/inventoryView";
+//    }
+//
+//    @RequestMapping(value = "/deliveryNote/{reference}.pdf", method = RequestMethod.GET, produces = { "application/pdf" })
+//    public void etatProduitPerisable(@PathVariable("reference") String reference, HttpServletRequest request, HttpServletResponse response) {
+//        Map parameters = new HashMap();
+//        Delivery next = Delivery.findDeliverysByReferenceEquals(reference).getResultList().iterator().next();
+//        parameters.put("commandeid", next.getId());
+//        try {
+//            pdfProducer.buildPdfDocument(parameters, response, GpaoRepportPath.DELIVERY_JRXML_PATH);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return;
+//        }
+//    }
+
+    void populateEditForm(Model uiModel, Inventory inventory) {
+        uiModel.addAttribute("inventory", inventory);
+        addDateTimeFormatPatterns(uiModel);
+        uiModel.addAttribute("companys", Company.findAllCompanys());
+        uiModel.addAttribute("devises", Devise.findAllDevises());
+        uiModel.addAttribute("documentstateses", Arrays.asList(DocumentStates.values()));
+        uiModel.addAttribute("inventoryitemses", new ArrayList<InventoryItems>());
+    }
 }

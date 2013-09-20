@@ -51,6 +51,10 @@ public class DeliveryItems {
 
     public DeliveryItems() {
     }
+    
+    public void acceptAllOrderQte(){
+    	qteReceive = orderQte;
+    }
 
     public DeliveryItems(OrderItems items, Delivery delivery) {
         this.reference = reference;

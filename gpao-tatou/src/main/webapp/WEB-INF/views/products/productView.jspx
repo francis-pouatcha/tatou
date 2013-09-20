@@ -8,9 +8,9 @@
 	xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
 	<jsp:directive.page contentType="text/html;charset=UTF-8" />
 	<jsp:output omit-xml-declaration="yes" />
-	<spring:url value="/products/addOrEditForm" var="add_url"></spring:url>
-	<spring:url value="/products/next/${ product.id}" var="next_url"></spring:url>
-	<spring:url value="/products/previous/${product.id}" var="previous_url"></spring:url>
+	<spring:url value="/products/addOrEditForm/${module}" var="add_url"></spring:url>
+	<spring:url value="/products/next/${module}/${ product.id}" var="next_url"></spring:url>
+	<spring:url value="/products/previous/${module}/${product.id}" var="previous_url"></spring:url>
 	<spring:url value="/resources/${product.productImagePath}"
 		var="logo_url" />
 		<spring:url value="/resources/images/300x200.gif" var="default_logo_url" />
@@ -51,7 +51,7 @@
 
 			<form:update multipart="true" showInPanel="false"
 				id="fu_cm_adorsys_gpao_model_Product" modelAttribute="product"
-				path="/products/addOrEdit" render="${empty dependencies}"
+				path="/products/addOrEdit/${module }" render="${empty dependencies}"
 				z="user-managed">
 				<div class="row-fluid">
 					<div class="span6">
@@ -207,11 +207,13 @@
 	</div>
 	
 	<script>
+	
 		$('#tab a').click(function(e) {
 			e.preventDefault();
 			$(this).tab('show');
 		});
 		
 	</script>
+	
 
 </div>

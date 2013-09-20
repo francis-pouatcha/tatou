@@ -42,13 +42,13 @@
 		<div class="row-fluid">
 			<div class="span5">
 			<legend> Description</legend>
-				<field:textarea field="description"
+				<field:textarea  field="description"
 					id="c_cm_adorsys_gpao_model_GpaoUserGroup_description"
 					z="user-managed" />
 			</div>
 			<div style="margin-left: 2%;" class="span7">
 			 <legend> Liste des Roles </legend>
-			  <field:select style="width: 100%;" field="roleNames"
+			  <field:select style="width: 100%; height: 250px;" field="roleNames"
 			id="c_cm_adorsys_gpao_model_GpaoUserGroup_roleNames"
 			items="${rolenameses}" path="rolenameses"
 			z="user-managed" />

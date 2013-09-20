@@ -32,76 +32,95 @@ import org.springframework.web.multipart.MultipartFile;
 @RooWebScaffold(path = "products", formBackingObject = Product.class)
 public class ProductController {
 
-    @Autowired
-    TatouInventoryService inventoryService;
+	@Autowired
+	TatouInventoryService inventoryService;
 
-    @RequestMapping(value = "/addOrEditForm", method = RequestMethod.GET, produces = "text/html")
-    public String addOrEditProductsForm(@RequestParam(value = "id", required = false) Long id, Model uiModel) {
-        Product product = id == null ? new Product() : Product.findProduct(id);
-        populateEditForm(uiModel, product);
-        return "products/productView";
-    }
+	@RequestMapping(value = "/list/{module}", method = RequestMethod.GET, produces = "text/html")
+	public String lister(@PathVariable("module") String module ,@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
+		if (page != null || size != null) {
+			int sizeNo = size == null ? 10 : size.intValue();
+			final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
+			uiModel.addAttribute("products", Product.findProductEntries(firstResult, sizeNo));
+			float nrOfPages = (float) Product.countProducts() / sizeNo;
+			uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
+		} else {
+			uiModel.addAttribute("products", Product.findAllProducts());
+		}
+		uiModel.addAttribute("module", module);
+		return "products/"+module+"/list";
+	}
 
-    @RequestMapping(value = "/addOrEdit", method = RequestMethod.POST, produces = "text/html")
-    public String addOrEditProducts(@Valid Product product, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
-        if (bindingResult.hasErrors()) {
-            populateEditForm(uiModel, product);
-            uiModel.addAttribute(MessageType.ERROR_MESSAGE, "une erreur est Survenue durant l'enregistrement ! \n " + bindingResult.getFieldErrors());
-            return "products/productView";
-        }
-        MultipartFile uploadegLogo = product.getProductImage();
-        if (uploadegLogo != null) {
-            if (!uploadegLogo.isEmpty()) {
-                String saveFileName = GpaoFileUtils.saveFile(GpaoDocumentDirectories.PRODUCT_IMG_PATH, uploadegLogo, "img_" + product.getName());
-                if (saveFileName != null) product.setProductImagePath(saveFileName);
-            }
-        }
-        boolean initialEntry = product.isInitialEntry();
-        System.out.println("virtual stock : " + product.getVirtualStock());
-        Product merge = product.merge();
-        System.out.println("virtual stock after merge : " + merge.getVirtualStock());
-        if (initialEntry) {
-            Inventory inventoryFormProduct = inventoryService.buildInitialInventoryFormProduct(merge);
-            if (inventoryFormProduct != null) inventoryService.closeInventory(inventoryFormProduct);
-        }
-        populateEditForm(uiModel, merge);
-        uiModel.addAttribute(MessageType.SUCCESS_MESSAGE, "Enregistre avec success !");
-        return "products/productView";
-    }
+	@RequestMapping(value = "/addOrEditForm/{module}", method = RequestMethod.GET, produces = "text/html")
+	public String addOrEditProductsForm(@PathVariable("module") String module ,@RequestParam(value = "id", required = false) Long id, Model uiModel) {
+		Product product = id == null ? new Product() : Product.findProduct(id);
+		populateEditForm(uiModel, product);
+		uiModel.addAttribute("module", module);
+		return "products/"+module+"/productView";
+	}
 
-    @RequestMapping(value = "/next/{id}", method = RequestMethod.GET, produces = "text/html")
-    public String getNextProduct(@PathVariable("id") Long id, Model uiModel) {
-        List<Product> nextProduct = Product.findProductsByIdUpperThan(id).setMaxResults(1).getResultList();
-        if (nextProduct.isEmpty()) {
-            populateEditForm(uiModel, Product.findProduct(id));
-            uiModel.addAttribute(MessageType.ERROR_MESSAGE, "Aucun Produit trouve !");
-            return "products/productView";
-        }
-        Product next = nextProduct.iterator().next();
-        populateEditForm(uiModel, next);
-        return "products/productView";
-    }
+	@RequestMapping(value = "/addOrEdit/{module}", method = RequestMethod.POST, produces = "text/html")
+	public String addOrEditProducts(@PathVariable("module") String module ,@Valid Product product, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
+		uiModel.addAttribute("module", module);
+		if (bindingResult.hasErrors()) {
+			populateEditForm(uiModel, product);
+			uiModel.addAttribute(MessageType.ERROR_MESSAGE, "une erreur est Survenue durant l'enregistrement ! \n " + bindingResult.getFieldErrors());
+			return "products/"+module+"/productView";
+		}
+		MultipartFile uploadegLogo = product.getProductImage();
+		if (uploadegLogo != null) {
+			if (!uploadegLogo.isEmpty()) {
+				String saveFileName = GpaoFileUtils.saveFile(GpaoDocumentDirectories.PRODUCT_IMG_PATH, uploadegLogo, "img_" + product.getName());
+				if (saveFileName != null) product.setProductImagePath(saveFileName);
+			}
+		}
+		boolean initialEntry = product.isInitialEntry();
+		System.out.println("virtual stock : " + product.getVirtualStock());
+		Product merge = product.merge();
+		System.out.println("virtual stock after merge : " + merge.getVirtualStock());
+		if (initialEntry) {
+			Inventory inventoryFormProduct = inventoryService.buildInitialInventoryFormProduct(merge);
+			if (inventoryFormProduct != null) inventoryService.closeInventory(inventoryFormProduct);
+		}
+		populateEditForm(uiModel, merge);
+		uiModel.addAttribute(MessageType.SUCCESS_MESSAGE, "Enregistre avec success !");
+		return "products/"+module+"/productView";
+	}
 
-    @RequestMapping(value = "/previous/{id}", method = RequestMethod.GET, produces = "text/html")
-    public String getPreviousProduct(@PathVariable("id") Long id, Model uiModel) {
-        List<Product> nextProduct = Product.findProductsByIdLowerThan(id).setMaxResults(1).getResultList();
-        if (nextProduct.isEmpty()) {
-            populateEditForm(uiModel, Product.findProduct(id));
-            uiModel.addAttribute(MessageType.ERROR_MESSAGE, "Aucun Produit trouve !");
-            return "products/productView";
-        }
-        Product next = nextProduct.iterator().next();
-        populateEditForm(uiModel, next);
-        return "products/productView";
-    }
+	@RequestMapping(value = "/next/{module}/{id}", method = RequestMethod.GET, produces = "text/html")
+	public String getNextProduct(@PathVariable("module") String module ,@PathVariable("id") Long id, Model uiModel) {
+		uiModel.addAttribute("module", module);
+		List<Product> nextProduct = Product.findProductsByIdUpperThan(id).setMaxResults(1).getResultList();
+		if (nextProduct.isEmpty()) {
+			populateEditForm(uiModel, Product.findProduct(id));
+			uiModel.addAttribute(MessageType.ERROR_MESSAGE, "Aucun Produit trouve !");
+			return "products/"+module+"/productView";
+		}
+		Product next = nextProduct.iterator().next();
+		populateEditForm(uiModel, next);
+		return "products/"+module+"/productView";
+	}
 
-    void populateEditForm(Model uiModel, Product product) {
-        uiModel.addAttribute("product", product);
-        uiModel.addAttribute("devises", Devise.findAllDevises());
-        uiModel.addAttribute("productsubfamilys", ProductSubFamily.findAllProductSubFamilys());
-        uiModel.addAttribute("producttypes", Arrays.asList(ProductType.values()));
-        uiModel.addAttribute("taxes", Taxe.findActivedTaxe().getResultList());
-        uiModel.addAttribute("unitofmesureses", UnitOfMesures.findAllUnitOfMesureses());
-        uiModel.addAttribute("warehouseses", WareHouses.findAllWareHouseses());
-    }
+	@RequestMapping(value = "/previous/{module}/{id}", method = RequestMethod.GET, produces = "text/html")
+	public String getPreviousProduct(@PathVariable("module") String module ,@PathVariable("id") Long id, Model uiModel) {
+		uiModel.addAttribute("module", module);
+		List<Product> nextProduct = Product.findProductsByIdLowerThan(id).setMaxResults(1).getResultList();
+		if (nextProduct.isEmpty()) {
+			populateEditForm(uiModel, Product.findProduct(id));
+			uiModel.addAttribute(MessageType.ERROR_MESSAGE, "Aucun Produit trouve !");
+			return "products/"+module+"/productView";
+		}
+		Product next = nextProduct.iterator().next();
+		populateEditForm(uiModel, next);
+		return "products/"+module+"/productView";
+	}
+
+	void populateEditForm(Model uiModel, Product product) {
+		uiModel.addAttribute("product", product);
+		uiModel.addAttribute("devises", Devise.findAllDevises());
+		uiModel.addAttribute("productsubfamilys", ProductSubFamily.findAllProductSubFamilys());
+		uiModel.addAttribute("producttypes", Arrays.asList(ProductType.values()));
+		uiModel.addAttribute("taxes", Taxe.findActivedTaxe().getResultList());
+		uiModel.addAttribute("unitofmesureses", UnitOfMesures.findAllUnitOfMesureses());
+		uiModel.addAttribute("warehouseses", WareHouses.findAllWareHouseses());
+	}
 }

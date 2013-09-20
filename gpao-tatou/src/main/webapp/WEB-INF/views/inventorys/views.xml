@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
 <tiles-definitions>
-    <definition extends="default" name="inventorys/list">
+    <definition extends="stock" name="inventorys/list">
         <put-attribute name="body" value="/WEB-INF/views/inventorys/list.jspx"/>
     </definition>
+    <definition extends="stock" name="inventorys/inventoryView">
+        <put-attribute name="body" value="/WEB-INF/views/inventorys/inventoryView.jspx"/>
+    </definition>
+    
 <definition extends="default" name="inventorys/show">
         <put-attribute name="body" value="/WEB-INF/views/inventorys/show.jspx"/>
     </definition>

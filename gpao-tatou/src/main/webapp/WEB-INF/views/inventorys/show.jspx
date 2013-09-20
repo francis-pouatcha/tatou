@@ -10,5 +10,6 @@
         <field:display field="status" id="s_cm_adorsys_gpao_model_Inventory_status" object="${inventory}" z="9Er+z8PjfbbPgzJ/isZEeJpc8Hk="/>
         <field:display field="gapAmount" id="s_cm_adorsys_gpao_model_Inventory_gapAmount" object="${inventory}" z="RoVMkGbWDjYK1rjM+O8R4EAeeis="/>
         <field:display field="currency" id="s_cm_adorsys_gpao_model_Inventory_currency" object="${inventory}" z="g/0GmYIL+p2S1cRSCOmzBPHeaAU="/>
+        <field:display field="company" id="s_cm_adorsys_gpao_model_Inventory_company" object="${inventory}" z="swbVIVdwvQjorjnGoZDgsVMSw9s="/>
     </page:show>
 </div>

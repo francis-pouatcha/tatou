@@ -1,5 +1,6 @@
 package cm.adorsys.gpao.model;
 
+import cm.adorsys.gpao.security.SecurityUtil;
 import cm.adorsys.gpao.utils.GpaoSequenceGenerator;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -10,6 +11,7 @@ import javax.persistence.Column;
 import javax.persistence.EntityManager;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.PostPersist;
@@ -64,7 +66,7 @@ public class PurchaseOrder {
     private BigDecimal totalAmount = BigDecimal.ZERO;
 
     @Enumerated(EnumType.STRING)
-    private DocumentStates orderState = DocumentStates.DRAFT;
+    private DocumentStates orderState = DocumentStates.BROULLON;
 
     private String createdBy;
 
@@ -77,22 +79,34 @@ public class PurchaseOrder {
     @ManyToOne
     private Devise currency;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "purchaseOrder")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "purchaseOrder" ,orphanRemoval=true)
     private Set<OrderItems> orderItems = new HashSet<OrderItems>();
 
     @NotNull
     @ManyToOne
     private Company company;
 
+    @ManyToOne
+    private Tenders tender;
+
     public void initAmount() {
         amountHt = BigDecimal.ZERO;
         taxeAmount = BigDecimal.ZERO;
         totalAmount = BigDecimal.ZERO;
     }
+    
+    public boolean isClosed(){
+    	return DocumentStates.FERMER.equals(orderState);
+    }
+    
+    public boolean hasTender(){
+    	return (tender != null) ;
+    }
 
     @PostPersist
     public void postPersist() {
         reference = GpaoSequenceGenerator.getSequence(getId(), GpaoSequenceGenerator.PORCHASE_SEQUENCE_PREFIX);
+        createdBy = SecurityUtil.getUserName();
     }
 
     public void increaseAmountFromOrderItem(OrderItems orderItem) {
@@ -122,4 +136,24 @@ public class PurchaseOrder {
         q.setParameter("id", id);
         return q;
     }
+    
+    public static TypedQuery<cm.adorsys.gpao.model.PurchaseOrder> findPurchaseOrdersByTenderAndStatus(Tenders tenders, DocumentStates orderState) {
+        EntityManager em = PurchaseOrder.entityManager();
+        TypedQuery<PurchaseOrder> q = em.createQuery("SELECT o FROM PurchaseOrder AS o WHERE  o.tender = :tender AND o.orderState = :orderState ", PurchaseOrder.class);
+        q.setParameter("tender", tenders);
+        q.setParameter("orderState", orderState);
+        return q;
+    }
+    public static TypedQuery<cm.adorsys.gpao.model.PurchaseOrder> findPurchaseOrdersByTender(Tenders tenders) {
+        EntityManager em = PurchaseOrder.entityManager();
+        TypedQuery<PurchaseOrder> q = em.createQuery("SELECT o FROM PurchaseOrder AS o WHERE  o.tender = :tender", PurchaseOrder.class);
+        q.setParameter("tender", tenders);
+        return q;
+    }
+    public static TypedQuery<cm.adorsys.gpao.model.PurchaseOrder> findPurchaseOrderByReferenceEquals(String reference) {
+		EntityManager em = PurchaseOrder.entityManager();
+		TypedQuery<PurchaseOrder> q = em.createQuery("SELECT o FROM PurchaseOrder AS o WHERE  o.reference = :reference ", PurchaseOrder.class);
+		q.setParameter("reference", reference);
+		return q;
+	}
 }

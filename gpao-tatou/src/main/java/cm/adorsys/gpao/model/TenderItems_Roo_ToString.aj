@@ -3,13 +3,13 @@
 
 package cm.adorsys.gpao.model;
 
-import cm.adorsys.gpao.model.Tenders;
+import cm.adorsys.gpao.model.TenderItems;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-privileged aspect Tenders_Roo_ToString {
+privileged aspect TenderItems_Roo_ToString {
     
-    public String Tenders.toString() {
+    public String TenderItems.toString() {
         return ReflectionToStringBuilder.toString(this, ToStringStyle.SHORT_PREFIX_STYLE);
     }
     

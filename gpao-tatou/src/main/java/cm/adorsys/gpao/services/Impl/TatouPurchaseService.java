@@ -1,18 +1,25 @@
 package cm.adorsys.gpao.services.Impl;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import cm.adorsys.gpao.model.Delivery;
 import cm.adorsys.gpao.model.DeliveryItems;
 import cm.adorsys.gpao.model.DocumentStates;
 import cm.adorsys.gpao.model.OrderItems;
 import cm.adorsys.gpao.model.Product;
 import cm.adorsys.gpao.model.PurchaseOrder;
+import cm.adorsys.gpao.model.TenderItems;
+import cm.adorsys.gpao.model.Tenders;
 import cm.adorsys.gpao.model.uimodels.OrderItemUimodel;
+import cm.adorsys.gpao.security.SecurityUtil;
 import cm.adorsys.gpao.services.IPurchaseServices;
 
 @Service
@@ -32,6 +39,15 @@ public class TatouPurchaseService implements IPurchaseServices {
 	public List<Product> findProductByNameLike(String productName, int size) {
 		List<Product> productList = new ArrayList<Product>() ;
 		productList = Product.findProductsByNameLike(productName).setMaxResults(size).getResultList();
+		return productList ;
+	}
+	@Override
+	public List<Product> findProductFormPurchaseOrder(PurchaseOrder purchaseOrder) {
+		List<Product> productList = new ArrayList<Product>() ;
+		Set<OrderItems> orderItems = purchaseOrder.getOrderItems();
+		for (OrderItems orderItems2 : orderItems) {
+			productList.add(orderItems2.getProduct());
+		}
 		return productList ;
 	}
 
@@ -77,24 +93,26 @@ public class TatouPurchaseService implements IPurchaseServices {
 		}
 
 	}
-	@Transactional
 	@Override
 	public void validatedPurchase(PurchaseOrder purchaseOrder) {
-		if(DocumentStates.DRAFT.equals(purchaseOrder.getOrderState())){
+		if(DocumentStates.BROULLON.equals(purchaseOrder.getOrderState())){
 			Delivery delivery = deliveryService.getDeliveryFromOrder(purchaseOrder);
 			delivery.persist();
 			Set<DeliveryItems> deliveryItems = deliveryService.getDeliveryItems(purchaseOrder,delivery);
 			delivery.setDeliveryItems(deliveryItems);
 			deliveryService.calCulateDeliveryAmout(delivery);
-			purchaseOrder.setOrderState(DocumentStates.VALIDATED);
+			purchaseOrder.setOrderState(DocumentStates.VALIDER);
 			delivery.merge();
+			purchaseOrder.setValidateDate(new Date());
+			purchaseOrder.setValidatedBy(SecurityUtil.getUserName());
+			purchaseOrder.setIsValided(Boolean.TRUE);
 		}
 
 	}
 
 	@Override
 	public void cancelPurchase(PurchaseOrder purchaseOrder) {
-		purchaseOrder.setOrderState(DocumentStates.CANCELED);
+		purchaseOrder.setOrderState(DocumentStates.ANNULER);
 
 	}
 
@@ -112,6 +130,95 @@ public class TatouPurchaseService implements IPurchaseServices {
 			purchaseOrder.getOrderItems().add(orderItems);
 		}
 
+
+	}
+
+	@Override
+	public int deleteTenderItem(Tenders tenders, Long tenderItemId) {
+		TenderItems tenderItems = TenderItems.findTenderItems(tenderItemId) ;
+		if(tenderItemId != null ){
+			if(tenders.getTenderItems().contains(tenderItems))tenders.getTenderItems().remove(tenderItems) ;
+			tenderItems.remove();
+			return 1 ;
+		}
+		return 0;
+	}
+
+	@Override
+	public int deleteTenderItems(Tenders tenders, List<Long> tenderItemIds) {
+		int deleteOrderNumber = 0 ;
+		for (Long tenderItemId : tenderItemIds) {
+			deleteOrderNumber =+ deleteTenderItem(tenders, tenderItemId);
+		}
+		return deleteOrderNumber ;
+	}
+
+	@Override
+	public void addTenderItems(Tenders tenders, OrderItemUimodel itemUimodel) {
+		Product product = Product.findProduct(itemUimodel.getProductId());
+		TenderItems hasProduct =  tenders.hasProduct(product);
+		if(hasProduct!=null) {
+			hasProduct.reset(itemUimodel);
+			hasProduct.merge();
+		}else {
+			TenderItems tenderItems = new TenderItems(tenders, itemUimodel);
+			//orderItems.persist();
+			tenders.getTenderItems().add(tenderItems);
+		}
+
+
+	}
+
+	@Override
+	public void cancelTender(Tenders tenders) {
+		if(DocumentStates.OUVERT.equals(tenders.getStatus())){
+		List<PurchaseOrder> resultList = PurchaseOrder.findPurchaseOrdersByTenderAndStatus(tenders, DocumentStates.VALIDER).getResultList();
+		for (PurchaseOrder purchaseOrder : resultList) {
+			purchaseOrder.remove();
+		}
+		tenders.setStatus(DocumentStates.ANNULER);
+		}
+	}
+
+	@Override
+	public void addOderItemsFromTenders(PurchaseOrder order) {
+		if(order.hasTender() && order.getOrderItems().isEmpty()){
+			Set<TenderItems> tenderItems = order.getTender().getTenderItems();
+			for (TenderItems tenderItems2 : tenderItems) {
+				order.getOrderItems().add(new OrderItems(order, tenderItems2));
+			}
+		}
+	}
+
+	@Override
+	public void closeTender(Tenders tenders) {
+		if(DocumentStates.OUVERT.equals(tenders.getStatus())){
+			List<PurchaseOrder> purchaseOrders = PurchaseOrder.findPurchaseOrdersByTender(tenders).getResultList();
+			if(!purchaseOrders.isEmpty()){
+				PurchaseOrder orderToValidate = purchaseOrders.get(0);
+				for (PurchaseOrder purchaseOrder : purchaseOrders) {
+					if(orderToValidate.getAmountHt().compareTo(purchaseOrder.getAmountHt())>1){
+						orderToValidate = purchaseOrder;
+					}else {
+						purchaseOrder.remove();
+					}
+
+				}
+				validatedPurchase(orderToValidate);
+				orderToValidate.merge();
+			}
+			tenders.setStatus(DocumentStates.FERMER);
+			tenders.setClosed(new Date());
+			tenders.setClosedBy(SecurityUtil.getUserName());
+		}
+
+	}
+
+	@Override
+	public void restoreTender(Tenders tenders) {
+		if(DocumentStates.ANNULER.equals(tenders.getStatus())){
+			tenders.setStatus(DocumentStates.OUVERT);
+		}
 
 	}
 

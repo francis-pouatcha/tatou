@@ -27,5 +27,8 @@
      <definition extends="purchase" name="purchaseHome">
         <put-attribute name="body" value="/WEB-INF/views/home-purchase.jspx"/>
     </definition>
+    <definition extends="stock" name="stockHome">
+        <put-attribute name="body" value="/WEB-INF/views/home-stock.jspx"/>
+    </definition>
 </tiles-definitions>
 

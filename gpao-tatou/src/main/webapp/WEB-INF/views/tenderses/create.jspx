@@ -4,12 +4,15 @@
     <jsp:output omit-xml-declaration="yes"/>
     <form:create id="fc_cm_adorsys_gpao_model_Tenders" modelAttribute="tenders" path="/tenderses" render="${empty dependencies}" z="GSVckVfcgbz+Qw+NCWzgahPzby0=">
         <field:input field="reference" id="c_cm_adorsys_gpao_model_Tenders_reference" z="fxy6X5yuf7Ekne62lTzZn7l7O1o="/>
-        <field:datetime dateTimePattern="${tenders_createby_date_format}" field="createBy" id="c_cm_adorsys_gpao_model_Tenders_createBy" z="cO+OcMb1Iy/pOppLNb2/KVIENkM="/>
+        <field:input field="createBy" id="c_cm_adorsys_gpao_model_Tenders_createBy" z="IEPcOPlbeV9xp0jDUPGQgasuDVE="/>
         <field:datetime dateTimePattern="${tenders_closed_date_format}" field="closed" id="c_cm_adorsys_gpao_model_Tenders_closed" z="lZNPKKGsx/9NpVI39oO3uFm98Zc="/>
         <field:input field="closedBy" id="c_cm_adorsys_gpao_model_Tenders_closedBy" z="uOO6wE29tmbOATdllKCrYCvIYsk="/>
-        <field:datetime dateTimePattern="${tenders_begindate_date_format}" field="beginDate" id="c_cm_adorsys_gpao_model_Tenders_beginDate" z="SxQtc2K51Z9/oy2YvpftbT04DoQ="/>
-        <field:datetime dateTimePattern="${tenders_enddate_date_format}" field="endDate" id="c_cm_adorsys_gpao_model_Tenders_endDate" z="zg55YlIbaTKRD8pDNgUKMQ8g+o0="/>
+        <field:datetime dateTimePattern="${tenders_begindate_date_format}" field="beginDate" id="c_cm_adorsys_gpao_model_Tenders_beginDate" required="true" z="JVBSAkWeoKaOksWr20W4RlYKCoM="/>
+        <field:datetime dateTimePattern="${tenders_enddate_date_format}" field="endDate" id="c_cm_adorsys_gpao_model_Tenders_endDate" required="true" z="NwDZYxQZG1KO8RVDUtI13/WbC10="/>
         <field:select field="status" id="c_cm_adorsys_gpao_model_Tenders_status" items="${documentstateses}" path="documentstateses" z="xxZGNl4GVna/M7LQuu1krlzSjeM="/>
+        <field:input field="description" id="c_cm_adorsys_gpao_model_Tenders_description" z="CBVoeWy3iTQDKyjxXjJ6526OM8o="/>
+        <field:select field="company" id="c_cm_adorsys_gpao_model_Tenders_company" itemValue="id" items="${companys}" path="/companys" z="mKUzlOIee4Mey1CFSC4ZwAySA2U="/>
+        <field:simple field="tenderItems" id="c_cm_adorsys_gpao_model_Tenders_tenderItems" messageCode="entity_reference_not_managed" messageCodeAttribute="Tender Items" z="IxfkBqEdN3me2Ze9pJaex8OjupU="/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_cm_adorsys_gpao_model_Tenders" render="${not empty dependencies}" z="TGZux9Uq+LGaRMuQ39/KBYtJzQ0="/>
 </div>
