@@ -10,15 +10,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
-import org.slf4j.Logger;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
-import org.springframework.roo.addon.tostring.RooToString;
 import org.springframework.web.multipart.MultipartFile;
 
 @RooJavaBean
-@RooJpaActiveRecord
-public class Company {
+@RooJpaActiveRecord(inheritanceType = "TABLE_PER_CLASS")
+public class Company extends GpaoBaseEntity{
 	
     @NotNull
     @Column(unique=true)

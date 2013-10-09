@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:find finderName="ByNameLike" id="ff_cm_adorsys_gpao_model_Product" path="/products" z="943IgO1NRUE20sQ8oz5qvlnzibI=">
+        <field:input disableFormBinding="true" field="name" id="f_cm_adorsys_gpao_model_Product_name" required="true" z="LexAN2/q9XnRzfDgSfot7dnY3VY="/>
+    </form:find>
+</div>

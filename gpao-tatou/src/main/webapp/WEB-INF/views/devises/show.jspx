@@ -6,5 +6,6 @@
         <field:display field="name" id="s_cm_adorsys_gpao_model_Devise_name" object="${devise}" z="OtMD4PFgO3rpSybWzf+51TqGqqY="/>
         <field:display field="shortName" id="s_cm_adorsys_gpao_model_Devise_shortName" object="${devise}" z="QLLY0NUrXVb1ILDr7zEgZK9IksY="/>
         <field:display field="ratio" id="s_cm_adorsys_gpao_model_Devise_ratio" object="${devise}" z="920p0DlsPBODrTjFNhAYPWmPfmE="/>
+        <field:display field="archived" id="s_cm_adorsys_gpao_model_Devise_archived" object="${devise}" z="yQbRRm9V6J+tjbtJMF5RqE2/FuA="/>
     </page:show>
 </div>

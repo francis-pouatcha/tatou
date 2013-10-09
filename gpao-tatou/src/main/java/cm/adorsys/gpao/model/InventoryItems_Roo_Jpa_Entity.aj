@@ -4,40 +4,14 @@
 package cm.adorsys.gpao.model;
 
 import cm.adorsys.gpao.model.InventoryItems;
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Version;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 privileged aspect InventoryItems_Roo_Jpa_Entity {
     
     declare @type: InventoryItems: @Entity;
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Long InventoryItems.id;
-    
-    @Version
-    @Column(name = "version")
-    private Integer InventoryItems.version;
-    
-    public Long InventoryItems.getId() {
-        return this.id;
-    }
-    
-    public void InventoryItems.setId(Long id) {
-        this.id = id;
-    }
-    
-    public Integer InventoryItems.getVersion() {
-        return this.version;
-    }
-    
-    public void InventoryItems.setVersion(Integer version) {
-        this.version = version;
-    }
+    declare @type: InventoryItems: @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS);
     
 }

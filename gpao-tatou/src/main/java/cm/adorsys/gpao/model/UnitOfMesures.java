@@ -25,8 +25,8 @@ import flexjson.JSONSerializer;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord(finders = { "findUnitOfMesuresesByNameLikeAndUnitGroup" })
-public class UnitOfMesures implements BussinessValidation {
+@RooJpaActiveRecord(inheritanceType = "TABLE_PER_CLASS" ,finders = { "findUnitOfMesuresesByNameLikeAndUnitGroup" })
+public class UnitOfMesures extends GpaoBaseEntity implements BussinessValidation {
 
     @NotNull
     @Column(unique=true)

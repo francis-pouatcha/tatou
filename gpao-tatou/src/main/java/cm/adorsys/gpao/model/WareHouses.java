@@ -12,7 +12,7 @@ import org.springframework.roo.addon.tostring.RooToString;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord
+@RooJpaActiveRecord(inheritanceType = "TABLE_PER_CLASS")
 public class WareHouses {
 
     @NotNull
@@ -24,6 +24,9 @@ public class WareHouses {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "wareHouse")
     private Set<Location> location = new HashSet<Location>();
     
+    public WareHouses() {
+		name = " " ;
+	}
     public static void init(){
     	if(WareHouses.countWareHouseses() <= 0){
     		WareHouses wareHouses = new WareHouses();

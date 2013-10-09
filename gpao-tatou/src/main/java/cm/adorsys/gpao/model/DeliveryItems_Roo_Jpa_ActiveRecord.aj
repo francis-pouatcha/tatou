@@ -5,20 +5,9 @@ package cm.adorsys.gpao.model;
 
 import cm.adorsys.gpao.model.DeliveryItems;
 import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import org.springframework.transaction.annotation.Transactional;
 
 privileged aspect DeliveryItems_Roo_Jpa_ActiveRecord {
-    
-    @PersistenceContext
-    transient EntityManager DeliveryItems.entityManager;
-    
-    public static final EntityManager DeliveryItems.entityManager() {
-        EntityManager em = new DeliveryItems().entityManager;
-        if (em == null) throw new IllegalStateException("Entity manager has not been injected (is the Spring Aspects JAR configured as an AJC/AJDT aspects library?)");
-        return em;
-    }
     
     public static long DeliveryItems.countDeliveryItemses() {
         return entityManager().createQuery("SELECT COUNT(o) FROM DeliveryItems o", Long.class).getSingleResult();
@@ -35,35 +24,6 @@ privileged aspect DeliveryItems_Roo_Jpa_ActiveRecord {
     
     public static List<DeliveryItems> DeliveryItems.findDeliveryItemsEntries(int firstResult, int maxResults) {
         return entityManager().createQuery("SELECT o FROM DeliveryItems o", DeliveryItems.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
-    }
-    
-    @Transactional
-    public void DeliveryItems.persist() {
-        if (this.entityManager == null) this.entityManager = entityManager();
-        this.entityManager.persist(this);
-    }
-    
-    @Transactional
-    public void DeliveryItems.remove() {
-        if (this.entityManager == null) this.entityManager = entityManager();
-        if (this.entityManager.contains(this)) {
-            this.entityManager.remove(this);
-        } else {
-            DeliveryItems attached = DeliveryItems.findDeliveryItems(this.id);
-            this.entityManager.remove(attached);
-        }
-    }
-    
-    @Transactional
-    public void DeliveryItems.flush() {
-        if (this.entityManager == null) this.entityManager = entityManager();
-        this.entityManager.flush();
-    }
-    
-    @Transactional
-    public void DeliveryItems.clear() {
-        if (this.entityManager == null) this.entityManager = entityManager();
-        this.entityManager.clear();
     }
     
     @Transactional

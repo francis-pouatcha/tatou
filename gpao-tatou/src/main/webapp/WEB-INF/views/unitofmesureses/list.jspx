@@ -9,6 +9,7 @@
             <table:column id="c_cm_adorsys_gpao_model_UnitOfMesures_unitGroup" property="unitGroup" z="YBlVI27NZYTD4KBj5gA+2sYBbxs="/>
             <table:column id="c_cm_adorsys_gpao_model_UnitOfMesures_isActive" property="isActive" z="j0IS7Ffw8uk+BH6z5MiRHwP6mNs="/>
             <table:column id="c_cm_adorsys_gpao_model_UnitOfMesures_isRefUnit" property="isRefUnit" z="/f7M3JiJMmaEtLushLWzF5iskgQ="/>
+            <table:column id="c_cm_adorsys_gpao_model_UnitOfMesures_archived" property="archived" z="N1Yk3cr8iPgDlqkpu+tpoFu92EQ="/>
         </table:table>
     </page:list>
 </div>

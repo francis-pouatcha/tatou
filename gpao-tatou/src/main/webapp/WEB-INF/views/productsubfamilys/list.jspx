@@ -8,6 +8,7 @@
             <table:column id="c_cm_adorsys_gpao_model_ProductSubFamily_description" property="description" z="gE3lvMs0CnsrhG/1JoZ6J+FS8zc="/>
             <table:column id="c_cm_adorsys_gpao_model_ProductSubFamily_isActive" property="isActive" z="vxM1QA/0OK4U68z0RK08cbJqFjk="/>
             <table:column id="c_cm_adorsys_gpao_model_ProductSubFamily_productFamily" property="productFamily" z="BqpDYpurkuiTQEep0v6BlAKYwSw="/>
+            <table:column id="c_cm_adorsys_gpao_model_ProductSubFamily_archived" property="archived" z="k3UhQcqo8cj5DT2NfOW47BFF0mA="/>
         </table:table>
     </page:list>
 </div>

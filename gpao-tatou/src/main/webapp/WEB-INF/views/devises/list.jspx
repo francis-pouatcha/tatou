@@ -7,6 +7,7 @@
             <table:column id="c_cm_adorsys_gpao_model_Devise_name" property="name" z="/C20ufnAPkKeJZWr7WnwU8a8Y5M="/>
             <table:column id="c_cm_adorsys_gpao_model_Devise_shortName" property="shortName" z="W60az6Mvp7iHEXN77vZjyQd0b0w="/>
             <table:column id="c_cm_adorsys_gpao_model_Devise_ratio" property="ratio" z="RBujAv/RETHuhG47kRNdy/smkLs="/>
+            <table:column id="c_cm_adorsys_gpao_model_Devise_archived" property="archived" z="7SDlJFTnSEyeHCH/56IywE91gbM="/>
         </table:table>
     </page:list>
 </div>

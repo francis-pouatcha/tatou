@@ -1,10 +1,14 @@
-package org.adorsys.adpharma.utils ;
+package cm.adorsys.gpao.utils ;
 
 import java.util.Calendar;
 import java.util.Date;
 
 import org.apache.commons.lang3.time.DateUtils;
 
+/**
+ * @author clovisgakam
+ *
+ */
 public abstract class DateConfig {
 
 	public static DateConfigPeriod getBegingEndOfDay(Date date){

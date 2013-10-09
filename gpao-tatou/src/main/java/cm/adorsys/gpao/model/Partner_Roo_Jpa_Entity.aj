@@ -4,40 +4,14 @@
 package cm.adorsys.gpao.model;
 
 import cm.adorsys.gpao.model.Partner;
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Version;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 privileged aspect Partner_Roo_Jpa_Entity {
     
     declare @type: Partner: @Entity;
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Long Partner.id;
-    
-    @Version
-    @Column(name = "version")
-    private Integer Partner.version;
-    
-    public Long Partner.getId() {
-        return this.id;
-    }
-    
-    public void Partner.setId(Long id) {
-        this.id = id;
-    }
-    
-    public Integer Partner.getVersion() {
-        return this.version;
-    }
-    
-    public void Partner.setVersion(Integer version) {
-        this.version = version;
-    }
+    declare @type: Partner: @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS);
     
 }

@@ -18,8 +18,8 @@ import flexjson.JSONSerializer;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord
-public class TenderItems {
+@RooJpaActiveRecord(inheritanceType = "TABLE_PER_CLASS")
+public class TenderItems extends GpaoBaseEntity{
 
 	@ManyToOne
 	private Product products;

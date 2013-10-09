@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <spring:url value="rintFind.pdf"   var="print_url" />
+     <spring:url value="find"  var="find_url" />
+    <form:create formId="findTender" submitLabel="Effectuer La rechercher"  ortherButton="ortherBtn.jspx" showInPanel="false" id="fc_cm_adorsys_gpao_model_Tenders" modelAttribute="tenderFinder" path="${find_url }" render="${empty dependencies}" z="GSVckVfcgbz+Qw+NCWzgahPzby0=">
+        <div class="span6">
+         <field:input field="reference" id="c_cm_adorsys_gpao_model_Tenders_reference" z="fxy6X5yuf7Ekne62lTzZn7l7O1o="/>
+        <field:datetime dateTimePattern="${tenders_begindate_date_format}" field="beginDate" id="c_cm_adorsys_gpao_model_Tenders_beginDate"  z="JVBSAkWeoKaOksWr20W4RlYKCoM="/>
+        <field:datetime dateTimePattern="${tenders_enddate_date_format}" field="endDate" id="c_cm_adorsys_gpao_model_Tenders_endDate"  z="NwDZYxQZG1KO8RVDUtI13/WbC10="/>
+        <field:select field="status" id="c_cm_adorsys_gpao_model_Tenders_status" items="${documentstateses}" path="documentstateses" z="xxZGNl4GVna/M7LQuu1krlzSjeM="/>
+    </div>
+    </form:create>
+</div>

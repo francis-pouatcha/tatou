@@ -17,6 +17,11 @@
     <definition extends="purchase" name="partners/partnerView">
         <put-attribute name="body" value="/WEB-INF/views/partners/partnerView.jspx"/>
     </definition>
+   <definition extends="purchase" name="partners/findPartnerView">
+        <put-attribute name="body" value="/WEB-INF/views/partners/findPartnerView.jspx"/>
+    </definition> 
     
-    
+<definition extends="default" name="partners/findPartnersByNameLike">
+        <put-attribute name="body" value="/WEB-INF/views/partners/findPartnersByNameLike.jspx"/>
+    </definition>
 </tiles-definitions>

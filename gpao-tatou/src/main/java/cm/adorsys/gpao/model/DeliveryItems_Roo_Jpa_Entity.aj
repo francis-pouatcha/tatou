@@ -4,40 +4,14 @@
 package cm.adorsys.gpao.model;
 
 import cm.adorsys.gpao.model.DeliveryItems;
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Version;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 privileged aspect DeliveryItems_Roo_Jpa_Entity {
     
     declare @type: DeliveryItems: @Entity;
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Long DeliveryItems.id;
-    
-    @Version
-    @Column(name = "version")
-    private Integer DeliveryItems.version;
-    
-    public Long DeliveryItems.getId() {
-        return this.id;
-    }
-    
-    public void DeliveryItems.setId(Long id) {
-        this.id = id;
-    }
-    
-    public Integer DeliveryItems.getVersion() {
-        return this.version;
-    }
-    
-    public void DeliveryItems.setVersion(Integer version) {
-        this.version = version;
-    }
+    declare @type: DeliveryItems: @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS);
     
 }

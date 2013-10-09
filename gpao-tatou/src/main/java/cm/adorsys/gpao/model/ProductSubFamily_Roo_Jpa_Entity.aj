@@ -4,40 +4,14 @@
 package cm.adorsys.gpao.model;
 
 import cm.adorsys.gpao.model.ProductSubFamily;
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Version;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 privileged aspect ProductSubFamily_Roo_Jpa_Entity {
     
     declare @type: ProductSubFamily: @Entity;
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Long ProductSubFamily.id;
-    
-    @Version
-    @Column(name = "version")
-    private Integer ProductSubFamily.version;
-    
-    public Long ProductSubFamily.getId() {
-        return this.id;
-    }
-    
-    public void ProductSubFamily.setId(Long id) {
-        this.id = id;
-    }
-    
-    public Integer ProductSubFamily.getVersion() {
-        return this.version;
-    }
-    
-    public void ProductSubFamily.setVersion(Integer version) {
-        this.version = version;
-    }
+    declare @type: ProductSubFamily: @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS);
     
 }

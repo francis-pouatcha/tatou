@@ -19,6 +19,10 @@ import org.springframework.stereotype.Service;
 
 import cm.adorsys.gpao.security.SecurityUtil;
 
+/**
+ * @author clovisgakam
+ *
+ */
 @Service
 public class GpaoPdfProducer {
 

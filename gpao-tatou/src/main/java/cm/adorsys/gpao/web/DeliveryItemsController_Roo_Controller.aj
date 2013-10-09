@@ -59,21 +59,6 @@ privileged aspect DeliveryItemsController_Roo_Controller {
         return "deliveryitemses/show";
     }
     
-    @RequestMapping(produces = "text/html")
-    public String DeliveryItemsController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
-        if (page != null || size != null) {
-            int sizeNo = size == null ? 10 : size.intValue();
-            final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
-            uiModel.addAttribute("deliveryitemses", DeliveryItems.findDeliveryItemsEntries(firstResult, sizeNo));
-            float nrOfPages = (float) DeliveryItems.countDeliveryItemses() / sizeNo;
-            uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
-        } else {
-            uiModel.addAttribute("deliveryitemses", DeliveryItems.findAllDeliveryItemses());
-        }
-        addDateTimeFormatPatterns(uiModel);
-        return "deliveryitemses/list";
-    }
-    
     @RequestMapping(method = RequestMethod.PUT, produces = "text/html")
     public String DeliveryItemsController.update(@Valid DeliveryItems deliveryItems, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {

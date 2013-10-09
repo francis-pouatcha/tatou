@@ -10,6 +10,10 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+/**
+ * @author clovisgakam
+ *
+ */
 public class GpaoFileUtils {
 
 	public static String  saveFile(String filePath, MultipartFile largeFile,String fileName)

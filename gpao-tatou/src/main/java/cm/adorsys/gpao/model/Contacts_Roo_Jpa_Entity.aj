@@ -4,40 +4,14 @@
 package cm.adorsys.gpao.model;
 
 import cm.adorsys.gpao.model.Contacts;
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Version;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 privileged aspect Contacts_Roo_Jpa_Entity {
     
     declare @type: Contacts: @Entity;
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Long Contacts.id;
-    
-    @Version
-    @Column(name = "version")
-    private Integer Contacts.version;
-    
-    public Long Contacts.getId() {
-        return this.id;
-    }
-    
-    public void Contacts.setId(Long id) {
-        this.id = id;
-    }
-    
-    public Integer Contacts.getVersion() {
-        return this.version;
-    }
-    
-    public void Contacts.setVersion(Integer version) {
-        this.version = version;
-    }
+    declare @type: Contacts: @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS);
     
 }

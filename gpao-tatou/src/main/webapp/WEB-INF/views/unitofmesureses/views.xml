@@ -17,4 +17,7 @@
     <definition extends="admin" name="unitofmesureses/config">
         <put-attribute name="body" value="/WEB-INF/views/unitofmesureses/unitofMesures.jspx"/>
     </definition>
+<definition extends="default" name="unitofmesureses/findUnitOfMesuresesByNameLikeAndUnitGroup">
+        <put-attribute name="body" value="/WEB-INF/views/unitofmesureses/findUnitOfMesuresesByNameLikeAndUnitGroup.jspx"/>
+    </definition>
 </tiles-definitions>

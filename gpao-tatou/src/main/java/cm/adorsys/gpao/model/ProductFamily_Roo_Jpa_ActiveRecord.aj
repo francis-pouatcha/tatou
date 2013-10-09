@@ -5,20 +5,9 @@ package cm.adorsys.gpao.model;
 
 import cm.adorsys.gpao.model.ProductFamily;
 import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import org.springframework.transaction.annotation.Transactional;
 
 privileged aspect ProductFamily_Roo_Jpa_ActiveRecord {
-    
-    @PersistenceContext
-    transient EntityManager ProductFamily.entityManager;
-    
-    public static final EntityManager ProductFamily.entityManager() {
-        EntityManager em = new ProductFamily().entityManager;
-        if (em == null) throw new IllegalStateException("Entity manager has not been injected (is the Spring Aspects JAR configured as an AJC/AJDT aspects library?)");
-        return em;
-    }
     
     public static long ProductFamily.countProductFamilys() {
         return entityManager().createQuery("SELECT COUNT(o) FROM ProductFamily o", Long.class).getSingleResult();
@@ -35,35 +24,6 @@ privileged aspect ProductFamily_Roo_Jpa_ActiveRecord {
     
     public static List<ProductFamily> ProductFamily.findProductFamilyEntries(int firstResult, int maxResults) {
         return entityManager().createQuery("SELECT o FROM ProductFamily o", ProductFamily.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
-    }
-    
-    @Transactional
-    public void ProductFamily.persist() {
-        if (this.entityManager == null) this.entityManager = entityManager();
-        this.entityManager.persist(this);
-    }
-    
-    @Transactional
-    public void ProductFamily.remove() {
-        if (this.entityManager == null) this.entityManager = entityManager();
-        if (this.entityManager.contains(this)) {
-            this.entityManager.remove(this);
-        } else {
-            ProductFamily attached = ProductFamily.findProductFamily(this.id);
-            this.entityManager.remove(attached);
-        }
-    }
-    
-    @Transactional
-    public void ProductFamily.flush() {
-        if (this.entityManager == null) this.entityManager = entityManager();
-        this.entityManager.flush();
-    }
-    
-    @Transactional
-    public void ProductFamily.clear() {
-        if (this.entityManager == null) this.entityManager = entityManager();
-        this.entityManager.clear();
     }
     
     @Transactional

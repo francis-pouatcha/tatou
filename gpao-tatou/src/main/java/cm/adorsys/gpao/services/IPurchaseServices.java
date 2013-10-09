@@ -9,6 +9,10 @@ import cm.adorsys.gpao.model.PurchaseOrder;
 import cm.adorsys.gpao.model.Tenders;
 import cm.adorsys.gpao.model.uimodels.OrderItemUimodel;
 
+/**
+ * @author clovisgakam
+ *
+ */
 public interface IPurchaseServices {
 	public List<Product> findProductByNameLike(String productName);
 	public List<Product> findProductByNameLike(String productName,int size);

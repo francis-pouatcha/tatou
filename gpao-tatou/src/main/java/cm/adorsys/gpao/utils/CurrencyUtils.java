@@ -5,6 +5,10 @@ import java.math.BigDecimal;
 import cm.adorsys.gpao.model.Company;
 import cm.adorsys.gpao.model.Devise;
 
+/**
+ * @author clovisgakam
+ *
+ */
 public class CurrencyUtils {
 
 	public static BigDecimal convertAmount(Devise amountCurrency,Devise target,BigDecimal amount){

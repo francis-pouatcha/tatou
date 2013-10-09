@@ -20,4 +20,10 @@
 <definition extends="stock" name="productfamilys/stock/update">
         <put-attribute name="body" value="/WEB-INF/views/productfamilys/update.jspx"/>
     </definition>
+<definition extends="default" name="productfamilys/create">
+        <put-attribute name="body" value="/WEB-INF/views/productfamilys/create.jspx"/>
+    </definition>
+<definition extends="default" name="productfamilys/update">
+        <put-attribute name="body" value="/WEB-INF/views/productfamilys/update.jspx"/>
+    </definition>
 </tiles-definitions>

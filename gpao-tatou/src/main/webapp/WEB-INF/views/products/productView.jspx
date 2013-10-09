@@ -9,11 +9,16 @@
 	<jsp:directive.page contentType="text/html;charset=UTF-8" />
 	<jsp:output omit-xml-declaration="yes" />
 	<spring:url value="/products/addOrEditForm/${module}" var="add_url"></spring:url>
-	<spring:url value="/products/next/${module}/${ product.id}" var="next_url"></spring:url>
-	<spring:url value="/products/previous/${module}/${product.id}" var="previous_url"></spring:url>
+	<spring:url value="/products/next/${module}/${ product.id}"
+		var="next_url"></spring:url>
+	<spring:url value="/products/previous/${module}/${product.id}"
+		var="previous_url"></spring:url>
+	<spring:url value="/products/printLot/${product.id}.pdf"
+		var="print_lot_url" />
 	<spring:url value="/resources/${product.productImagePath}"
 		var="logo_url" />
-		<spring:url value="/resources/images/300x200.gif" var="default_logo_url" />
+	<spring:url value="/resources/images/300x200.gif"
+		var="default_logo_url" />
 
 	<div class="row-fluid ">
 		<div class="span3">
@@ -23,13 +28,15 @@
 							<img src="${logo_url}" class="img-polaroid" alt="" />
 						</c:when>
 						<c:otherwise>
-							<img src="${default_logo_url}" class="img-polaroid"  alt="" /> 
+							<img src="${default_logo_url}" class="img-polaroid" alt="" />
 						</c:otherwise>
 					</c:choose></li>
 			</ul>
 		</div>
 		<div class="span6">
-		<STRONG style="font-size: 25px;"><span class="label label-info">${product.reference} : ${product.name}</span></STRONG> 
+			<STRONG style="font-size: 25px;"><span
+				class="label label-info">${product.reference} :
+					${product.name}</span></STRONG>
 			<jsp:include page="../gpaoMessages.jspx" />
 		</div>
 		<div style="vertical-align: top;" class="span3">
@@ -39,7 +46,6 @@
 						<li><a title="vider le formulaire" href="${add_url }">Add</a></li>
 						<li><a title="Partenaire preccedant" href="${previous_url }">Prev</a></li>
 						<li><a title="Partenaire suivant " href="${next_url}">Next</a></li>
-						<li><a title="Partenaire suivant " href="${next_url}">Filtre</a></li>
 					</ul>
 				</div>
 			</c:if>
@@ -60,14 +66,14 @@
 							items="${producttypes}" path="producttypes"
 							z="lG7QIxVME9KcY1HO5KZRyhVRjEc=" />
 						<field:input-hidden object="${product }" field="reference"
-							id="c_cm_adorsys_gpao_model_Product_reference"  />
-							<field:input field="name"
+							id="c_cm_adorsys_gpao_model_Product_reference" />
+						<field:input field="name"
 							id="c_cm_adorsys_gpao_model_Product_name" required="true"
 							z="USsMssaSX/R0kZPFQADs184CFF8=" />
-							<field:input field="codeBare"
-									id="c_cm_adorsys_gpao_model_Product_codeBare"
-									z="DeMlgiUNsIOyzTIxwQVcZWfZhlA=" />
-						
+						<field:input field="codeBare"
+							id="c_cm_adorsys_gpao_model_Product_codeBare"
+							z="DeMlgiUNsIOyzTIxwQVcZWfZhlA=" />
+
 
 					</div>
 					<div class="span6">
@@ -95,31 +101,56 @@
 							<div class="span6">
 								<legend>Stock</legend>
 								<c:choose>
-								<c:when test="${empty product.id}">
-								<field:input field="virtualStock"
-									id="c_cm_adorsys_gpao_model_Product_virtualStock" 
-									required="true" validationMessageCode="field_invalid_integer"
-									z="uB4+maWipvw1Dxwf+OKuOaaNUzA=" />
-								</c:when>
-								<c:otherwise>
-								<field:gpao-display  hiddenfield="true" id="c_cm_adorsys_gpao_model_Product_virtualStock"  object="${product}" field="virtualStock" />
-								</c:otherwise>
+									<c:when test="${not empty product.id }">
+										<field:gpao-display hiddenfield="true" object="${product }"
+											isList="true" field="defaultUdm" label="Udm Par default"
+											id="c_cm_adorsys_gpao_model_Product_defaultUdm"
+											z="CKUudAFCgXCa6eHEH9uO//B6usk=" />
+									</c:when>
+									<c:otherwise>
+										<field:select field="defaultUdm" label="Udm Par default"
+											id="c_cm_adorsys_gpao_model_Product_defaultUdm"
+											itemValue="id" items="${unitofmesureses}"
+											path="/unitofmesureses" z="CKUudAFCgXCa6eHEH9uO//B6usk=" />
+									</c:otherwise>
+
+								</c:choose>
+								<c:choose>
+									<c:when test="${empty product.id}">
+										<field:input field="virtualStock"
+											id="c_cm_adorsys_gpao_model_Product_virtualStock"
+											required="true" validationMessageCode="field_invalid_integer"
+											z="uB4+maWipvw1Dxwf+OKuOaaNUzA=" />
+									</c:when>
+									<c:otherwise>
+										<field:gpao-display hiddenfield="true"
+											id="c_cm_adorsys_gpao_model_Product_virtualStock"
+											object="${product}" field="virtualStock" />
+									</c:otherwise>
 								</c:choose>
 								<field:input field="minStock"
 									id="c_cm_adorsys_gpao_model_Product_minStock" min="0"
 									required="true" validationMessageCode="field_invalid_integer"
 									z="f5hRhzmEeiTVCvZcYj8zIpPS2GE=" />
-								<field:select field="defaultUdm"
-									id="c_cm_adorsys_gpao_model_Product_defaultUdm" itemValue="id"
-									items="${unitofmesureses}" path="/unitofmesureses"
-									z="CKUudAFCgXCa6eHEH9uO//B6usk=" />
 							</div>
 							<div style="margin-left: 10px;" class="span6">
 								<legend>Prix de base </legend>
-								<field:select field="defaultCurrency"
-									id="c_cm_adorsys_gpao_model_Product_defaultCurrency"
-									itemValue="id" items="${devises}" path="/devises"
-									required="true" z="8bauiTLzA7nNujLsZYZRnJ5uTJ8=" />
+								<c:choose>
+									<c:when test="${not empty product.id }">
+										<field:gpao-display object="${product}"
+											field="defaultCurrency" 
+											id="c_cm_adorsys_gpao_model_Product_defaultCurrency"
+											hiddenfield="true" isList="true"
+											z="8bauiTLzA7nNujLsZYZRnJ5uTJ8=" />
+									</c:when>
+									<c:otherwise>
+										<field:select field="defaultCurrency" 
+											id="c_cm_adorsys_gpao_model_Product_defaultCurrency"
+											itemValue="id" items="${devises}" path="/devises"
+											required="true" z="8bauiTLzA7nNujLsZYZRnJ5uTJ8=" />
+									</c:otherwise>
+
+								</c:choose>
 								<field:input field="purchasePrice"
 									id="c_cm_adorsys_gpao_model_Product_purchasePrice"
 									validationMessageCode="field_invalid_number"
@@ -165,19 +196,22 @@
 						<div class="row-fluid">
 							<div class="span6">
 								<legend>Taxes a la vente </legend>
-								<field:select style="width: 100%; height: 250px;" field="saleTaxes"
+								<field:select style="width: 100%; height: 250px;"
+									field="saleTaxes"
 									id="c_cm_adorsys_gpao_model_Product_saleTaxes" itemValue="id"
 									items="${taxes}" multiple="true" path="/taxes"
 									z="q9EkUwy8WNaO+rY81waJ49P1B3I=" />
 							</div>
 							<div style="margin-left: 10px;" class="span6">
 								<legend>taxes a l'Achat </legend>
-								<field:select style="width: 100%; height: 250px;" field="purchaseTaxes"
+								<field:select style="width: 100%; height: 250px;"
+									field="purchaseTaxes"
 									id="c_cm_adorsys_gpao_model_Product_purchaseTaxes"
 									itemValue="id" items="${taxes}" multiple="true" path="/taxes"
 									z="v4ezpxdZWiQ+v9ssFENvdBbRxoc=" />
-								
-								<field:input-hidden object="${product }"   field="productImagePath"
+
+								<field:input-hidden object="${product }"
+									field="productImagePath"
 									id="c_cm_adorsys_gpao_model_Product_productImagePath" />
 							</div>
 
@@ -190,30 +224,24 @@
 		</div>
 		<div style="text-align: center;" class="span2">
 			<p>
-				<button style="width: 100%;" class="btn-success" type="button">Fiche du Produit</button>
-			</p>
-			<p>
-				<button style="width: 100%;" class="btn-success" type="button">Visualiser les lots</button>
-			</p>
-			<p>
-				<button style="width: 100%;" class="btn-success" type="button">Mouvements Stocks</button>
-			</p>
-			<p>
-				<button style="width: 100%;" class="btn-success" type="button">statistiques Achats</button>
+				<button style="width: 100%;" id="visu_lot" class="btn-success"
+					type="button">Visualiser les lots</button>
 			</p>
 
 		</div>
-		
+
 	</div>
-	
+
 	<script>
-	
 		$('#tab a').click(function(e) {
 			e.preventDefault();
 			$(this).tab('show');
 		});
-		
+		$('#visu_lot').click(function(e) {
+			var url = '${print_lot_url}'
+			window.location = url;
+		});
 	</script>
-	
+
 
 </div>

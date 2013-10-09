@@ -4,10 +4,12 @@ import cm.adorsys.gpao.utils.GpaoSequenceGenerator;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;
+import javax.persistence.EntityManager;
 import javax.persistence.ManyToOne;
 import javax.persistence.PostPersist;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.TypedQuery;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -17,8 +19,8 @@ import org.springframework.roo.addon.tostring.RooToString;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord
-public class DeliveryItems {
+@RooJpaActiveRecord(inheritanceType = "TABLE_PER_CLASS", finders = { "findDeliveryItemsesByReferenceEquals" })
+public class DeliveryItems extends GpaoBaseEntity {
 
     private String reference;
 
@@ -26,11 +28,13 @@ public class DeliveryItems {
     @ManyToOne
     private Product product;
 
-    private BigDecimal orderQte =BigDecimal.ZERO;
+    private BigDecimal orderQte = BigDecimal.ZERO;
 
-    private BigDecimal qteReceive =BigDecimal.ZERO;
+    private BigDecimal qteReceive = BigDecimal.ZERO;
 
-    private BigDecimal qteUnreceive  =BigDecimal.ZERO;
+    private BigDecimal qteUnreceive = BigDecimal.ZERO;
+    
+    private BigDecimal qteInStock = BigDecimal.ZERO;
 
     @NotNull
     @ManyToOne
@@ -38,9 +42,9 @@ public class DeliveryItems {
 
     private BigDecimal amountHt = BigDecimal.ZERO;
 
-    private BigDecimal taxAmount= BigDecimal.ZERO;
+    private BigDecimal taxAmount = BigDecimal.ZERO;
 
-    private BigDecimal taxedAmount= BigDecimal.ZERO;
+    private BigDecimal taxedAmount = BigDecimal.ZERO;
 
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(style = "M-")
@@ -52,8 +56,9 @@ public class DeliveryItems {
     public DeliveryItems() {
     }
     
-    public void acceptAllOrderQte(){
-    	qteReceive = orderQte;
+    public void calculateQteInStock(){
+    	//TODO:
+    	
     }
 
     public DeliveryItems(OrderItems items, Delivery delivery) {
@@ -66,11 +71,24 @@ public class DeliveryItems {
         this.taxedAmount = items.getTaxedSubTotal();
         this.delivery = delivery;
         this.udm = items.getUdm();
-        
+    }
+
+    public void acceptAllOrderQte() {
+        qteReceive = orderQte;
     }
 
     @PostPersist
     public void postPersist() {
         reference = GpaoSequenceGenerator.getSequenceWhitoutDate(getId(), delivery.getDocRef());
     }
+    
+    public static TypedQuery<cm.adorsys.gpao.model.DeliveryItems> findDeliveryItemssByProductAndStockQteNotEqual(Product product ,BigDecimal qteReceive) {
+		EntityManager em = DeliveryItems.entityManager();
+		TypedQuery<DeliveryItems> q = em.createQuery("SELECT o FROM DeliveryItems AS o WHERE  o.product = :product AND o.qteReceive != :qteReceive ORDER BY o.id DESC ", DeliveryItems.class);
+		q.setParameter("product", product);
+		q.setParameter("qteReceive", qteReceive);
+		return q;
+	}
+    
+   
 }

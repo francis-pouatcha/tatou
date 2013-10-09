@@ -7,14 +7,14 @@
         <a class="btn a-btn" href="${add_url}">Nouveau</a>
         <a class="btn a-btn" href="#">Filtre</a>
     </div>
-    <page:list showInPanel="false"  labelPlural="Liste des Inventaire" id="pl_cm_adorsys_gpao_model_Inventory" items="${inventorys}" z="p8TM+B5E29tKqe1zgnL0kyAkrNs=">
-        <table:table create="false" delete="false" queryParam="true" show="false" data="${inventorys}" id="l_cm_adorsys_gpao_model_Inventory" path="/inventorys/addOrEditForm" z="OJS/suqe9G5JVKFK6KDPQGSYoaw=">
+    <page:list id="pl_cm_adorsys_gpao_model_Inventory" items="${inventorys}" labelPlural="Liste des Inventaire" showInPanel="false" z="user-managed">
+        <table:table create="false" data="${inventorys}" delete="false" id="l_cm_adorsys_gpao_model_Inventory" path="/inventorys/addOrEditForm" queryParam="true" show="false" z="user-managed">
             <table:column id="c_cm_adorsys_gpao_model_Inventory_reference" property="reference" z="KlypKLRLVc4QRbv0OL57eoZkZuk="/>
             <table:column date="true" dateTimePattern="${inventory_created_date_format}" id="c_cm_adorsys_gpao_model_Inventory_created" property="created" z="2tYbvhEej6sol3woTZlxu11TsIY="/>
             <table:column id="c_cm_adorsys_gpao_model_Inventory_createdBy" property="createdBy" z="aUmNrexiIuwziiP+gTyMUHfoocA="/>
             <table:column date="true" dateTimePattern="${inventory_closed_date_format}" id="c_cm_adorsys_gpao_model_Inventory_closed" property="closed" z="ruMoRLirqUs+nx/jty6z/LtjZbU="/>
             <table:column id="c_cm_adorsys_gpao_model_Inventory_closedBy" property="closedBy" z="fka6bQ5rmWklzCROyT0W4tbXW+U="/>
-            <table:column id="c_cm_adorsys_gpao_model_Inventory_status" property="status" z="w9MulT8aUQvRHHaOq0hM5IshUA0="/>
+            <table:column id="c_cm_adorsys_gpao_model_Inventory_archived" property="archived" z="F8Sui1N3/vQ3KpE1fO2NWtvA7UY="/>
         </table:table>
     </page:list>
 </div>

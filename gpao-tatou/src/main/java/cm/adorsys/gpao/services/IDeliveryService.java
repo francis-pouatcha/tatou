@@ -7,6 +7,10 @@ import cm.adorsys.gpao.model.DeliveryItems;
 import cm.adorsys.gpao.model.Inventory;
 import cm.adorsys.gpao.model.PurchaseOrder;
 
+/**
+ * @author clovisgakam
+ *
+ */
 public interface IDeliveryService {
 	public Delivery getDeliveryFromOrder(PurchaseOrder order) ;
 	public Delivery getDeliveryFromInventory(Inventory inventory) ;

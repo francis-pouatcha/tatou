@@ -16,4 +16,7 @@
     <definition extends="purchase" name="purchaseorders/purchaseordersView">
         <put-attribute name="body" value="/WEB-INF/views/purchaseorders/purchaseordersView.jspx"/>
     </definition>
+     <definition extends="purchase" name="purchaseorders/findPurchaseOrderView">
+        <put-attribute name="body" value="/WEB-INF/views/purchaseorders/findPurchaseOrderView.jspx"/>
+    </definition>
 </tiles-definitions>

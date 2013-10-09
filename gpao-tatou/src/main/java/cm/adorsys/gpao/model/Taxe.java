@@ -20,8 +20,8 @@ import org.springframework.roo.addon.tostring.RooToString;
  */
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord
-public class Taxe {
+@RooJpaActiveRecord(inheritanceType = "TABLE_PER_CLASS")
+public class Taxe extends GpaoBaseEntity{
 
 	@NotNull
 	private String name;
@@ -39,7 +39,7 @@ public class Taxe {
 
 	@NotNull
 	@Enumerated(EnumType.STRING)
-	private TaxeType taxeType = TaxeType.BY_PERCENT;
+	private TaxeType taxeType = TaxeType.PAR_POURCENTAGE;
 
 	public static void init(){
 		if(Taxe.countTaxes() <= 0){
@@ -63,7 +63,7 @@ public class Taxe {
 	public BigDecimal getTaxeFromAmount(BigDecimal amount){
 		BigDecimal taxeAmount = BigDecimal.ZERO ;
 		if(isActive){
-			if(taxeType == taxeType.BY_AMOUNT) {
+			if(taxeType == taxeType.PAR_VALEUR) {
 				taxeAmount = taxeAmount.add(taxeValue) ;
 			}else {
 				taxeAmount = taxeAmount.add((amount.multiply(taxeValue)).divide(BigDecimal.valueOf(100),2));

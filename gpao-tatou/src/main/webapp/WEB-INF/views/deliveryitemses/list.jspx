@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:spring="http://www.springframework.org/tags" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    <page:list id="pl_cm_adorsys_gpao_model_DeliveryItems" items="${deliveryitemses}" z="EdSPFY/6gIM2kro863jcl2xhxRo=">
-        <table:table data="${deliveryitemses}" id="l_cm_adorsys_gpao_model_DeliveryItems" path="/deliveryitemses" z="4+rSDsEjCl7E6m4rEuSCY1w77FA=">
+    <div class="btn-group">
+        <!-- <a class="btn a-btn" href="${add_url}">Nouveau</a> -->
+        <a class="btn a-btn" href="#">Filtre</a>
+    </div>
+    <page:list id="pl_cm_adorsys_gpao_model_DeliveryItems" items="${deliveryitemses}" labelPlural="Liste des Lots de produits" showInPanel="false" z="user-managed">
+        <table:table create="false" data="${deliveryitemses}" delete="false" id="l_cm_adorsys_gpao_model_DeliveryItems" path="/deliveryitemses" show="false" update="false" z="user-managed">
             <table:column id="c_cm_adorsys_gpao_model_DeliveryItems_reference" property="reference" z="VrtsaT090uWR18PZ6ygWDaGLLxg="/>
             <table:column id="c_cm_adorsys_gpao_model_DeliveryItems_product" property="product" z="BGDHoSOYHg8G7kRe4AL0MNotVV8="/>
+            <table:column id="c_cm_adorsys_gpao_model_DeliveryItems_udm" property="udm" z="5uhdFGK6T2oC0hP26L1kIy+UVt4="/>
             <table:column id="c_cm_adorsys_gpao_model_DeliveryItems_orderQte" property="orderQte" z="U5o2R5duZmF2JVkyreICxMBk3Xk="/>
-            <table:column id="c_cm_adorsys_gpao_model_DeliveryItems_qteReceive" property="qteReceive" z="VKPqja0TY2y60GXNvPNk75XxBrs="/>
+            <table:column id="c_cm_adorsys_gpao_model_DeliveryItems_qteReceive" label="stock" property="qteReceive" z="user-managed"/>
+            <table:column id="c_cm_adorsys_gpao_model_DeliveryItems_archived" render="false" property="archived" z="3270EVIEyZt+jC3naAVitEdq67I="/>
             <table:column id="c_cm_adorsys_gpao_model_DeliveryItems_qteUnreceive" property="qteUnreceive" z="5uhdFGK6T2oC0hP26L1kIy+UVt4="/>
-            <table:column id="c_cm_adorsys_gpao_model_DeliveryItems_delivery" property="delivery" z="hRENFn21CBarkpomFRqUv2RvWcE="/>
         </table:table>
     </page:list>
 </div>

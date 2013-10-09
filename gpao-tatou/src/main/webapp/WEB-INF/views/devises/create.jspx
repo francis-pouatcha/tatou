@@ -6,6 +6,7 @@
         <field:input field="name" id="c_cm_adorsys_gpao_model_Devise_name" required="true" z="BOgv8BLkfNrUOD9Io/nxlfpK2ms="/>
         <field:input field="shortName" id="c_cm_adorsys_gpao_model_Devise_shortName" min="1" required="true" z="fs+IWbGUOOj1wBJ1iGmTbANVjUs="/>
         <field:input field="ratio" id="c_cm_adorsys_gpao_model_Devise_ratio" min="0" required="true" validationMessageCode="field_invalid_number" z="bZSX8OLvAsdXcdYrOP6IrpT9/E8="/>
+        <field:checkbox field="archived" id="c_cm_adorsys_gpao_model_Devise_archived" z="HMLOl/s6LdB9fbwg2ZiFnkzpfnE="/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_cm_adorsys_gpao_model_Devise" render="${not empty dependencies}" z="6K8G1aq3EmXyTVZIVwoPQVE3MQw="/>
 </div>

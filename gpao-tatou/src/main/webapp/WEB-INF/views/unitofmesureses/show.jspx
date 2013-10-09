@@ -8,5 +8,6 @@
         <field:display field="unitGroup" id="s_cm_adorsys_gpao_model_UnitOfMesures_unitGroup" object="${unitofmesures}" z="K91elR4Ppxt4GYxZ8HlmTa49NgA="/>
         <field:display field="isActive" id="s_cm_adorsys_gpao_model_UnitOfMesures_isActive" object="${unitofmesures}" z="hazjK7o9EDVjJnjNKuf+NjZXB2g="/>
         <field:display field="isRefUnit" id="s_cm_adorsys_gpao_model_UnitOfMesures_isRefUnit" object="${unitofmesures}" z="6NRZNkQKwLOF05Itb8O9nctsK0U="/>
+        <field:display field="archived" id="s_cm_adorsys_gpao_model_UnitOfMesures_archived" object="${unitofmesures}" z="TOazsn+npHb6T77qPBd39TWc9MU="/>
     </page:show>
 </div>

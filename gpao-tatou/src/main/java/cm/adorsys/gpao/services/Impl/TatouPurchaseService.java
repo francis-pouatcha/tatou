@@ -44,7 +44,7 @@ public class TatouPurchaseService implements IPurchaseServices {
 	@Override
 	public List<Product> findProductFormPurchaseOrder(PurchaseOrder purchaseOrder) {
 		List<Product> productList = new ArrayList<Product>() ;
-		Set<OrderItems> orderItems = purchaseOrder.getOrderItems();
+		List<OrderItems> orderItems = purchaseOrder.getOrderItems();
 		for (OrderItems orderItems2 : orderItems) {
 			productList.add(orderItems2.getProduct());
 		}
@@ -85,7 +85,7 @@ public class TatouPurchaseService implements IPurchaseServices {
 
 	@Override
 	public void calculatePurchaseTaxAndAmount(PurchaseOrder purchaseOrder) {
-		Set<OrderItems> orderItems = purchaseOrder.getOrderItems();
+		List<OrderItems> orderItems = purchaseOrder.getOrderItems();
 		purchaseOrder.initAmount();
 		for (OrderItems orderItems2 : orderItems) {
 			orderItems2.calculateTaxAndAmout();
@@ -95,7 +95,7 @@ public class TatouPurchaseService implements IPurchaseServices {
 	}
 	@Override
 	public void validatedPurchase(PurchaseOrder purchaseOrder) {
-		if(DocumentStates.BROULLON.equals(purchaseOrder.getOrderState())){
+		if(DocumentStates.BROUILLON.equals(purchaseOrder.getOrderState())){
 			Delivery delivery = deliveryService.getDeliveryFromOrder(purchaseOrder);
 			delivery.persist();
 			Set<DeliveryItems> deliveryItems = deliveryService.getDeliveryItems(purchaseOrder,delivery);
@@ -172,11 +172,11 @@ public class TatouPurchaseService implements IPurchaseServices {
 	@Override
 	public void cancelTender(Tenders tenders) {
 		if(DocumentStates.OUVERT.equals(tenders.getStatus())){
-		List<PurchaseOrder> resultList = PurchaseOrder.findPurchaseOrdersByTenderAndStatus(tenders, DocumentStates.VALIDER).getResultList();
-		for (PurchaseOrder purchaseOrder : resultList) {
-			purchaseOrder.remove();
-		}
-		tenders.setStatus(DocumentStates.ANNULER);
+			List<PurchaseOrder> resultList = PurchaseOrder.findPurchaseOrdersByTenderAndStatus(tenders, DocumentStates.VALIDER).getResultList();
+			for (PurchaseOrder purchaseOrder : resultList) {
+				purchaseOrder.remove();
+			}
+			tenders.setStatus(DocumentStates.ANNULER);
 		}
 	}
 
@@ -184,8 +184,13 @@ public class TatouPurchaseService implements IPurchaseServices {
 	public void addOderItemsFromTenders(PurchaseOrder order) {
 		if(order.hasTender() && order.getOrderItems().isEmpty()){
 			Set<TenderItems> tenderItems = order.getTender().getTenderItems();
+			System.out.println(tenderItems.size());
 			for (TenderItems tenderItems2 : tenderItems) {
-				order.getOrderItems().add(new OrderItems(order, tenderItems2));
+				OrderItems orderItems = new OrderItems(order, tenderItems2);
+				if(order.hasProduct(orderItems.getProduct())==null){
+				orderItems.persist();
+				order.getOrderItems().add(orderItems);
+				}
 			}
 		}
 	}

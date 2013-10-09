@@ -5,20 +5,9 @@ package cm.adorsys.gpao.model;
 
 import cm.adorsys.gpao.model.Devise;
 import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import org.springframework.transaction.annotation.Transactional;
 
 privileged aspect Devise_Roo_Jpa_ActiveRecord {
-    
-    @PersistenceContext
-    transient EntityManager Devise.entityManager;
-    
-    public static final EntityManager Devise.entityManager() {
-        EntityManager em = new Devise().entityManager;
-        if (em == null) throw new IllegalStateException("Entity manager has not been injected (is the Spring Aspects JAR configured as an AJC/AJDT aspects library?)");
-        return em;
-    }
     
     public static long Devise.countDevises() {
         return entityManager().createQuery("SELECT COUNT(o) FROM Devise o", Long.class).getSingleResult();
@@ -35,35 +24,6 @@ privileged aspect Devise_Roo_Jpa_ActiveRecord {
     
     public static List<Devise> Devise.findDeviseEntries(int firstResult, int maxResults) {
         return entityManager().createQuery("SELECT o FROM Devise o", Devise.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
-    }
-    
-    @Transactional
-    public void Devise.persist() {
-        if (this.entityManager == null) this.entityManager = entityManager();
-        this.entityManager.persist(this);
-    }
-    
-    @Transactional
-    public void Devise.remove() {
-        if (this.entityManager == null) this.entityManager = entityManager();
-        if (this.entityManager.contains(this)) {
-            this.entityManager.remove(this);
-        } else {
-            Devise attached = Devise.findDevise(this.id);
-            this.entityManager.remove(attached);
-        }
-    }
-    
-    @Transactional
-    public void Devise.flush() {
-        if (this.entityManager == null) this.entityManager = entityManager();
-        this.entityManager.flush();
-    }
-    
-    @Transactional
-    public void Devise.clear() {
-        if (this.entityManager == null) this.entityManager = entityManager();
-        this.entityManager.clear();
     }
     
     @Transactional

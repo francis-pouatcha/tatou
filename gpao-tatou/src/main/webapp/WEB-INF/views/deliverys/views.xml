@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
 <tiles-definitions>
-    <definition extends="purchase" name="deliverys/list">
+    <definition extends="stock" name="deliverys/list">
         <put-attribute name="body" value="/WEB-INF/views/deliverys/list.jspx"/>
     </definition>
 <definition extends="default" name="deliverys/show">
@@ -13,7 +13,10 @@
 <definition extends="default" name="deliverys/update">
         <put-attribute name="body" value="/WEB-INF/views/deliverys/update.jspx"/>
     </definition>
-    <definition extends="purchase" name="deliverys/deliverysView">
+    <definition extends="stock" name="deliverys/deliverysView">
         <put-attribute name="body" value="/WEB-INF/views/deliverys/deliveryView.jspx"/>
+    </definition>
+    <definition extends="stock" name="deliverys/findDeliveryView">
+        <put-attribute name="body" value="/WEB-INF/views/deliverys/findDeliveryView.jspx"/>
     </definition>
 </tiles-definitions>

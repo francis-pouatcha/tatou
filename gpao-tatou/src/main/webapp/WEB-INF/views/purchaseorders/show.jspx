@@ -19,5 +19,6 @@
         <field:display field="isValided" id="s_cm_adorsys_gpao_model_PurchaseOrder_isValided" object="${purchaseorder}" z="OGSKnMOxtW7vmptFhD7vUJ7nUyI="/>
         <field:display field="company" id="s_cm_adorsys_gpao_model_PurchaseOrder_company" object="${purchaseorder}" z="+HK8eM/zukn05S/vgJ6V5uk3HYA="/>
         <field:display field="tender" id="s_cm_adorsys_gpao_model_PurchaseOrder_tender" object="${purchaseorder}" z="CDNOmhc0qi6A9alGxvhL8TUZxVQ="/>
+        <field:display field="archived" id="s_cm_adorsys_gpao_model_PurchaseOrder_archived" object="${purchaseorder}" z="Doqd41DNbdZlTgeIgCqM08OSkAs="/>
     </page:show>
 </div>

@@ -1,5 +1,9 @@
 package cm.adorsys.gpao.utils;
 
+/**
+ * @author clovisgakam
+ *
+ */
 public class GpaoDocumentDirectories {
 
 	public static  String ROOT_PATH = "/home/clovisgakam/gpao/" ;

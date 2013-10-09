@@ -13,8 +13,8 @@ import org.springframework.roo.addon.tostring.RooToString;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord
-public class ProductFamily {
+@RooJpaActiveRecord(inheritanceType = "TABLE_PER_CLASS")
+public class ProductFamily extends GpaoBaseEntity{
 
 	@NotNull
 	private String name;

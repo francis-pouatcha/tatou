@@ -11,5 +11,6 @@
         <field:display field="inventory" id="s_cm_adorsys_gpao_model_InventoryItems_inventory" object="${inventoryitems}" z="uvMzr2b/LozeZjjH1xFNIWZ2alk="/>
         <field:display field="productPrice" id="s_cm_adorsys_gpao_model_InventoryItems_productPrice" object="${inventoryitems}" z="gLtvCQrtiYDiQPDW/Tk0Tm3Hjvk="/>
         <field:display field="udm" id="s_cm_adorsys_gpao_model_InventoryItems_udm" object="${inventoryitems}" z="ne2fAnJfryfTyXP9JgqblvQio/s="/>
+        <field:display field="archived" id="s_cm_adorsys_gpao_model_InventoryItems_archived" object="${inventoryitems}" z="aRKlpG26Fhg+pITZGZzuYINB2YU="/>
     </page:show>
 </div>

@@ -5,20 +5,9 @@ package cm.adorsys.gpao.model;
 
 import cm.adorsys.gpao.model.Location;
 import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import org.springframework.transaction.annotation.Transactional;
 
 privileged aspect Location_Roo_Jpa_ActiveRecord {
-    
-    @PersistenceContext
-    transient EntityManager Location.entityManager;
-    
-    public static final EntityManager Location.entityManager() {
-        EntityManager em = new Location().entityManager;
-        if (em == null) throw new IllegalStateException("Entity manager has not been injected (is the Spring Aspects JAR configured as an AJC/AJDT aspects library?)");
-        return em;
-    }
     
     public static long Location.countLocations() {
         return entityManager().createQuery("SELECT COUNT(o) FROM Location o", Long.class).getSingleResult();
@@ -35,35 +24,6 @@ privileged aspect Location_Roo_Jpa_ActiveRecord {
     
     public static List<Location> Location.findLocationEntries(int firstResult, int maxResults) {
         return entityManager().createQuery("SELECT o FROM Location o", Location.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
-    }
-    
-    @Transactional
-    public void Location.persist() {
-        if (this.entityManager == null) this.entityManager = entityManager();
-        this.entityManager.persist(this);
-    }
-    
-    @Transactional
-    public void Location.remove() {
-        if (this.entityManager == null) this.entityManager = entityManager();
-        if (this.entityManager.contains(this)) {
-            this.entityManager.remove(this);
-        } else {
-            Location attached = Location.findLocation(this.id);
-            this.entityManager.remove(attached);
-        }
-    }
-    
-    @Transactional
-    public void Location.flush() {
-        if (this.entityManager == null) this.entityManager = entityManager();
-        this.entityManager.flush();
-    }
-    
-    @Transactional
-    public void Location.clear() {
-        if (this.entityManager == null) this.entityManager = entityManager();
-        this.entityManager.clear();
     }
     
     @Transactional

@@ -11,6 +11,7 @@
         <field:select field="inventory" id="c_cm_adorsys_gpao_model_InventoryItems_inventory" itemValue="id" items="${inventorys}" path="/inventorys" z="DXR43cEl1im4hv9XwsOJFSHMslE="/>
         <field:input field="productPrice" id="c_cm_adorsys_gpao_model_InventoryItems_productPrice" validationMessageCode="field_invalid_number" z="y079LQ71D3Bfv7reE442y5zfvGw="/>
         <field:select field="udm" id="c_cm_adorsys_gpao_model_InventoryItems_udm" itemValue="id" items="${unitofmesureses}" path="/unitofmesureses" required="true" z="wC/gYoRcUElRyugGM9zC07QxfOc="/>
+        <field:checkbox field="archived" id="c_cm_adorsys_gpao_model_InventoryItems_archived" z="ivIFarQV8QPAHwI5CuGpB6cR5yk="/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_cm_adorsys_gpao_model_InventoryItems" render="${not empty dependencies}" z="lM+mChh7j6uAvuHuiOhggtWxIGI="/>
 </div>

@@ -7,6 +7,10 @@ import java.util.Date;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 
+/**
+ * @author clovisgakam
+ *
+ */
 public class GpaoDateUtil {
 
 	public static final String DATE_PATTERN_LONG = "dd-MM-yyyy";

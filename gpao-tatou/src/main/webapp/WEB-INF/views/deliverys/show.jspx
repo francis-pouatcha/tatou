@@ -14,8 +14,9 @@
         <field:display field="taxAmount" id="s_cm_adorsys_gpao_model_Delivery_taxAmount" object="${delivery}" z="H+VN68zMn5c1NQycYpNuKAkWlIA="/>
         <field:display field="taxedAmount" id="s_cm_adorsys_gpao_model_Delivery_taxedAmount" object="${delivery}" z="dFW/mpqAaIyp8OvhauE8T0/cr0E="/>
         <field:display field="deliveryItems" id="s_cm_adorsys_gpao_model_Delivery_deliveryItems" object="${delivery}" z="QmVtTzaML7Iw1PjVDgIio+6Sz9A="/>
-        <field:display field="currency" id="s_cm_adorsys_gpao_model_Delivery_currency" object="${delivery}" z="V5AuT5WTGzX4UlXe7sgfqEY4ZWQ="/>
         <field:display field="company" id="s_cm_adorsys_gpao_model_Delivery_company" object="${delivery}" z="AacBq5IQ2V98a+nIHJG/VyHsRZE="/>
         <field:display field="docRef" id="s_cm_adorsys_gpao_model_Delivery_docRef" object="${delivery}" z="nvCwVUHBWrUKgjEsT6aVc8dJTFQ="/>
+        <field:display field="currency" id="s_cm_adorsys_gpao_model_Delivery_currency" object="${delivery}" z="V5AuT5WTGzX4UlXe7sgfqEY4ZWQ="/>
+        <field:display field="archived" id="s_cm_adorsys_gpao_model_Delivery_archived" object="${delivery}" z="tAWTdsrFLloPtR5u1nkd6fQU6Ag="/>
     </page:show>
 </div>

@@ -4,40 +4,14 @@
 package cm.adorsys.gpao.model;
 
 import cm.adorsys.gpao.model.Devise;
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Version;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 privileged aspect Devise_Roo_Jpa_Entity {
     
     declare @type: Devise: @Entity;
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Long Devise.id;
-    
-    @Version
-    @Column(name = "version")
-    private Integer Devise.version;
-    
-    public Long Devise.getId() {
-        return this.id;
-    }
-    
-    public void Devise.setId(Long id) {
-        this.id = id;
-    }
-    
-    public Integer Devise.getVersion() {
-        return this.version;
-    }
-    
-    public void Devise.setVersion(Integer version) {
-        this.version = version;
-    }
+    declare @type: Devise: @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS);
     
 }

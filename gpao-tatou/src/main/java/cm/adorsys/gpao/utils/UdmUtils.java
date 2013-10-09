@@ -5,6 +5,10 @@ import java.math.BigDecimal;
 import cm.adorsys.gpao.model.UnitOfMesures;
 import cm.adorsys.gpao.model.excepions.UnmatchUnitOfMesureGroupException;
 
+/**
+ * @author clovisgakam
+ *
+ */
 public class UdmUtils {
 	public static BigDecimal  convert(UnitOfMesures sourceUdm ,UnitOfMesures targetUdm,BigDecimal value) throws UnmatchUnitOfMesureGroupException {
 		if (!hasSameGroup(sourceUdm, targetUdm)) throw new UnmatchUnitOfMesureGroupException("the Both Unit of Mesure Are Incompatible !");

@@ -7,8 +7,8 @@ import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
 
 @RooJavaBean
-@RooJpaActiveRecord
-public class PartnerGroup {
+@RooJpaActiveRecord(inheritanceType = "TABLE_PER_CLASS")
+public class PartnerGroup extends GpaoBaseEntity{
 
 	@NotNull
 	private String name;

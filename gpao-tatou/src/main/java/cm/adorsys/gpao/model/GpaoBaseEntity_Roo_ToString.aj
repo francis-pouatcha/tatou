@@ -3,13 +3,13 @@
 
 package cm.adorsys.gpao.model;
 
-import cm.adorsys.gpao.model.Delivery;
+import cm.adorsys.gpao.model.GpaoBaseEntity;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-privileged aspect Delivery_Roo_ToString {
+privileged aspect GpaoBaseEntity_Roo_ToString {
     
-    public String Delivery.toString() {
+    public String GpaoBaseEntity.toString() {
         return ReflectionToStringBuilder.toString(this, ToStringStyle.SHORT_PREFIX_STYLE);
     }
     

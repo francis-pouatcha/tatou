@@ -22,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 import cm.adorsys.gpao.model.GpaoUser;
 import cm.adorsys.gpao.model.RoleNames;
 /**
+ * @author clovisgakam
  * This class is a custom implementation of spring it's UserDetailsService.
  */
 
@@ -49,6 +50,7 @@ public class GpaoUserDetailsService implements UserDetailsService {
 		}
 	}
 
+	
 	public static UserDetails createUserDetails(GpaoUser  user)
 			throws UsernameNotFoundException, DataAccessException 
 			{

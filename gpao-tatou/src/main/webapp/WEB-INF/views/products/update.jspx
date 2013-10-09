@@ -25,5 +25,6 @@
         <field:input field="productImage" id="c_cm_adorsys_gpao_model_Product_productImage" z="ttfpYHs/kdownLPkl6YWPumzaoU="/>
         <field:input field="productImagePath" id="c_cm_adorsys_gpao_model_Product_productImagePath" z="kVb+fqi0WTvhCNVAz5qvi+Wz1JM="/>
         <field:input field="codeBare" id="c_cm_adorsys_gpao_model_Product_codeBare" z="DeMlgiUNsIOyzTIxwQVcZWfZhlA="/>
+        <field:checkbox field="archived" id="c_cm_adorsys_gpao_model_Product_archived" z="HZuclo+A6ttm93gd9mBPLvxqvwo="/>
     </form:update>
 </div>

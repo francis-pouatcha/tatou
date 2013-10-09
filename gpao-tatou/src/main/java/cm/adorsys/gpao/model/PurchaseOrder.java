@@ -3,8 +3,10 @@ package cm.adorsys.gpao.model;
 import cm.adorsys.gpao.security.SecurityUtil;
 import cm.adorsys.gpao.utils.GpaoSequenceGenerator;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,22 +16,29 @@ import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.PostLoad;
 import javax.persistence.PostPersist;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.TypedQuery;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
 
+/**
+ * @author clovisgakam
+ *
+ */
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord
-public class PurchaseOrder {
+@RooJpaActiveRecord(inheritanceType = "TABLE_PER_CLASS")
+public class PurchaseOrder extends GpaoBaseEntity{
 
     @NotNull
     private String reference;
@@ -66,7 +75,7 @@ public class PurchaseOrder {
     private BigDecimal totalAmount = BigDecimal.ZERO;
 
     @Enumerated(EnumType.STRING)
-    private DocumentStates orderState = DocumentStates.BROULLON;
+    private DocumentStates orderState = DocumentStates.BROUILLON;
 
     private String createdBy;
 
@@ -79,8 +88,8 @@ public class PurchaseOrder {
     @ManyToOne
     private Devise currency;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "purchaseOrder" ,orphanRemoval=true)
-    private Set<OrderItems> orderItems = new HashSet<OrderItems>();
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "purchaseOrder",fetch=FetchType.EAGER)
+    private List<OrderItems> orderItems = new ArrayList<OrderItems>();
 
     @NotNull
     @ManyToOne
@@ -103,6 +112,10 @@ public class PurchaseOrder {
     	return (tender != null) ;
     }
 
+    @PostLoad
+    public void postLoad(){
+    	//orderItems = OrderItems.findOrderItemssByPurchaseOrder(this).getResultList();
+    }
     @PostPersist
     public void postPersist() {
         reference = GpaoSequenceGenerator.getSequence(getId(), GpaoSequenceGenerator.PORCHASE_SEQUENCE_PREFIX);
@@ -116,11 +129,41 @@ public class PurchaseOrder {
     }
 
     public OrderItems hasProduct(Product product) {
-        Set<OrderItems> orderItems2 = getOrderItems();
+        List<OrderItems> orderItems2 = getOrderItems();
         for (OrderItems orderItems : orderItems2) {
             if (orderItems.getProduct().equals(product)) return orderItems;
         }
         return null;
+    }
+    public static TypedQuery<cm.adorsys.gpao.model.PurchaseOrder> findPurchaseOrderByStatusAndTenderRefAndDateBetween(Partner supplier,DocumentStates orderState,String tenderRef,Date beginDate,Date endDate,String reference) {
+        EntityManager em = Tenders.entityManager();
+		StringBuilder query = new StringBuilder("SELECT o FROM PurchaseOrder AS o WHERE  o.id IS NOT NULL ");
+		if(StringUtils.isNotBlank(reference)){
+			query.append(" AND o.reference = :reference");
+		}
+		if(StringUtils.isNotBlank(tenderRef)){
+			query.append(" AND o.tender.reference = :tenderRef");
+		}
+		if(!(orderState ==null || DocumentStates.TOUS.equals(orderState))){
+			query.append(" AND o.orderState = :orderState");
+		}
+		if(beginDate != null){
+			query.append(" AND o.created >= :beginDate");
+		}
+		if(endDate != null){
+			query.append(" AND o.orderState <= :endDate");
+		}
+		if(supplier != null){
+			query.append(" AND o.supplier = :supplier");
+		}
+		TypedQuery<PurchaseOrder> q = em.createQuery(query.append(" ORDER BY o.id ").toString(), PurchaseOrder.class);
+		if(StringUtils.isNotBlank(reference))q.setParameter("reference", reference);
+		if(StringUtils.isNotBlank(tenderRef))q.setParameter("tenderRef", tenderRef);
+		if(!(orderState ==null || DocumentStates.TOUS.equals(orderState)))q.setParameter("orderState", orderState);
+		if(beginDate != null)q.setParameter("beginDate", beginDate);
+		if(endDate != null)q.setParameter("endDate", endDate);
+		if(supplier != null)q.setParameter("supplier", supplier);
+        return q;
     }
 
     public static TypedQuery<cm.adorsys.gpao.model.PurchaseOrder> findPurchaseOrdersByIdUpperThan(Long id) {

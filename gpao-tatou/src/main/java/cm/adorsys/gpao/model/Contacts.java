@@ -8,8 +8,8 @@ import org.springframework.roo.addon.tostring.RooToString;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord
-public class Contacts {
+@RooJpaActiveRecord(inheritanceType = "TABLE_PER_CLASS")
+public class Contacts extends GpaoBaseEntity  {
 
     @NotNull
     private String name;

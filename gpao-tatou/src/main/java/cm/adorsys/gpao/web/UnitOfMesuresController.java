@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import org.springframework.roo.addon.web.mvc.controller.finder.RooWebFinder;
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("/unitofmesureses")
 @Controller
 @RooWebScaffold(path = "unitofmesureses", formBackingObject = UnitOfMesures.class)
+@RooWebFinder
 public class UnitOfMesuresController {
 
     @RequestMapping(value = "/config", produces = "text/html")

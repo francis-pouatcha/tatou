@@ -3,5 +3,5 @@ package cm.adorsys.gpao.model;
 
 public enum DocumentStates {
 
-    BROULLON, VALIDER, OUVERT, FERMER,ANNULER;
+    TOUS,BROUILLON, VALIDER, OUVERT, FERMER,ANNULER;
 }

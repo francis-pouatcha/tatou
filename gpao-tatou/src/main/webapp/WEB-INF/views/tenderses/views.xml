@@ -16,4 +16,7 @@
 <definition extends="default" name="tenderses/update">
         <put-attribute name="body" value="/WEB-INF/views/tenderses/update.jspx"/>
     </definition>
+    <definition extends="purchase" name="tenderses/findTenderView">
+        <put-attribute name="body" value="/WEB-INF/views/tenderses/findTenderView.jspx"/>
+    </definition>
 </tiles-definitions>

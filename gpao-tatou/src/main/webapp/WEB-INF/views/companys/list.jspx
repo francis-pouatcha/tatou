@@ -9,7 +9,7 @@
             <table:column id="c_cm_adorsys_gpao_model_Company_phone" property="phone" z="IA5T+6/NLh6YbteM6ievGm3VwGQ="/>
             <table:column id="c_cm_adorsys_gpao_model_Company_contactName" property="contactName" z="4HEgCdUoE6DRmS3njFZLzk4ZWnE="/>
             <table:column id="c_cm_adorsys_gpao_model_Company_contactFunction" property="contactFunction" z="nQXcvu6ZwWwFVW5UakYqb/fwv4I="/>
-            <table:column id="c_cm_adorsys_gpao_model_Company_mobile" property="mobile" z="zjEaPOqyV8M/DRrdVWJ48E+dbPU="/>
+            <table:column id="c_cm_adorsys_gpao_model_Company_archived" property="archived" z="tGPo1OZ2D5S0BU3DHniufEdfJu8="/>
         </table:table>
     </page:list>
 </div>

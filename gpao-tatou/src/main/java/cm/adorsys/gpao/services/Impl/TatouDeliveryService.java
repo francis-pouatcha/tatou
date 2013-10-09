@@ -3,9 +3,9 @@ package cm.adorsys.gpao.services.Impl;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
-import org.hibernate.loader.custom.Return;
 import org.springframework.stereotype.Service;
 
 import cm.adorsys.gpao.model.Company;
@@ -34,10 +34,12 @@ public class TatouDeliveryService implements IDeliveryService {
 
 	@Override
 	public Set<DeliveryItems> getDeliveryItems(PurchaseOrder order,Delivery delivery) {
-		Set<OrderItems> orderItems = order.getOrderItems();
+		List<OrderItems> orderItems = order.getOrderItems();
 		Set<DeliveryItems> deliveryItems = new HashSet<DeliveryItems>();
 		for (OrderItems items : orderItems) {
-			deliveryItems.add(new DeliveryItems(items,delivery));
+			DeliveryItems deliveryItems2 = new DeliveryItems(items,delivery);
+			deliveryItems2.persist();
+			deliveryItems.add(deliveryItems2);
 		}
 		return deliveryItems;
 	}
@@ -77,7 +79,7 @@ public class TatouDeliveryService implements IDeliveryService {
 		deliveryItems.setProduct(inventoryItems.getProduct());
 		deliveryItems.setOrderQte(inventoryItems.getRealStock());
 		deliveryItems.setQteReceive(inventoryItems.getRealStock());
-		System.out.println(deliveryItems.getOrderQte());
+		deliveryItems.setQteInStock(inventoryItems.getRealStock());
 		deliveryItems.setDelivery(delivery);
 		deliveryItems.setAmountHt(inventoryItems.getProductPrice().multiply(BigDecimal.valueOf(inventoryItems.getRealStock().longValue())));
 		deliveryItems.setTaxAmount(BigDecimal.ZERO);

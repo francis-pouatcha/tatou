@@ -4,40 +4,14 @@
 package cm.adorsys.gpao.model;
 
 import cm.adorsys.gpao.model.Tenders;
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Version;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 privileged aspect Tenders_Roo_Jpa_Entity {
     
     declare @type: Tenders: @Entity;
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Long Tenders.id;
-    
-    @Version
-    @Column(name = "version")
-    private Integer Tenders.version;
-    
-    public Long Tenders.getId() {
-        return this.id;
-    }
-    
-    public void Tenders.setId(Long id) {
-        this.id = id;
-    }
-    
-    public Integer Tenders.getVersion() {
-        return this.version;
-    }
-    
-    public void Tenders.setVersion(Integer version) {
-        this.version = version;
-    }
+    declare @type: Tenders: @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS);
     
 }

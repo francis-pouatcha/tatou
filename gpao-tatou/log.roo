@@ -385,3 +385,45 @@ web mvc all --package ~.web
 // Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-09-19 08:57:14
 // Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-09-19 13:02:04
 // Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-09-19 19:46:45
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-09-29 10:17:42
+entity jpa --class ~.model.GpaoBaseEntity --mappedSuperclass --abstract --activeRecord false 
+// [failed] entity jpa --class ~.model.SubClassTest --extends ~.model.GpaoBaseEntity --inheritanceType TABLE_PER_CLASS 
+entity jpa --class ~.model.SubClassTests --extends ~.model.GpaoBaseEntity --inheritanceType TABLE_PER_CLASS 
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-09-29 11:08:06
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-09-29 11:31:47
+focus --class ~.model.DeliveryItems
+finder list --depth 3 --filter product
+finder list --depth 1 --filter product
+finder list --depth 1 --filter reference
+finder add --finderName findDeliveryItemsesByReferenceEquals
+web mvc all --package ~.web
+web mvc finder all
+focus --class ~.model.Product
+finder list --depth 2 --filter name
+finder add findProductsByWarehouseAndProductSubFamilyAndNameLike
+finder add findProductsByWarehouseAndProductSubFamilyAndNameLike
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-09-30 15:08:16
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-09-30 15:09:45
+focus --class ~.model.Product
+finder list --depth 3 --filter name
+focus --class ~.model.uimodels.ProductFinder
+field string --fieldName productName 
+field reference --fieldName wareHouse --type ~.model.WareHouses
+field reference --fieldName familly --type ~.model.ProductSubFamily
+// [failed] web mvc finder add --formBackingType ~.model.uimodels.ProductFinder
+// [failed] web mvc finder add --formBackingType ~.model.uimodels.ProductFinder --class ~.web.ProductController
+focus --class ~.model.PurchaseOrder
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-10-04 11:54:26
+focus --class ~.model.Partner
+finder list --filter name
+finder add --finderName findPartnersByNameLike
+addon list 
+web mvc finder all
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-10-07 09:32:03
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-10-08 09:01:42
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-10-08 20:51:36
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-10-09 07:33:34
+focus --class ~.model.DeliveryItems
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-10-09 10:38:10
+persistence setup --provider HIBERNATE --database H2_IN_MEMORY --jndiDataSource 
+persistence setup --provider HIBERNATE --database H2_IN_MEMORY --jndiDataSource java:jboss/datasources/ExampleDS

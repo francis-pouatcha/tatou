@@ -7,5 +7,6 @@
         <field:input field="description" id="c_cm_adorsys_gpao_model_ProductSubFamily_description" z="O1Bz4HsCh8UQeLb4gjRuGMOUh6M="/>
         <field:checkbox field="isActive" id="c_cm_adorsys_gpao_model_ProductSubFamily_isActive" z="mhn1/MFrE7QnAQn+zr8AQsyUtOU="/>
         <field:select field="productFamily" id="c_cm_adorsys_gpao_model_ProductSubFamily_productFamily" itemValue="id" items="${productfamilys}" path="/productfamilys" required="true" z="yS+aKJJ3Ioj4s8Fplo48OWNc3hE="/>
+        <field:checkbox field="archived" id="c_cm_adorsys_gpao_model_ProductSubFamily_archived" z="6lsOcfbmTuJFFnRM1v4EIps+zOY="/>
     </form:update>
 </div>

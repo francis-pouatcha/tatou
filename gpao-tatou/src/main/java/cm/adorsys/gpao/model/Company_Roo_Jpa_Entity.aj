@@ -4,40 +4,14 @@
 package cm.adorsys.gpao.model;
 
 import cm.adorsys.gpao.model.Company;
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Version;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 privileged aspect Company_Roo_Jpa_Entity {
     
     declare @type: Company: @Entity;
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Long Company.id;
-    
-    @Version
-    @Column(name = "version")
-    private Integer Company.version;
-    
-    public Long Company.getId() {
-        return this.id;
-    }
-    
-    public void Company.setId(Long id) {
-        this.id = id;
-    }
-    
-    public Integer Company.getVersion() {
-        return this.version;
-    }
-    
-    public void Company.setVersion(Integer version) {
-        this.version = version;
-    }
+    declare @type: Company: @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS);
     
 }

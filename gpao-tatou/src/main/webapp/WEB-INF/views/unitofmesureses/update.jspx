@@ -8,5 +8,6 @@
         <field:select field="unitGroup" id="c_cm_adorsys_gpao_model_UnitOfMesures_unitGroup" itemValue="id" items="${udmgroups}" path="/udmgroups" required="true" z="lzWYY3kwT5f2Qvuxaa+o//QW4L0="/>
         <field:checkbox field="isActive" id="c_cm_adorsys_gpao_model_UnitOfMesures_isActive" z="7U68Xveuqyla3vjlm1GkkTELfXw="/>
         <field:checkbox field="isRefUnit" id="c_cm_adorsys_gpao_model_UnitOfMesures_isRefUnit" z="w3667kCC0wddMAjHb1wjubghIM4="/>
+        <field:checkbox field="archived" id="c_cm_adorsys_gpao_model_UnitOfMesures_archived" z="hxxWFngorgdIaENQSDSuFNPxslQ="/>
     </form:update>
 </div>

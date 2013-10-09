@@ -12,6 +12,7 @@
         <field:input field="gapAmount" id="c_cm_adorsys_gpao_model_Inventory_gapAmount" validationMessageCode="field_invalid_number" z="jG0zUGO0lH7MAOjm7+MFZEpAqZs="/>
         <field:select field="currency" id="c_cm_adorsys_gpao_model_Inventory_currency" itemValue="id" items="${devises}" path="/devises" z="gQ8QHTpNhCS5DRXZsRvLLyrRETU="/>
         <field:select field="company" id="c_cm_adorsys_gpao_model_Inventory_company" itemValue="id" items="${companys}" path="/companys" z="K7bJB/EfxuN0R3yHJreKwfuFPLo="/>
+        <field:checkbox field="archived" id="c_cm_adorsys_gpao_model_Inventory_archived" z="hKuizcFFG5J7Bh/TTJRhrfjxP4s="/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_cm_adorsys_gpao_model_Inventory" render="${not empty dependencies}" z="sVpTAy15d7QgcVg9TLD0tlkTOJ8="/>
 </div>

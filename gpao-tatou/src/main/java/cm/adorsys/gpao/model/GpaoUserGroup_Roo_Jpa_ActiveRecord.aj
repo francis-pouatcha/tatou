@@ -5,20 +5,9 @@ package cm.adorsys.gpao.model;
 
 import cm.adorsys.gpao.model.GpaoUserGroup;
 import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import org.springframework.transaction.annotation.Transactional;
 
 privileged aspect GpaoUserGroup_Roo_Jpa_ActiveRecord {
-    
-    @PersistenceContext
-    transient EntityManager GpaoUserGroup.entityManager;
-    
-    public static final EntityManager GpaoUserGroup.entityManager() {
-        EntityManager em = new GpaoUserGroup().entityManager;
-        if (em == null) throw new IllegalStateException("Entity manager has not been injected (is the Spring Aspects JAR configured as an AJC/AJDT aspects library?)");
-        return em;
-    }
     
     public static long GpaoUserGroup.countGpaoUserGroups() {
         return entityManager().createQuery("SELECT COUNT(o) FROM GpaoUserGroup o", Long.class).getSingleResult();
@@ -35,35 +24,6 @@ privileged aspect GpaoUserGroup_Roo_Jpa_ActiveRecord {
     
     public static List<GpaoUserGroup> GpaoUserGroup.findGpaoUserGroupEntries(int firstResult, int maxResults) {
         return entityManager().createQuery("SELECT o FROM GpaoUserGroup o", GpaoUserGroup.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
-    }
-    
-    @Transactional
-    public void GpaoUserGroup.persist() {
-        if (this.entityManager == null) this.entityManager = entityManager();
-        this.entityManager.persist(this);
-    }
-    
-    @Transactional
-    public void GpaoUserGroup.remove() {
-        if (this.entityManager == null) this.entityManager = entityManager();
-        if (this.entityManager.contains(this)) {
-            this.entityManager.remove(this);
-        } else {
-            GpaoUserGroup attached = GpaoUserGroup.findGpaoUserGroup(this.id);
-            this.entityManager.remove(attached);
-        }
-    }
-    
-    @Transactional
-    public void GpaoUserGroup.flush() {
-        if (this.entityManager == null) this.entityManager = entityManager();
-        this.entityManager.flush();
-    }
-    
-    @Transactional
-    public void GpaoUserGroup.clear() {
-        if (this.entityManager == null) this.entityManager = entityManager();
-        this.entityManager.clear();
     }
     
     @Transactional

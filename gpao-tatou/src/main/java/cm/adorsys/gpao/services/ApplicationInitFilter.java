@@ -21,6 +21,10 @@ import cm.adorsys.gpao.model.ProductSubFamily;
 import cm.adorsys.gpao.model.Taxe;
 import cm.adorsys.gpao.model.UnitOfMesures;
 
+/**
+ * @author clovisgakam
+ *
+ */
 @Service
 @Transactional
 public class ApplicationInitFilter extends OncePerRequestFilter {

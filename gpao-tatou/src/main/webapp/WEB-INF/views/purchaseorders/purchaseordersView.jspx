@@ -44,7 +44,6 @@
 						<li><a title="vider le formulaire" href="${add_url }">Add</a></li>
 						<li><a title="Groupe preccedant" href="${previous_url }">Prev</a></li>
 						<li><a title="Groupe suivant " href="${next_url}">Next</a></li>
-						<li><a title="Groupe suivant " href="#">Filtre</a></li>
 					</ul>
 				</div>
 			</c:if>
@@ -137,7 +136,7 @@
 				<div class="tab-pane active" id="ligne">
 					<div style="padding-right: 2%;" class="span10">
 						<c:if test="${not empty purchaseOrder.id }">
-							<c:if test="${purchaseOrder.orderState eq 'BROULLON'}">
+							<c:if test="${purchaseOrder.orderState eq 'BROUILLON'}">
 								<div class="btn-group pull-rigth" data-toggle="buttons-checkbox">
 									<c:choose>
 										<c:when test="${not empty purchaseOrder.tender }">
@@ -201,7 +200,7 @@
 									style="width: 100%;" type="button">Visu appel d'offre</button>
 							</p>
 						<c:if test="${ not empty purchaseOrder.id}">
-							<c:if test="${purchaseOrder.orderState eq 'BROULLON'}">
+							<c:if test="${purchaseOrder.orderState eq 'BROUILLON'}">
 								<p>
 									<button id="validerBtn" class="btn-success"
 										style="width: 100%;" type="button">valider la

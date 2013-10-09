@@ -1,7 +1,11 @@
-package org.adorsys.adpharma.utils ;
+package cm.adorsys.gpao.utils ;
 
 import java.util.Date;
 
+/**
+ * @author clovisgakam
+ *
+ */
 public class DateConfigPeriod {
 	private final Date begin;
 	private final Date end;

@@ -7,5 +7,6 @@
         <field:display field="description" id="s_cm_adorsys_gpao_model_ProductSubFamily_description" object="${productsubfamily}" z="dLh/W5Wk1oCIDGIM2ln9yeFJp9c="/>
         <field:display field="isActive" id="s_cm_adorsys_gpao_model_ProductSubFamily_isActive" object="${productsubfamily}" z="aB84c3fEMPexzWcuCRHsKfG2mrU="/>
         <field:display field="productFamily" id="s_cm_adorsys_gpao_model_ProductSubFamily_productFamily" object="${productsubfamily}" z="/JQUXkbWScV6O0CYozq+9mHp4Bk="/>
+        <field:display field="archived" id="s_cm_adorsys_gpao_model_ProductSubFamily_archived" object="${productsubfamily}" z="fNGKpd+QvKGkIdubAgCGKLWZplA="/>
     </page:show>
 </div>

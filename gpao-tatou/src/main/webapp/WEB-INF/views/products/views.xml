@@ -25,4 +25,13 @@
 <definition extends="default" name="products/list">
         <put-attribute name="body" value="/WEB-INF/views/products/list.jspx"/>
     </definition>
+<definition extends="default" name="products/findProductsByNameLike">
+        <put-attribute name="body" value="/WEB-INF/views/products/findProductsByNameLike.jspx"/>
+    </definition>
+    <definition extends="purchase" name="products/achat/findProductView">
+        <put-attribute name="body" value="/WEB-INF/views/products/findProductView.jspx"/>
+    </definition>
+    <definition extends="stock" name="products/stock/findProductView">
+        <put-attribute name="body" value="/WEB-INF/views/products/findProductView.jspx"/>
+    </definition>
 </tiles-definitions>

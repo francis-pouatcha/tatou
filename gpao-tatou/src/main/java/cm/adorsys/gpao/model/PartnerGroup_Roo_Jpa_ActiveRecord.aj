@@ -5,20 +5,9 @@ package cm.adorsys.gpao.model;
 
 import cm.adorsys.gpao.model.PartnerGroup;
 import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import org.springframework.transaction.annotation.Transactional;
 
 privileged aspect PartnerGroup_Roo_Jpa_ActiveRecord {
-    
-    @PersistenceContext
-    transient EntityManager PartnerGroup.entityManager;
-    
-    public static final EntityManager PartnerGroup.entityManager() {
-        EntityManager em = new PartnerGroup().entityManager;
-        if (em == null) throw new IllegalStateException("Entity manager has not been injected (is the Spring Aspects JAR configured as an AJC/AJDT aspects library?)");
-        return em;
-    }
     
     public static long PartnerGroup.countPartnerGroups() {
         return entityManager().createQuery("SELECT COUNT(o) FROM PartnerGroup o", Long.class).getSingleResult();
@@ -35,35 +24,6 @@ privileged aspect PartnerGroup_Roo_Jpa_ActiveRecord {
     
     public static List<PartnerGroup> PartnerGroup.findPartnerGroupEntries(int firstResult, int maxResults) {
         return entityManager().createQuery("SELECT o FROM PartnerGroup o", PartnerGroup.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
-    }
-    
-    @Transactional
-    public void PartnerGroup.persist() {
-        if (this.entityManager == null) this.entityManager = entityManager();
-        this.entityManager.persist(this);
-    }
-    
-    @Transactional
-    public void PartnerGroup.remove() {
-        if (this.entityManager == null) this.entityManager = entityManager();
-        if (this.entityManager.contains(this)) {
-            this.entityManager.remove(this);
-        } else {
-            PartnerGroup attached = PartnerGroup.findPartnerGroup(this.id);
-            this.entityManager.remove(attached);
-        }
-    }
-    
-    @Transactional
-    public void PartnerGroup.flush() {
-        if (this.entityManager == null) this.entityManager = entityManager();
-        this.entityManager.flush();
-    }
-    
-    @Transactional
-    public void PartnerGroup.clear() {
-        if (this.entityManager == null) this.entityManager = entityManager();
-        this.entityManager.clear();
     }
     
     @Transactional

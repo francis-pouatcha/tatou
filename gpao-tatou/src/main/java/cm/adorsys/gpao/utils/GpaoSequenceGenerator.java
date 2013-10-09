@@ -1,13 +1,17 @@
 package cm.adorsys.gpao.utils;
 
 
+/**
+ * @author clovisgakam
+ *
+ */
 public class GpaoSequenceGenerator {
-	public static String PORCHASE_SEQUENCE_PREFIX = "PO";
-	public static String DELIVERY_SEQUENCE_PREFIX = "DE";
+	public static String PORCHASE_SEQUENCE_PREFIX = "CD";
+	public static String DELIVERY_SEQUENCE_PREFIX = "LV";
 	public static String LOT_SEQUENCE_PREFIX = "LO";
 	public static String ARTICLE_SEQUENCE_PREFIX = "AR";
 	public static String INVENTORY_SEQUENCE_PREFIX = "IN";
-	public static String TENDER_SEQUENCE_PREFIX = "TE";
+	public static String TENDER_SEQUENCE_PREFIX = "AP";
 
 
 	public static String getSequence(Long index ,String prefixe){

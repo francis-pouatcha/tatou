@@ -4,40 +4,14 @@
 package cm.adorsys.gpao.model;
 
 import cm.adorsys.gpao.model.GpaoUser;
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Version;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 privileged aspect GpaoUser_Roo_Jpa_Entity {
     
     declare @type: GpaoUser: @Entity;
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Long GpaoUser.id;
-    
-    @Version
-    @Column(name = "version")
-    private Integer GpaoUser.version;
-    
-    public Long GpaoUser.getId() {
-        return this.id;
-    }
-    
-    public void GpaoUser.setId(Long id) {
-        this.id = id;
-    }
-    
-    public Integer GpaoUser.getVersion() {
-        return this.version;
-    }
-    
-    public void GpaoUser.setVersion(Integer version) {
-        this.version = version;
-    }
+    declare @type: GpaoUser: @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS);
     
 }

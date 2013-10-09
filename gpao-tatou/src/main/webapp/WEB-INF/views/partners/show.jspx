@@ -23,5 +23,6 @@
         <field:display field="isActive" id="s_cm_adorsys_gpao_model_Partner_isActive" object="${partner}" z="jCNIN9/XJidSBaz88lf5UwDEOKA="/>
         <field:display field="code" id="s_cm_adorsys_gpao_model_Partner_code" object="${partner}" z="8QOx7scDPRgHLHCCR85BuITh8IE="/>
         <field:display field="partnerLogo" id="s_cm_adorsys_gpao_model_Partner_partnerLogo" object="${partner}" z="6504oTtXtG8DiEpYrcFneO6zIUU="/>
+        <field:display field="archived" id="s_cm_adorsys_gpao_model_Partner_archived" object="${partner}" z="rEm+VqzMjYZrE2mbSAtMAHbf20Q="/>
     </page:show>
 </div>

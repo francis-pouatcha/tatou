@@ -1,9 +1,12 @@
 package cm.adorsys.gpao.web;
 
 import cm.adorsys.gpao.model.Devise;
+import cm.adorsys.gpao.model.DocumentStates;
 import cm.adorsys.gpao.model.Partner;
 import cm.adorsys.gpao.model.PartnerGroup;
 import cm.adorsys.gpao.model.PartnerType;
+import cm.adorsys.gpao.model.uimodels.PartnerFinder;
+import cm.adorsys.gpao.model.uimodels.PurchaseOrderFinder;
 import cm.adorsys.gpao.utils.GpaoDocumentDirectories;
 import cm.adorsys.gpao.utils.GpaoFileUtils;
 import cm.adorsys.gpao.utils.MessageType;
@@ -11,6 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import org.springframework.roo.addon.web.mvc.controller.finder.RooWebFinder;
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +28,7 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/partners")
 @Controller
 @RooWebScaffold(path = "partners", formBackingObject = Partner.class)
+@RooWebFinder
 public class PartnerController {
 
     @RequestMapping(value = "/addOrEditForm", method = RequestMethod.GET, produces = "text/html")
@@ -78,6 +83,18 @@ public class PartnerController {
         populateEditForm(uiModel, next);
         return "partners/partnerView";
     }
+    
+    @RequestMapping(value="/find", params = {"form" }, method = RequestMethod.GET)
+   	public String findPartnerForm(Model uiModel) {
+    	populateFindForm(uiModel, new PartnerFinder());
+   		return "partners/findPartnerView";
+   	}
+
+   	@RequestMapping(value="/find", method = RequestMethod.POST)
+   	public String findPartner(PartnerFinder partnerFinder, Model uiModel) {
+   		uiModel.addAttribute("partners", partnerFinder.find());
+   		return "partners/list";
+   	}
 
     void populateEditForm(Model uiModel, Partner partner) {
         uiModel.addAttribute("partner", partner);
@@ -85,4 +102,10 @@ public class PartnerController {
         uiModel.addAttribute("partnergroups", PartnerGroup.findAllPartnerGroups());
         uiModel.addAttribute("partnertypes", Arrays.asList(PartnerType.values()));
     }
+ 	void populateFindForm(Model uiModel, PartnerFinder partnerFinder) {
+        uiModel.addAttribute("partnerFinder", partnerFinder);
+        uiModel.addAttribute("partnergroups", PartnerGroup.findAllPartnerGroups());
+        uiModel.addAttribute("partnertypes", Arrays.asList(PartnerType.values()));
+    }
+   	
 }

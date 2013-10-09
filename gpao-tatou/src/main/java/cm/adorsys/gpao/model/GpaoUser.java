@@ -12,6 +12,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.PostLoad;
+import javax.persistence.PrePersist;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
@@ -32,8 +33,8 @@ import cm.adorsys.gpao.security.SecurityUtil;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord
-public class GpaoUser {
+@RooJpaActiveRecord(inheritanceType = "TABLE_PER_CLASS")
+public class GpaoUser extends GpaoBaseEntity {
 	private String userNumber;
 
 	@Enumerated
@@ -97,6 +98,11 @@ public class GpaoUser {
 			gpaoUser.changePassword("test123");
 			gpaoUser.merge();
 		}
+	}
+
+	@PrePersist
+	public void prePersist(){
+		changePassword("test123");
 	}
 
 	@PostLoad

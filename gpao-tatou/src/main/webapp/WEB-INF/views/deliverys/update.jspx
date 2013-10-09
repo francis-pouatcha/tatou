@@ -14,8 +14,9 @@
         <field:input field="taxAmount" id="c_cm_adorsys_gpao_model_Delivery_taxAmount" validationMessageCode="field_invalid_number" z="izOjdaYrHFYS9BzI2BE1pNPUItA="/>
         <field:input field="taxedAmount" id="c_cm_adorsys_gpao_model_Delivery_taxedAmount" validationMessageCode="field_invalid_number" z="sxWZKzg0Z2kHeK3s0uSmslQomos="/>
         <field:select field="deliveryItems" id="c_cm_adorsys_gpao_model_Delivery_deliveryItems" itemValue="id" items="${deliveryitemses}" multiple="true" path="/deliveryitemses" z="bUcrcT+NxinaGlrGVWJrUEMCVO8="/>
-        <field:select field="currency" id="c_cm_adorsys_gpao_model_Delivery_currency" itemValue="id" items="${devises}" path="/devises" required="true" z="M639Dz4Qxqis4PSj6OtjQvTagAc="/>
         <field:select field="company" id="c_cm_adorsys_gpao_model_Delivery_company" itemValue="id" items="${companys}" path="/companys" required="true" z="bQTKGJA/FALamdiZpYgs/NnB33k="/>
         <field:input field="docRef" id="c_cm_adorsys_gpao_model_Delivery_docRef" required="true" z="uSnMobCbYMT6vN4VW06dADTYM5A="/>
+        <field:select field="currency" id="c_cm_adorsys_gpao_model_Delivery_currency" itemValue="id" items="${devises}" path="/devises" required="true" z="M639Dz4Qxqis4PSj6OtjQvTagAc="/>
+        <field:checkbox field="archived" id="c_cm_adorsys_gpao_model_Delivery_archived" z="kjCgbiFnIjY02G2OmAmJwpqgikU="/>
     </form:update>
 </div>

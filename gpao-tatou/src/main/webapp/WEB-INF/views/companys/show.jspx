@@ -18,5 +18,6 @@
         <field:display field="city" id="s_cm_adorsys_gpao_model_Company_city" object="${company}" z="dS3PV0dM6NR++0C/Rypc/hTRMGs="/>
         <field:display field="country" id="s_cm_adorsys_gpao_model_Company_country" object="${company}" z="z9ckNkJank9B8LKuucPyO3X0keY="/>
         <field:display field="uploadedLogo" id="s_cm_adorsys_gpao_model_Company_uploadedLogo" object="${company}" z="WIeT+xUSfoaaa6c991lGVvjGfgI="/>
+        <field:display field="archived" id="s_cm_adorsys_gpao_model_Company_archived" object="${company}" z="FUBBVNkXQPU5eZ4mHK9tdoM5XUs="/>
     </page:show>
 </div>

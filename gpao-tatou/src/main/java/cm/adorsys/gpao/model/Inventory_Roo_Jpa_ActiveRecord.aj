@@ -5,20 +5,9 @@ package cm.adorsys.gpao.model;
 
 import cm.adorsys.gpao.model.Inventory;
 import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import org.springframework.transaction.annotation.Transactional;
 
 privileged aspect Inventory_Roo_Jpa_ActiveRecord {
-    
-    @PersistenceContext
-    transient EntityManager Inventory.entityManager;
-    
-    public static final EntityManager Inventory.entityManager() {
-        EntityManager em = new Inventory().entityManager;
-        if (em == null) throw new IllegalStateException("Entity manager has not been injected (is the Spring Aspects JAR configured as an AJC/AJDT aspects library?)");
-        return em;
-    }
     
     public static long Inventory.countInventorys() {
         return entityManager().createQuery("SELECT COUNT(o) FROM Inventory o", Long.class).getSingleResult();
@@ -35,35 +24,6 @@ privileged aspect Inventory_Roo_Jpa_ActiveRecord {
     
     public static List<Inventory> Inventory.findInventoryEntries(int firstResult, int maxResults) {
         return entityManager().createQuery("SELECT o FROM Inventory o", Inventory.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
-    }
-    
-    @Transactional
-    public void Inventory.persist() {
-        if (this.entityManager == null) this.entityManager = entityManager();
-        this.entityManager.persist(this);
-    }
-    
-    @Transactional
-    public void Inventory.remove() {
-        if (this.entityManager == null) this.entityManager = entityManager();
-        if (this.entityManager.contains(this)) {
-            this.entityManager.remove(this);
-        } else {
-            Inventory attached = Inventory.findInventory(this.id);
-            this.entityManager.remove(attached);
-        }
-    }
-    
-    @Transactional
-    public void Inventory.flush() {
-        if (this.entityManager == null) this.entityManager = entityManager();
-        this.entityManager.flush();
-    }
-    
-    @Transactional
-    public void Inventory.clear() {
-        if (this.entityManager == null) this.entityManager = entityManager();
-        this.entityManager.clear();
     }
     
     @Transactional

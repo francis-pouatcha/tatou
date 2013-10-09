@@ -25,8 +25,8 @@ import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
 
 @RooJavaBean
-@RooJpaActiveRecord
-public class Tenders {
+@RooJpaActiveRecord(inheritanceType = "TABLE_PER_CLASS")
+public class Tenders extends GpaoBaseEntity{
 
     private String reference;
 
@@ -87,6 +87,28 @@ public class Tenders {
         EntityManager em = Tenders.entityManager();
         TypedQuery<Tenders> q = em.createQuery("SELECT o FROM Tenders AS o WHERE  o.status = :status ORDER BY o.id ", Tenders.class);
         q.setParameter("status", status);
+        return q;
+    }
+    public static TypedQuery<cm.adorsys.gpao.model.Tenders> findTenderByStatusAndDateBetween(DocumentStates status,Date beginDate,Date endDate,String reference) {
+        EntityManager em = Tenders.entityManager();
+		StringBuilder query = new StringBuilder("SELECT o FROM Tenders AS o WHERE  o.id IS NOT NULL ");
+		if(StringUtils.isNotBlank(reference)){
+			query.append(" AND o.reference = :reference");
+		}
+		if(!(status ==null || DocumentStates.TOUS.equals(status))){
+			query.append(" AND o.status = :status");
+		}
+		if(beginDate != null){
+			query.append(" AND o.beginDate >= :beginDate");
+		}
+		if(endDate != null){
+			query.append(" AND o.endDate <= :endDate");
+		}
+		TypedQuery<Tenders> q = em.createQuery(query.append(" ORDER BY o.id ").toString(), Tenders.class);
+		if(StringUtils.isNotBlank(reference))q.setParameter("reference", reference);
+		if(!(status ==null || DocumentStates.TOUS.equals(status)))q.setParameter("status", status);
+		if(beginDate != null)q.setParameter("beginDate", beginDate);
+		if(endDate != null)q.setParameter("endDate", endDate);
         return q;
     }
 

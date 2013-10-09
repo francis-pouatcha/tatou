@@ -15,25 +15,25 @@
             <security:authorize ifAnyGranted="ROLE_ACCESS_GROUPE_PARTENAIRE">
              <menu:item id="i_partner_list" label="groupes de partenaires" messageCode="global_menu_gpao" url="/partnergroups/config" z="user-managed"/>
        </security:authorize>
+       <security:authorize ifAnyGranted="ROLE_ACCESS_CLIENT,ROLE_ACCESS_FOURNISSEUR">
+           <menu:item id="fi_partner_namelike" messageCode="global_msg_gpao" label="Rechercher des Partenairs" url="/partners/find?form" z="Sgb6BZC/IgXCPGmwl66NvQIsB+k="/>
+       </security:authorize>
         </menu:category>
-        
         <menu:category label="Gestion des Achats" id="c_configuration" z="user-managed">
          <security:authorize ifAnyGranted="ROLE_ACCESS_BON_COMANDE">
           <menu:item id="i_purchaseorder_list" label="Bons de commandes" messageCode="global_menu_gpao" url="/purchaseorders?page=1&amp;size=${empty param.size ? 10 : param.size}" z="DHer7WK9MJB49FXJX9B6Kds2DxY="/>
+        <menu:item id="fi_product_namelike" label="Rechercher des bons de commandes" messageCode="global_msg_gpao" url="/purchaseorders/find?form" z="9UYFI4aGcqRo2VqyECLCmjrNbtQ="/>
           </security:authorize>
            <security:authorize ifAnyGranted="ROLE_ACCESS_APPEL_OFFRE">
            <menu:item id="i_tenders_list" label="Appels d'offres" messageCode="global_menu_gpao" url="/tenderses?page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
+           <menu:item id="fi_product_namelike" label="Rechercher des appels d'offres" messageCode="global_msg_gpao" url="/tenderses/find?form" z="9UYFI4aGcqRo2VqyECLCmjrNbtQ="/>
+           
             </security:authorize>
              <security:authorize ifAnyGranted="ROLE_ACCESS_PRODUIT">
             <menu:item id="i_product_list" label="Produits" messageCode="global_menu_gpao" url="/products/list/achat?page=1&amp;size=${empty param.size ? 10 : param.size}" z="kEeyCmUUYXShbDEWwOLheaAkM50="/>
+            <menu:item id="fi_product_namelike" label="Rechercher des Produits" messageCode="global_msg_gpao" url="/products/find/achat?form" z="9UYFI4aGcqRo2VqyECLCmjrNbtQ="/>
+      
        </security:authorize>
         </menu:category>
-        
-         <menu:category label="Reception de produits" id="c_configuration" z="user-managed">
-          <security:authorize ifAnyGranted="ROLE_ACCESS_LIVRAISON">
-          <menu:item id="i_deliveryitems_list" label="Livraisons" messageCode="global_menu_gpao"  url="/deliverys?page=1&amp;size=${empty param.size ? 10 : param.size}" z="sjbn8PJjmux3IevxVgghkHUTBFw="/>
-        </security:authorize>
-        </menu:category>
-        
     </menu:menu>
 </div>

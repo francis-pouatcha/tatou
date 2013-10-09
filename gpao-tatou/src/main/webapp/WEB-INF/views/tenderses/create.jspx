@@ -13,6 +13,7 @@
         <field:input field="description" id="c_cm_adorsys_gpao_model_Tenders_description" z="CBVoeWy3iTQDKyjxXjJ6526OM8o="/>
         <field:select field="company" id="c_cm_adorsys_gpao_model_Tenders_company" itemValue="id" items="${companys}" path="/companys" z="mKUzlOIee4Mey1CFSC4ZwAySA2U="/>
         <field:simple field="tenderItems" id="c_cm_adorsys_gpao_model_Tenders_tenderItems" messageCode="entity_reference_not_managed" messageCodeAttribute="Tender Items" z="IxfkBqEdN3me2Ze9pJaex8OjupU="/>
+        <field:checkbox field="archived" id="c_cm_adorsys_gpao_model_Tenders_archived" z="8tfsy2neRufi+C0cwzfBZaiyDiY="/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_cm_adorsys_gpao_model_Tenders" render="${not empty dependencies}" z="TGZux9Uq+LGaRMuQ39/KBYtJzQ0="/>
 </div>

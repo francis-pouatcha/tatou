@@ -14,8 +14,8 @@ import org.springframework.roo.addon.tostring.RooToString;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord
-public class Location {
+@RooJpaActiveRecord(inheritanceType = "TABLE_PER_CLASS")
+public class Location extends GpaoBaseEntity{
 
     @NotNull
     private String name;

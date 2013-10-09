@@ -22,8 +22,8 @@ import flexjson.JSONSerializer;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord
-public class OrderItems {
+@RooJpaActiveRecord(inheritanceType = "TABLE_PER_CLASS")
+public class OrderItems extends GpaoBaseEntity{
 
 	@NotNull
 	private String reference;

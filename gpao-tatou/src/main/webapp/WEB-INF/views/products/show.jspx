@@ -25,5 +25,6 @@
         <field:display field="productImage" id="s_cm_adorsys_gpao_model_Product_productImage" object="${product}" z="nQlDp81bVjYvR9etdrxS2qm0lxs="/>
         <field:display field="productImagePath" id="s_cm_adorsys_gpao_model_Product_productImagePath" object="${product}" z="YQ7DpJoPt9wQpHmhQ7Qew+OyDw8="/>
         <field:display field="codeBare" id="s_cm_adorsys_gpao_model_Product_codeBare" object="${product}" z="yqPNtYHV5P+mgB5EY7f6uf4CPng="/>
+        <field:display field="archived" id="s_cm_adorsys_gpao_model_Product_archived" object="${product}" z="kGMFLMe0YQBMWG/hfuGxIlUueTU="/>
     </page:show>
 </div>

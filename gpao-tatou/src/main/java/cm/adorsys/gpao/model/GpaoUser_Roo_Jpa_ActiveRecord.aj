@@ -5,20 +5,9 @@ package cm.adorsys.gpao.model;
 
 import cm.adorsys.gpao.model.GpaoUser;
 import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import org.springframework.transaction.annotation.Transactional;
 
 privileged aspect GpaoUser_Roo_Jpa_ActiveRecord {
-    
-    @PersistenceContext
-    transient EntityManager GpaoUser.entityManager;
-    
-    public static final EntityManager GpaoUser.entityManager() {
-        EntityManager em = new GpaoUser().entityManager;
-        if (em == null) throw new IllegalStateException("Entity manager has not been injected (is the Spring Aspects JAR configured as an AJC/AJDT aspects library?)");
-        return em;
-    }
     
     public static long GpaoUser.countGpaoUsers() {
         return entityManager().createQuery("SELECT COUNT(o) FROM GpaoUser o", Long.class).getSingleResult();
@@ -35,35 +24,6 @@ privileged aspect GpaoUser_Roo_Jpa_ActiveRecord {
     
     public static List<GpaoUser> GpaoUser.findGpaoUserEntries(int firstResult, int maxResults) {
         return entityManager().createQuery("SELECT o FROM GpaoUser o", GpaoUser.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
-    }
-    
-    @Transactional
-    public void GpaoUser.persist() {
-        if (this.entityManager == null) this.entityManager = entityManager();
-        this.entityManager.persist(this);
-    }
-    
-    @Transactional
-    public void GpaoUser.remove() {
-        if (this.entityManager == null) this.entityManager = entityManager();
-        if (this.entityManager.contains(this)) {
-            this.entityManager.remove(this);
-        } else {
-            GpaoUser attached = GpaoUser.findGpaoUser(this.id);
-            this.entityManager.remove(attached);
-        }
-    }
-    
-    @Transactional
-    public void GpaoUser.flush() {
-        if (this.entityManager == null) this.entityManager = entityManager();
-        this.entityManager.flush();
-    }
-    
-    @Transactional
-    public void GpaoUser.clear() {
-        if (this.entityManager == null) this.entityManager = entityManager();
-        this.entityManager.clear();
     }
     
     @Transactional

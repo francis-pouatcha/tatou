@@ -12,5 +12,6 @@
         <field:display field="status" id="s_cm_adorsys_gpao_model_Tenders_status" object="${tenders}" z="oYOz9AZBSZ/bCWG380Gsygc5ksU="/>
         <field:display field="description" id="s_cm_adorsys_gpao_model_Tenders_description" object="${tenders}" z="s8gf2BsQRuWV6ibeYnIakctsnxQ="/>
         <field:display field="company" id="s_cm_adorsys_gpao_model_Tenders_company" object="${tenders}" z="cUDoWHUoocw1j7ajpP14KgRk2mg="/>
+        <field:display field="archived" id="s_cm_adorsys_gpao_model_Tenders_archived" object="${tenders}" z="zHAP82Lhkqp4315hRUfPNmUuS1I="/>
     </page:show>
 </div>

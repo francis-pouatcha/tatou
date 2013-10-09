@@ -9,7 +9,7 @@
             <table:column id="c_cm_adorsys_gpao_model_InventoryItems_realStock" property="realStock" z="NzZ1JXi5DerTXDuiyjxMfQjoWgU="/>
             <table:column id="c_cm_adorsys_gpao_model_InventoryItems_stockGap" property="stockGap" z="a5E+W94f1xkmQzpp9CK99zD47QQ="/>
             <table:column id="c_cm_adorsys_gpao_model_InventoryItems_gapAmount" property="gapAmount" z="EAfA8aABQifIXr2N+DAnFITC8Tc="/>
-            <table:column id="c_cm_adorsys_gpao_model_InventoryItems_inventory" property="inventory" z="/lZ4wHbzl8MFi80cCpiXlZfmOvc="/>
+            <table:column id="c_cm_adorsys_gpao_model_InventoryItems_archived" property="archived" z="78DfSYZYzpKVb2Y0TKZtqCHcnNk="/>
         </table:table>
     </page:list>
 </div>

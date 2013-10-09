@@ -9,14 +9,18 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Version;
 
 privileged aspect WareHouses_Roo_Jpa_Entity {
     
     declare @type: WareHouses: @Entity;
     
+    declare @type: WareHouses: @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS);
+    
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name = "id")
     private Long WareHouses.id;
     

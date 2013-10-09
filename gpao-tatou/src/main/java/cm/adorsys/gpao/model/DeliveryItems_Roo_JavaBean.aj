@@ -52,6 +52,14 @@ privileged aspect DeliveryItems_Roo_JavaBean {
         this.qteUnreceive = qteUnreceive;
     }
     
+    public BigDecimal DeliveryItems.getQteInStock() {
+        return this.qteInStock;
+    }
+    
+    public void DeliveryItems.setQteInStock(BigDecimal qteInStock) {
+        this.qteInStock = qteInStock;
+    }
+    
     public Delivery DeliveryItems.getDelivery() {
         return this.delivery;
     }

@@ -11,8 +11,8 @@ import org.springframework.roo.addon.tostring.RooToString;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord
-public class ProductSubFamily {
+@RooJpaActiveRecord(inheritanceType = "TABLE_PER_CLASS")
+public class ProductSubFamily extends GpaoBaseEntity{
 
 	@NotNull
 	private String name;
@@ -25,6 +25,10 @@ public class ProductSubFamily {
 	@NotNull
 	@ManyToOne
 	private ProductFamily productFamily;
+	
+	public ProductSubFamily() {
+		name = " ";
+	}
 
 	public static void init(){
 		if(ProductSubFamily.countProductSubFamilys() <= 0){

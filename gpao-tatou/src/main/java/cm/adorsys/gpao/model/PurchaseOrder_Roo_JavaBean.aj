@@ -12,7 +12,7 @@ import cm.adorsys.gpao.model.PurchaseOrder;
 import cm.adorsys.gpao.model.Tenders;
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
 privileged aspect PurchaseOrder_Roo_JavaBean {
     
@@ -136,11 +136,11 @@ privileged aspect PurchaseOrder_Roo_JavaBean {
         this.currency = currency;
     }
     
-    public Set<OrderItems> PurchaseOrder.getOrderItems() {
+    public List<OrderItems> PurchaseOrder.getOrderItems() {
         return this.orderItems;
     }
     
-    public void PurchaseOrder.setOrderItems(Set<OrderItems> orderItems) {
+    public void PurchaseOrder.setOrderItems(List<OrderItems> orderItems) {
         this.orderItems = orderItems;
     }
     

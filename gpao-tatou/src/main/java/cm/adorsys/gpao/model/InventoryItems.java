@@ -14,8 +14,8 @@ import cm.adorsys.gpao.utils.CurrencyUtils;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord
-public class InventoryItems {
+@RooJpaActiveRecord(inheritanceType = "TABLE_PER_CLASS")
+public class InventoryItems extends GpaoBaseEntity{
 
     @ManyToOne
     private Product product;
