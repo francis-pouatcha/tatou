@@ -31,56 +31,49 @@
 		<c:set value="${purchaseOrder.tender.reference }" var="tenderRef" />
 		
 	</c:if>
-	<div id="search" class="modal hide fade" tabindex="-1" role="dialog"
-		style="width: 60%;" align="center">
-		<div class="modal-body">
-			<div class="row-fluid">
-				<div class="span4 controls-row">
-					<legend> details produit</legend>
-					<form id="orderitem" class="form-vertical">
-						<div class="control-group">
-							<label class="control-label" for="productName">designation</label>
-							<div class="controls">
-								<input type="text" id="productName" name="productName"
-									placeholder="designation" /> <input type="hidden"
-									id="productId" name="productId" />
-							</div>
-						</div>
-						<div class="control-group">
-							<label class="control-label" for="unitPrice">prix
-								Unitaire</label>
-							<div class="controls">
-								<input type="text" id="unitPrice" name="unitPrice"
-									placeholder="prix Unitaire" />
-							</div>
-						</div>
-						<div class="control-group">
-							<label class="control-label" for="udm">Udm</label>
-							<div class="controls">
-								<select id="udm" name="udm" class="span11">
+	 <div id="dialog_simple" title="Rehercher des Articles">
+	 <div  style="margin-bottom: 10px;">
+			<table >
+						<thead>
+							<tr>
+								<th style="text-align: center;">reference</th>
+								<th style="text-align: center;">udm</th>
+								<th style="text-align: center;">qte cmd</th>
+								<th style="text-align: center;">prix</th>
+								<th style="text-align: center;">action</th>
+							</tr>
+						</thead>
+						
+						<tbody>
+                               <form id="orderitem">
+                               <tr>
+								<td style="text-align: center; padding: 0px;"><input style="width: 94%;" type="text" id="productName" name="productName"
+									placeholder="designation" /> 
+									<input type="hidden" id="productId" name="productId" /></td>
+								<td style="text-align: center;"><select id="udm" style="width: 100px;" name="udm" > </select></td>
+								<td style="text-align: center;"><input style="width: 100px;" type="text" id="quantity" name="quantity"
+									placeholder="quantite" /></td>
+								<td style="text-align: center;"><input style="width: 100px;" type="text" id="unitPrice" name="unitPrice"
+									placeholder="prix Unitaire" /></td>
+								<td> <button id="save" type="submit" class="btn-success">Enregistrer</button></td>
+							 </tr>
+								</form>
 
-								</select>
-							</div>
-						</div>
-						<div class="control-group">
-							<label class="control-label" for="quantity">quantite</label>
-							<div class="controls">
-								<input type="text" id="quantity" name="quantity"
-									placeholder="quantite" />
-							</div>
-						</div>
-
-					</form>
-					<button id="details" class="btn-info">plus de details</button>
-					<button id="save" style="margin-left: 2%;" class="btn-success">Enregistrer</button>
+						</tbody>
+					</table>
+					
 				</div>
-				<div style="height: 400px; overflow-y: auto; margin-left: 2%;"
-					class="span8">
+		<div >
+		
+				<span style="color: maroon;"> Zone de recherche</span>
+				<div style="height: 300px; overflow-y: auto; " >
 					<div id="searchzone" class="input-append">
-						<input autofocus="true" class="input-xlarge" id="searchText"
-							type="text" />
-						<button id="searchBtn" class="btn" type="button">Rechercher</button>
-					</div>
+					<form id="test">
+					<center>
+						<input autofocus="true"   style="font-size: 22px ; font-weight: bold; color: blue; width: 80%; height: 30px;" id="searchText" type="text" />
+					</center>
+					</form>
+					</div> 
 					<table id="products">
 						<thead>
 							<tr>
@@ -98,17 +91,21 @@
 					</table>
 				</div>
 
-			</div>
 		</div>
-		<div class="modal-footer">
-			<center>
-				<IMG alt="loading ..." src="${loadimage } " class="loadimage"
-					style="display: none;" />
-			</center>
-			<button style="margin-left: 2%;" class="btn-danger"
-				data-dismiss="modal" aria-hidden="true">Close</button>
-		</div>
-	</div> <SCRIPT type="text/javascript">
+    </div>
+    
+ <SCRIPT type="text/javascript">
+	// Dialog Simple
+	$('#dialog_simple').dialog({
+	autoOpen: false,
+	width: 800,
+	modal:true,
+	buttons: {
+	"FERMER": function () {
+	$(this).dialog("close");
+	}
+	}
+	});
 		function selectRow(row) {
 			unselectRow(row);
 			$(row).addClass('row-selected');
@@ -138,7 +135,7 @@
 			
 		};
 		$('#addBtn').click(function() {
-			$('#search').modal('show');
+			$('#dialog_simple').dialog('open');
 			return false;
 		});
 	    $('#search').on('shown', function () {
@@ -187,12 +184,14 @@
 		});
 		
 		
-		$('#save').click(function() {
+		$('form#orderitem').submit(function() {
 			addOrderItem();
+			return false ;
 		});
 		
-		$('#searchBtn').click(function() {
+		$('form#test').submit(function() {
 			searchProduct();
+			return false ;
 		});
 		
 		function removeSelectedRows(tableid) {
@@ -256,6 +255,7 @@
 	                function(data){
 							$('#productId').val(data.productId) ;
 							$('#productName').val(data.productName) ;
+							$('#dd').text(data.productName) ;
 							$('#unitPrice').val(data.unitPrice) ;
 							$('#quantity').val(data.quantity) ;
 							$("#udm").empty();

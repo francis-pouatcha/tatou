@@ -427,3 +427,15 @@ focus --class ~.model.DeliveryItems
 // Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-10-09 10:38:10
 persistence setup --provider HIBERNATE --database H2_IN_MEMORY --jndiDataSource 
 persistence setup --provider HIBERNATE --database H2_IN_MEMORY --jndiDataSource java:jboss/datasources/ExampleDS
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-11-05 15:07:03
+persistence setup --provider HIBERNATE --database MYSQL --databaseName gpaodb --userName root --password adorsys
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-11-05 15:51:58
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-11-12 20:38:09
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-11-12 21:20:53
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-11-22 20:14:55
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-11-22 20:15:08
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-11-22 21:11:50
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-11-22 21:13:47
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-11-28 22:08:00
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-12-07 21:45:52
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-12-07 21:52:17

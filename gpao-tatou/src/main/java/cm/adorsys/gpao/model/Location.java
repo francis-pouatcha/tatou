@@ -47,8 +47,7 @@ public class Location extends GpaoBaseEntity{
  //finders
     
     public static TypedQuery<Location> findLocationsByNameLikeAndWareHouses(String name, WareHouses  wareHouses) {
-        if (name == null || name.length() == 0) name = "*";
-        name = name.replace('*', '%');
+        if (name == null || name.length() == 0) name = "%";
             name = name + "%";
         if (wareHouses == null) throw new IllegalArgumentException("The wareHouses argument is required");
         EntityManager em = Taxe.entityManager();

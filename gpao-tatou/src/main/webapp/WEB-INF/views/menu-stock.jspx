@@ -14,7 +14,7 @@
         <menu:category label="INVENTAIRES" id="c_configuration" z="user-managed">
         <security:authorize ifAnyGranted="ROLE_ACCESS_INVENTAIRE">
           <menu:item id="i_partner_list" label="Inventaires" messageCode="global_menu_gpao" url="/inventorys?page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
-        <menu:item id="i_partner_list" label="Rechercher des Inventairs" messageCode="global_msg_gpao" url="/partners?page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
+        <menu:item id="i_partner_list" render="false" label="Rechercher des Inventairs" messageCode="global_msg_gpao" url="/partners?page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
           </security:authorize>
           <security:authorize ifAnyGranted="ROLE_ACCESS_MOUVEMENT_STOCK">
         <menu:item id="i_deliveryitems_list" label="Lots de produits" messageCode="global_menu_gpao" url="/deliveryitemses?page=1&amp;size=${empty param.size ? 10 : param.size}" z="sjbn8PJjmux3IevxVgghkHUTBFw="/>

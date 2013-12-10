@@ -25,7 +25,7 @@ public class TatouInventoryService implements IInventoryService {
 	private TatouDeliveryService deliveryService ;
 
 	@Override
-	public Inventory buildInitialInventoryFormProduct(Product product){
+	public Inventory buildInitialInventoryFromProduct(Product product){
 		Inventory	inventory = new Inventory();
 		inventory.setCurrency(CurrencyUtils.getCompanyCurrency());
 		inventory.setCompany(Company.getOwnComapny());

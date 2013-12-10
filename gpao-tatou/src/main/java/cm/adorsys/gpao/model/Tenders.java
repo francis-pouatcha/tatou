@@ -32,25 +32,25 @@ public class Tenders extends GpaoBaseEntity{
 
     @Column(updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    @DateTimeFormat(style = "M-")
+    @DateTimeFormat(pattern = "dd-MM-yyy HH:mm")
     private Date created = new Date();
 
     private String createBy;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @DateTimeFormat(style = "M-")
+    @DateTimeFormat(pattern = "dd-MM-yyy HH:mm")
     private Date closed;
 
     private String closedBy;
 
     @NotNull
     @Temporal(TemporalType.TIMESTAMP)
-    @DateTimeFormat(style = "M-")
+    @DateTimeFormat(pattern = "dd-MM-yyy HH:mm")
     private Date beginDate;
 
     @NotNull
     @Temporal(TemporalType.TIMESTAMP)
-    @DateTimeFormat(style = "M-")
+    @DateTimeFormat(pattern = "dd-MM-yyy HH:mm")
     private Date endDate;
 
     @Enumerated(EnumType.STRING)

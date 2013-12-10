@@ -10,6 +10,31 @@
 /* Body and structure
 -------------------------------------------------- */
 
+
+.button{
+     padding: 2px 4px;
+    font-family: arial, sans-serif;
+    font-size: 0.75em;
+    font-weight: 700;
+    text-transform:	uppercase;
+    text-shadow: 0 1px rgba(0, 0, 0, 0.1);
+    color: #FFF;
+    background-color: #48F;
+    background: linear-gradient(center top, #48F, #46F) repeat-x;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.button:HOVER {
+    box-shadow: 1px 1px 2px rgba(0,0,0,0.25);
+    background-color: white ;
+    color: black;
+}
+.button:HOVER , button:FOCUS{
+    box-shadow: 1px 1px 2px rgba(0,0,0,0.25);
+    background-color: white ;
+    color: blue;
+}
 body {
   position: relative;
   padding-top: 40px;

@@ -104,15 +104,14 @@ public class Product extends GpaoBaseEntity{
 	@Value("true")
 	private Boolean actived;
 
-	@Transient
-	private MultipartFile productImage;
+	private transient MultipartFile productImage;
 
 	private String productImagePath;
 
 	private String codeBare;
 
 	public String toString(){
-		return name+":"+reference;
+		return name+" : "+reference;
 	}
 
 	public void increaseVirtualQuantity(BigDecimal qte){
@@ -154,7 +153,7 @@ public class Product extends GpaoBaseEntity{
 		return q;
 	}
 	public void calculateStockQuantity(){
-		virtualStock =BigDecimal.ZERO;
+		virtualStock = BigDecimal.ZERO;
 		List<DeliveryItems> resultList = DeliveryItems.findDeliveryItemssByProductAndStockQteNotEqual(this, BigDecimal.ZERO).getResultList();
 		if(!resultList.isEmpty()){
 		for (DeliveryItems deliveryItems : resultList) {

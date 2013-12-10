@@ -88,13 +88,13 @@ public class ProductController {
 			}
 		}
 		boolean initialEntry = product.isInitialEntry();
-		product.calculateStockQuantity();
-		Product merge = product.merge();
+		Product merge =  product.merge();
 		if (initialEntry) {
-			Inventory inventoryFormProduct = inventoryService.buildInitialInventoryFormProduct(merge);
+			Inventory inventoryFormProduct = inventoryService.buildInitialInventoryFromProduct(merge);
 			if (inventoryFormProduct != null) inventoryService.closeInventory(inventoryFormProduct);
 		}
-		populateEditForm(uiModel, merge);
+		merge.calculateStockQuantity();
+		populateEditForm(uiModel, merge.merge());
 		uiModel.addAttribute(MessageType.SUCCESS_MESSAGE, "Enregistre avec success !");
 		return "products/" + module + "/productView";
 	}

@@ -19,9 +19,9 @@ public class PartnerFinder implements GpaoEntityFinder<Partner> {
 	
     private String name;
 
-    private Boolean isCustomer;
+    private Boolean isCustomer = Boolean.TRUE;
 
-    private Boolean isProvider;
+    private Boolean isProvider  = Boolean.TRUE;
     
     private PartnerType partnerType = PartnerType.ENTREPRISE;
 
@@ -29,13 +29,13 @@ public class PartnerFinder implements GpaoEntityFinder<Partner> {
 
 	@Override
 	public List<Partner> find(int page, int size) {
-		return Partner.findPartnerByGroupAndType(name, partnerGroup, partnerType, isCustomer, isProvider).
+		return Partner.findPartnerByNameLikeAndGroupAndType(name, partnerGroup, partnerType, isCustomer, isProvider).
 				setFirstResult(page).setMaxResults(size).getResultList();
 	}
 
 	@Override
 	public List<Partner> find() {
-	   return Partner.findPartnerByGroupAndType(name, partnerGroup, partnerType, isCustomer, isProvider).getResultList();
+	   return Partner.findPartnerByNameLikeAndGroupAndType(name, partnerGroup, partnerType, isCustomer, isProvider).getResultList();
 	}
 
 

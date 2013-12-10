@@ -28,7 +28,7 @@
                 <a  href="${home}"><img src="${logo_url }" style="height: 27px;" class="logo" /> </a>
               </li>
               <security:authorize ifAnyGranted="ROLE__MODULE_ADMINISTRATION">
-              <li onclick="activateLink(this);" class="active" ><a class="header-link" href="${Admin_url}">Administration</a></li>
+              <li onclick="activateLink(this);"  ><a class="header-link" href="${Admin_url}">Administration</a></li>
               </security:authorize>
               <security:authorize ifAnyGranted="ROLE_MODULE_ACHAT">
                <li onclick="activateLink(this);"><a class="header-link" href="${purchase_url}">Achats</a></li>

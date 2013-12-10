@@ -48,7 +48,7 @@ public class PurchaseOrder extends GpaoBaseEntity{
     private Partner supplier;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @DateTimeFormat(style = "M-")
+    @DateTimeFormat(pattern = "dd-MM-yyy HH:mm")
     private Date orderDate;
 
     @Value("false")
@@ -63,7 +63,7 @@ public class PurchaseOrder extends GpaoBaseEntity{
     private String validatedBy;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @DateTimeFormat(style = "M-")
+    @DateTimeFormat(pattern = "dd-MM-yyy HH:mm")
     private Date validateDate;
 
     @Min(0L)
@@ -81,7 +81,7 @@ public class PurchaseOrder extends GpaoBaseEntity{
 
     @Column(updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    @DateTimeFormat(style = "M-")
+    @DateTimeFormat(pattern = "dd-MM-yyy HH:mm")
     private Date created = new Date();
 
     @NotNull

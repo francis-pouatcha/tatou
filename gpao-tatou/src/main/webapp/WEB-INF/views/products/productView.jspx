@@ -55,7 +55,7 @@
 		<div class="span10">
 
 
-			<form:update multipart="true" showInPanel="false"
+			<form:update multipart="true" showInPanel="false" 
 				id="fu_cm_adorsys_gpao_model_Product" modelAttribute="product"
 				path="/products/addOrEdit/${module }" render="${empty dependencies}"
 				z="user-managed">
@@ -77,11 +77,11 @@
 
 					</div>
 					<div class="span6">
-						<field:select field="famille"
+						<field:select field="famille" style="width: 60%;"
 							id="c_cm_adorsys_gpao_model_Product_famille" itemValue="id"
 							items="${productsubfamilys}" path="/productsubfamilys"
 							z="lx3lLgZL06xPzwC1TTBjbtf00aQ=" />
-						<field:select field="warehouse"
+						<field:select field="warehouse" style="width: 60%;"
 							id="c_cm_adorsys_gpao_model_Product_warehouse" itemValue="id"
 							items="${warehouseses}" path="/warehouseses"
 							z="PDjeJPfM5kAtM+nX20hEQfzJf9o=" />
@@ -103,7 +103,7 @@
 								<c:choose>
 									<c:when test="${not empty product.id }">
 										<field:gpao-display hiddenfield="true" object="${product }"
-											isList="true" field="defaultUdm" label="Udm Par default"
+											isList="true" field="defaultUdm" 
 											id="c_cm_adorsys_gpao_model_Product_defaultUdm"
 											z="CKUudAFCgXCa6eHEH9uO//B6usk=" />
 									</c:when>

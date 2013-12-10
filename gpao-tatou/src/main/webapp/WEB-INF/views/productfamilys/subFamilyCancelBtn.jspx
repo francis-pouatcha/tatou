@@ -9,7 +9,7 @@
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
        <!-- liste of link to use on this page  -->
-       <spring:url value="/productsubfamilys/config"  var="cancel_url" />
+       <spring:url value="/productsubfamilys/config/${module}"  var="cancel_url" />
        
        <input id="d" style="margin-left: 2%;" class="btn-danger span2 small-marge-left" type="button" value="Anuller"/>
           <script type="text/javascript"> $("#d").click(function(){

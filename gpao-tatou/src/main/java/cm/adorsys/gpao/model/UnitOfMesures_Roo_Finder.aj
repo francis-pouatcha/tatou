@@ -11,7 +11,7 @@ import javax.persistence.TypedQuery;
 privileged aspect UnitOfMesures_Roo_Finder {
     
     public static TypedQuery<UnitOfMesures> UnitOfMesures.findUnitOfMesuresesByNameLikeAndUnitGroup(String name, UdmGroup unitGroup) {
-        if (name == null || name.length() == 0) throw new IllegalArgumentException("The name argument is required");
+        if (name == null || name.length() == 0) name ="*" ;
         name = name.replace('*', '%');
         if (name.charAt(0) != '%') {
             name = "%" + name;

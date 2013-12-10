@@ -39,7 +39,7 @@ public class ProductFamilyController {
         }
         uiModel.asMap().clear();
         productFamily.persist();
-        return "redirect:/productsubfamilys/config/" + module + "?id=" + encodeUrlPathSegment(productFamily.getId().toString(), httpServletRequest);
+        return "redirect:/productsubfamilys/confiTg/" + module + "?id=" + encodeUrlPathSegment(productFamily.getId().toString(), httpServletRequest);
     }
 
     @RequestMapping(value = "/{module}", method = RequestMethod.PUT, produces = "text/html")

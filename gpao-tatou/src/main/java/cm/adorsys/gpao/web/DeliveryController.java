@@ -1,25 +1,15 @@
 package cm.adorsys.gpao.web;
 
-import cm.adorsys.gpao.model.Company;
-import cm.adorsys.gpao.model.Delivery;
-import cm.adorsys.gpao.model.DeliveryItems;
-import cm.adorsys.gpao.model.DeliveryOrigin;
-import cm.adorsys.gpao.model.Devise;
-import cm.adorsys.gpao.model.DocumentStates;
-import cm.adorsys.gpao.model.uimodels.DeliveryFinder;
-import cm.adorsys.gpao.model.uimodels.TenderFinder;
-import cm.adorsys.gpao.services.Impl.TatouDeliveryService;
-import cm.adorsys.gpao.utils.GpaoPdfProducer;
-import cm.adorsys.gpao.utils.GpaoRepportPath;
-import cm.adorsys.gpao.utils.MessageType;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
 import org.springframework.stereotype.Controller;
@@ -29,6 +19,19 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import cm.adorsys.gpao.model.Company;
+import cm.adorsys.gpao.model.Delivery;
+import cm.adorsys.gpao.model.DeliveryItems;
+import cm.adorsys.gpao.model.DeliveryOrigin;
+import cm.adorsys.gpao.model.Devise;
+import cm.adorsys.gpao.model.DocumentStates;
+import cm.adorsys.gpao.model.uimodels.DeliveryFinder;
+import cm.adorsys.gpao.services.Impl.TatouDeliveryService;
+import cm.adorsys.gpao.utils.GpaoPdfProducer;
+import cm.adorsys.gpao.utils.GpaoRepportPath;
+import cm.adorsys.gpao.utils.MessageType;
 
 @RequestMapping("/deliverys")
 @Controller
@@ -49,7 +52,7 @@ public class DeliveryController {
 	}
 
 	@RequestMapping(value = "/addOrEdit", method = RequestMethod.POST, produces = "text/html")
-	public String addOrEditdeliverys(@Valid Delivery delivery, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
+	public String addOrEditdeliverys(@Valid Delivery delivery, BindingResult bindingResult,RedirectAttributes redirectAttributes, Model uiModel, HttpServletRequest httpServletRequest) {
 		delivery.setCompany(Company.findCompany(Long.valueOf(1)));
 		if (bindingResult.hasErrors()) {
 			populateEditForm(uiModel, delivery);
@@ -57,25 +60,28 @@ public class DeliveryController {
 			return "deliverys/deliverysView";
 		}
 		Delivery merge = delivery.merge();
-		populateEditForm(uiModel, merge);
-		uiModel.addAttribute(MessageType.SUCCESS_MESSAGE, "Enregistre avec success !");
-		return "deliverys/deliverysView";
+		uiModel.asMap().clear() ;
+		redirectAttributes.addFlashAttribute(MessageType.SUCCESS_MESSAGE, "Enregistre avec success !") ;
+		return "redirect:/deliverys/addOrEditForm?id=" + encodeUrlPathSegment(merge.getId().toString(), httpServletRequest)+"&form";
 	}
 
 	@RequestMapping(value = "/close/{id}", method = RequestMethod.GET, produces = "text/html")
-	public String closeDelivery(@PathVariable("id") Long id, Model uiModel) {
+	public String closeDelivery(@PathVariable("id") Long id, Model uiModel ,RedirectAttributes redirectAttributes , HttpServletRequest httpServletRequest ) {
 		Delivery findDelivery = Delivery.findDelivery(id);
 		Delivery closeDelivery = deliveryService.closeDelivery(findDelivery);
-		populateEditForm(uiModel, closeDelivery);
-		return "deliverys/deliverysView";
+		uiModel.asMap().clear() ;
+		redirectAttributes.addFlashAttribute(MessageType.SUCCESS_MESSAGE, "Livraison Cloturee avec success !") ;
+		return "redirect:/deliverys/addOrEditForm?id=" + encodeUrlPathSegment(closeDelivery.getId().toString(), httpServletRequest)+"&form";
+
 	}
 
 	@RequestMapping(value = "/acceptAll/{id}", method = RequestMethod.GET, produces = "text/html")
-	public String acceptAll(@PathVariable("id") Long id, Model uiModel) {
+	public String acceptAll(@PathVariable("id") Long id, Model uiModel,RedirectAttributes redirectAttributes , HttpServletRequest httpServletRequest) {
 		Delivery findDelivery = Delivery.findDelivery(id);
 		Delivery closeDelivery = deliveryService.accepAllDeliveryItems(findDelivery);
-		populateEditForm(uiModel, closeDelivery);
-		return "deliverys/deliverysView";
+		uiModel.asMap().clear() ;
+		redirectAttributes.addFlashAttribute(MessageType.SUCCESS_MESSAGE, "Livraison validee avec success !") ;
+		return "redirect:/deliverys/addOrEditForm?id=" + encodeUrlPathSegment(closeDelivery.getId().toString(), httpServletRequest)+"&form";
 	}
 
 	@RequestMapping(value = "/next/{id}", method = RequestMethod.GET, produces = "text/html")

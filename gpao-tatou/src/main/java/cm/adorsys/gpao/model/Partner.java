@@ -92,10 +92,13 @@ public class Partner extends GpaoBaseEntity {
         return name;
     }
     
-    public static TypedQuery<cm.adorsys.gpao.model.Partner> findPartnerByGroupAndType(String name ,PartnerGroup partnerGroup,PartnerType partnerType ,Boolean isCustomer,Boolean isProvider) {
+    public static TypedQuery<cm.adorsys.gpao.model.Partner> findPartnerByNameLikeAndGroupAndType(String name ,PartnerGroup partnerGroup,PartnerType partnerType ,Boolean isCustomer,Boolean isProvider) {
         EntityManager em = Partner.entityManager();
 		StringBuilder query = new StringBuilder("SELECT o FROM Partner AS o WHERE  o.id IS NOT NULL ");
+		isCustomer = isCustomer ==null ? Boolean.TRUE : isCustomer ;
+		isProvider = isProvider ==null ? Boolean.TRUE : isProvider ;
 		if(StringUtils.isNotBlank(name)){
+			name = name + "%" ;
 			query.append(" AND LOWER (o.name) LIKE LOWER (:name) ");
 		}
 		
@@ -105,18 +108,14 @@ public class Partner extends GpaoBaseEntity {
 		if(partnerType != null){
 			query.append(" AND o.partnerType = :partnerType");
 		}
-		if(isCustomer != null){
-			query.append(" AND o.isCustomer IS :isCustomer");
-		}
-		if(isProvider != null){
-			query.append(" AND o.isProvider IS :isProvider");
-		}
+		query.append(" AND (o.isCustomer IS :isCustomer OR o.isProvider IS :isProvider) ");
+		
 		TypedQuery<Partner> q = em.createQuery(query.append(" ORDER BY o.id ").toString(), Partner.class);
 		if(StringUtils.isNotBlank(name))q.setParameter("name", name);
 		if(partnerGroup !=null )q.setParameter("partnerGroup", partnerGroup);
 		if(partnerType != null)q.setParameter("partnerType", partnerType);
-		if(isCustomer != null)q.setParameter("isCustomer", isCustomer);
-		if(isProvider != null)q.setParameter("isProvider", isProvider);
+		q.setParameter("isCustomer", isCustomer);
+		q.setParameter("isProvider", isProvider);
         return q;
     }
 

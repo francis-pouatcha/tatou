@@ -26,6 +26,7 @@
 
     <!-- Selects a static view for rendering without the need for an explicit controller -->
     <mvc:view-controller path="/login"/>
+    <mvc:view-controller path="/boostrap"/>
     <mvc:view-controller path="/adminHome"/>
      <mvc:view-controller path="/stockHome"/>
     <mvc:view-controller path="/purchaseHome"/>

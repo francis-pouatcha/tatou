@@ -32,7 +32,8 @@
 		<!-- FIXME Can't move scripts to the bottom of 
 			page because of how spring tags do the fields-->
 		<util:load-scripts />
-		
+		<util:jquery-load-scripts />
+		<util:editable-load-scripts />
 		<spring:message code="application_name" var="app_name" htmlEscape="false"/>
 		<title><spring:message code="welcome_h3" arguments="${app_name}" /></title>
 	</head>

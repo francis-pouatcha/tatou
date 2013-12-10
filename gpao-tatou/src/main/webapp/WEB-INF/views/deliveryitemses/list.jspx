@@ -2,9 +2,10 @@
 <div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:spring="http://www.springframework.org/tags" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
+    <spring:url value="/deliveryitemses?find=ByReferenceEquals&amp;form" var="find_url"/>
     <div class="btn-group">
         <!-- <a class="btn a-btn" href="${add_url}">Nouveau</a> -->
-        <a class="btn a-btn" href="#">Filtre</a>
+        <a class="btn a-btn" href="${find_url}">Filtre</a>
     </div>
     <page:list id="pl_cm_adorsys_gpao_model_DeliveryItems" items="${deliveryitemses}" labelPlural="Liste des Lots de produits" showInPanel="false" z="user-managed">
         <table:table create="false" data="${deliveryitemses}" delete="false" id="l_cm_adorsys_gpao_model_DeliveryItems" path="/deliveryitemses" show="false" update="false" z="user-managed">

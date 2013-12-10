@@ -105,9 +105,9 @@ privileged aspect PurchaseOrderController_Roo_Controller {
     }
     
     void PurchaseOrderController.addDateTimeFormatPatterns(Model uiModel) {
-        uiModel.addAttribute("purchaseOrder_orderdate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
-        uiModel.addAttribute("purchaseOrder_validatedate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
-        uiModel.addAttribute("purchaseOrder_created_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
+        uiModel.addAttribute("purchaseOrder_orderdate_date_format", "dd-MM-yyyy HH:mm");
+        uiModel.addAttribute("purchaseOrder_validatedate_date_format", "dd-MM-yyyy HH:mm");
+        uiModel.addAttribute("purchaseOrder_created_date_format", "dd-MM-yyyy HH:mm");
     }
     
     String PurchaseOrderController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

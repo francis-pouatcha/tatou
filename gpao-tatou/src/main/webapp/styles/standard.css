@@ -398,7 +398,7 @@ tr:nth-child(even) {
 }
 
 tr:HOVER {
-	background: #999;
+	background: #f5f5dc;
 }
 
 a:link {

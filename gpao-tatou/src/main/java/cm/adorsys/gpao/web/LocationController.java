@@ -34,7 +34,7 @@ public class LocationController {
 
     @RequestMapping(value = "/save/{id}", produces = "text/html")
     public String editLocation(@PathVariable("id") Long id, Model uiModel) {
-        populateView(uiModel, Location.findLocation(id), null, new WareHouses());
+        populateView(uiModel, Location.findLocation(id), null, null);
         return "locations/config";
     }
 
@@ -58,7 +58,7 @@ public class LocationController {
     @RequestMapping(value = "/findByNameAndWareHouse", produces = "text/html", method = RequestMethod.POST)
     public String findLocation(Location location, Model uiModel) {
         List<Location> locations = Location.findLocationsByNameLikeAndWareHouses(location.getName(), location.getWareHouse()).getResultList();
-        populateView(uiModel, null, locations, new WareHouses());
+        populateView(uiModel, null, locations,null);
         return "locations/config";
     }
 

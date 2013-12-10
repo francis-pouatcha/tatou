@@ -48,8 +48,7 @@ public class ProductSubFamily extends GpaoBaseEntity{
 	//finders
 
 	public static TypedQuery<ProductSubFamily> findProductSubFamilyByNameLikeProductFamily(String name, ProductFamily  productFamily) {
-		if (name == null || name.length() == 0) name = "*";
-		name = name.replace('*', '%');
+		if (name == null || name.length() == 0) name = "%";
 		name = name + "%";
 		if (productFamily == null) throw new IllegalArgumentException("The productFamily argument is required");
 		EntityManager em = ProductSubFamily.entityManager();

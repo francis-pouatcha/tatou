@@ -89,10 +89,10 @@ privileged aspect TendersController_Roo_Controller {
     }
     
     void TendersController.addDateTimeFormatPatterns(Model uiModel) {
-        uiModel.addAttribute("tenders_created_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
-        uiModel.addAttribute("tenders_closed_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
-        uiModel.addAttribute("tenders_begindate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
-        uiModel.addAttribute("tenders_enddate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
+        uiModel.addAttribute("tenders_created_date_format", "dd-MM-yyyy HH:mm");
+        uiModel.addAttribute("tenders_closed_date_format", "dd-MM-yyyy HH:mm");
+        uiModel.addAttribute("tenders_begindate_date_format", "dd-MM-yyyy HH:mm");
+        uiModel.addAttribute("tenders_enddate_date_format", "dd-MM-yyyy HH:mm");
     }
     
     String TendersController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

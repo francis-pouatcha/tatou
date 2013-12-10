@@ -56,12 +56,6 @@
 		modelAttribute="purchaseOrder" path="/purchaseorders/addOrEdit"
 		versionField="Version" z="b6dqb2JiUknS+bzjek9tabLjDro=">
 		<div class="row-fluid">
-			<ul class="nav nav-tabs" id="tab">
-				<li class="active"><a href="#ligne">lignes de commande</a></li>
-				<li><a href="#infos">infos-generales</a></li>
-			</ul>
-			<div class="tab-content">
-				<div class="tab-pane " id="infos">
 					<div class="span6">
 						<field:select field="company"
 							id="c_cm_adorsys_gpao_model_PurchaseOrder_company" itemValue="id"
@@ -127,13 +121,8 @@
 							id="c_cm_adorsys_gpao_model_PurchaseOrder_orderState" />
 							<field:gpao-display hiddenfield="true" object="${purchaseOrder}" field="validatedBy"
 							id="c_cm_adorsys_gpao_model_PurchaseOrder_validatedBy" />
-							<field:gpao-display hiddenfield="true" object="${purchaseOrder}" field="validateDate"
-							id="c_cm_adorsys_gpao_model_PurchaseOrder_validateDate" />
 
 					</div>
-
-				</div>
-				<div class="tab-pane active" id="ligne">
 					<div style="padding-right: 2%;" class="span10">
 						<c:if test="${not empty purchaseOrder.id }">
 							<c:if test="${purchaseOrder.orderState eq 'BROUILLON'}">
@@ -155,13 +144,12 @@
 						<table id="orderIdems">
 							<thead>
 								<tr>
-									<th style="text-align: center; width: 40%;">reference</th>
+									<th style="text-align: center; width: 45%;">Designation</th>
 									<th style="text-align: center;">qte</th>
 									<th style="text-align: center;">udm</th>
-									<th style="text-align: center;">prix</th>
 									<th style="text-align: center;">taxe</th>
-									<th style="text-align: center;"><input id="checkall"
-										type="checkbox" /></th>
+									<th style="text-align: center;">prix</th>
+									<th style="text-align: center;"><input id="checkall" type="checkbox" /></th>
 								</tr>
 							</thead>
 							<tbody>
@@ -170,28 +158,32 @@
 										<td>${items.product.name}</td>
 										<td style="text-align: center;">${items.quantity}</td>
 										<td style="text-align: center;">${items.udm.name}</td>
+										<td style="text-valign: center;">${items.taxeAmount}</td>
 										<td style="text-align: center;">${items.subTotal}</td>
-										<td style="text-align: center;">${items.taxeAmount}</td>
 										<td style="text-align: center;"><input type="checkbox" /></td>
 									</tr>
 								</c:forEach>
+								<tr >
+									<td style="text-align: right; font-size: 20px; font-weight:bold;" colspan="4"> MontantHT : </td>
+									<td colspan="2"> 
+										<span class="label label-info">${purchaseOrder.amountHt} ${purchaseOrder.currency.shortName} </span>
+									 </td>
+							   </tr>
+							   <tr >
+									<td style="text-align: right; font-size: 20px; font-weight:bold;" colspan="4">  Taxes  : </td>
+									<td colspan="2"> 
+										<span class="label label-info">${purchaseOrder.taxeAmount} ${purchaseOrder.currency.shortName} </span>
+									 </td>
+							   </tr>
+							   <tr >
+									<td style="text-align: right; font-size: 20px; font-weight:bold;" colspan="4"> MontantTTC : </td>
+									<td colspan="2"> 
+										<span class="label label-info">${purchaseOrder.totalAmount} ${purchaseOrder.currency.shortName} </span>
+									 </td>
+							   </tr>
 							</tbody>
 						</table>
 						<br />
-						<div style="float: right;" class="span3">
-							<p>
-								<b> MontantHT : </b> <span class="label label-info">${purchaseOrder.amountHt}
-									${purchaseOrder.currency.shortName} </span>
-							</p>
-							<p>
-								<b> Taxes : </b><span class="label label-important">${purchaseOrder.taxeAmount
-									} ${purchaseOrder.currency.shortName}</span>
-							</p>
-							<p>
-								<b> MontantTTC : </b><span class="label label-success">${purchaseOrder.totalAmount
-									} ${purchaseOrder.currency.shortName}</span>
-							</p>
-						</div>
 
 					</div>
 					<div class="span2">
@@ -222,20 +214,13 @@
 								</p>
 							</c:if>
 						</c:if>
-					</div>
 				</div>
-			</div>
-
-
 		</div>
 
 
 	</form:update>
 	<script>
-		$('#tab a').click(function(e) {
-			e.preventDefault();
-			$(this).tab('show');
-		});
+		
 		$('#print_order_btn').click(function() {
 			var url = '${print_order_url}';
 			window.location = url ;

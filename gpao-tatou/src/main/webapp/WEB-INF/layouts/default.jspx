@@ -10,7 +10,8 @@
 <!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
 <!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
 <!-- Consider adding an manifest.appcache: h5bp.com/d/Offline -->
-<!--[if gt IE 8]><!-->]]> <html class="no-js" lang="en"> <![CDATA[<!--<![endif]-->]]>
+<!--[if gt IE 8]><!-->]]>
+ <html class="no-js" lang="en"> <![CDATA[<!--<![endif]-->]]>
 
 	<jsp:output omit-xml-declaration="true" doctype-root-element="HTML" doctype-system="about:legacy-compat" />
 	<jsp:directive.page contentType="text/html;charset=UTF-8" />  
@@ -32,6 +33,8 @@
 		<!-- FIXME Can't move scripts to the bottom of 
 			page because of how spring tags do the fields-->
 		<util:load-scripts />
+		<util:jquery-load-scripts />
+		<util:editable-load-scripts />
 		
 		<spring:message code="application_name" var="app_name" htmlEscape="false"/>
 		<title><spring:message code="welcome_h3" arguments="${app_name}" /></title>

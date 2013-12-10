@@ -9,12 +9,11 @@
 	xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
 	<jsp:directive.page contentType="text/html;charset=UTF-8" />
 	<jsp:output omit-xml-declaration="yes" />
-	<spring:url value="/deliverys/addOrEditForm" var="add_url" />
 	<spring:url value="/deliverys/next/${ delivery.id}" var="next_url" />
+	<spring:url value="/deliverys/find?form" var="filtre_url" />
 	<spring:url value="/deliverys/previous/${delivery.id}"	var="previous_url" />
 	<spring:url value="/deliverys/close/${delivery.id}"	var="close_url" />
 	<spring:url value="/deliverys/acceptAll/${delivery.id}"	var="acceptAll_url" />
-	
 	<spring:url value="/deliverys/deliveryNote/${delivery.reference}.pdf"	var="print_url" />
 	<div class="row-fluid">
 		<div class="span4">
@@ -34,10 +33,9 @@
 			<c:if test="${not empty delivery.id}">
 				<div style="float: right;" class="pagination">
 					<ul>
-						<li><a title="vider le formulaire" href="${add_url }">Add</a></li>
 						<li><a title="Groupe preccedant" href="${previous_url }">Prev</a></li>
 						<li><a title="Groupe suivant " href="${next_url}">Next</a></li>
-						<li><a title="Groupe suivant " href="#">Filtre</a></li>
+						<li><a title="Groupe suivant " href="${filtre_url}">Filtre</a></li>
 					</ul>
 				</div>
 			</c:if>
@@ -50,18 +48,18 @@
            <field:gpao-display hiddenfield="true" object="${delivery }" field="docRef"  id="c_cm_adorsys_gpao_model_Delivery_docRef"  />
          <field:input-hidden object="${delivery}" field="reference" id="c_cm_adorsys_gpao_model_Delivery_reference" />
         <field:gpao-display hiddenfield="true" object="${delivery}" field="createBy" id="c_cm_adorsys_gpao_model_Delivery_createBy"  z="PN7Z3egBhLDOZtIWhStVLxDPoek="/>
-         <field:gpao-display hiddenfield="true" object="${delivery}" date="true" dateTimePattern="${delivery_createdate_date_format}" field="createdate" id="c_cm_adorsys_gpao_model_Delivery_createdate" z="vInbZSx8FjLZU76w6dXpDzEIA28="/>
         <field:gpao-display hiddenfield="true" object="${delivery}" field="receiveBy" id="c_cm_adorsys_gpao_model_Delivery_receiveBy" z="07xvZWM+Y8fnhL4ofu5TRGXDtGo="/>
-        <field:gpao-display hiddenfield="true" object="${delivery}" date="true" dateTimePattern="${delivery_receiveddate_date_format}" field="receivedDate" id="c_cm_adorsys_gpao_model_Delivery_receivedDate" z="pKXkUF7vbYumWabfFryF/RCvhNE="/>
         <field:input-hidden object="${delivery}" isEnum="true" field="origin" id="c_cm_adorsys_gpao_model_Delivery_origin" />
         <field:input-hidden  isEnum="true" object="${delivery}" field="status" id="c_cm_adorsys_gpao_model_Delivery_status" />
           </div>
-      <div class="span5">
-        <field:gpao-display hiddenfield="true" isList="true" object="${delivery}" field="company" id="c_cm_adorsys_gpao_model_Delivery_company"  z="bQTKGJA/FALamdiZpYgs/NnB33k="/>
+      <div style="text-align: right;" class="span5">
+        <field:input-hidden  isList="true" object="${delivery}" field="company" id="c_cm_adorsys_gpao_model_Delivery_company"  />
         <field:gpao-display isList="true" hiddenfield="true" object="${delivery}" field="currency" id="c_cm_adorsys_gpao_model_Delivery_currency"  z="M639Dz4Qxqis4PSj6OtjQvTagAc="/>
-      <field:gpao-display hiddenfield="true" object="${delivery}" field="unTaxeAmount" id="c_cm_adorsys_gpao_model_Delivery_unTaxeAmount" />
-      <field:gpao-display hiddenfield="true" object="${delivery}" field="taxAmount" id="c_cm_adorsys_gpao_model_Delivery_taxAmount" />
-        <field:gpao-display hiddenfield="true" object="${delivery}" field="taxedAmount" id="c_cm_adorsys_gpao_model_Delivery_taxedAmount" />
+         <field:gpao-display hiddenfield="true" object="${delivery}" date="true" dateTimePattern="${delivery_createdate_date_format}" field="createdate" id="c_cm_adorsys_gpao_model_Delivery_createdate" z="vInbZSx8FjLZU76w6dXpDzEIA28="/>
+        <field:gpao-display hiddenfield="true" object="${delivery}" date="true" dateTimePattern="${delivery_receiveddate_date_format}" field="receivedDate" id="c_cm_adorsys_gpao_model_Delivery_receivedDate" z="pKXkUF7vbYumWabfFryF/RCvhNE="/>
+       <field:input-hidden object="${delivery}" field="unTaxeAmount" id="c_cm_adorsys_gpao_model_Delivery_unTaxeAmount" />
+        <field:input-hidden  object="${delivery}" field="taxAmount" id="c_cm_adorsys_gpao_model_Delivery_taxAmount" />
+        <field:input-hidden  object="${delivery}" field="taxedAmount" id="c_cm_adorsys_gpao_model_Delivery_taxedAmount" />
         <field:select field="deliveryItems" render="false" id="c_cm_adorsys_gpao_model_Delivery_deliveryItems" itemValue="id" items="${deliveryitemses}" multiple="true" path="/deliveryitemses" z="bUcrcT+NxinaGlrGVWJrUEMCVO8="/>
       </div>
       <div class="span2">
@@ -84,7 +82,7 @@
 				<legend>Produits a livrer  </legend>
 				<c:if test="${ not (delivery.status eq 'FERMER') }">
 				<div class="btn-group pull-rigth" data-toggle="buttons-checkbox">
-					<button id="traiterBtn" type="button" class=" btn-success">traiter tous</button>
+					<button id="validerBtn" type="button" class=" btn-success">Valider tous</button>
 				</div>
 				</c:if>
 				<table id="orderIdems">
@@ -96,10 +94,9 @@
 							<th style="text-align: center;">Recue</th>
 							<th style="text-align: center;">udm</th>
 							<th style="text-align: center;">totalHt</th>
+							<th style="text-align: center;">Taxe</th>
 							<th style="text-align: center;">totalTTC</th>
-							<c:if test="${ not (delivery.status eq 'FERMER') }">
-							<th style="text-align: center;"></th>
-							</c:if>
+							
 						</tr>
 					</thead>
 					<tbody>
@@ -108,15 +105,35 @@
 								<td style="text-align: center;">${items.reference}</td>
 								<td style="width: 40%;" >${items.product.name}</td>
 								<td style="text-align: center;">${items.orderQte}</td>
-								<td style="text-align: center;">${items.qteReceive}</td>
+								<td style="text-align: center;">
+								
+								    <a href="#" onclick="applyReceiveQte(this)" >${items.qteReceive}</a>
+								</td>
 								<td style="text-align: center;">${items.udm.name}</td>
 								<td style="text-align: center;">${items.amountHt}</td>
+								<td style="text-align: center;">${items.taxAmount}</td>
 								<td style="text-align: center;">${items.taxedAmount}</td>
-								<c:if test="${ not (delivery.status eq 'FERMER') }">
-								<td style="text-align: center;"><input type="checkbox" /></td>
-								</c:if>
+								
 							</tr>
 						</c:forEach>
+						<tr >
+									<td style="text-align: right; font-size: 20px; font-weight:bold;" colspan="7"> MontantHT : </td>
+									<td style="text-align: right;"> 
+										<span class="label label-info">${delivery.unTaxeAmount} ${delivery.currency.shortName} </span>
+									 </td>
+							   </tr>
+							   <tr >
+									<td style="text-align: right; font-size: 20px; font-weight:bold;" colspan="7">  Taxes  : </td>
+									<td style="text-align: right; "> 
+										<span class="label label-info">${delivery.taxAmount} ${delivery.currency.shortName} </span>
+									 </td>
+							   </tr>
+							   <tr >
+									<td style="text-align: right; font-size: 20px; font-weight:bold;" colspan="7"> MontantTTC : </td>
+									<td style="text-align: right;"> 
+										<span class="label label-info">${delivery.taxedAmount} ${delivery.currency.shortName} </span>
+									 </td>
+							   </tr>
 					</tbody>
 					</table>
 				</c:if>
@@ -124,11 +141,27 @@
 			<br />
     </form:update>
    <script>
+   //turn to inline mode
+   function applyReceiveQte(value){
+	 var  rowId = $(value).parents("tr").attr('id') ,
+	      oldvalue = value.text ,
+ 	      qte = prompt('Saisir la quantite Recue ?',value.text);
+	 if(qte){
+	   if($.isNumeric(qte) ){
+		   value.text = qte ;
+	   }else{
+		   value.text = oldvalue ;
+		   alert('veullez saisir un nombre inferieur a la quantite commandee');
+		   applyReceiveQte(value);
+	   }
+	 }
+   }
+   
 		$('#closeBtn').click(function(e) {
 			var url = '${close_url}' ;
 			window.location = url ;
 		});
-		$('#traiterBtn').click(function(e) {
+		$('#validerBtn').click(function(e) {
 			var url = '${acceptAll_url}' ;
 			window.location = url ;
 		});
@@ -138,6 +171,15 @@
 			var url = '${print_url}' ;
 			window.location = url ;
 		});
+		
+		function getSelectedRowId(tableid){
+			var  rowId =null;
+			var check = '#' + tableid + ' tbody input:checkbox:checked' ;
+			$(check).each(function() {
+				rowId = $(this).parents("tr").attr('id') ;
+			});
+			return rowId ;
+		}
 		
 	</script>
 </div>

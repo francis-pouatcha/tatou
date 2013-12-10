@@ -46,7 +46,7 @@ public class UnitOfMesuresController {
             return "unitofmesureses/config";
         }
         if (unitOfMesures.getIsRefUnit()) {
-            List<UnitOfMesures> udms = UnitOfMesures.findUnitOfMesuressByGroupEqualsAndReference(unitOfMesures.getUnitGroup(), Boolean.TRUE).getResultList();
+            List<UnitOfMesures> udms = UnitOfMesures.findUnitOfMesuressByGroupEqualsAndReference(unitOfMesures.getUnitGroup(), unitOfMesures.getIsRefUnit()).getResultList();
             for (UnitOfMesures unitOfMesures2 : udms) {
                 unitOfMesures2.setIsRefUnit(Boolean.FALSE);
                 unitOfMesures2.merge();
