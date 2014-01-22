@@ -1,5 +1,6 @@
 package cm.adorsys.gpao.web;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import cm.adorsys.gpao.model.Company;
@@ -69,9 +71,27 @@ public class DeliveryController {
 	public String closeDelivery(@PathVariable("id") Long id, Model uiModel ,RedirectAttributes redirectAttributes , HttpServletRequest httpServletRequest ) {
 		Delivery findDelivery = Delivery.findDelivery(id);
 		Delivery closeDelivery = deliveryService.closeDelivery(findDelivery);
+		Delivery produiceDelivery = deliveryService.produiceDeliveryForUnReceiveArticle(closeDelivery);
+		if(produiceDelivery.hasDeliveryItem()){
+			produiceDelivery.merge();
+		}else {
+			produiceDelivery.remove();
+		}
 		uiModel.asMap().clear() ;
 		redirectAttributes.addFlashAttribute(MessageType.SUCCESS_MESSAGE, "Livraison Cloturee avec success !") ;
 		return "redirect:/deliverys/addOrEditForm?id=" + encodeUrlPathSegment(closeDelivery.getId().toString(), httpServletRequest)+"&form";
+
+	}
+	@RequestMapping(value = "/setReceptQte/{ItemId}/{qteRecue}", method = RequestMethod.GET, produces = "text/html")
+	public @ResponseBody String setReceptQte(@PathVariable("ItemId") Long ItemId, @PathVariable("qteRecue") BigDecimal qteRecue ) {
+		DeliveryItems deliveryItems = DeliveryItems.findDeliveryItems(ItemId);
+		if(deliveryItems.getDelivery().isOpen()){
+		deliveryItems.setQteReceive(qteRecue);
+		deliveryItems.calculateUnreceiveQte();
+		deliveryItems.calculateQteInStock();
+		DeliveryItems merge = deliveryItems.merge();
+		}
+		return  deliveryItems.getDelivery().getVersion().toString();
 
 	}
 

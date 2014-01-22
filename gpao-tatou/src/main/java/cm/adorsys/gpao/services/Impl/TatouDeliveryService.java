@@ -117,5 +117,35 @@ public class TatouDeliveryService implements IDeliveryService {
 		}
 		return delivery ;
 	}
+	public  DeliveryItems getDeliveryItemFromUnreceiveQte(DeliveryItems deliveryItems){
+		DeliveryItems deliveryItems2 =null;
+		if(deliveryItems.hasUnreceiveQte()){
+			deliveryItems2 = new DeliveryItems();
+			deliveryItems2.setProduct(deliveryItems.getProduct());
+			deliveryItems2.setOrderQte(deliveryItems.getQteUnreceive());
+			deliveryItems2.setExpirationDate(deliveryItems.getExpirationDate());
+			deliveryItems2.setAmountHt(deliveryItems.getAmountHt());
+			deliveryItems2.setTaxAmount(deliveryItems.getTaxAmount());
+			deliveryItems2.setTaxedAmount(deliveryItems.getTaxedAmount());
+			deliveryItems2.setUdm(deliveryItems.getUdm());
+		}
+		return deliveryItems2 ;
+	}
+
+	public Delivery produiceDeliveryForUnReceiveArticle(Delivery delivery){
+		PurchaseOrder order = PurchaseOrder.findPurchaseOrderByReferenceEquals(delivery.getDocRef()).getSingleResult();
+		Delivery delivery2 = new Delivery(order);
+		delivery2.persist();
+		for (DeliveryItems deliveryItems : delivery.getDeliveryItems()) {
+			DeliveryItems itemFromUnreceiveQte = getDeliveryItemFromUnreceiveQte(deliveryItems);
+			if(itemFromUnreceiveQte!=null){
+				itemFromUnreceiveQte.setDelivery(delivery2);
+				itemFromUnreceiveQte.persist();
+				delivery2.increaseAmountFromDeliveryItem(itemFromUnreceiveQte);
+			}
+		} 
+		return delivery2.merge();
+
+	}
 
 }

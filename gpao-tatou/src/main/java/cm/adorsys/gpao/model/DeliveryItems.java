@@ -19,7 +19,7 @@ import org.springframework.roo.addon.tostring.RooToString;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord(inheritanceType = "TABLE_PER_CLASS", finders = { "findDeliveryItemsesByReferenceEquals" })
+@RooJpaActiveRecord(inheritanceType = "TABLE_PER_CLASS", finders = { "findDeliveryItemsesByReferenceEquals", "findDeliveryItemsesByDelivery" })
 public class DeliveryItems extends GpaoBaseEntity {
 
     private String reference;
@@ -33,7 +33,7 @@ public class DeliveryItems extends GpaoBaseEntity {
     private BigDecimal qteReceive = BigDecimal.ZERO;
 
     private BigDecimal qteUnreceive = BigDecimal.ZERO;
-    
+
     private BigDecimal qteInStock = BigDecimal.ZERO;
 
     @NotNull
@@ -55,14 +55,8 @@ public class DeliveryItems extends GpaoBaseEntity {
 
     public DeliveryItems() {
     }
-    
-    public void calculateQteInStock(){
-    	//TODO:
-    	
-    }
 
     public DeliveryItems(OrderItems items, Delivery delivery) {
-        this.reference = reference;
         this.product = items.getProduct();
         this.orderQte = items.getQuantity();
         this.expirationDate = new Date();
@@ -73,22 +67,32 @@ public class DeliveryItems extends GpaoBaseEntity {
         this.udm = items.getUdm();
     }
 
+    public void calculateQteInStock() {
+        qteInStock = qteReceive;
+    }
+
     public void acceptAllOrderQte() {
         qteReceive = orderQte;
+    }
+
+    public boolean hasUnreceiveQte() {
+        return qteUnreceive.intValue() > 0;
+    }
+
+    public void calculateUnreceiveQte() {
+        qteUnreceive = orderQte.subtract(qteReceive);
     }
 
     @PostPersist
     public void postPersist() {
         reference = GpaoSequenceGenerator.getSequenceWhitoutDate(getId(), delivery.getDocRef());
     }
-    
-    public static TypedQuery<cm.adorsys.gpao.model.DeliveryItems> findDeliveryItemssByProductAndStockQteNotEqual(Product product ,BigDecimal qteReceive) {
-		EntityManager em = DeliveryItems.entityManager();
-		TypedQuery<DeliveryItems> q = em.createQuery("SELECT o FROM DeliveryItems AS o WHERE  o.product = :product AND o.qteReceive != :qteReceive ORDER BY o.id DESC ", DeliveryItems.class);
-		q.setParameter("product", product);
-		q.setParameter("qteReceive", qteReceive);
-		return q;
-	}
-    
-   
+
+    public static TypedQuery<cm.adorsys.gpao.model.DeliveryItems> findDeliveryItemssByProductAndStockQteNotEqual(Product product, BigDecimal qteReceive) {
+        EntityManager em = DeliveryItems.entityManager();
+        TypedQuery<DeliveryItems> q = em.createQuery("SELECT o FROM DeliveryItems AS o WHERE  o.product = :product AND o.qteReceive != :qteReceive ORDER BY o.id DESC ", DeliveryItems.class);
+        q.setParameter("product", product);
+        q.setParameter("qteReceive", qteReceive);
+        return q;
+    }
 }

@@ -84,6 +84,10 @@ public class Delivery extends GpaoBaseEntity {
 		return reference+" : "+docRef ;
 
 	}
+	
+	public boolean isOpen(){
+		return DocumentStates.OUVERT.equals(status);
+	}
 
 	public Delivery(PurchaseOrder order) {
 		this.createBy = SecurityUtil.getUserName();
@@ -113,7 +117,11 @@ public class Delivery extends GpaoBaseEntity {
 		taxAmount = taxAmount.add(deliveryItem.getTaxAmount());
 		taxedAmount = taxedAmount.add(deliveryItem.getTaxedAmount());
 	}
-
+	
+	public boolean hasDeliveryItem(){
+		return !DeliveryItems.findDeliveryItemsesByDelivery(this).getResultList().isEmpty();
+	}
+	
 	public static TypedQuery<cm.adorsys.gpao.model.Delivery> findDeliveryByStatusAndOriginAndReceiveDateBetween(DocumentStates status,
 			String reference,Date beginReceivedDate,Date endReceivedDate,String docRef,String receiveBy,DeliveryOrigin origin) {
 		EntityManager em = Delivery.entityManager();
@@ -141,7 +149,7 @@ public class Delivery extends GpaoBaseEntity {
 		}
 		TypedQuery<Delivery> q = em.createQuery(query.append(" ORDER BY o.id ").toString(), Delivery.class);
 		if(StringUtils.isNotBlank(reference))q.setParameter("reference", reference);
-		if(StringUtils.isNotBlank(reference))q.setParameter("receiveBy", receiveBy);
+		if(StringUtils.isNotBlank(receiveBy))q.setParameter("receiveBy", receiveBy);
 		if(StringUtils.isNotBlank(docRef))q.setParameter("docRef", docRef);
 		if(!(status ==null || DocumentStates.TOUS.equals(status)))q.setParameter("status", status);
 		if(origin != null)q.setParameter("origin", origin);

@@ -439,3 +439,12 @@ persistence setup --provider HIBERNATE --database MYSQL --databaseName gpaodb --
 // Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-11-28 22:08:00
 // Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-12-07 21:45:52
 // Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-12-07 21:52:17
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-12-11 09:00:42
+focus --class ~.model.DeliveryItems
+finder list 
+finder add --finderName findDeliveryItemsesByDelivery
+persistence setup --provider HIBERNATE --database H2_IN_MEMORY 
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-12-11 21:11:22
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-12-11 21:14:31
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2014-01-22 14:32:19
+persistence setup --provider HIBERNATE --database H2_IN_MEMORY 

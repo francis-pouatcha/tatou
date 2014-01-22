@@ -15,6 +15,7 @@
 	<spring:url value="/deliverys/close/${delivery.id}"	var="close_url" />
 	<spring:url value="/deliverys/acceptAll/${delivery.id}"	var="acceptAll_url" />
 	<spring:url value="/deliverys/deliveryNote/${delivery.reference}.pdf"	var="print_url" />
+	<spring:url value="/deliverys/setReceptQte/"	var="qte_recue_url" />
 	<div class="row-fluid">
 		<div class="span4">
 			<B style="font-size: 15px; color: blue;"> Reference : </B> <STRONG
@@ -106,8 +107,15 @@
 								<td style="width: 40%;" >${items.product.name}</td>
 								<td style="text-align: center;">${items.orderQte}</td>
 								<td style="text-align: center;">
-								
+								    <c:choose>
+								      <c:when test="${delivery.status eq 'OUVERT'}">
 								    <a href="#" onclick="applyReceiveQte(this)" >${items.qteReceive}</a>
+								      
+								      </c:when>
+								      <c:otherwise>
+								      ${items.qteReceive}
+								      </c:otherwise>
+								    </c:choose>
 								</td>
 								<td style="text-align: center;">${items.udm.name}</td>
 								<td style="text-align: center;">${items.amountHt}</td>
@@ -148,6 +156,7 @@
  	      qte = prompt('Saisir la quantite Recue ?',value.text);
 	 if(qte){
 	   if($.isNumeric(qte) ){
+		   setQteRecue(rowId,qte);
 		   value.text = qte ;
 	   }else{
 		   value.text = oldvalue ;
@@ -171,6 +180,13 @@
 			var url = '${print_url}' ;
 			window.location = url ;
 		});
+		function setQteRecue(itemId,qteRecue){
+			var url = '${qte_recue_url}'+itemId+'/'+qteRecue ;
+			$.get( url,
+	                function(data){
+							$('#_version_id').val(data) ;
+						});
+					};
 		
 		function getSelectedRowId(tableid){
 			var  rowId =null;
