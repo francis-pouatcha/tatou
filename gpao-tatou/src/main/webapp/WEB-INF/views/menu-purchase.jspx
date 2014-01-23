@@ -7,10 +7,10 @@
    <jsp:include page="menu-user-infos.jspx" />
         <menu:category label="Carnet D'adresses" id="c_configuration" z="user-managed">
           <security:authorize ifAnyGranted="ROLE_ACCESS_FOURNISSEUR">
-          <menu:item id="i_partner_list" label="Fournisseurs" messageCode="global_menu_gpao" url="/partners?page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
+          <menu:item id="i_partner_list" label="Fournisseurs" messageCode="global_menu_gpao" url="/partners/specific?isProvider=true&amp;page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
            </security:authorize>
            <security:authorize ifAnyGranted="ROLE_ACCESS_CLIENT">
-           <menu:item id="i_partner_list" label="Clients" messageCode="global_menu_gpao" url="/partners?page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
+           <menu:item id="i_partner_list" label="Clients" messageCode="global_menu_gpao" url="/partners/specific?isProvider=false&amp;page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
             </security:authorize>
             <security:authorize ifAnyGranted="ROLE_ACCESS_GROUPE_PARTENAIRE">
              <menu:item id="i_partner_list" label="groupes de partenaires" messageCode="global_menu_gpao" url="/partnergroups/config" z="user-managed"/>

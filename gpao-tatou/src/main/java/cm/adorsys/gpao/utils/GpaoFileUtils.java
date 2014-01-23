@@ -53,6 +53,7 @@ public class GpaoFileUtils {
 	}
 
 	public static boolean fileExist(String filePath,  String fileName){
+		//TODO remove the lastDir variable
 		File lastDir = new File(filePath);
 		if(fileName!=null){
 			return fileExist(filePath, fileName)	;

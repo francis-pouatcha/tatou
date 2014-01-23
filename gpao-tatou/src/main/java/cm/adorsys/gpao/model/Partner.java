@@ -1,8 +1,8 @@
 package cm.adorsys.gpao.model;
 
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EntityManager;
@@ -17,14 +17,15 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
-import org.springframework.roo.addon.tostring.RooToString;
 import org.springframework.web.multipart.MultipartFile;
 
 @RooJavaBean
 @RooJpaActiveRecord(inheritanceType = "TABLE_PER_CLASS", finders = { "findPartnersByNameLike" })
 public class Partner extends GpaoBaseEntity {
 
-    @NotNull
+    private static Object en;
+
+	@NotNull
     @Column(unique = true)
     private String name;
 
@@ -139,6 +140,23 @@ public class Partner extends GpaoBaseEntity {
         TypedQuery<Partner> q = em.createQuery("SELECT o FROM Partner AS o WHERE o.isCustomer IS :isCustomer AND o.isActive IS :isActive ORDER BY o.name ", Partner.class);
         q.setParameter("isCustomer", Boolean.TRUE);
         q.setParameter("isActive", Boolean.TRUE);
+        return q;
+    }
+    public static TypedQuery<cm.adorsys.gpao.model.Partner> findAllActiveProviders(int firstResult, int maxResults) {
+        EntityManager em = Partner.entityManager();
+        TypedQuery<Partner> q = em.createQuery("SELECT o FROM Partner AS o WHERE o.isProvider IS :isProvider AND o.isActive IS :isActive  ORDER BY o.name ", Partner.class);
+        q.setParameter("isProvider", Boolean.TRUE);
+        q.setParameter("isActive", Boolean.TRUE);
+        q.setFirstResult(firstResult).setMaxResults(maxResults);
+        return q;
+    }
+
+    public static TypedQuery<cm.adorsys.gpao.model.Partner> findAllActiveCustomers(int firstResult, int maxResults) {
+        EntityManager em = Partner.entityManager();
+        TypedQuery<Partner> q = em.createQuery("SELECT o FROM Partner AS o WHERE o.isCustomer IS :isCustomer AND o.isActive IS :isActive ORDER BY o.name ", Partner.class);
+        q.setParameter("isCustomer", Boolean.TRUE);
+        q.setParameter("isActive", Boolean.TRUE);
+        q.setFirstResult(firstResult).setMaxResults(maxResults);
         return q;
     }
 
