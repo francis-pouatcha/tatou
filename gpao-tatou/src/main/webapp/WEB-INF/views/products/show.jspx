@@ -19,10 +19,7 @@
         <field:display field="epaisseur" id="s_cm_adorsys_gpao_model_Product_epaisseur" object="${product}" z="+u4CWMH94O8mCGW9uBnVLZ8tZtY="/>
         <field:display field="color" id="s_cm_adorsys_gpao_model_Product_color" object="${product}" z="6vyU9PFMMQX61z78lUVOzgwmm90="/>
         <field:display field="description" id="s_cm_adorsys_gpao_model_Product_description" object="${product}" z="o+of7zgMJ1R8rPbopq3suhCCzI0="/>
-        <field:display field="saleTaxes" id="s_cm_adorsys_gpao_model_Product_saleTaxes" object="${product}" z="lXfFG4huS+kPeQvNzCMhG+k6p6E="/>
-        <field:display field="purchaseTaxes" id="s_cm_adorsys_gpao_model_Product_purchaseTaxes" object="${product}" z="o3atPVhCLMMuYEJIWLRIiOjfK3U="/>
         <field:display field="actived" id="s_cm_adorsys_gpao_model_Product_actived" object="${product}" z="igNXaqGftJhLGcrdvH9/6IuTUac="/>
-        <field:display field="productImage" id="s_cm_adorsys_gpao_model_Product_productImage" object="${product}" z="nQlDp81bVjYvR9etdrxS2qm0lxs="/>
         <field:display field="productImagePath" id="s_cm_adorsys_gpao_model_Product_productImagePath" object="${product}" z="YQ7DpJoPt9wQpHmhQ7Qew+OyDw8="/>
         <field:display field="codeBare" id="s_cm_adorsys_gpao_model_Product_codeBare" object="${product}" z="yqPNtYHV5P+mgB5EY7f6uf4CPng="/>
         <field:display field="archived" id="s_cm_adorsys_gpao_model_Product_archived" object="${product}" z="kGMFLMe0YQBMWG/hfuGxIlUueTU="/>

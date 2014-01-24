@@ -9,12 +9,25 @@ import org.springframework.transaction.annotation.Transactional;
 
 privileged aspect PartnerGroup_Roo_Jpa_ActiveRecord {
     
+    public static final List<String> PartnerGroup.fieldNames4OrderClauseFilter = java.util.Arrays.asList("name", "description");
+    
     public static long PartnerGroup.countPartnerGroups() {
         return entityManager().createQuery("SELECT COUNT(o) FROM PartnerGroup o", Long.class).getSingleResult();
     }
     
     public static List<PartnerGroup> PartnerGroup.findAllPartnerGroups() {
         return entityManager().createQuery("SELECT o FROM PartnerGroup o", PartnerGroup.class).getResultList();
+    }
+    
+    public static List<PartnerGroup> PartnerGroup.findAllPartnerGroups(String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM PartnerGroup o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, PartnerGroup.class).getResultList();
     }
     
     public static PartnerGroup PartnerGroup.findPartnerGroup(Long id) {
@@ -24,6 +37,17 @@ privileged aspect PartnerGroup_Roo_Jpa_ActiveRecord {
     
     public static List<PartnerGroup> PartnerGroup.findPartnerGroupEntries(int firstResult, int maxResults) {
         return entityManager().createQuery("SELECT o FROM PartnerGroup o", PartnerGroup.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    }
+    
+    public static List<PartnerGroup> PartnerGroup.findPartnerGroupEntries(int firstResult, int maxResults, String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM PartnerGroup o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, PartnerGroup.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
     @Transactional

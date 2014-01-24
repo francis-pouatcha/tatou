@@ -30,7 +30,7 @@ import cm.adorsys.gpao.model.DeliveryOrigin;
 import cm.adorsys.gpao.model.Devise;
 import cm.adorsys.gpao.model.DocumentStates;
 import cm.adorsys.gpao.model.uimodels.DeliveryFinder;
-import cm.adorsys.gpao.services.Impl.TatouDeliveryService;
+import cm.adorsys.gpao.services.impl.TatouDeliveryService;
 import cm.adorsys.gpao.utils.GpaoPdfProducer;
 import cm.adorsys.gpao.utils.GpaoRepportPath;
 import cm.adorsys.gpao.utils.MessageType;

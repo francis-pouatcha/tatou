@@ -9,12 +9,25 @@ import org.springframework.transaction.annotation.Transactional;
 
 privileged aspect Company_Roo_Jpa_ActiveRecord {
     
+    public static final List<String> Company.fieldNames4OrderClauseFilter = java.util.Arrays.asList("name", "contactName", "contactFunction", "taxePayerNumber", "phone", "mobile", "fax", "email", "webSite", "uploadedLogo", "logoPath", "contacts", "city", "country", "devise");
+    
     public static long Company.countCompanys() {
         return entityManager().createQuery("SELECT COUNT(o) FROM Company o", Long.class).getSingleResult();
     }
     
     public static List<Company> Company.findAllCompanys() {
         return entityManager().createQuery("SELECT o FROM Company o", Company.class).getResultList();
+    }
+    
+    public static List<Company> Company.findAllCompanys(String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM Company o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, Company.class).getResultList();
     }
     
     public static Company Company.findCompany(Long id) {
@@ -24,6 +37,17 @@ privileged aspect Company_Roo_Jpa_ActiveRecord {
     
     public static List<Company> Company.findCompanyEntries(int firstResult, int maxResults) {
         return entityManager().createQuery("SELECT o FROM Company o", Company.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    }
+    
+    public static List<Company> Company.findCompanyEntries(int firstResult, int maxResults, String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM Company o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, Company.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
     @Transactional

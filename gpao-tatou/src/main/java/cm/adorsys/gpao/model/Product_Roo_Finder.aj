@@ -3,13 +3,13 @@
 
 package cm.adorsys.gpao.model;
 
-import cm.adorsys.gpao.model.Partner;
+import cm.adorsys.gpao.model.Product;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
-privileged aspect Partner_Roo_Finder {
+privileged aspect Product_Roo_Finder {
     
-    public static Long Partner.countFindPartnersByNameLike(String name) {
+    public static Long Product.countFindProductsByNameLike(String name) {
         if (name == null || name.length() == 0) throw new IllegalArgumentException("The name argument is required");
         name = name.replace('*', '%');
         if (name.charAt(0) != '%') {
@@ -18,13 +18,13 @@ privileged aspect Partner_Roo_Finder {
         if (name.charAt(name.length() - 1) != '%') {
             name = name + "%";
         }
-        EntityManager em = Partner.entityManager();
-        TypedQuery q = em.createQuery("SELECT COUNT(o) FROM Partner AS o WHERE LOWER(o.name) LIKE LOWER(:name)", Long.class);
+        EntityManager em = Product.entityManager();
+        TypedQuery q = em.createQuery("SELECT COUNT(o) FROM Product AS o WHERE LOWER(o.name) LIKE LOWER(:name)", Long.class);
         q.setParameter("name", name);
         return ((Long) q.getSingleResult());
     }
     
-    public static TypedQuery<Partner> Partner.findPartnersByNameLike(String name) {
+    public static TypedQuery<Product> Product.findProductsByNameLike(String name, String sortFieldName, String sortOrder) {
         if (name == null || name.length() == 0) throw new IllegalArgumentException("The name argument is required");
         name = name.replace('*', '%');
         if (name.charAt(0) != '%') {
@@ -33,30 +33,15 @@ privileged aspect Partner_Roo_Finder {
         if (name.charAt(name.length() - 1) != '%') {
             name = name + "%";
         }
-        EntityManager em = Partner.entityManager();
-        TypedQuery<Partner> q = em.createQuery("SELECT o FROM Partner AS o WHERE LOWER(o.name) LIKE LOWER(:name)", Partner.class);
-        q.setParameter("name", name);
-        return q;
-    }
-    
-    public static TypedQuery<Partner> Partner.findPartnersByNameLike(String name, String sortFieldName, String sortOrder) {
-        if (name == null || name.length() == 0) throw new IllegalArgumentException("The name argument is required");
-        name = name.replace('*', '%');
-        if (name.charAt(0) != '%') {
-            name = "%" + name;
-        }
-        if (name.charAt(name.length() - 1) != '%') {
-            name = name + "%";
-        }
-        EntityManager em = Partner.entityManager();
-        String jpaQuery = "SELECT o FROM Partner AS o WHERE LOWER(o.name) LIKE LOWER(:name)";
+        EntityManager em = Product.entityManager();
+        String jpaQuery = "SELECT o FROM Product AS o WHERE LOWER(o.name) LIKE LOWER(:name)";
         if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
             jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
             if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
                 jpaQuery = jpaQuery + " " + sortOrder;
             }
         }
-        TypedQuery<Partner> q = em.createQuery(jpaQuery, Partner.class);
+        TypedQuery<Product> q = em.createQuery(jpaQuery, Product.class);
         q.setParameter("name", name);
         return q;
     }

@@ -14,6 +14,8 @@ privileged aspect GpaoBaseEntity_Roo_Jpa_ActiveRecord {
     @PersistenceContext
     transient EntityManager GpaoBaseEntity.entityManager;
     
+    public static final List<String> GpaoBaseEntity.fieldNames4OrderClauseFilter = java.util.Arrays.asList("id", "version", "archived");
+    
     public static final EntityManager GpaoBaseEntity.entityManager() {
         EntityManager em = new GpaoBaseEntity() {
         }.entityManager;
@@ -29,6 +31,17 @@ privileged aspect GpaoBaseEntity_Roo_Jpa_ActiveRecord {
         return entityManager().createQuery("SELECT o FROM GpaoBaseEntity o", GpaoBaseEntity.class).getResultList();
     }
     
+    public static List<GpaoBaseEntity> GpaoBaseEntity.findAllGpaoBaseEntitys(String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM GpaoBaseEntity o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, GpaoBaseEntity.class).getResultList();
+    }
+    
     public static GpaoBaseEntity GpaoBaseEntity.findGpaoBaseEntity(Long id) {
         if (id == null) return null;
         return entityManager().find(GpaoBaseEntity.class, id);
@@ -36,6 +49,17 @@ privileged aspect GpaoBaseEntity_Roo_Jpa_ActiveRecord {
     
     public static List<GpaoBaseEntity> GpaoBaseEntity.findGpaoBaseEntityEntries(int firstResult, int maxResults) {
         return entityManager().createQuery("SELECT o FROM GpaoBaseEntity o", GpaoBaseEntity.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    }
+    
+    public static List<GpaoBaseEntity> GpaoBaseEntity.findGpaoBaseEntityEntries(int firstResult, int maxResults, String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM GpaoBaseEntity o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, GpaoBaseEntity.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
     @Transactional

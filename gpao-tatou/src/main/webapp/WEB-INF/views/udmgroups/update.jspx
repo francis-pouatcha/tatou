@@ -8,6 +8,7 @@
                 <field:input field="name" id="c_cm_adorsys_gpao_model_UdmGroup_name" required="true" z="user-managed"/>
                 <field:textarea field="description" id="c_cm_adorsys_gpao_model_UdmGroup_description" z="user-managed"/>
                 <field:simple field="unitOfMesures" id="c_cm_adorsys_gpao_model_UdmGroup_unitOfMesures" messageCode="entity_reference_not_managed" messageCodeAttribute="Unit Of Mesures" render="false" z="user-managed"/>
+                <field:checkbox field="archived" id="c_cm_adorsys_gpao_model_UdmGroup_archived" z="SLVr8RXKe0qGawP08U75XuWGz4s="/>
             </form:update>
         </div>
         <div class="span6">

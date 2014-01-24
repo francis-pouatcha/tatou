@@ -90,10 +90,10 @@ public class OrderItems extends GpaoBaseEntity{
 	public void calculateTaxAndAmout(){
 		taxeAmount = BigDecimal.ZERO ;
 		taxedSubTotal = BigDecimal.ZERO ;
-		Set<Taxe> saleTaxes = product.getPurchaseTaxes();
+/*		Set<Taxe> saleTaxes = product.getPurchaseTaxes();
 		for (Taxe taxe : saleTaxes) {
              taxeAmount = taxeAmount.add(taxe.getTaxeFromAmount(subTotal));
-		}
+		}*/
 		 taxedSubTotal = subTotal.add(taxeAmount);
 	}
 	@Override

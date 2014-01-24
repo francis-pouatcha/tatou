@@ -9,12 +9,25 @@ import org.springframework.transaction.annotation.Transactional;
 
 privileged aspect Contacts_Roo_Jpa_ActiveRecord {
     
+    public static final List<String> Contacts.fieldNames4OrderClauseFilter = java.util.Arrays.asList("name", "phone", "email", "contactFunction");
+    
     public static long Contacts.countContactses() {
         return entityManager().createQuery("SELECT COUNT(o) FROM Contacts o", Long.class).getSingleResult();
     }
     
     public static List<Contacts> Contacts.findAllContactses() {
         return entityManager().createQuery("SELECT o FROM Contacts o", Contacts.class).getResultList();
+    }
+    
+    public static List<Contacts> Contacts.findAllContactses(String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM Contacts o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, Contacts.class).getResultList();
     }
     
     public static Contacts Contacts.findContacts(Long id) {
@@ -24,6 +37,17 @@ privileged aspect Contacts_Roo_Jpa_ActiveRecord {
     
     public static List<Contacts> Contacts.findContactsEntries(int firstResult, int maxResults) {
         return entityManager().createQuery("SELECT o FROM Contacts o", Contacts.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    }
+    
+    public static List<Contacts> Contacts.findContactsEntries(int firstResult, int maxResults, String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM Contacts o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, Contacts.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
     @Transactional

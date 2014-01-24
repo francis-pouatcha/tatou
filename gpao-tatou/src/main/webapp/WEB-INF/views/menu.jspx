@@ -50,7 +50,7 @@
         <menu:category id="c_partner" z="1c5SWl9hgTSNPwpm3ec/i3c8Mpo=">
             <menu:item id="i_partner_new" messageCode="global_menu_new" url="/partners?form" z="4xjV01xDZ9Kh11CbimGNrPY2LQw="/>
             <menu:item id="i_partner_list" messageCode="global_menu_list" url="/partners?page=1&amp;size=${empty param.size ? 10 : param.size}" z="lbpoRNR4iI77PzeiPBiRRca9fgQ="/>
-            <menu:item id="fi_partner_namelike" messageCode="global_menu_find" url="/partners?find=ByNameLike&amp;form" z="Sgb6BZC/IgXCPGmwl66NvQIsB+k="/>
+            <menu:item id="fi_partner_namelike" messageCode="global_menu_find" url="/partners?find=ByNameLike&amp;form&amp;page=1&amp;size=${empty param.size ? 10 : param.size}" z="JcJFopYmVpQoFuBoMs8e0Dk9YkQ="/>
         </menu:category>
         <menu:category id="c_partnergroup" z="RJjofIRyXHzjXGHn+5xTQkANYKI=">
             <menu:item id="i_partnergroup_new" messageCode="global_menu_new" url="/partnergroups?form" z="oWqR2ILs4s5g1EIwBixCbklSrWY="/>
@@ -59,7 +59,7 @@
         <menu:category id="c_product" z="vJ6efqiSxFssuvqFTsXpvZ3AvA8=">
             <menu:item id="i_product_new" messageCode="global_menu_new" url="/products?form" z="Ezf8cTW61d2RkMNEcYkDJpG01kc="/>
             <menu:item id="i_product_list" messageCode="global_menu_list" url="/products?page=1&amp;size=${empty param.size ? 10 : param.size}" z="kEeyCmUUYXShbDEWwOLheaAkM50="/>
-            <menu:item id="fi_product_namelike" messageCode="global_menu_find" url="/products?find=ByNameLike&amp;form" z="9UYFI4aGcqRo2VqyECLCmjrNbtQ="/>
+            <menu:item id="fi_product_namelike" messageCode="global_menu_find" url="/products?find=ByNameLike&amp;form&amp;page=1&amp;size=${empty param.size ? 10 : param.size}" z="WHz1M4hybqqHzxuGcAhUDuhZAMQ="/>
         </menu:category>
         <menu:category id="c_purchaseorder" z="LdgN+Z53I4kIOyJx+mc8CFmbIuU=">
             <menu:item id="i_purchaseorder_new" messageCode="global_menu_new" url="/purchaseorders?form" z="I6gpOtV3+H+iGlPgmv55Zhufszk="/>
@@ -84,7 +84,8 @@
         <menu:category id="c_deliveryitems" z="LA+DVH+BC7KtnyDTPxhqWhPn5hw=">
             <menu:item id="i_deliveryitems_new" messageCode="global_menu_new" url="/deliveryitemses?form" z="yji+5OwjixmHXHEK7l/LAUQCDVM="/>
             <menu:item id="i_deliveryitems_list" messageCode="global_menu_list" url="/deliveryitemses?page=1&amp;size=${empty param.size ? 10 : param.size}" z="sjbn8PJjmux3IevxVgghkHUTBFw="/>
-            <menu:item id="fi_deliveryitems_referenceequals" messageCode="global_menu_find" url="/deliveryitemses?find=ByReferenceEquals&amp;form" z="Gqwvf+6lhwXkVVFi6UQdnfiJ6jE="/>
+            <menu:item id="fi_deliveryitems_delivery" messageCode="global_menu_find" url="/deliveryitemses?find=ByDelivery&amp;form&amp;page=1&amp;size=${empty param.size ? 10 : param.size}" z="lVuhHaeGe7lZU4MDX9/Chh5gs7s="/>
+            <menu:item id="fi_deliveryitems_referenceequals" messageCode="global_menu_find" url="/deliveryitemses?find=ByReferenceEquals&amp;form&amp;page=1&amp;size=${empty param.size ? 10 : param.size}" z="1/+ujyaNf23XCtntaeb2YzpVUTg="/>
         </menu:category>
         <menu:category id="c_inventoryitems" z="aXxeKH5LyKlFQYRpNueXH0ilZtU=">
             <menu:item id="i_inventoryitems_new" messageCode="global_menu_new" url="/inventoryitemses?form" z="R26+07xHK6M6TkZwVtGG/vnhSsE="/>

@@ -7,5 +7,6 @@
         <field:input field="phone" id="c_cm_adorsys_gpao_model_Contacts_phone" z="camSIWVv4gtHmRVjmNWxpsaFFWE="/>
         <field:input field="email" id="c_cm_adorsys_gpao_model_Contacts_email" validationMessageCode="field_invalid_email" z="VufvpEWIOcvsXLW8YFDttOvutNA="/>
         <field:input field="contactFunction" id="c_cm_adorsys_gpao_model_Contacts_contactFunction" z="yonC4KcROjDb3/d2k6PSic3CDBI="/>
+        <field:checkbox field="archived" id="c_cm_adorsys_gpao_model_Contacts_archived" z="fZlcIsKdo63xR8pHPQcitkSXJEk="/>
     </form:update>
 </div>

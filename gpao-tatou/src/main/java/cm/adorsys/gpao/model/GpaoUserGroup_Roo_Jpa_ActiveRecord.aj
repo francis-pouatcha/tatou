@@ -9,12 +9,25 @@ import org.springframework.transaction.annotation.Transactional;
 
 privileged aspect GpaoUserGroup_Roo_Jpa_ActiveRecord {
     
+    public static final List<String> GpaoUserGroup.fieldNames4OrderClauseFilter = java.util.Arrays.asList("name", "description", "roleNames");
+    
     public static long GpaoUserGroup.countGpaoUserGroups() {
         return entityManager().createQuery("SELECT COUNT(o) FROM GpaoUserGroup o", Long.class).getSingleResult();
     }
     
     public static List<GpaoUserGroup> GpaoUserGroup.findAllGpaoUserGroups() {
         return entityManager().createQuery("SELECT o FROM GpaoUserGroup o", GpaoUserGroup.class).getResultList();
+    }
+    
+    public static List<GpaoUserGroup> GpaoUserGroup.findAllGpaoUserGroups(String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM GpaoUserGroup o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, GpaoUserGroup.class).getResultList();
     }
     
     public static GpaoUserGroup GpaoUserGroup.findGpaoUserGroup(Long id) {
@@ -24,6 +37,17 @@ privileged aspect GpaoUserGroup_Roo_Jpa_ActiveRecord {
     
     public static List<GpaoUserGroup> GpaoUserGroup.findGpaoUserGroupEntries(int firstResult, int maxResults) {
         return entityManager().createQuery("SELECT o FROM GpaoUserGroup o", GpaoUserGroup.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    }
+    
+    public static List<GpaoUserGroup> GpaoUserGroup.findGpaoUserGroupEntries(int firstResult, int maxResults, String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM GpaoUserGroup o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, GpaoUserGroup.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
     @Transactional

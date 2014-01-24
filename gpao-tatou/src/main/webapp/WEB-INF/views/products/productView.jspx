@@ -93,7 +93,7 @@
 				</div>
 				<ul class="nav nav-tabs" id="tab">
 					<li class="active"><a href="#infos">infos-generales</a></li>
-					<li><a href="#Comptabilite">Achats / Ventes</a></li>
+<!-- 					<li><a href="#Comptabilite">Achats / Ventes</a></li> -->
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane active" id="infos">
@@ -192,7 +192,7 @@
 
 						</div>
 					</div>
-					<div class="tab-pane " id="Comptabilite">
+					<!-- <div class="tab-pane " id="Comptabilite">
 						<div class="row-fluid">
 							<div class="span6">
 								<legend>Taxes a la vente </legend>
@@ -217,7 +217,7 @@
 
 						</div>
 
-					</div>
+					</div> -->
 				</div>
 				<br />
 			</form:update>

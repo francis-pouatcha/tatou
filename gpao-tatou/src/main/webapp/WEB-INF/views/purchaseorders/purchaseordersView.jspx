@@ -78,6 +78,7 @@
 						<field:input-hidden field="invoiced" isBoolean="true"
 							object="${purchaseOrder}"
 							id="c_cm_adorsys_gpao_model_PurchaseOrder_invoiced" />
+							<field:select field="saleTaxes" id="c_cm_adorsys_gpao_model_PurchaseOrder_saleTaxes" itemValue="id" items="${taxes}" multiple="true" path="/taxes" z="AAfAG7R/aVRpE4PAJTAvXX34ArY="/>
 
 					</div>
 					<div class="span6">

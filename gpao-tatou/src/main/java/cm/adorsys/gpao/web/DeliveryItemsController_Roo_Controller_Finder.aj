@@ -3,6 +3,7 @@
 
 package cm.adorsys.gpao.web;
 
+import cm.adorsys.gpao.model.Delivery;
 import cm.adorsys.gpao.model.DeliveryItems;
 import cm.adorsys.gpao.web.DeliveryItemsController;
 import org.springframework.ui.Model;
@@ -12,14 +13,44 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 privileged aspect DeliveryItemsController_Roo_Controller_Finder {
     
+    @RequestMapping(params = { "find=ByDelivery", "form" }, method = RequestMethod.GET)
+    public String DeliveryItemsController.findDeliveryItemsesByDeliveryForm(Model uiModel) {
+        uiModel.addAttribute("deliverys", Delivery.findAllDeliverys());
+        return "deliveryitemses/findDeliveryItemsesByDelivery";
+    }
+    
+    @RequestMapping(params = "find=ByDelivery", method = RequestMethod.GET)
+    public String DeliveryItemsController.findDeliveryItemsesByDelivery(@RequestParam("delivery") Delivery delivery, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, @RequestParam(value = "sortFieldName", required = false) String sortFieldName, @RequestParam(value = "sortOrder", required = false) String sortOrder, Model uiModel) {
+        if (page != null || size != null) {
+            int sizeNo = size == null ? 10 : size.intValue();
+            final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
+            uiModel.addAttribute("deliveryitemses", DeliveryItems.findDeliveryItemsesByDelivery(delivery, sortFieldName, sortOrder).setFirstResult(firstResult).setMaxResults(sizeNo).getResultList());
+            float nrOfPages = (float) DeliveryItems.countFindDeliveryItemsesByDelivery(delivery) / sizeNo;
+            uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
+        } else {
+            uiModel.addAttribute("deliveryitemses", DeliveryItems.findDeliveryItemsesByDelivery(delivery, sortFieldName, sortOrder).getResultList());
+        }
+        addDateTimeFormatPatterns(uiModel);
+        return "deliveryitemses/list";
+    }
+    
     @RequestMapping(params = { "find=ByReferenceEquals", "form" }, method = RequestMethod.GET)
     public String DeliveryItemsController.findDeliveryItemsesByReferenceEqualsForm(Model uiModel) {
         return "deliveryitemses/findDeliveryItemsesByReferenceEquals";
     }
     
     @RequestMapping(params = "find=ByReferenceEquals", method = RequestMethod.GET)
-    public String DeliveryItemsController.findDeliveryItemsesByReferenceEquals(@RequestParam("reference") String reference, Model uiModel) {
-        uiModel.addAttribute("deliveryitemses", DeliveryItems.findDeliveryItemsesByReferenceEquals(reference).getResultList());
+    public String DeliveryItemsController.findDeliveryItemsesByReferenceEquals(@RequestParam("reference") String reference, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, @RequestParam(value = "sortFieldName", required = false) String sortFieldName, @RequestParam(value = "sortOrder", required = false) String sortOrder, Model uiModel) {
+        if (page != null || size != null) {
+            int sizeNo = size == null ? 10 : size.intValue();
+            final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
+            uiModel.addAttribute("deliveryitemses", DeliveryItems.findDeliveryItemsesByReferenceEquals(reference, sortFieldName, sortOrder).setFirstResult(firstResult).setMaxResults(sizeNo).getResultList());
+            float nrOfPages = (float) DeliveryItems.countFindDeliveryItemsesByReferenceEquals(reference) / sizeNo;
+            uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
+        } else {
+            uiModel.addAttribute("deliveryitemses", DeliveryItems.findDeliveryItemsesByReferenceEquals(reference, sortFieldName, sortOrder).getResultList());
+        }
+        addDateTimeFormatPatterns(uiModel);
         return "deliveryitemses/list";
     }
     

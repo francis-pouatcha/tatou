@@ -9,7 +9,7 @@
             <table:column id="c_cm_adorsys_gpao_model_OrderItems_udm" property="udm" z="wb5t2oaFjT8OC+AUPGosAFXrO3k="/>
             <table:column id="c_cm_adorsys_gpao_model_OrderItems_quantity" property="quantity" z="SmGPkEwbCmdlB9yac3vBLsNyGgY="/>
             <table:column id="c_cm_adorsys_gpao_model_OrderItems_subTotal" property="subTotal" z="8SxWlw4ZTYbUT9JwDc5MZtz1O88="/>
-            <table:column id="c_cm_adorsys_gpao_model_OrderItems_taxedSubTotal" property="taxedSubTotal" z="VuVXu9Ro21lvCJUVJ20VQwIUEqc="/>
+            <table:column id="c_cm_adorsys_gpao_model_OrderItems_archived" property="archived" z="qn7JRlw3PckUk3pzf6X84Mr42mA="/>
         </table:table>
     </page:list>
 </div>

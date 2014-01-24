@@ -6,6 +6,8 @@
         <field:select field="products" id="c_cm_adorsys_gpao_model_TenderItems_products" itemValue="id" items="${products}" path="/products" z="kB4DHKN162nNyhNRPpl2rfnoGfE="/>
         <field:input field="quantity" id="c_cm_adorsys_gpao_model_TenderItems_quantity" min="0" required="true" validationMessageCode="field_invalid_number" z="IDU//SmBLaHVbuhgOwqWSn0V10Y="/>
         <field:select field="udm" id="c_cm_adorsys_gpao_model_TenderItems_udm" itemValue="id" items="${unitofmesureses}" path="/unitofmesureses" z="awNHWiXjIPf6phLHEKXJhQrKEj0="/>
+        <field:checkbox field="archived" id="c_cm_adorsys_gpao_model_TenderItems_archived" z="vlPV+3U/0/vMpguV6PT/CPDyA+s="/>
+        <field:select field="tender" id="c_cm_adorsys_gpao_model_TenderItems_tender" itemValue="id" items="${tenderses}" path="/tenderses" required="true" z="fn6CWcL8mt3do6Dhop9BGf/z+D0="/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_cm_adorsys_gpao_model_TenderItems" render="${not empty dependencies}" z="RwBHbSi8zjhTIw2eJ7cPLryrXZE="/>
 </div>

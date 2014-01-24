@@ -5,9 +5,12 @@ package cm.adorsys.gpao.web;
 
 import cm.adorsys.gpao.model.Product;
 import cm.adorsys.gpao.model.TenderItems;
+import cm.adorsys.gpao.model.Tenders;
 import cm.adorsys.gpao.model.UnitOfMesures;
 import cm.adorsys.gpao.web.TenderItemsController;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.springframework.ui.Model;
@@ -35,6 +38,11 @@ privileged aspect TenderItemsController_Roo_Controller {
     @RequestMapping(params = "form", produces = "text/html")
     public String TenderItemsController.createForm(Model uiModel) {
         populateEditForm(uiModel, new TenderItems());
+        List<String[]> dependencies = new ArrayList<String[]>();
+        if (Tenders.countTenderses() == 0) {
+            dependencies.add(new String[] { "tenders", "tenderses" });
+        }
+        uiModel.addAttribute("dependencies", dependencies);
         return "tenderitemses/create";
     }
     
@@ -46,15 +54,15 @@ privileged aspect TenderItemsController_Roo_Controller {
     }
     
     @RequestMapping(produces = "text/html")
-    public String TenderItemsController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
+    public String TenderItemsController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, @RequestParam(value = "sortFieldName", required = false) String sortFieldName, @RequestParam(value = "sortOrder", required = false) String sortOrder, Model uiModel) {
         if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
             final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
-            uiModel.addAttribute("tenderitemses", TenderItems.findTenderItemsEntries(firstResult, sizeNo));
+            uiModel.addAttribute("tenderitemses", TenderItems.findTenderItemsEntries(firstResult, sizeNo, sortFieldName, sortOrder));
             float nrOfPages = (float) TenderItems.countTenderItemses() / sizeNo;
             uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
         } else {
-            uiModel.addAttribute("tenderitemses", TenderItems.findAllTenderItemses());
+            uiModel.addAttribute("tenderitemses", TenderItems.findAllTenderItemses(sortFieldName, sortOrder));
         }
         return "tenderitemses/list";
     }
@@ -89,6 +97,7 @@ privileged aspect TenderItemsController_Roo_Controller {
     void TenderItemsController.populateEditForm(Model uiModel, TenderItems tenderItems) {
         uiModel.addAttribute("tenderItems", tenderItems);
         uiModel.addAttribute("products", Product.findAllProducts());
+        uiModel.addAttribute("tenderses", Tenders.findAllTenderses());
         uiModel.addAttribute("unitofmesureses", UnitOfMesures.findAllUnitOfMesureses());
     }
     

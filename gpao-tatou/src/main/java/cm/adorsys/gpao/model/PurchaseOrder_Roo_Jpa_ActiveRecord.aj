@@ -9,12 +9,25 @@ import org.springframework.transaction.annotation.Transactional;
 
 privileged aspect PurchaseOrder_Roo_Jpa_ActiveRecord {
     
+    public static final List<String> PurchaseOrder.fieldNames4OrderClauseFilter = java.util.Arrays.asList("reference", "supplier", "orderDate", "received", "invoiced", "isValided", "validatedBy", "validateDate", "amountHt", "taxeAmount", "totalAmount", "orderState", "createdBy", "created", "currency", "orderItems", "company", "tender", "saleTaxes");
+    
     public static long PurchaseOrder.countPurchaseOrders() {
         return entityManager().createQuery("SELECT COUNT(o) FROM PurchaseOrder o", Long.class).getSingleResult();
     }
     
     public static List<PurchaseOrder> PurchaseOrder.findAllPurchaseOrders() {
         return entityManager().createQuery("SELECT o FROM PurchaseOrder o", PurchaseOrder.class).getResultList();
+    }
+    
+    public static List<PurchaseOrder> PurchaseOrder.findAllPurchaseOrders(String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM PurchaseOrder o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, PurchaseOrder.class).getResultList();
     }
     
     public static PurchaseOrder PurchaseOrder.findPurchaseOrder(Long id) {
@@ -24,6 +37,17 @@ privileged aspect PurchaseOrder_Roo_Jpa_ActiveRecord {
     
     public static List<PurchaseOrder> PurchaseOrder.findPurchaseOrderEntries(int firstResult, int maxResults) {
         return entityManager().createQuery("SELECT o FROM PurchaseOrder o", PurchaseOrder.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    }
+    
+    public static List<PurchaseOrder> PurchaseOrder.findPurchaseOrderEntries(int firstResult, int maxResults, String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM PurchaseOrder o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, PurchaseOrder.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
     @Transactional

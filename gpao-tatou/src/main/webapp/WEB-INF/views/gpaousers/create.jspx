@@ -22,6 +22,7 @@
         <field:select field="company" id="c_cm_adorsys_gpao_model_GpaoUser_company" itemValue="id" items="${companys}" path="/companys" z="UlR5EW2Q+9Ff1ceJYCneJuOkFpY="/>
         <field:input field="userImagePath" id="c_cm_adorsys_gpao_model_GpaoUser_userImagePath" z="l98nAmZxPJlE2zaRogM5Xpk8q78="/>
         <field:input field="userImage" id="c_cm_adorsys_gpao_model_GpaoUser_userImage" z="DGR9Fjvf7PUD/sjnQ/oxrgIPH/o="/>
+        <field:checkbox field="archived" id="c_cm_adorsys_gpao_model_GpaoUser_archived" z="jazMQNGUDRmR282js3dJBqkpueM="/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_cm_adorsys_gpao_model_GpaoUser" render="${not empty dependencies}" z="7/Uy+co/bqVeWZC33cDNpl3lL9A="/>
 </div>

@@ -9,12 +9,25 @@ import org.springframework.transaction.annotation.Transactional;
 
 privileged aspect Devise_Roo_Jpa_ActiveRecord {
     
+    public static final List<String> Devise.fieldNames4OrderClauseFilter = java.util.Arrays.asList("name", "shortName", "ratio");
+    
     public static long Devise.countDevises() {
         return entityManager().createQuery("SELECT COUNT(o) FROM Devise o", Long.class).getSingleResult();
     }
     
     public static List<Devise> Devise.findAllDevises() {
         return entityManager().createQuery("SELECT o FROM Devise o", Devise.class).getResultList();
+    }
+    
+    public static List<Devise> Devise.findAllDevises(String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM Devise o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, Devise.class).getResultList();
     }
     
     public static Devise Devise.findDevise(Long id) {
@@ -24,6 +37,17 @@ privileged aspect Devise_Roo_Jpa_ActiveRecord {
     
     public static List<Devise> Devise.findDeviseEntries(int firstResult, int maxResults) {
         return entityManager().createQuery("SELECT o FROM Devise o", Devise.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    }
+    
+    public static List<Devise> Devise.findDeviseEntries(int firstResult, int maxResults, String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM Devise o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, Devise.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
     @Transactional

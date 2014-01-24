@@ -8,8 +8,6 @@ import cm.adorsys.gpao.web.TendersController;
 import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import org.joda.time.format.DateTimeFormat;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -47,15 +45,15 @@ privileged aspect TendersController_Roo_Controller {
     }
     
     @RequestMapping(produces = "text/html")
-    public String TendersController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
+    public String TendersController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, @RequestParam(value = "sortFieldName", required = false) String sortFieldName, @RequestParam(value = "sortOrder", required = false) String sortOrder, Model uiModel) {
         if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
             final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
-            uiModel.addAttribute("tenderses", Tenders.findTendersEntries(firstResult, sizeNo));
+            uiModel.addAttribute("tenderses", Tenders.findTendersEntries(firstResult, sizeNo, sortFieldName, sortOrder));
             float nrOfPages = (float) Tenders.countTenderses() / sizeNo;
             uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
         } else {
-            uiModel.addAttribute("tenderses", Tenders.findAllTenderses());
+            uiModel.addAttribute("tenderses", Tenders.findAllTenderses(sortFieldName, sortOrder));
         }
         addDateTimeFormatPatterns(uiModel);
         return "tenderses/list";
@@ -89,10 +87,10 @@ privileged aspect TendersController_Roo_Controller {
     }
     
     void TendersController.addDateTimeFormatPatterns(Model uiModel) {
-        uiModel.addAttribute("tenders_created_date_format", "dd-MM-yyyy HH:mm");
-        uiModel.addAttribute("tenders_closed_date_format", "dd-MM-yyyy HH:mm");
-        uiModel.addAttribute("tenders_begindate_date_format", "dd-MM-yyyy HH:mm");
-        uiModel.addAttribute("tenders_enddate_date_format", "dd-MM-yyyy HH:mm");
+        uiModel.addAttribute("tenders_created_date_format", "dd-MM-yyy HH:mm");
+        uiModel.addAttribute("tenders_closed_date_format", "dd-MM-yyy HH:mm");
+        uiModel.addAttribute("tenders_begindate_date_format", "dd-MM-yyy HH:mm");
+        uiModel.addAttribute("tenders_enddate_date_format", "dd-MM-yyy HH:mm");
     }
     
     String TendersController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

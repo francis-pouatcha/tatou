@@ -54,15 +54,15 @@ privileged aspect InventoryItemsController_Roo_Controller {
     }
     
     @RequestMapping(produces = "text/html")
-    public String InventoryItemsController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
+    public String InventoryItemsController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, @RequestParam(value = "sortFieldName", required = false) String sortFieldName, @RequestParam(value = "sortOrder", required = false) String sortOrder, Model uiModel) {
         if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
             final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
-            uiModel.addAttribute("inventoryitemses", InventoryItems.findInventoryItemsEntries(firstResult, sizeNo));
+            uiModel.addAttribute("inventoryitemses", InventoryItems.findInventoryItemsEntries(firstResult, sizeNo, sortFieldName, sortOrder));
             float nrOfPages = (float) InventoryItems.countInventoryItemses() / sizeNo;
             uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
         } else {
-            uiModel.addAttribute("inventoryitemses", InventoryItems.findAllInventoryItemses());
+            uiModel.addAttribute("inventoryitemses", InventoryItems.findAllInventoryItemses(sortFieldName, sortOrder));
         }
         return "inventoryitemses/list";
     }

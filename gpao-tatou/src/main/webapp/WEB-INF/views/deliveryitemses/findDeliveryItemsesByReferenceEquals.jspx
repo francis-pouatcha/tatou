@@ -2,7 +2,7 @@
 <div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    <form:find label="Lots de produits"  finderName="ByReferenceEquals" id="ff_cm_adorsys_gpao_model_DeliveryItems" path="/deliveryitemses" z="4cDYeD7uNHPyZBpEp8tYwB5djh8=">
+    <form:find finderName="ByReferenceEquals" id="ff_cm_adorsys_gpao_model_DeliveryItems" label="Lots de produits" path="/deliveryitemses" z="user-managed">
         <field:input disableFormBinding="true" field="reference" id="f_cm_adorsys_gpao_model_DeliveryItems_reference" required="true" z="ImpqZ7wKIpAOm1Tg6cttfOIFCEo="/>
     </form:find>
 </div>

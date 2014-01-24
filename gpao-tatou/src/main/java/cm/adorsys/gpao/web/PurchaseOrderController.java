@@ -29,12 +29,13 @@ import cm.adorsys.gpao.model.OrderItems;
 import cm.adorsys.gpao.model.Partner;
 import cm.adorsys.gpao.model.Product;
 import cm.adorsys.gpao.model.PurchaseOrder;
+import cm.adorsys.gpao.model.Taxe;
 import cm.adorsys.gpao.model.Tenders;
 import cm.adorsys.gpao.model.UdmGroup;
 import cm.adorsys.gpao.model.UnitOfMesures;
 import cm.adorsys.gpao.model.uimodels.OrderItemUimodel;
 import cm.adorsys.gpao.model.uimodels.PurchaseOrderFinder;
-import cm.adorsys.gpao.services.Impl.TatouPurchaseService;
+import cm.adorsys.gpao.services.impl.TatouPurchaseService;
 import cm.adorsys.gpao.utils.GpaoPdfProducer;
 import cm.adorsys.gpao.utils.GpaoRepportPath;
 import cm.adorsys.gpao.utils.MessageType;
@@ -244,6 +245,7 @@ public class PurchaseOrderController {
         uiModel.addAttribute("partners", Partner.findAllActiveProviders().getResultList());
         uiModel.addAttribute("devises", Devise.findAllDevises());
         uiModel.addAttribute("companys", Company.findAllCompanys());
+        uiModel.addAttribute("taxes", Taxe.findAllTaxes());
         List<Tenders> tenderses = new ArrayList<Tenders>();
         if (purchaseOrder.isClosed()) {
             tenderses.add(purchaseOrder.getTender());

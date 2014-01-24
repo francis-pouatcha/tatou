@@ -14,7 +14,7 @@
             <table:column id="c_cm_adorsys_gpao_model_DeliveryItems_udm" property="udm" z="5uhdFGK6T2oC0hP26L1kIy+UVt4="/>
             <table:column id="c_cm_adorsys_gpao_model_DeliveryItems_orderQte" property="orderQte" z="U5o2R5duZmF2JVkyreICxMBk3Xk="/>
             <table:column id="c_cm_adorsys_gpao_model_DeliveryItems_qteReceive" label="stock" property="qteReceive" z="user-managed"/>
-            <table:column id="c_cm_adorsys_gpao_model_DeliveryItems_archived" render="false" property="archived" z="3270EVIEyZt+jC3naAVitEdq67I="/>
+            <table:column id="c_cm_adorsys_gpao_model_DeliveryItems_archived" property="archived" render="false" z="user-managed"/>
             <table:column id="c_cm_adorsys_gpao_model_DeliveryItems_qteUnreceive" property="qteUnreceive" z="5uhdFGK6T2oC0hP26L1kIy+UVt4="/>
         </table:table>
     </page:list>

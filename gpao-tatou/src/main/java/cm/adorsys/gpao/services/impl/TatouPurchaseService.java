@@ -1,4 +1,4 @@
-package cm.adorsys.gpao.services.Impl;
+package cm.adorsys.gpao.services.impl;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -86,10 +86,10 @@ public class TatouPurchaseService implements IPurchaseServices {
 		List<OrderItems> orderItems = purchaseOrder.getOrderItems();
 		purchaseOrder.initAmount();
 		for (OrderItems orderItems2 : orderItems) {
-			orderItems2.calculateTaxAndAmout();
+//			orderItems2.calculateTaxAndAmout();
 			purchaseOrder.increaseAmountFromOrderItem(orderItems2);
 		}
-
+		purchaseOrder.applyTaxesRateAndComputeTotalAmout();
 	}
 	@Override
 	public void validatedPurchase(PurchaseOrder purchaseOrder) {

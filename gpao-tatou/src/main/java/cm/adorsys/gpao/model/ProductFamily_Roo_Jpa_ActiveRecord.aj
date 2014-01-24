@@ -9,12 +9,25 @@ import org.springframework.transaction.annotation.Transactional;
 
 privileged aspect ProductFamily_Roo_Jpa_ActiveRecord {
     
+    public static final List<String> ProductFamily.fieldNames4OrderClauseFilter = java.util.Arrays.asList("name", "description", "productSubFamily");
+    
     public static long ProductFamily.countProductFamilys() {
         return entityManager().createQuery("SELECT COUNT(o) FROM ProductFamily o", Long.class).getSingleResult();
     }
     
     public static List<ProductFamily> ProductFamily.findAllProductFamilys() {
         return entityManager().createQuery("SELECT o FROM ProductFamily o", ProductFamily.class).getResultList();
+    }
+    
+    public static List<ProductFamily> ProductFamily.findAllProductFamilys(String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM ProductFamily o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, ProductFamily.class).getResultList();
     }
     
     public static ProductFamily ProductFamily.findProductFamily(Long id) {
@@ -24,6 +37,17 @@ privileged aspect ProductFamily_Roo_Jpa_ActiveRecord {
     
     public static List<ProductFamily> ProductFamily.findProductFamilyEntries(int firstResult, int maxResults) {
         return entityManager().createQuery("SELECT o FROM ProductFamily o", ProductFamily.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    }
+    
+    public static List<ProductFamily> ProductFamily.findProductFamilyEntries(int firstResult, int maxResults, String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM ProductFamily o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, ProductFamily.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
     @Transactional

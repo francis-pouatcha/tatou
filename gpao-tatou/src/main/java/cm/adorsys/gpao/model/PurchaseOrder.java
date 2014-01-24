@@ -1,13 +1,17 @@
 package cm.adorsys.gpao.model;
-
 import cm.adorsys.gpao.security.SecurityUtil;
+import cm.adorsys.gpao.services.impl.TatouPurchaseService;
 import cm.adorsys.gpao.utils.GpaoSequenceGenerator;
+import cm.adorsys.gpao.utils.TaxeUtils;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EntityManager;
@@ -31,6 +35,8 @@ import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
 
+import javax.persistence.ManyToMany;
+
 /**
  * @author clovisgakam
  *
@@ -38,7 +44,7 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooJavaBean
 @RooToString
 @RooJpaActiveRecord(inheritanceType = "TABLE_PER_CLASS")
-public class PurchaseOrder extends GpaoBaseEntity{
+public class PurchaseOrder extends GpaoBaseEntity {
 
     @NotNull
     private String reference;
@@ -88,7 +94,7 @@ public class PurchaseOrder extends GpaoBaseEntity{
     @ManyToOne
     private Devise currency;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "purchaseOrder",fetch=FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "purchaseOrder", fetch = FetchType.EAGER)
     private List<OrderItems> orderItems = new ArrayList<OrderItems>();
 
     @NotNull
@@ -98,24 +104,31 @@ public class PurchaseOrder extends GpaoBaseEntity{
     @ManyToOne
     private Tenders tender;
 
+
+    /**
+     */
+    @ManyToMany(cascade = CascadeType.ALL)
+    private Set<Taxe> saleTaxes = new HashSet<Taxe>();
+
     public void initAmount() {
         amountHt = BigDecimal.ZERO;
         taxeAmount = BigDecimal.ZERO;
         totalAmount = BigDecimal.ZERO;
     }
-    
-    public boolean isClosed(){
-    	return DocumentStates.FERMER.equals(orderState);
+
+    public boolean isClosed() {
+        return DocumentStates.FERMER.equals(orderState);
     }
-    
-    public boolean hasTender(){
-    	return (tender != null) ;
+
+    public boolean hasTender() {
+        return (tender != null);
     }
 
     @PostLoad
-    public void postLoad(){
-    	//orderItems = OrderItems.findOrderItemssByPurchaseOrder(this).getResultList();
+    public void postLoad() {
+        //orderItems = OrderItems.findOrderItemssByPurchaseOrder(this).getResultList();
     }
+
     @PostPersist
     public void postPersist() {
         reference = GpaoSequenceGenerator.getSequence(getId(), GpaoSequenceGenerator.PORCHASE_SEQUENCE_PREFIX);
@@ -124,8 +137,8 @@ public class PurchaseOrder extends GpaoBaseEntity{
 
     public void increaseAmountFromOrderItem(OrderItems orderItem) {
         amountHt = amountHt.add(orderItem.getSubTotal());
-        taxeAmount = taxeAmount.add(orderItem.getTaxeAmount());
-        totalAmount = totalAmount.add(orderItem.getTaxedSubTotal());
+//        taxeAmount = taxeAmount.add(orderItem.getTaxeAmount());
+//        totalAmount = totalAmount.add(orderItem.getTaxedSubTotal());
     }
 
     public OrderItems hasProduct(Product product) {
@@ -135,34 +148,35 @@ public class PurchaseOrder extends GpaoBaseEntity{
         }
         return null;
     }
-    public static TypedQuery<cm.adorsys.gpao.model.PurchaseOrder> findPurchaseOrderByStatusAndTenderRefAndDateBetween(Partner supplier,DocumentStates orderState,String tenderRef,Date beginDate,Date endDate,String reference) {
+
+    public static TypedQuery<cm.adorsys.gpao.model.PurchaseOrder> findPurchaseOrderByStatusAndTenderRefAndDateBetween(Partner supplier, DocumentStates orderState, String tenderRef, Date beginDate, Date endDate, String reference) {
         EntityManager em = Tenders.entityManager();
-		StringBuilder query = new StringBuilder("SELECT o FROM PurchaseOrder AS o WHERE  o.id IS NOT NULL ");
-		if(StringUtils.isNotBlank(reference)){
-			query.append(" AND o.reference = :reference");
-		}
-		if(StringUtils.isNotBlank(tenderRef)){
-			query.append(" AND o.tender.reference = :tenderRef");
-		}
-		if(!(orderState ==null || DocumentStates.TOUS.equals(orderState))){
-			query.append(" AND o.orderState = :orderState");
-		}
-		if(beginDate != null){
-			query.append(" AND o.created >= :beginDate");
-		}
-		if(endDate != null){
-			query.append(" AND o.orderState <= :endDate");
-		}
-		if(supplier != null){
-			query.append(" AND o.supplier = :supplier");
-		}
-		TypedQuery<PurchaseOrder> q = em.createQuery(query.append(" ORDER BY o.id ").toString(), PurchaseOrder.class);
-		if(StringUtils.isNotBlank(reference))q.setParameter("reference", reference);
-		if(StringUtils.isNotBlank(tenderRef))q.setParameter("tenderRef", tenderRef);
-		if(!(orderState ==null || DocumentStates.TOUS.equals(orderState)))q.setParameter("orderState", orderState);
-		if(beginDate != null)q.setParameter("beginDate", beginDate);
-		if(endDate != null)q.setParameter("endDate", endDate);
-		if(supplier != null)q.setParameter("supplier", supplier);
+        StringBuilder query = new StringBuilder("SELECT o FROM PurchaseOrder AS o WHERE  o.id IS NOT NULL ");
+        if (StringUtils.isNotBlank(reference)) {
+            query.append(" AND o.reference = :reference");
+        }
+        if (StringUtils.isNotBlank(tenderRef)) {
+            query.append(" AND o.tender.reference = :tenderRef");
+        }
+        if (!(orderState == null || DocumentStates.TOUS.equals(orderState))) {
+            query.append(" AND o.orderState = :orderState");
+        }
+        if (beginDate != null) {
+            query.append(" AND o.created >= :beginDate");
+        }
+        if (endDate != null) {
+            query.append(" AND o.orderState <= :endDate");
+        }
+        if (supplier != null) {
+            query.append(" AND o.supplier = :supplier");
+        }
+        TypedQuery<PurchaseOrder> q = em.createQuery(query.append(" ORDER BY o.id ").toString(), PurchaseOrder.class);
+        if (StringUtils.isNotBlank(reference)) q.setParameter("reference", reference);
+        if (StringUtils.isNotBlank(tenderRef)) q.setParameter("tenderRef", tenderRef);
+        if (!(orderState == null || DocumentStates.TOUS.equals(orderState))) q.setParameter("orderState", orderState);
+        if (beginDate != null) q.setParameter("beginDate", beginDate);
+        if (endDate != null) q.setParameter("endDate", endDate);
+        if (supplier != null) q.setParameter("supplier", supplier);
         return q;
     }
 
@@ -179,7 +193,7 @@ public class PurchaseOrder extends GpaoBaseEntity{
         q.setParameter("id", id);
         return q;
     }
-    
+
     public static TypedQuery<cm.adorsys.gpao.model.PurchaseOrder> findPurchaseOrdersByTenderAndStatus(Tenders tenders, DocumentStates orderState) {
         EntityManager em = PurchaseOrder.entityManager();
         TypedQuery<PurchaseOrder> q = em.createQuery("SELECT o FROM PurchaseOrder AS o WHERE  o.tender = :tender AND o.orderState = :orderState ", PurchaseOrder.class);
@@ -187,16 +201,71 @@ public class PurchaseOrder extends GpaoBaseEntity{
         q.setParameter("orderState", orderState);
         return q;
     }
+
     public static TypedQuery<cm.adorsys.gpao.model.PurchaseOrder> findPurchaseOrdersByTender(Tenders tenders) {
         EntityManager em = PurchaseOrder.entityManager();
         TypedQuery<PurchaseOrder> q = em.createQuery("SELECT o FROM PurchaseOrder AS o WHERE  o.tender = :tender", PurchaseOrder.class);
         q.setParameter("tender", tenders);
         return q;
     }
+
     public static TypedQuery<cm.adorsys.gpao.model.PurchaseOrder> findPurchaseOrderByReferenceEquals(String reference) {
-		EntityManager em = PurchaseOrder.entityManager();
-		TypedQuery<PurchaseOrder> q = em.createQuery("SELECT o FROM PurchaseOrder AS o WHERE  o.reference = :reference ", PurchaseOrder.class);
-		q.setParameter("reference", reference);
-		return q;
+        EntityManager em = PurchaseOrder.entityManager();
+        TypedQuery<PurchaseOrder> q = em.createQuery("SELECT o FROM PurchaseOrder AS o WHERE  o.reference = :reference ", PurchaseOrder.class);
+        q.setParameter("reference", reference);
+        return q;
+    }
+
+	/**
+	 * <p>Compute the taxes amount based on the {@link #amountHt PurchaseOrder#amountHt} and update the {@link #totalAmount PurchaseOrder#amountHt} values. </p>
+	 * 
+	 * @see TatouPurchaseService#calculatePurchaseTaxAndAmount(PurchaseOrder)
+	 */
+	public void applyTaxesRateAndComputeTotalAmout() {
+		Iterator<Taxe> salesTaxeIterator = saleTaxes.iterator();
+		BigDecimal taxesAmount = BigDecimal.ZERO;
+		while (salesTaxeIterator.hasNext()) {
+			Taxe taxe = (Taxe) salesTaxeIterator.next();
+			TaxeType taxeType = taxe.getTaxeType();
+			if(taxeType.equals(TaxeType.PAR_POURCENTAGE)) {
+				taxesAmount= taxesAmount.add(computeTaxeByPercentage(amountHt, taxe.getTaxeValue()));
+			}else{//it is a #TaxeType.PAR_VALEUR
+				taxesAmount = taxesAmount.add(computeTaxeByValue(amountHt, taxe.getTaxeValue()));
+			}
+		}
+		this.taxeAmount = taxesAmount;
+		this.totalAmount = this.amountHt.add(taxeAmount);
+	}
+	/**
+	 * <p>the taxe value of an amount. </p> 
+	 * <b>Example </b> <br />
+	 * <p>
+	 * <code>
+	 * tva = 19.5% ; <br />
+	 * computedTaxe = (amountHt*tva/100) </code></p>
+	 * @param amountHt
+	 * @param taxeValue
+	 * @return the taxe value of amountHt
+	 */
+	BigDecimal computeTaxeByPercentage(BigDecimal amountHt,BigDecimal taxeValue) {
+		BigDecimal taxe = amountHt.multiply(taxeValue).divide(TaxeUtils.HUNDRED);
+		return taxe;
+	}
+	/**
+	 * <p>
+	 * 	Compute taxe per value of an amount </p>
+	 * 	<b>Example</b> <br />
+	 * <p>
+	 * 	<code>
+	 * 	tva = 0.19 ; <br />
+	 * 	computedTaxe = amountHt*tva;
+	 * </code>
+	 * </p>
+	 * @param amountHt
+	 * @param taxeValue
+	 * @return
+	 */
+	BigDecimal computeTaxeByValue(BigDecimal amountHt,BigDecimal taxeValue) {
+		return amountHt.multiply(taxeValue);
 	}
 }

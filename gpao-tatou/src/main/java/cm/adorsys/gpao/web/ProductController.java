@@ -1,22 +1,5 @@
 package cm.adorsys.gpao.web;
 
-import cm.adorsys.gpao.model.DeliveryItems;
-import cm.adorsys.gpao.model.Devise;
-import cm.adorsys.gpao.model.Inventory;
-import cm.adorsys.gpao.model.Product;
-import cm.adorsys.gpao.model.ProductSubFamily;
-import cm.adorsys.gpao.model.ProductType;
-import cm.adorsys.gpao.model.Taxe;
-import cm.adorsys.gpao.model.UnitOfMesures;
-import cm.adorsys.gpao.model.WareHouses;
-import cm.adorsys.gpao.model.uimodels.ProductFinder;
-import cm.adorsys.gpao.model.uimodels.PurchaseOrderFinder;
-import cm.adorsys.gpao.services.Impl.TatouInventoryService;
-import cm.adorsys.gpao.utils.GpaoDocumentDirectories;
-import cm.adorsys.gpao.utils.GpaoFileUtils;
-import cm.adorsys.gpao.utils.GpaoPdfProducer;
-import cm.adorsys.gpao.utils.GpaoRepportPath;
-import cm.adorsys.gpao.utils.MessageType;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -25,6 +8,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.roo.addon.web.mvc.controller.finder.RooWebFinder;
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
@@ -36,6 +20,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+
+import cm.adorsys.gpao.model.Devise;
+import cm.adorsys.gpao.model.Inventory;
+import cm.adorsys.gpao.model.Product;
+import cm.adorsys.gpao.model.ProductSubFamily;
+import cm.adorsys.gpao.model.ProductType;
+import cm.adorsys.gpao.model.Taxe;
+import cm.adorsys.gpao.model.UnitOfMesures;
+import cm.adorsys.gpao.model.WareHouses;
+import cm.adorsys.gpao.model.uimodels.ProductFinder;
+import cm.adorsys.gpao.services.impl.TatouInventoryService;
+import cm.adorsys.gpao.utils.GpaoDocumentDirectories;
+import cm.adorsys.gpao.utils.GpaoFileUtils;
+import cm.adorsys.gpao.utils.GpaoPdfProducer;
+import cm.adorsys.gpao.utils.GpaoRepportPath;
+import cm.adorsys.gpao.utils.MessageType;
 
 @RequestMapping("/products")
 @Controller

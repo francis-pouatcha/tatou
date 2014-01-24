@@ -15,5 +15,6 @@
         <field:datetime dateTimePattern="${deliveryItems_expirationdate_date_format}" field="expirationDate" id="c_cm_adorsys_gpao_model_DeliveryItems_expirationDate" z="whfyd6m5G5HYd/O8xvECLjxNnW4="/>
         <field:select field="udm" id="c_cm_adorsys_gpao_model_DeliveryItems_udm" itemValue="id" items="${unitofmesureses}" path="/unitofmesureses" z="WX4sZxhABNBVN/f2JvVxqI10wvM="/>
         <field:checkbox field="archived" id="c_cm_adorsys_gpao_model_DeliveryItems_archived" z="IcHQcdOYPYsUe19Yptte5XEJc7s="/>
+        <field:input field="qteInStock" id="c_cm_adorsys_gpao_model_DeliveryItems_qteInStock" validationMessageCode="field_invalid_number" z="iiBjJAQef9ZBtoB2S55xQlNpsKY="/>
     </form:update>
 </div>

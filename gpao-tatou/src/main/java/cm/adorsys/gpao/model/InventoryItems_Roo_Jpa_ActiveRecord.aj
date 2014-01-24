@@ -9,12 +9,25 @@ import org.springframework.transaction.annotation.Transactional;
 
 privileged aspect InventoryItems_Roo_Jpa_ActiveRecord {
     
+    public static final List<String> InventoryItems.fieldNames4OrderClauseFilter = java.util.Arrays.asList("product", "virtualStock", "realStock", "stockGap", "gapAmount", "inventory", "productPrice", "udm");
+    
     public static long InventoryItems.countInventoryItemses() {
         return entityManager().createQuery("SELECT COUNT(o) FROM InventoryItems o", Long.class).getSingleResult();
     }
     
     public static List<InventoryItems> InventoryItems.findAllInventoryItemses() {
         return entityManager().createQuery("SELECT o FROM InventoryItems o", InventoryItems.class).getResultList();
+    }
+    
+    public static List<InventoryItems> InventoryItems.findAllInventoryItemses(String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM InventoryItems o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, InventoryItems.class).getResultList();
     }
     
     public static InventoryItems InventoryItems.findInventoryItems(Long id) {
@@ -24,6 +37,17 @@ privileged aspect InventoryItems_Roo_Jpa_ActiveRecord {
     
     public static List<InventoryItems> InventoryItems.findInventoryItemsEntries(int firstResult, int maxResults) {
         return entityManager().createQuery("SELECT o FROM InventoryItems o", InventoryItems.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    }
+    
+    public static List<InventoryItems> InventoryItems.findInventoryItemsEntries(int firstResult, int maxResults, String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM InventoryItems o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, InventoryItems.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
     @Transactional

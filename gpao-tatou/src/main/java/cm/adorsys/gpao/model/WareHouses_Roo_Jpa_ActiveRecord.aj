@@ -14,6 +14,8 @@ privileged aspect WareHouses_Roo_Jpa_ActiveRecord {
     @PersistenceContext
     transient EntityManager WareHouses.entityManager;
     
+    public static final List<String> WareHouses.fieldNames4OrderClauseFilter = java.util.Arrays.asList("name", "description", "location");
+    
     public static final EntityManager WareHouses.entityManager() {
         EntityManager em = new WareHouses().entityManager;
         if (em == null) throw new IllegalStateException("Entity manager has not been injected (is the Spring Aspects JAR configured as an AJC/AJDT aspects library?)");
@@ -28,6 +30,17 @@ privileged aspect WareHouses_Roo_Jpa_ActiveRecord {
         return entityManager().createQuery("SELECT o FROM WareHouses o", WareHouses.class).getResultList();
     }
     
+    public static List<WareHouses> WareHouses.findAllWareHouseses(String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM WareHouses o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, WareHouses.class).getResultList();
+    }
+    
     public static WareHouses WareHouses.findWareHouses(Long id) {
         if (id == null) return null;
         return entityManager().find(WareHouses.class, id);
@@ -35,6 +48,17 @@ privileged aspect WareHouses_Roo_Jpa_ActiveRecord {
     
     public static List<WareHouses> WareHouses.findWareHousesEntries(int firstResult, int maxResults) {
         return entityManager().createQuery("SELECT o FROM WareHouses o", WareHouses.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    }
+    
+    public static List<WareHouses> WareHouses.findWareHousesEntries(int firstResult, int maxResults, String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM WareHouses o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, WareHouses.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
     @Transactional

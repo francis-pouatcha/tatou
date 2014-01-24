@@ -5,5 +5,6 @@
     <page:show id="ps_cm_adorsys_gpao_model_PartnerGroup" object="${partnergroup}" path="/partnergroups" z="evX8xHmqwIntSn5/eyBCWAYowvs=">
         <field:display field="name" id="s_cm_adorsys_gpao_model_PartnerGroup_name" object="${partnergroup}" z="LkcyD60yvMQrBR2IpLMjuuUHDBw="/>
         <field:display field="description" id="s_cm_adorsys_gpao_model_PartnerGroup_description" object="${partnergroup}" z="AkvNo26dZ5cGzKSRDPOR7H1icgo="/>
+        <field:display field="archived" id="s_cm_adorsys_gpao_model_PartnerGroup_archived" object="${partnergroup}" z="XTMXVJM1qv1Ay9FUtDHNXqOc5/I="/>
     </page:show>
 </div>

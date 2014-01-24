@@ -9,13 +9,14 @@
     <page:list id="pl_cm_adorsys_gpao_model_Delivery" items="${deliverys}" labelPlural="Liste des livraisons" showInPanel="false" z="user-managed">
         <table:table create="false" data="${deliverys}" delete="false" id="l_cm_adorsys_gpao_model_Delivery" path="/deliverys/addOrEditForm" queryParam="true" show="false" z="user-managed">
             <table:column id="c_cm_adorsys_gpao_model_Delivery_reference" property="reference" z="hdHy7xt3A708D12OlWRhwjeFy3Q="/>
-             <table:column id="c_cm_adorsys_gpao_model_Delivery_origin" property="origin" z="hdHy7xt3A708D12OlWRhwjeFy3Q="/>
+            <table:column id="c_cm_adorsys_gpao_model_Delivery_origin" property="origin" z="hdHy7xt3A708D12OlWRhwjeFy3Q="/>
             <table:column id="c_cm_adorsys_gpao_model_Delivery_docRef" property="docRef" z="hdHy7xt3A708D12OlWRhwjeFy3Q="/>
             <table:column id="c_cm_adorsys_gpao_model_Delivery_createBy" property="createBy" z="yr/1C5evkBlireL9jLnysszCpBU="/>
             <table:column date="true" dateTimePattern="${delivery_createdate_date_format}" id="c_cm_adorsys_gpao_model_Delivery_createdate" property="createdate" z="hgsF3/H5fD2x2m8X1upk2p1JoUM="/>
             <table:column id="c_cm_adorsys_gpao_model_Delivery_receiveBy" property="receiveBy" z="d1nU5IaKSmZWEhz/ZRPUVkGglg4="/>
             <table:column date="true" dateTimePattern="${delivery_receiveddate_date_format}" id="c_cm_adorsys_gpao_model_Delivery_receivedDate" property="receivedDate" z="B+qebDWLdLsC1ua1l2tye7XGhKQ="/>
             <table:column id="c_cm_adorsys_gpao_model_Delivery_status" property="status" z="user-managed"/>
+            <table:column id="c_cm_adorsys_gpao_model_Delivery_archived" property="archived" z="kPMCUwkNo7YruGlmtJ+yw3T+BPw="/>
         </table:table>
     </page:list>
 </div>

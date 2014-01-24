@@ -13,8 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import org.joda.time.format.DateTimeFormat;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -63,15 +61,15 @@ privileged aspect PurchaseOrderController_Roo_Controller {
     }
     
     @RequestMapping(produces = "text/html")
-    public String PurchaseOrderController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
+    public String PurchaseOrderController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, @RequestParam(value = "sortFieldName", required = false) String sortFieldName, @RequestParam(value = "sortOrder", required = false) String sortOrder, Model uiModel) {
         if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
             final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
-            uiModel.addAttribute("purchaseorders", PurchaseOrder.findPurchaseOrderEntries(firstResult, sizeNo));
+            uiModel.addAttribute("purchaseorders", PurchaseOrder.findPurchaseOrderEntries(firstResult, sizeNo, sortFieldName, sortOrder));
             float nrOfPages = (float) PurchaseOrder.countPurchaseOrders() / sizeNo;
             uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
         } else {
-            uiModel.addAttribute("purchaseorders", PurchaseOrder.findAllPurchaseOrders());
+            uiModel.addAttribute("purchaseorders", PurchaseOrder.findAllPurchaseOrders(sortFieldName, sortOrder));
         }
         addDateTimeFormatPatterns(uiModel);
         return "purchaseorders/list";
@@ -105,9 +103,9 @@ privileged aspect PurchaseOrderController_Roo_Controller {
     }
     
     void PurchaseOrderController.addDateTimeFormatPatterns(Model uiModel) {
-        uiModel.addAttribute("purchaseOrder_orderdate_date_format", "dd-MM-yyyy HH:mm");
-        uiModel.addAttribute("purchaseOrder_validatedate_date_format", "dd-MM-yyyy HH:mm");
-        uiModel.addAttribute("purchaseOrder_created_date_format", "dd-MM-yyyy HH:mm");
+        uiModel.addAttribute("purchaseOrder_orderdate_date_format", "dd-MM-yyy HH:mm");
+        uiModel.addAttribute("purchaseOrder_validatedate_date_format", "dd-MM-yyy HH:mm");
+        uiModel.addAttribute("purchaseOrder_created_date_format", "dd-MM-yyy HH:mm");
     }
     
     String PurchaseOrderController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

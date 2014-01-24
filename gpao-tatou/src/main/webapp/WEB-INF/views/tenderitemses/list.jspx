@@ -7,6 +7,8 @@
             <table:column id="c_cm_adorsys_gpao_model_TenderItems_products" property="products" z="Us8Yy+i3nCAqkG+g5Q0YwIngj/8="/>
             <table:column id="c_cm_adorsys_gpao_model_TenderItems_quantity" property="quantity" z="2RwbbyGttBOtMLvN09dXqfeGUIk="/>
             <table:column id="c_cm_adorsys_gpao_model_TenderItems_udm" property="udm" z="jwEWZrQJ0HH4R2+qFffwdUygfWo="/>
+            <table:column id="c_cm_adorsys_gpao_model_TenderItems_archived" property="archived" z="0h0rPXDVJuqG+3gIywOgt6Q3T14="/>
+            <table:column id="c_cm_adorsys_gpao_model_TenderItems_tender" property="tender" z="Jt/fnNgI5sc+jxiCYm9LOsd0vIs="/>
         </table:table>
     </page:list>
 </div>

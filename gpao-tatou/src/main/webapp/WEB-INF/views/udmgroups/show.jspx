@@ -5,5 +5,6 @@
     <page:show id="ps_cm_adorsys_gpao_model_UdmGroup" object="${udmgroup}" path="/udmgroups" z="m0Dq0WVQJPgYhBd6jy3E6YUv/Xk=">
         <field:display field="name" id="s_cm_adorsys_gpao_model_UdmGroup_name" object="${udmgroup}" z="dIK59DJprzRHhC2rCpo7axU3Lwg="/>
         <field:display field="description" id="s_cm_adorsys_gpao_model_UdmGroup_description" object="${udmgroup}" z="8KT7kHbzCr//lKlao6THhvlEOPI="/>
+        <field:display field="archived" id="s_cm_adorsys_gpao_model_UdmGroup_archived" object="${udmgroup}" z="Rih+wqf79M9t4Pb1IZ5/+lGiN/s="/>
     </page:show>
 </div>

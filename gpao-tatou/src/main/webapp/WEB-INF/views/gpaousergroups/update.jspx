@@ -6,5 +6,6 @@
         <field:input field="name" id="c_cm_adorsys_gpao_model_GpaoUserGroup_name" required="true" z="HqBkecu7GBMhl1XOaw2dRPZtmw0="/>
         <field:input field="description" id="c_cm_adorsys_gpao_model_GpaoUserGroup_description" z="Ww5TkIsPp5aMjhcJafSCD6X85GY="/>
         <field:select field="roleNames" id="c_cm_adorsys_gpao_model_GpaoUserGroup_roleNames" items="${rolenameses}" path="rolenameses" z="9a+qUVZ4CCSH0aIKUoeZ/+imj/E="/>
+        <field:checkbox field="archived" id="c_cm_adorsys_gpao_model_GpaoUserGroup_archived" z="f+tZQdU4xy+O9i6TnKVL0E9JBwM="/>
     </form:update>
 </div>

@@ -8,5 +8,6 @@
         <field:display field="locationRow" id="s_cm_adorsys_gpao_model_Location_locationRow" object="${location}" z="SK9o4P7CSr3cBAWp8zL0NYDfChM="/>
         <field:display field="locationHeigth" id="s_cm_adorsys_gpao_model_Location_locationHeigth" object="${location}" z="sm2g5u04cVl/mHpPOrEnrmk6R1s="/>
         <field:display field="wareHouse" id="s_cm_adorsys_gpao_model_Location_wareHouse" object="${location}" z="s+KJn+/y8d+WRHHRIdTlJg4A+Ws="/>
+        <field:display field="archived" id="s_cm_adorsys_gpao_model_Location_archived" object="${location}" z="/HVv/NkUDPWIccL9oHKSVsvscZI="/>
     </page:show>
 </div>

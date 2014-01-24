@@ -6,6 +6,7 @@
         <table:table data="${udmgroups}" id="l_cm_adorsys_gpao_model_UdmGroup" path="/udmgroups" z="zlAcFTz2fXzBb7+D745OBm/zv5c=">
             <table:column id="c_cm_adorsys_gpao_model_UdmGroup_name" property="name" z="FWkiKaoDS02wUnemgkNTC2NbYyo="/>
             <table:column id="c_cm_adorsys_gpao_model_UdmGroup_description" property="description" z="yeLrEskEAZS0T2Leq/pvFLiLoZI="/>
+            <table:column id="c_cm_adorsys_gpao_model_UdmGroup_archived" property="archived" z="cUIUgeXB3yJ2tEyDuXvaXd0i6P4="/>
         </table:table>
     </page:list>
 </div>

@@ -3,15 +3,8 @@
 
 package cm.adorsys.gpao.model;
 
-import cm.adorsys.gpao.model.Devise;
-import cm.adorsys.gpao.model.Product;
-import cm.adorsys.gpao.model.ProductSubFamily;
-import cm.adorsys.gpao.model.ProductType;
-import cm.adorsys.gpao.model.Taxe;
-import cm.adorsys.gpao.model.UnitOfMesures;
-import cm.adorsys.gpao.model.WareHouses;
 import java.math.BigDecimal;
-import java.util.Set;
+
 import org.springframework.web.multipart.MultipartFile;
 
 privileged aspect Product_Roo_JavaBean {
@@ -144,22 +137,6 @@ privileged aspect Product_Roo_JavaBean {
         this.description = description;
     }
     
-    public Set<Taxe> Product.getSaleTaxes() {
-        return this.saleTaxes;
-    }
-    
-    public void Product.setSaleTaxes(Set<Taxe> saleTaxes) {
-        this.saleTaxes = saleTaxes;
-    }
-    
-    public Set<Taxe> Product.getPurchaseTaxes() {
-        return this.purchaseTaxes;
-    }
-    
-    public void Product.setPurchaseTaxes(Set<Taxe> purchaseTaxes) {
-        this.purchaseTaxes = purchaseTaxes;
-    }
-    
     public Boolean Product.getActived() {
         return this.actived;
     }
@@ -167,7 +144,6 @@ privileged aspect Product_Roo_JavaBean {
     public void Product.setActived(Boolean actived) {
         this.actived = actived;
     }
-    
     public MultipartFile Product.getProductImage() {
         return this.productImage;
     }
@@ -175,7 +151,7 @@ privileged aspect Product_Roo_JavaBean {
     public void Product.setProductImage(MultipartFile productImage) {
         this.productImage = productImage;
     }
-    
+
     public String Product.getProductImagePath() {
         return this.productImagePath;
     }

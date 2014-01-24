@@ -19,10 +19,7 @@
         <field:input field="epaisseur" id="c_cm_adorsys_gpao_model_Product_epaisseur" z="9/z9TJ3hjMhAy18kE4pPB3GM1KU="/>
         <field:input field="color" id="c_cm_adorsys_gpao_model_Product_color" z="OUx2XbAoHfZtdFbjHKuUdhPxRKw="/>
         <field:input field="description" id="c_cm_adorsys_gpao_model_Product_description" z="j3LSEvLw7oBDAecKpEswtlya43Q="/>
-        <field:select field="saleTaxes" id="c_cm_adorsys_gpao_model_Product_saleTaxes" itemValue="id" items="${taxes}" multiple="true" path="/taxes" z="q9EkUwy8WNaO+rY81waJ49P1B3I="/>
-        <field:select field="purchaseTaxes" id="c_cm_adorsys_gpao_model_Product_purchaseTaxes" itemValue="id" items="${taxes}" multiple="true" path="/taxes" z="v4ezpxdZWiQ+v9ssFENvdBbRxoc="/>
         <field:checkbox field="actived" id="c_cm_adorsys_gpao_model_Product_actived" z="/WoHu+FPIKj22J5PlomzlQEhu0E="/>
-        <field:input field="productImage" id="c_cm_adorsys_gpao_model_Product_productImage" z="ttfpYHs/kdownLPkl6YWPumzaoU="/>
         <field:input field="productImagePath" id="c_cm_adorsys_gpao_model_Product_productImagePath" z="kVb+fqi0WTvhCNVAz5qvi+Wz1JM="/>
         <field:input field="codeBare" id="c_cm_adorsys_gpao_model_Product_codeBare" z="DeMlgiUNsIOyzTIxwQVcZWfZhlA="/>
         <field:checkbox field="archived" id="c_cm_adorsys_gpao_model_Product_archived" z="HZuclo+A6ttm93gd9mBPLvxqvwo="/>

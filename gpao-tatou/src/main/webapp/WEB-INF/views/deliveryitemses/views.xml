@@ -16,4 +16,7 @@
 <definition extends="stock" name="deliveryitemses/findDeliveryItemsesByReferenceEquals">
         <put-attribute name="body" value="/WEB-INF/views/deliveryitemses/findDeliveryItemsesByReferenceEquals.jspx"/>
     </definition>
+<definition extends="default" name="deliveryitemses/findDeliveryItemsesByDelivery">
+        <put-attribute name="body" value="/WEB-INF/views/deliveryitemses/findDeliveryItemsesByDelivery.jspx"/>
+    </definition>
 </tiles-definitions>

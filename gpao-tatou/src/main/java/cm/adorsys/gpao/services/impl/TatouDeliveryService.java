@@ -1,4 +1,4 @@
-package cm.adorsys.gpao.services.Impl;
+package cm.adorsys.gpao.services.impl;
 
 import java.math.BigDecimal;
 import java.util.Date;

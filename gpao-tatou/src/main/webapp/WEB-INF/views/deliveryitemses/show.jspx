@@ -15,5 +15,6 @@
         <field:display date="true" dateTimePattern="${deliveryItems_expirationdate_date_format}" field="expirationDate" id="s_cm_adorsys_gpao_model_DeliveryItems_expirationDate" object="${deliveryitems}" z="d+j3D1Dcp7ebd+xyYeYuINm+rMA="/>
         <field:display field="udm" id="s_cm_adorsys_gpao_model_DeliveryItems_udm" object="${deliveryitems}" z="4jbIC2eUMJRip3X3AKYF0+3cOHo="/>
         <field:display field="archived" id="s_cm_adorsys_gpao_model_DeliveryItems_archived" object="${deliveryitems}" z="QJ/A2YgCL6TRVDA1NTcWTqlf5Yc="/>
+        <field:display field="qteInStock" id="s_cm_adorsys_gpao_model_DeliveryItems_qteInStock" object="${deliveryitems}" z="HFu+a79D4MrVSHuBpa7XXIakCdQ="/>
     </page:show>
 </div>

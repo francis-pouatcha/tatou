@@ -448,3 +448,10 @@ persistence setup --provider HIBERNATE --database H2_IN_MEMORY
 // Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-12-11 21:14:31
 // Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2014-01-22 14:32:19
 persistence setup --provider HIBERNATE --database H2_IN_MEMORY 
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-01-24 14:30:26
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log closed at 2014-01-24 14:55:08
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-01-24 14:55:58
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log closed at 2014-01-24 15:06:38
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-01-24 15:06:54
+focus --class ~.model.PurchaseOrder
+field set --fieldName saleTaxes --type ~.model.Taxe 

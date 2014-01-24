@@ -9,6 +9,7 @@
             <table:column id="c_cm_adorsys_gpao_model_Location_locationRow" property="locationRow" z="33KXePMEisSvjy4fMWHjGWg4aoc="/>
             <table:column id="c_cm_adorsys_gpao_model_Location_locationHeigth" property="locationHeigth" z="M5gnw9xI7aKJLqZgL9PWZEpuOks="/>
             <table:column id="c_cm_adorsys_gpao_model_Location_wareHouse" property="wareHouse" z="XGp1QBB4mvDhMnrK7Zkp0gjWThw="/>
+            <table:column id="c_cm_adorsys_gpao_model_Location_archived" property="archived" z="fR40Nw+K4YQO5Pf58WxVAkMoKyU="/>
         </table:table>
     </page:list>
 </div>

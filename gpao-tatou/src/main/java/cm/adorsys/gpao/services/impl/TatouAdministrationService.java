@@ -1,4 +1,4 @@
-package cm.adorsys.gpao.services.Impl;
+package cm.adorsys.gpao.services.impl;
 
 import org.springframework.stereotype.Service;
 

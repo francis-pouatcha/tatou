@@ -6,5 +6,6 @@
         <field:display field="name" id="s_cm_adorsys_gpao_model_GpaoUserGroup_name" object="${gpaousergroup}" z="qLiW4u/a6fb+3s0EKBsHou9vKvc="/>
         <field:display field="description" id="s_cm_adorsys_gpao_model_GpaoUserGroup_description" object="${gpaousergroup}" z="MJp9oU7SqdgLfcYpYTygduLVTho="/>
         <field:display field="roleNames" id="s_cm_adorsys_gpao_model_GpaoUserGroup_roleNames" object="${gpaousergroup}" z="OVlaCN79LnLqd1bOPUjUgYg27Tg="/>
+        <field:display field="archived" id="s_cm_adorsys_gpao_model_GpaoUserGroup_archived" object="${gpaousergroup}" z="ZAlQEGIaZLCeA0ccKZf91TcA6gY="/>
     </page:show>
 </div>

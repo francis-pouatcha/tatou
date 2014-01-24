@@ -22,5 +22,6 @@
         <field:display field="company" id="s_cm_adorsys_gpao_model_GpaoUser_company" object="${gpaouser}" z="gu7H88WxH50uLqHOJFLnlNU/1Q0="/>
         <field:display field="userImagePath" id="s_cm_adorsys_gpao_model_GpaoUser_userImagePath" object="${gpaouser}" z="JGS9ECBlriAGxxtatuReB1nFhf0="/>
         <field:display field="userImage" id="s_cm_adorsys_gpao_model_GpaoUser_userImage" object="${gpaouser}" z="BYzZIGXuCBfy0/3bdVOpDgFpECs="/>
+        <field:display field="archived" id="s_cm_adorsys_gpao_model_GpaoUser_archived" object="${gpaouser}" z="7/gGlVBz2cIckXBEYOrQxcCc6PQ="/>
     </page:show>
 </div>

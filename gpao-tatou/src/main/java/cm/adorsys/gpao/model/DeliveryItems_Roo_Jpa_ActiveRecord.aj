@@ -9,12 +9,25 @@ import org.springframework.transaction.annotation.Transactional;
 
 privileged aspect DeliveryItems_Roo_Jpa_ActiveRecord {
     
+    public static final List<String> DeliveryItems.fieldNames4OrderClauseFilter = java.util.Arrays.asList("reference", "product", "orderQte", "qteReceive", "qteUnreceive", "qteInStock", "delivery", "amountHt", "taxAmount", "taxedAmount", "expirationDate", "udm");
+    
     public static long DeliveryItems.countDeliveryItemses() {
         return entityManager().createQuery("SELECT COUNT(o) FROM DeliveryItems o", Long.class).getSingleResult();
     }
     
     public static List<DeliveryItems> DeliveryItems.findAllDeliveryItemses() {
         return entityManager().createQuery("SELECT o FROM DeliveryItems o", DeliveryItems.class).getResultList();
+    }
+    
+    public static List<DeliveryItems> DeliveryItems.findAllDeliveryItemses(String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM DeliveryItems o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, DeliveryItems.class).getResultList();
     }
     
     public static DeliveryItems DeliveryItems.findDeliveryItems(Long id) {
@@ -24,6 +37,17 @@ privileged aspect DeliveryItems_Roo_Jpa_ActiveRecord {
     
     public static List<DeliveryItems> DeliveryItems.findDeliveryItemsEntries(int firstResult, int maxResults) {
         return entityManager().createQuery("SELECT o FROM DeliveryItems o", DeliveryItems.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    }
+    
+    public static List<DeliveryItems> DeliveryItems.findDeliveryItemsEntries(int firstResult, int maxResults, String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM DeliveryItems o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, DeliveryItems.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
     @Transactional

@@ -6,5 +6,7 @@
         <field:display field="products" id="s_cm_adorsys_gpao_model_TenderItems_products" object="${tenderitems}" z="FkybpAJZ6lk3S1sp7pFpacKnajE="/>
         <field:display field="quantity" id="s_cm_adorsys_gpao_model_TenderItems_quantity" object="${tenderitems}" z="0e0cEqcuNzQ9hYNsa5qoBvLqi3A="/>
         <field:display field="udm" id="s_cm_adorsys_gpao_model_TenderItems_udm" object="${tenderitems}" z="abEgp2pCt07rsnAA9KeSHNzLatU="/>
+        <field:display field="archived" id="s_cm_adorsys_gpao_model_TenderItems_archived" object="${tenderitems}" z="TBPdSQVdW0eplQITY6HeEPvEqSc="/>
+        <field:display field="tender" id="s_cm_adorsys_gpao_model_TenderItems_tender" object="${tenderitems}" z="wu9CZQis9SKgxv9yHrzXEURq9dY="/>
     </page:show>
 </div>

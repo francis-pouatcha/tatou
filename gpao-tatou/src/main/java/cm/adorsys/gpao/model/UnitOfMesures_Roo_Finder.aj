@@ -10,8 +10,25 @@ import javax.persistence.TypedQuery;
 
 privileged aspect UnitOfMesures_Roo_Finder {
     
+    public static Long UnitOfMesures.countFindUnitOfMesuresesByNameLikeAndUnitGroup(String name, UdmGroup unitGroup) {
+        if (name == null || name.length() == 0) throw new IllegalArgumentException("The name argument is required");
+        name = name.replace('*', '%');
+        if (name.charAt(0) != '%') {
+            name = "%" + name;
+        }
+        if (name.charAt(name.length() - 1) != '%') {
+            name = name + "%";
+        }
+        if (unitGroup == null) throw new IllegalArgumentException("The unitGroup argument is required");
+        EntityManager em = UnitOfMesures.entityManager();
+        TypedQuery q = em.createQuery("SELECT COUNT(o) FROM UnitOfMesures AS o WHERE LOWER(o.name) LIKE LOWER(:name)  AND o.unitGroup = :unitGroup", Long.class);
+        q.setParameter("name", name);
+        q.setParameter("unitGroup", unitGroup);
+        return ((Long) q.getSingleResult());
+    }
+    
     public static TypedQuery<UnitOfMesures> UnitOfMesures.findUnitOfMesuresesByNameLikeAndUnitGroup(String name, UdmGroup unitGroup) {
-        if (name == null || name.length() == 0) name ="*" ;
+        if (name == null || name.length() == 0) throw new IllegalArgumentException("The name argument is required");
         name = name.replace('*', '%');
         if (name.charAt(0) != '%') {
             name = "%" + name;
@@ -22,6 +39,30 @@ privileged aspect UnitOfMesures_Roo_Finder {
         if (unitGroup == null) throw new IllegalArgumentException("The unitGroup argument is required");
         EntityManager em = UnitOfMesures.entityManager();
         TypedQuery<UnitOfMesures> q = em.createQuery("SELECT o FROM UnitOfMesures AS o WHERE LOWER(o.name) LIKE LOWER(:name)  AND o.unitGroup = :unitGroup", UnitOfMesures.class);
+        q.setParameter("name", name);
+        q.setParameter("unitGroup", unitGroup);
+        return q;
+    }
+    
+    public static TypedQuery<UnitOfMesures> UnitOfMesures.findUnitOfMesuresesByNameLikeAndUnitGroup(String name, UdmGroup unitGroup, String sortFieldName, String sortOrder) {
+        if (name == null || name.length() == 0) throw new IllegalArgumentException("The name argument is required");
+        name = name.replace('*', '%');
+        if (name.charAt(0) != '%') {
+            name = "%" + name;
+        }
+        if (name.charAt(name.length() - 1) != '%') {
+            name = name + "%";
+        }
+        if (unitGroup == null) throw new IllegalArgumentException("The unitGroup argument is required");
+        EntityManager em = UnitOfMesures.entityManager();
+        String jpaQuery = "SELECT o FROM UnitOfMesures AS o WHERE LOWER(o.name) LIKE LOWER(:name)  AND o.unitGroup = :unitGroup";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        TypedQuery<UnitOfMesures> q = em.createQuery(jpaQuery, UnitOfMesures.class);
         q.setParameter("name", name);
         q.setParameter("unitGroup", unitGroup);
         return q;

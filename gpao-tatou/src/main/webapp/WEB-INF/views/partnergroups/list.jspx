@@ -6,6 +6,7 @@
         <table:table data="${partnergroups}" id="l_cm_adorsys_gpao_model_PartnerGroup" path="/partnergroups" z="3CI2UbO2O0rNBTHSwAc7Z0djk60=">
             <table:column id="c_cm_adorsys_gpao_model_PartnerGroup_name" property="name" z="Wue94/s8gfcEACZ7/d/R3WjUbtw="/>
             <table:column id="c_cm_adorsys_gpao_model_PartnerGroup_description" property="description" z="xX8U6f7mTUp4xytgLzd2oXGZljA="/>
+            <table:column id="c_cm_adorsys_gpao_model_PartnerGroup_archived" property="archived" z="TQri+CyPjnSApYwppNKGnw0ooNM="/>
         </table:table>
     </page:list>
 </div>

@@ -9,6 +9,7 @@
             <table:column id="c_cm_adorsys_gpao_model_Taxe_taxeValue" property="taxeValue" z="4INmsClWnS+qXEFf64pj7WoK3gU="/>
             <table:column id="c_cm_adorsys_gpao_model_Taxe_isActive" property="isActive" z="ypLNO1J4fE09/X+o/QGeV/yCsn4="/>
             <table:column id="c_cm_adorsys_gpao_model_Taxe_taxeType" property="taxeType" z="SIWGiYZCcJlU1XgMFP/esPcvaCY="/>
+            <table:column id="c_cm_adorsys_gpao_model_Taxe_archived" property="archived" z="ym34ozgEBYPwalrhyFGNeMviCTE="/>
         </table:table>
     </page:list>
 </div>

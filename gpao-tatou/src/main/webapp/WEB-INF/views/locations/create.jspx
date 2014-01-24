@@ -8,6 +8,7 @@
         <field:input field="locationRow" id="c_cm_adorsys_gpao_model_Location_locationRow" min="0" required="true" validationMessageCode="field_invalid_number" z="ai0mncqS+k1HK+pjIQ260BD8xVc="/>
         <field:input field="locationHeigth" id="c_cm_adorsys_gpao_model_Location_locationHeigth" min="0" required="true" validationMessageCode="field_invalid_number" z="6nKeeSckJ+ww8hVd+jgJDwfZC7w="/>
         <field:select field="wareHouse" id="c_cm_adorsys_gpao_model_Location_wareHouse" itemValue="id" items="${warehouseses}" path="/warehouseses" required="true" z="pyoGCsINdNsBHGgnesoqJtO8ZMU="/>
+        <field:checkbox field="archived" id="c_cm_adorsys_gpao_model_Location_archived" z="v3gKX+02S184UBpUeYOqnJLiHvM="/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_cm_adorsys_gpao_model_Location" render="${not empty dependencies}" z="dkhqanikzyFPkcXom8R2XevUnSs="/>
 </div>

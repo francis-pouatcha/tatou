@@ -9,12 +9,25 @@ import org.springframework.transaction.annotation.Transactional;
 
 privileged aspect UnitOfMesures_Roo_Jpa_ActiveRecord {
     
+    public static final List<String> UnitOfMesures.fieldNames4OrderClauseFilter = java.util.Arrays.asList("name", "ratio", "unitGroup", "isActive", "isRefUnit");
+    
     public static long UnitOfMesures.countUnitOfMesureses() {
         return entityManager().createQuery("SELECT COUNT(o) FROM UnitOfMesures o", Long.class).getSingleResult();
     }
     
     public static List<UnitOfMesures> UnitOfMesures.findAllUnitOfMesureses() {
         return entityManager().createQuery("SELECT o FROM UnitOfMesures o", UnitOfMesures.class).getResultList();
+    }
+    
+    public static List<UnitOfMesures> UnitOfMesures.findAllUnitOfMesureses(String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM UnitOfMesures o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, UnitOfMesures.class).getResultList();
     }
     
     public static UnitOfMesures UnitOfMesures.findUnitOfMesures(Long id) {
@@ -24,6 +37,17 @@ privileged aspect UnitOfMesures_Roo_Jpa_ActiveRecord {
     
     public static List<UnitOfMesures> UnitOfMesures.findUnitOfMesuresEntries(int firstResult, int maxResults) {
         return entityManager().createQuery("SELECT o FROM UnitOfMesures o", UnitOfMesures.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    }
+    
+    public static List<UnitOfMesures> UnitOfMesures.findUnitOfMesuresEntries(int firstResult, int maxResults, String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM UnitOfMesures o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, UnitOfMesures.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
     @Transactional

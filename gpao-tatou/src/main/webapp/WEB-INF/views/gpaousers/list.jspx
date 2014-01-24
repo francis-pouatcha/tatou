@@ -13,7 +13,7 @@
             <table:column id="c_cm_adorsys_gpao_model_GpaoUser_gender" property="gender" z="dpF93YmhM7kWUPGjWpELhLWuteo="/>
             <table:column id="c_cm_adorsys_gpao_model_GpaoUser_userName" property="userName" z="x1dIFByNtVVoyJHK6s8Z7A1sWzA="/>
             <table:column id="c_cm_adorsys_gpao_model_GpaoUser_firstName" property="firstName" z="IpERyhlzRV6CBHNM8+JXmaRLE/A="/>
-            <table:column id="c_cm_adorsys_gpao_model_GpaoUser_lastName" property="lastName" z="tILsBMUnU40Y6oJSjyVq/a4UY/Y="/>
+            <table:column id="c_cm_adorsys_gpao_model_GpaoUser_archived" property="archived" z="9I1kfb9ag67ZS52Is5hyiRxh9nE="/>
         </table:table>
     </page:list>
 </div>

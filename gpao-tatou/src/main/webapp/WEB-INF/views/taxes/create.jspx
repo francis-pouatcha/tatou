@@ -8,6 +8,7 @@
         <field:input field="taxeValue" id="c_cm_adorsys_gpao_model_Taxe_taxeValue" min="0" required="true" validationMessageCode="field_invalid_number" z="OzqPWvbTmNPXn8MTv1FgcQQJ4z0="/>
         <field:checkbox field="isActive" id="c_cm_adorsys_gpao_model_Taxe_isActive" z="9G5QzV/G9+z2ESATgXdgItstD5E="/>
         <field:select field="taxeType" id="c_cm_adorsys_gpao_model_Taxe_taxeType" items="${taxetypes}" path="taxetypes" required="true" z="3PCRr7hyNTtIO2dxHjCYAMQpA9s="/>
+        <field:checkbox field="archived" id="c_cm_adorsys_gpao_model_Taxe_archived" z="SLwkLGvUoRZxTgu8Mn/Mys3Wv08="/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_cm_adorsys_gpao_model_Taxe" render="${not empty dependencies}" z="80vDTzf87fjyv8ZDsitY52jQpvg="/>
 </div>

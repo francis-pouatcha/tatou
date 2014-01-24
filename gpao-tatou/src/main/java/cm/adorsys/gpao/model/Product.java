@@ -88,12 +88,12 @@ public class Product extends GpaoBaseEntity{
 	private String color;
 
 	private String description;
-
+/*
 	@ManyToMany(cascade = CascadeType.ALL)
 	private Set<Taxe> saleTaxes = new HashSet<Taxe>();
 
 	@ManyToMany(cascade = CascadeType.ALL)
-	private Set<Taxe> purchaseTaxes = new HashSet<Taxe>();
+	private Set<Taxe> purchaseTaxes = new HashSet<Taxe>();*/
 
 	@Value("true")
 	private Boolean actived;

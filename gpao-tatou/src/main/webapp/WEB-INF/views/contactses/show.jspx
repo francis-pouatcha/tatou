@@ -7,5 +7,6 @@
         <field:display field="phone" id="s_cm_adorsys_gpao_model_Contacts_phone" object="${contacts}" z="ClQINfgmBK7vOsLKyABugIOMTJc="/>
         <field:display field="email" id="s_cm_adorsys_gpao_model_Contacts_email" object="${contacts}" z="bJXRU9LrSUaMw05T9p8otZ2JMyg="/>
         <field:display field="contactFunction" id="s_cm_adorsys_gpao_model_Contacts_contactFunction" object="${contacts}" z="xb3CUpdNo0ETeDm+L7wocKrt+wo="/>
+        <field:display field="archived" id="s_cm_adorsys_gpao_model_Contacts_archived" object="${contacts}" z="BAOfz5bMeoPvAf/k2iFs30C9h+s="/>
     </page:show>
 </div>

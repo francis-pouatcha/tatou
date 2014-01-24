@@ -9,12 +9,25 @@ import org.springframework.transaction.annotation.Transactional;
 
 privileged aspect Delivery_Roo_Jpa_ActiveRecord {
     
+    public static final List<String> Delivery.fieldNames4OrderClauseFilter = java.util.Arrays.asList("reference", "createBy", "receiveBy", "receivedDate", "createdate", "origin", "status", "unTaxeAmount", "taxAmount", "taxedAmount", "deliveryItems", "currency", "company", "docRef");
+    
     public static long Delivery.countDeliverys() {
         return entityManager().createQuery("SELECT COUNT(o) FROM Delivery o", Long.class).getSingleResult();
     }
     
     public static List<Delivery> Delivery.findAllDeliverys() {
         return entityManager().createQuery("SELECT o FROM Delivery o", Delivery.class).getResultList();
+    }
+    
+    public static List<Delivery> Delivery.findAllDeliverys(String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM Delivery o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, Delivery.class).getResultList();
     }
     
     public static Delivery Delivery.findDelivery(Long id) {
@@ -24,6 +37,17 @@ privileged aspect Delivery_Roo_Jpa_ActiveRecord {
     
     public static List<Delivery> Delivery.findDeliveryEntries(int firstResult, int maxResults) {
         return entityManager().createQuery("SELECT o FROM Delivery o", Delivery.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    }
+    
+    public static List<Delivery> Delivery.findDeliveryEntries(int firstResult, int maxResults, String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM Delivery o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, Delivery.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
     @Transactional

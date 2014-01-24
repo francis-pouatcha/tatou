@@ -9,12 +9,25 @@ import org.springframework.transaction.annotation.Transactional;
 
 privileged aspect Tenders_Roo_Jpa_ActiveRecord {
     
+    public static final List<String> Tenders.fieldNames4OrderClauseFilter = java.util.Arrays.asList("reference", "created", "createBy", "closed", "closedBy", "beginDate", "endDate", "status", "description", "company", "tenderItems");
+    
     public static long Tenders.countTenderses() {
         return entityManager().createQuery("SELECT COUNT(o) FROM Tenders o", Long.class).getSingleResult();
     }
     
     public static List<Tenders> Tenders.findAllTenderses() {
         return entityManager().createQuery("SELECT o FROM Tenders o", Tenders.class).getResultList();
+    }
+    
+    public static List<Tenders> Tenders.findAllTenderses(String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM Tenders o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, Tenders.class).getResultList();
     }
     
     public static Tenders Tenders.findTenders(Long id) {
@@ -24,6 +37,17 @@ privileged aspect Tenders_Roo_Jpa_ActiveRecord {
     
     public static List<Tenders> Tenders.findTendersEntries(int firstResult, int maxResults) {
         return entityManager().createQuery("SELECT o FROM Tenders o", Tenders.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    }
+    
+    public static List<Tenders> Tenders.findTendersEntries(int firstResult, int maxResults, String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM Tenders o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, Tenders.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
     @Transactional

@@ -8,5 +8,6 @@
         <field:display field="taxeValue" id="s_cm_adorsys_gpao_model_Taxe_taxeValue" object="${taxe}" z="7C5ZS4yRUjFknxF39hI2FkfZJ0o="/>
         <field:display field="isActive" id="s_cm_adorsys_gpao_model_Taxe_isActive" object="${taxe}" z="luKAO6HtIZA9ut+FkE3TozbktB4="/>
         <field:display field="taxeType" id="s_cm_adorsys_gpao_model_Taxe_taxeType" object="${taxe}" z="wfeGt7/41WjwC/gZR1B+Gm3ki1o="/>
+        <field:display field="archived" id="s_cm_adorsys_gpao_model_Taxe_archived" object="${taxe}" z="qWSY1EPSK5fNhaJsZ1zYo+N71P8="/>
     </page:show>
 </div>
