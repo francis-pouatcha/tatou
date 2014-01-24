@@ -1,5 +1,6 @@
 package cm.adorsys.gpao.model;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
@@ -34,7 +35,12 @@ import cm.adorsys.gpao.security.SecurityUtil;
 @RooJavaBean
 @RooToString
 @RooJpaActiveRecord(inheritanceType = "TABLE_PER_CLASS")
-public class GpaoUser extends GpaoBaseEntity {
+public class GpaoUser extends GpaoBaseEntity implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private String userNumber;
 
 	@Enumerated

@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 privileged aspect GpaoUser_Roo_Jpa_ActiveRecord {
     
-    public static final List<String> GpaoUser.fieldNames4OrderClauseFilter = java.util.Arrays.asList("userNumber", "gender", "userName", "firstName", "lastName", "fullName", "password", "gpaoUserGroups", "phoneNumber", "accountExpiration", "disableLogin", "accountLocked", "credentialExpiration", "roleNames", "userImage", "userImagePath", "PASSWORD_SALT", "adresse", "email", "company");
+    public static final List<String> GpaoUser.fieldNames4OrderClauseFilter = java.util.Arrays.asList("serialVersionUID", "userNumber", "gender", "userName", "firstName", "lastName", "fullName", "password", "gpaoUserGroups", "phoneNumber", "accountExpiration", "disableLogin", "accountLocked", "credentialExpiration", "roleNames", "userImage", "userImagePath", "PASSWORD_SALT", "adresse", "email", "company");
     
     public static long GpaoUser.countGpaoUsers() {
         return entityManager().createQuery("SELECT COUNT(o) FROM GpaoUser o", Long.class).getSingleResult();

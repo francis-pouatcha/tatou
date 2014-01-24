@@ -31,7 +31,7 @@ public class GpaoPdfProducer {
 	DataSource dataSource = null;
 
 	public void buildPdfDocument(Map parameters, HttpServletResponse response, String jasperFile)throws Exception {
-		if(jasperFile.isEmpty() || jasperFile == null || response == null)throw new RuntimeException("jasperFile or response may not be null ! ");
+		if(jasperFile == null || jasperFile.isEmpty() || response == null)throw new RuntimeException("jasperFile or response may not be null ! ");
 		Connection connection = DataSourceUtils.doGetConnection(getDataSource());
 		parameters.put("PrintBy", SecurityUtil.getUserName());
 		parameters.put("user", SecurityUtil.getUserName());
