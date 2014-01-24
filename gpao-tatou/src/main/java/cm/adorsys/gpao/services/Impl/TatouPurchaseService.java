@@ -2,13 +2,11 @@ package cm.adorsys.gpao.services.Impl;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import cm.adorsys.gpao.model.Delivery;
 import cm.adorsys.gpao.model.DeliveryItems;
@@ -119,7 +117,7 @@ public class TatouPurchaseService implements IPurchaseServices {
 
 	@Override
 	public void addOrderItems(PurchaseOrder purchaseOrder, OrderItemUimodel itemUimodel) {
-		Product product = Product.findProduct(itemUimodel.getProductId());
+		Product product = Product.findProduct(itemUimodel.getProduct().getId());
 		OrderItems hasProduct = purchaseOrder.hasProduct(product);
 		if(hasProduct!=null) {
 			hasProduct.reset(itemUimodel);
@@ -155,7 +153,7 @@ public class TatouPurchaseService implements IPurchaseServices {
 
 	@Override
 	public void addTenderItems(Tenders tenders, OrderItemUimodel itemUimodel) {
-		Product product = Product.findProduct(itemUimodel.getProductId());
+		Product product = Product.findProduct(itemUimodel.getProduct().getId());
 		TenderItems hasProduct =  tenders.hasProduct(product);
 		if(hasProduct!=null) {
 			hasProduct.reset(itemUimodel);

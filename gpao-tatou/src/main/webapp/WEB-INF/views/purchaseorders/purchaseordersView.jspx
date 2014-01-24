@@ -145,6 +145,7 @@
 							<thead>
 								<tr>
 									<th style="text-align: center; width: 45%;">Designation</th>
+									<th style="text-align: center;">famille</th>
 									<th style="text-align: center;">qte</th>
 									<th style="text-align: center;">udm</th>
 									<th style="text-align: center;">taxe</th>
@@ -158,6 +159,7 @@
 								<c:forEach items="${purchaseOrder.orderItems}" var="items">
 									<tr id="${items.id}">
 										<td>${items.product.name}</td>
+										<td style="text-align: center;">${items.product.famille.name}</td>
 										<td style="text-align: center;">${items.quantity}</td>
 										<td style="text-align: center;">${items.udm.name}</td>
 										<td style="text-valign: center;">${items.taxeAmount}</td>
@@ -168,19 +170,19 @@
 									</tr>
 								</c:forEach>
 								<tr >
-									<td style="text-align: right; font-size: 20px; font-weight:bold;" colspan="4"> MontantHT : </td>
+									<td style="text-align: right; font-size: 20px; font-weight:bold;" colspan="5"> MontantHT : </td>
 									<td style="text-align: right;" colspan="2"> 
 										<span class="label label-info">${purchaseOrder.amountHt} ${purchaseOrder.currency.shortName} </span>
 									 </td>
 							   </tr>
 							   <tr >
-									<td style="text-align: right; font-size: 20px; font-weight:bold;" colspan="4">  Taxes  : </td>
+									<td style="text-align: right; font-size: 20px; font-weight:bold;" colspan="5">  Taxes  : </td>
 									<td style="text-align: right;" colspan="2"> 
 										<span class="label label-info">${purchaseOrder.taxeAmount} ${purchaseOrder.currency.shortName} </span>
 									 </td>
 							   </tr>
 							   <tr >
-									<td style="text-align: right; font-size: 20px; font-weight:bold;" colspan="4"> MontantTTC : </td>
+									<td style="text-align: right; font-size: 20px; font-weight:bold;" colspan="5"> MontantTTC : </td>
 									<td style="text-align: right;" colspan="2"> 
 										<span class="label label-info">${purchaseOrder.totalAmount} ${purchaseOrder.currency.shortName} </span>
 									 </td>

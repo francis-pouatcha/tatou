@@ -1,9 +1,7 @@
 package cm.adorsys.gpao.model.uimodels;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.List;
+
 import org.springframework.roo.addon.json.RooJson;
 
 import cm.adorsys.gpao.model.Product;
@@ -12,7 +10,7 @@ import cm.adorsys.gpao.model.UnitOfMesures;
 @RooJson
 public class OrderItemUimodel {
 
-    private Long productId;
+	private Product product;
 
     private UnitOfMesures udm;
     
@@ -25,19 +23,19 @@ public class OrderItemUimodel {
     public OrderItemUimodel() { }
     
     public OrderItemUimodel(Product product) {
-		productId = product.getId();
+    	this.product = product;
 		udm = product.getDefaultUdm();
 		productName = product.getName();
 		unitPrice = product.getPurchasePrice();
 		
 	}
-
-	public Long getProductId() {
-		return productId;
+    
+	public Product getProduct() {
+		return product;
 	}
 
-	public void setProductId(Long productId) {
-		this.productId = productId;
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 
 	public UnitOfMesures getUdm() {

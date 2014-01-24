@@ -35,7 +35,7 @@ public class TenderItems extends GpaoBaseEntity{
 	private Tenders tender;
 
 	public void reset(OrderItemUimodel itemUimodel) {
-		products = Product.findProduct(itemUimodel.getProductId());
+		products = Product.findProduct(itemUimodel.getProduct().getId());
 		udm = itemUimodel.getUdm();
 		quantity = itemUimodel.getQuantity();
 	}
@@ -45,7 +45,7 @@ public class TenderItems extends GpaoBaseEntity{
 	}
 
 	public TenderItems(Tenders tender,OrderItemUimodel itemUimodel) {
-		products = Product.findProduct(itemUimodel.getProductId());
+		products = Product.findProduct(itemUimodel.getProduct().getId());
 		udm = itemUimodel.getUdm();
 		quantity = itemUimodel.getQuantity();
 		this.tender = tender ;

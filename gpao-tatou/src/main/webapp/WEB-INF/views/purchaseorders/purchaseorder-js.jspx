@@ -37,6 +37,7 @@
 						<thead>
 							<tr>
 								<th style="text-align: center;">reference</th>
+								<th style="text-align: center;">famille</th>
 								<th style="text-align: center;">udm</th>
 								<th style="text-align: center;">qte cmd</th>
 								<th style="text-align: center;">prix</th>
@@ -50,6 +51,7 @@
 								<td style="text-align: center; padding: 0px;"><input style="width: 94%;" type="text" id="productName" name="productName"
 									placeholder="designation" /> 
 									<input type="hidden" id="productId" name="productId" /></td>
+								<td style="text-align: center;"><input style="width: 94%;"  type="text" id="familleName" readonly="readonly" name="familleName" /></td>
 								<td style="text-align: center;"><select id="udm" style="width: 100px;" name="udm" > </select></td>
 								<td style="text-align: center;"><input style="width: 100px;" type="text" id="quantity" name="quantity"
 									placeholder="quantite" /></td>
@@ -79,6 +81,7 @@
 							<tr>
 								<th style="text-align: center;">#</th>
 								<th style="text-align: center;">reference</th>
+								<th style="text-align: center;">famille</th>
 								<th style="text-align: center;">udm</th>
 								<th style="text-align: center;">Devise</th>
 								<th style="text-align: center;">prix</th>
@@ -234,6 +237,7 @@
 							 '<tr id="'+this.id+'">
 							      <td>'+this.id+'</td>
 								  <td>'+this.name+'</td>
+								  <td>'+this.famille.name+'</td>
 								  <td>'+this.defaultUdm.name+'</td>
 								  <td>'+this.defaultCurrency.name+'</td>
 								  <td>'+this.purchasePrice+'</td>
@@ -253,8 +257,9 @@
 			var url = '${selected_url}'+id;
 			$.getJSON( url,
 	                function(data){
-							$('#productId').val(data.productId) ;
+							$('#productId').val(data.product.id) ;
 							$('#productName').val(data.productName) ;
+							$('#familleName').val(data.product.famille.name);
 							$('#dd').text(data.productName) ;
 							$('#unitPrice').val(data.unitPrice) ;
 							$('#quantity').val(data.quantity) ;

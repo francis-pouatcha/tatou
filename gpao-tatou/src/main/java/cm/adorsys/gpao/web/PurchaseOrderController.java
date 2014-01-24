@@ -1,5 +1,27 @@
 package cm.adorsys.gpao.web;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.logging.Logger;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import cm.adorsys.gpao.model.Company;
 import cm.adorsys.gpao.model.Devise;
 import cm.adorsys.gpao.model.DocumentStates;
@@ -12,32 +34,10 @@ import cm.adorsys.gpao.model.UdmGroup;
 import cm.adorsys.gpao.model.UnitOfMesures;
 import cm.adorsys.gpao.model.uimodels.OrderItemUimodel;
 import cm.adorsys.gpao.model.uimodels.PurchaseOrderFinder;
-import cm.adorsys.gpao.model.uimodels.TenderFinder;
 import cm.adorsys.gpao.services.Impl.TatouPurchaseService;
 import cm.adorsys.gpao.utils.GpaoPdfProducer;
 import cm.adorsys.gpao.utils.GpaoRepportPath;
 import cm.adorsys.gpao.utils.MessageType;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.logging.Logger;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @RequestMapping("/purchaseorders")
 @Controller
@@ -139,10 +139,12 @@ public class PurchaseOrderController {
         return UnitOfMesures.toJsonArray(resultList);
     }
 
-    @RequestMapping(value = "/{purchaseId}/addOrderItem", method = RequestMethod.GET)
+    @RequestMapping(value = "/{purchaseId}/addOrderItem", method = RequestMethod.GET, params= {"productId"} )
     @ResponseBody
-    public String addOrderItem(@PathVariable("purchaseId") Long purchaseId, OrderItemUimodel itemUimodel, Model uiModel) {
+    public String addOrderItem(@PathVariable("purchaseId") Long purchaseId, OrderItemUimodel itemUimodel,@RequestParam("productId")Long productId, Model uiModel) {
         PurchaseOrder purchaseOrder = PurchaseOrder.findPurchaseOrder(purchaseId);
+        //TODO find a concept in springmvc to find a set nested object. so we will not have to write the next line anymore.
+        itemUimodel.setProduct(Product.findProduct(productId));
         purchaseService.addOrderItems(purchaseOrder, itemUimodel);
         purchaseService.calculatePurchaseTaxAndAmount(purchaseOrder);
         PurchaseOrder merge = purchaseOrder.merge();
@@ -191,7 +193,7 @@ public class PurchaseOrderController {
 
     @RequestMapping(value = "/orderNote/{reference}.pdf", method = RequestMethod.GET, produces = { "application/pdf" })
     public void tenderNote(@PathVariable("reference") String reference, HttpServletRequest request, HttpServletResponse response) {
-        Map parameters = new HashMap();
+        Map<String,Long> parameters = new HashMap<String,Long>();
         PurchaseOrder next = PurchaseOrder.findPurchaseOrderByReferenceEquals(reference).getSingleResult();
         parameters.put("orderid", next.getId());
         try {
@@ -216,7 +218,7 @@ public class PurchaseOrderController {
    	
    	@RequestMapping(value = "/printFind.pdf", method = RequestMethod.POST, produces = { "application/pdf" })
 	public void prindfindPurchaseOrders(PurchaseOrderFinder purchaseOrderFinder, HttpServletResponse response) {
-		Map parameters = new HashMap();
+		Map<String,List<Long>> parameters = new HashMap<String,List<Long>>();
 		parameters.put("entityId", purchaseOrderFinder.getPurchaseId());
 		try {
 			pdfProducer.buildPdfDocument(parameters, response, GpaoRepportPath.PURCHASE_LIST_JRXML_PATH);
