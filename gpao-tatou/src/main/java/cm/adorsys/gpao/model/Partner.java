@@ -84,9 +84,16 @@ public class Partner extends GpaoBaseEntity {
     }
 
     public static void init() {
-        if (Partner.countPartners() <= 0) {
-            Partner partner = new Partner("Fournisseur Diver");
+        if (Partner.countPartners() >= 1) {
+            return ;
         }
+        Partner partner = new Partner("Fournisseur Diver");
+        if(PartnerGroup.countPartnerGroups() >= 0) {
+        	partner.setPartnerGroup(PartnerGroup.findAllPartnerGroups().iterator().next());
+        }
+        partner.setPartnerType(PartnerType.ENTREPRISE);
+        partner.setPhone("");
+        partner.persist();
     }
 
     public String toString() {

@@ -16,6 +16,7 @@ import cm.adorsys.gpao.model.Devise;
 import cm.adorsys.gpao.model.GpaoUser;
 import cm.adorsys.gpao.model.GpaoUserGroup;
 import cm.adorsys.gpao.model.Location;
+import cm.adorsys.gpao.model.Partner;
 import cm.adorsys.gpao.model.PartnerGroup;
 import cm.adorsys.gpao.model.ProductSubFamily;
 import cm.adorsys.gpao.model.Taxe;
@@ -43,6 +44,7 @@ public class ApplicationInitFilter extends OncePerRequestFilter {
 			GpaoUserGroup.init();
 			GpaoUser.init();
 			PartnerGroup.init();
+			Partner.init();
 			done=true;
 		}
 		filterChain.doFilter(request, response);
