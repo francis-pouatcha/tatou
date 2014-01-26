@@ -76,22 +76,6 @@ privileged aspect DeliveryItems_Roo_JavaBean {
         this.amountHt = amountHt;
     }
     
-    public BigDecimal DeliveryItems.getTaxAmount() {
-        return this.taxAmount;
-    }
-    
-    public void DeliveryItems.setTaxAmount(BigDecimal taxAmount) {
-        this.taxAmount = taxAmount;
-    }
-    
-    public BigDecimal DeliveryItems.getTaxedAmount() {
-        return this.taxedAmount;
-    }
-    
-    public void DeliveryItems.setTaxedAmount(BigDecimal taxedAmount) {
-        this.taxedAmount = taxedAmount;
-    }
-    
     public Date DeliveryItems.getExpirationDate() {
         return this.expirationDate;
     }

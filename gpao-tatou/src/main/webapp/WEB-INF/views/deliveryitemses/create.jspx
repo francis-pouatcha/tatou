@@ -10,8 +10,6 @@
         <field:input field="qteUnreceive" id="c_cm_adorsys_gpao_model_DeliveryItems_qteUnreceive" validationMessageCode="field_invalid_number" z="6XEvbN/yClhhF+zva4845MIvBZ4="/>
         <field:select field="delivery" id="c_cm_adorsys_gpao_model_DeliveryItems_delivery" itemValue="id" items="${deliverys}" path="/deliverys" required="true" z="KpiXAp8oRP9HsscRqlq2Q93IvlI="/>
         <field:input field="amountHt" id="c_cm_adorsys_gpao_model_DeliveryItems_amountHt" validationMessageCode="field_invalid_number" z="srwGcYt44gx/MhJbkBRSai+Up98="/>
-        <field:input field="taxAmount" id="c_cm_adorsys_gpao_model_DeliveryItems_taxAmount" validationMessageCode="field_invalid_number" z="gdA2dPW2ZmWK9yZ/whaW9sfzfko="/>
-        <field:input field="taxedAmount" id="c_cm_adorsys_gpao_model_DeliveryItems_taxedAmount" validationMessageCode="field_invalid_number" z="i+oKJhz7c6rEPwr/iOigjEDQg9E="/>
         <field:datetime dateTimePattern="${deliveryItems_expirationdate_date_format}" field="expirationDate" id="c_cm_adorsys_gpao_model_DeliveryItems_expirationDate" z="whfyd6m5G5HYd/O8xvECLjxNnW4="/>
         <field:select field="udm" id="c_cm_adorsys_gpao_model_DeliveryItems_udm" itemValue="id" items="${unitofmesureses}" path="/unitofmesureses" z="WX4sZxhABNBVN/f2JvVxqI10wvM="/>
         <field:checkbox field="archived" id="c_cm_adorsys_gpao_model_DeliveryItems_archived" z="IcHQcdOYPYsUe19Yptte5XEJc7s="/>

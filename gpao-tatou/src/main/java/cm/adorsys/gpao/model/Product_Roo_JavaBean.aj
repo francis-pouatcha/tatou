@@ -144,6 +144,8 @@ privileged aspect Product_Roo_JavaBean {
     public void Product.setActived(Boolean actived) {
         this.actived = actived;
     }
+
+    
     public MultipartFile Product.getProductImage() {
         return this.productImage;
     }

@@ -51,22 +51,6 @@ privileged aspect OrderItems_Roo_JavaBean {
         this.subTotal = subTotal;
     }
     
-    public BigDecimal OrderItems.getTaxedSubTotal() {
-        return this.taxedSubTotal;
-    }
-    
-    public void OrderItems.setTaxedSubTotal(BigDecimal taxedSubTotal) {
-        this.taxedSubTotal = taxedSubTotal;
-    }
-    
-    public BigDecimal OrderItems.getTaxeAmount() {
-        return this.taxeAmount;
-    }
-    
-    public void OrderItems.setTaxeAmount(BigDecimal taxeAmount) {
-        this.taxeAmount = taxeAmount;
-    }
-    
     public PurchaseOrder OrderItems.getPurchaseOrder() {
         return this.purchaseOrder;
     }

@@ -9,6 +9,7 @@ import cm.adorsys.gpao.model.DeliveryItems;
 import cm.adorsys.gpao.model.DeliveryOrigin;
 import cm.adorsys.gpao.model.Devise;
 import cm.adorsys.gpao.model.DocumentStates;
+import cm.adorsys.gpao.model.Taxe;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Set;
@@ -125,6 +126,14 @@ privileged aspect Delivery_Roo_JavaBean {
     
     public void Delivery.setDocRef(String docRef) {
         this.docRef = docRef;
+    }
+    
+    public Set<Taxe> Delivery.getTaxes() {
+        return this.taxes;
+    }
+    
+    public void Delivery.setTaxes(Set<Taxe> taxes) {
+        this.taxes = taxes;
     }
     
 }

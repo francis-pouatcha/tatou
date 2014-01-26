@@ -18,5 +18,6 @@
         <field:display field="docRef" id="s_cm_adorsys_gpao_model_Delivery_docRef" object="${delivery}" z="nvCwVUHBWrUKgjEsT6aVc8dJTFQ="/>
         <field:display field="currency" id="s_cm_adorsys_gpao_model_Delivery_currency" object="${delivery}" z="V5AuT5WTGzX4UlXe7sgfqEY4ZWQ="/>
         <field:display field="archived" id="s_cm_adorsys_gpao_model_Delivery_archived" object="${delivery}" z="tAWTdsrFLloPtR5u1nkd6fQU6Ag="/>
+        <field:display field="taxes" id="s_cm_adorsys_gpao_model_Delivery_taxes" object="${delivery}" z="1auKKCVDMAHNYywesO58NVNsLO4="/>
     </page:show>
 </div>

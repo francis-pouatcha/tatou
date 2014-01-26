@@ -51,6 +51,7 @@ public class TatouDeliveryService implements IDeliveryService {
 		for (DeliveryItems deliveryItems2 : deliveryItems) {
 			delivery.increaseAmountFromDeliveryItem(deliveryItems2);
 		}
+		delivery.computeTaxeAmountAndTaxedAmount();
 	}
 	@Override
 	public Delivery getDeliveryFromInventory(Inventory inventory) {
@@ -82,8 +83,8 @@ public class TatouDeliveryService implements IDeliveryService {
 		deliveryItems.setQteInStock(inventoryItems.getRealStock());
 		deliveryItems.setDelivery(delivery);
 		deliveryItems.setAmountHt(inventoryItems.getProductPrice().multiply(BigDecimal.valueOf(inventoryItems.getRealStock().longValue())));
-		deliveryItems.setTaxAmount(BigDecimal.ZERO);
-		deliveryItems.setTaxedAmount(deliveryItems.getAmountHt());
+	/*	deliveryItems.setTaxAmount(BigDecimal.ZERO);
+		deliveryItems.setTaxedAmount(deliveryItems.getAmountHt());*/
 		deliveryItems.setUdm(inventoryItems.getUdm());
 		return deliveryItems ;
 	}
@@ -125,8 +126,8 @@ public class TatouDeliveryService implements IDeliveryService {
 			deliveryItems2.setOrderQte(deliveryItems.getQteUnreceive());
 			deliveryItems2.setExpirationDate(deliveryItems.getExpirationDate());
 			deliveryItems2.setAmountHt(deliveryItems.getAmountHt());
-			deliveryItems2.setTaxAmount(deliveryItems.getTaxAmount());
-			deliveryItems2.setTaxedAmount(deliveryItems.getTaxedAmount());
+			/*deliveryItems2.setTaxAmount(deliveryItems.getTaxAmount());
+			deliveryItems2.setTaxedAmount(deliveryItems.getTaxedAmount());*/
 			deliveryItems2.setUdm(deliveryItems.getUdm());
 		}
 		return deliveryItems2 ;

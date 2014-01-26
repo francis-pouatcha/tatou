@@ -18,6 +18,7 @@
         <field:input field="docRef" id="c_cm_adorsys_gpao_model_Delivery_docRef" required="true" z="uSnMobCbYMT6vN4VW06dADTYM5A="/>
         <field:select field="currency" id="c_cm_adorsys_gpao_model_Delivery_currency" itemValue="id" items="${devises}" path="/devises" required="true" z="M639Dz4Qxqis4PSj6OtjQvTagAc="/>
         <field:checkbox field="archived" id="c_cm_adorsys_gpao_model_Delivery_archived" z="kjCgbiFnIjY02G2OmAmJwpqgikU="/>
+        <field:select field="taxes" id="c_cm_adorsys_gpao_model_Delivery_taxes" itemValue="id" items="${taxes}" multiple="true" path="/taxes" z="M1tm+WCJ+aocqk69AqU5ROyjYfc="/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_cm_adorsys_gpao_model_Delivery" render="${not empty dependencies}" z="XsgCTNcfsNtEpxWD3PPDj1Jr9VQ="/>
 </div>

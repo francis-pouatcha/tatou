@@ -8,9 +8,7 @@
         <field:select field="udm" id="c_cm_adorsys_gpao_model_OrderItems_udm" itemValue="id" items="${unitofmesureses}" path="/unitofmesureses" z="ZbMcy6XO7/Vwsz5h64qRpBenxmg="/>
         <field:input field="quantity" id="c_cm_adorsys_gpao_model_OrderItems_quantity" validationMessageCode="field_invalid_number" z="vwkKeSvcyugNDffBjn8yrsfwavI="/>
         <field:input field="subTotal" id="c_cm_adorsys_gpao_model_OrderItems_subTotal" validationMessageCode="field_invalid_number" z="IYwHrEuEGQ6x0QZlT9G7ZO/3vEw="/>
-        <field:input field="taxeAmount" id="c_cm_adorsys_gpao_model_OrderItems_taxeAmount" validationMessageCode="field_invalid_number" z="X2UcX1ATaD7YZy2aTa0+QWyrGYQ="/>
         <field:select field="purchaseOrder" id="c_cm_adorsys_gpao_model_OrderItems_purchaseOrder" itemValue="id" items="${purchaseorders}" path="/purchaseorders" required="true" z="y7VsUaDVigJIGj3fjHFNUXqeOi8="/>
-        <field:input field="taxedSubTotal" id="c_cm_adorsys_gpao_model_OrderItems_taxedSubTotal" validationMessageCode="field_invalid_number" z="bIPJnbKoZv3xLmgt8vQkAr3Bkec="/>
         <field:checkbox field="archived" id="c_cm_adorsys_gpao_model_OrderItems_archived" z="SHTIqgdrCRbFdwfMXnqly14DeUA="/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_cm_adorsys_gpao_model_OrderItems" render="${not empty dependencies}" z="R1tL8xSA03wu7wdpMOz+N1YuMmQ="/>

@@ -149,7 +149,6 @@
 									<th style="text-align: center;">famille</th>
 									<th style="text-align: center;">qte</th>
 									<th style="text-align: center;">udm</th>
-									<th style="text-align: center;">taxe</th>
 									<th style="text-align: center;">prix</th>
 									<c:if test="${purchaseOrder.orderState eq 'BROUILLON' }">
 									<th style="text-align: center;"><input id="checkall" type="checkbox" /></th>
@@ -163,7 +162,6 @@
 										<td style="text-align: center;">${items.product.famille.name}</td>
 										<td style="text-align: center;">${items.quantity}</td>
 										<td style="text-align: center;">${items.udm.name}</td>
-										<td style="text-valign: center;">${items.taxeAmount}</td>
 										<td style="text-align: center;">${items.subTotal}</td>
 									<c:if test="${purchaseOrder.orderState eq 'BROUILLON' }">
 										<td style="text-align: center;"><input type="checkbox" /></td>

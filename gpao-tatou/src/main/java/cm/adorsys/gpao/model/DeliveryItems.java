@@ -42,9 +42,9 @@ public class DeliveryItems extends GpaoBaseEntity {
 
     private BigDecimal amountHt = BigDecimal.ZERO;
 
-    private BigDecimal taxAmount = BigDecimal.ZERO;
+  /*  private BigDecimal taxAmount = BigDecimal.ZERO;
 
-    private BigDecimal taxedAmount = BigDecimal.ZERO;
+    private BigDecimal taxedAmount = BigDecimal.ZERO;*/
 
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(style = "M-")
@@ -61,8 +61,8 @@ public class DeliveryItems extends GpaoBaseEntity {
         this.orderQte = items.getQuantity();
         this.expirationDate = new Date();
         this.amountHt = items.getSubTotal();
-        this.taxAmount = items.getTaxeAmount();
-        this.taxedAmount = items.getTaxedSubTotal();
+        /*this.taxAmount = items.getTaxeAmount();
+        this.taxedAmount = items.getTaxedSubTotal();*/
         this.delivery = delivery;
         this.udm = items.getUdm();
     }
