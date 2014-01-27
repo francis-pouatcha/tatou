@@ -59,8 +59,6 @@
          <field:gpao-display hiddenfield="true" object="${delivery}" date="true" dateTimePattern="${delivery_createdate_date_format}" field="createdate" id="c_cm_adorsys_gpao_model_Delivery_createdate" z="vInbZSx8FjLZU76w6dXpDzEIA28="/>
         <field:gpao-display hiddenfield="true" object="${delivery}" date="true" dateTimePattern="${delivery_receiveddate_date_format}" field="receivedDate" id="c_cm_adorsys_gpao_model_Delivery_receivedDate" z="pKXkUF7vbYumWabfFryF/RCvhNE="/>
        <field:input-hidden object="${delivery}" field="unTaxeAmount" id="c_cm_adorsys_gpao_model_Delivery_unTaxeAmount" />
-        <field:input-hidden  object="${delivery}" field="taxAmount" id="c_cm_adorsys_gpao_model_Delivery_taxAmount" />
-        <field:input-hidden  object="${delivery}" field="taxedAmount" id="c_cm_adorsys_gpao_model_Delivery_taxedAmount" />
         <field:select field="deliveryItems" render="false" id="c_cm_adorsys_gpao_model_Delivery_deliveryItems" itemValue="id" items="${deliveryitemses}" multiple="true" path="/deliveryitemses" z="bUcrcT+NxinaGlrGVWJrUEMCVO8="/>
       </div>
       <div class="span2">
@@ -119,8 +117,6 @@
 								</td>
 								<td style="text-align: center;">${items.udm.name}</td>
 								<td style="text-align: center;">${items.amountHt}</td>
-								<td style="text-align: center;">${items.taxAmount}</td>
-								<td style="text-align: center;">${items.taxedAmount}</td>
 								
 							</tr>
 						</c:forEach>
@@ -128,18 +124,6 @@
 									<td style="text-align: right; font-size: 20px; font-weight:bold;" colspan="7"> MontantHT : </td>
 									<td style="text-align: right;"> 
 										<span class="label label-info">${delivery.unTaxeAmount} ${delivery.currency.shortName} </span>
-									 </td>
-							   </tr>
-							   <tr >
-									<td style="text-align: right; font-size: 20px; font-weight:bold;" colspan="7">  Taxes  : </td>
-									<td style="text-align: right; "> 
-										<span class="label label-info">${delivery.taxAmount} ${delivery.currency.shortName} </span>
-									 </td>
-							   </tr>
-							   <tr >
-									<td style="text-align: right; font-size: 20px; font-weight:bold;" colspan="7"> MontantTTC : </td>
-									<td style="text-align: right;"> 
-										<span class="label label-info">${delivery.taxedAmount} ${delivery.currency.shortName} </span>
 									 </td>
 							   </tr>
 					</tbody>
