@@ -126,9 +126,11 @@ public class TendersController {
 		return UnitOfMesures.toJsonArray(resultList);
 	}
 
-	@RequestMapping(value = "/{tenderId}/addTenderItem", method = RequestMethod.GET)
+	@RequestMapping(value = "/{tenderId}/addTenderItem", method = RequestMethod.GET,params= {"productId"})
 	@ResponseBody
-	public String addTenderItem(@PathVariable("tenderId") Long tenderId, OrderItemUimodel itemUimodel, Model uiModel) {
+	public String addTenderItem(@PathVariable("tenderId") Long tenderId, OrderItemUimodel itemUimodel,@RequestParam("productId")Long productId ,Model uiModel) {
+		Product product = Product.findProduct(productId);
+		itemUimodel.setProduct(product);
 		Tenders tenders = Tenders.findTenders(tenderId);
 		purchaseService.addTenderItems(tenders, itemUimodel);
 		Tenders merge = tenders.merge();
@@ -137,7 +139,7 @@ public class TendersController {
 	}
 
 	@RequestMapping(value = "/{tenderId}/removeTenderItem", method = RequestMethod.GET)
-	public String removeTenderItem(@PathVariable("tenderId") Long tenderId, @RequestParam("itemid") Long[] tenderItemIds, Model uiModel) {
+	public String removeTenderItem(@PathVariable("tenderId") Long tenderId, @RequestParam(value="productId",required=true) Long[] tenderItemIds, Model uiModel) {
 		Tenders tenders = Tenders.findTenders(tenderId);
 		purchaseService.deleteTenderItems(tenders, Arrays.asList(tenderItemIds));
 		Tenders merge = tenders.merge();

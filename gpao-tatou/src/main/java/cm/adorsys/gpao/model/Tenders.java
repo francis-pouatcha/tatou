@@ -1,10 +1,9 @@
 package cm.adorsys.gpao.model;
 
-import cm.adorsys.gpao.security.SecurityUtil;
-import cm.adorsys.gpao.utils.GpaoSequenceGenerator;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EntityManager;
@@ -22,7 +21,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
-import org.springframework.roo.addon.tostring.RooToString;
+
+import cm.adorsys.gpao.security.SecurityUtil;
+import cm.adorsys.gpao.utils.GpaoSequenceGenerator;
 
 @RooJavaBean
 @RooJpaActiveRecord(inheritanceType = "TABLE_PER_CLASS")

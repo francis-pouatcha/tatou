@@ -459,3 +459,4 @@ field set --fieldName saleTaxes --type ~.model.Taxe
 // Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-01-26 10:52:58
 focus --class ~.model.Delivery
 field set --fieldName taxes --type ~.model.Taxe
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log closed at 2014-01-27 08:49:49

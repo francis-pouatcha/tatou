@@ -210,7 +210,7 @@
 			var url = '${selected_url}'+id;
 			$.getJSON( url,
 	                function(data){
-							$('#productId').val(data.productId) ;
+							$('#productId').val(data.product.id) ;
 							$('#productName').val(data.productName) ;
 							$('#unitPrice').val(data.unitPrice) ;
 							$('#quantity').val(data.quantity) ;
