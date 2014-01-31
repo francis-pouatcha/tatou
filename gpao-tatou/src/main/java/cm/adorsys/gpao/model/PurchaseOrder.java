@@ -107,7 +107,7 @@ public class PurchaseOrder extends GpaoBaseEntity {
 
     /**
      */
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany()
     private Set<Taxe> saleTaxes = new HashSet<Taxe>();
 
     public void initAmount() {

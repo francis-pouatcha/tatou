@@ -183,9 +183,9 @@ public class PurchaseOrderController {
             purchaseService.calculatePurchaseTaxAndAmount(purchaseOrder);
             purchaseService.validatedPurchase(purchaseOrder);
             if (purchaseOrder.hasTender()) {
-                purchaseService.closeTender(purchaseOrder.getTender());
+                purchaseService.closeTenderFromPurchaseOrder(purchaseOrder.getTender(),purchaseOrder) ;
             }
-            uiModel.addAttribute(MessageType.SUCCESS_MESSAGE, "validation effectuee avec success !");
+             uiModel.addAttribute(MessageType.SUCCESS_MESSAGE, "validation effectuee avec success !");
         }
         PurchaseOrder merge = purchaseOrder.merge();
         populateEditForm(uiModel, merge);

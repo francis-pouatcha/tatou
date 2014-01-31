@@ -1,9 +1,7 @@
 package cm.adorsys.gpao.services;
 
 import java.util.List;
-import java.util.Set;
 
-import cm.adorsys.gpao.model.OrderItems;
 import cm.adorsys.gpao.model.Product;
 import cm.adorsys.gpao.model.PurchaseOrder;
 import cm.adorsys.gpao.model.Tenders;
@@ -31,5 +29,6 @@ public interface IPurchaseServices {
 	public void restoreTender(Tenders tenders);
 	public void addOderItemsFromTenders(PurchaseOrder order);
 	public List<Product> findProductFormPurchaseOrder(PurchaseOrder purchaseOrder);
+	void closeTenderFromPurchaseOrder(Tenders tenders,PurchaseOrder orderToValidate);
 
 }

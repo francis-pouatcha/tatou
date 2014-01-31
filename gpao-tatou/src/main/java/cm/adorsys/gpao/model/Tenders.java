@@ -9,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.EntityManager;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.PostPersist;
@@ -62,7 +63,7 @@ public class Tenders extends GpaoBaseEntity{
     @ManyToOne
     private Company company;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tender")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tender",fetch=FetchType.EAGER)
     private Set<TenderItems> tenderItems = new HashSet<TenderItems>();
 
     public TenderItems hasProduct(Product product) {

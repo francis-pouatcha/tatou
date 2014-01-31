@@ -182,7 +182,6 @@ public class TatouPurchaseService implements IPurchaseServices {
 	public void addOderItemsFromTenders(PurchaseOrder order) {
 		if(order.hasTender() && order.getOrderItems().isEmpty()){
 			Set<TenderItems> tenderItems = order.getTender().getTenderItems();
-			System.out.println(tenderItems.size());
 			for (TenderItems tenderItems2 : tenderItems) {
 				OrderItems orderItems = new OrderItems(order, tenderItems2);
 				if(order.hasProduct(orderItems.getProduct())==null){
@@ -200,15 +199,39 @@ public class TatouPurchaseService implements IPurchaseServices {
 			if(!purchaseOrders.isEmpty()){
 				PurchaseOrder orderToValidate = purchaseOrders.get(0);
 				for (PurchaseOrder purchaseOrder : purchaseOrders) {
-					if(orderToValidate.getAmountHt().compareTo(purchaseOrder.getAmountHt())>1){
+					if(orderToValidate.getAmountHt().compareTo(purchaseOrder.getAmountHt()) == -1){
 						orderToValidate = purchaseOrder;
-					}else {
+					}else if(orderToValidate.getAmountHt().compareTo(purchaseOrder.getAmountHt()) == 1){
+						/*cancelPurchase(purchaseOrder);
+						purchaseOrder.merge();*/
 						purchaseOrder.remove();
+					}else {
 					}
 
 				}
 				validatedPurchase(orderToValidate);
 				orderToValidate.merge();
+			}
+			tenders.setStatus(DocumentStates.FERMER);
+			tenders.setClosed(new Date());
+			tenders.setClosedBy(SecurityUtil.getUserName());
+		}
+
+	}
+	@Override
+	public void closeTenderFromPurchaseOrder(Tenders tenders,PurchaseOrder orderToValidate) {
+		if(DocumentStates.OUVERT.equals(tenders.getStatus())){
+			List<PurchaseOrder> purchaseOrders = PurchaseOrder.findPurchaseOrdersByTender(tenders).getResultList();
+			if(!purchaseOrders.isEmpty()){
+				for (PurchaseOrder purchaseOrder : purchaseOrders) {
+					if(!purchaseOrder.getReference().equals(orderToValidate.getReference())){
+						/*cancelPurchase(purchaseOrder);
+						purchaseOrder.merge().flush();*/
+						purchaseOrder.remove();
+					}
+				}
+				validatedPurchase(orderToValidate);
+				orderToValidate.merge().flush();
 			}
 			tenders.setStatus(DocumentStates.FERMER);
 			tenders.setClosed(new Date());
