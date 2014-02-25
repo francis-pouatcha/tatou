@@ -9,6 +9,7 @@ import javax.persistence.TypedQuery;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
@@ -26,7 +27,7 @@ public class Taxe extends GpaoBaseEntity{
 	@NotNull
 	private String name;
 
-	@NotNull
+	@NotNull 
 	@Size(min = 2)
 	private String shortName;
 

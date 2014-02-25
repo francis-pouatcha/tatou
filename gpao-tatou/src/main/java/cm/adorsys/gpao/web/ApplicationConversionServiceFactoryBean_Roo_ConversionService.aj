@@ -4,6 +4,9 @@
 package cm.adorsys.gpao.web;
 
 import cm.adorsys.gpao.model.Company;
+import cm.adorsys.gpao.model.Customer;
+import cm.adorsys.gpao.model.CustomerOrder;
+import cm.adorsys.gpao.model.CustomerOrderItem;
 import cm.adorsys.gpao.model.Inventory;
 import cm.adorsys.gpao.model.InventoryItems;
 import cm.adorsys.gpao.model.Location;
@@ -22,6 +25,78 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         return new org.springframework.core.convert.converter.Converter<java.lang.Long, cm.adorsys.gpao.model.Company>() {
             public cm.adorsys.gpao.model.Company convert(java.lang.Long id) {
                 return Company.findCompany(id);
+            }
+        };
+    }
+    
+    public Converter<Customer, String> ApplicationConversionServiceFactoryBean.getCustomerToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<cm.adorsys.gpao.model.Customer, java.lang.String>() {
+            public String convert(Customer customer) {
+                return new StringBuilder().append(customer.getName()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, Customer> ApplicationConversionServiceFactoryBean.getIdToCustomerConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, cm.adorsys.gpao.model.Customer>() {
+            public cm.adorsys.gpao.model.Customer convert(java.lang.Long id) {
+                return Customer.findCustomer(id);
+            }
+        };
+    }
+    
+    public Converter<String, Customer> ApplicationConversionServiceFactoryBean.getStringToCustomerConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, cm.adorsys.gpao.model.Customer>() {
+            public cm.adorsys.gpao.model.Customer convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), Customer.class);
+            }
+        };
+    }
+    
+    public Converter<CustomerOrder, String> ApplicationConversionServiceFactoryBean.getCustomerOrderToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<cm.adorsys.gpao.model.CustomerOrder, java.lang.String>() {
+            public String convert(CustomerOrder customerOrder) {
+                return new StringBuilder().append(customerOrder.getReference()).append(' ').append(customerOrder.getOrderDate()).append(' ').append(customerOrder.getCreatedBy()).append(' ').append(customerOrder.getValidatedBy()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, CustomerOrder> ApplicationConversionServiceFactoryBean.getIdToCustomerOrderConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, cm.adorsys.gpao.model.CustomerOrder>() {
+            public cm.adorsys.gpao.model.CustomerOrder convert(java.lang.Long id) {
+                return CustomerOrder.findCustomerOrder(id);
+            }
+        };
+    }
+    
+    public Converter<String, CustomerOrder> ApplicationConversionServiceFactoryBean.getStringToCustomerOrderConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, cm.adorsys.gpao.model.CustomerOrder>() {
+            public cm.adorsys.gpao.model.CustomerOrder convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), CustomerOrder.class);
+            }
+        };
+    }
+    
+    public Converter<CustomerOrderItem, String> ApplicationConversionServiceFactoryBean.getCustomerOrderItemToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<cm.adorsys.gpao.model.CustomerOrderItem, java.lang.String>() {
+            public String convert(CustomerOrderItem customerOrderItem) {
+                return new StringBuilder().append(customerOrderItem.getReference()).append(' ').append(customerOrderItem.getAmountHt()).append(' ').append(customerOrderItem.getQuantity()).append(' ').append(customerOrderItem.getUnitPrice()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, CustomerOrderItem> ApplicationConversionServiceFactoryBean.getIdToCustomerOrderItemConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, cm.adorsys.gpao.model.CustomerOrderItem>() {
+            public cm.adorsys.gpao.model.CustomerOrderItem convert(java.lang.Long id) {
+                return CustomerOrderItem.findCustomerOrderItem(id);
+            }
+        };
+    }
+    
+    public Converter<String, CustomerOrderItem> ApplicationConversionServiceFactoryBean.getStringToCustomerOrderItemConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, cm.adorsys.gpao.model.CustomerOrderItem>() {
+            public cm.adorsys.gpao.model.CustomerOrderItem convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), CustomerOrderItem.class);
             }
         };
     }
@@ -137,6 +212,15 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         registry.addConverter(getContactsToStringConverter());
         registry.addConverter(getIdToContactsConverter());
         registry.addConverter(getStringToContactsConverter());
+        registry.addConverter(getCustomerToStringConverter());
+        registry.addConverter(getIdToCustomerConverter());
+        registry.addConverter(getStringToCustomerConverter());
+        registry.addConverter(getCustomerOrderToStringConverter());
+        registry.addConverter(getIdToCustomerOrderConverter());
+        registry.addConverter(getStringToCustomerOrderConverter());
+        registry.addConverter(getCustomerOrderItemToStringConverter());
+        registry.addConverter(getIdToCustomerOrderItemConverter());
+        registry.addConverter(getStringToCustomerOrderItemConverter());
         registry.addConverter(getDeliveryToStringConverter());
         registry.addConverter(getIdToDeliveryConverter());
         registry.addConverter(getStringToDeliveryConverter());

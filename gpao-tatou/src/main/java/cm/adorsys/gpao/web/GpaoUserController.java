@@ -1,18 +1,10 @@
 package cm.adorsys.gpao.web;
-
-import cm.adorsys.gpao.model.Company;
-import cm.adorsys.gpao.model.Gender;
-import cm.adorsys.gpao.model.GpaoUser;
-import cm.adorsys.gpao.model.GpaoUserGroup;
-import cm.adorsys.gpao.security.SecurityUtil;
-import cm.adorsys.gpao.utils.GpaoDocumentDirectories;
-import cm.adorsys.gpao.utils.GpaoFileUtils;
-import cm.adorsys.gpao.utils.MessageType;
 import java.util.Arrays;
 import java.util.List;
-import javax.servlet.http.HttpServletRequest;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
 import org.springframework.stereotype.Controller;
@@ -23,6 +15,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+
+import cm.adorsys.gpao.model.Company;
+import cm.adorsys.gpao.model.Gender;
+import cm.adorsys.gpao.model.GpaoUser;
+import cm.adorsys.gpao.model.GpaoUserGroup;
+import cm.adorsys.gpao.security.SecurityUtil;
+import cm.adorsys.gpao.utils.GpaoDocumentDirectories;
+import cm.adorsys.gpao.utils.GpaoFileUtils;
+import cm.adorsys.gpao.utils.MessageType;
 
 @RequestMapping("/gpaousers")
 @Controller

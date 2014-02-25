@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_cm_adorsys_gpao_model_CustomerOrder" object="${customerorder}" path="/customerorders" z="mha/+xSSA61/e4gvRyL4O07gulM=">
+        <field:display field="archived" id="s_cm_adorsys_gpao_model_CustomerOrder_archived" object="${customerorder}" z="erpH2ghIXqhIu73l5/Ect3T16uo="/>
+        <field:display field="reference" id="s_cm_adorsys_gpao_model_CustomerOrder_reference" object="${customerorder}" z="Z5EX0M5hIYUtnZpttaATuHk4ZX8="/>
+        <field:display date="true" dateTimePattern="${customerOrder_orderdate_date_format}" field="orderDate" id="s_cm_adorsys_gpao_model_CustomerOrder_orderDate" object="${customerorder}" z="h1tGpStNLk9LYvR4xL9ADFetXso="/>
+        <field:display field="createdBy" id="s_cm_adorsys_gpao_model_CustomerOrder_createdBy" object="${customerorder}" z="1B9h81YhubKAF+WIbg54G1rYsA4="/>
+        <field:display field="delivered" id="s_cm_adorsys_gpao_model_CustomerOrder_delivered" object="${customerorder}" z="PiaFSB/lOIWeyRw5Iy22YWIBC3o="/>
+        <field:display field="validated" id="s_cm_adorsys_gpao_model_CustomerOrder_validated" object="${customerorder}" z="JYvp77Hc2Ul3BhuooJJXQUWOIJk="/>
+        <field:display field="validatedBy" id="s_cm_adorsys_gpao_model_CustomerOrder_validatedBy" object="${customerorder}" z="gpls+KNRyOqVGbtu4UnwwmH+12c="/>
+        <field:display field="taxes" id="s_cm_adorsys_gpao_model_CustomerOrder_taxes" object="${customerorder}" z="dMe3qi6+VwJQlXcDzbEYNwKqh/w="/>
+        <field:display field="taxeAmount" id="s_cm_adorsys_gpao_model_CustomerOrder_taxeAmount" object="${customerorder}" z="CchGlRCZeq4uJ2pc/+58RviXXFU="/>
+        <field:display field="amountHt" id="s_cm_adorsys_gpao_model_CustomerOrder_amountHt" object="${customerorder}" z="20Co3VCX64jf65DBd/LStWFip8U="/>
+        <field:display field="totalAmount" id="s_cm_adorsys_gpao_model_CustomerOrder_totalAmount" object="${customerorder}" z="XispPQE+IHZnTBm1vOQa+nz6osg="/>
+        <field:display field="orderState" id="s_cm_adorsys_gpao_model_CustomerOrder_orderState" object="${customerorder}" z="yFiwXR1F/tRXm2BkEiddnGxdtCo="/>
+        <field:display field="currency" id="s_cm_adorsys_gpao_model_CustomerOrder_currency" object="${customerorder}" z="zf98kdccCafA8gNccBZvR2ues1Y="/>
+        <field:display field="customer" id="s_cm_adorsys_gpao_model_CustomerOrder_customer" object="${customerorder}" z="8QznIn4AE/qncDkAMK/iyj9UQCk="/>
+    </page:show>
+</div>

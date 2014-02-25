@@ -10,7 +10,7 @@
         <menu:category id="c_unitofmesures" z="3gZ/3XthKcCbz3quGzbiOt4/Dok=">
             <menu:item id="i_unitofmesures_new" messageCode="global_menu_new" url="/unitofmesureses?form" z="ntTIopVI63zqYIp6e8Y47kuw6fg="/>
             <menu:item id="i_unitofmesures_list" messageCode="global_menu_list" url="/unitofmesureses?page=1&amp;size=${empty param.size ? 10 : param.size}" z="OhsXgYhutJZ2i87fIP3nBWRzvrg="/>
-            <menu:item id="fi_unitofmesures_namelikeandunitgroup" messageCode="global_menu_find" url="/unitofmesureses?find=ByNameLikeAndUnitGroup&amp;form" z="PKolJBi1qaYU0Ma3cBFvKHsdJt4="/>
+            <menu:item id="fi_unitofmesures_namelikeandunitgroup" messageCode="global_menu_find" url="/unitofmesureses?find=ByNameLikeAndUnitGroup&amp;form&amp;page=1&amp;size=${empty param.size ? 10 : param.size}" z="0WVYdI3AK+LQySUIABbECO02k2M="/>
         </menu:category>
         <menu:category id="c_taxe" z="/oAM2JxRLS3SFmc6EU+OMb78DbU=">
             <menu:item id="i_taxe_new" messageCode="global_menu_new" url="/taxes?form" z="rXYLG+XSWqnkDtoocAEwwwPIRNg="/>
@@ -102,6 +102,18 @@
         <menu:category id="c_tenderitems" z="jrRCIFLUPlU/36pECYRisQkm7lg=">
             <menu:item id="i_tenderitems_new" messageCode="global_menu_new" url="/tenderitemses?form" z="pBR5SeBpP2Liw5Y5MJ5jqohIjgQ="/>
             <menu:item id="i_tenderitems_list" messageCode="global_menu_list" url="/tenderitemses?page=1&amp;size=${empty param.size ? 10 : param.size}" z="kJaEMLM0W/wJL5Vx9f9rJyOCqH8="/>
+        </menu:category>
+        <menu:category id="c_customerorder" z="zqKi0n2swc1h4NKvVlRYhetnoHI=">
+            <menu:item id="i_customerorder_new" messageCode="global_menu_new" url="/customerorders?form" z="E0AHOdktUmxwNwETyBScHMqFBY0="/>
+            <menu:item id="i_customerorder_list" messageCode="global_menu_list" url="/customerorders?page=1&amp;size=${empty param.size ? 10 : param.size}" z="ukf6oQLZo7R4ejfQqf/XdAvLb9A="/>
+        </menu:category>
+        <menu:category id="c_customerorderitem" z="/UTtNuoOvKHyilbWjdHtms91N54=">
+            <menu:item id="i_customerorderitem_new" messageCode="global_menu_new" url="/customerorderitems?form" z="ZCvKMhRfvayyKAnsMpwQVijdQkQ="/>
+            <menu:item id="i_customerorderitem_list" messageCode="global_menu_list" url="/customerorderitems?page=1&amp;size=${empty param.size ? 10 : param.size}" z="5celXB/FeYfH8kw9zrKmVi8Riv8="/>
+        </menu:category>
+        <menu:category id="c_customer" z="Wa+bVSiDyYo/wX1nGU1B/z+OKhE=">
+            <menu:item id="i_customer_new" messageCode="global_menu_new" url="/customers?form" z="d9+YIotZHp6KZLGKwwnMVzPvh8k="/>
+            <menu:item id="i_customer_list" messageCode="global_menu_list" url="/customers?page=1&amp;size=${empty param.size ? 10 : param.size}" z="Yo9cUtyc7EUvbxwQ7EoeqXWaVJM="/>
         </menu:category>
     </menu:menu>
 </div>

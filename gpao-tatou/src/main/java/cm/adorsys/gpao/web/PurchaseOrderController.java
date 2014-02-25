@@ -1,5 +1,4 @@
 package cm.adorsys.gpao.web;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -31,8 +30,6 @@ import cm.adorsys.gpao.model.Product;
 import cm.adorsys.gpao.model.PurchaseOrder;
 import cm.adorsys.gpao.model.Taxe;
 import cm.adorsys.gpao.model.Tenders;
-import cm.adorsys.gpao.model.UdmGroup;
-import cm.adorsys.gpao.model.UnitOfMesures;
 import cm.adorsys.gpao.model.uimodels.OrderItemUimodel;
 import cm.adorsys.gpao.model.uimodels.PurchaseOrderFinder;
 import cm.adorsys.gpao.services.impl.TatouPurchaseService;
@@ -43,7 +40,7 @@ import cm.adorsys.gpao.utils.MessageType;
 @RequestMapping("/purchaseorders")
 @Controller
 @RooWebScaffold(path = "purchaseorders", formBackingObject = PurchaseOrder.class)
-public class PurchaseOrderController {
+public class PurchaseOrderController extends AbstractOrderController{
 
     Logger LOG = Logger.getLogger(getClass().getName());
 
@@ -111,12 +108,6 @@ public class PurchaseOrderController {
         return "purchaseorders/purchaseordersView";
     }
 
-    @RequestMapping(value = "/findProductByNameLike/{name}", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
-    @ResponseBody
-    public String findProductByNameLike(@PathVariable("name") String name) {
-        List<Product> productList = purchaseService.findProductByNameLike(name, 100);
-        return Product.toJsonArray(productList);
-    }
 
     @RequestMapping(value = "/findProductFromPurcharseOrder/{ordderId}", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
     @ResponseBody
@@ -133,16 +124,9 @@ public class PurchaseOrderController {
         return selectedProduct.toJson();
     }
 
-    @RequestMapping(value = "/getUdmListFromUdmGroup/{groupId}", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
+    @RequestMapping(value = "/{purchaseId}/addOrderItem", method = RequestMethod.GET, params = { "productId" })
     @ResponseBody
-    public String getUdmListFromUdmGroup(@PathVariable("groupId") Long groupId) {
-        List<UnitOfMesures> resultList = UnitOfMesures.findUnitOfMesuressByGroupEquals(UdmGroup.findUdmGroup(groupId)).getResultList();
-        return UnitOfMesures.toJsonArray(resultList);
-    }
-
-    @RequestMapping(value = "/{purchaseId}/addOrderItem", method = RequestMethod.GET, params= {"productId"} )
-    @ResponseBody
-    public String addOrderItem(@PathVariable("purchaseId") Long purchaseId, OrderItemUimodel itemUimodel,@RequestParam("productId")Long productId, Model uiModel) {
+    public String addOrderItem(@PathVariable("purchaseId") Long purchaseId, OrderItemUimodel itemUimodel, @RequestParam("productId") Long productId, Model uiModel) {
         PurchaseOrder purchaseOrder = PurchaseOrder.findPurchaseOrder(purchaseId);
         //TODO find a concept in springmvc to find a set nested object. so we will not have to write the next line anymore.
         itemUimodel.setProduct(Product.findProduct(productId));
@@ -183,9 +167,9 @@ public class PurchaseOrderController {
             purchaseService.calculatePurchaseTaxAndAmount(purchaseOrder);
             purchaseService.validatedPurchase(purchaseOrder);
             if (purchaseOrder.hasTender()) {
-                purchaseService.closeTenderFromPurchaseOrder(purchaseOrder.getTender(),purchaseOrder) ;
+                purchaseService.closeTenderFromPurchaseOrder(purchaseOrder.getTender(), purchaseOrder);
             }
-             uiModel.addAttribute(MessageType.SUCCESS_MESSAGE, "validation effectuee avec success !");
+            uiModel.addAttribute(MessageType.SUCCESS_MESSAGE, "validation effectuee avec success !");
         }
         PurchaseOrder merge = purchaseOrder.merge();
         populateEditForm(uiModel, merge);
@@ -194,7 +178,7 @@ public class PurchaseOrderController {
 
     @RequestMapping(value = "/orderNote/{reference}.pdf", method = RequestMethod.GET, produces = { "application/pdf" })
     public void tenderNote(@PathVariable("reference") String reference, HttpServletRequest request, HttpServletResponse response) {
-        Map<String,Long> parameters = new HashMap<String,Long>();
+        Map<String, Long> parameters = new HashMap<String, Long>();
         PurchaseOrder next = PurchaseOrder.findPurchaseOrderByReferenceEquals(reference).getSingleResult();
         parameters.put("orderid", next.getId());
         try {
@@ -204,40 +188,40 @@ public class PurchaseOrderController {
             return;
         }
     }
+
+    @RequestMapping(value = "/find", params = { "form" }, method = RequestMethod.GET)
+    public String findTenderForm(Model uiModel) {
+        populateFindForm(uiModel, new PurchaseOrderFinder());
+        return "purchaseorders/findPurchaseOrderView";
+    }
+
+    @RequestMapping(value = "/find", method = RequestMethod.POST)
+    public String findTender(@Valid PurchaseOrderFinder purchaseOrderFinder, Model uiModel) {
+        uiModel.addAttribute("purchaseorders", purchaseOrderFinder.find());
+        return "purchaseorders/list";
+    }
+
+    @RequestMapping(value = "/printFind.pdf", method = RequestMethod.POST, produces = { "application/pdf" })
+    public void prindfindPurchaseOrders(PurchaseOrderFinder purchaseOrderFinder, HttpServletResponse response) {
+        Map<String, List<Long>> parameters = new HashMap<String, List<Long>>();
+        parameters.put("entityId", purchaseOrderFinder.getPurchaseId());
+        try {
+            pdfProducer.buildPdfDocument(parameters, response, GpaoRepportPath.PURCHASE_LIST_JRXML_PATH);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return;
+        }
+    }
     
-    @RequestMapping(value="/find", params = {"form" }, method = RequestMethod.GET)
-   	public String findTenderForm(Model uiModel) {
-   		populateFindForm(uiModel, new PurchaseOrderFinder());
-   		return "purchaseorders/findPurchaseOrderView";
-   	}
-
-   	@RequestMapping(value="/find", method = RequestMethod.POST)
-   	public String findTender(@Valid PurchaseOrderFinder purchaseOrderFinder, Model uiModel) {
-   		uiModel.addAttribute("purchaseorders", purchaseOrderFinder.find());
-   		return "purchaseorders/list";
-   	}
-   	
-   	@RequestMapping(value = "/printFind.pdf", method = RequestMethod.POST, produces = { "application/pdf" })
-	public void prindfindPurchaseOrders(PurchaseOrderFinder purchaseOrderFinder, HttpServletResponse response) {
-		Map<String,List<Long>> parameters = new HashMap<String,List<Long>>();
-		parameters.put("entityId", purchaseOrderFinder.getPurchaseId());
-		try {
-			pdfProducer.buildPdfDocument(parameters, response, GpaoRepportPath.PURCHASE_LIST_JRXML_PATH);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return;
-		}
-	}
-
-   	void populateFindForm(Model uiModel, PurchaseOrderFinder purchaseOrderFinder) {
+    void populateFindForm(Model uiModel, PurchaseOrderFinder purchaseOrderFinder) {
         uiModel.addAttribute("purchaseOrderFinder", purchaseOrderFinder);
         addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("documentstateses", Arrays.asList(DocumentStates.values()));
         List<Partner> resultList = Partner.findAllActiveProviders().getResultList();
-        resultList.add(0,new Partner());
+        resultList.add(0, new Partner());
         uiModel.addAttribute("partners", resultList);
     }
-   	
+
     void populateEditForm(Model uiModel, PurchaseOrder purchaseOrder) {
         uiModel.addAttribute("purchaseOrder", purchaseOrder);
         addDateTimeFormatPatterns(uiModel);

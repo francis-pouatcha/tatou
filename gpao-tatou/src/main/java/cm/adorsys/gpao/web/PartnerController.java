@@ -1,12 +1,9 @@
 package cm.adorsys.gpao.web;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-
 import org.springframework.roo.addon.web.mvc.controller.finder.RooWebFinder;
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
 import org.springframework.stereotype.Controller;
@@ -17,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-
 import cm.adorsys.gpao.model.Devise;
 import cm.adorsys.gpao.model.Partner;
 import cm.adorsys.gpao.model.PartnerGroup;
@@ -85,19 +81,19 @@ public class PartnerController {
         populateEditForm(uiModel, next);
         return "partners/partnerView";
     }
-    
-    @RequestMapping(value="/find", params = {"form" }, method = RequestMethod.GET)
-   	public String findPartnerForm(Model uiModel) {
-    	populateFindForm(uiModel, new PartnerFinder());
-   		return "partners/findPartnerView";
-   	}
 
-   	@RequestMapping(value="/find", method = RequestMethod.POST)
-   	public String findPartner(PartnerFinder partnerFinder, Model uiModel) {
-   		uiModel.addAttribute("partners", partnerFinder.find());
-   		return "partners/list";
-   	}
-   	
+    @RequestMapping(value = "/find", params = { "form" }, method = RequestMethod.GET)
+    public String findPartnerForm(Model uiModel) {
+        populateFindForm(uiModel, new PartnerFinder());
+        return "partners/findPartnerView";
+    }
+
+    @RequestMapping(value = "/find", method = RequestMethod.POST)
+    public String findPartner(PartnerFinder partnerFinder, Model uiModel) {
+        uiModel.addAttribute("partners", partnerFinder.find());
+        return "partners/list";
+    }
+
     /**
      * This controller list partners depending, if they are
      * provider or clients.
@@ -107,29 +103,27 @@ public class PartnerController {
      * @param uiModel
      * @return
      */
-    @RequestMapping(value="/specific",produces = "text/html")
-    public String listSpecific(@RequestParam(value = "isProvider", required = true) Boolean isProvider,
-    		@RequestParam(value = "page", required = false) Integer page, 
-    		@RequestParam(value = "size", required = false) Integer size, Model uiModel) {
+    @RequestMapping(value = "/specific", produces = "text/html")
+    public String listSpecific(@RequestParam(value = "isProvider", required = true) Boolean isProvider, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
         if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
             final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
-            List<Partner> partners= new ArrayList<Partner>();
-            if(isProvider) {
-            	partners = Partner.findAllActiveProviders(firstResult, sizeNo).getResultList();
-            }else {
-            	partners = Partner.findAllActiveCustomers(firstResult, sizeNo).getResultList();
+            List<Partner> partners = new ArrayList<Partner>();
+            if (isProvider) {
+                partners = Partner.findAllActiveProviders(firstResult, sizeNo).getResultList();
+            } else {
+                partners = Partner.findAllActiveCustomers(firstResult, sizeNo).getResultList();
             }
             int count = partners.size();
-			uiModel.addAttribute("partners", partners);
+            uiModel.addAttribute("partners", partners);
             float nrOfPages = (float) count / sizeNo;
             uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
         } else {
-        	List<Partner> partners= new ArrayList<Partner>();
-        	if(isProvider) {
-            	partners = Partner.findAllActiveProviders().getResultList();
-            }else {
-            	partners = Partner.findAllActiveCustomers().getResultList();
+            List<Partner> partners = new ArrayList<Partner>();
+            if (isProvider) {
+                partners = Partner.findAllActiveProviders().getResultList();
+            } else {
+                partners = Partner.findAllActiveCustomers().getResultList();
             }
             uiModel.addAttribute("partners", partners);
         }
@@ -142,10 +136,10 @@ public class PartnerController {
         uiModel.addAttribute("partnergroups", PartnerGroup.findAllPartnerGroups());
         uiModel.addAttribute("partnertypes", Arrays.asList(PartnerType.values()));
     }
- 	void populateFindForm(Model uiModel, PartnerFinder partnerFinder) {
+
+    void populateFindForm(Model uiModel, PartnerFinder partnerFinder) {
         uiModel.addAttribute("partnerFinder", partnerFinder);
         uiModel.addAttribute("partnergroups", PartnerGroup.findAllPartnerGroups());
         uiModel.addAttribute("partnertypes", Arrays.asList(PartnerType.values()));
     }
-   	
 }

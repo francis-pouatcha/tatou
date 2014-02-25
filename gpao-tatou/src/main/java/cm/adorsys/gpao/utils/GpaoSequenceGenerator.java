@@ -12,6 +12,7 @@ public class GpaoSequenceGenerator {
 	public static String ARTICLE_SEQUENCE_PREFIX = "AR";
 	public static String INVENTORY_SEQUENCE_PREFIX = "IN";
 	public static String TENDER_SEQUENCE_PREFIX = "AP";
+	public static String CUSTOMER_ORDER_SEQUENCE_PREFIX = "CO";
 
 
 	public static String getSequence(Long index ,String prefixe){

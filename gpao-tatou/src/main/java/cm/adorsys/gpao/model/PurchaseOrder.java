@@ -97,10 +97,12 @@ public class PurchaseOrder extends GpaoBaseEntity {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "purchaseOrder", fetch = FetchType.EAGER)
     private List<OrderItems> orderItems = new ArrayList<OrderItems>();
 
+    /** Used to make jasperreport query much more easier.*/
     @NotNull
     @ManyToOne
     private Company company;
 
+    /** appel d'offre. */
     @ManyToOne
     private Tenders tender;
 

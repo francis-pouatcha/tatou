@@ -12,6 +12,7 @@
 	<spring:url var="Admin_url" value="/adminHome" />
 	<spring:url var="purchase_url" value="/purchaseHome" />
 	<spring:url var="stock_url" value="/stockHome" />
+	<spring:url var="production_url" value="/productionHome" />
 	<spring:message code="button_home" var="home_label" htmlEscape="false" />
 	<spring:message code="application_name" var="app_name" htmlEscape="false"/>
 	<div class="navbar-inner">
@@ -35,6 +36,9 @@
                </security:authorize>
                 <security:authorize ifAnyGranted="ROLE_MODULE_STOCK">
                <li onclick="activateLink(this);" class="active" ><a class="header-link" href="${stock_url}">Stocks</a></li>
+               </security:authorize>
+                <security:authorize ifAnyGranted="ROLE_MODULE_PRODUCTION">
+               <li onclick="activateLink(this);" ><a class="header-link" href="${production_url}">Production</a></li>
                </security:authorize>
             </ul>
             <ul class="nav pull-right">

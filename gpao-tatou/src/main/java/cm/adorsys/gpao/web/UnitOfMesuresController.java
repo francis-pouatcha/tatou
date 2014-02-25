@@ -1,5 +1,4 @@
 package cm.adorsys.gpao.web;
-
 import cm.adorsys.gpao.model.UdmGroup;
 import cm.adorsys.gpao.model.UnitOfMesures;
 import cm.adorsys.gpao.utils.MessageType;
@@ -70,7 +69,7 @@ public class UnitOfMesuresController {
         return "unitofmesureses/config";
     }
 
-    public void populateView(Model uiModel, UnitOfMesures unitOfMesures, List<cm.adorsys.gpao.model.UnitOfMesures> unitOfMesureses) {
+    public void populateView(Model uiModel, UnitOfMesures unitOfMesures, List<UnitOfMesures> unitOfMesureses) {
         uiModel.addAttribute("unitofmesureses", unitOfMesureses == null ? UnitOfMesures.findAllUnitOfMesureses() : unitOfMesureses);
         uiModel.addAttribute("unitOfMesures", unitOfMesures == null ? new UnitOfMesures() : unitOfMesures);
         List<UdmGroup> findAllUdmGroups = UdmGroup.findAllUdmGroups();

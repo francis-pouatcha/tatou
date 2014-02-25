@@ -22,6 +22,7 @@ public class HomeController {
 		if(gpaoUser.hasRole(RoleNames.ROLE__MODULE_ADMINISTRATION))  return "adminHome";
 		if(gpaoUser.hasRole(RoleNames.ROLE_MODULE_ACHAT))  return "purchaseHome";
 		if(gpaoUser.hasRole(RoleNames.ROLE_MODULE_STOCK))  return "stockHome";
+		if(gpaoUser.hasRole(RoleNames.ROLE_MODULE_PRODUCTION))  return "productionHome";
 		return "login" ;
 		
 	}

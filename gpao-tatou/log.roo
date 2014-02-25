@@ -460,3 +460,59 @@ field set --fieldName saleTaxes --type ~.model.Taxe
 focus --class ~.model.Delivery
 field set --fieldName taxes --type ~.model.Taxe
 // Spring Roo 1.2.5.RELEASE [rev 8341dc2] log closed at 2014-01-27 08:49:49
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-02-19 10:49:47
+entity jpa --class ~.model.CustomerOrder --extends ~.model.GpaoBaseEntity
+field string --fieldName reference --notNull 
+field string --fieldName customer
+field date --fieldName orderDate --type java.util.Date
+field string --fieldName createdBy
+field boolean --fieldName delivered --value false
+field boolean --fieldName validated --value false
+field string --fieldName validatedBy
+field set --fieldName taxes --type ~.model.Taxe
+field number --fieldName taxeAmount --type java.math.BigDecimal --min 0
+field number --fieldName amountHt --type java.math.BigDecimal --min 0
+field number --fieldName totalAmount --type java.math.BigDecimal --min 0
+field enum --fieldName orderState --type ~.model.DocumentStates
+web mvc all --package cm.adorsys.gpao.web
+entity jpa --class ~.model.Customer --extends ~.model.GpaoBaseEntity
+field string --fieldName name --notNull 
+focus --class ~.model.CustomerOrder
+field reference --fieldName customer --type ~.model.Customer
+// [failed] field reference --fieldName customer --type ~.model.Customer --notNull 
+entity jpa --class ~.model.CustomerOrderItem --extends ~.model.GpaoBaseEntity
+field string --fieldName reference --notNull 
+field reference --fieldName product --type ~.model.Product --notNull 
+field reference --fieldName udm --type ~.model.UnitOfMesures
+field number --fieldName amountHt --type java.math.BigDecimal --min 0
+field number --fieldName quantity --type java.math.BigDecimal
+field number --fieldName unitPrice --type java.math.BigDecimal --comment "the unit price of this order item, It erase, if applied, the product's price "
+field reference --fieldName customerOrder --type ~.model.CustomerOrder
+web mvc all --package cm.adorsys.gpao.web
+focus --class ~.model.CustomerOrder
+field reference --fieldName currency --type ~.model.Devise
+finder list --depth 2
+finder list 
+finder add --finderName findCustomerOrdersByReferenceEquals
+finder add --finderName findCustomerOrdersByOrderState
+finder add --finderName findCustomerOrdersByOrderDateBetween
+focus --class ~.model.CustomerOrderItem
+finder list 
+finder add --finderName findCustomerOrderItemsByCustomerOrder
+finder add --finderName findCustomerOrderItemsByProduct
+finder add --finderName findCustomerOrderItemsByReferenceEquals
+focus --class ~.model.CustomerOrder
+finder list 
+finder add --finderName findCustomerOrdersByCustomer
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log closed at 2014-02-21 23:40:27
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-02-24 15:27:39
+focus --class ~.model.CustomerOrderItem
+finder list --depth 2 --filter findCustomerOrderItemsByCustomerOrder
+finder add --finderName findCustomerOrderItemsByCustomerOrderAndProduct
+focus --class ~.model.CustomerOrder
+// [failed] field reference --fieldName customer --type ~.model.Partner --notNull 
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log closed at 2014-02-25 09:38:10
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-02-25 09:38:27
+focus --class ~.model.CustomerOrder
+field reference --fieldName customer --type ~.model.Partner --notNull 
+finder list 

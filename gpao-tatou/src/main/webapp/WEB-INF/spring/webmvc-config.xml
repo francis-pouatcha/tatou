@@ -29,6 +29,7 @@
     <mvc:view-controller path="/boostrap"/>
     <mvc:view-controller path="/adminHome"/>
      <mvc:view-controller path="/stockHome"/>
+     <mvc:view-controller path="/productionHome"/>
     <mvc:view-controller path="/purchaseHome"/>
     <mvc:view-controller path="/uncaughtException"/>
     <mvc:view-controller path="/resourceNotFound"/>

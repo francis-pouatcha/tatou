@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:menu="urn:jsptagdir:/WEB-INF/tags/menu" xmlns:security="http://www.springframework.org/security/tags" xmlns:spring="http://www.springframework.org/tags" class="well" id="menu" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+  
+    <menu:menu id="_menu" z="ser-managed">
+   <jsp:include page="menu-user-infos.jspx" />
+   		 <menu:category label="Gestion des commandes" id="c_configuration" z="user-managed">
+          <security:authorize ifAnyGranted="ROLE_ACCESS_COMMANDE_CLIENTS">
+          <menu:item id="i_commandeinterne_list" label="Commandes interne" messageCode="global_menu_gpao"  url="/customerorders?page=1&amp;size=${empty param.size ? 10 : param.size}" z="sjbn8PJjmux3IevxVgghkHUTBFw="/>
+          <menu:item id="i_bondeproduction_list" label="Bon de production" messageCode="global_menu_gpao"  url="/bondeproduction?page=1&amp;size=${empty param.size ? 10 : param.size}" z="sjbn8PJjmux3IevxVgghkHUTBFw="/>
+<!--           <menu:item id="fi_deliveryitems_referenceequals" label="Rechercher des Livraisons Fournisseurs" messageCode="global_msg_gpao" url="/deliverys/find?form" z="Gqwvf+6lhwXkVVFi6UQdnfiJ6jE="/> -->
+        </security:authorize>
+        </menu:category>
+    </menu:menu>
+</div>

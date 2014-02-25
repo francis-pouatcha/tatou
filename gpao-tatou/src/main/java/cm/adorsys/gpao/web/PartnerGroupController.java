@@ -1,5 +1,4 @@
 package cm.adorsys.gpao.web;
-
 import cm.adorsys.gpao.model.PartnerGroup;
 import cm.adorsys.gpao.model.Taxe;
 import cm.adorsys.gpao.model.TaxeType;
@@ -51,7 +50,7 @@ public class PartnerGroupController {
         return "partnergroups/config";
     }
 
-    public void populateView(Model uiModel, PartnerGroup partnerGroup, List<cm.adorsys.gpao.model.PartnerGroup> partnerGroups) {
+    public void populateView(Model uiModel, PartnerGroup partnerGroup, List<PartnerGroup> partnerGroups) {
         uiModel.addAttribute("partnergroups", partnerGroups == null ? PartnerGroup.findAllPartnerGroups() : partnerGroups);
         uiModel.addAttribute("partnerGroup", partnerGroup == null ? new PartnerGroup() : partnerGroup);
     }

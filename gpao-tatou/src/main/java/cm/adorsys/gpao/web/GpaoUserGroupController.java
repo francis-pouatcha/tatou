@@ -1,5 +1,4 @@
 package cm.adorsys.gpao.web;
-
 import cm.adorsys.gpao.model.Devise;
 import cm.adorsys.gpao.model.GpaoUserGroup;
 import cm.adorsys.gpao.model.RoleNames;

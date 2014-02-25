@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_cm_adorsys_gpao_model_CustomerOrder" modelAttribute="customerOrder" path="/customerorders" versionField="Version" z="UasSIC7GX2ihNfkrHQ4xxOVWTr4=">
+        <field:checkbox field="archived" id="c_cm_adorsys_gpao_model_CustomerOrder_archived" z="+ZNlMsaLus/rfGHJuxCfkokX2bw="/>
+        <field:input field="reference" id="c_cm_adorsys_gpao_model_CustomerOrder_reference" required="true" z="EBpb1MMQ78+S0xfmTndkuvaFXdg="/>
+        <field:datetime dateTimePattern="${customerOrder_orderdate_date_format}" field="orderDate" id="c_cm_adorsys_gpao_model_CustomerOrder_orderDate" z="fA/cypjgI+V9MPSppGs+2cPPERM="/>
+        <field:input field="createdBy" id="c_cm_adorsys_gpao_model_CustomerOrder_createdBy" z="ZDxr8Xh/Yuoy5GTvhynkAHgDpuk="/>
+        <field:checkbox field="delivered" id="c_cm_adorsys_gpao_model_CustomerOrder_delivered" z="yPmubI5jJRIixaY4begFcd6R/gI="/>
+        <field:checkbox field="validated" id="c_cm_adorsys_gpao_model_CustomerOrder_validated" z="zQz2UpW1wT9d1SIDpMP/xz7zpUI="/>
+        <field:input field="validatedBy" id="c_cm_adorsys_gpao_model_CustomerOrder_validatedBy" z="Bq2+kX2JjVwm9bfMAoc1YgrwRX8="/>
+        <field:select field="taxes" id="c_cm_adorsys_gpao_model_CustomerOrder_taxes" itemValue="id" items="${taxes}" multiple="true" path="/taxes" z="NdBu1h6icV07It9VX7gAvRe3j/k="/>
+        <field:input field="taxeAmount" id="c_cm_adorsys_gpao_model_CustomerOrder_taxeAmount" min="0" required="true" validationMessageCode="field_invalid_number" z="03uSGn5wWEWU/bdPTvqJMtzSCDk="/>
+        <field:input field="amountHt" id="c_cm_adorsys_gpao_model_CustomerOrder_amountHt" min="0" required="true" validationMessageCode="field_invalid_number" z="bXqjFU5r33PkYoQcgFR7tF6F23E="/>
+        <field:input field="totalAmount" id="c_cm_adorsys_gpao_model_CustomerOrder_totalAmount" min="0" required="true" validationMessageCode="field_invalid_number" z="B5IQDLxnBet0jpKk/LT9lqINOXw="/>
+        <field:select field="orderState" id="c_cm_adorsys_gpao_model_CustomerOrder_orderState" items="${documentstateses}" path="documentstateses" z="LcEi3MUmJVgIDROw55O2/UPYC4g="/>
+        <field:select field="currency" id="c_cm_adorsys_gpao_model_CustomerOrder_currency" itemValue="id" items="${devises}" path="/devises" z="L9q+3pjJXRvB2CcnR5+gNuGqnlY="/>
+        <field:select field="customer" id="c_cm_adorsys_gpao_model_CustomerOrder_customer" itemValue="id" items="${partners}" path="/partners" required="true" z="BPrJOlRx+nKKYWSQnl4ASlR7HPc="/>
+    </form:update>
+</div>

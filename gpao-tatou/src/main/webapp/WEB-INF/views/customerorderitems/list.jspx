@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_cm_adorsys_gpao_model_CustomerOrderItem" items="${customerorderitems}" z="sZpIR+JXYKmWiSm+rItGQcn6nC8=">
+        <table:table data="${customerorderitems}" id="l_cm_adorsys_gpao_model_CustomerOrderItem" path="/customerorderitems" z="Vh6KPOF7tasvcnjNLRmTyWEu4Z0=">
+            <table:column id="c_cm_adorsys_gpao_model_CustomerOrderItem_archived" property="archived" z="FvemfCR3jxJh3GRI222FjMChJK4="/>
+            <table:column id="c_cm_adorsys_gpao_model_CustomerOrderItem_reference" property="reference" z="H6EQmO8uJEAEwxei067/ThwBdWg="/>
+            <table:column id="c_cm_adorsys_gpao_model_CustomerOrderItem_product" property="product" z="zZ4NZhQughefK05Kt4e2tbCTt2Q="/>
+            <table:column id="c_cm_adorsys_gpao_model_CustomerOrderItem_udm" property="udm" z="ffbfCnr2/aNboHi0GAUeqy8Up6Q="/>
+            <table:column id="c_cm_adorsys_gpao_model_CustomerOrderItem_amountHt" property="amountHt" z="8MQVetGQGAJGLyCdJcTE7T1c3AM="/>
+            <table:column id="c_cm_adorsys_gpao_model_CustomerOrderItem_quantity" property="quantity" z="mSjtOhQKA3cC1JP5TfmSxRJUjj8="/>
+        </table:table>
+    </page:list>
+</div>

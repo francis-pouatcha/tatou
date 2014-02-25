@@ -30,6 +30,9 @@
     <definition extends="stock" name="stockHome">
         <put-attribute name="body" value="/WEB-INF/views/home-stock.jspx"/>
     </definition>
+    <definition extends="production" name="productionHome">
+        <put-attribute name="body" value="/WEB-INF/views/home-production.jspx"/>
+    </definition>
    <definition extends="boost" name="boostrap">
         <put-attribute name="body" value="/WEB-INF/views/boostrap.jspx"/>
  </definition>

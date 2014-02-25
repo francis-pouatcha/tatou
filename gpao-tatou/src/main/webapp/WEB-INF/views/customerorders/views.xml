@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+    <definition extends="production" name="customerorders/list">
+        <put-attribute name="body" value="/WEB-INF/views/customerorders/list.jspx"/>
+    </definition>
+<definition extends="default" name="customerorders/show">
+        <put-attribute name="body" value="/WEB-INF/views/customerorders/show.jspx"/>
+    </definition>
+<definition extends="default" name="customerorders/create">
+        <put-attribute name="body" value="/WEB-INF/views/customerorders/create.jspx"/>
+    </definition>
+<definition extends="default" name="customerorders/update">
+        <put-attribute name="body" value="/WEB-INF/views/customerorders/update.jspx"/>
+    </definition>
+    <definition extends="production" name="customerorders/customerordersView">
+        <put-attribute name="body" value="/WEB-INF/views/customerorders/customerordersView.jspx"/>
+    </definition>
+</tiles-definitions>

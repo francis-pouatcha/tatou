@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_cm_adorsys_gpao_model_CustomerOrderItem" modelAttribute="customerOrderItem" path="/customerorderitems" versionField="Version" z="HLRzZUnC3rz7LJRGuRJxLK9HXKQ=">
+        <field:checkbox field="archived" id="c_cm_adorsys_gpao_model_CustomerOrderItem_archived" z="qKKJchfm97CadiFmEAocAC/EzFU="/>
+        <field:input field="reference" id="c_cm_adorsys_gpao_model_CustomerOrderItem_reference" required="true" z="a6eO5UL6cTQc4B7X2vuoNJv0iBQ="/>
+        <field:select field="product" id="c_cm_adorsys_gpao_model_CustomerOrderItem_product" itemValue="id" items="${products}" path="/products" required="true" z="QIp3OKMTJ9SMyJ82fBJDom32lQQ="/>
+        <field:select field="udm" id="c_cm_adorsys_gpao_model_CustomerOrderItem_udm" itemValue="id" items="${unitofmesureses}" path="/unitofmesureses" z="o9KzaVXVSb08z+PYuMdDGfQiaHM="/>
+        <field:input field="amountHt" id="c_cm_adorsys_gpao_model_CustomerOrderItem_amountHt" min="0" required="true" validationMessageCode="field_invalid_number" z="oLP90J4K8IaKVIGzE8ot28HrQok="/>
+        <field:input field="quantity" id="c_cm_adorsys_gpao_model_CustomerOrderItem_quantity" validationMessageCode="field_invalid_number" z="EEirjr954G8yQiUsCM60NLl8PQ8="/>
+        <field:input field="unitPrice" id="c_cm_adorsys_gpao_model_CustomerOrderItem_unitPrice" validationMessageCode="field_invalid_number" z="tSBJClw0syH/nzHkVwpy2Y7EaKc="/>
+        <field:select field="customerOrder" id="c_cm_adorsys_gpao_model_CustomerOrderItem_customerOrder" itemValue="id" items="${customerorders}" path="/customerorders" z="8Lt/c0hLhGrzOHw8tv6ZRSADTVU="/>
+    </form:update>
+</div>

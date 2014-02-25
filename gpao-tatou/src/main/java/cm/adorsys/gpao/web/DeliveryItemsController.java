@@ -1,5 +1,4 @@
 package cm.adorsys.gpao.web;
-
 import cm.adorsys.gpao.model.DeliveryItems;
 import cm.adorsys.gpao.model.GpaoBaseEntity;
 import org.springframework.roo.addon.web.mvc.controller.finder.RooWebFinder;

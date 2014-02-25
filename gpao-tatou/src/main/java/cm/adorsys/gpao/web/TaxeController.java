@@ -1,5 +1,4 @@
 package cm.adorsys.gpao.web;
-
 import cm.adorsys.gpao.model.Taxe;
 import cm.adorsys.gpao.model.TaxeType;
 import cm.adorsys.gpao.utils.MessageType;
@@ -56,7 +55,7 @@ public class TaxeController {
         return "taxes/config";
     }
 
-    public void populateView(Model uiModel, Taxe taxe, List<cm.adorsys.gpao.model.Taxe> taxes) {
+    public void populateView(Model uiModel, Taxe taxe, List<Taxe> taxes) {
         uiModel.addAttribute("taxes", taxes == null ? Taxe.findAllTaxes() : taxes);
         uiModel.addAttribute("taxe", taxe == null ? new Taxe() : taxe);
         uiModel.addAttribute("taxetypes", Arrays.asList(TaxeType.values()));

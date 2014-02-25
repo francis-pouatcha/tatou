@@ -2,7 +2,6 @@ package cm.adorsys.gpao.model;
 
 import java.math.BigDecimal;
 import java.util.Collection;
-import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.ManyToOne;

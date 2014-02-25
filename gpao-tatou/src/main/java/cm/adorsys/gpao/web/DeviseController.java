@@ -1,5 +1,4 @@
 package cm.adorsys.gpao.web;
-
 import cm.adorsys.gpao.model.Devise;
 import cm.adorsys.gpao.utils.MessageType;
 import java.util.Arrays;
@@ -55,7 +54,7 @@ public class DeviseController {
         return "devises/config";
     }
 
-    public void populateView(Model uiModel, Devise devise, List<cm.adorsys.gpao.model.Devise> devises) {
+    public void populateView(Model uiModel, Devise devise, List<Devise> devises) {
         uiModel.addAttribute("devises", devises == null ? Devise.findAllDevises() : devises);
         uiModel.addAttribute("devise", devise == null ? new Devise() : devise);
     }

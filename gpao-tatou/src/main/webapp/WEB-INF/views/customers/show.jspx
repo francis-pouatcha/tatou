@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_cm_adorsys_gpao_model_Customer" object="${customer}" path="/customers" z="PuQgzBNNnxxR77YUy2Xf554SG2Q=">
+        <field:display field="archived" id="s_cm_adorsys_gpao_model_Customer_archived" object="${customer}" z="sZ0tYuDqyUAS0N6qQuishfpYFT0="/>
+        <field:display field="name" id="s_cm_adorsys_gpao_model_Customer_name" object="${customer}" z="hhU04JdjRkjWZm0nrMMEieQTea4="/>
+    </page:show>
+</div>

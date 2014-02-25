@@ -1,5 +1,4 @@
 package cm.adorsys.gpao.web;
-
 import cm.adorsys.gpao.model.Location;
 import cm.adorsys.gpao.model.UdmGroup;
 import cm.adorsys.gpao.model.WareHouses;
@@ -58,11 +57,11 @@ public class LocationController {
     @RequestMapping(value = "/findByNameAndWareHouse", produces = "text/html", method = RequestMethod.POST)
     public String findLocation(Location location, Model uiModel) {
         List<Location> locations = Location.findLocationsByNameLikeAndWareHouses(location.getName(), location.getWareHouse()).getResultList();
-        populateView(uiModel, null, locations,null);
+        populateView(uiModel, null, locations, null);
         return "locations/config";
     }
 
-    public void populateView(Model uiModel, Location location, List<cm.adorsys.gpao.model.Location> locations, WareHouses wareHouses) {
+    public void populateView(Model uiModel, Location location, List<Location> locations, WareHouses wareHouses) {
         uiModel.addAttribute("locations", locations == null ? Location.findAllLocations() : locations);
         uiModel.addAttribute("location", location == null ? new Location() : location);
         List<WareHouses> allWareHouses = WareHouses.findAllWareHouseses();

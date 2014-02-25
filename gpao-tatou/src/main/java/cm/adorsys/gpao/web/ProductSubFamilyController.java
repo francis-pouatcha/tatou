@@ -1,5 +1,4 @@
 package cm.adorsys.gpao.web;
-
 import cm.adorsys.gpao.model.Location;
 import cm.adorsys.gpao.model.Product;
 import cm.adorsys.gpao.model.ProductFamily;
@@ -63,7 +62,7 @@ public class ProductSubFamilyController {
         return "productsubfamilys/" + module + "/config";
     }
 
-    public void populateView(Model uiModel, ProductSubFamily productSubFamily, List<cm.adorsys.gpao.model.ProductSubFamily> productSubFamilies, ProductFamily productFamily) {
+    public void populateView(Model uiModel, ProductSubFamily productSubFamily, List<ProductSubFamily> productSubFamilies, ProductFamily productFamily) {
         uiModel.addAttribute("productsubfamilys", productSubFamilies == null ? ProductSubFamily.findAllProductSubFamilys() : productSubFamilies);
         uiModel.addAttribute("productsubfamily", productSubFamily == null ? new ProductSubFamily() : productSubFamily);
         List<ProductFamily> allFamily = ProductFamily.findAllProductFamilys();
