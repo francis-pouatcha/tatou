@@ -1,19 +1,17 @@
 package cm.adorsys.gpao.model;
 
-import java.math.BigDecimal;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.ElementCollection;
 import javax.persistence.EntityManager;
 import javax.persistence.FetchType;
 import javax.persistence.TypedQuery;
-import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
+
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
-import org.springframework.roo.addon.tostring.RooToString;
 
 @RooJavaBean
 @RooJpaActiveRecord(inheritanceType = "TABLE_PER_CLASS")

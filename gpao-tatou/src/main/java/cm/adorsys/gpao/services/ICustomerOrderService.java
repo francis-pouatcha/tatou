@@ -87,6 +87,8 @@ public interface ICustomerOrderService {
 	 * @return
 	 */
 	public CustomerOrder cancelCustomerOrder(CustomerOrder customerOrder);
+
+	public CustomerOrder closeCustomerOrder(CustomerOrder customerOrder);
 	
 	public boolean isBusinessOperationAllowed(CustomerOrder customerOrder,BusinessOperation businessOperation);
 }

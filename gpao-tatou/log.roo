@@ -516,3 +516,5 @@ focus --class ~.model.CustomerOrder
 focus --class ~.model.CustomerOrder
 field reference --fieldName customer --type ~.model.Partner --notNull 
 finder list 
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log closed at 2014-02-27 10:43:51
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-03-17 13:39:14

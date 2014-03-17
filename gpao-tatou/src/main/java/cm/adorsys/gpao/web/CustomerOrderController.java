@@ -165,6 +165,22 @@ public class CustomerOrderController extends AbstractOrderController{
         uiModel.addAttribute(MessageType.SUCCESS_MESSAGE, "The order has successfully been canceled !");
         return "customerorders/customerordersView";
     }
+
+    @RequestMapping(value = "/{customerOrderId}/close", method = RequestMethod.GET)
+    public String closeOrder(@PathVariable("customerOrderId") Long customerOrderId,Model uiModel) {
+        CustomerOrder customerOrder = CustomerOrder.findCustomerOrder(customerOrderId);
+        if(! customerOrderService.isBusinessOperationAllowed(customerOrder, BusinessOperation.CANCEL)) {
+        	populateEditForm(uiModel, customerOrder);
+            uiModel.addAttribute(MessageType.ERROR_MESSAGE, "Nous somme desole, il est impossible de valider cette commande! \n ");
+            return "purchaseorders/purchaseordersView";
+        }
+        customerOrder = customerOrderService.cancelCustomerOrder(customerOrder);
+        customerOrder = customerOrderService.computeAndSetAmounts(customerOrder, customerOrderService.findCustomerOrderItems(customerOrder));
+        customerOrder = doAConsistantMerge(customerOrder);
+        populateEditForm(uiModel, customerOrder);
+        uiModel.addAttribute(MessageType.SUCCESS_MESSAGE, "The order has successfully been canceled !");
+        return "customerorders/customerordersView";
+    }
     
 
     @RequestMapping(value = "/next/{id}", method = RequestMethod.GET, produces = "text/html")

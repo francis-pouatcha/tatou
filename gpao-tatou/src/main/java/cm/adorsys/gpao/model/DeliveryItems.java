@@ -1,21 +1,22 @@
 package cm.adorsys.gpao.model;
 
-import cm.adorsys.gpao.utils.GpaoSequenceGenerator;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.Date;
+
 import javax.persistence.EntityManager;
 import javax.persistence.ManyToOne;
 import javax.persistence.PostPersist;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.TypedQuery;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
+
+import cm.adorsys.gpao.utils.GpaoSequenceGenerator;
 
 @RooJavaBean
 @RooToString

@@ -202,4 +202,10 @@ public class TatouCustomerOrderService implements ICustomerOrderService {
 		}
 		return false;
 	}
+
+	@Override
+	public CustomerOrder closeCustomerOrder(CustomerOrder customerOrder) {
+		customerOrder.setOrderState(DocumentStates.FERMER);
+		return customerOrder;
+	}
 }

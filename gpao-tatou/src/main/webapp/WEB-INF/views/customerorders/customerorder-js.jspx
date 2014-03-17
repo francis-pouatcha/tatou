@@ -22,7 +22,8 @@
 		var="validated_url" /> <spring:url
 		value="/customerorders/${customerOrder.id}/removeOrderItem?itemid="
 		var="remove_url" />
-	<spring:url value="/customerorders/${customerOrder.id}/cancel" var="cancel_url" />  
+	<spring:url value="/customerorders/${customerOrder.id}/cancel" var="cancel_url" />
+	<spring:url value="/customerorders/${customerOrder.id}/close" var="close_url" />  
 	<spring:url value="/tenderses/tenderNote/"
 		var="print_tender_url" /> <spring:url
 		value="/resources/images/ajax-loader.gif" var="loadimage" /> <!-- Modal -->
@@ -160,6 +161,10 @@
 		});
 		$('#cancelBtn').click(function(){
 			var url = '${cancel_url}';
+			window.open(url) ;
+		});
+		$('#closeBtn').click(function(){
+			var url = '${close_url}';
 			window.open(url) ;
 		});
 		$('#print_tender_btn').click(function() {

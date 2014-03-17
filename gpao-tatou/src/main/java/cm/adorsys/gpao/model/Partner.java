@@ -23,8 +23,6 @@ import org.springframework.web.multipart.MultipartFile;
 @RooJpaActiveRecord(inheritanceType = "TABLE_PER_CLASS", finders = { "findPartnersByNameLike" })
 public class Partner extends GpaoBaseEntity {
 
-    private static Object en;
-
 	@NotNull
     @Column(unique = true)
     private String name;

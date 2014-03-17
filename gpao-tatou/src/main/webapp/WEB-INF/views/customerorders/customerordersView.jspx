@@ -118,7 +118,7 @@
 										<td style="text-align: center;">${items.quantity}</td>
 										<td style="text-align: center;">${items.udm.name}</td>
 										<td style="text-align: center;">${items.amountHt}</td>
-									<c:if test="${purchaseOrder.orderState eq 'BROUILLON' }">
+									<c:if test="${customerOrder.orderState eq 'BROUILLON' }">
 										<td style="text-align: center;"><input type="checkbox" /></td>
 									</c:if>
 									</tr>
@@ -169,6 +169,12 @@
 								<p>
 									<button class="btn-info" id="deliveryBtn" style="width: 100%;"
 										type="button">Lister les livraisons</button>
+								</p>
+							</c:if>
+							<c:if test="${customerOrder.orderState eq 'VALIDER'}">
+								<p>
+									<button class="btn-info" id="closeBtn" style="width: 100%;"
+										type="button">Cloturer</button>
 								</p>
 							</c:if>
 						</c:if>
