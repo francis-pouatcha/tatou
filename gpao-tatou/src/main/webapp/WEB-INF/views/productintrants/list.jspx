@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_cm_adorsys_gpao_model_ProductIntrant" items="${productintrants}" z="46mxYZXuor6ycPPF/+RdTz/cC3s=">
+        <table:table data="${productintrants}" id="l_cm_adorsys_gpao_model_ProductIntrant" path="/productintrants" z="hOo9aBKHtfR2xPRncQuyO8hpYhc=">
+            <table:column id="c_cm_adorsys_gpao_model_ProductIntrant_archived" property="archived" z="3Rw0RHs93CU3HyMW1NQfGmbMYVM="/>
+            <table:column id="c_cm_adorsys_gpao_model_ProductIntrant_product" property="product" z="taqDkdRZYRPPFhHHeJvUwJ81jNM="/>
+            <table:column id="c_cm_adorsys_gpao_model_ProductIntrant_quantity" property="quantity" z="bjQe+KPsS+/zquUK2V8a7MEiaZY="/>
+            <table:column id="c_cm_adorsys_gpao_model_ProductIntrant_rawMaterial" property="rawMaterial" z="kReyvKetTW99NgsNZVSpvDyifIc="/>
+            <table:column id="c_cm_adorsys_gpao_model_ProductIntrant_udm" property="udm" z="W7n2I/5PURZPWmO9XpRXFqVhc3I="/>
+        </table:table>
+    </page:list>
+</div>

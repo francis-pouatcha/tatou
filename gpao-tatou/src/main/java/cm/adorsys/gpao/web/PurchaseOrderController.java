@@ -5,11 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
 import org.springframework.stereotype.Controller;
@@ -20,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import cm.adorsys.gpao.model.Company;
 import cm.adorsys.gpao.model.Devise;
 import cm.adorsys.gpao.model.DocumentStates;
@@ -40,7 +37,7 @@ import cm.adorsys.gpao.utils.MessageType;
 @RequestMapping("/purchaseorders")
 @Controller
 @RooWebScaffold(path = "purchaseorders", formBackingObject = PurchaseOrder.class)
-public class PurchaseOrderController extends AbstractOrderController{
+public class PurchaseOrderController extends AbstractOrderController {
 
     Logger LOG = Logger.getLogger(getClass().getName());
 
@@ -107,7 +104,6 @@ public class PurchaseOrderController extends AbstractOrderController{
         populateEditForm(uiModel, next);
         return "purchaseorders/purchaseordersView";
     }
-
 
     @RequestMapping(value = "/findProductFromPurcharseOrder/{ordderId}", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
     @ResponseBody
@@ -212,7 +208,7 @@ public class PurchaseOrderController extends AbstractOrderController{
             return;
         }
     }
-    
+
     void populateFindForm(Model uiModel, PurchaseOrderFinder purchaseOrderFinder) {
         uiModel.addAttribute("purchaseOrderFinder", purchaseOrderFinder);
         addDateTimeFormatPatterns(uiModel);

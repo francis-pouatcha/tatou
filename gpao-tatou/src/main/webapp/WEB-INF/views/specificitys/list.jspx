@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:spring="http://www.springframework.org/tags" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <spring:url value="/specificitys?form" var="add_url"/>
+    <page:list id="pl_cm_adorsys_gpao_model_Specificity" items="${specificitys}" showInPanel="false" z="user-managed">
+        <table:table data="${specificitys}" id="l_cm_adorsys_gpao_model_Specificity" path="/specificitys" z="user-managed">
+            <table:column id="c_cm_adorsys_gpao_model_Specificity_archived" property="archived" z="my8O3L4Jn3zhqlue+dZn9svfdSA="/>
+            <table:column id="c_cm_adorsys_gpao_model_Specificity_designation" property="designation" z="X4Sjj/dp+Jr8vbg/Wnji7kuJ+e8="/>
+            <table:column id="c_cm_adorsys_gpao_model_Specificity_description" property="description" z="BGEBHJJ/HWDT/9G30bYQRW+5KOQ="/>
+            <table:column id="c_cm_adorsys_gpao_model_Specificity_active" property="active" z="VRhkpv45P0wrbZbD1AB2fxy3CaY="/>
+        </table:table>
+    </page:list>
+</div>

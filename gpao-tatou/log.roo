@@ -518,3 +518,27 @@ field reference --fieldName customer --type ~.model.Partner --notNull
 finder list 
 // Spring Roo 1.2.5.RELEASE [rev 8341dc2] log closed at 2014-02-27 10:43:51
 // Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-03-17 13:39:14
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log closed at 2014-03-17 19:53:44
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-03-18 09:42:43
+entity jpa --class ~.model.Specificity --extends ~.model.GpaoBaseEntity --inheritanceType TABLE_PER_CLASS 
+field string --fieldName designation --notNull true --unique
+field string --fieldName description
+entity jpa --class ~.model.Caracteristic --extends ~.model.GpaoBaseEntity --inheritanceType TABLE_PER_CLASS 
+// [failed] field string --fieldName size --notNull
+field string --fieldName productSize --notNull
+field string --fieldName color --notNull 
+field set --fieldName specificities --type ~.model.Specificity --cardinality ONE_TO_MANY --comment "product specificities"
+focus --class ~.model.Specificity
+entity jpa --class ~.model.ProductIntrant --extends ~.model.GpaoBaseEntity --inheritanceType TABLE_PER_CLASS 
+field reference --fieldName product --type ~.model.Product --notNull true 
+field number --fieldName quantity --type java.math.BigDecimal --notNull --comment "amout of raw material" --decimalMin 0.0
+field reference --fieldName rawMaterial --type ~.model.Product --notNull --comment "the raw material product"
+field reference --fieldName udm --type ~.model.UdmGroup --notNull 
+web mvc all --package cm.adorsys.gpao.web
+focus --class ~.model.Specificity
+field boolean --fieldName active --value true
+finder list 
+finder add --finderName  findSpecificitysByDesignationEquals
+finder add --finderName  findSpecificitysByDesignationLike
+finder list --depth 2
+finder add --finderName  findSpecificitysByDesignationLikeAndActiveNot

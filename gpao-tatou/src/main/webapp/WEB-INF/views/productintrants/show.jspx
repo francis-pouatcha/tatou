@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_cm_adorsys_gpao_model_ProductIntrant" object="${productintrant}" path="/productintrants" z="yOoIuJBOAc+CjYVcLEAm5AWHOhE=">
+        <field:display field="archived" id="s_cm_adorsys_gpao_model_ProductIntrant_archived" object="${productintrant}" z="Evr8v+lccJIuNAN7Y2T6OYDeu8M="/>
+        <field:display field="product" id="s_cm_adorsys_gpao_model_ProductIntrant_product" object="${productintrant}" z="Jl738+Uy1hy7aZ8CLEnP/cEPUl0="/>
+        <field:display field="quantity" id="s_cm_adorsys_gpao_model_ProductIntrant_quantity" object="${productintrant}" z="Z6ZYLKx/F/psXu52ypslSxvEOfk="/>
+        <field:display field="rawMaterial" id="s_cm_adorsys_gpao_model_ProductIntrant_rawMaterial" object="${productintrant}" z="Wb9cU0db9mUzCWL2/e6LH3rzrRY="/>
+        <field:display field="udm" id="s_cm_adorsys_gpao_model_ProductIntrant_udm" object="${productintrant}" z="Q/A6adTqMgw1xJnXuXuEBgyv0N8="/>
+    </page:show>
+</div>

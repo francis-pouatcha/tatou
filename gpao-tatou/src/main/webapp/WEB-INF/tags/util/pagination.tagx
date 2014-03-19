@@ -5,6 +5,7 @@
   <jsp:directive.attribute name="page" type="java.lang.Integer" required="false" rtexprvalue="true" description="The current page (not required, defaults to 1)" />
   <jsp:directive.attribute name="size" type="java.lang.Integer" required="false" rtexprvalue="true" description="The number of records per page (not required, defaults to 10)" />
   <jsp:directive.attribute name="render" type="java.lang.Boolean" required="false" rtexprvalue="true" description="Indicate if the contents of this tag and all enclosed tags should be rendered (default 'true')" />
+  <jsp:directive.attribute name="defaultUrl" type="java.lang.String" required="false" rtexprvalue="true" description="A default url to apply to the pagination link, if you don't want the one from the navigation bar" />
 
   <c:if test="${empty render or render}">
 
@@ -25,7 +26,7 @@
           <c:out value="${i}" />
         </c:when>
         <c:otherwise>
-          <spring:url value="" var="sizeUrl">
+          <spring:url value="${defaultUrl }" var="sizeUrl">
             <spring:param name="page" value="1" />
             <spring:param name="size" value="${i}" />
           </spring:url>
@@ -37,7 +38,7 @@
     <c:out value="| " />
 
     <c:if test="${page ne 1}">
-      <spring:url value="" var="first">
+      <spring:url value="${defaultUrl }" var="first">
         <spring:param name="page" value="1" />
         <spring:param name="size" value="${size}" />
       </spring:url>
@@ -48,7 +49,7 @@
       </a>
     </c:if>
     <c:if test="${page gt 1}">
-      <spring:url value="" var="previous">
+      <spring:url value="${defaultUrl }" var="previous">
         <spring:param name="page" value="${page - 1}" />
         <spring:param name="size" value="${size}" />
       </spring:url>
@@ -62,7 +63,7 @@
     <spring:message code="list_page" arguments="${page},${maxPages}" argumentSeparator="," />
     <c:out value=" " />
     <c:if test="${page lt maxPages}">
-      <spring:url value="" var="next">
+      <spring:url value="${defaultUrl }" var="next">
         <spring:param name="page" value="${page + 1}" />
         <spring:param name="size" value="${size}" />
       </spring:url>
@@ -73,7 +74,7 @@
       </a>
     </c:if>
     <c:if test="${page ne maxPages}">
-      <spring:url value="" var="last">
+      <spring:url value="${defaultUrl }" var="last">
         <spring:param name="page" value="${maxPages}" />
         <spring:param name="size" value="${size}" />
       </spring:url>

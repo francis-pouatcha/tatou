@@ -115,5 +115,17 @@
             <menu:item id="i_customer_new" messageCode="global_menu_new" url="/customers?form" z="d9+YIotZHp6KZLGKwwnMVzPvh8k="/>
             <menu:item id="i_customer_list" messageCode="global_menu_list" url="/customers?page=1&amp;size=${empty param.size ? 10 : param.size}" z="Yo9cUtyc7EUvbxwQ7EoeqXWaVJM="/>
         </menu:category>
+        <menu:category id="c_specificity" z="vZL1t2pkykXJR7ax2lbe5vgcfao=">
+            <menu:item id="i_specificity_new" messageCode="global_menu_new" url="/specificitys?form" z="ajmN7idSLJLqnJemPvEIoFrHNIA="/>
+            <menu:item id="i_specificity_list" messageCode="global_menu_list" url="/specificitys?page=1&amp;size=${empty param.size ? 10 : param.size}" z="iVIheEa9STXGnX2axC11pq0LCuU="/>
+        </menu:category>
+        <menu:category id="c_caracteristic" z="J0D6+sa5I1bLf5hvttmwrRrKc/I=">
+            <menu:item id="i_caracteristic_new" messageCode="global_menu_new" url="/caracteristics?form" z="E9uMGIfynmXaCRpJT8sPKeOmDFQ="/>
+            <menu:item id="i_caracteristic_list" messageCode="global_menu_list" url="/caracteristics?page=1&amp;size=${empty param.size ? 10 : param.size}" z="0IJknmolAWnQYgbSTjQHgXYpb5c="/>
+        </menu:category>
+        <menu:category id="c_productintrant" z="xwQ05YB99IaGrWDfwq5gPx/vKSQ=">
+            <menu:item id="i_productintrant_new" messageCode="global_menu_new" url="/productintrants?form" z="hZfiVTGOkGNyz7AhzCGEKgsGftg="/>
+            <menu:item id="i_productintrant_list" messageCode="global_menu_list" url="/productintrants?page=1&amp;size=${empty param.size ? 10 : param.size}" z="dSGFOmeRXn6EU5Jrc7zkSE0vegM="/>
+        </menu:category>
     </menu:menu>
 </div>
