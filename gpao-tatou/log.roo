@@ -542,3 +542,15 @@ finder add --finderName  findSpecificitysByDesignationEquals
 finder add --finderName  findSpecificitysByDesignationLike
 finder list --depth 2
 finder add --finderName  findSpecificitysByDesignationLikeAndActiveNot
+entity jpa --class ~.model.SpecificityToCaracteristicMap --extends ~.model.GpaoBaseEntity --inheritanceType TABLE_PER_CLASS 
+field reference --fieldName caracteristic --type ~.model.Caracteristic --notNull 
+field reference --fieldName specificity --type ~.model.Specificity --notNull 
+finder list --depth 2
+finder list 
+finder add --finderName findSpecificityToCaracteristicMapsByCaracteristic
+finder add --finderName findSpecificityToCaracteristicMapsBySpecificity
+finder add --finderName findSpecificityToCaracteristicMapsBySpecificityAndCaracteristicEquals
+focus --class ~.model.Specificity
+json add 
+focus --class ~.model.SpecificityToCaracteristicMap
+json all 

@@ -1,8 +1,6 @@
 package cm.adorsys.gpao.model;
-
 import java.math.BigDecimal;
 import java.util.Date;
-
 import javax.persistence.EntityManager;
 import javax.persistence.ManyToOne;
 import javax.persistence.PostPersist;
@@ -10,17 +8,17 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.TypedQuery;
 import javax.validation.constraints.NotNull;
-
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
-
 import cm.adorsys.gpao.utils.GpaoSequenceGenerator;
+import org.springframework.roo.addon.json.RooJson;
 
 @RooJavaBean
 @RooToString
 @RooJpaActiveRecord(inheritanceType = "TABLE_PER_CLASS", finders = { "findDeliveryItemsesByReferenceEquals", "findDeliveryItemsesByDelivery" })
+@RooJson
 public class DeliveryItems extends GpaoBaseEntity {
 
     private String reference;
@@ -43,10 +41,8 @@ public class DeliveryItems extends GpaoBaseEntity {
 
     private BigDecimal amountHt = BigDecimal.ZERO;
 
-  /*  private BigDecimal taxAmount = BigDecimal.ZERO;
-
-    private BigDecimal taxedAmount = BigDecimal.ZERO;*/
-
+    /*  private BigDecimal taxAmount = BigDecimal.ZERO;
+     private BigDecimal taxedAmount = BigDecimal.ZERO;*/
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(style = "M-")
     private Date expirationDate;
@@ -63,7 +59,7 @@ public class DeliveryItems extends GpaoBaseEntity {
         this.expirationDate = new Date();
         this.amountHt = items.getSubTotal();
         /*this.taxAmount = items.getTaxeAmount();
-        this.taxedAmount = items.getTaxedSubTotal();*/
+         this.taxedAmount = items.getTaxedSubTotal();*/
         this.delivery = delivery;
         this.udm = items.getUdm();
     }

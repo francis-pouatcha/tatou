@@ -4,8 +4,6 @@
 package cm.adorsys.gpao.model;
 
 import cm.adorsys.gpao.model.Caracteristic;
-import cm.adorsys.gpao.model.Specificity;
-import java.util.Set;
 
 privileged aspect Caracteristic_Roo_JavaBean {
     
@@ -23,14 +21,6 @@ privileged aspect Caracteristic_Roo_JavaBean {
     
     public void Caracteristic.setColor(String color) {
         this.color = color;
-    }
-    
-    public Set<Specificity> Caracteristic.getSpecificities() {
-        return this.specificities;
-    }
-    
-    public void Caracteristic.setSpecificities(Set<Specificity> specificities) {
-        this.specificities = specificities;
     }
     
 }

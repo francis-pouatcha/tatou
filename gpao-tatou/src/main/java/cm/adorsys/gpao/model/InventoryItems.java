@@ -1,20 +1,18 @@
 package cm.adorsys.gpao.model;
-
 import java.math.BigDecimal;
-
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
-
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
-
 import cm.adorsys.gpao.utils.CurrencyUtils;
+import org.springframework.roo.addon.json.RooJson;
 
 @RooJavaBean
 @RooToString
 @RooJpaActiveRecord(inheritanceType = "TABLE_PER_CLASS")
-public class InventoryItems extends GpaoBaseEntity{
+@RooJson
+public class InventoryItems extends GpaoBaseEntity {
 
     @ManyToOne
     private Product product;
@@ -25,14 +23,14 @@ public class InventoryItems extends GpaoBaseEntity{
     @NotNull
     private BigDecimal realStock = BigDecimal.ZERO;
 
-    private BigDecimal stockGap= BigDecimal.ZERO;
+    private BigDecimal stockGap = BigDecimal.ZERO;
 
-    private BigDecimal gapAmount= BigDecimal.ZERO;
+    private BigDecimal gapAmount = BigDecimal.ZERO;
 
     @ManyToOne
     private Inventory inventory;
 
-    private BigDecimal productPrice= BigDecimal.ZERO;
+    private BigDecimal productPrice = BigDecimal.ZERO;
 
     @NotNull
     @ManyToOne
@@ -50,7 +48,6 @@ public class InventoryItems extends GpaoBaseEntity{
         this.udm = product.getDefaultUdm();
         calculateStockGapAndGapAmount();
     }
-    
 
     public void calculateStockGapAndGapAmount() {
         stockGap = virtualStock.subtract(realStock);

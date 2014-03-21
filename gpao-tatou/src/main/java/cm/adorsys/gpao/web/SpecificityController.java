@@ -121,7 +121,6 @@ public class SpecificityController {
     }
 
 	private void paginatedListQuery(Model uiModel, Specificity specificity, List<Specificity> specificities,Integer page, Integer size, String sortFieldName,String sortOrder) {
-		uiModel.addAttribute("specificitys", specificities == null ? Specificity.findAllSpecificitys() : specificities);
         uiModel.addAttribute("specificity", specificity == null ? new Specificity() : specificity);
         if(specificities != null) {
     		uiModel.addAttribute("specificitys", specificities);

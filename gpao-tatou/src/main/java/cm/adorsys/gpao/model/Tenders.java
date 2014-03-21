@@ -1,9 +1,7 @@
 package cm.adorsys.gpao.model;
-
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EntityManager;
@@ -17,18 +15,18 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.TypedQuery;
 import javax.validation.constraints.NotNull;
-
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
-
 import cm.adorsys.gpao.security.SecurityUtil;
 import cm.adorsys.gpao.utils.GpaoSequenceGenerator;
+import org.springframework.roo.addon.json.RooJson;
 
 @RooJavaBean
 @RooJpaActiveRecord(inheritanceType = "TABLE_PER_CLASS")
-public class Tenders extends GpaoBaseEntity{
+@RooJson
+public class Tenders extends GpaoBaseEntity {
 
     private String reference;
 
@@ -63,21 +61,22 @@ public class Tenders extends GpaoBaseEntity{
     @ManyToOne
     private Company company;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tender",fetch=FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tender", fetch = FetchType.EAGER)
     private Set<TenderItems> tenderItems = new HashSet<TenderItems>();
 
     public TenderItems hasProduct(Product product) {
-         Set<TenderItems> tenderItems2 = getTenderItems();
+        Set<TenderItems> tenderItems2 = getTenderItems();
         for (TenderItems tenderItem : tenderItems2) {
             if (tenderItem.getProducts().equals(product)) return tenderItem;
         }
         return null;
     }
-    
-    public String toString(){
-    	if(StringUtils.isBlank(reference)) return "" ;
-    	return reference ;
+
+    public String toString() {
+        if (StringUtils.isBlank(reference)) return "";
+        return reference;
     }
+
     @PostPersist
     public void postPersist() {
         reference = GpaoSequenceGenerator.getSequence(getId(), GpaoSequenceGenerator.TENDER_SEQUENCE_PREFIX);
@@ -91,26 +90,27 @@ public class Tenders extends GpaoBaseEntity{
         q.setParameter("status", status);
         return q;
     }
-    public static TypedQuery<cm.adorsys.gpao.model.Tenders> findTenderByStatusAndDateBetween(DocumentStates status,Date beginDate,Date endDate,String reference) {
+
+    public static TypedQuery<cm.adorsys.gpao.model.Tenders> findTenderByStatusAndDateBetween(DocumentStates status, Date beginDate, Date endDate, String reference) {
         EntityManager em = Tenders.entityManager();
-		StringBuilder query = new StringBuilder("SELECT o FROM Tenders AS o WHERE  o.id IS NOT NULL ");
-		if(StringUtils.isNotBlank(reference)){
-			query.append(" AND o.reference = :reference");
-		}
-		if(!(status ==null || DocumentStates.TOUS.equals(status))){
-			query.append(" AND o.status = :status");
-		}
-		if(beginDate != null){
-			query.append(" AND o.beginDate >= :beginDate");
-		}
-		if(endDate != null){
-			query.append(" AND o.endDate <= :endDate");
-		}
-		TypedQuery<Tenders> q = em.createQuery(query.append(" ORDER BY o.id ").toString(), Tenders.class);
-		if(StringUtils.isNotBlank(reference))q.setParameter("reference", reference);
-		if(!(status ==null || DocumentStates.TOUS.equals(status)))q.setParameter("status", status);
-		if(beginDate != null)q.setParameter("beginDate", beginDate);
-		if(endDate != null)q.setParameter("endDate", endDate);
+        StringBuilder query = new StringBuilder("SELECT o FROM Tenders AS o WHERE  o.id IS NOT NULL ");
+        if (StringUtils.isNotBlank(reference)) {
+            query.append(" AND o.reference = :reference");
+        }
+        if (!(status == null || DocumentStates.TOUS.equals(status))) {
+            query.append(" AND o.status = :status");
+        }
+        if (beginDate != null) {
+            query.append(" AND o.beginDate >= :beginDate");
+        }
+        if (endDate != null) {
+            query.append(" AND o.endDate <= :endDate");
+        }
+        TypedQuery<Tenders> q = em.createQuery(query.append(" ORDER BY o.id ").toString(), Tenders.class);
+        if (StringUtils.isNotBlank(reference)) q.setParameter("reference", reference);
+        if (!(status == null || DocumentStates.TOUS.equals(status))) q.setParameter("status", status);
+        if (beginDate != null) q.setParameter("beginDate", beginDate);
+        if (endDate != null) q.setParameter("endDate", endDate);
         return q;
     }
 
@@ -127,10 +127,11 @@ public class Tenders extends GpaoBaseEntity{
         q.setParameter("id", id);
         return q;
     }
+
     public static TypedQuery<cm.adorsys.gpao.model.Tenders> findTendersByReferenceEquals(String reference) {
-		EntityManager em = Tenders.entityManager();
-		TypedQuery<Tenders> q = em.createQuery("SELECT o FROM Tenders AS o WHERE  o.reference = :reference ", Tenders.class);
-		q.setParameter("reference", reference);
-		return q;
-	}
+        EntityManager em = Tenders.entityManager();
+        TypedQuery<Tenders> q = em.createQuery("SELECT o FROM Tenders AS o WHERE  o.reference = :reference ", Tenders.class);
+        q.setParameter("reference", reference);
+        return q;
+    }
 }

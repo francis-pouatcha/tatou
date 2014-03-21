@@ -1,22 +1,21 @@
 package cm.adorsys.gpao.model;
 import java.math.BigDecimal;
 import java.util.Collection;
-
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
-
 import cm.adorsys.gpao.model.uimodels.OrderItemUimodel;
 import cm.adorsys.gpao.utils.CurrencyUtils;
 import flexjson.JSONSerializer;
+import org.springframework.roo.addon.json.RooJson;
 
 @RooJavaBean
 @RooToString
 @RooJpaActiveRecord(finders = { "findCustomerOrderItemsByCustomerOrder", "findCustomerOrderItemsByProduct", "findCustomerOrderItemsByReferenceEquals", "findCustomerOrderItemsByCustomerOrderAndProduct" })
+@RooJson
 public class CustomerOrderItem extends GpaoBaseEntity {
 
     /**
@@ -74,11 +73,11 @@ public class CustomerOrderItem extends GpaoBaseEntity {
     public static String toJsonArray(Collection<CustomerOrderItem> collection) {
         return new JSONSerializer().exclude("*.class").serialize(collection);
     }
+
     public void reset(OrderItemUimodel itemUimodel) {
-			product = Product.findProduct(itemUimodel.getProduct().getId());
-			udm = itemUimodel.getUdm();
-			quantity = itemUimodel.getQuantity();
-			amountHt = itemUimodel.getUnitPrice().multiply(BigDecimal.valueOf(quantity.longValue()));
-			//subTotal = CurrencyUtils.convertAmount(product.getDefaultCurrency(), getPurchaseOrder().getCurrency(), subTotal);
-	}
+        product = Product.findProduct(itemUimodel.getProduct().getId());
+        udm = itemUimodel.getUdm();
+        quantity = itemUimodel.getQuantity();
+        amountHt = itemUimodel.getUnitPrice().multiply(BigDecimal.valueOf(quantity.longValue()));
+    }
 }

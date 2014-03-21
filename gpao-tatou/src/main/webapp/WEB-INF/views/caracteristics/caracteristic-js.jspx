@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<span xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields"
+	xmlns:spring="http://www.springframework.org/tags"
+	xmlns:form="urn:jsptagdir:/WEB-INF/tags/form"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:security="http://www.springframework.org/security/tags"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions" version="2.0"
+	style="margin: 10px;"> <jsp:directive.page
+		contentType="text/html;charset=UTF-8" /> <jsp:output
+		omit-xml-declaration="yes" /> <!-- liste of link to use on this page  -->
+	<spring:url value="/caracteristics/findSpecificityByNameLike/"
+		var="search_url" /> <spring:url
+		value="/caracteristics/getSelectedSpecificity/" var="selected_url" />
+	<spring:url
+		value="/caracteristics/${caracteristic.id }/addSelectedSpecificity?"
+		var="add_specificityurl_url" />
+	<div id="dialog_simple" title="Rehercher des Specificites">
+		annulerBtn
+		<div style="margin-bottom: 10px;">
+			<table>
+				<thead>
+					<tr>
+						<th style="text-align: center;">designation</th>
+						<th style="text-align: center;">actif</th>
+						<th style="text-align: center;">descriptoin</th>
+						<th style="text-align: center;">action</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<form id="orderitem">
+						<tr>
+							<td style="text-align: center; padding: 0px;"><input
+								style="width: 94%;" type="text" readonly="readonly"
+								id="designation" name="designation" placeholder="designation" />
+								<input type="hidden" id="specificityId" name="id" /></td>
+							<td style="text-align: center;"><input style="width: 94%;"
+								type="text" id="active" name="active" /></td>
+							<td style="text-align: center;"><input style="width: 94%;"
+								type="text" id="description" name="description"
+								placeholder="description" /></td>
+							<td>
+								<button id="save" type="submit" class="btn-success">Enregistrer</button>
+							</td>
+						</tr>
+					</form>
+
+				</tbody>
+			</table>
+
+		</div>
+		<div>
+
+			<span style="color: maroon;"> Zone de recherche</span>
+			<div style="height: 300px; overflow-y: auto;">
+				<div id="searchzone" class="input-append">
+					<form id="test">
+						<center>
+							<input autofocus="true"
+								style="font-size: 22px; font-weight: bold; color: blue; width: 80%; height: 30px;"
+								id="searchText" type="text" />
+						</center>
+					</form>
+				</div>
+				<table id="products">
+					<thead>
+						<tr>
+							<th style="text-align: center;">designation</th>
+							<th style="text-align: center;">actif</th>
+							<th style="text-align: center;">description</th>
+							<th style="text-align: center;">action</th>
+						</tr>
+					</thead>
+					<tbody>
+
+
+					</tbody>
+				</table>
+			</div>
+
+		</div>
+	</div> <SCRIPT type="text/javascript">
+	// Dialog Simple
+		$('#dialog_simple').dialog({
+			autoOpen: false,
+			width: 800,
+			modal:true,
+			buttons: {
+			"FERMER": function () {
+			$(this).dialog("close");
+				window.location.reload();//reload the page, to refresh the specificity list.
+			}
+			}
+		});
+			
+		$('#addBtn').click(function() {
+			$('#dialog_simple').dialog('open');
+			return false;
+		});
+		$('form#test').submit(function(e) {
+			e.preventDefault();
+			searchProduct();
+		});
+		function searchProduct(){
+			var url = '${search_url}'+$('#searchText').val();
+			console.log(url);
+			var table = 'products' ;
+			cleartable(table);
+			$.getJSON( url,
+	                function(data){
+						$(data).each(function(){
+							$('#products tbody').append(
+							 '<tr id="'+this.id+'">
+								  <td>'+this.designation+'</td>
+								  <td>'+this.active+'</td>
+								  <td>'+this.description+'</td>
+								  </tr>'
+				);	
+							
+						});
+						addRowClickListener	('products');
+
+				});
+		}
+
+		function addRowClickListener(tableid) {
+			var table = '#' + tableid + ' tr' ;
+			$(table).each(function() {
+				this.onclick = function(event) {
+					getSelected(this.id);
+				};
+			});
+
+		};
+		function getSelected(id){
+			var url = '${selected_url}'+id;
+			$.getJSON( url,
+	                function(data){
+							$('#designation').val(data.designation) ;
+							$('#specificityId').val(data.id) ;
+							$('#active').val(data.active);
+							$('#description').text(data.description) ;
+						});
+					};
+		function cleartable(tableid){
+			var table = '#' + tableid +' tbody';
+			$(table).empty();
+		};
+
+		$('form#orderitem').submit(function() {
+			addOrderItem();
+			return false ;
+		});
+
+		function addOrderItem(){
+			var url = '${add_specificityurl_url}'+$('#orderitem').serialize() ;
+			$.getJSON( url,
+	                function(data){
+						if(data){ //this call, doesn't actually return a json, but eithen OK, or ALREADY_EXIST
+							console.log(data);
+							/*$("#orderIdems tbody").empty();
+							$(data).each(function(){
+								$('#orderIdems tbody').append(
+								 '<tr id="'+this.id+'">
+									  <td>'+this.designation+'</td>
+									  <td style="text-align: center;">'+this.active+'</td>
+									  <td style="text-align: center;">'+this.description+'</td>
+									  <td  style="text-align: center;" ><input type="checkbox" /></td>
+									  </tr>'
+							);
+								
+							});*/
+						}
+						alert('enregistrer avec success !');
+					});
+				};
+	</SCRIPT>
+</span>
+
+

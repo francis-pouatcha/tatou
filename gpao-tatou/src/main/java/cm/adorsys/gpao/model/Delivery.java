@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.EntityManager;
 import javax.persistence.EnumType;
@@ -16,18 +15,18 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.TypedQuery;
 import javax.validation.constraints.NotNull;
-
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
-
 import cm.adorsys.gpao.security.SecurityUtil;
 import cm.adorsys.gpao.utils.GpaoSequenceGenerator;
 import cm.adorsys.gpao.utils.TaxeUtils;
+import org.springframework.roo.addon.json.RooJson;
 
 @RooJavaBean
 @RooJpaActiveRecord(inheritanceType = "TABLE_PER_CLASS")
+@RooJson
 public class Delivery extends GpaoBaseEntity {
 
     private String reference;
@@ -174,7 +173,7 @@ public class Delivery extends GpaoBaseEntity {
     }
 
     public static TypedQuery<cm.adorsys.gpao.model.Delivery> findDeliverysByIdLowerThan(Long id) {
-        EntityManager em = Delivery.entityManager	();
+        EntityManager em = Delivery.entityManager();
         TypedQuery<Delivery> q = em.createQuery("SELECT o FROM Delivery AS o WHERE  o.id < :id ORDER BY o.id DESC ", Delivery.class);
         q.setParameter("id", id);
         return q;
@@ -188,19 +187,19 @@ public class Delivery extends GpaoBaseEntity {
     }
 
     public void computeTaxeAmountAndTaxedAmount() {
-    	Iterator<Taxe> salesTaxeIterator = taxes.iterator();
-		BigDecimal taxesAmount = BigDecimal.ZERO;
-		while (salesTaxeIterator.hasNext()) {
-			Taxe taxe = (Taxe) salesTaxeIterator.next();
-			TaxeType taxeType = taxe.getTaxeType();
-			if(taxeType.equals(TaxeType.PAR_POURCENTAGE)) {
-				taxesAmount= taxesAmount.add(TaxeUtils.computeTaxeByPercentage(this.unTaxeAmount, taxe.getTaxeValue()));
-			}else{//it is a #TaxeType.PAR_VALEUR
-				taxesAmount = taxesAmount.add(TaxeUtils.computeTaxeByValue(this.unTaxeAmount, taxe.getTaxeValue()));
-			}
-		}
-		this.taxAmount= taxesAmount;
-		this.taxedAmount = this.unTaxeAmount.add(this.taxAmount);
+        Iterator<Taxe> salesTaxeIterator = taxes.iterator();
+        BigDecimal taxesAmount = BigDecimal.ZERO;
+        while (salesTaxeIterator.hasNext()) {
+            Taxe taxe = (Taxe) salesTaxeIterator.next();
+            TaxeType taxeType = taxe.getTaxeType();
+            if (taxeType.equals(TaxeType.PAR_POURCENTAGE)) {
+                taxesAmount = taxesAmount.add(TaxeUtils.computeTaxeByPercentage(this.unTaxeAmount, taxe.getTaxeValue()));
+            } else {
+                //it is a #TaxeType.PAR_VALEUR
+                taxesAmount = taxesAmount.add(TaxeUtils.computeTaxeByValue(this.unTaxeAmount, taxe.getTaxeValue()));
+            }
+        }
+        this.taxAmount = taxesAmount;
+        this.taxedAmount = this.unTaxeAmount.add(this.taxAmount);
     }
-
 }

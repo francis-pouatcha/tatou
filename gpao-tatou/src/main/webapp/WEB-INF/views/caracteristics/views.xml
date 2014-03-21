@@ -13,4 +13,7 @@
 <definition extends="default" name="caracteristics/update">
         <put-attribute name="body" value="/WEB-INF/views/caracteristics/update.jspx"/>
     </definition>
+<definition extends="stock" name="caracteristics/manage">
+        <put-attribute name="body" value="/WEB-INF/views/caracteristics/caracteristicView.jspx"/>
+    </definition>
 </tiles-definitions>

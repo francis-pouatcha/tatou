@@ -3,15 +3,16 @@ import javax.persistence.Column;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.validation.constraints.NotNull;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
+import org.springframework.roo.addon.json.RooJson;
 
 @RooJavaBean
 @RooToString
 @RooJpaActiveRecord(inheritanceType = "TABLE_PER_CLASS", finders = { "findSpecificitysByDesignationEquals", "findSpecificitysByDesignationLike", "findSpecificitysByDesignationLikeAndActiveNot" })
+@RooJson
 public class Specificity extends GpaoBaseEntity {
 
     /**
@@ -30,7 +31,7 @@ public class Specificity extends GpaoBaseEntity {
     private Boolean active;
 
     public static TypedQuery<Specificity> findSpecificitysByDesignationLikeAndActiveNot(String designation, Boolean active, String sortFieldName, String sortOrder) {
-        if (designation == null || designation.length() == 0) designation="*";
+        if (designation == null || designation.length() == 0) designation = "*";
         designation = designation.replace('*', '%');
         if (designation.charAt(0) != '%') {
             designation = "%" + designation;
@@ -53,7 +54,6 @@ public class Specificity extends GpaoBaseEntity {
         return q;
     }
 
-    
     public static TypedQuery<Specificity> findSpecificitysByDesignationLike(String designation) {
         if (designation == null || designation.length() == 0) designation = "*";
         designation = designation.replace('*', '%');
@@ -70,7 +70,7 @@ public class Specificity extends GpaoBaseEntity {
     }
 
     public static TypedQuery<Specificity> findSpecificitysByDesignationLikeAndActiveNot(String designation, Boolean active) {
-        if (designation == null || designation.length() == 0) designation="*";
+        if (designation == null || designation.length() == 0) designation = "*";
         designation = designation.replace('*', '%');
         if (designation.charAt(0) != '%') {
             designation = "%" + designation;

@@ -6,6 +6,5 @@
         <field:checkbox field="archived" id="c_cm_adorsys_gpao_model_Caracteristic_archived" z="+rUZKQl3jzxWWtl526axD94ZH4U="/>
         <field:input field="productSize" id="c_cm_adorsys_gpao_model_Caracteristic_productSize" required="true" z="TBLnnCiSzwZ2XUjK1eUipIkoOik="/>
         <field:input field="color" id="c_cm_adorsys_gpao_model_Caracteristic_color" required="true" z="90CIA6FENvFO1ypo6zt0zMBOnFU="/>
-        <field:simple field="specificities" id="c_cm_adorsys_gpao_model_Caracteristic_specificities" messageCode="entity_reference_not_managed" messageCodeAttribute="Specificity" z="JXVzf3CpuGrVwGt0H8cv1eufuyU="/>
     </form:update>
 </div>

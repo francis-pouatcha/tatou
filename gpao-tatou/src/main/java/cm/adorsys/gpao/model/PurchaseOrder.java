@@ -3,7 +3,6 @@ import cm.adorsys.gpao.security.SecurityUtil;
 import cm.adorsys.gpao.services.impl.TatouPurchaseService;
 import cm.adorsys.gpao.utils.GpaoSequenceGenerator;
 import cm.adorsys.gpao.utils.TaxeUtils;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,7 +10,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EntityManager;
@@ -27,15 +25,14 @@ import javax.persistence.TemporalType;
 import javax.persistence.TypedQuery;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
-
 import javax.persistence.ManyToMany;
+import org.springframework.roo.addon.json.RooJson;
 
 /**
  * @author clovisgakam
@@ -44,6 +41,7 @@ import javax.persistence.ManyToMany;
 @RooJavaBean
 @RooToString
 @RooJpaActiveRecord(inheritanceType = "TABLE_PER_CLASS")
+@RooJson
 public class PurchaseOrder extends GpaoBaseEntity {
 
     @NotNull
@@ -106,12 +104,6 @@ public class PurchaseOrder extends GpaoBaseEntity {
     @ManyToOne
     private Tenders tender;
 
-
-    /**
-     */
-    @ManyToMany()
-    private Set<Taxe> saleTaxes = new HashSet<Taxe>();
-
     public void initAmount() {
         amountHt = BigDecimal.ZERO;
         taxeAmount = BigDecimal.ZERO;
@@ -139,8 +131,6 @@ public class PurchaseOrder extends GpaoBaseEntity {
 
     public void increaseAmountFromOrderItem(OrderItems orderItem) {
         amountHt = amountHt.add(orderItem.getSubTotal());
-//        taxeAmount = taxeAmount.add(orderItem.getTaxeAmount());
-//        totalAmount = totalAmount.add(orderItem.getTaxedSubTotal());
     }
 
     public OrderItems hasProduct(Product product) {
@@ -218,24 +208,28 @@ public class PurchaseOrder extends GpaoBaseEntity {
         return q;
     }
 
-	/**
-	 * <p>Compute the taxes amount based on the {@link #amountHt PurchaseOrder#amountHt} and update the {@link #totalAmount PurchaseOrder#amountHt} values. </p>
-	 * 
-	 * @see TatouPurchaseService#calculatePurchaseTaxAndAmount(PurchaseOrder)
-	 */
-	public void applyTaxesRateAndComputeTotalAmout() {
-		Iterator<Taxe> salesTaxeIterator = saleTaxes.iterator();
-		BigDecimal taxesAmount = BigDecimal.ZERO;
-		while (salesTaxeIterator.hasNext()) {
-			Taxe taxe = (Taxe) salesTaxeIterator.next();
-			TaxeType taxeType = taxe.getTaxeType();
-			if(taxeType.equals(TaxeType.PAR_POURCENTAGE)) {
-				taxesAmount= taxesAmount.add(TaxeUtils.computeTaxeByPercentage(amountHt, taxe.getTaxeValue()));
-			}else{//it is a #TaxeType.PAR_VALEUR
-				taxesAmount = taxesAmount.add(TaxeUtils.computeTaxeByValue(amountHt, taxe.getTaxeValue()));
-			}
-		}
-		this.taxeAmount = taxesAmount;
-		this.totalAmount = this.amountHt.add(taxeAmount);
-	}
+    /**
+     * <p>Compute the taxes amount based on the {@link #amountHt PurchaseOrder#amountHt} and update the {@link #totalAmount PurchaseOrder#amountHt} values. </p>
+     *
+     * @see TatouPurchaseService#calculatePurchaseTaxAndAmount(PurchaseOrder)
+     */
+    public void applyTaxesRateAndComputeTotalAmout() {
+        Iterator<Taxe> salesTaxeIterator = saleTaxes.iterator();
+        BigDecimal taxesAmount = BigDecimal.ZERO;
+        while (salesTaxeIterator.hasNext()) {
+            Taxe taxe = (Taxe) salesTaxeIterator.next();
+            TaxeType taxeType = taxe.getTaxeType();
+            if (taxeType.equals(TaxeType.PAR_POURCENTAGE)) {
+                taxesAmount = taxesAmount.add(TaxeUtils.computeTaxeByPercentage(amountHt, taxe.getTaxeValue()));
+            } else {
+                //it is a #TaxeType.PAR_VALEUR
+                taxesAmount = taxesAmount.add(TaxeUtils.computeTaxeByValue(amountHt, taxe.getTaxeValue()));
+            }
+        }
+        this.taxeAmount = taxesAmount;
+        this.totalAmount = this.amountHt.add(taxeAmount);
+    }
+
+    @ManyToMany
+    private Set<Taxe> saleTaxes = new HashSet<Taxe>();
 }

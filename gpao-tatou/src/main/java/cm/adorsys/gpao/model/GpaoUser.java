@@ -1,11 +1,9 @@
 package cm.adorsys.gpao.model;
-
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EntityManager;
@@ -19,7 +17,6 @@ import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.persistence.TypedQuery;
 import javax.validation.constraints.NotNull;
-
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.beans.factory.annotation.Value;
@@ -29,191 +26,193 @@ import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.web.multipart.MultipartFile;
-
 import cm.adorsys.gpao.security.SecurityUtil;
+import org.springframework.roo.addon.json.RooJson;
 
 @RooJavaBean
 @RooToString
 @RooJpaActiveRecord(inheritanceType = "TABLE_PER_CLASS")
-public class GpaoUser extends GpaoBaseEntity implements Serializable{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+@RooJson
+public class GpaoUser extends GpaoBaseEntity implements Serializable {
 
-	private String userNumber;
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-	@Enumerated
-	private Gender gender;
+    private String userNumber;
 
-	@NotNull
-	@Column(unique = true)
-	private String userName;
+    @Enumerated
+    private Gender gender;
 
-	@NotNull
-	private String firstName;
+    @NotNull
+    @Column(unique = true)
+    private String userName;
 
-	@NotNull
-	private String lastName;
+    @NotNull
+    private String firstName;
 
-	private String fullName;
+    @NotNull
+    private String lastName;
 
-	private String password;
+    private String fullName;
 
-	@ManyToMany(cascade = CascadeType.ALL)
-	private Set<GpaoUserGroup> gpaoUserGroups = new HashSet<GpaoUserGroup>();
+    private String password;
 
-	private String phoneNumber;
+    @ManyToMany(cascade = CascadeType.ALL)
+    private Set<GpaoUserGroup> gpaoUserGroups = new HashSet<GpaoUserGroup>();
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern = "dd-MM-yyyy HH:mm")
-	private Date accountExpiration = DateUtils.addYears(new Date(), 50);
+    private String phoneNumber;
 
-	@Value("false")
-	private boolean disableLogin;
+    @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm")
+    private Date accountExpiration = DateUtils.addYears(new Date(), 50);
 
-	@Value("false")
-	private boolean accountLocked;
+    @Value("false")
+    private boolean disableLogin;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern = "dd-MM-yyyy HH:mm")
-	private Date credentialExpiration =  DateUtils.addYears(new Date(), 50);
+    @Value("false")
+    private boolean accountLocked;
 
-	@Transient
-	public Set<RoleNames> roleNames = new HashSet<RoleNames>();
+    @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm")
+    private Date credentialExpiration = DateUtils.addYears(new Date(), 50);
 
-	@Transient
-	private MultipartFile userImage;
+    @Transient
+    public Set<RoleNames> roleNames = new HashSet<RoleNames>();
 
-	private String userImagePath;
+    @Transient
+    private MultipartFile userImage;
 
-	public GpaoUser() {
-		// TODO Auto-generated constructor stub
-	}
+    private String userImagePath;
 
-	public GpaoUser(String userName, String firstName, String lastName) {
-		this.userName = userName;
-		this.firstName = firstName;
-		this.lastName = lastName;
-	}
-	public static void init(){
-		if(GpaoUser.countGpaoUsers()<= 0){
-			GpaoUser gpaoUser = new GpaoUser("tatou","gpao-admin","tatou");
-			gpaoUser.setCompany(Company.findCompany(new Long(1)));
-			gpaoUser.getGpaoUserGroups().add(GpaoUserGroup.findGpaoUserGroup(new Long(1)));
-			gpaoUser.changePassword("test123");
-			gpaoUser.merge();
-		}
-	}
+    public GpaoUser() {
+    }
 
-	@PrePersist
-	public void prePersist(){
-		changePassword("test123");
-	}
+    public GpaoUser(String userName, String firstName, String lastName) {
+        this.userName = userName;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 
-	@PostLoad
-	public void postLoad(){
-		roleNames = SecurityUtil.getRoleFromGpoaUserGroups(getGpaoUserGroups());
-	}
-	public void makeFullName() {
-		fullName = getDisplayName();
-	}
+    public static void init() {
+        if (GpaoUser.countGpaoUsers() <= 0) {
+            GpaoUser gpaoUser = new GpaoUser("tatou", "gpao-admin", "tatou");
+            gpaoUser.setCompany(Company.findCompany(new Long(1)));
+            gpaoUser.getGpaoUserGroups().add(GpaoUserGroup.findGpaoUserGroup(new Long(1)));
+            gpaoUser.changePassword("test123");
+            gpaoUser.merge();
+        }
+    }
 
-	public boolean hasAnyRole(Collection<RoleNames> roleNames) {
-		Set<RoleNames> orig = getRoleNames();
-		for (RoleNames roleName : roleNames) {
-			if (orig.contains(roleName)) {
-				return true;
-			}
-		}
-		return false;
-	}
+    @PrePersist
+    public void prePersist() {
+        changePassword("test123");
+    }
 
-	public boolean hasRole(RoleNames roleName) {
-		Set<RoleNames> orig = getRoleNames();
-		if (orig.contains(roleName)) {
-			return true;
-		}
+    @PostLoad
+    public void postLoad() {
+        roleNames = SecurityUtil.getRoleFromGpoaUserGroups(getGpaoUserGroups());
+    }
 
-		return false;
-	}
-	@Override
-	public String toString() {
-		return getDisplayName();
-	}
+    public void makeFullName() {
+        fullName = getDisplayName();
+    }
 
-	public String getDisplayName() {
-		return gender.getSalutation() + " " + getFirstName() + " " + getLastName();
-	}
+    public boolean hasAnyRole(Collection<RoleNames> roleNames) {
+        Set<RoleNames> orig = getRoleNames();
+        for (RoleNames roleName : roleNames) {
+            if (orig.contains(roleName)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-	public void changePassword(String newPassword) {
-		this.password = encodePassword(newPassword);
-	}
+    public boolean hasRole(RoleNames roleName) {
+        Set<RoleNames> orig = getRoleNames();
+        if (orig.contains(roleName)) {
+            return true;
+        }
+        return false;
+    }
 
-	public static final String PASSWORD_SALT = "ace6b4f53";
+    @Override
+    public String toString() {
+        return getDisplayName();
+    }
 
-	private String adresse;
+    public String getDisplayName() {
+        return gender.getSalutation() + " " + getFirstName() + " " + getLastName();
+    }
 
-	private String email;
+    public void changePassword(String newPassword) {
+        this.password = encodePassword(newPassword);
+    }
 
-	@ManyToOne
-	private Company company;
+    public static final String PASSWORD_SALT = "ace6b4f53";
 
-	private String encodePassword(String input) {
-		Md5PasswordEncoder md5PasswordEncoder = new Md5PasswordEncoder();
-		md5PasswordEncoder.setEncodeHashAsBase64(false);
-		return md5PasswordEncoder.encodePassword(input, PASSWORD_SALT);
-	}
+    private String adresse;
 
-	public boolean checkExistingPasword(String input) {
-		return StringUtils.equals(encodePassword(input), password);
-	}
+    private String email;
 
-	public Set<GpaoUserGroup> getGpaoUserGroups() {
-		return gpaoUserGroups;
-	}
+    @ManyToOne
+    private Company company;
 
-	public void setGpaoUserGroups(Set<GpaoUserGroup> gpaoUserGroups) {
-		this.gpaoUserGroups = gpaoUserGroups;
-	}
+    private String encodePassword(String input) {
+        Md5PasswordEncoder md5PasswordEncoder = new Md5PasswordEncoder();
+        md5PasswordEncoder.setEncodeHashAsBase64(false);
+        return md5PasswordEncoder.encodePassword(input, PASSWORD_SALT);
+    }
 
-	public static TypedQuery<GpaoUser> findGpaoUsersByIdUpperThan(Long id) {
-		EntityManager em = GpaoUser.entityManager();
-		TypedQuery<GpaoUser> q = em.createQuery("SELECT o FROM GpaoUser AS o WHERE  o.id > :id ORDER BY o.id ", GpaoUser.class);
-		q.setParameter("id", id);
-		return q;
-	}
+    public boolean checkExistingPasword(String input) {
+        return StringUtils.equals(encodePassword(input), password);
+    }
 
-	public static TypedQuery<GpaoUser> findGpaoUsersByIdLowerThan(Long id) {
-		EntityManager em = GpaoUser.entityManager();
-		TypedQuery<GpaoUser> q = em.createQuery("SELECT o FROM GpaoUser AS o WHERE  o.id < :id ORDER BY o.id DESC ", GpaoUser.class);
-		q.setParameter("id", id);
-		return q;
-	}
+    public Set<GpaoUserGroup> getGpaoUserGroups() {
+        return gpaoUserGroups;
+    }
 
-	// finders
+    public void setGpaoUserGroups(Set<GpaoUserGroup> gpaoUserGroups) {
+        this.gpaoUserGroups = gpaoUserGroups;
+    }
 
-	public static TypedQuery<GpaoUser> findGpaoUsersByUserNameEquals(String userName) {
-		if (userName == null || userName.length() == 0) throw new IllegalArgumentException("The userName argument is required");
-		EntityManager em = GpaoUser.entityManager();
-		TypedQuery<GpaoUser> q = null;
-		q = em.createQuery("SELECT o FROM GpaoUser AS o WHERE o.userName = :userName ", GpaoUser.class);
-		q.setParameter("userName", userName);
-		return q;
-	}
+    public static TypedQuery<GpaoUser> findGpaoUsersByIdUpperThan(Long id) {
+        EntityManager em = GpaoUser.entityManager();
+        TypedQuery<GpaoUser> q = em.createQuery("SELECT o FROM GpaoUser AS o WHERE  o.id > :id ORDER BY o.id ", GpaoUser.class);
+        q.setParameter("id", id);
+        return q;
+    }
 
-	public static TypedQuery<GpaoUser> findGpaoUsersByUserNameLike(String userName) {
-		if (userName == null || userName.length() == 0) throw new IllegalArgumentException("The userName argument is required");
-		userName = userName.replace('*', '%');
-		if (userName.charAt(0) != '%') {
-			userName = "%" + userName;
-		}
-		if (userName.charAt(userName.length() - 1) != '%') {
-			userName = userName + "%";
-		}
-		EntityManager em = GpaoUser.entityManager();
-		TypedQuery<GpaoUser> q = em.createQuery("SELECT o FROM GpaoUser AS o WHERE LOWER(o.userName) LIKE LOWER(:userName)  ORDER BY  o.userName ASC", GpaoUser.class);
-		q.setParameter("userName", userName);
-		return q;
-	}
+    public static TypedQuery<GpaoUser> findGpaoUsersByIdLowerThan(Long id) {
+        EntityManager em = GpaoUser.entityManager();
+        TypedQuery<GpaoUser> q = em.createQuery("SELECT o FROM GpaoUser AS o WHERE  o.id < :id ORDER BY o.id DESC ", GpaoUser.class);
+        q.setParameter("id", id);
+        return q;
+    }
+
+    // finders
+    public static TypedQuery<GpaoUser> findGpaoUsersByUserNameEquals(String userName) {
+        if (userName == null || userName.length() == 0) throw new IllegalArgumentException("The userName argument is required");
+        EntityManager em = GpaoUser.entityManager();
+        TypedQuery<GpaoUser> q = null;
+        q = em.createQuery("SELECT o FROM GpaoUser AS o WHERE o.userName = :userName ", GpaoUser.class);
+        q.setParameter("userName", userName);
+        return q;
+    }
+
+    public static TypedQuery<GpaoUser> findGpaoUsersByUserNameLike(String userName) {
+        if (userName == null || userName.length() == 0) throw new IllegalArgumentException("The userName argument is required");
+        userName = userName.replace('*', '%');
+        if (userName.charAt(0) != '%') {
+            userName = "%" + userName;
+        }
+        if (userName.charAt(userName.length() - 1) != '%') {
+            userName = userName + "%";
+        }
+        EntityManager em = GpaoUser.entityManager();
+        TypedQuery<GpaoUser> q = em.createQuery("SELECT o FROM GpaoUser AS o WHERE LOWER(o.userName) LIKE LOWER(:userName)  ORDER BY  o.userName ASC", GpaoUser.class);
+        q.setParameter("userName", userName);
+        return q;
+    }
 }

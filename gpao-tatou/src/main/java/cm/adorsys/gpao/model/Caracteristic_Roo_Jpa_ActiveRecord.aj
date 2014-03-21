@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 privileged aspect Caracteristic_Roo_Jpa_ActiveRecord {
     
-    public static final List<String> Caracteristic.fieldNames4OrderClauseFilter = java.util.Arrays.asList("productSize", "color", "specificities");
+    public static final List<String> Caracteristic.fieldNames4OrderClauseFilter = java.util.Arrays.asList("productSize", "color");
     
     public static long Caracteristic.countCaracteristics() {
         return entityManager().createQuery("SELECT COUNT(o) FROM Caracteristic o", Long.class).getSingleResult();

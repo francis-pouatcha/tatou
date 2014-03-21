@@ -1,10 +1,8 @@
 package cm.adorsys.gpao.model;
-
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EnumType;
@@ -14,18 +12,18 @@ import javax.persistence.OneToMany;
 import javax.persistence.PostPersist;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
-
 import cm.adorsys.gpao.security.SecurityUtil;
 import cm.adorsys.gpao.utils.GpaoSequenceGenerator;
+import org.springframework.roo.addon.json.RooJson;
 
 @RooJavaBean
 @RooJpaActiveRecord(inheritanceType = "TABLE_PER_CLASS")
-public class Inventory extends GpaoBaseEntity{
+@RooJson
+public class Inventory extends GpaoBaseEntity {
 
     private String reference;
 
@@ -70,7 +68,6 @@ public class Inventory extends GpaoBaseEntity{
             gapAmount = gapAmount.add(items.getGapAmount());
         }
     }
-    
 
     @PostPersist
     public void postPersist() {

@@ -6,10 +6,12 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import javax.validation.constraints.DecimalMin;
+import org.springframework.roo.addon.json.RooJson;
 
 @RooJavaBean
 @RooToString
 @RooJpaActiveRecord(inheritanceType = "TABLE_PER_CLASS")
+@RooJson
 public class ProductIntrant extends GpaoBaseEntity {
 
     /**

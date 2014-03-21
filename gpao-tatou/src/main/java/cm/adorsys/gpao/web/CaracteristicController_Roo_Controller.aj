@@ -4,7 +4,6 @@
 package cm.adorsys.gpao.web;
 
 import cm.adorsys.gpao.model.Caracteristic;
-import cm.adorsys.gpao.model.Specificity;
 import cm.adorsys.gpao.web.CaracteristicController;
 import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpServletRequest;
@@ -87,7 +86,6 @@ privileged aspect CaracteristicController_Roo_Controller {
     
     void CaracteristicController.populateEditForm(Model uiModel, Caracteristic caracteristic) {
         uiModel.addAttribute("caracteristic", caracteristic);
-        uiModel.addAttribute("specificitys", Specificity.findAllSpecificitys());
     }
     
     String CaracteristicController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

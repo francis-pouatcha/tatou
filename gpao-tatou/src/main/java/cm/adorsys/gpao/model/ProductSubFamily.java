@@ -1,5 +1,4 @@
 package cm.adorsys.gpao.model;
-
 import javax.persistence.EntityManager;
 import javax.persistence.ManyToOne;
 import javax.persistence.TypedQuery;
@@ -8,53 +7,53 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
+import org.springframework.roo.addon.json.RooJson;
 
 @RooJavaBean
 @RooToString
 @RooJpaActiveRecord(inheritanceType = "TABLE_PER_CLASS")
-public class ProductSubFamily extends GpaoBaseEntity{
+@RooJson
+public class ProductSubFamily extends GpaoBaseEntity {
 
-	@NotNull
-	private String name;
+    @NotNull
+    private String name;
 
-	private String description;
+    private String description;
 
-	@Value("true")
-	private Boolean isActive;
+    @Value("true")
+    private Boolean isActive;
 
-	@NotNull
-	@ManyToOne
-	private ProductFamily productFamily;
-	
-	public ProductSubFamily() {
-		name = " ";
-	}
+    @NotNull
+    @ManyToOne
+    private ProductFamily productFamily;
 
-	public static void init(){
-		if(ProductSubFamily.countProductSubFamilys() <= 0){
-			ProductFamily.init();
-			ProductSubFamily productSubFamily = new ProductSubFamily();
-			productSubFamily.setName("CHAUSSURES DE SECURITEE") ;
-			productSubFamily.setProductFamily(ProductFamily.findAllProductFamilys().iterator().next());
-			productSubFamily.persist();
-		}
-	} 
-	
-	public String toString(){
-		return name;
-		
-	}
+    public ProductSubFamily() {
+        name = " ";
+    }
 
-	//finders
+    public static void init() {
+        if (ProductSubFamily.countProductSubFamilys() <= 0) {
+            ProductFamily.init();
+            ProductSubFamily productSubFamily = new ProductSubFamily();
+            productSubFamily.setName("CHAUSSURES DE SECURITEE");
+            productSubFamily.setProductFamily(ProductFamily.findAllProductFamilys().iterator().next());
+            productSubFamily.persist();
+        }
+    }
 
-	public static TypedQuery<ProductSubFamily> findProductSubFamilyByNameLikeProductFamily(String name, ProductFamily  productFamily) {
-		if (name == null || name.length() == 0) name = "%";
-		name = name + "%";
-		if (productFamily == null) throw new IllegalArgumentException("The productFamily argument is required");
-		EntityManager em = ProductSubFamily.entityManager();
-		TypedQuery<ProductSubFamily> q = em.createQuery("SELECT o FROM ProductSubFamily AS o WHERE LOWER(o.name) LIKE LOWER(:name)  AND o.productFamily = :productFamily ORDER BY o.name ", ProductSubFamily.class);
-		q.setParameter("name", name);
-		q.setParameter("productFamily", productFamily);
-		return q;
-	}
+    public String toString() {
+        return name;
+    }
+
+    //finders
+    public static TypedQuery<ProductSubFamily> findProductSubFamilyByNameLikeProductFamily(String name, ProductFamily productFamily) {
+        if (name == null || name.length() == 0) name = "%";
+        name = name + "%";
+        if (productFamily == null) throw new IllegalArgumentException("The productFamily argument is required");
+        EntityManager em = ProductSubFamily.entityManager();
+        TypedQuery<ProductSubFamily> q = em.createQuery("SELECT o FROM ProductSubFamily AS o WHERE LOWER(o.name) LIKE LOWER(:name)  AND o.productFamily = :productFamily ORDER BY o.name ", ProductSubFamily.class);
+        q.setParameter("name", name);
+        q.setParameter("productFamily", productFamily);
+        return q;
+    }
 }
