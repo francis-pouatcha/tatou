@@ -36,14 +36,13 @@
 			<jsp:include page="../gpaoMessages.jspx" />
 			
 			
-			<c:if test="${not empty caracteristic  or  not empty caracteristic.id}">
+			<c:if test="${not empty caracteristic.id}">
 				<button id="addBtn" type="button" class=" btn-success">Ajouter</button>
-			</c:if>
 				<page:list labelPlural="Liste des specificites" id="pl_cm_adorsys_gpao_model_Specificity"
 				items="${specificitys}" showInPanel="false" z="user-managed">
-					<table:table create="false" data="${specificitys}" delete="false"
-						id="l_cm_adorsys_gpao_model_Specificity" path="/specificitys/save"
-						paginationDefaultUrl="/specificitys/manage"
+					<table:table create="false" data="${specificitys}" delete="true"
+						id="l_cm_adorsys_gpao_model_Specificity" path="/caracteristics/${caracteristic.id}/specificitys"
+						paginationDefaultUrl="/caracteristics/${caracteristic.id}/specificitys"
 						update="false" z="user-managed">
 						<table:column render="false" id="c_cm_adorsys_gpao_model_Specificity_archived"
 							property="archived" z="my8O3L4Jn3zhqlue+dZn9svfdSA=" />
@@ -56,6 +55,7 @@
 					</table:table>
 			</page:list>
 			
+			</c:if>
 
 		</DIV>
 

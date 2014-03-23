@@ -28,7 +28,7 @@ import cm.adorsys.gpao.utils.MessageType;
 public class CaracteristicController {
 	
     @RequestMapping(value = "/manage", produces = "text/html")
-    public String mangeSpecificity(@RequestParam(value = "id", required = false) Long id,@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, @RequestParam(value = "sortFieldName", required = false) String sortFieldName, @RequestParam(value = "sortOrder", required = false) String sortOrder ,Model uiModel) {
+    public String mangeCaracteristic(@RequestParam(value = "id", required = false) Long id,@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, @RequestParam(value = "sortFieldName", required = false) String sortFieldName, @RequestParam(value = "sortOrder", required = false) String sortOrder ,Model uiModel) {
     	Caracteristic caracteristic = null;
         if (id != null) caracteristic = Caracteristic.findCaracteristic(id);
         paginatedListQuery(uiModel, caracteristic, null, null,page, size, sortFieldName, sortOrder);
@@ -82,9 +82,34 @@ public class CaracteristicController {
     	}
     	SpecificityToCaracteristicMap specificityToCaracteristicMap = new SpecificityToCaracteristicMap(caracteristic, specificity);
 		specificityToCaracteristicMap.persist();
-//		return Specificity.toJsonArray(SpecificityToCaracteristicMap.findSpecificitysByCaracteristicsEquals(caracteristic).getResultList());
-		return "OK";
+		return Specificity.toJsonArray(SpecificityToCaracteristicMap.findSpecificitysByCaracteristicsEquals(caracteristic).getResultList());
 	}
+
+    @RequestMapping(value = "/{caracteristic}/specificitys", produces = "text/html")
+    public String mangeSpecificity(@PathVariable("caracteristic")Long caracteristicId ,@RequestParam(value = "id", required = false) Long id,@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, @RequestParam(value = "sortFieldName", required = false) String sortFieldName, @RequestParam(value = "sortOrder", required = false) String sortOrder ,Model uiModel) {
+    	Caracteristic caracteristic = Caracteristic.findCaracteristic(caracteristicId);
+        paginatedSpecificityListQuery(uiModel, null, null, page, size, sortFieldName, sortOrder);
+        paginatedListQuery(uiModel, caracteristic, null, null, 1, 10, sortFieldName, sortOrder);
+        return "caracteristics/manage";
+    }
+
+    @RequestMapping(value = "/{caracteristic}/specificitys/{specificityId}", produces = "text/html",method=RequestMethod.DELETE)
+    public String removeSpecificity(@PathVariable("caracteristic")Long caracteristicId ,@PathVariable("specificityId") Long specificityId,@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, @RequestParam(value = "sortFieldName", required = false) String sortFieldName, @RequestParam(value = "sortOrder", required = false) String sortOrder ,Model uiModel) {
+    	Caracteristic caracteristic = Caracteristic.findCaracteristic(caracteristicId);
+    	Specificity specificity = Specificity.findSpecificity(specificityId);
+    	List<SpecificityToCaracteristicMap> maps = SpecificityToCaracteristicMap.findSpecificityToCaracteristicMapsBySpecificityAndCaracteristicEquals(specificity, caracteristic).getResultList();
+    	if(!maps.isEmpty()) {
+    		maps.iterator().next().remove();
+    		uiModel.addAttribute(MessageType.SUCCESS_MESSAGE, "La specificite a ete retiree avec success !");
+    	}
+        paginatedSpecificityListQuery(uiModel, null, null, page, size, sortFieldName, sortOrder);
+        paginatedListQuery(uiModel, caracteristic, null, null, 1, 10, sortFieldName, sortOrder);
+        return "caracteristics/manage";
+    }
+    @RequestMapping(value = "/{caracteristic}/specificitys/{specificityId}", produces = "text/html")
+    public String showSpecificity(@PathVariable("caracteristic")Long caracteristicId ,@PathVariable("specificityId") Long specificityId, Model uiModel, HttpServletRequest httpServletRequest) {
+        return "redirect:/specificitys/save/"+encodeUrlPathSegment(specificityId.toString(), httpServletRequest);
+    }
 	private void paginatedListQuery(Model uiModel, Caracteristic caracteristic, List<Caracteristic> caracteristics , Specificity specificity, Integer page, Integer size, String sortFieldName,String sortOrder) {
         uiModel.addAttribute("specificity", specificity == null ? new Specificity() : specificity);
         uiModel.addAttribute("caracteristic", caracteristic == null ? new Caracteristic() : caracteristic);
@@ -104,6 +129,29 @@ public class CaracteristicController {
             uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
         } else {
             uiModel.addAttribute("caracteristics", Specificity.findAllSpecificitys(sortFieldName, sortOrder));
+        }
+	}
+
+	private void paginatedSpecificityListQuery(Model uiModel, Specificity specificity, List<Specificity> specificities,Integer page, Integer size, String sortFieldName,String sortOrder) {
+		if(specificity == null ) {
+			uiModel.addAttribute("specificity", new Specificity());
+		}else {
+			uiModel.addAttribute("specificity", specificity);
+			List<Caracteristic> caracteristics = SpecificityToCaracteristicMap.findCaracteristicsBySpecificityEquals(specificity).getResultList();
+			uiModel.addAttribute("caracteristics", caracteristics);
+		}
+        if(specificities != null) {
+    		uiModel.addAttribute("specificitys", specificities);
+    		return ;// stop the execution if specificites are not null
+        }
+		if (page != null || size != null) {
+            int sizeNo = size == null ? 10 : size.intValue();
+            final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
+            uiModel.addAttribute("specificitys", Specificity.findSpecificityEntries(firstResult, sizeNo, sortFieldName, sortOrder));
+            float nrOfPages = (float) Specificity.countSpecificitys() / sizeNo;
+            uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
+        } else {
+            uiModel.addAttribute("specificitys", Specificity.findAllSpecificitys(sortFieldName, sortOrder));
         }
 	}
 }

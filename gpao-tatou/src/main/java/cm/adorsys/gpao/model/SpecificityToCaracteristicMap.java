@@ -3,6 +3,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.ManyToOne;
 import javax.persistence.TypedQuery;
 import javax.validation.constraints.NotNull;
+
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
@@ -42,6 +43,15 @@ public class SpecificityToCaracteristicMap extends GpaoBaseEntity {
         String jpaQuery = "SELECT o.specificity FROM SpecificityToCaracteristicMap AS o WHERE o.caracteristic = :caracteristic";
         TypedQuery<Specificity> q = em.createQuery(jpaQuery, Specificity.class);
         q.setParameter("caracteristic", caracteristic);
+        return q;
+    }
+
+	public static TypedQuery<Caracteristic> findCaracteristicsBySpecificityEquals(Specificity specificity) {
+        if (specificity == null) throw new IllegalArgumentException("Invalid caracteristic value");
+        EntityManager em = SpecificityToCaracteristicMap.entityManager();
+        String jpaQuery = "SELECT o.caracteristic FROM SpecificityToCaracteristicMap AS o WHERE o.specificity = :specificity";
+        TypedQuery<Caracteristic> q = em.createQuery(jpaQuery, Caracteristic.class);
+        q.setParameter("specificity", specificity);
         return q;
     }
 }

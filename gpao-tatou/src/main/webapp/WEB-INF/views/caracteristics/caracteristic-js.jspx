@@ -15,6 +15,9 @@
 	<spring:url
 		value="/caracteristics/${caracteristic.id }/addSelectedSpecificity?"
 		var="add_specificityurl_url" />
+		<c:if test="${not empty caracteristic.id }">
+			<spring:url value="/caracteristics/save/${caracteristic.id}" var="current_entity_url" />
+		</c:if>
 	<div id="dialog_simple" title="Rehercher des Specificites">
 		annulerBtn
 		<div style="margin-bottom: 10px;">
@@ -88,8 +91,8 @@
 			modal:true,
 			buttons: {
 			"FERMER": function () {
-			$(this).dialog("close");
-				window.location.reload();//reload the page, to refresh the specificity list.
+				$(this).dialog("close");
+				window.location = '${current_entity_url}';//reload the page, to refresh the specificity list.
 			}
 			}
 		});
@@ -157,9 +160,9 @@
 			var url = '${add_specificityurl_url}'+$('#orderitem').serialize() ;
 			$.getJSON( url,
 	                function(data){
-						if(data){ //this call, doesn't actually return a json, but eithen OK, or ALREADY_EXIST
+						if(data){ //this call, doesn't actually return a json, but either a 'OK', an 'ALREADY_EXIST' message
 							console.log(data);
-							/*$("#orderIdems tbody").empty();
+							$("#orderIdems tbody").empty();
 							$(data).each(function(){
 								$('#orderIdems tbody').append(
 								 '<tr id="'+this.id+'">
@@ -170,7 +173,7 @@
 									  </tr>'
 							);
 								
-							});*/
+							});
 						}
 						alert('enregistrer avec success !');
 					});

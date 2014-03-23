@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import cm.adorsys.gpao.model.Caracteristic;
 import cm.adorsys.gpao.model.Specificity;
+import cm.adorsys.gpao.model.SpecificityToCaracteristicMap;
 import cm.adorsys.gpao.utils.MessageType;
 
 @RequestMapping("/specificitys")
@@ -38,7 +40,6 @@ public class SpecificityController {
      */
     @RequestMapping(value = "/{id}", params = "form", produces = "text/html")
     public String updateForm(@PathVariable("id") Long id, Model uiModel,HttpServletRequest httpServletRequest) {
-    	populateView(uiModel, Specificity.findSpecificity(id), null);
         uiModel.addAttribute(MessageType.INFOS_MESSAGE, Arrays.asList("La modification des specificites n'est pas allouee dans cette version!"));
         return "specificitys/manage";
     }
@@ -121,7 +122,13 @@ public class SpecificityController {
     }
 
 	private void paginatedListQuery(Model uiModel, Specificity specificity, List<Specificity> specificities,Integer page, Integer size, String sortFieldName,String sortOrder) {
-        uiModel.addAttribute("specificity", specificity == null ? new Specificity() : specificity);
+		if(specificity == null ) {
+			uiModel.addAttribute("specificity", new Specificity());
+		}else {
+			uiModel.addAttribute("specificity", specificity);
+			List<Caracteristic> caracteristics = SpecificityToCaracteristicMap.findCaracteristicsBySpecificityEquals(specificity).getResultList();
+			uiModel.addAttribute("caracteristics", caracteristics);
+		}
         if(specificities != null) {
     		uiModel.addAttribute("specificitys", specificities);
     		return ;// stop the execution if specificites are not null
