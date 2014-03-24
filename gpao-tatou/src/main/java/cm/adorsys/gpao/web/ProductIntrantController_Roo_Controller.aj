@@ -5,7 +5,7 @@ package cm.adorsys.gpao.web;
 
 import cm.adorsys.gpao.model.Product;
 import cm.adorsys.gpao.model.ProductIntrant;
-import cm.adorsys.gpao.model.UdmGroup;
+import cm.adorsys.gpao.model.UnitOfMesures;
 import cm.adorsys.gpao.web.ProductIntrantController;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -44,8 +44,8 @@ privileged aspect ProductIntrantController_Roo_Controller {
         if (Product.countProducts() == 0) {
             dependencies.add(new String[] { "product", "products" });
         }
-        if (UdmGroup.countUdmGroups() == 0) {
-            dependencies.add(new String[] { "udmgroup", "udmgroups" });
+        if (UnitOfMesures.countUnitOfMesureses() == 0) {
+            dependencies.add(new String[] { "unitofmesures", "unitofmesureses" });
         }
         uiModel.addAttribute("dependencies", dependencies);
         return "productintrants/create";
@@ -102,7 +102,7 @@ privileged aspect ProductIntrantController_Roo_Controller {
     void ProductIntrantController.populateEditForm(Model uiModel, ProductIntrant productIntrant) {
         uiModel.addAttribute("productIntrant", productIntrant);
         uiModel.addAttribute("products", Product.findAllProducts());
-        uiModel.addAttribute("udmgroups", UdmGroup.findAllUdmGroups());
+        uiModel.addAttribute("unitofmesureses", UnitOfMesures.findAllUnitOfMesureses());
     }
     
     String ProductIntrantController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

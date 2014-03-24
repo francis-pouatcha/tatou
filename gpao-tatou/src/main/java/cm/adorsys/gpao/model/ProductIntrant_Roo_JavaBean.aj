@@ -5,7 +5,7 @@ package cm.adorsys.gpao.model;
 
 import cm.adorsys.gpao.model.Product;
 import cm.adorsys.gpao.model.ProductIntrant;
-import cm.adorsys.gpao.model.UdmGroup;
+import cm.adorsys.gpao.model.UnitOfMesures;
 import java.math.BigDecimal;
 
 privileged aspect ProductIntrant_Roo_JavaBean {
@@ -34,11 +34,11 @@ privileged aspect ProductIntrant_Roo_JavaBean {
         this.rawMaterial = rawMaterial;
     }
     
-    public UdmGroup ProductIntrant.getUdm() {
+    public UnitOfMesures ProductIntrant.getUdm() {
         return this.udm;
     }
     
-    public void ProductIntrant.setUdm(UdmGroup udm) {
+    public void ProductIntrant.setUdm(UnitOfMesures udm) {
         this.udm = udm;
     }
     

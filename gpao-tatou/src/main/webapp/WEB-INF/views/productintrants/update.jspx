@@ -7,6 +7,6 @@
         <field:select field="product" id="c_cm_adorsys_gpao_model_ProductIntrant_product" itemValue="id" items="${products}" path="/products" required="true" z="gBfWcv/siXvvK5ka6ZtwPvBlAJM="/>
         <field:input decimalMin="0.0" field="quantity" id="c_cm_adorsys_gpao_model_ProductIntrant_quantity" required="true" validationMessageCode="field_invalid_number" z="uj525GhVnUByO8ZYiTPWpkvsqRI="/>
         <field:select field="rawMaterial" id="c_cm_adorsys_gpao_model_ProductIntrant_rawMaterial" itemValue="id" items="${products}" path="/products" required="true" z="T1Oi3PVASRK2tY6yVKPmjwEXg4g="/>
-        <field:select field="udm" id="c_cm_adorsys_gpao_model_ProductIntrant_udm" itemValue="id" items="${udmgroups}" path="/udmgroups" required="true" z="YSCxYWVOgbTFQ0ZW3Xj1woSG3AI="/>
+        <field:select field="udm" id="c_cm_adorsys_gpao_model_ProductIntrant_udm" itemValue="id" items="${unitofmesureses}" path="/unitofmesureses" required="true" z="00o/nMWJjEHlla0WdGV6aOuVzHc="/>
     </form:update>
 </div>

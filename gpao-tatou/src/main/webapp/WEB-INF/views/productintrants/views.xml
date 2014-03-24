@@ -13,4 +13,8 @@
 <definition extends="default" name="productintrants/update">
         <put-attribute name="body" value="/WEB-INF/views/productintrants/update.jspx"/>
     </definition>
+    
+<definition extends="stock" name="productintrants/manage">
+        <put-attribute name="body" value="/WEB-INF/views/productintrants/productIntrantView.jspx"/>
+    </definition>
 </tiles-definitions>

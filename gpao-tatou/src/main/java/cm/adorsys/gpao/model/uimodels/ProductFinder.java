@@ -1,13 +1,13 @@
 package cm.adorsys.gpao.model.uimodels;
 import java.util.ArrayList;
 import java.util.List;
-import cm.adorsys.gpao.model.Product;
-import cm.adorsys.gpao.model.ProductSubFamily;
-import cm.adorsys.gpao.model.PurchaseOrder;
-import cm.adorsys.gpao.model.WareHouses;
-import javax.persistence.ManyToOne;
+
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.json.RooJson;
+
+import cm.adorsys.gpao.model.Product;
+import cm.adorsys.gpao.model.ProductSubFamily;
+import cm.adorsys.gpao.model.WareHouses;
 
 @RooJavaBean
 @RooJson

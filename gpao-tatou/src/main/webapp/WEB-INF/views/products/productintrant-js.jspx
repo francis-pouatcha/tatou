@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<span xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields"
+	xmlns:spring="http://www.springframework.org/tags"
+	xmlns:form="urn:jsptagdir:/WEB-INF/tags/form"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:security="http://www.springframework.org/security/tags"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions" version="2.0"
+	style="margin: 10px;"> <jsp:directive.page
+		contentType="text/html;charset=UTF-8" /> <jsp:output
+		omit-xml-declaration="yes" /> <!-- liste of link to use on this page  -->
+	<spring:url value="/customerorders/findProductByNameLike/"
+		var="search_url" /> <spring:url value="/products/getSelectedProduct/"
+		var="selected_url" /> <spring:url
+		value="/customerorders/getUdmListFromUdmGroup/" var="udmList_url" />
+
+	<spring:url value="/products/${product.id }/addIntrant?"
+		var="add_intrant_url" /> <spring:url
+		value="/products/${product.id}/removeIntrant?itemid=" var="remove_url" />
+	<spring:url value="/resources/images/ajax-loader.gif" var="loadimage" />
+	<!-- Modal --> <c:set value="false" var="whithTender" />
+	<div id="dialog_simple" title="Rehercher des Articles">
+		<div style="margin-bottom: 10px;">
+			<table>
+				<thead>
+					<tr>
+						<th style="text-align: center;">reference (mat. premiere)</th>
+						<th style="text-align: center;">famille</th>
+						<th style="text-align: center;">udm</th>
+						<th style="text-align: center;">qte</th>
+						<th style="text-align: center;">action</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<form id="intrantitem">
+						<tr>
+							<td style="text-align: center; padding: 0px;"><input
+								style="width: 94%;" readonly="readonly" type="text"
+								id="productName" name="productName" placeholder="designation" />
+								<input type="hidden" id="rawMaterialId" name="rawMaterialId" /></td>
+							<td style="text-align: center;"><input style="width: 94%;"
+								type="text" id="familleName" readonly="readonly"
+								name="familleName" /></td>
+							<td style="text-align: center;"><select id="udm"
+								style="width: 100px;" name="udm">
+							</select></td>
+							<td style="text-align: center;"><input style="width: 100px;"
+								type="text" id="quantity" name="quantity" placeholder="quantite" /></td>
+							<td>
+								<button id="save" type="submit" class="btn-success">Enregistrer</button>
+							</td>
+						</tr>
+					</form>
+
+				</tbody>
+			</table>
+
+		</div>
+		<div>
+
+			<span style="color: maroon;"> Zone de recherche</span>
+			<div style="height: 300px; overflow-y: auto;">
+				<div id="searchzone" class="input-append">
+					<form id="test">
+						<center>
+							<input autofocus="true"
+								style="font-size: 22px; font-weight: bold; color: blue; width: 80%; height: 30px;"
+								id="searchText" type="text" />
+						</center>
+					</form>
+				</div>
+				<table id="products">
+					<thead>
+						<tr>
+							<th style="text-align: center;">#</th>
+							<th style="text-align: center;">reference</th>
+							<th style="text-align: center;">famille</th>
+							<th style="text-align: center;">udm</th>
+							<th style="text-align: center;">Devise</th>
+							<th style="text-align: center;">prix</th>
+						</tr>
+					</thead>
+					<tbody>
+
+
+					</tbody>
+				</table>
+			</div>
+
+		</div>
+	</div> <SCRIPT type="text/javascript">
+	// Dialog Simple
+	$('#dialog_simple').dialog({
+	autoOpen: false,
+	width: 800,
+	modal:true,
+	buttons: {
+	"FERMER": function () {
+	$(this).dialog("close");
+	}
+	}
+	});
+		function selectRow(row) {
+			unselectRow(row);
+			$(row).addClass('row-selected');
+		};
+
+		function unselectRow() {
+			$(row).removeClass("row-selected");
+		};
+
+		function addRowClickListener(tableid) {
+			var table = '#' + tableid + ' tr' ;
+			$(table).each(function() {
+				this.onclick = function(event) {
+					getSelected(this.id);
+				};
+			});
+
+		};
+		function addrow(data){
+			var table = '#' + data +' tbody';
+			 $(table).append(rowTemplate) ;
+		};
+		
+		function cleartable(tableid){
+			var table = '#' + tableid +' tbody';
+			$(table).empty();
+			
+		};
+		$('#addBtn').click(function() {
+			$('#dialog_simple').dialog('open');
+			return false;
+		});
+	    $('#search').on('shown', function () {
+	    	var whithtender = ${whithTender} ;
+	    	if(whithtender){
+	    		$('div#searchzone').hide();
+	    		searchProduct();
+	    	}
+	        });
+		$('#delBtn').click(function() {
+			window.location = urlFromSelectedRow('orderIdems');
+			return false;
+		});
+		
+		$('#checkall').change(function() {
+			toggleAllRowFrom('orderIdems');
+			return false;
+		});
+
+		$('#save').click(function() {
+			console.log("adding product");
+			addOrderItem();
+			console.log("product");
+			return false ;
+		});
+		$('form#test').submit(function() {
+			console.log("search product");
+			searchProduct();
+			return false ;
+		});
+		
+		function toggleAllRowFrom(tableid){
+			var check = '#' + tableid + ' tbody input[type=checkbox]' ;
+			$(check).each(function() {
+			    $(this).prop('checked', $('#checkall').is(':checked'));
+			});
+			
+		}
+		
+		function urlFromSelectedRow(tableid){
+			var  url = '${remove_url}' ;
+			var check = '#' + tableid + ' tbody input:checkbox:checked' ;
+			$(check).each(function() {
+				url = url+$(this).parents("tr").attr('id')+',' ;
+			});
+			return url ;
+		}
+		
+		
+		function searchProduct(){
+			var whithtender = ${whithTender} ;
+			var url = '${search_url}'+$('#searchText').val();
+			var table = '#products tbody' ;
+			cleartable('products');
+			$.getJSON( url,
+	                function(data){
+						$(data).each(function(){
+							$('#products tbody').append(
+							 '<tr id="'+this.id+'">
+							      <td>'+this.id+'</td>
+								  <td>'+this.name+'</td>
+								  <td>'+this.famille.name+'</td>
+								  <td>'+this.defaultUdm.name+'</td>
+								  <td>'+this.defaultCurrency.name+'</td>
+								  <td>'+this.purchasePrice+'</td>
+								  </tr>'
+						);
+							
+						});
+						addRowClickListener	('products');
+
+					});
+			
+		} ;
+		
+		
+		
+		function getSelected(id){
+			var url = '${selected_url}'+id;
+			$.getJSON( url,
+	                function(data){
+							$('#rawMaterialId').val(data.id) ;
+							$('#productName').val(data.name) ;
+							$('#familleName').val(data.famille.name);
+							$('#quantity').val(data.quantity) ;
+							$("#udm").empty();
+							getUdmList(data.defaultUdm.unitGroup.id);
+						});
+					};
+					function addOrderItem(){
+						var params ="rawMaterialId="+$('#rawMaterialId').val()+"&amp;quantity="+$('#quantity').val()+"&amp;udm="+$("#udm").val();
+						var url = '${add_intrant_url}'+params;
+						$.getJSON( url,
+				                function(data){
+									if(data){
+											$("#productIntrants tbody").empty();
+											$(data).each(function(){
+												$('#productIntrants tbody').append(
+												 '<tr id="'+this.id+'">
+													  <td>'+this.product.name+'</td>
+													  <td style="text-align: center;">'+this.rawMaterial.famille.name+'</td>
+													  <td style="text-align: center;">'+this.quantity+'</td>
+													  <td style="text-align: center;">'+this.udm.name+'</td>
+													  <td style="text-align: center;">'+this.rawMaterial.amountHt+'</td>
+													  <td  style="text-align: center;" ><input type="checkbox" /></td>
+													  </tr>'
+											);
+												
+											});
+											alert('enregistrer avec success !');
+										}
+									});
+								};
+					
+					function getUdmList(id){
+						var url = '${udmList_url}'+id;
+						$.getJSON( url,
+				                function(data){
+										$("#udm").empty();
+										$(data).each(function(){
+											var option = $('<option></option>').attr("value", this.id).text(this.name);	
+											$("#udm").append(option);
+											
+										});
+										
+									});
+								};
+		
+	</SCRIPT>
+</span>
+
+

@@ -554,3 +554,7 @@ focus --class ~.model.Specificity
 json add 
 focus --class ~.model.SpecificityToCaracteristicMap
 json all 
+focus --class ~.model.ProductIntrant
+finder list
+finder add --finderName findProductIntrantsByProduct
+field reference --fieldName udm --type ~.model.UnitOfMesures --notNull

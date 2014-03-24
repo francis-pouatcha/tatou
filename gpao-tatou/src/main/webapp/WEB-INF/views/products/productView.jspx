@@ -94,6 +94,8 @@
 				<ul class="nav nav-tabs" id="tab">
 					<li class="active"><a href="#infos">infos-generales</a></li>
 <!-- 					<li><a href="#Comptabilite">Achats / Ventes</a></li> -->
+					<li ><a href="#intrants">gestion des intrants</a></li>
+					<li ><a href="#caracteristiques">gestion des caracteristiques</a></li>
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane active" id="infos">
@@ -218,6 +220,13 @@
 						</div>
 
 					</div> -->
+					
+					<div class="tab-pane" id="intrants">
+						<jsp:include page="./productintrantView.jspx" />
+					</div>
+					<div class="tab-pane" id="caracteristiques">
+						Caracteristiques
+					</div>
 				</div>
 				<br />
 			</form:update>

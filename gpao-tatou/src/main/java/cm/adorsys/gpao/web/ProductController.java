@@ -1,11 +1,14 @@
 package cm.adorsys.gpao.web;
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.roo.addon.web.mvc.controller.finder.RooWebFinder;
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
@@ -16,10 +19,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+
 import cm.adorsys.gpao.model.Devise;
 import cm.adorsys.gpao.model.Inventory;
 import cm.adorsys.gpao.model.Product;
+import cm.adorsys.gpao.model.ProductIntrant;
 import cm.adorsys.gpao.model.ProductSubFamily;
 import cm.adorsys.gpao.model.ProductType;
 import cm.adorsys.gpao.model.Taxe;
@@ -160,7 +166,33 @@ public class ProductController {
             return;
         }
     }
+    @RequestMapping(value="/getSelectedProduct/{productId}")
+    @ResponseBody
+    public String getSelectedProduct(@PathVariable("productId") Long productId) {
+		return Product.findProduct(productId).toJson();
+	}
 
+    @RequestMapping(value="/{productId}/addIntrant",method=RequestMethod.GET)
+    @ResponseBody
+    public String addProductIntrant(@PathVariable("productId")Long productId,@RequestParam("rawMaterialId")Long rawMaterialId,
+    		@RequestParam("udm")Long udmId,@RequestParam("quantity")BigDecimal quantity,Model uiModel) {
+    	Product product = Product.findProduct(productId);
+    	List<ProductIntrant> registeredIntrants = ProductIntrant.findProductIntrantsByProduct(product).getResultList();
+		if(!registeredIntrants.isEmpty()) {
+    		ProductIntrant productIntrant = registeredIntrants.iterator().next();
+    		productIntrant.setQuantity(quantity);
+    		productIntrant.merge();
+    	}else {
+        	ProductIntrant productIntrant = new ProductIntrant();
+    		productIntrant.setProduct(product);
+        	productIntrant.setQuantity(quantity);
+        	productIntrant.setRawMaterial(Product.findProduct(rawMaterialId));
+        	productIntrant.setUdm(UnitOfMesures.findUnitOfMesures(udmId));
+        	productIntrant.persist();
+		}
+		return ProductIntrant.toJsonArray(ProductIntrant.findProductIntrantsByProduct(product).getResultList());
+	}
+    
     void populateEditForm(Model uiModel, Product product) {
         uiModel.addAttribute("product", product);
         uiModel.addAttribute("devises", Devise.findAllDevises());
@@ -169,8 +201,15 @@ public class ProductController {
         uiModel.addAttribute("taxes", Taxe.findActivedTaxe().getResultList());
         uiModel.addAttribute("unitofmesureses", UnitOfMesures.findAllUnitOfMesureses());
         uiModel.addAttribute("warehouseses", WareHouses.findAllWareHouseses());
+        populateIntrantForm(uiModel, product, new ProductIntrant());
     }
 
+    void populateIntrantForm(Model uiModel,Product product, ProductIntrant productIntrant) {
+    	uiModel.addAttribute("productintrant", productIntrant == null ? new ProductIntrant() : productIntrant );
+    	if(product!= null && product.getId() != null) {
+    		uiModel.addAttribute("productintrants", ProductIntrant.findProductIntrantsByProduct(product).getResultList());
+    	}
+    }
     void populateFindForm(Model uiModel, ProductFinder productFinder) {
         uiModel.addAttribute("productFinder", productFinder);
         List<ProductSubFamily> productSubFamilys = ProductSubFamily.findAllProductSubFamilys();

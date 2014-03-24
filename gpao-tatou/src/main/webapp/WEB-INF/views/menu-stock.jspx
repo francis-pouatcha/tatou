@@ -26,7 +26,7 @@
 	        <security:authorize ifAnyGranted="ROLE_ACCESS_PRODUIT">
 	            <menu:item id="i_specificity_list" messageCode="global_menu_gpao" label="Specificites" url="/specificitys/manage?page=1&amp;size=${empty param.size ? 10 : param.size}" z="iVIheEa9STXGnX2axC11pq0LCuU="/>
 	            <menu:item id="i_productscaracteristics_new" label="Caracteristiques" messageCode="global_menu_gpao" url="/caracteristics/manage?page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
-	            <menu:item id="i_productscaracteristics_new" label="Intrants" messageCode="global_menu_gpao" url="/productintrants/list?page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
+	            <!--menu:item id="i_productscaracteristics_new" label="Intrants" messageCode="global_menu_gpao" url="/productintrants/manage?page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/ -->
             <menu:item id="i_product_list" label="Produits" messageCode="global_menu_gpao" url="/products/list/stock?page=1&amp;size=${empty param.size ? 10 : param.size}" z="kEeyCmUUYXShbDEWwOLheaAkM50="/>
            <menu:item id="fi_product_namelike" label="Rechercher des Produits" messageCode="global_msg_gpao" url="/products/find/stock?form" z="9UYFI4aGcqRo2VqyECLCmjrNbtQ="/>
          </security:authorize>

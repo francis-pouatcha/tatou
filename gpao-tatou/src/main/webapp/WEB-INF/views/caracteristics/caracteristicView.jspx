@@ -70,7 +70,7 @@
 					id="l_cm_adorsys_gpao_model_Caracteristic"
 					path="/caracteristics/save" delete="false"
 					z="user-managed">
-					<table:column id="c_cm_adorsys_gpao_model_Caracteristic_archived"
+					<table:column render="false" id="c_cm_adorsys_gpao_model_Caracteristic_archived"
 						property="archived" z="user-managed" />
 					<table:column
 						id="c_cm_adorsys_gpao_model_Caracteristic_productSize"

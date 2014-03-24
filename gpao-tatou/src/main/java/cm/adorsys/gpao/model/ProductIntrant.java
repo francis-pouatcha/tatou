@@ -10,8 +10,8 @@ import org.springframework.roo.addon.json.RooJson;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord(inheritanceType = "TABLE_PER_CLASS")
 @RooJson
+@RooJpaActiveRecord(inheritanceType = "TABLE_PER_CLASS", finders = { "findProductIntrantsByProduct" })
 public class ProductIntrant extends GpaoBaseEntity {
 
     /**
@@ -35,9 +35,8 @@ public class ProductIntrant extends GpaoBaseEntity {
     private Product rawMaterial;
 
     /**
-     * raw material, measure unit value.
      */
     @NotNull
     @ManyToOne
-    private UdmGroup udm;
+    private UnitOfMesures udm;
 }
