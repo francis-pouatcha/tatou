@@ -18,46 +18,47 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import cm.adorsys.gpao.model.Caracteristic;
+import cm.adorsys.gpao.model.Product;
 import cm.adorsys.gpao.model.Specificity;
 import cm.adorsys.gpao.model.SpecificityToCaracteristicMap;
 import cm.adorsys.gpao.utils.MessageType;
 
-@RequestMapping("/caracteristics")
+@RequestMapping("/caracteristics/{productId}")
 @Controller
 @RooWebScaffold(path = "caracteristics", formBackingObject = Caracteristic.class)
 public class CaracteristicController {
 	
     @RequestMapping(value = "/manage", produces = "text/html")
-    public String mangeCaracteristic(@RequestParam(value = "id", required = false) Long id,@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, @RequestParam(value = "sortFieldName", required = false) String sortFieldName, @RequestParam(value = "sortOrder", required = false) String sortOrder ,Model uiModel) {
+    public String mangeCaracteristic(@PathVariable("productId")Long productId ,@RequestParam(value = "id", required = false) Long id,@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, @RequestParam(value = "sortFieldName", required = false) String sortFieldName, @RequestParam(value = "sortOrder", required = false) String sortOrder ,Model uiModel) {
     	Caracteristic caracteristic = null;
         if (id != null) caracteristic = Caracteristic.findCaracteristic(id);
-        paginatedListQuery(uiModel, caracteristic, null, null,page, size, sortFieldName, sortOrder);
+        paginatedListQuery(uiModel, caracteristic,productId, null, null,page, size, sortFieldName, sortOrder);
         return "caracteristics/manage";
     }
 
 
     @RequestMapping(value = "/save", produces = "text/html", method = RequestMethod.POST)
-    public String saveCaracteristic(@Valid Caracteristic caracteristic, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
+    public String saveCaracteristic(@PathVariable("productId")Long productId ,@Valid Caracteristic caracteristic, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
-            paginatedListQuery(uiModel, caracteristic, null, null, 1, 10, null, null);
+            paginatedListQuery(uiModel, caracteristic,productId, null, null, 1, 10, null, null);
             uiModel.addAttribute(MessageType.ERROR_MESSAGE, Arrays.asList("Une erreur est Survenue durant l'enregistrement !"));
             return "caracteristics/manage";
         }
         uiModel.asMap().clear();
         caracteristic.merge();
-        paginatedListQuery(uiModel, caracteristic, null, null, 1, 10, null, null);
+        paginatedListQuery(uiModel, caracteristic,productId, null, null, 1, 10, null, null);
         uiModel.addAttribute(MessageType.SUCCESS_MESSAGE, Arrays.asList("Caracteristique du produit enregistree avec success ! Veillez ajouter les specificites."));
         return "caracteristics/manage";
     }
 
     @RequestMapping(value = "/save/{id}", produces = "text/html")
-    public String editCaracteristic(@PathVariable("id") Long id, Model uiModel) {
-        paginatedListQuery(uiModel, Caracteristic.findCaracteristic(id), null, null, 1, 10, null, null);
+    public String editCaracteristic(@PathVariable("productId")Long productId ,@PathVariable("id") Long id, Model uiModel) {
+        paginatedListQuery(uiModel, Caracteristic.findCaracteristic(id), productId,null, null, 1, 10, null, null);
         return "caracteristics/manage";
     }
     @RequestMapping(value="/findSpecificityByNameLike/{specificityName}", method = RequestMethod.GET ,produces = "application/json; charset=utf-8")
     @ResponseBody
-    public String findSpecifityByNameLike(@PathVariable("specificityName")String specificityName,HttpServletRequest servletRequest) {
+    public String findSpecifityByNameLike(@PathVariable("productId")Long productId ,@PathVariable("specificityName")String specificityName,HttpServletRequest servletRequest) {
     	if(StringUtils.isEmpty(specificityName)) {
     		specificityName ="*";
     	}
@@ -67,12 +68,12 @@ public class CaracteristicController {
 
     @RequestMapping(value="/getSelectedSpecificity/{specificityId}",method=RequestMethod.GET,produces="application/json; charset=utf-8")
     @ResponseBody
-    public String getSelectedSpecificityItem(@PathVariable("specificityId")Long specificityId,HttpServletRequest httpServletRequest) {
+    public String getSelectedSpecificityItem(@PathVariable("productId")Long productId ,@PathVariable("specificityId")Long specificityId,HttpServletRequest httpServletRequest) {
 		return Specificity.findSpecificity(specificityId).toJson();
 	}
     @RequestMapping(value="/{caracteristicId}/addSelectedSpecificity",method=RequestMethod.GET)
     @ResponseBody
-    public String addSeclectedSpecificity(@PathVariable("caracteristicId")Long caracteristicId,@Valid Specificity specificity, Model uiModel) {
+    public String addSeclectedSpecificity(@PathVariable("productId")Long productId ,@PathVariable("caracteristicId")Long caracteristicId,@Valid Specificity specificity, Model uiModel) {
     	Caracteristic caracteristic = Caracteristic.findCaracteristic(caracteristicId);
     	Assert.notNull(specificity.getId(), "Invalid specificity");
     	specificity = Specificity.findSpecificity(specificity.getId());
@@ -86,15 +87,15 @@ public class CaracteristicController {
 	}
 
     @RequestMapping(value = "/{caracteristic}/specificitys", produces = "text/html")
-    public String mangeSpecificity(@PathVariable("caracteristic")Long caracteristicId ,@RequestParam(value = "id", required = false) Long id,@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, @RequestParam(value = "sortFieldName", required = false) String sortFieldName, @RequestParam(value = "sortOrder", required = false) String sortOrder ,Model uiModel) {
+    public String mangeSpecificity(@PathVariable("productId")Long productId ,@PathVariable("caracteristic")Long caracteristicId ,@RequestParam(value = "id", required = false) Long id,@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, @RequestParam(value = "sortFieldName", required = false) String sortFieldName, @RequestParam(value = "sortOrder", required = false) String sortOrder ,Model uiModel) {
     	Caracteristic caracteristic = Caracteristic.findCaracteristic(caracteristicId);
         paginatedSpecificityListQuery(uiModel, null, null, page, size, sortFieldName, sortOrder);
-        paginatedListQuery(uiModel, caracteristic, null, null, 1, 10, sortFieldName, sortOrder);
+        paginatedListQuery(uiModel, caracteristic,productId, null, null, 1, 10, sortFieldName, sortOrder);
         return "caracteristics/manage";
     }
 
     @RequestMapping(value = "/{caracteristic}/specificitys/{specificityId}", produces = "text/html",method=RequestMethod.DELETE)
-    public String removeSpecificity(@PathVariable("caracteristic")Long caracteristicId ,@PathVariable("specificityId") Long specificityId,@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, @RequestParam(value = "sortFieldName", required = false) String sortFieldName, @RequestParam(value = "sortOrder", required = false) String sortOrder ,Model uiModel) {
+    public String removeSpecificity(@PathVariable("productId")Long productId ,@PathVariable("caracteristic")Long caracteristicId ,@PathVariable("specificityId") Long specificityId,@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, @RequestParam(value = "sortFieldName", required = false) String sortFieldName, @RequestParam(value = "sortOrder", required = false) String sortOrder ,Model uiModel) {
     	Caracteristic caracteristic = Caracteristic.findCaracteristic(caracteristicId);
     	Specificity specificity = Specificity.findSpecificity(specificityId);
     	List<SpecificityToCaracteristicMap> maps = SpecificityToCaracteristicMap.findSpecificityToCaracteristicMapsBySpecificityAndCaracteristicEquals(specificity, caracteristic).getResultList();
@@ -103,14 +104,23 @@ public class CaracteristicController {
     		uiModel.addAttribute(MessageType.SUCCESS_MESSAGE, "La specificite a ete retiree avec success !");
     	}
         paginatedSpecificityListQuery(uiModel, null, null, page, size, sortFieldName, sortOrder);
-        paginatedListQuery(uiModel, caracteristic, null, null, 1, 10, sortFieldName, sortOrder);
+        paginatedListQuery(uiModel, caracteristic,productId, null, null, 1, 10, sortFieldName, sortOrder);
         return "caracteristics/manage";
     }
     @RequestMapping(value = "/{caracteristic}/specificitys/{specificityId}", produces = "text/html")
-    public String showSpecificity(@PathVariable("caracteristic")Long caracteristicId ,@PathVariable("specificityId") Long specificityId, Model uiModel, HttpServletRequest httpServletRequest) {
+    public String showSpecificity(@PathVariable("productId")Long productId ,@PathVariable("caracteristic")Long caracteristicId ,@PathVariable("specificityId") Long specificityId, Model uiModel, HttpServletRequest httpServletRequest) {
         return "redirect:/specificitys/save/"+encodeUrlPathSegment(specificityId.toString(), httpServletRequest);
     }
-	private void paginatedListQuery(Model uiModel, Caracteristic caracteristic, List<Caracteristic> caracteristics , Specificity specificity, Integer page, Integer size, String sortFieldName,String sortOrder) {
+	private void paginatedListQuery(Model uiModel, Caracteristic caracteristic,Long productId, List<Caracteristic> caracteristics , Specificity specificity, Integer page, Integer size, String sortFieldName,String sortOrder) {
+		if(productId == null) {
+        	throw new IllegalArgumentException("Invalid product id");
+        }
+		Product product =Product.findProduct(productId);
+		uiModel.addAttribute("product", product);
+//		Collections.<Product> 
+		List<Product> products = Arrays.<Product> asList(product);
+		uiModel.addAttribute("products", products);
+		products = null;
         uiModel.addAttribute("specificity", specificity == null ? new Specificity() : specificity);
         uiModel.addAttribute("caracteristic", caracteristic == null ? new Caracteristic() : caracteristic);
         if(caracteristic !=null && caracteristic.getId() != null) {

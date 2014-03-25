@@ -4,6 +4,7 @@
 package cm.adorsys.gpao.model;
 
 import cm.adorsys.gpao.model.Caracteristic;
+import cm.adorsys.gpao.model.Product;
 
 privileged aspect Caracteristic_Roo_JavaBean {
     
@@ -21,6 +22,14 @@ privileged aspect Caracteristic_Roo_JavaBean {
     
     public void Caracteristic.setColor(String color) {
         this.color = color;
+    }
+    
+    public Product Caracteristic.getProduct() {
+        return this.product;
+    }
+    
+    public void Caracteristic.setProduct(Product product) {
+        this.product = product;
     }
     
 }

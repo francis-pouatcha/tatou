@@ -7,6 +7,7 @@
             <table:column id="c_cm_adorsys_gpao_model_Caracteristic_archived" property="archived" z="MFr+ygLy4+UddTMdfVMqdikpudM="/>
             <table:column id="c_cm_adorsys_gpao_model_Caracteristic_productSize" property="productSize" z="r7n/LhwuGyGoURaegAD+T34Gw7w="/>
             <table:column id="c_cm_adorsys_gpao_model_Caracteristic_color" property="color" z="SxGhp+oxPOPmm3tNhc9AZ2FhcqY="/>
+            <table:column id="c_cm_adorsys_gpao_model_Caracteristic_product" property="product" z="VSKU8Y2DTPoA2Ui3ntzU/doDmiI="/>
         </table:table>
     </page:list>
 </div>

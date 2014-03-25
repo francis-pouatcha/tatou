@@ -225,7 +225,16 @@
 						<jsp:include page="./productintrantView.jspx" />
 					</div>
 					<div class="tab-pane" id="caracteristiques">
-						Caracteristiques
+						<c:choose>
+							<c:when test="${not empty product.id }">
+								<spring:url value="/caracteristics/${product.id }/manage?page=1&amp;size=${empty param.size ? 10 : param.size}" var="manage_product_caracteristic_url" />
+								<a href="${manage_product_caracteristic_url }" class="btn btn-primary">Gerer les caracteristiques</a>
+							</c:when>
+							<c:otherwise>
+								<spring:message text="Veillez creer le produit avant de continuer, Merci !" var="create_product_before_before_continue_msg" />
+								<label class="info"> <c:out value="${create_product_before_before_continue_msg }" /> </label>
+							</c:otherwise>
+						</c:choose>
 					</div>
 				</div>
 				<br />

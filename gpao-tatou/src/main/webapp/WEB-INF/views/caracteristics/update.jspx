@@ -6,5 +6,6 @@
         <field:checkbox field="archived" id="c_cm_adorsys_gpao_model_Caracteristic_archived" z="+rUZKQl3jzxWWtl526axD94ZH4U="/>
         <field:input field="productSize" id="c_cm_adorsys_gpao_model_Caracteristic_productSize" required="true" z="TBLnnCiSzwZ2XUjK1eUipIkoOik="/>
         <field:input field="color" id="c_cm_adorsys_gpao_model_Caracteristic_color" required="true" z="90CIA6FENvFO1ypo6zt0zMBOnFU="/>
+        <field:select field="product" id="c_cm_adorsys_gpao_model_Caracteristic_product" itemValue="id" items="${products}" path="/products" required="true" z="9SvsxgH4aY0URPBA1bGDV0W5DjY="/>
     </form:update>
 </div>

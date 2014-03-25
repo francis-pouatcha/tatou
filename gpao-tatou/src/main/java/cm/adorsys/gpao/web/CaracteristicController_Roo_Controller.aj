@@ -4,8 +4,11 @@
 package cm.adorsys.gpao.web;
 
 import cm.adorsys.gpao.model.Caracteristic;
+import cm.adorsys.gpao.model.Product;
 import cm.adorsys.gpao.web.CaracteristicController;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.springframework.ui.Model;
@@ -33,6 +36,11 @@ privileged aspect CaracteristicController_Roo_Controller {
     @RequestMapping(params = "form", produces = "text/html")
     public String CaracteristicController.createForm(Model uiModel) {
         populateEditForm(uiModel, new Caracteristic());
+        List<String[]> dependencies = new ArrayList<String[]>();
+        if (Product.countProducts() == 0) {
+            dependencies.add(new String[] { "product", "products" });
+        }
+        uiModel.addAttribute("dependencies", dependencies);
         return "caracteristics/create";
     }
     
@@ -86,6 +94,7 @@ privileged aspect CaracteristicController_Roo_Controller {
     
     void CaracteristicController.populateEditForm(Model uiModel, Caracteristic caracteristic) {
         uiModel.addAttribute("caracteristic", caracteristic);
+        uiModel.addAttribute("products", Product.findAllProducts());
     }
     
     String CaracteristicController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

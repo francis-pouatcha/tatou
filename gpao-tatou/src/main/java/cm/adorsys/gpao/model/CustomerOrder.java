@@ -22,7 +22,11 @@ import org.springframework.roo.addon.tostring.RooToString;
 import cm.adorsys.gpao.security.SecurityUtil;
 import cm.adorsys.gpao.utils.GpaoSequenceGenerator;
 import org.springframework.roo.addon.json.RooJson;
-
+/**
+ * bon de commande interne.
+ * @author bwa
+ *
+ */
 @RooJavaBean
 @RooToString
 @RooJpaActiveRecord(finders = { "findCustomerOrdersByReferenceEquals", "findCustomerOrdersByOrderState", "findCustomerOrdersByOrderDateBetween", "findCustomerOrdersByCustomer" })

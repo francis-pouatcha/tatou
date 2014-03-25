@@ -9,14 +9,14 @@
 	style="margin: 10px;"> <jsp:directive.page
 		contentType="text/html;charset=UTF-8" /> <jsp:output
 		omit-xml-declaration="yes" /> <!-- liste of link to use on this page  -->
-	<spring:url value="/caracteristics/findSpecificityByNameLike/"
+	<spring:url value="/caracteristics/${product.id }/findSpecificityByNameLike/"
 		var="search_url" /> <spring:url
-		value="/caracteristics/getSelectedSpecificity/" var="selected_url" />
+		value="/caracteristics/${product.id }/getSelectedSpecificity/" var="selected_url" />
 	<spring:url
-		value="/caracteristics/${caracteristic.id }/addSelectedSpecificity?"
+		value="/caracteristics/${product.id }/${caracteristic.id }/addSelectedSpecificity?"
 		var="add_specificityurl_url" />
 		<c:if test="${not empty caracteristic.id }">
-			<spring:url value="/caracteristics/save/${caracteristic.id}" var="current_entity_url" />
+			<spring:url value="/caracteristics/${product.id }/save/${caracteristic.id}" var="current_entity_url" />
 		</c:if>
 	<div id="dialog_simple" title="Rehercher des Specificites">
 		annulerBtn

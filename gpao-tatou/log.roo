@@ -558,3 +558,5 @@ focus --class ~.model.ProductIntrant
 finder list
 finder add --finderName findProductIntrantsByProduct
 field reference --fieldName udm --type ~.model.UnitOfMesures --notNull
+focus --class ~.model.Caracteristic
+field reference --fieldName product --type ~.model.Product --notNull 
