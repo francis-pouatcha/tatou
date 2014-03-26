@@ -3,11 +3,11 @@
 
 package cm.adorsys.gpao.model;
 
-import cm.adorsys.gpao.model.Delivery;
+import cm.adorsys.gpao.model.Supply;
 import org.springframework.beans.factory.annotation.Configurable;
 
-privileged aspect Delivery_Roo_Configurable {
+privileged aspect Supply_Roo_Configurable {
     
-    declare @type: Delivery: @Configurable;
+    declare @type: Supply: @Configurable;
     
 }

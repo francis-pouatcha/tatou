@@ -3,9 +3,9 @@
 
 package cm.adorsys.gpao.web;
 
-import cm.adorsys.gpao.model.Delivery;
-import cm.adorsys.gpao.model.DeliveryItems;
 import cm.adorsys.gpao.model.Product;
+import cm.adorsys.gpao.model.Supply;
+import cm.adorsys.gpao.model.SupplyItems;
 import cm.adorsys.gpao.model.UnitOfMesures;
 import cm.adorsys.gpao.web.DeliveryItemsController;
 import java.io.UnsupportedEncodingException;
@@ -27,25 +27,25 @@ import org.springframework.web.util.WebUtils;
 privileged aspect DeliveryItemsController_Roo_Controller {
     
     @RequestMapping(method = RequestMethod.POST, produces = "text/html")
-    public String DeliveryItemsController.create(@Valid DeliveryItems deliveryItems, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
+    public String DeliveryItemsController.create(@Valid SupplyItems supplyItems, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
-            populateEditForm(uiModel, deliveryItems);
+            populateEditForm(uiModel, supplyItems);
             return "deliveryitemses/create";
         }
         uiModel.asMap().clear();
-        deliveryItems.persist();
-        return "redirect:/deliveryitemses/" + encodeUrlPathSegment(deliveryItems.getId().toString(), httpServletRequest);
+        supplyItems.persist();
+        return "redirect:/deliveryitemses/" + encodeUrlPathSegment(supplyItems.getId().toString(), httpServletRequest);
     }
     
     @RequestMapping(params = "form", produces = "text/html")
     public String DeliveryItemsController.createForm(Model uiModel) {
-        populateEditForm(uiModel, new DeliveryItems());
+        populateEditForm(uiModel, new SupplyItems());
         List<String[]> dependencies = new ArrayList<String[]>();
         if (Product.countProducts() == 0) {
             dependencies.add(new String[] { "product", "products" });
         }
-        if (Delivery.countDeliverys() == 0) {
-            dependencies.add(new String[] { "delivery", "deliverys" });
+        if (Supply.countSupplys() == 0) {
+            dependencies.add(new String[] { "supply", "deliverys" });
         }
         uiModel.addAttribute("dependencies", dependencies);
         return "deliveryitemses/create";
@@ -54,32 +54,32 @@ privileged aspect DeliveryItemsController_Roo_Controller {
     @RequestMapping(value = "/{id}", produces = "text/html")
     public String DeliveryItemsController.show(@PathVariable("id") Long id, Model uiModel) {
         addDateTimeFormatPatterns(uiModel);
-        uiModel.addAttribute("deliveryitems", DeliveryItems.findDeliveryItems(id));
+        uiModel.addAttribute("supplyitems", SupplyItems.findSupplyItems(id));
         uiModel.addAttribute("itemId", id);
         return "deliveryitemses/show";
     }
     
     @RequestMapping(method = RequestMethod.PUT, produces = "text/html")
-    public String DeliveryItemsController.update(@Valid DeliveryItems deliveryItems, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
+    public String DeliveryItemsController.update(@Valid SupplyItems supplyItems, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
-            populateEditForm(uiModel, deliveryItems);
+            populateEditForm(uiModel, supplyItems);
             return "deliveryitemses/update";
         }
         uiModel.asMap().clear();
-        deliveryItems.merge();
-        return "redirect:/deliveryitemses/" + encodeUrlPathSegment(deliveryItems.getId().toString(), httpServletRequest);
+        supplyItems.merge();
+        return "redirect:/deliveryitemses/" + encodeUrlPathSegment(supplyItems.getId().toString(), httpServletRequest);
     }
     
     @RequestMapping(value = "/{id}", params = "form", produces = "text/html")
     public String DeliveryItemsController.updateForm(@PathVariable("id") Long id, Model uiModel) {
-        populateEditForm(uiModel, DeliveryItems.findDeliveryItems(id));
+        populateEditForm(uiModel, SupplyItems.findSupplyItems(id));
         return "deliveryitemses/update";
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = "text/html")
     public String DeliveryItemsController.delete(@PathVariable("id") Long id, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
-        DeliveryItems deliveryItems = DeliveryItems.findDeliveryItems(id);
-        deliveryItems.remove();
+        SupplyItems supplyItems = SupplyItems.findSupplyItems(id);
+        supplyItems.remove();
         uiModel.asMap().clear();
         uiModel.addAttribute("page", (page == null) ? "1" : page.toString());
         uiModel.addAttribute("size", (size == null) ? "10" : size.toString());
@@ -87,14 +87,14 @@ privileged aspect DeliveryItemsController_Roo_Controller {
     }
     
     void DeliveryItemsController.addDateTimeFormatPatterns(Model uiModel) {
-        uiModel.addAttribute("deliveryItems_expirationdate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
+        uiModel.addAttribute("supplyItems_expirationdate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
     }
     
-    void DeliveryItemsController.populateEditForm(Model uiModel, DeliveryItems deliveryItems) {
-        uiModel.addAttribute("deliveryItems", deliveryItems);
+    void DeliveryItemsController.populateEditForm(Model uiModel, SupplyItems supplyItems) {
+        uiModel.addAttribute("supplyItems", supplyItems);
         addDateTimeFormatPatterns(uiModel);
-        uiModel.addAttribute("deliverys", Delivery.findAllDeliverys());
         uiModel.addAttribute("products", Product.findAllProducts());
+        uiModel.addAttribute("supplys", Supply.findAllSupplys());
         uiModel.addAttribute("unitofmesureses", UnitOfMesures.findAllUnitOfMesureses());
     }
     

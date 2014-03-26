@@ -6,5 +6,6 @@
         <field:display field="archived" id="s_cm_adorsys_gpao_model_Specificity_archived" object="${specificity}" z="Up9BanPr7v3fp2Q0Ya4msLPMAwI="/>
         <field:display field="designation" id="s_cm_adorsys_gpao_model_Specificity_designation" object="${specificity}" z="lg7O/BUd/ikq4YXnzTJjPVaMUxQ="/>
         <field:display field="description" id="s_cm_adorsys_gpao_model_Specificity_description" object="${specificity}" z="zs+VmE1CKfp1TLOnHZahITzHKNw="/>
+        <field:display field="active" id="s_cm_adorsys_gpao_model_Specificity_active" object="${specificity}" z="H0avlSG3mTPJj0xz+IaxG/6UH48="/>
     </page:show>
 </div>

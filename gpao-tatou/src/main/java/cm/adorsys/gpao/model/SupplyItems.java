@@ -17,9 +17,9 @@ import org.springframework.roo.addon.json.RooJson;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord(inheritanceType = "TABLE_PER_CLASS", finders = { "findDeliveryItemsesByReferenceEquals", "findDeliveryItemsesByDelivery" })
 @RooJson
-public class DeliveryItems extends GpaoBaseEntity {
+@RooJpaActiveRecord(inheritanceType = "TABLE_PER_CLASS", finders = { "findDeliveryItemsesByReferenceEquals", "findDeliveryItemsesByDelivery", "findDeliveryItemsesBySupply", "findSupplyItemsesBySupply" })
+public class SupplyItems extends GpaoBaseEntity {
 
     private String reference;
 
@@ -37,7 +37,7 @@ public class DeliveryItems extends GpaoBaseEntity {
 
     @NotNull
     @ManyToOne
-    private Delivery delivery;
+    private Supply supply;
 
     private BigDecimal amountHt = BigDecimal.ZERO;
 
@@ -50,17 +50,17 @@ public class DeliveryItems extends GpaoBaseEntity {
     @ManyToOne
     private UnitOfMesures udm;
 
-    public DeliveryItems() {
+    public SupplyItems() {
     }
 
-    public DeliveryItems(OrderItems items, Delivery delivery) {
+    public SupplyItems(OrderItems items, Supply supply) {
         this.product = items.getProduct();
         this.orderQte = items.getQuantity();
         this.expirationDate = new Date();
         this.amountHt = items.getSubTotal();
         /*this.taxAmount = items.getTaxeAmount();
          this.taxedAmount = items.getTaxedSubTotal();*/
-        this.delivery = delivery;
+        this.supply = supply;
         this.udm = items.getUdm();
     }
 
@@ -82,12 +82,12 @@ public class DeliveryItems extends GpaoBaseEntity {
 
     @PostPersist
     public void postPersist() {
-        reference = GpaoSequenceGenerator.getSequenceWhitoutDate(getId(), delivery.getDocRef());
+        reference = GpaoSequenceGenerator.getSequenceWhitoutDate(getId(), supply.getDocRef());
     }
 
-    public static TypedQuery<cm.adorsys.gpao.model.DeliveryItems> findDeliveryItemssByProductAndStockQteNotEqual(Product product, BigDecimal qteReceive) {
-        EntityManager em = DeliveryItems.entityManager();
-        TypedQuery<DeliveryItems> q = em.createQuery("SELECT o FROM DeliveryItems AS o WHERE  o.product = :product AND o.qteReceive != :qteReceive ORDER BY o.id DESC ", DeliveryItems.class);
+    public static TypedQuery<cm.adorsys.gpao.model.SupplyItems> findDeliveryItemssByProductAndStockQteNotEqual(Product product, BigDecimal qteReceive) {
+        EntityManager em = SupplyItems.entityManager();
+        TypedQuery<SupplyItems> q = em.createQuery("SELECT o FROM SupplyItems AS o WHERE  o.product = :product AND o.qteReceive != :qteReceive ORDER BY o.id DESC ", SupplyItems.class);
         q.setParameter("product", product);
         q.setParameter("qteReceive", qteReceive);
         return q;

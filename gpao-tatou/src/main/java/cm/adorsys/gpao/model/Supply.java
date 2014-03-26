@@ -27,7 +27,7 @@ import org.springframework.roo.addon.json.RooJson;
 @RooJavaBean
 @RooJpaActiveRecord(inheritanceType = "TABLE_PER_CLASS")
 @RooJson
-public class Delivery extends GpaoBaseEntity {
+public class Supply extends GpaoBaseEntity {
 
     private String reference;
 
@@ -56,8 +56,8 @@ public class Delivery extends GpaoBaseEntity {
 
     private BigDecimal taxedAmount = BigDecimal.ZERO;
 
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "delivery")
-    private Set<DeliveryItems> deliveryItems = new HashSet<DeliveryItems>();
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "supply")
+    private Set<SupplyItems> supplyItems = new HashSet<SupplyItems>();
 
     @NotNull
     @ManyToOne
@@ -75,10 +75,10 @@ public class Delivery extends GpaoBaseEntity {
     @ManyToMany(cascade = CascadeType.ALL)
     private Set<Taxe> taxes = new HashSet<Taxe>();
 
-    public Delivery() {
+    public Supply() {
     }
 
-    public Delivery(Company company) {
+    public Supply(Company company) {
         this.company = Company.findCompany(Long.valueOf(1));
         currency = company.getDevise();
     }
@@ -92,7 +92,7 @@ public class Delivery extends GpaoBaseEntity {
         return DocumentStates.OUVERT.equals(status);
     }
 
-    public Delivery(PurchaseOrder order) {
+    public Supply(PurchaseOrder order) {
         this.createBy = SecurityUtil.getUserName();
         this.createdate = new Date();
         this.origin = DeliveryOrigin.ACHAT;
@@ -115,17 +115,17 @@ public class Delivery extends GpaoBaseEntity {
         taxedAmount = BigDecimal.ZERO;
     }
 
-    public void increaseAmountFromDeliveryItem(DeliveryItems deliveryItem) {
+    public void increaseAmountFromDeliveryItem(SupplyItems deliveryItem) {
         unTaxeAmount = unTaxeAmount.add(deliveryItem.getAmountHt());
     }
 
     public boolean hasDeliveryItem() {
-        return !DeliveryItems.findDeliveryItemsesByDelivery(this).getResultList().isEmpty();
+        return !SupplyItems.findSupplyItemsesBySupply(this).getResultList().isEmpty();
     }
 
-    public static TypedQuery<cm.adorsys.gpao.model.Delivery> findDeliveryByStatusAndOriginAndReceiveDateBetween(DocumentStates status, String reference, Date beginReceivedDate, Date endReceivedDate, String docRef, String receiveBy, DeliveryOrigin origin) {
-        EntityManager em = Delivery.entityManager();
-        StringBuilder query = new StringBuilder("SELECT o FROM Delivery AS o WHERE  o.id IS NOT NULL ");
+    public static TypedQuery<cm.adorsys.gpao.model.Supply> findDeliveryByStatusAndOriginAndReceiveDateBetween(DocumentStates status, String reference, Date beginReceivedDate, Date endReceivedDate, String docRef, String receiveBy, DeliveryOrigin origin) {
+        EntityManager em = Supply.entityManager();
+        StringBuilder query = new StringBuilder("SELECT o FROM Supply AS o WHERE  o.id IS NOT NULL ");
         if (StringUtils.isNotBlank(reference)) {
             query.append(" AND o.reference = :reference");
         }
@@ -147,7 +147,7 @@ public class Delivery extends GpaoBaseEntity {
         if (endReceivedDate != null) {
             query.append(" AND o.receivedDate <= :endReceivedDate");
         }
-        TypedQuery<Delivery> q = em.createQuery(query.append(" ORDER BY o.id ").toString(), Delivery.class);
+        TypedQuery<Supply> q = em.createQuery(query.append(" ORDER BY o.id ").toString(), Supply.class);
         if (StringUtils.isNotBlank(reference)) q.setParameter("reference", reference);
         if (StringUtils.isNotBlank(receiveBy)) q.setParameter("receiveBy", receiveBy);
         if (StringUtils.isNotBlank(docRef)) q.setParameter("docRef", docRef);
@@ -158,30 +158,30 @@ public class Delivery extends GpaoBaseEntity {
         return q;
     }
 
-    public static TypedQuery<cm.adorsys.gpao.model.Delivery> findDeliverysByIdUpperThan(Long id) {
-        EntityManager em = Delivery.entityManager();
-        TypedQuery<Delivery> q = em.createQuery("SELECT o FROM Delivery AS o WHERE  o.id > :id ORDER BY o.id ", Delivery.class);
+    public static TypedQuery<cm.adorsys.gpao.model.Supply> findDeliverysByIdUpperThan(Long id) {
+        EntityManager em = Supply.entityManager();
+        TypedQuery<Supply> q = em.createQuery("SELECT o FROM Supply AS o WHERE  o.id > :id ORDER BY o.id ", Supply.class);
         q.setParameter("id", id);
         return q;
     }
 
-    public static TypedQuery<cm.adorsys.gpao.model.Delivery> findDeliverysByReferenceEquals(String reference) {
-        EntityManager em = Delivery.entityManager();
-        TypedQuery<Delivery> q = em.createQuery("SELECT o FROM Delivery AS o WHERE  o.reference = :reference ", Delivery.class);
+    public static TypedQuery<cm.adorsys.gpao.model.Supply> findDeliverysByReferenceEquals(String reference) {
+        EntityManager em = Supply.entityManager();
+        TypedQuery<Supply> q = em.createQuery("SELECT o FROM Supply AS o WHERE  o.reference = :reference ", Supply.class);
         q.setParameter("reference", reference);
         return q;
     }
 
-    public static TypedQuery<cm.adorsys.gpao.model.Delivery> findDeliverysByIdLowerThan(Long id) {
-        EntityManager em = Delivery.entityManager();
-        TypedQuery<Delivery> q = em.createQuery("SELECT o FROM Delivery AS o WHERE  o.id < :id ORDER BY o.id DESC ", Delivery.class);
+    public static TypedQuery<cm.adorsys.gpao.model.Supply> findDeliverysByIdLowerThan(Long id) {
+        EntityManager em = Supply.entityManager();
+        TypedQuery<Supply> q = em.createQuery("SELECT o FROM Supply AS o WHERE  o.id < :id ORDER BY o.id DESC ", Supply.class);
         q.setParameter("id", id);
         return q;
     }
 
-    public static TypedQuery<cm.adorsys.gpao.model.Delivery> findDeliverysByDocRef(String docRef) {
-        EntityManager em = Delivery.entityManager();
-        TypedQuery<Delivery> q = em.createQuery("SELECT o FROM Delivery AS o WHERE  o.docRef = :docRef ORDER BY o.id DESC ", Delivery.class);
+    public static TypedQuery<cm.adorsys.gpao.model.Supply> findDeliverysByDocRef(String docRef) {
+        EntityManager em = Supply.entityManager();
+        TypedQuery<Supply> q = em.createQuery("SELECT o FROM Supply AS o WHERE  o.docRef = :docRef ORDER BY o.id DESC ", Supply.class);
         q.setParameter("docRef", docRef);
         return q;
     }

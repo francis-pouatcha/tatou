@@ -9,8 +9,8 @@ import org.springframework.roo.addon.web.mvc.controller.converter.RooConversionS
 
 import cm.adorsys.gpao.model.Company;
 import cm.adorsys.gpao.model.Contacts;
-import cm.adorsys.gpao.model.Delivery;
-import cm.adorsys.gpao.model.DeliveryItems;
+import cm.adorsys.gpao.model.Supply;
+import cm.adorsys.gpao.model.SupplyItems;
 import cm.adorsys.gpao.model.Devise;
 import cm.adorsys.gpao.model.GpaoUser;
 import cm.adorsys.gpao.model.GpaoUserGroup;
@@ -92,48 +92,48 @@ public class ApplicationConversionServiceFactoryBean extends FormattingConversio
         };
     }
     
-    public Converter<Delivery, String> getDeliveryToStringConverter() {
-        return new org.springframework.core.convert.converter.Converter<cm.adorsys.gpao.model.Delivery, java.lang.String>() {
-            public String convert(Delivery delivery) {
-            	return new StringBuilder().append(delivery.toString()).toString();            }
+    public Converter<Supply, String> getDeliveryToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<cm.adorsys.gpao.model.Supply, java.lang.String>() {
+            public String convert(Supply supply) {
+            	return new StringBuilder().append(supply.toString()).toString();            }
         };
     }
     
-    public Converter<Long, Delivery> getIdToDeliveryConverter() {
-        return new org.springframework.core.convert.converter.Converter<java.lang.Long, cm.adorsys.gpao.model.Delivery>() {
-            public cm.adorsys.gpao.model.Delivery convert(java.lang.Long id) {
-                return Delivery.findDelivery(id);
+    public Converter<Long, Supply> getIdToDeliveryConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, cm.adorsys.gpao.model.Supply>() {
+            public cm.adorsys.gpao.model.Supply convert(java.lang.Long id) {
+                return Supply.findSupply(id);
             }
         };
     }
     
-    public Converter<String, Delivery> getStringToDeliveryConverter() {
-        return new org.springframework.core.convert.converter.Converter<java.lang.String, cm.adorsys.gpao.model.Delivery>() {
-            public cm.adorsys.gpao.model.Delivery convert(String id) {
-                return getObject().convert(getObject().convert(id, Long.class), Delivery.class);
+    public Converter<String, Supply> getStringToDeliveryConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, cm.adorsys.gpao.model.Supply>() {
+            public cm.adorsys.gpao.model.Supply convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), Supply.class);
             }
         };
     }
     
-    public Converter<DeliveryItems, String> getDeliveryItemsToStringConverter() {
-        return new org.springframework.core.convert.converter.Converter<cm.adorsys.gpao.model.DeliveryItems, java.lang.String>() {
-            public String convert(DeliveryItems deliveryItems) {
-            	return new StringBuilder().append(deliveryItems.toString()).toString();            }
+    public Converter<SupplyItems, String> getDeliveryItemsToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<cm.adorsys.gpao.model.SupplyItems, java.lang.String>() {
+            public String convert(SupplyItems supplyItems) {
+            	return new StringBuilder().append(supplyItems.toString()).toString();            }
         };
     }
     
-    public Converter<Long, DeliveryItems> getIdToDeliveryItemsConverter() {
-        return new org.springframework.core.convert.converter.Converter<java.lang.Long, cm.adorsys.gpao.model.DeliveryItems>() {
-            public cm.adorsys.gpao.model.DeliveryItems convert(java.lang.Long id) {
-                return DeliveryItems.findDeliveryItems(id);
+    public Converter<Long, SupplyItems> getIdToDeliveryItemsConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, cm.adorsys.gpao.model.SupplyItems>() {
+            public cm.adorsys.gpao.model.SupplyItems convert(java.lang.Long id) {
+                return SupplyItems.findSupplyItems(id);
             }
         };
     }
     
-    public Converter<String, DeliveryItems> getStringToDeliveryItemsConverter() {
-        return new org.springframework.core.convert.converter.Converter<java.lang.String, cm.adorsys.gpao.model.DeliveryItems>() {
-            public cm.adorsys.gpao.model.DeliveryItems convert(String id) {
-                return getObject().convert(getObject().convert(id, Long.class), DeliveryItems.class);
+    public Converter<String, SupplyItems> getStringToDeliveryItemsConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, cm.adorsys.gpao.model.SupplyItems>() {
+            public cm.adorsys.gpao.model.SupplyItems convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), SupplyItems.class);
             }
         };
     }

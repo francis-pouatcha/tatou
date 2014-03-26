@@ -19,4 +19,10 @@
 <definition extends="default" name="deliveryitemses/findDeliveryItemsesByDelivery">
         <put-attribute name="body" value="/WEB-INF/views/deliveryitemses/findDeliveryItemsesByDelivery.jspx"/>
     </definition>
+<definition extends="default" name="deliveryitemses/findDeliveryItemsesBySupply">
+        <put-attribute name="body" value="/WEB-INF/views/deliveryitemses/findDeliveryItemsesBySupply.jspx"/>
+    </definition>
+<definition extends="default" name="deliveryitemses/findSupplyItemsesBySupply">
+        <put-attribute name="body" value="/WEB-INF/views/deliveryitemses/findSupplyItemsesBySupply.jspx"/>
+    </definition>
 </tiles-definitions>

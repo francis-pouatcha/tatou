@@ -560,3 +560,14 @@ finder add --finderName findProductIntrantsByProduct
 field reference --fieldName udm --type ~.model.UnitOfMesures --notNull
 focus --class ~.model.Caracteristic
 field reference --fieldName product --type ~.model.Product --notNull 
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-03-26 12:04:19
+focus --class ~.model.DeliveryItems
+finder list 
+focus --class ~.model.DeliveryItems
+finder list 
+finder add findDeliveryItemsesBySupply
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log closed at 2014-03-26 14:45:58
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-03-26 14:56:50
+focus --class ~.model.SupplyItems
+finder list 
+finder add --finderName findSupplyItemsesBySupply

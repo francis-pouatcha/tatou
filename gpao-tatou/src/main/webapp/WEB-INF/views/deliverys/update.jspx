@@ -2,22 +2,22 @@
 <div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    <form:update id="fu_cm_adorsys_gpao_model_Delivery" modelAttribute="delivery" path="/deliverys" versionField="Version" z="P7TUYcIaQoiq5cwybVPi7/dSbwg=">
-        <field:input field="reference" id="c_cm_adorsys_gpao_model_Delivery_reference" z="IDMCsVOMHCOmD7snhWwYpzeCUDk="/>
-        <field:input field="createBy" id="c_cm_adorsys_gpao_model_Delivery_createBy" z="gpXgzS1LoLh5Vlk0SLHyjDCmmW8="/>
-        <field:input field="receiveBy" id="c_cm_adorsys_gpao_model_Delivery_receiveBy" z="07xvZWM+Y8fnhL4ofu5TRGXDtGo="/>
-        <field:datetime dateTimePattern="${delivery_receiveddate_date_format}" field="receivedDate" id="c_cm_adorsys_gpao_model_Delivery_receivedDate" z="pKXkUF7vbYumWabfFryF/RCvhNE="/>
-        <field:datetime dateTimePattern="${delivery_createdate_date_format}" field="createdate" id="c_cm_adorsys_gpao_model_Delivery_createdate" z="vInbZSx8FjLZU76w6dXpDzEIA28="/>
-        <field:select field="origin" id="c_cm_adorsys_gpao_model_Delivery_origin" items="${deliveryorigins}" path="deliveryorigins" required="true" z="EFUjJe+hYgSD75IOKNUpLZ/Bcf4="/>
-        <field:select field="status" id="c_cm_adorsys_gpao_model_Delivery_status" items="${documentstateses}" path="documentstateses" z="4IZSea/0NcTOKqyLYfSV3EGurBI="/>
-        <field:input field="unTaxeAmount" id="c_cm_adorsys_gpao_model_Delivery_unTaxeAmount" validationMessageCode="field_invalid_number" z="g63HFWvcE6nvvgilc7Qet8ro2B8="/>
-        <field:input field="taxAmount" id="c_cm_adorsys_gpao_model_Delivery_taxAmount" validationMessageCode="field_invalid_number" z="izOjdaYrHFYS9BzI2BE1pNPUItA="/>
-        <field:input field="taxedAmount" id="c_cm_adorsys_gpao_model_Delivery_taxedAmount" validationMessageCode="field_invalid_number" z="sxWZKzg0Z2kHeK3s0uSmslQomos="/>
-        <field:select field="deliveryItems" id="c_cm_adorsys_gpao_model_Delivery_deliveryItems" itemValue="id" items="${deliveryitemses}" multiple="true" path="/deliveryitemses" z="bUcrcT+NxinaGlrGVWJrUEMCVO8="/>
-        <field:select field="company" id="c_cm_adorsys_gpao_model_Delivery_company" itemValue="id" items="${companys}" path="/companys" required="true" z="bQTKGJA/FALamdiZpYgs/NnB33k="/>
-        <field:input field="docRef" id="c_cm_adorsys_gpao_model_Delivery_docRef" required="true" z="uSnMobCbYMT6vN4VW06dADTYM5A="/>
-        <field:select field="currency" id="c_cm_adorsys_gpao_model_Delivery_currency" itemValue="id" items="${devises}" path="/devises" required="true" z="M639Dz4Qxqis4PSj6OtjQvTagAc="/>
-        <field:checkbox field="archived" id="c_cm_adorsys_gpao_model_Delivery_archived" z="kjCgbiFnIjY02G2OmAmJwpqgikU="/>
-        <field:select field="taxes" id="c_cm_adorsys_gpao_model_Delivery_taxes" itemValue="id" items="${taxes}" multiple="true" path="/taxes" z="M1tm+WCJ+aocqk69AqU5ROyjYfc="/>
+    <form:update id="fu_cm_adorsys_gpao_model_Supply" modelAttribute="supply" path="/deliverys" versionField="Version" z="A1Sr5VVNAj0XSvLexs6YmbSmGxk=">
+        <field:checkbox field="archived" id="c_cm_adorsys_gpao_model_Supply_archived" z="CR1vwvRmIBx+Xo4svuNxAZC7H5M="/>
+        <field:input field="reference" id="c_cm_adorsys_gpao_model_Supply_reference" z="6eUrGtt1lIcLu/ErVzG0nLsBMk0="/>
+        <field:input field="createBy" id="c_cm_adorsys_gpao_model_Supply_createBy" z="ps9Cr6lJGIs2kSErkfyhM5rMb1U="/>
+        <field:input field="receiveBy" id="c_cm_adorsys_gpao_model_Supply_receiveBy" z="2tBI1iZ/JWYPa/WtlENFhQEUkaM="/>
+        <field:datetime dateTimePattern="${supply_receiveddate_date_format}" field="receivedDate" id="c_cm_adorsys_gpao_model_Supply_receivedDate" z="K+EvsMmoDHen5ZmRWr6tMIVls3I="/>
+        <field:datetime dateTimePattern="${supply_createdate_date_format}" field="createdate" id="c_cm_adorsys_gpao_model_Supply_createdate" z="U+I8szCP5ktA22WGDaabLcnuQuU="/>
+        <field:select field="origin" id="c_cm_adorsys_gpao_model_Supply_origin" items="${deliveryorigins}" path="deliveryorigins" required="true" z="8hcP0QlBZ7Z1tQ9+2BhxyKrxaQQ="/>
+        <field:select field="status" id="c_cm_adorsys_gpao_model_Supply_status" items="${documentstateses}" path="documentstateses" z="iSVsONZkTKbZIjqnx0WLkWDfDyo="/>
+        <field:input field="unTaxeAmount" id="c_cm_adorsys_gpao_model_Supply_unTaxeAmount" validationMessageCode="field_invalid_number" z="03xaODbxC4gwEhCaw6MLMwSWCoU="/>
+        <field:input field="taxAmount" id="c_cm_adorsys_gpao_model_Supply_taxAmount" validationMessageCode="field_invalid_number" z="qkII95CPfrcijUjcEs2JRa63vr0="/>
+        <field:input field="taxedAmount" id="c_cm_adorsys_gpao_model_Supply_taxedAmount" validationMessageCode="field_invalid_number" z="Lhbz/7IoiWfbvOePvlMRt8hIP98="/>
+        <field:select field="currency" id="c_cm_adorsys_gpao_model_Supply_currency" itemValue="id" items="${devises}" path="/devises" required="true" z="hhhwVm1xTAP3zg907Qo1je7Ok8w="/>
+        <field:select field="company" id="c_cm_adorsys_gpao_model_Supply_company" itemValue="id" items="${companys}" path="/companys" required="true" z="nxb7+NxrViBKTJEOmtqiKITvcGQ="/>
+        <field:input field="docRef" id="c_cm_adorsys_gpao_model_Supply_docRef" required="true" z="zw2BgwNfk8yPu7E56hel6XWN+30="/>
+        <field:select field="taxes" id="c_cm_adorsys_gpao_model_Supply_taxes" itemValue="id" items="${taxes}" multiple="true" path="/taxes" z="FMeIx0midrOLTwa/rRgcJ+b+fSY="/>
+        <field:select field="supplyItems" id="c_cm_adorsys_gpao_model_Supply_supplyItems" itemValue="id" items="${supplyitemses}" multiple="true" path="/deliveryitemses" z="lMCdJaSDN3TN6HSPNlXxvYZ4kf4="/>
     </form:update>
 </div>

@@ -1,7 +1,7 @@
 package cm.adorsys.gpao.web;
 import cm.adorsys.gpao.model.Company;
-import cm.adorsys.gpao.model.Delivery;
-import cm.adorsys.gpao.model.DeliveryItems;
+import cm.adorsys.gpao.model.Supply;
+import cm.adorsys.gpao.model.SupplyItems;
 import cm.adorsys.gpao.model.DeliveryOrigin;
 import cm.adorsys.gpao.model.Devise;
 import cm.adorsys.gpao.model.DocumentStates;

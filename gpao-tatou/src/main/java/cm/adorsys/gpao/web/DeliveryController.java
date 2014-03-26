@@ -20,44 +20,44 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import cm.adorsys.gpao.model.Company;
-import cm.adorsys.gpao.model.Delivery;
-import cm.adorsys.gpao.model.DeliveryItems;
+import cm.adorsys.gpao.model.Supply;
+import cm.adorsys.gpao.model.SupplyItems;
 import cm.adorsys.gpao.model.DeliveryOrigin;
 import cm.adorsys.gpao.model.Devise;
 import cm.adorsys.gpao.model.DocumentStates;
 import cm.adorsys.gpao.model.uimodels.DeliveryFinder;
-import cm.adorsys.gpao.services.impl.TatouDeliveryService;
+import cm.adorsys.gpao.services.impl.TatouSupplyService;
 import cm.adorsys.gpao.utils.GpaoPdfProducer;
 import cm.adorsys.gpao.utils.GpaoRepportPath;
 import cm.adorsys.gpao.utils.MessageType;
 
 @RequestMapping("/deliverys")
 @Controller
-@RooWebScaffold(path = "deliverys", formBackingObject = Delivery.class)
+@RooWebScaffold(path = "deliverys", formBackingObject = Supply.class)
 public class DeliveryController {
 
     @Autowired
-    TatouDeliveryService deliveryService;
+    TatouSupplyService deliveryService;
 
     @Autowired
     GpaoPdfProducer pdfProducer;
 
     @RequestMapping(value = "/addOrEditForm", method = RequestMethod.GET, produces = "text/html")
     public String addOrEditdeliverysForm(@RequestParam(value = "id", required = false) Long id, Model uiModel) {
-        Delivery deliverys = id == null ? new Delivery() : Delivery.findDelivery(id);
+        Supply deliverys = id == null ? new Supply() : Supply.findSupply(id);
         populateEditForm(uiModel, deliverys);
         return "deliverys/deliverysView";
     }
 
     @RequestMapping(value = "/addOrEdit", method = RequestMethod.POST, produces = "text/html")
-    public String addOrEditdeliverys(@Valid Delivery delivery, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model uiModel, HttpServletRequest httpServletRequest) {
-        delivery.setCompany(Company.findCompany(Long.valueOf(1)));
+    public String addOrEditdeliverys(@Valid Supply supply, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model uiModel, HttpServletRequest httpServletRequest) {
+        supply.setCompany(Company.findCompany(Long.valueOf(1)));
         if (bindingResult.hasErrors()) {
-            populateEditForm(uiModel, delivery);
+            populateEditForm(uiModel, supply);
             uiModel.addAttribute(MessageType.ERROR_MESSAGE, "une erreur est Survenue durant l'enregistrement ! \n " + bindingResult.getFieldErrors());
             return "deliverys/deliverysView";
         }
-        Delivery merge = delivery.merge();
+        Supply merge = supply.merge();
         uiModel.asMap().clear();
         redirectAttributes.addFlashAttribute(MessageType.SUCCESS_MESSAGE, "Enregistre avec success !");
         return "redirect:/deliverys/addOrEditForm?id=" + encodeUrlPathSegment(merge.getId().toString(), httpServletRequest) + "&form";
@@ -65,9 +65,9 @@ public class DeliveryController {
 
     @RequestMapping(value = "/close/{id}", method = RequestMethod.GET, produces = "text/html")
     public String closeDelivery(@PathVariable("id") Long id, Model uiModel, RedirectAttributes redirectAttributes, HttpServletRequest httpServletRequest) {
-        Delivery findDelivery = Delivery.findDelivery(id);
-        Delivery closeDelivery = deliveryService.closeDelivery(findDelivery);
-        Delivery produiceDelivery = deliveryService.produiceDeliveryForUnReceiveArticle(closeDelivery);
+        Supply findDelivery = Supply.findSupply(id);
+        Supply closeDelivery = deliveryService.closeDelivery(findDelivery);
+        Supply produiceDelivery = deliveryService.produiceDeliveryForUnReceiveArticle(closeDelivery);
         if (produiceDelivery.hasDeliveryItem()) {
             produiceDelivery.merge();
         } else {
@@ -81,20 +81,20 @@ public class DeliveryController {
     @RequestMapping(value = "/setReceptQte/{ItemId}/{qteRecue}", method = RequestMethod.GET, produces = "text/html")
     @ResponseBody
     public String setReceptQte(@PathVariable("ItemId") Long ItemId, @PathVariable("qteRecue") BigDecimal qteRecue) {
-        DeliveryItems deliveryItems = DeliveryItems.findDeliveryItems(ItemId);
-        if (deliveryItems.getDelivery().isOpen()) {
-            deliveryItems.setQteReceive(qteRecue);
-            deliveryItems.calculateUnreceiveQte();
-            deliveryItems.calculateQteInStock();
-            DeliveryItems merge = deliveryItems.merge();
+        SupplyItems supplyItems = SupplyItems.findSupplyItems(ItemId);
+        if (supplyItems.getSupply().isOpen()) {
+            supplyItems.setQteReceive(qteRecue);
+            supplyItems.calculateUnreceiveQte();
+            supplyItems.calculateQteInStock();
+            SupplyItems merge = supplyItems.merge();
         }
-        return deliveryItems.getDelivery().getVersion().toString();
+        return supplyItems.getSupply().getVersion().toString();
     }
 
     @RequestMapping(value = "/acceptAll/{id}", method = RequestMethod.GET, produces = "text/html")
     public String acceptAll(@PathVariable("id") Long id, Model uiModel, RedirectAttributes redirectAttributes, HttpServletRequest httpServletRequest) {
-        Delivery findDelivery = Delivery.findDelivery(id);
-        Delivery closeDelivery = deliveryService.accepAllDeliveryItems(findDelivery);
+        Supply findDelivery = Supply.findSupply(id);
+        Supply closeDelivery = deliveryService.accepAllDeliveryItems(findDelivery);
         uiModel.asMap().clear();
         redirectAttributes.addFlashAttribute(MessageType.SUCCESS_MESSAGE, "Livraison validee avec success !");
         return "redirect:/deliverys/addOrEditForm?id=" + encodeUrlPathSegment(closeDelivery.getId().toString(), httpServletRequest) + "&form";
@@ -102,26 +102,26 @@ public class DeliveryController {
 
     @RequestMapping(value = "/next/{id}", method = RequestMethod.GET, produces = "text/html")
     public String getNextDelivery(@PathVariable("id") Long id, Model uiModel) {
-        List<Delivery> nextDelivery = Delivery.findDeliverysByIdUpperThan(id).setMaxResults(1).getResultList();
+        List<Supply> nextDelivery = Supply.findDeliverysByIdUpperThan(id).setMaxResults(1).getResultList();
         if (nextDelivery.isEmpty()) {
-            populateEditForm(uiModel, Delivery.findDelivery(id));
+            populateEditForm(uiModel, Supply.findSupply(id));
             uiModel.addAttribute(MessageType.ERROR_MESSAGE, "Aucun bon de commande  trouve !");
             return "deliverys/deliverysView";
         }
-        Delivery next = nextDelivery.iterator().next();
+        Supply next = nextDelivery.iterator().next();
         populateEditForm(uiModel, next);
         return "deliverys/deliverysView";
     }
 
     @RequestMapping(value = "/previous/{id}", method = RequestMethod.GET, produces = "text/html")
     public String getPreviousDelivery(@PathVariable("id") Long id, Model uiModel) {
-        List<Delivery> nextDelivery = Delivery.findDeliverysByIdLowerThan(id).setMaxResults(1).getResultList();
+        List<Supply> nextDelivery = Supply.findDeliverysByIdLowerThan(id).setMaxResults(1).getResultList();
         if (nextDelivery.isEmpty()) {
-            populateEditForm(uiModel, Delivery.findDelivery(id));
+            populateEditForm(uiModel, Supply.findSupply(id));
             uiModel.addAttribute(MessageType.ERROR_MESSAGE, "Aucun bon de commande  trouve !");
             return "deliverys/deliverysView";
         }
-        Delivery next = nextDelivery.iterator().next();
+        Supply next = nextDelivery.iterator().next();
         populateEditForm(uiModel, next);
         return "deliverys/deliverysView";
     }
@@ -129,7 +129,7 @@ public class DeliveryController {
     @RequestMapping(value = "/deliveryNote/{reference}.pdf", method = RequestMethod.GET, produces = { "application/pdf" })
     public void etatProduitPerisable(@PathVariable("reference") String reference, HttpServletRequest request, HttpServletResponse response) {
         Map parameters = new HashMap();
-        Delivery next = Delivery.findDeliverysByReferenceEquals(reference).getResultList().iterator().next();
+        Supply next = Supply.findDeliverysByReferenceEquals(reference).getResultList().iterator().next();
         parameters.put("commandeid", next.getId());
         try {
             pdfProducer.buildPdfDocument(parameters, response, GpaoRepportPath.DELIVERY_JRXML_PATH);
@@ -166,7 +166,7 @@ public class DeliveryController {
 
     @RequestMapping(value = "/listByDocRef/{docRef}", method = RequestMethod.GET, produces = "text/html")
     public String listByDocRef(@PathVariable("docRef") String docRef, Model uiModel) {
-        uiModel.addAttribute("deliverys", Delivery.findDeliverysByDocRef(docRef).getResultList());
+        uiModel.addAttribute("deliverys", Supply.findDeliverysByDocRef(docRef).getResultList());
         addDateTimeFormatPatterns(uiModel);
         return "deliverys/list";
     }
@@ -178,11 +178,11 @@ public class DeliveryController {
         uiModel.addAttribute("documentstateses", Arrays.asList(DocumentStates.values()));
     }
 
-    void populateEditForm(Model uiModel, Delivery delivery) {
-        uiModel.addAttribute("delivery", delivery);
+    void populateEditForm(Model uiModel, Supply supply) {
+        uiModel.addAttribute("delivery", supply);
         addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("companys", Company.findAllCompanys());
-        uiModel.addAttribute("deliveryitemses", new ArrayList<DeliveryItems>());
+        uiModel.addAttribute("deliveryitemses", new ArrayList<SupplyItems>());
         uiModel.addAttribute("deliveryorigins", Arrays.asList(DeliveryOrigin.values()));
         uiModel.addAttribute("devises", Devise.findAllDevises());
         uiModel.addAttribute("documentstateses", Arrays.asList(DocumentStates.values()));

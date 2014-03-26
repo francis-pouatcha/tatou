@@ -9,7 +9,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.roo.addon.javabean.RooJavaBean;
-import cm.adorsys.gpao.model.Delivery;
+import cm.adorsys.gpao.model.Supply;
 import cm.adorsys.gpao.model.DeliveryOrigin;
 import cm.adorsys.gpao.model.DocumentStates;
 import cm.adorsys.gpao.model.Tenders;
@@ -17,7 +17,7 @@ import org.springframework.roo.addon.json.RooJson;
 
 @RooJavaBean
 @RooJson
-public class DeliveryFinder implements GpaoEntityFinder<Delivery> {
+public class DeliveryFinder implements GpaoEntityFinder<Supply> {
 
     private String reference;
 
@@ -38,20 +38,20 @@ public class DeliveryFinder implements GpaoEntityFinder<Delivery> {
     private Date endReceivedDate;
 
     @Override
-    public List<Delivery> find(int page, int size) {
-        return Delivery.findDeliveryByStatusAndOriginAndReceiveDateBetween(status, reference, beginReceivedDate, endReceivedDate, docRef, receiveBy, origin).setFirstResult(page).setMaxResults(size).getResultList();
+    public List<Supply> find(int page, int size) {
+        return Supply.findDeliveryByStatusAndOriginAndReceiveDateBetween(status, reference, beginReceivedDate, endReceivedDate, docRef, receiveBy, origin).setFirstResult(page).setMaxResults(size).getResultList();
     }
 
     @Override
-    public List<Delivery> find() {
-        return Delivery.findDeliveryByStatusAndOriginAndReceiveDateBetween(status, reference, beginReceivedDate, endReceivedDate, docRef, receiveBy, origin).getResultList();
+    public List<Supply> find() {
+        return Supply.findDeliveryByStatusAndOriginAndReceiveDateBetween(status, reference, beginReceivedDate, endReceivedDate, docRef, receiveBy, origin).getResultList();
     }
 
     public List<Long> getDeliveryId() {
         ArrayList<Long> deliveryId = new ArrayList<Long>();
-        List<Delivery> find = find();
-        for (Delivery delivery : find) {
-            deliveryId.add(delivery.getId());
+        List<Supply> find = find();
+        for (Supply supply : find) {
+            deliveryId.add(supply.getId());
         }
         return deliveryId;
     }

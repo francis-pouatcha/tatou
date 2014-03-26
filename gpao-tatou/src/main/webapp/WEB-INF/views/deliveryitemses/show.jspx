@@ -2,17 +2,17 @@
 <div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    <page:show id="ps_cm_adorsys_gpao_model_DeliveryItems" object="${deliveryitems}" path="/deliveryitemses" z="R89MulF82zj9UHZ7jRoBKr57YcI=">
-        <field:display field="reference" id="s_cm_adorsys_gpao_model_DeliveryItems_reference" object="${deliveryitems}" z="tdEh7sPHh7Z27OjmMmSXqUC6qm4="/>
-        <field:display field="product" id="s_cm_adorsys_gpao_model_DeliveryItems_product" object="${deliveryitems}" z="XaoBwDtckg5wODFK57RGSKM24ss="/>
-        <field:display field="orderQte" id="s_cm_adorsys_gpao_model_DeliveryItems_orderQte" object="${deliveryitems}" z="ohjgPEciJ5MOafwuiNlfbwvtOrY="/>
-        <field:display field="qteReceive" id="s_cm_adorsys_gpao_model_DeliveryItems_qteReceive" object="${deliveryitems}" z="sRTDgQzJ4iLIVu6fB3UbnxMLLGs="/>
-        <field:display field="qteUnreceive" id="s_cm_adorsys_gpao_model_DeliveryItems_qteUnreceive" object="${deliveryitems}" z="2FKe3H2IXya+SUregSbi/oj94kA="/>
-        <field:display field="delivery" id="s_cm_adorsys_gpao_model_DeliveryItems_delivery" object="${deliveryitems}" z="K9q5ceQhePYTd7graralPydCxRs="/>
-        <field:display field="amountHt" id="s_cm_adorsys_gpao_model_DeliveryItems_amountHt" object="${deliveryitems}" z="GoZ5a/6C3tTyvESi1G+HN6P6VVA="/>
-        <field:display date="true" dateTimePattern="${deliveryItems_expirationdate_date_format}" field="expirationDate" id="s_cm_adorsys_gpao_model_DeliveryItems_expirationDate" object="${deliveryitems}" z="d+j3D1Dcp7ebd+xyYeYuINm+rMA="/>
-        <field:display field="udm" id="s_cm_adorsys_gpao_model_DeliveryItems_udm" object="${deliveryitems}" z="4jbIC2eUMJRip3X3AKYF0+3cOHo="/>
-        <field:display field="archived" id="s_cm_adorsys_gpao_model_DeliveryItems_archived" object="${deliveryitems}" z="QJ/A2YgCL6TRVDA1NTcWTqlf5Yc="/>
-        <field:display field="qteInStock" id="s_cm_adorsys_gpao_model_DeliveryItems_qteInStock" object="${deliveryitems}" z="HFu+a79D4MrVSHuBpa7XXIakCdQ="/>
+    <page:show id="ps_cm_adorsys_gpao_model_SupplyItems" object="${supplyitems}" path="/deliveryitemses" z="LwS9cNw9TCqRp/yR/7VbMRbqa+4=">
+        <field:display field="archived" id="s_cm_adorsys_gpao_model_SupplyItems_archived" object="${supplyitems}" z="o2wA85lZ0TXhiiAz56kUGeKvU0o="/>
+        <field:display field="reference" id="s_cm_adorsys_gpao_model_SupplyItems_reference" object="${supplyitems}" z="c1do8D1K+b7ozr49wKnZ4zgIko0="/>
+        <field:display field="product" id="s_cm_adorsys_gpao_model_SupplyItems_product" object="${supplyitems}" z="1UDiPBKWikEre5Txo5w5vNh+Djs="/>
+        <field:display field="orderQte" id="s_cm_adorsys_gpao_model_SupplyItems_orderQte" object="${supplyitems}" z="rMWnGVvDs2FhYLHp3MPim5BtXqQ="/>
+        <field:display field="qteReceive" id="s_cm_adorsys_gpao_model_SupplyItems_qteReceive" object="${supplyitems}" z="zmwosGUky79HY/9mL+xfJ0JgElE="/>
+        <field:display field="qteUnreceive" id="s_cm_adorsys_gpao_model_SupplyItems_qteUnreceive" object="${supplyitems}" z="80ND2AcY4ckx6+DXe/6IpXQdkpY="/>
+        <field:display field="qteInStock" id="s_cm_adorsys_gpao_model_SupplyItems_qteInStock" object="${supplyitems}" z="fA9+TV3jIOu4Bs5k3hdzqI1Ha7Q="/>
+        <field:display field="supply" id="s_cm_adorsys_gpao_model_SupplyItems_supply" object="${supplyitems}" z="E6qkBDdg0EpdL44oj5zWua2vmD4="/>
+        <field:display field="amountHt" id="s_cm_adorsys_gpao_model_SupplyItems_amountHt" object="${supplyitems}" z="UuQTRVsxsPJFMGhQ+dTTpb5hWQM="/>
+        <field:display date="true" dateTimePattern="${supplyItems_expirationdate_date_format}" field="expirationDate" id="s_cm_adorsys_gpao_model_SupplyItems_expirationDate" object="${supplyitems}" z="t/UMQygXRuGmJDQDYC8zmhe9hp4="/>
+        <field:display field="udm" id="s_cm_adorsys_gpao_model_SupplyItems_udm" object="${supplyitems}" z="XHro8IodMCdKQBdi/rA3M3tEqzs="/>
     </page:show>
 </div>

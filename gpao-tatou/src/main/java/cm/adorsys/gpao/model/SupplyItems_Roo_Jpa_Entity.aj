@@ -3,15 +3,15 @@
 
 package cm.adorsys.gpao.model;
 
-import cm.adorsys.gpao.model.DeliveryItems;
+import cm.adorsys.gpao.model.SupplyItems;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
-privileged aspect DeliveryItems_Roo_Jpa_Entity {
+privileged aspect SupplyItems_Roo_Jpa_Entity {
     
-    declare @type: DeliveryItems: @Entity;
+    declare @type: SupplyItems: @Entity;
     
-    declare @type: DeliveryItems: @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS);
+    declare @type: SupplyItems: @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS);
     
 }

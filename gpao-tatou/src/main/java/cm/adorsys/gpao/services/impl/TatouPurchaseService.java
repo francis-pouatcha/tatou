@@ -8,8 +8,8 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import cm.adorsys.gpao.model.Delivery;
-import cm.adorsys.gpao.model.DeliveryItems;
+import cm.adorsys.gpao.model.Supply;
+import cm.adorsys.gpao.model.SupplyItems;
 import cm.adorsys.gpao.model.DocumentStates;
 import cm.adorsys.gpao.model.OrderItems;
 import cm.adorsys.gpao.model.Product;
@@ -24,7 +24,7 @@ import cm.adorsys.gpao.services.IPurchaseServices;
 public class TatouPurchaseService implements IPurchaseServices {
 
 	@Autowired
-	TatouDeliveryService deliveryService;
+	TatouSupplyService deliveryService;
 
 	@Override
 	public List<Product> findProductByNameLike(String productName) {
@@ -94,13 +94,13 @@ public class TatouPurchaseService implements IPurchaseServices {
 	@Override
 	public void validatedPurchase(PurchaseOrder purchaseOrder) {
 		if(DocumentStates.BROUILLON.equals(purchaseOrder.getOrderState())){
-			Delivery delivery = deliveryService.getDeliveryFromOrder(purchaseOrder);
-			delivery.persist();
-			Set<DeliveryItems> deliveryItems = deliveryService.getDeliveryItems(purchaseOrder,delivery);
-			delivery.setDeliveryItems(deliveryItems);
-			deliveryService.calCulateDeliveryAmout(delivery);
+			Supply supply = deliveryService.getDeliveryFromOrder(purchaseOrder);
+			supply.persist();
+			Set<SupplyItems> supplyItems = deliveryService.getDeliveryItems(purchaseOrder,supply);
+			supply.setSupplyItems(supplyItems);
+			deliveryService.calCulateDeliveryAmout(supply);
 			purchaseOrder.setOrderState(DocumentStates.VALIDER);
-			delivery.merge();
+			supply.merge();
 			purchaseOrder.setValidateDate(new Date());
 			purchaseOrder.setValidatedBy(SecurityUtil.getUserName());
 			purchaseOrder.setIsValided(Boolean.TRUE);

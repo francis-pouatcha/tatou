@@ -4,8 +4,8 @@
 package cm.adorsys.gpao.web;
 
 import cm.adorsys.gpao.model.Company;
-import cm.adorsys.gpao.model.Delivery;
 import cm.adorsys.gpao.model.Devise;
+import cm.adorsys.gpao.model.Supply;
 import cm.adorsys.gpao.web.DeliveryController;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -26,19 +26,19 @@ import org.springframework.web.util.WebUtils;
 privileged aspect DeliveryController_Roo_Controller {
     
     @RequestMapping(method = RequestMethod.POST, produces = "text/html")
-    public String DeliveryController.create(@Valid Delivery delivery, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
+    public String DeliveryController.create(@Valid Supply supply, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
-            populateEditForm(uiModel, delivery);
+            populateEditForm(uiModel, supply);
             return "deliverys/create";
         }
         uiModel.asMap().clear();
-        delivery.persist();
-        return "redirect:/deliverys/" + encodeUrlPathSegment(delivery.getId().toString(), httpServletRequest);
+        supply.persist();
+        return "redirect:/deliverys/" + encodeUrlPathSegment(supply.getId().toString(), httpServletRequest);
     }
     
     @RequestMapping(params = "form", produces = "text/html")
     public String DeliveryController.createForm(Model uiModel) {
-        populateEditForm(uiModel, new Delivery());
+        populateEditForm(uiModel, new Supply());
         List<String[]> dependencies = new ArrayList<String[]>();
         if (Devise.countDevises() == 0) {
             dependencies.add(new String[] { "devise", "devises" });
@@ -53,7 +53,7 @@ privileged aspect DeliveryController_Roo_Controller {
     @RequestMapping(value = "/{id}", produces = "text/html")
     public String DeliveryController.show(@PathVariable("id") Long id, Model uiModel) {
         addDateTimeFormatPatterns(uiModel);
-        uiModel.addAttribute("delivery", Delivery.findDelivery(id));
+        uiModel.addAttribute("supply", Supply.findSupply(id));
         uiModel.addAttribute("itemId", id);
         return "deliverys/show";
     }
@@ -63,37 +63,37 @@ privileged aspect DeliveryController_Roo_Controller {
         if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
             final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
-            uiModel.addAttribute("deliverys", Delivery.findDeliveryEntries(firstResult, sizeNo, sortFieldName, sortOrder));
-            float nrOfPages = (float) Delivery.countDeliverys() / sizeNo;
+            uiModel.addAttribute("supplys", Supply.findSupplyEntries(firstResult, sizeNo, sortFieldName, sortOrder));
+            float nrOfPages = (float) Supply.countSupplys() / sizeNo;
             uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
         } else {
-            uiModel.addAttribute("deliverys", Delivery.findAllDeliverys(sortFieldName, sortOrder));
+            uiModel.addAttribute("supplys", Supply.findAllSupplys(sortFieldName, sortOrder));
         }
         addDateTimeFormatPatterns(uiModel);
         return "deliverys/list";
     }
     
     @RequestMapping(method = RequestMethod.PUT, produces = "text/html")
-    public String DeliveryController.update(@Valid Delivery delivery, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
+    public String DeliveryController.update(@Valid Supply supply, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
-            populateEditForm(uiModel, delivery);
+            populateEditForm(uiModel, supply);
             return "deliverys/update";
         }
         uiModel.asMap().clear();
-        delivery.merge();
-        return "redirect:/deliverys/" + encodeUrlPathSegment(delivery.getId().toString(), httpServletRequest);
+        supply.merge();
+        return "redirect:/deliverys/" + encodeUrlPathSegment(supply.getId().toString(), httpServletRequest);
     }
     
     @RequestMapping(value = "/{id}", params = "form", produces = "text/html")
     public String DeliveryController.updateForm(@PathVariable("id") Long id, Model uiModel) {
-        populateEditForm(uiModel, Delivery.findDelivery(id));
+        populateEditForm(uiModel, Supply.findSupply(id));
         return "deliverys/update";
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = "text/html")
     public String DeliveryController.delete(@PathVariable("id") Long id, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
-        Delivery delivery = Delivery.findDelivery(id);
-        delivery.remove();
+        Supply supply = Supply.findSupply(id);
+        supply.remove();
         uiModel.asMap().clear();
         uiModel.addAttribute("page", (page == null) ? "1" : page.toString());
         uiModel.addAttribute("size", (size == null) ? "10" : size.toString());
@@ -101,8 +101,8 @@ privileged aspect DeliveryController_Roo_Controller {
     }
     
     void DeliveryController.addDateTimeFormatPatterns(Model uiModel) {
-        uiModel.addAttribute("delivery_receiveddate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
-        uiModel.addAttribute("delivery_createdate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
+        uiModel.addAttribute("supply_receiveddate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
+        uiModel.addAttribute("supply_createdate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
     }
     
     String DeliveryController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

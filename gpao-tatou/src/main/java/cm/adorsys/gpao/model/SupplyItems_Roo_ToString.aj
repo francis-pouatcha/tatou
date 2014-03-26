@@ -3,13 +3,13 @@
 
 package cm.adorsys.gpao.model;
 
-import cm.adorsys.gpao.model.DeliveryItems;
+import cm.adorsys.gpao.model.SupplyItems;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-privileged aspect DeliveryItems_Roo_ToString {
+privileged aspect SupplyItems_Roo_ToString {
     
-    public String DeliveryItems.toString() {
+    public String SupplyItems.toString() {
         return ReflectionToStringBuilder.toString(this, ToStringStyle.SHORT_PREFIX_STYLE);
     }
     

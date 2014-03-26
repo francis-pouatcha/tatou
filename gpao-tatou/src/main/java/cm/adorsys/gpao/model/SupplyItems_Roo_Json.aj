@@ -3,43 +3,43 @@
 
 package cm.adorsys.gpao.model;
 
-import cm.adorsys.gpao.model.Delivery;
+import cm.adorsys.gpao.model.SupplyItems;
 import flexjson.JSONDeserializer;
 import flexjson.JSONSerializer;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-privileged aspect Delivery_Roo_Json {
+privileged aspect SupplyItems_Roo_Json {
     
-    public String Delivery.toJson() {
+    public String SupplyItems.toJson() {
         return new JSONSerializer()
         .exclude("*.class").serialize(this);
     }
     
-    public String Delivery.toJson(String[] fields) {
+    public String SupplyItems.toJson(String[] fields) {
         return new JSONSerializer()
         .include(fields).exclude("*.class").serialize(this);
     }
     
-    public static Delivery Delivery.fromJsonToDelivery(String json) {
-        return new JSONDeserializer<Delivery>()
-        .use(null, Delivery.class).deserialize(json);
+    public static SupplyItems SupplyItems.fromJsonToSupplyItems(String json) {
+        return new JSONDeserializer<SupplyItems>()
+        .use(null, SupplyItems.class).deserialize(json);
     }
     
-    public static String Delivery.toJsonArray(Collection<Delivery> collection) {
+    public static String SupplyItems.toJsonArray(Collection<SupplyItems> collection) {
         return new JSONSerializer()
         .exclude("*.class").serialize(collection);
     }
     
-    public static String Delivery.toJsonArray(Collection<Delivery> collection, String[] fields) {
+    public static String SupplyItems.toJsonArray(Collection<SupplyItems> collection, String[] fields) {
         return new JSONSerializer()
         .include(fields).exclude("*.class").serialize(collection);
     }
     
-    public static Collection<Delivery> Delivery.fromJsonArrayToDeliverys(String json) {
-        return new JSONDeserializer<List<Delivery>>()
-        .use("values", Delivery.class).deserialize(json);
+    public static Collection<SupplyItems> SupplyItems.fromJsonArrayToSupplyItemses(String json) {
+        return new JSONDeserializer<List<SupplyItems>>()
+        .use("values", SupplyItems.class).deserialize(json);
     }
     
 }

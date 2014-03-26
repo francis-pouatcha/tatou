@@ -13,6 +13,8 @@ import cm.adorsys.gpao.model.InventoryItems;
 import cm.adorsys.gpao.model.Location;
 import cm.adorsys.gpao.model.ProductIntrant;
 import cm.adorsys.gpao.model.Specificity;
+import cm.adorsys.gpao.model.Supply;
+import cm.adorsys.gpao.model.SupplyItems;
 import cm.adorsys.gpao.model.TenderItems;
 import cm.adorsys.gpao.model.Tenders;
 import cm.adorsys.gpao.web.ApplicationConversionServiceFactoryBean;
@@ -240,6 +242,54 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         };
     }
     
+    public Converter<Supply, String> ApplicationConversionServiceFactoryBean.getSupplyToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<cm.adorsys.gpao.model.Supply, java.lang.String>() {
+            public String convert(Supply supply) {
+                return new StringBuilder().append(supply.getReference()).append(' ').append(supply.getCreateBy()).append(' ').append(supply.getReceiveBy()).append(' ').append(supply.getReceivedDate()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, Supply> ApplicationConversionServiceFactoryBean.getIdToSupplyConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, cm.adorsys.gpao.model.Supply>() {
+            public cm.adorsys.gpao.model.Supply convert(java.lang.Long id) {
+                return Supply.findSupply(id);
+            }
+        };
+    }
+    
+    public Converter<String, Supply> ApplicationConversionServiceFactoryBean.getStringToSupplyConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, cm.adorsys.gpao.model.Supply>() {
+            public cm.adorsys.gpao.model.Supply convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), Supply.class);
+            }
+        };
+    }
+    
+    public Converter<SupplyItems, String> ApplicationConversionServiceFactoryBean.getSupplyItemsToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<cm.adorsys.gpao.model.SupplyItems, java.lang.String>() {
+            public String convert(SupplyItems supplyItems) {
+                return new StringBuilder().append(supplyItems.getReference()).append(' ').append(supplyItems.getOrderQte()).append(' ').append(supplyItems.getQteReceive()).append(' ').append(supplyItems.getQteUnreceive()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, SupplyItems> ApplicationConversionServiceFactoryBean.getIdToSupplyItemsConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, cm.adorsys.gpao.model.SupplyItems>() {
+            public cm.adorsys.gpao.model.SupplyItems convert(java.lang.Long id) {
+                return SupplyItems.findSupplyItems(id);
+            }
+        };
+    }
+    
+    public Converter<String, SupplyItems> ApplicationConversionServiceFactoryBean.getStringToSupplyItemsConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, cm.adorsys.gpao.model.SupplyItems>() {
+            public cm.adorsys.gpao.model.SupplyItems convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), SupplyItems.class);
+            }
+        };
+    }
+    
     public Converter<TenderItems, String> ApplicationConversionServiceFactoryBean.getTenderItemsToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<cm.adorsys.gpao.model.TenderItems, java.lang.String>() {
             public String convert(TenderItems tenderItems) {
@@ -299,12 +349,6 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         registry.addConverter(getCustomerOrderItemToStringConverter());
         registry.addConverter(getIdToCustomerOrderItemConverter());
         registry.addConverter(getStringToCustomerOrderItemConverter());
-        registry.addConverter(getDeliveryToStringConverter());
-        registry.addConverter(getIdToDeliveryConverter());
-        registry.addConverter(getStringToDeliveryConverter());
-        registry.addConverter(getDeliveryItemsToStringConverter());
-        registry.addConverter(getIdToDeliveryItemsConverter());
-        registry.addConverter(getStringToDeliveryItemsConverter());
         registry.addConverter(getDeviseToStringConverter());
         registry.addConverter(getIdToDeviseConverter());
         registry.addConverter(getStringToDeviseConverter());
@@ -350,6 +394,12 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         registry.addConverter(getSpecificityToStringConverter());
         registry.addConverter(getIdToSpecificityConverter());
         registry.addConverter(getStringToSpecificityConverter());
+        registry.addConverter(getSupplyToStringConverter());
+        registry.addConverter(getIdToSupplyConverter());
+        registry.addConverter(getStringToSupplyConverter());
+        registry.addConverter(getSupplyItemsToStringConverter());
+        registry.addConverter(getIdToSupplyItemsConverter());
+        registry.addConverter(getStringToSupplyItemsConverter());
         registry.addConverter(getTaxeToStringConverter());
         registry.addConverter(getIdToTaxeConverter());
         registry.addConverter(getStringToTaxeConverter());

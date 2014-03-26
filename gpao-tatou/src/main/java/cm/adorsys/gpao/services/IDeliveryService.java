@@ -2,8 +2,8 @@ package cm.adorsys.gpao.services;
 
 import java.util.Set;
 
-import cm.adorsys.gpao.model.Delivery;
-import cm.adorsys.gpao.model.DeliveryItems;
+import cm.adorsys.gpao.model.Supply;
+import cm.adorsys.gpao.model.SupplyItems;
 import cm.adorsys.gpao.model.Inventory;
 import cm.adorsys.gpao.model.PurchaseOrder;
 
@@ -12,13 +12,13 @@ import cm.adorsys.gpao.model.PurchaseOrder;
  *
  */
 public interface IDeliveryService {
-	public Delivery getDeliveryFromOrder(PurchaseOrder order) ;
-	public Delivery getDeliveryFromInventory(Inventory inventory) ;
-	public Set<DeliveryItems> getDeliveryItems(PurchaseOrder order,Delivery delivery) ;
-	public Set<DeliveryItems> getDeliveryItems(Inventory inventory ,Delivery delivery) ;
-	public Delivery closeDelivery(Delivery delivery);
-	public void calCulateDeliveryAmout(Delivery delivery) ;
-	public Delivery accepAllDeliveryItems(Delivery delivery) ;
+	public Supply getDeliveryFromOrder(PurchaseOrder order) ;
+	public Supply getDeliveryFromInventory(Inventory inventory) ;
+	public Set<SupplyItems> getDeliveryItems(PurchaseOrder order,Supply supply) ;
+	public Set<SupplyItems> getDeliveryItems(Inventory inventory ,Supply supply) ;
+	public Supply closeDelivery(Supply supply);
+	public void calCulateDeliveryAmout(Supply supply) ;
+	public Supply accepAllDeliveryItems(Supply supply) ;
 
 	
 }

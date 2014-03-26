@@ -8,15 +8,19 @@
     </div>
     <page:list id="pl_cm_adorsys_gpao_model_Delivery" items="${deliverys}" labelPlural="Liste des livraisons" showInPanel="false" z="user-managed">
         <table:table create="false" data="${deliverys}" delete="false" id="l_cm_adorsys_gpao_model_Delivery" path="/deliverys/addOrEditForm" queryParam="true" show="false" z="user-managed">
-            <table:column id="c_cm_adorsys_gpao_model_Delivery_reference" property="reference" z="hdHy7xt3A708D12OlWRhwjeFy3Q="/>
             <table:column id="c_cm_adorsys_gpao_model_Delivery_origin" property="origin" z="hdHy7xt3A708D12OlWRhwjeFy3Q="/>
             <table:column id="c_cm_adorsys_gpao_model_Delivery_docRef" property="docRef" z="hdHy7xt3A708D12OlWRhwjeFy3Q="/>
-            <table:column id="c_cm_adorsys_gpao_model_Delivery_createBy" property="createBy" z="yr/1C5evkBlireL9jLnysszCpBU="/>
-            <table:column date="true" dateTimePattern="${delivery_createdate_date_format}" id="c_cm_adorsys_gpao_model_Delivery_createdate" property="createdate" z="hgsF3/H5fD2x2m8X1upk2p1JoUM="/>
-            <table:column id="c_cm_adorsys_gpao_model_Delivery_receiveBy" property="receiveBy" z="d1nU5IaKSmZWEhz/ZRPUVkGglg4="/>
-            <table:column date="true" dateTimePattern="${delivery_receiveddate_date_format}" id="c_cm_adorsys_gpao_model_Delivery_receivedDate" property="receivedDate" z="B+qebDWLdLsC1ua1l2tye7XGhKQ="/>
             <table:column id="c_cm_adorsys_gpao_model_Delivery_status" property="status" z="user-managed"/>
-            <table:column id="c_cm_adorsys_gpao_model_Delivery_archived" property="archived" z="kPMCUwkNo7YruGlmtJ+yw3T+BPw="/>
+        </table:table>
+    </page:list>
+    <page:list id="pl_cm_adorsys_gpao_model_Supply" items="${supplys}" z="c7mqHyI0zjHee2e7eRg7o2jVKWs=">
+        <table:table data="${supplys}" id="l_cm_adorsys_gpao_model_Supply" path="/deliverys" z="1zCPshB6MK6Z5o87gaq4iluB72c=">
+            <table:column id="c_cm_adorsys_gpao_model_Supply_archived" property="archived" z="gfyo6bouoQl6it+10vRocB/9yTQ="/>
+            <table:column id="c_cm_adorsys_gpao_model_Supply_reference" property="reference" z="aivTaDySDEGghiwVviMC5gRdBE0="/>
+            <table:column id="c_cm_adorsys_gpao_model_Supply_createBy" property="createBy" z="DIqc9nciZw3WW8JgZpS8yLJAoys="/>
+            <table:column id="c_cm_adorsys_gpao_model_Supply_receiveBy" property="receiveBy" z="0sNYaNPkKsBoFkXr+I/hQSniQGA="/>
+            <table:column date="true" dateTimePattern="${supply_receiveddate_date_format}" id="c_cm_adorsys_gpao_model_Supply_receivedDate" property="receivedDate" z="VxmPRj9/zAVSjHDZhDkmj9SqeJw="/>
+            <table:column date="true" dateTimePattern="${supply_createdate_date_format}" id="c_cm_adorsys_gpao_model_Supply_createdate" property="createdate" z="PZQ8OrIwaUbA8GSdp8YKjbiOrk0="/>
         </table:table>
     </page:list>
 </div>

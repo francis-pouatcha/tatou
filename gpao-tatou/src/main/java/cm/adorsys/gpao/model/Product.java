@@ -144,10 +144,10 @@ public class Product extends GpaoBaseEntity {
 
     public void calculateStockQuantity() {
         virtualStock = BigDecimal.ZERO;
-        List<DeliveryItems> resultList = DeliveryItems.findDeliveryItemssByProductAndStockQteNotEqual(this, BigDecimal.ZERO).getResultList();
+        List<SupplyItems> resultList = SupplyItems.findDeliveryItemssByProductAndStockQteNotEqual(this, BigDecimal.ZERO).getResultList();
         if (!resultList.isEmpty()) {
-            for (DeliveryItems deliveryItems : resultList) {
-                virtualStock = virtualStock.add(UdmUtils.convert(deliveryItems.getUdm(), getDefaultUdm(), deliveryItems.getQteReceive()));
+            for (SupplyItems supplyItems : resultList) {
+                virtualStock = virtualStock.add(UdmUtils.convert(supplyItems.getUdm(), getDefaultUdm(), supplyItems.getQteReceive()));
             }
         }
     }

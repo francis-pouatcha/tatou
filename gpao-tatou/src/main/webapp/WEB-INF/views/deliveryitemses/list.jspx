@@ -9,13 +9,19 @@
     </div>
     <page:list id="pl_cm_adorsys_gpao_model_DeliveryItems" items="${deliveryitemses}" labelPlural="Liste des Lots de produits" showInPanel="false" z="user-managed">
         <table:table create="false" data="${deliveryitemses}" delete="false" id="l_cm_adorsys_gpao_model_DeliveryItems" path="/deliveryitemses" show="false" update="false" z="user-managed">
-            <table:column id="c_cm_adorsys_gpao_model_DeliveryItems_reference" property="reference" z="VrtsaT090uWR18PZ6ygWDaGLLxg="/>
-            <table:column id="c_cm_adorsys_gpao_model_DeliveryItems_product" property="product" z="BGDHoSOYHg8G7kRe4AL0MNotVV8="/>
             <table:column id="c_cm_adorsys_gpao_model_DeliveryItems_udm" property="udm" z="5uhdFGK6T2oC0hP26L1kIy+UVt4="/>
-            <table:column id="c_cm_adorsys_gpao_model_DeliveryItems_orderQte" property="orderQte" z="U5o2R5duZmF2JVkyreICxMBk3Xk="/>
             <table:column id="c_cm_adorsys_gpao_model_DeliveryItems_qteReceive" label="stock" property="qteReceive" z="user-managed"/>
             <table:column id="c_cm_adorsys_gpao_model_DeliveryItems_archived" property="archived" render="false" z="user-managed"/>
-            <table:column id="c_cm_adorsys_gpao_model_DeliveryItems_qteUnreceive" property="qteUnreceive" z="5uhdFGK6T2oC0hP26L1kIy+UVt4="/>
+        </table:table>
+    </page:list>
+    <page:list id="pl_cm_adorsys_gpao_model_SupplyItems" items="${supplyitemses}" z="iQg/viO/+zfhi4d7KBQh1R9rBZQ=">
+        <table:table data="${supplyitemses}" id="l_cm_adorsys_gpao_model_SupplyItems" path="/deliveryitemses" z="D6qmElgtaXkbmqOY0hFpOuaB5yM=">
+            <table:column id="c_cm_adorsys_gpao_model_SupplyItems_archived" property="archived" z="P6hzqrHs6q4Xh+CV9RNjtL35804="/>
+            <table:column id="c_cm_adorsys_gpao_model_SupplyItems_reference" property="reference" z="AQRS8O3HZ4Ve2sA7PtRrt4ruvzo="/>
+            <table:column id="c_cm_adorsys_gpao_model_SupplyItems_product" property="product" z="ogyBnukkXZznFFAOgMRLIOHoxUQ="/>
+            <table:column id="c_cm_adorsys_gpao_model_SupplyItems_orderQte" property="orderQte" z="9WHU8vPZCWU2BNY7KHwjnoQADbA="/>
+            <table:column id="c_cm_adorsys_gpao_model_SupplyItems_qteReceive" property="qteReceive" z="9uSngXZGIyVrzyEokTqZHyDSIMY="/>
+            <table:column id="c_cm_adorsys_gpao_model_SupplyItems_qteUnreceive" property="qteUnreceive" z="bhyUAXV016BvTu46Pd8e9FhkviQ="/>
         </table:table>
     </page:list>
 </div>
