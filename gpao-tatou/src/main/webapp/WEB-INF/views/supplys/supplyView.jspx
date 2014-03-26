@@ -9,21 +9,21 @@
 	xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
 	<jsp:directive.page contentType="text/html;charset=UTF-8" />
 	<jsp:output omit-xml-declaration="yes" />
-	<spring:url value="/deliverys/next/${ delivery.id}" var="next_url" />
-	<spring:url value="/deliverys/find?form" var="filtre_url" />
-	<spring:url value="/deliverys/previous/${delivery.id}"	var="previous_url" />
-	<spring:url value="/deliverys/close/${delivery.id}"	var="close_url" />
-	<spring:url value="/deliverys/acceptAll/${delivery.id}"	var="acceptAll_url" />
-	<spring:url value="/deliverys/deliveryNote/${delivery.reference}.pdf"	var="print_url" />
-	<spring:url value="/deliverys/setReceptQte/"	var="qte_recue_url" />
+	<spring:url value="/supplys/next/${ supply.id}" var="next_url" />
+	<spring:url value="/supplys/find?form" var="filtre_url" />
+	<spring:url value="/supplys/previous/${supply.id}"	var="previous_url" />
+	<spring:url value="/supplys/close/${supply.id}"	var="close_url" />
+	<spring:url value="/supplys/acceptAll/${supply.id}"	var="acceptAll_url" />
+	<spring:url value="/supplys/supplyNote/${supply.reference}.pdf"	var="print_url" />
+	<spring:url value="/supplys/setReceptQte/"	var="qte_recue_url" />
 	<div class="row-fluid">
 		<div class="span4">
 			<B style="font-size: 15px; color: blue;"> Reference : </B> <STRONG
-				style="font-size: 15px;">${delivery.reference} </STRONG>
+				style="font-size: 15px;">${supply.reference} </STRONG>
 				<BR /><B style="font-size: 15px; color: blue;"> Status : </B> <STRONG
-				style="font-size: 15px;">${delivery.status} </STRONG>
+				style="font-size: 15px;">${supply.status} </STRONG>
 				<BR /><B style="font-size: 15px; color: blue;"> Origine : </B> <STRONG
-				style="font-size: 15px;">${delivery.origin} </STRONG>
+				style="font-size: 15px;">${supply.origin} </STRONG>
 				
 		</div>
 		<div class="span5">
@@ -31,7 +31,7 @@
 			<jsp:include page="../gpaoMessages.jspx" />
 		</div>
 		<div style="vertical-align: top; margin-left: 2%;" class="span3">
-			<c:if test="${not empty delivery.id}">
+			<c:if test="${not empty supply.id}">
 				<div style="float: right;" class="pagination">
 					<ul>
 						<li><a title="Groupe preccedant" href="${previous_url }">Prev</a></li>
@@ -43,23 +43,23 @@
 
 		</div>
 	</div>
-	 <form:update  showInPanel="false" method="POST"  id="fu_cm_adorsys_gpao_model_Delivery" modelAttribute="delivery" path="/deliverys/addOrEdit" versionField="Version" z="P7TUYcIaQoiq5cwybVPi7/dSbwg=">
+	 <form:update  showInPanel="false" method="POST"  id="fu_cm_adorsys_gpao_model_Supply" modelAttribute="supply" path="/supplys/addOrEdit" versionField="Version" z="P7TUYcIaQoiq5cwybVPi7/dSbwg=">
       <div class="row-fluid">
           <div class="span5">
-           <field:gpao-display hiddenfield="true" object="${delivery }" field="docRef"  id="c_cm_adorsys_gpao_model_Delivery_docRef"  />
-         <field:input-hidden object="${delivery}" field="reference" id="c_cm_adorsys_gpao_model_Delivery_reference" />
-        <field:gpao-display hiddenfield="true" object="${delivery}" field="createBy" id="c_cm_adorsys_gpao_model_Delivery_createBy"  z="PN7Z3egBhLDOZtIWhStVLxDPoek="/>
-        <field:gpao-display hiddenfield="true" object="${delivery}" field="receiveBy" id="c_cm_adorsys_gpao_model_Delivery_receiveBy" z="07xvZWM+Y8fnhL4ofu5TRGXDtGo="/>
-        <field:input-hidden object="${delivery}" isEnum="true" field="origin" id="c_cm_adorsys_gpao_model_Delivery_origin" />
-        <field:input-hidden  isEnum="true" object="${delivery}" field="status" id="c_cm_adorsys_gpao_model_Delivery_status" />
+           <field:gpao-display hiddenfield="true" object="${supply }" field="docRef"  id="c_cm_adorsys_gpao_model_Supply_docRef"  />
+         <field:input-hidden object="${supply}" field="reference" id="c_cm_adorsys_gpao_model_Supply_reference" />
+        <field:gpao-display hiddenfield="true" object="${supply}" field="createBy" id="c_cm_adorsys_gpao_model_Supply_createBy"  z="PN7Z3egBhLDOZtIWhStVLxDPoek="/>
+        <field:gpao-display hiddenfield="true" object="${supply}" field="receiveBy" id="c_cm_adorsys_gpao_model_Supply_receiveBy" z="07xvZWM+Y8fnhL4ofu5TRGXDtGo="/>
+        <field:input-hidden object="${supply}" isEnum="true" field="origin" id="c_cm_adorsys_gpao_model_Supply_origin" />
+        <field:input-hidden  isEnum="true" object="${supply}" field="status" id="c_cm_adorsys_gpao_model_Supply_status" />
           </div>
       <div style="text-align: right;" class="span5">
-        <field:input-hidden  isList="true" object="${delivery}" field="company" id="c_cm_adorsys_gpao_model_Delivery_company"  />
-        <field:gpao-display isList="true" hiddenfield="true" object="${delivery}" field="currency" id="c_cm_adorsys_gpao_model_Delivery_currency"  z="M639Dz4Qxqis4PSj6OtjQvTagAc="/>
-         <field:gpao-display hiddenfield="true" object="${delivery}" date="true" dateTimePattern="${delivery_createdate_date_format}" field="createdate" id="c_cm_adorsys_gpao_model_Delivery_createdate" z="vInbZSx8FjLZU76w6dXpDzEIA28="/>
-        <field:gpao-display hiddenfield="true" object="${delivery}" date="true" dateTimePattern="${delivery_receiveddate_date_format}" field="receivedDate" id="c_cm_adorsys_gpao_model_Delivery_receivedDate" z="pKXkUF7vbYumWabfFryF/RCvhNE="/>
-       <field:input-hidden object="${delivery}" field="unTaxeAmount" id="c_cm_adorsys_gpao_model_Delivery_unTaxeAmount" />
-        <field:select field="deliveryItems" render="false" id="c_cm_adorsys_gpao_model_Delivery_deliveryItems" itemValue="id" items="${deliveryitemses}" multiple="true" path="/deliveryitemses" z="bUcrcT+NxinaGlrGVWJrUEMCVO8="/>
+        <field:input-hidden  isList="true" object="${supply}" field="company" id="c_cm_adorsys_gpao_model_Supply_company"  />
+        <field:gpao-display isList="true" hiddenfield="true" object="${supply}" field="currency" id="c_cm_adorsys_gpao_model_Supply_currency"  z="M639Dz4Qxqis4PSj6OtjQvTagAc="/>
+         <field:gpao-display hiddenfield="true" object="${supply}" date="true" dateTimePattern="${delivery_createdate_date_format}" field="createdate" id="c_cm_adorsys_gpao_model_Supply_createdate" z="vInbZSx8FjLZU76w6dXpDzEIA28="/>
+        <field:gpao-display hiddenfield="true" object="${supply}" date="true" dateTimePattern="${delivery_receiveddate_date_format}" field="receivedDate" id="c_cm_adorsys_gpao_model_Supply_receivedDate" z="pKXkUF7vbYumWabfFryF/RCvhNE="/>
+       <field:input-hidden object="${supply}" field="unTaxeAmount" id="c_cm_adorsys_gpao_model_Supply_unTaxeAmount" />
+        <field:select field="supplyItems" render="false" id="c_cm_adorsys_gpao_model_Supply_supplyItems" itemValue="id" items="${supplyitemses}" multiple="true" path="/supplyitemses" z="bUcrcT+NxinaGlrGVWJrUEMCVO8="/>
       </div>
       <div class="span2">
       
@@ -67,7 +67,7 @@
 					<button id="printBtn" class="btn-info" style="width: 100%;" type="button">Imprimer le bon de reception</button>
 				</p>
 				
-	<c:if test="${ not (delivery.status eq 'FERMER') }">
+	<c:if test="${ not (supply.status eq 'FERMER') }">
 				<p>
 					<button class="btn-success" id="closeBtn" style="width: 100%;" type="button">cloturer la livraison</button>
 				</p>
@@ -77,9 +77,9 @@
       
       </div>
          <div class="row-fluid">
-<c:if test="${not empty delivery.id }">
+<c:if test="${not empty supply.id }">
 				<legend>Produits a livrer  </legend>
-				<c:if test="${ not (delivery.status eq 'FERMER') }">
+				<c:if test="${ not (supply.status eq 'FERMER') }">
 				<div class="btn-group pull-rigth" data-toggle="buttons-checkbox">
 					<button id="validerBtn" type="button" class=" btn-success">Valider tous</button>
 				</div>
@@ -99,14 +99,14 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${delivery.deliveryItems}" var="items">
+						<c:forEach items="${supply.supplyItems}" var="items">
 							<tr id="${items.id}">
 								<td style="text-align: center;">${items.reference}</td>
 								<td style="width: 40%;" >${items.product.name}</td>
 								<td style="text-align: center;">${items.orderQte}</td>
 								<td style="text-align: center;">
 								    <c:choose>
-								      <c:when test="${delivery.status eq 'OUVERT'}">
+								      <c:when test="${supply.status eq 'OUVERT'}">
 								    <a href="#" onclick="applyReceiveQte(this)" >${items.qteReceive}</a>
 								      
 								      </c:when>
@@ -123,7 +123,7 @@
 						<tr >
 									<td style="text-align: right; font-size: 20px; font-weight:bold;" colspan="7"> MontantHT : </td>
 									<td style="text-align: right;"> 
-										<span class="label label-info">${delivery.unTaxeAmount} ${delivery.currency.shortName} </span>
+										<span class="label label-info">${supply.unTaxeAmount} ${supply.currency.shortName} </span>
 									 </td>
 							   </tr>
 					</tbody>

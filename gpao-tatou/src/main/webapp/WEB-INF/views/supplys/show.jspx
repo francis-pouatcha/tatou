@@ -2,7 +2,7 @@
 <div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    <page:show id="ps_cm_adorsys_gpao_model_Supply" object="${supply}" path="/deliverys" z="cnZpiZThzReAkZi+dXLp1gOe/xY=">
+    <page:show id="ps_cm_adorsys_gpao_model_Supply" object="${supply}" path="/supplys" z="vthQsEr2uVKgG3v5/EN6DYQHVgY=">
         <field:display field="archived" id="s_cm_adorsys_gpao_model_Supply_archived" object="${supply}" z="NoleDZMj1eqkUm0t/uMnmtG8ZVs="/>
         <field:display field="reference" id="s_cm_adorsys_gpao_model_Supply_reference" object="${supply}" z="4y36j3bl5jyZSMdl22GN3u1AqZI="/>
         <field:display field="createBy" id="s_cm_adorsys_gpao_model_Supply_createBy" object="${supply}" z="JufF2zFYaPyW9a3HK1ARwuX4QJg="/>
@@ -14,10 +14,10 @@
         <field:display field="unTaxeAmount" id="s_cm_adorsys_gpao_model_Supply_unTaxeAmount" object="${supply}" z="jZGCdfNv6EWLOvadyHekYOMPtQc="/>
         <field:display field="taxAmount" id="s_cm_adorsys_gpao_model_Supply_taxAmount" object="${supply}" z="YQrfoVykgZ5fUx7+mXJO1FftoHk="/>
         <field:display field="taxedAmount" id="s_cm_adorsys_gpao_model_Supply_taxedAmount" object="${supply}" z="ovZRjuH3rog4UMUWabjq/pkoaWc="/>
+        <field:display field="supplyItems" id="s_cm_adorsys_gpao_model_Supply_supplyItems" object="${supply}" z="HnhRM0Zjab5alvrntpU5sJqVJvs="/>
         <field:display field="currency" id="s_cm_adorsys_gpao_model_Supply_currency" object="${supply}" z="ix1mJ9xk6312uRt75eW+r776iLI="/>
         <field:display field="company" id="s_cm_adorsys_gpao_model_Supply_company" object="${supply}" z="nupYqYHyTudY6Z7BsldzHlbSYoE="/>
         <field:display field="docRef" id="s_cm_adorsys_gpao_model_Supply_docRef" object="${supply}" z="KMmGTdLv5gTFBW8vuGIQTiV7IC0="/>
         <field:display field="taxes" id="s_cm_adorsys_gpao_model_Supply_taxes" object="${supply}" z="daLe0cX8XNVlFR/4DlkHgvaaRSw="/>
-        <field:display field="supplyItems" id="s_cm_adorsys_gpao_model_Supply_supplyItems" object="${supply}" z="HnhRM0Zjab5alvrntpU5sJqVJvs="/>
     </page:show>
 </div>

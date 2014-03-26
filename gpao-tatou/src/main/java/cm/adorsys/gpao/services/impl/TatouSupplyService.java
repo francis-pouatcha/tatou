@@ -20,20 +20,20 @@ import cm.adorsys.gpao.model.Product;
 import cm.adorsys.gpao.model.PurchaseOrder;
 import cm.adorsys.gpao.model.excepions.UnmatchUnitOfMesureGroupException;
 import cm.adorsys.gpao.security.SecurityUtil;
-import cm.adorsys.gpao.services.IDeliveryService;
+import cm.adorsys.gpao.services.ISupplyService;
 import cm.adorsys.gpao.utils.UdmUtils;
 
 @Service
-public class TatouSupplyService implements IDeliveryService {
+public class TatouSupplyService implements ISupplyService {
 
 	@Override
-	public Supply getDeliveryFromOrder(PurchaseOrder order) {
+	public Supply getSupplyFromOrder(PurchaseOrder order) {
 		Supply supply = new Supply(order);
 		return supply;
 	}
 
 	@Override
-	public Set<SupplyItems> getDeliveryItems(PurchaseOrder order,Supply supply) {
+	public Set<SupplyItems> getSupplyItems(PurchaseOrder order,Supply supply) {
 		List<OrderItems> orderItems = order.getOrderItems();
 		Set<SupplyItems> supplyItems = new HashSet<SupplyItems>();
 		for (OrderItems items : orderItems) {
@@ -45,7 +45,7 @@ public class TatouSupplyService implements IDeliveryService {
 	}
 
 	@Override
-	public void calCulateDeliveryAmout(Supply supply) {
+	public void calCulateSupplyAmout(Supply supply) {
 		Set<SupplyItems> supplyItems = supply.getSupplyItems();
 		supply.initAmount();
 		for (SupplyItems deliveryItems2 : supplyItems) {
@@ -54,7 +54,7 @@ public class TatouSupplyService implements IDeliveryService {
 		supply.computeTaxeAmountAndTaxedAmount();
 	}
 	@Override
-	public Supply getDeliveryFromInventory(Inventory inventory) {
+	public Supply getSupplyFromInventory(Inventory inventory) {
 		Supply supply = new Supply(Company.getOwnComapny());
 		supply.setDocRef(inventory.getReference());
 		supply.setCurrency(inventory.getCurrency()) ;
@@ -63,7 +63,7 @@ public class TatouSupplyService implements IDeliveryService {
 	}
 
 	@Override
-	public Set<SupplyItems> getDeliveryItems(Inventory inventory,
+	public Set<SupplyItems> getSupplyItems(Inventory inventory,
 			Supply supply) {
 		Set<SupplyItems> supplyItems = new HashSet<SupplyItems>();
 		Set<InventoryItems> inventoryItems = inventory.getInventoryItems();
@@ -90,7 +90,7 @@ public class TatouSupplyService implements IDeliveryService {
 	}
 
 	@Override
-	public Supply closeDelivery(Supply supply) throws UnmatchUnitOfMesureGroupException {
+	public Supply closeSupply(Supply supply) throws UnmatchUnitOfMesureGroupException {
 		if(DocumentStates.OUVERT.equals(supply.getStatus())){
 			Set<SupplyItems> supplyItems = supply.getSupplyItems();
 			for (SupplyItems deliveryItems2 : supplyItems) {
@@ -107,7 +107,7 @@ public class TatouSupplyService implements IDeliveryService {
 		return supply ;
 	}
 	@Override
-	public Supply accepAllDeliveryItems(Supply supply)  {
+	public Supply accepAllSupplyItems(Supply supply)  {
 		if(DocumentStates.OUVERT.equals(supply.getStatus())){
 			Set<SupplyItems> supplyItems = supply.getSupplyItems();
 			for (SupplyItems deliveryItems2 : supplyItems) {
@@ -119,33 +119,33 @@ public class TatouSupplyService implements IDeliveryService {
 		return supply ;
 	}
 	public  SupplyItems getDeliveryItemFromUnreceiveQte(SupplyItems supplyItems){
-		SupplyItems deliveryItems2 =null;
+		SupplyItems supplyItems2 =null;
 		if(supplyItems.hasUnreceiveQte()){
-			deliveryItems2 = new SupplyItems();
-			deliveryItems2.setProduct(supplyItems.getProduct());
-			deliveryItems2.setOrderQte(supplyItems.getQteUnreceive());
-			deliveryItems2.setExpirationDate(supplyItems.getExpirationDate());
-			deliveryItems2.setAmountHt(supplyItems.getAmountHt());
+			supplyItems2 = new SupplyItems();
+			supplyItems2.setProduct(supplyItems.getProduct());
+			supplyItems2.setOrderQte(supplyItems.getQteUnreceive());
+			supplyItems2.setExpirationDate(supplyItems.getExpirationDate());
+			supplyItems2.setAmountHt(supplyItems.getAmountHt());
 			/*deliveryItems2.setTaxAmount(deliveryItems.getTaxAmount());
 			deliveryItems2.setTaxedAmount(deliveryItems.getTaxedAmount());*/
-			deliveryItems2.setUdm(supplyItems.getUdm());
+			supplyItems2.setUdm(supplyItems.getUdm());
 		}
-		return deliveryItems2 ;
+		return supplyItems2 ;
 	}
 
-	public Supply produiceDeliveryForUnReceiveArticle(Supply supply){
+	public Supply produiceSupplyForUnReceiveArticle(Supply supply){
 		PurchaseOrder order = PurchaseOrder.findPurchaseOrderByReferenceEquals(supply.getDocRef()).getSingleResult();
-		Supply delivery2 = new Supply(order);
-		delivery2.persist();
+		Supply supply2 = new Supply(order);
+		supply2.persist();
 		for (SupplyItems supplyItems : supply.getSupplyItems()) {
 			SupplyItems itemFromUnreceiveQte = getDeliveryItemFromUnreceiveQte(supplyItems);
 			if(itemFromUnreceiveQte!=null){
-				itemFromUnreceiveQte.setSupply(delivery2);
+				itemFromUnreceiveQte.setSupply(supply2);
 				itemFromUnreceiveQte.persist();
-				delivery2.increaseAmountFromDeliveryItem(itemFromUnreceiveQte);
+				supply2.increaseAmountFromDeliveryItem(itemFromUnreceiveQte);
 			}
 		} 
-		return delivery2.merge();
+		return supply2.merge();
 
 	}
 

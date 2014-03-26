@@ -15,7 +15,7 @@
         </table:table>
     </page:list>
     <page:list id="pl_cm_adorsys_gpao_model_SupplyItems" items="${supplyitemses}" z="iQg/viO/+zfhi4d7KBQh1R9rBZQ=">
-        <table:table data="${supplyitemses}" id="l_cm_adorsys_gpao_model_SupplyItems" path="/deliveryitemses" z="D6qmElgtaXkbmqOY0hFpOuaB5yM=">
+        <table:table data="${supplyitemses}" id="l_cm_adorsys_gpao_model_SupplyItems" path="/supplyitemses" z="ZA9ke0JMvmBxgh2dQfP9BqG/lqg=">
             <table:column id="c_cm_adorsys_gpao_model_SupplyItems_archived" property="archived" z="P6hzqrHs6q4Xh+CV9RNjtL35804="/>
             <table:column id="c_cm_adorsys_gpao_model_SupplyItems_reference" property="reference" z="AQRS8O3HZ4Ve2sA7PtRrt4ruvzo="/>
             <table:column id="c_cm_adorsys_gpao_model_SupplyItems_product" property="product" z="ogyBnukkXZznFFAOgMRLIOHoxUQ="/>

@@ -16,8 +16,8 @@
        </p>
           <script type="text/javascript">
           $("#print").click(function(){
-        	  $("#findDelivery").attr('action','${print_url}').submit();
-        	  $("#findDelivery").attr('action','${find_url}');
+        	  $("#findSupply").attr('action','${print_url}').submit();
+        	  $("#findSupply").attr('action','${find_url}');
           });
           </script>
    

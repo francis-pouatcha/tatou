@@ -152,6 +152,7 @@ privileged aspect Product_Roo_JavaBean {
         this.productImage = productImage;
     }
 
+    
     public String Product.getProductImagePath() {
         return this.productImagePath;
     }

@@ -7,7 +7,7 @@ import cm.adorsys.gpao.model.Product;
 import cm.adorsys.gpao.model.Supply;
 import cm.adorsys.gpao.model.SupplyItems;
 import cm.adorsys.gpao.model.UnitOfMesures;
-import cm.adorsys.gpao.web.DeliveryItemsController;
+import cm.adorsys.gpao.web.SupplyItemsController;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,73 +24,73 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.util.UriUtils;
 import org.springframework.web.util.WebUtils;
 
-privileged aspect DeliveryItemsController_Roo_Controller {
+privileged aspect SupplyItemsController_Roo_Controller {
     
     @RequestMapping(method = RequestMethod.POST, produces = "text/html")
-    public String DeliveryItemsController.create(@Valid SupplyItems supplyItems, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
+    public String SupplyItemsController.create(@Valid SupplyItems supplyItems, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, supplyItems);
-            return "deliveryitemses/create";
+            return "supplyitemses/create";
         }
         uiModel.asMap().clear();
         supplyItems.persist();
-        return "redirect:/deliveryitemses/" + encodeUrlPathSegment(supplyItems.getId().toString(), httpServletRequest);
+        return "redirect:/supplyitemses/" + encodeUrlPathSegment(supplyItems.getId().toString(), httpServletRequest);
     }
     
     @RequestMapping(params = "form", produces = "text/html")
-    public String DeliveryItemsController.createForm(Model uiModel) {
+    public String SupplyItemsController.createForm(Model uiModel) {
         populateEditForm(uiModel, new SupplyItems());
         List<String[]> dependencies = new ArrayList<String[]>();
         if (Product.countProducts() == 0) {
             dependencies.add(new String[] { "product", "products" });
         }
         if (Supply.countSupplys() == 0) {
-            dependencies.add(new String[] { "supply", "deliverys" });
+            dependencies.add(new String[] { "supply", "supplys" });
         }
         uiModel.addAttribute("dependencies", dependencies);
-        return "deliveryitemses/create";
+        return "supplyitemses/create";
     }
     
     @RequestMapping(value = "/{id}", produces = "text/html")
-    public String DeliveryItemsController.show(@PathVariable("id") Long id, Model uiModel) {
+    public String SupplyItemsController.show(@PathVariable("id") Long id, Model uiModel) {
         addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("supplyitems", SupplyItems.findSupplyItems(id));
         uiModel.addAttribute("itemId", id);
-        return "deliveryitemses/show";
+        return "supplyitemses/show";
     }
     
     @RequestMapping(method = RequestMethod.PUT, produces = "text/html")
-    public String DeliveryItemsController.update(@Valid SupplyItems supplyItems, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
+    public String SupplyItemsController.update(@Valid SupplyItems supplyItems, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, supplyItems);
-            return "deliveryitemses/update";
+            return "supplyitemses/update";
         }
         uiModel.asMap().clear();
         supplyItems.merge();
-        return "redirect:/deliveryitemses/" + encodeUrlPathSegment(supplyItems.getId().toString(), httpServletRequest);
+        return "redirect:/supplyitemses/" + encodeUrlPathSegment(supplyItems.getId().toString(), httpServletRequest);
     }
     
     @RequestMapping(value = "/{id}", params = "form", produces = "text/html")
-    public String DeliveryItemsController.updateForm(@PathVariable("id") Long id, Model uiModel) {
+    public String SupplyItemsController.updateForm(@PathVariable("id") Long id, Model uiModel) {
         populateEditForm(uiModel, SupplyItems.findSupplyItems(id));
-        return "deliveryitemses/update";
+        return "supplyitemses/update";
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = "text/html")
-    public String DeliveryItemsController.delete(@PathVariable("id") Long id, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
+    public String SupplyItemsController.delete(@PathVariable("id") Long id, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
         SupplyItems supplyItems = SupplyItems.findSupplyItems(id);
         supplyItems.remove();
         uiModel.asMap().clear();
         uiModel.addAttribute("page", (page == null) ? "1" : page.toString());
         uiModel.addAttribute("size", (size == null) ? "10" : size.toString());
-        return "redirect:/deliveryitemses";
+        return "redirect:/supplyitemses";
     }
     
-    void DeliveryItemsController.addDateTimeFormatPatterns(Model uiModel) {
+    void SupplyItemsController.addDateTimeFormatPatterns(Model uiModel) {
         uiModel.addAttribute("supplyItems_expirationdate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
     }
     
-    void DeliveryItemsController.populateEditForm(Model uiModel, SupplyItems supplyItems) {
+    void SupplyItemsController.populateEditForm(Model uiModel, SupplyItems supplyItems) {
         uiModel.addAttribute("supplyItems", supplyItems);
         addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("products", Product.findAllProducts());
@@ -98,7 +98,7 @@ privileged aspect DeliveryItemsController_Roo_Controller {
         uiModel.addAttribute("unitofmesureses", UnitOfMesures.findAllUnitOfMesureses());
     }
     
-    String DeliveryItemsController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {
+    String SupplyItemsController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {
         String enc = httpServletRequest.getCharacterEncoding();
         if (enc == null) {
             enc = WebUtils.DEFAULT_CHARACTER_ENCODING;

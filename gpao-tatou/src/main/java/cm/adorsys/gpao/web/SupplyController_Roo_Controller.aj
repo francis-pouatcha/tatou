@@ -6,7 +6,7 @@ package cm.adorsys.gpao.web;
 import cm.adorsys.gpao.model.Company;
 import cm.adorsys.gpao.model.Devise;
 import cm.adorsys.gpao.model.Supply;
-import cm.adorsys.gpao.web.DeliveryController;
+import cm.adorsys.gpao.web.SupplyController;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,21 +23,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.util.UriUtils;
 import org.springframework.web.util.WebUtils;
 
-privileged aspect DeliveryController_Roo_Controller {
+privileged aspect SupplyController_Roo_Controller {
     
     @RequestMapping(method = RequestMethod.POST, produces = "text/html")
-    public String DeliveryController.create(@Valid Supply supply, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
+    public String SupplyController.create(@Valid Supply supply, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, supply);
-            return "deliverys/create";
+            return "supplys/create";
         }
         uiModel.asMap().clear();
         supply.persist();
-        return "redirect:/deliverys/" + encodeUrlPathSegment(supply.getId().toString(), httpServletRequest);
+        return "redirect:/supplys/" + encodeUrlPathSegment(supply.getId().toString(), httpServletRequest);
     }
     
     @RequestMapping(params = "form", produces = "text/html")
-    public String DeliveryController.createForm(Model uiModel) {
+    public String SupplyController.createForm(Model uiModel) {
         populateEditForm(uiModel, new Supply());
         List<String[]> dependencies = new ArrayList<String[]>();
         if (Devise.countDevises() == 0) {
@@ -47,19 +47,19 @@ privileged aspect DeliveryController_Roo_Controller {
             dependencies.add(new String[] { "company", "companys" });
         }
         uiModel.addAttribute("dependencies", dependencies);
-        return "deliverys/create";
+        return "supplys/create";
     }
     
     @RequestMapping(value = "/{id}", produces = "text/html")
-    public String DeliveryController.show(@PathVariable("id") Long id, Model uiModel) {
+    public String SupplyController.show(@PathVariable("id") Long id, Model uiModel) {
         addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("supply", Supply.findSupply(id));
         uiModel.addAttribute("itemId", id);
-        return "deliverys/show";
+        return "supplys/show";
     }
     
     @RequestMapping(produces = "text/html")
-    public String DeliveryController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, @RequestParam(value = "sortFieldName", required = false) String sortFieldName, @RequestParam(value = "sortOrder", required = false) String sortOrder, Model uiModel) {
+    public String SupplyController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, @RequestParam(value = "sortFieldName", required = false) String sortFieldName, @RequestParam(value = "sortOrder", required = false) String sortOrder, Model uiModel) {
         if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
             final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
@@ -70,42 +70,42 @@ privileged aspect DeliveryController_Roo_Controller {
             uiModel.addAttribute("supplys", Supply.findAllSupplys(sortFieldName, sortOrder));
         }
         addDateTimeFormatPatterns(uiModel);
-        return "deliverys/list";
+        return "supplys/list";
     }
     
     @RequestMapping(method = RequestMethod.PUT, produces = "text/html")
-    public String DeliveryController.update(@Valid Supply supply, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
+    public String SupplyController.update(@Valid Supply supply, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, supply);
-            return "deliverys/update";
+            return "supplys/update";
         }
         uiModel.asMap().clear();
         supply.merge();
-        return "redirect:/deliverys/" + encodeUrlPathSegment(supply.getId().toString(), httpServletRequest);
+        return "redirect:/supplys/" + encodeUrlPathSegment(supply.getId().toString(), httpServletRequest);
     }
     
     @RequestMapping(value = "/{id}", params = "form", produces = "text/html")
-    public String DeliveryController.updateForm(@PathVariable("id") Long id, Model uiModel) {
+    public String SupplyController.updateForm(@PathVariable("id") Long id, Model uiModel) {
         populateEditForm(uiModel, Supply.findSupply(id));
-        return "deliverys/update";
+        return "supplys/update";
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = "text/html")
-    public String DeliveryController.delete(@PathVariable("id") Long id, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
+    public String SupplyController.delete(@PathVariable("id") Long id, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
         Supply supply = Supply.findSupply(id);
         supply.remove();
         uiModel.asMap().clear();
         uiModel.addAttribute("page", (page == null) ? "1" : page.toString());
         uiModel.addAttribute("size", (size == null) ? "10" : size.toString());
-        return "redirect:/deliverys";
+        return "redirect:/supplys";
     }
     
-    void DeliveryController.addDateTimeFormatPatterns(Model uiModel) {
+    void SupplyController.addDateTimeFormatPatterns(Model uiModel) {
         uiModel.addAttribute("supply_receiveddate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
         uiModel.addAttribute("supply_createdate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
     }
     
-    String DeliveryController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {
+    String SupplyController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {
         String enc = httpServletRequest.getCharacterEncoding();
         if (enc == null) {
             enc = WebUtils.DEFAULT_CHARACTER_ENCODING;

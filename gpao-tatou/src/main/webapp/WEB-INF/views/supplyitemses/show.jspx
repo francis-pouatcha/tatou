@@ -2,7 +2,7 @@
 <div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    <page:show id="ps_cm_adorsys_gpao_model_SupplyItems" object="${supplyitems}" path="/deliveryitemses" z="LwS9cNw9TCqRp/yR/7VbMRbqa+4=">
+    <page:show id="ps_cm_adorsys_gpao_model_SupplyItems" object="${supplyitems}" path="/supplyitemses" z="+yvLQGcT6UHL60PdeqmLm5Qn9eE=">
         <field:display field="archived" id="s_cm_adorsys_gpao_model_SupplyItems_archived" object="${supplyitems}" z="o2wA85lZ0TXhiiAz56kUGeKvU0o="/>
         <field:display field="reference" id="s_cm_adorsys_gpao_model_SupplyItems_reference" object="${supplyitems}" z="c1do8D1K+b7ozr49wKnZ4zgIko0="/>
         <field:display field="product" id="s_cm_adorsys_gpao_model_SupplyItems_product" object="${supplyitems}" z="1UDiPBKWikEre5Txo5w5vNh+Djs="/>

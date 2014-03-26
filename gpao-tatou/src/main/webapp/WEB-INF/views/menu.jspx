@@ -134,7 +134,7 @@
         <menu:category id="c_supplyitems" z="QlKl5vYitMaoZRDlx+ltAcZ0npk=">
             <menu:item id="i_supplyitems_new" messageCode="global_menu_new" url="/deliveryitemses?form" z="sAxiCedvjLzhX32NoC/5eFWO344="/>
             <menu:item id="i_supplyitems_list" messageCode="global_menu_list" url="/deliveryitemses?page=1&amp;size=${empty param.size ? 10 : param.size}" z="JzhPjKXRK4MjSEn/BjjR9O19tXE="/>
-            <menu:item id="fi_supplyitems_supply" messageCode="global_menu_find" url="/deliveryitemses?find=BySupply&amp;form&amp;page=1&amp;size=${empty param.size ? 10 : param.size}" z="O+OGQLoW+FvryjhxDU7mBl359W8="/>
+            <menu:item id="fi_supplyitems_supply" messageCode="global_menu_find" url="/supplyitemses?find=BySupply&amp;form&amp;page=1&amp;size=${empty param.size ? 10 : param.size}" z="1WdUuGCYp/5BFrdOuUjlZnvng80="/>
         </menu:category>
     </menu:menu>
 </div>

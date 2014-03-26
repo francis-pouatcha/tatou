@@ -214,7 +214,7 @@
 							</p>
 							<c:if test="${purchaseOrder.orderState eq 'VALIDER'}">
 								<p>
-									<button class="btn-info" id="deliveryBtn" style="width: 100%;"
+									<button class="btn-info" id="supplyBtn" style="width: 100%;"
 										type="button">Lister les livraisons</button>
 								</p>
 							</c:if>

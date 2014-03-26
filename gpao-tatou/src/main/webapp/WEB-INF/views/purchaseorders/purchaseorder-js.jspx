@@ -24,8 +24,8 @@
 		var="remove_url" /> <spring:url value="/tenderses/tenderNote/"
 		var="print_tender_url" /> <spring:url
 		value="/resources/images/ajax-loader.gif" var="loadimage" /> <!-- Modal -->
-	<spring:url value="/deliverys/listByDocRef/${purchaseOrder.reference}"
-		var="delivery_url" /> <c:set value="false" var="whithTender" />
+	<spring:url value="/supplys/listByDocRef/${purchaseOrder.reference}"
+		var="supply_url" /> <c:set value="false" var="whithTender" />
    <c:if test="${not empty purchaseOrder.tender }">
 		<c:set value="true" var="whithTender" />
 		<c:set value="${purchaseOrder.tender.reference }" var="tenderRef" />
@@ -156,8 +156,8 @@
 			var url = '${validated_url}';
 			window.location = url ;
 		});
-		$('#deliveryBtn').click(function() {
-			var url = '${delivery_url}';
+		$('#supplyBtn').click(function() {
+			var url = '${supply_url}';
 			window.open(url) ;
 		});
 		$('#print_tender_btn').click(function() {

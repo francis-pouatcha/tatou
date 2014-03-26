@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+    <definition extends="stock" name="supplys/list">
+        <put-attribute name="body" value="/WEB-INF/views/supplys/list.jspx"/>
+    </definition>
+<definition extends="default" name="supplys/show">
+        <put-attribute name="body" value="/WEB-INF/views/supplys/show.jspx"/>
+    </definition>
+<definition extends="default" name="supplys/create">
+        <put-attribute name="body" value="/WEB-INF/views/supplys/create.jspx"/>
+    </definition>
+<definition extends="default" name="supplys/update">
+        <put-attribute name="body" value="/WEB-INF/views/supplys/update.jspx"/>
+    </definition>
+    <definition extends="stock" name="supplys/supplysView">
+        <put-attribute name="body" value="/WEB-INF/views/supplys/supplyView.jspx"/>
+    </definition>
+    <definition extends="stock" name="supplys/findSupplyView">
+        <put-attribute name="body" value="/WEB-INF/views/supplys/findSupplysView.jspx"/>
+    </definition>
+</tiles-definitions>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    <form:create id="fc_cm_adorsys_gpao_model_SupplyItems" modelAttribute="supplyItems" path="/deliveryitemses" render="${empty dependencies}" z="lmEejB0tSD6UVkKyMFfN56HyuJ8=">
+    <form:update id="fu_cm_adorsys_gpao_model_SupplyItems" modelAttribute="supplyItems" path="/supplyitemses" versionField="Version" z="fY+7VnwUmDnC/sQiieBZzSA0rdQ=">
         <field:checkbox field="archived" id="c_cm_adorsys_gpao_model_SupplyItems_archived" z="7VWTSJTHEDKuevjf9tPjo1gLG1Y="/>
         <field:input field="reference" id="c_cm_adorsys_gpao_model_SupplyItems_reference" z="EYMDN74s6kq/8DwwiiZgsX3Neqc="/>
         <field:select field="product" id="c_cm_adorsys_gpao_model_SupplyItems_product" itemValue="id" items="${products}" path="/products" required="true" z="hvSXV9gKruQ+rYjjvr+rKI9h7j8="/>
@@ -10,10 +10,9 @@
         <field:input field="qteReceive" id="c_cm_adorsys_gpao_model_SupplyItems_qteReceive" validationMessageCode="field_invalid_number" z="Xw/zw/MxREkV9ZnjXF9cuKLQA+0="/>
         <field:input field="qteUnreceive" id="c_cm_adorsys_gpao_model_SupplyItems_qteUnreceive" validationMessageCode="field_invalid_number" z="wV8AxU3PMgMEckWk5IPYHkdE4j0="/>
         <field:input field="qteInStock" id="c_cm_adorsys_gpao_model_SupplyItems_qteInStock" validationMessageCode="field_invalid_number" z="zBAff0ufmWzsIMCUtsMFRDirNm8="/>
-        <field:select field="supply" id="c_cm_adorsys_gpao_model_SupplyItems_supply" itemValue="id" items="${supplys}" path="/deliverys" required="true" z="fBvySeS5C7fUa6QPpzRbuWSZ834="/>
+        <field:select field="supply" id="c_cm_adorsys_gpao_model_SupplyItems_supply" itemValue="id" items="${supplys}" path="/supplys" required="true" z="2jeM57xUkUlCf2qmnkcb3yCL/2w="/>
         <field:input field="amountHt" id="c_cm_adorsys_gpao_model_SupplyItems_amountHt" validationMessageCode="field_invalid_number" z="CDczzROY3+jtmqEwwkFX5h9al3I="/>
         <field:datetime dateTimePattern="${supplyItems_expirationdate_date_format}" field="expirationDate" id="c_cm_adorsys_gpao_model_SupplyItems_expirationDate" z="+VQcIhtP9ygbEqbzX5jlaVam93g="/>
         <field:select field="udm" id="c_cm_adorsys_gpao_model_SupplyItems_udm" itemValue="id" items="${unitofmesureses}" path="/unitofmesureses" z="qldeBVZYZ+b+zXOSt2grI6bMmkI="/>
-    </form:create>
-    <form:dependency dependencies="${dependencies}" id="d_cm_adorsys_gpao_model_SupplyItems" render="${not empty dependencies}" z="dQ/koaQ9xSX0n61sMtYSGqBmAfA="/>
+    </form:update>
 </div>

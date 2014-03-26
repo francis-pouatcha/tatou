@@ -94,11 +94,11 @@ public class TatouPurchaseService implements IPurchaseServices {
 	@Override
 	public void validatedPurchase(PurchaseOrder purchaseOrder) {
 		if(DocumentStates.BROUILLON.equals(purchaseOrder.getOrderState())){
-			Supply supply = deliveryService.getDeliveryFromOrder(purchaseOrder);
+			Supply supply = deliveryService.getSupplyFromOrder(purchaseOrder);
 			supply.persist();
-			Set<SupplyItems> supplyItems = deliveryService.getDeliveryItems(purchaseOrder,supply);
+			Set<SupplyItems> supplyItems = deliveryService.getSupplyItems(purchaseOrder,supply);
 			supply.setSupplyItems(supplyItems);
-			deliveryService.calCulateDeliveryAmout(supply);
+			deliveryService.calCulateSupplyAmout(supply);
 			purchaseOrder.setOrderState(DocumentStates.VALIDER);
 			supply.merge();
 			purchaseOrder.setValidateDate(new Date());

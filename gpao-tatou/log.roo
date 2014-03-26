@@ -571,3 +571,5 @@ finder add findDeliveryItemsesBySupply
 focus --class ~.model.SupplyItems
 finder list 
 finder add --finderName findSupplyItemsesBySupply
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log closed at 2014-03-26 15:19:07
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-03-26 15:43:34

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+    <definition extends="stock" name="supplyitemses/list">
+        <put-attribute name="body" value="/WEB-INF/views/supplyitemses/list.jspx"/>
+    </definition>
+<definition extends="default" name="supplyitemses/show">
+        <put-attribute name="body" value="/WEB-INF/views/supplyitemses/show.jspx"/>
+    </definition>
+<definition extends="default" name="supplyitemses/create">
+        <put-attribute name="body" value="/WEB-INF/views/supplyitemses/create.jspx"/>
+    </definition>
+<definition extends="default" name="supplyitemses/update">
+        <put-attribute name="body" value="/WEB-INF/views/supplyitemses/update.jspx"/>
+    </definition>
+<definition extends="stock" name="supplyitemses/findSupplyItemsesByReferenceEquals">
+        <put-attribute name="body" value="/WEB-INF/views/supplyitemses/findSupplyItemsesByReferenceEquals.jspx"/>
+    </definition>
+<definition extends="default" name="supplyitemses/findSupplyItemsesByDelivery">
+        <put-attribute name="body" value="/WEB-INF/views/supplyitemses/findSupplyItemsesByDelivery.jspx"/>
+    </definition>
+<definition extends="default" name="deliveryitemses/findSupplyItemsesBySupply">
+        <put-attribute name="body" value="/WEB-INF/views/supplyitemses/findSupplyItemsesBySupply.jspx"/>
+    </definition>
+<definition extends="default" name="deliveryitemses/findSupplyItemsesBySupply">
+        <put-attribute name="body" value="/WEB-INF/views/supplyitemses/findSupplyItemsesBySupply.jspx"/>
+    </definition>
+<definition extends="default" name="supplyitemses/findSupplyItemsesBySupply">
+        <put-attribute name="body" value="/WEB-INF/views/supplyitemses/findSupplyItemsesBySupply.jspx"/>
+    </definition>
+</tiles-definitions>

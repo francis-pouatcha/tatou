@@ -5,22 +5,22 @@ package cm.adorsys.gpao.web;
 
 import cm.adorsys.gpao.model.Supply;
 import cm.adorsys.gpao.model.SupplyItems;
-import cm.adorsys.gpao.web.DeliveryItemsController;
+import cm.adorsys.gpao.web.SupplyItemsController;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-privileged aspect DeliveryItemsController_Roo_Controller_Finder {
+privileged aspect SupplyItemsController_Roo_Controller_Finder {
     
     @RequestMapping(params = { "find=BySupply", "form" }, method = RequestMethod.GET)
-    public String DeliveryItemsController.findSupplyItemsesBySupplyForm(Model uiModel) {
+    public String SupplyItemsController.findSupplyItemsesBySupplyForm(Model uiModel) {
         uiModel.addAttribute("supplys", Supply.findAllSupplys());
-        return "deliveryitemses/findSupplyItemsesBySupply";
+        return "supplyitemses/findSupplyItemsesBySupply";
     }
     
     @RequestMapping(params = "find=BySupply", method = RequestMethod.GET)
-    public String DeliveryItemsController.findSupplyItemsesBySupply(@RequestParam("supply") Supply supply, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, @RequestParam(value = "sortFieldName", required = false) String sortFieldName, @RequestParam(value = "sortOrder", required = false) String sortOrder, Model uiModel) {
+    public String SupplyItemsController.findSupplyItemsesBySupply(@RequestParam("supply") Supply supply, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, @RequestParam(value = "sortFieldName", required = false) String sortFieldName, @RequestParam(value = "sortOrder", required = false) String sortOrder, Model uiModel) {
         if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
             final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
@@ -31,7 +31,7 @@ privileged aspect DeliveryItemsController_Roo_Controller_Finder {
             uiModel.addAttribute("supplyitemses", SupplyItems.findSupplyItemsesBySupply(supply, sortFieldName, sortOrder).getResultList());
         }
         addDateTimeFormatPatterns(uiModel);
-        return "deliveryitemses/list";
+        return "supplyitemses/list";
     }
     
 }
