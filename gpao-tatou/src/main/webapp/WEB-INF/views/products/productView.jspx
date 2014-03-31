@@ -55,7 +55,7 @@
 		<div class="span10">
 
 
-			<form:update multipart="true" showInPanel="false" 
+			<form:update multipart="true" showInPanel="false"
 				id="fu_cm_adorsys_gpao_model_Product" modelAttribute="product"
 				path="/products/addOrEdit/${module }" render="${empty dependencies}"
 				z="user-managed">
@@ -93,9 +93,10 @@
 				</div>
 				<ul class="nav nav-tabs" id="tab">
 					<li class="active"><a href="#infos">infos-generales</a></li>
-<!-- 					<li><a href="#Comptabilite">Achats / Ventes</a></li> -->
-					<li ><a href="#intrants">gestion des intrants</a></li>
-					<li ><a href="#caracteristiques">gestion des caracteristiques</a></li>
+					<!-- 					<li><a href="#Comptabilite">Achats / Ventes</a></li> -->
+					<li><a href="#intrants">gestion des intrants</a></li>
+					<li><a href="#caracteristiques">gestion des
+							caracteristiques</a></li>
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane active" id="infos">
@@ -105,7 +106,7 @@
 								<c:choose>
 									<c:when test="${not empty product.id }">
 										<field:gpao-display hiddenfield="true" object="${product }"
-											isList="true" field="defaultUdm" 
+											isList="true" field="defaultUdm"
 											id="c_cm_adorsys_gpao_model_Product_defaultUdm"
 											z="CKUudAFCgXCa6eHEH9uO//B6usk=" />
 									</c:when>
@@ -140,13 +141,13 @@
 								<c:choose>
 									<c:when test="${not empty product.id }">
 										<field:gpao-display object="${product}"
-											field="defaultCurrency" 
+											field="defaultCurrency"
 											id="c_cm_adorsys_gpao_model_Product_defaultCurrency"
 											hiddenfield="true" isList="true"
 											z="8bauiTLzA7nNujLsZYZRnJ5uTJ8=" />
 									</c:when>
 									<c:otherwise>
-										<field:select field="defaultCurrency" 
+										<field:select field="defaultCurrency"
 											id="c_cm_adorsys_gpao_model_Product_defaultCurrency"
 											itemValue="id" items="${devises}" path="/devises"
 											required="true" z="8bauiTLzA7nNujLsZYZRnJ5uTJ8=" />
@@ -183,6 +184,13 @@
 								<field:checkbox field="canBeSale"
 									id="c_cm_adorsys_gpao_model_Product_canBeSale"
 									z="5MM8lpV0n78GsS+uIJovoBgrYwI=" />
+
+								<field:checkbox field="isRoundedProduct"
+									id="c_cm_adorsys_gpao_model_Product_isRoundedProduct"
+									z="1zYMR95TwWIW3TS/X7Izg3h0/Bw=" />
+								<field:checkbox field="canBeProduce"
+									id="c_cm_adorsys_gpao_model_Product_canBeProduce"
+									z="EeErHzzRqxgp3FHwKDp/cSPvGjg=" />
 								<field:input field="epaisseur"
 									id="c_cm_adorsys_gpao_model_Product_epaisseur"
 									z="9/z9TJ3hjMhAy18kE4pPB3GM1KU=" />
@@ -220,19 +228,26 @@
 						</div>
 
 					</div> -->
-					
+
 					<div class="tab-pane" id="intrants">
 						<jsp:include page="./productintrantView.jspx" />
 					</div>
 					<div class="tab-pane" id="caracteristiques">
 						<c:choose>
 							<c:when test="${not empty product.id }">
-								<spring:url value="/caracteristics/${product.id }/manage?page=1&amp;size=${empty param.size ? 10 : param.size}" var="manage_product_caracteristic_url" />
-								<a href="${manage_product_caracteristic_url }" class="btn btn-primary">Gerer les caracteristiques</a>
+								<spring:url
+									value="/caracteristics/${product.id }/manage?page=1&amp;size=${empty param.size ? 10 : param.size}"
+									var="manage_product_caracteristic_url" />
+								<a href="${manage_product_caracteristic_url }"
+									class="btn btn-primary">Gerer les caracteristiques</a>
 							</c:when>
 							<c:otherwise>
-								<spring:message text="Veillez creer le produit avant de continuer, Merci !" var="create_product_before_before_continue_msg" />
-								<label class="info"> <c:out value="${create_product_before_before_continue_msg }" /> </label>
+								<spring:message
+									text="Veillez creer le produit avant de continuer, Merci !"
+									var="create_product_before_before_continue_msg" />
+								<label class="info"> <c:out
+										value="${create_product_before_before_continue_msg }" />
+								</label>
 							</c:otherwise>
 						</c:choose>
 					</div>

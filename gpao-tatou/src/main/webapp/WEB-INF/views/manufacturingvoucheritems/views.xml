@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+    <definition extends="default" name="manufacturingvoucheritems/list">
+        <put-attribute name="body" value="/WEB-INF/views/manufacturingvoucheritems/list.jspx"/>
+    </definition>
+<definition extends="default" name="manufacturingvoucheritems/show">
+        <put-attribute name="body" value="/WEB-INF/views/manufacturingvoucheritems/show.jspx"/>
+    </definition>
+<definition extends="default" name="manufacturingvoucheritems/create">
+        <put-attribute name="body" value="/WEB-INF/views/manufacturingvoucheritems/create.jspx"/>
+    </definition>
+<definition extends="default" name="manufacturingvoucheritems/update">
+        <put-attribute name="body" value="/WEB-INF/views/manufacturingvoucheritems/update.jspx"/>
+    </definition>
+</tiles-definitions>

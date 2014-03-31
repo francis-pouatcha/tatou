@@ -7,8 +7,12 @@
    <jsp:include page="menu-user-infos.jspx" />
     <menu:category label="Mouvements de stock" id="c_configuration" z="user-managed">
           <security:authorize ifAnyGranted="ROLE_ACCESS_LIVRAISON">
-          <menu:item id="i_deliveryitems_list" label="Livraisons Fournisseurs" messageCode="global_menu_gpao"  url="/supplys?page=1&amp;size=${empty param.size ? 10 : param.size}" z="sjbn8PJjmux3IevxVgghkHUTBFw="/>
-          <menu:item id="fi_deliveryitems_referenceequals" label="Rechercher des Livraisons Fournisseurs" messageCode="global_msg_gpao" url="/supplys/find?form" z="Gqwvf+6lhwXkVVFi6UQdnfiJ6jE="/>
+          <menu:item id="i_deliveryitems_list" label="Approvisionnements Fournisseurs" messageCode="global_menu_gpao"  url="/supplys?page=1&amp;size=${empty param.size ? 10 : param.size}" z="sjbn8PJjmux3IevxVgghkHUTBFw="/>
+          <menu:item id="fi_deliveryitems_referenceequals" label="Rechercher des Approvisionnements Fournisseurs" messageCode="global_msg_gpao" url="/supplys/find?form" z="Gqwvf+6lhwXkVVFi6UQdnfiJ6jE="/>
+        </security:authorize>
+        <security:authorize ifAnyGranted="ROLE_ACCESS_LIVRAISON">
+          <menu:item id="i_deliveryitems_list" label="Livraisons Fournisseurs" messageCode="global_menu_gpao"  url="/deliverys?page=1&amp;size=${empty param.size ? 10 : param.size}" z="sjbn8PJjmux3IevxVgghkHUTBFw="/>
+          <menu:item id="fi_deliveryitems_referenceequals" label="Rechercher des Livraisons Fournisseurs" messageCode="global_msg_gpao" url="/deliverys/find?form" z="Gqwvf+6lhwXkVVFi6UQdnfiJ6jE="/>
         </security:authorize>
         </menu:category>
         <menu:category label="INVENTAIRES" id="c_configuration" z="user-managed">

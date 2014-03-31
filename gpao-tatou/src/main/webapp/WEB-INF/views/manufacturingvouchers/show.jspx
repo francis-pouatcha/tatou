@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_cm_adorsys_gpao_model_ManufacturingVoucher" object="${manufacturingvoucher}" path="/manufacturingvouchers" z="EAQPY92lOo1J+Mng4FdVuQEvdzY=">
+        <field:display field="archived" id="s_cm_adorsys_gpao_model_ManufacturingVoucher_archived" object="${manufacturingvoucher}" z="qkNk6md4YULWEKlSNjKzuCdz4Vc="/>
+        <field:display field="reference" id="s_cm_adorsys_gpao_model_ManufacturingVoucher_reference" object="${manufacturingvoucher}" z="K4TqzQB8FK5/zIUqEdbvhJd7WPI="/>
+        <field:display date="true" dateTimePattern="${manufacturingVoucher_createdate_date_format}" field="createDate" id="s_cm_adorsys_gpao_model_ManufacturingVoucher_createDate" object="${manufacturingvoucher}" z="391xGEkGaZz+6q30LxbD63u52m0="/>
+        <field:display field="createdBy" id="s_cm_adorsys_gpao_model_ManufacturingVoucher_createdBy" object="${manufacturingvoucher}" z="zgLiffZ6D7ccjLYBbfhOVjjOWCU="/>
+        <field:display field="documentState" id="s_cm_adorsys_gpao_model_ManufacturingVoucher_documentState" object="${manufacturingvoucher}" z="FbD5YuTT8FplFf1lH5sObRcraQI="/>
+        <field:display field="customer" id="s_cm_adorsys_gpao_model_ManufacturingVoucher_customer" object="${manufacturingvoucher}" z="3C9bbTZIoOaboD8pDBOSiS9xJhc="/>
+        <field:display date="true" dateTimePattern="${manufacturingVoucher_delaydate_date_format}" field="delayDate" id="s_cm_adorsys_gpao_model_ManufacturingVoucher_delayDate" object="${manufacturingvoucher}" z="egKTTCdPhBaxv0faICMpYA3vlAo="/>
+        <field:display field="customerOrder" id="s_cm_adorsys_gpao_model_ManufacturingVoucher_customerOrder" object="${manufacturingvoucher}" z="g7A8zA3ZapJpCVd1AjAYJuFKDWA="/>
+    </page:show>
+</div>

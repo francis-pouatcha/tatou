@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_cm_adorsys_gpao_model_Delivery" object="${delivery}" path="/deliverys" z="LMTu9LSyX0K2tJfU5VgX7OpnNI4=">
+        <field:display field="archived" id="s_cm_adorsys_gpao_model_Delivery_archived" object="${delivery}" z="tAWTdsrFLloPtR5u1nkd6fQU6Ag="/>
+        <field:display field="reference" id="s_cm_adorsys_gpao_model_Delivery_reference" object="${delivery}" z="uaGyn5qW4JZu27oHgjyV4Og8InE="/>
+        <field:display date="true" dateTimePattern="${delivery_createddate_date_format}" field="createdDate" id="s_cm_adorsys_gpao_model_Delivery_createdDate" object="${delivery}" z="irUdeXZEtR85MBgE/K1CIouRtLQ="/>
+        <field:display field="origin" id="s_cm_adorsys_gpao_model_Delivery_origin" object="${delivery}" z="106hUBmQcmd50WZEKvD3SbRXYF8="/>
+        <field:display field="status" id="s_cm_adorsys_gpao_model_Delivery_status" object="${delivery}" z="oZGvdC9iL0Yl7/DciwpkWwbnQ1E="/>
+        <field:display field="amoutHt" id="s_cm_adorsys_gpao_model_Delivery_amoutHt" object="${delivery}" z="Fy20e7CEBdBPPsBth2vjACvOjXs="/>
+        <field:display field="taxedAmount" id="s_cm_adorsys_gpao_model_Delivery_taxedAmount" object="${delivery}" z="dFW/mpqAaIyp8OvhauE8T0/cr0E="/>
+        <field:display field="taxeAmount" id="s_cm_adorsys_gpao_model_Delivery_taxeAmount" object="${delivery}" z="u/XkFuJ1UDP5ascyuuAZvs9b/g8="/>
+        <field:display field="curreny" id="s_cm_adorsys_gpao_model_Delivery_curreny" object="${delivery}" z="/vrO4gcoa9aPhzCqAx3voFkhNlo="/>
+        <field:display field="company" id="s_cm_adorsys_gpao_model_Delivery_company" object="${delivery}" z="AacBq5IQ2V98a+nIHJG/VyHsRZE="/>
+        <field:display field="docRef" id="s_cm_adorsys_gpao_model_Delivery_docRef" object="${delivery}" z="nvCwVUHBWrUKgjEsT6aVc8dJTFQ="/>
+        <field:display field="createBy" id="s_cm_adorsys_gpao_model_Delivery_createBy" object="${delivery}" z="JNU33Cb9i/Vp0SfKCqJjfhafJYo="/>
+        <field:display field="customer" id="s_cm_adorsys_gpao_model_Delivery_customer" object="${delivery}" z="z3EJFQdKPx+hw/tQvSAyfsxtc00="/>
+    </page:show>
+</div>

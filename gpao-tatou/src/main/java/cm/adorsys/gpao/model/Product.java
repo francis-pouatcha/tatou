@@ -83,6 +83,16 @@ public class Product extends GpaoBaseEntity {
 
     private String description;
 
+    /**
+     */
+    @Value("false")
+    private Boolean isRoundedProduct;
+
+    /**
+     */
+    @Value("true")
+    private Boolean canBeProduce;
+    
     /*
      @ManyToMany(cascade = CascadeType.ALL)
      private Set<Taxe> saleTaxes = new HashSet<Taxe>();

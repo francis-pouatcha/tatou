@@ -6,13 +6,12 @@
     <div class="btn-group">
         <a class="btn a-btn" href="${find_url}">Filtre</a>
     </div>
-    
-    <page:list id="pl_cm_adorsys_gpao_model_Supply" items="${supplys}" showInPanel="false" z="c7mqHyI0zjHee2e7eRg7o2jVKWs=">
-        <table:table data="${supplys}" id="l_cm_adorsys_gpao_model_Supply" queryParam="true" delete="false" update="false" create="false" path="/supplys/addOrEditForm" z="WfjaQB/G+JXcDPQkfUgyP2A17mY=">
+    <page:list id="pl_cm_adorsys_gpao_model_Supply" items="${supplys}" showInPanel="false" z="user-managed">
+        <table:table create="false" data="${supplys}" delete="false" id="l_cm_adorsys_gpao_model_Supply" path="/supplys/addOrEditForm" queryParam="true" update="false" z="user-managed">
             <table:column id="c_cm_adorsys_gpao_model_Supply_origin" property="origin" z="hdHy7xt3A708D12OlWRhwjeFy3Q="/>
             <table:column id="c_cm_adorsys_gpao_model_Supply_docRef" property="docRef" z="hdHy7xt3A708D12OlWRhwjeFy3Q="/>
             <table:column id="c_cm_adorsys_gpao_model_Supply_status" property="status" z="user-managed"/>
-            <table:column id="c_cm_adorsys_gpao_model_Supply_archived" property="archived" render="false" z="gfyo6bouoQl6it+10vRocB/9yTQ="/>
+            <table:column id="c_cm_adorsys_gpao_model_Supply_archived" property="archived" render="false" z="user-managed"/>
             <table:column id="c_cm_adorsys_gpao_model_Supply_reference" property="reference" z="aivTaDySDEGghiwVviMC5gRdBE0="/>
             <table:column id="c_cm_adorsys_gpao_model_Supply_createBy" property="createBy" z="DIqc9nciZw3WW8JgZpS8yLJAoys="/>
             <table:column id="c_cm_adorsys_gpao_model_Supply_receiveBy" property="receiveBy" z="0sNYaNPkKsBoFkXr+I/hQSniQGA="/>

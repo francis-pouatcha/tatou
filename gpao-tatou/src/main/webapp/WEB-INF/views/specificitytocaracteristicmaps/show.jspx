@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_cm_adorsys_gpao_model_SpecificityToCaracteristicMap" object="${specificitytocaracteristicmap}" path="/specificitytocaracteristicmaps" z="VUBASJ1deLlO8vHINMBZuz28x7Y=">
+        <field:display field="archived" id="s_cm_adorsys_gpao_model_SpecificityToCaracteristicMap_archived" object="${specificitytocaracteristicmap}" z="IE7xNyYtQiR2DdtF7HMk2tvLmVQ="/>
+        <field:display field="caracteristic" id="s_cm_adorsys_gpao_model_SpecificityToCaracteristicMap_caracteristic" object="${specificitytocaracteristicmap}" z="7PB6L5V/IKVOzouiI79/Ia+v/58="/>
+        <field:display field="specificity" id="s_cm_adorsys_gpao_model_SpecificityToCaracteristicMap_specificity" object="${specificitytocaracteristicmap}" z="Zu7RndOF+05XcSAuPJGTj9hSQCY="/>
+    </page:show>
+</div>

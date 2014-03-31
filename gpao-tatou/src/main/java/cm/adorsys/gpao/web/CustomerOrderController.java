@@ -1,8 +1,10 @@
 package cm.adorsys.gpao.web;
 import java.util.Arrays;
 import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import cm.adorsys.gpao.model.Company;
 import cm.adorsys.gpao.model.CustomerOrder;
 import cm.adorsys.gpao.model.CustomerOrderItem;
@@ -24,6 +27,8 @@ import cm.adorsys.gpao.model.Taxe;
 import cm.adorsys.gpao.model.uimodels.OrderItemUimodel;
 import cm.adorsys.gpao.services.BusinessOperation;
 import cm.adorsys.gpao.services.ICustomerOrderService;
+import cm.adorsys.gpao.services.IProductionService;
+import cm.adorsys.gpao.services.impl.ProcessCustomerOrder;
 import cm.adorsys.gpao.utils.MessageType;
 
 @RequestMapping("/customerorders")
@@ -34,6 +39,9 @@ public class CustomerOrderController extends AbstractOrderController {
     @Autowired
     ICustomerOrderService customerOrderService;
 
+    @Autowired
+    IProductionService productionService;
+    
     @RequestMapping(value = "/addOrEditForm", method = RequestMethod.GET)
     public String addOrEditCustomerOrdersForm(@RequestParam(value = "id", required = false) Long id, HttpServletRequest httpServletRequest, Model uiModel) {
         CustomerOrder customerOrder = id == null ? new CustomerOrder() : CustomerOrder.findCustomerOrder(id);
@@ -112,6 +120,7 @@ public class CustomerOrderController extends AbstractOrderController {
         } else {
             customerOrder = customerOrderService.computeAndSetAmounts(customerOrder, customerOrderItems);
             customerOrder = customerOrderService.validateCustomerOrder(customerOrder);
+            productionService.processCustomerOrder(customerOrder, new ProcessCustomerOrder());
             customerOrder = doAConsistantMerge(customerOrder);
             uiModel.addAttribute(MessageType.SUCCESS_MESSAGE, "validation effectuee avec success !");
         }

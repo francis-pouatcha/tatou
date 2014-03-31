@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_cm_adorsys_gpao_model_SpecificityToCaracteristicMap" modelAttribute="specificityToCaracteristicMap" path="/specificitytocaracteristicmaps" versionField="Version" z="AydbkCVPw5XBkM3tuf/wNYIAJ58=">
+        <field:checkbox field="archived" id="c_cm_adorsys_gpao_model_SpecificityToCaracteristicMap_archived" z="mDUHxxgAmXFTtrpgnS1gSjMolvA="/>
+        <field:select field="caracteristic" id="c_cm_adorsys_gpao_model_SpecificityToCaracteristicMap_caracteristic" itemValue="id" items="${caracteristics}" path="/caracteristics" required="true" z="1xtazOnxoM9htQWNjyBxqn0smIM="/>
+        <field:select field="specificity" id="c_cm_adorsys_gpao_model_SpecificityToCaracteristicMap_specificity" itemValue="id" items="${specificitys}" path="/specificitys" required="true" z="W9Y1DVjzrTzJV1FQhXKQ4wm91y4="/>
+    </form:update>
+</div>

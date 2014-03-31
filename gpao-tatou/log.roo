@@ -573,3 +573,77 @@ finder list
 finder add --finderName findSupplyItemsesBySupply
 // Spring Roo 1.2.5.RELEASE [rev 8341dc2] log closed at 2014-03-26 15:19:07
 // Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-03-26 15:43:34
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-03-27 16:14:13
+entity jpa --class ~.model.ManufacturingVoucher --extends ~.model.GpaoBaseEntity --inheritanceType TABLE_PER_CLASS 
+field string --fieldName reference --notNull 
+field date --fieldName createDate --type java.util.Date --notNull 
+field string --fieldName createdBy --notNull 
+field enum --fieldName documentState --type ~.model.DocumentStates
+field reference --fieldName customerOrder --type ~.model.CustomerOrderItem
+entity jpa --class ~.model.ManufacturingVoucherItem --extends ~.model.GpaoBaseEntity --inheritanceType TABLE_PER_CLASS 
+focus --class ~.model.ManufacturingVoucher
+field reference --fieldName customer --type ~.model.Partner
+focus --class ~.model.ManufacturingVoucherItem
+field reference --fieldName product --type ~.model.Product --notNull 
+field number --fieldName quantity --type java.math.BigDecimal --decimalMin 0
+field date --fieldName delayDate --type java.util.Date
+field string --fieldName comment 
+focus --class ~.model.ManufacturingVoucher
+field date --fieldName delayDate --type java.util.Date --dateTimeFormatPattern "dd-MM-yyy HH:mm"
+entity jpa --class ~.model.Delivery --extends ~.model.GpaoBaseEntity --inheritanceType TABLE_PER_CLASS 
+field string --fieldName reference --notNull 
+field date --fieldName createBy --type java.util.Date
+field number --fieldName quantity --type java.math.BigDecimal
+field string --fieldName receivedBy  
+field date --fieldName receivedDate --type java.util.Date --dateTimeFormatPattern "dd-MM-yyyy HH:mm"
+field date --fieldName createdDate --type java.util.Date --dateTimeFormatPattern "dd-MM-yyyy HH:mm"
+field enum --fieldName origin --type ~.model.DeliveryOrigin
+field enum --fieldName status --type ~.model.DocumentStates
+field number --fieldName amoutHt --type java.math.BigDecimal 
+field number --fieldName taxedAmount --type java.math.BigDecimal
+field number --fieldName taxeAmount --type java.math.BigDecimal
+field reference --fieldName curreny --type ~.model.Devise --notNull 
+field reference --fieldName company --type ~.model.Company
+field string --fieldName docRef --notNull 
+field set --fieldName taxes --type ~.model.Taxe 
+field reference --fieldName customer --type ~.model.Customer
+entity jpa --class ~.model.DeliveryItem --extends ~.model.GpaoBaseEntity --inheritanceType 
+field string --fieldName reference --notNull 
+field reference --fieldName product --type ~.model.Product --notNull 
+field number --fieldName quantity --type java.math.BigDecimal 
+field number --fieldName receivedQty --type java.math.BigDecimal
+field number --fieldName orderedQty --type java.math.BigDecimal --notNull 
+field number --fieldName deliveredQty --type java.math.BigDecimal --notNull 
+field number --fieldName undeliveredQty --type java.math.BigDecimal
+field reference --fieldName delivery --type ~.model.Delivery --notNull 
+field number --fieldName amountHt --type java.math.BigDecimal --notNull 
+field date --fieldName expirationDate --type java.util.Date 
+field reference --fieldName udm --type ~.model.UnitOfMesures --notNull 
+web mvc all --package cm.adorsys.gpao.web
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log closed at 2014-03-28 08:17:12
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-03-28 08:17:26
+focus --class ~.model.ManufacturingVoucherItem
+finder list
+field reference --fieldName manufacturingVoucher --type ~.model.ManufacturingVoucher --notNull 
+finder list 
+finder add --finderName findManufacturingVoucherItemsByManufacturingVoucher
+finder list 
+focus --class ~.model.ManufacturingVoucher
+finder list 
+finder add --finderName findManufacturingVouchersByDocumentState
+finder add --finderName findManufacturingVouchersByReferenceEquals
+focus --class ~.model.DeliveryItem
+finder list 
+finder add --finderName findDeliveryItemsByDelivery
+focus --class ~.model.DeliveryItem
+finder add --finderName findDeliveryItemsByDelivery
+focus --class ~.model.Delivery
+finder list 
+finder add --finderName findDeliverysByDocRefEquals
+finder add --finderName findDeliverysByReferenceEquals
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log closed at 2014-03-29 08:00:45
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-03-30 11:06:16
+focus --class ~.model.Product
+field boolean --fieldName isRoundedProduct 
+field boolean --fieldName canBeProduce --value true
+focus --class ~.model.Delivery 

@@ -3,11 +3,13 @@ package cm.adorsys.gpao.utils;
 
 /**
  * @author clovisgakam
- *
+ * @author bwa
  */
 public class GpaoSequenceGenerator {
+	public static final String MANUFACTURINGVOUCHER_SEQUENSE_PREFIX = "MF";
 	public static String PORCHASE_SEQUENCE_PREFIX = "CF";
 	public static String DELIVERY_SEQUENCE_PREFIX = "LV";
+	public static String SUPPLY_SEQUENCE_PREFIX = "AP";
 	public static String LOT_SEQUENCE_PREFIX = "LO";
 	public static String ARTICLE_SEQUENCE_PREFIX = "AR";
 	public static String INVENTORY_SEQUENCE_PREFIX = "IN";

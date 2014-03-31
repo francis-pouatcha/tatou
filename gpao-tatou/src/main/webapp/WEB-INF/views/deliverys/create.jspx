@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:create id="fc_cm_adorsys_gpao_model_Delivery" modelAttribute="delivery" path="/deliverys" render="${empty dependencies}" z="udOuBnIw2TfrNZTh06DzF1zfrBg=">
+        <field:checkbox field="archived" id="c_cm_adorsys_gpao_model_Delivery_archived" z="kjCgbiFnIjY02G2OmAmJwpqgikU="/>
+        <field:input field="reference" id="c_cm_adorsys_gpao_model_Delivery_reference" required="true" z="OwBtuFwCl48fzoD7b9pXuLExMJ0="/>
+        <field:datetime dateTimePattern="${delivery_createddate_date_format}" field="createdDate" id="c_cm_adorsys_gpao_model_Delivery_createdDate" z="4rHs9nRzFFZp2w/L3/6S0qxE06A="/>
+        <field:select field="origin" id="c_cm_adorsys_gpao_model_Delivery_origin" items="${deliveryorigins}" path="deliveryorigins" z="c5irliCIe3J19XxWXCuHavllgGo="/>
+        <field:select field="status" id="c_cm_adorsys_gpao_model_Delivery_status" items="${documentstateses}" path="documentstateses" z="4IZSea/0NcTOKqyLYfSV3EGurBI="/>
+        <field:input field="amoutHt" id="c_cm_adorsys_gpao_model_Delivery_amoutHt" validationMessageCode="field_invalid_number" z="LmslKvXGdiz+ztkxnLN7w8ThQNQ="/>
+        <field:input field="taxedAmount" id="c_cm_adorsys_gpao_model_Delivery_taxedAmount" validationMessageCode="field_invalid_number" z="sxWZKzg0Z2kHeK3s0uSmslQomos="/>
+        <field:input field="taxeAmount" id="c_cm_adorsys_gpao_model_Delivery_taxeAmount" validationMessageCode="field_invalid_number" z="CnPfL/L4uGsKQLxXR2FOyqX4dng="/>
+        <field:select field="curreny" id="c_cm_adorsys_gpao_model_Delivery_curreny" itemValue="id" items="${devises}" path="/devises" required="true" z="qbExAxSDj5HPXKe6Z1etVjKvoXw="/>
+        <field:select field="company" id="c_cm_adorsys_gpao_model_Delivery_company" itemValue="id" items="${companys}" path="/companys" z="pFr5LvSExRzDZM2Y0hFPA4rtBgA="/>
+        <field:input field="docRef" id="c_cm_adorsys_gpao_model_Delivery_docRef" required="true" z="uSnMobCbYMT6vN4VW06dADTYM5A="/>
+        <field:input field="createBy" id="c_cm_adorsys_gpao_model_Delivery_createBy" z="gpXgzS1LoLh5Vlk0SLHyjDCmmW8="/>
+        <field:select field="customer" id="c_cm_adorsys_gpao_model_Delivery_customer" itemValue="id" items="${partners}" path="/partners" z="chPiVdsm5Lo3pdBK/FPoCDmbpR8="/>
+    </form:create>
+    <form:dependency dependencies="${dependencies}" id="d_cm_adorsys_gpao_model_Delivery" render="${not empty dependencies}" z="XsgCTNcfsNtEpxWD3PPDj1Jr9VQ="/>
+</div>

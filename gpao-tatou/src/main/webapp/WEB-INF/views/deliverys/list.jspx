@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_cm_adorsys_gpao_model_Delivery" items="${deliverys}" showInPanel="false" z="user-managed">
+        <table:table create="false" data="${deliverys}" delete="false" id="l_cm_adorsys_gpao_model_Delivery" path="/deliverys" queryParam="true" update="false" z="user-managed">
+            <table:column id="c_cm_adorsys_gpao_model_Delivery_archived" property="archived" render="false" z="user-managed"/>
+            <table:column id="c_cm_adorsys_gpao_model_Delivery_reference" property="reference" z="hdHy7xt3A708D12OlWRhwjeFy3Q="/>
+            <table:column id="c_cm_adorsys_gpao_model_Delivery_quantity" property="quantity" render="false" z="Mk2sQwebqdcQUxceRGC+7vUZ7BY="/>
+            <table:column id="c_cm_adorsys_gpao_model_Delivery_receivedBy" property="receivedBy" render="false" z="QNKJenGMtSbmXQrA60kB0WnmUug="/>
+            <table:column date="true" dateTimePattern="${delivery_receiveddate_date_format}" id="c_cm_adorsys_gpao_model_Delivery_receivedDate" property="receivedDate" render="false" z="B+qebDWLdLsC1ua1l2tye7XGhKQ="/>
+            <table:column id="c_cm_adorsys_gpao_model_Delivery_createBy" property="createBy" z="yr/1C5evkBlireL9jLnysszCpBU="/>
+            <table:column date="true" dateTimePattern="${delivery_createddate_date_format}" id="c_cm_adorsys_gpao_model_Delivery_createdDate" property="createdDate" z="OV57ZTrNiRuch/VQthb1YrGGDv4="/>
+            <table:column id="c_cm_adorsys_gpao_model_Delivery_origin" property="origin" z="azG/87ykljMWLB2Mk04sFUCvbGA="/>
+            <table:column id="c_cm_adorsys_gpao_model_Delivery_status" property="status" z="lX5zd754S2Sp8GTs5OQOPBYhs8E="/>
+        </table:table>
+    </page:list>
+</div>

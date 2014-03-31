@@ -137,12 +137,20 @@ privileged aspect Product_Roo_JavaBean {
         this.description = description;
     }
     
-    public Boolean Product.getActived() {
-        return this.actived;
+    public Boolean Product.getIsRoundedProduct() {
+        return this.isRoundedProduct;
     }
     
-    public void Product.setActived(Boolean actived) {
-        this.actived = actived;
+    public void Product.setIsRoundedProduct(Boolean isRoundedProduct) {
+        this.isRoundedProduct = isRoundedProduct;
+    }
+    
+    public Boolean Product.getCanBeProduce() {
+        return this.canBeProduce;
+    }
+    
+    public void Product.setCanBeProduce(Boolean canBeProduce) {
+        this.canBeProduce = canBeProduce;
     }
     public MultipartFile Product.getProductImage() {
         return this.productImage;
@@ -152,6 +160,13 @@ privileged aspect Product_Roo_JavaBean {
         this.productImage = productImage;
     }
 
+    public Boolean Product.getActived() {
+        return this.actived;
+    }
+    
+    public void Product.setActived(Boolean actived) {
+        this.actived = actived;
+    }
     
     public String Product.getProductImagePath() {
         return this.productImagePath;

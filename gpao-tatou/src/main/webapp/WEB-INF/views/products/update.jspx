@@ -23,5 +23,7 @@
         <field:input field="productImagePath" id="c_cm_adorsys_gpao_model_Product_productImagePath" z="kVb+fqi0WTvhCNVAz5qvi+Wz1JM="/>
         <field:input field="codeBare" id="c_cm_adorsys_gpao_model_Product_codeBare" z="DeMlgiUNsIOyzTIxwQVcZWfZhlA="/>
         <field:checkbox field="archived" id="c_cm_adorsys_gpao_model_Product_archived" z="HZuclo+A6ttm93gd9mBPLvxqvwo="/>
+        <field:checkbox field="isRoundedProduct" id="c_cm_adorsys_gpao_model_Product_isRoundedProduct" z="1zYMR95TwWIW3TS/X7Izg3h0/Bw="/>
+        <field:checkbox field="canBeProduce" id="c_cm_adorsys_gpao_model_Product_canBeProduce" z="EeErHzzRqxgp3FHwKDp/cSPvGjg="/>
     </form:update>
 </div>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_cm_adorsys_gpao_model_ManufacturingVoucherItem" object="${manufacturingvoucheritem}" path="/manufacturingvoucheritems" z="QsKAxfk6kQsj8POuNVvbOP1EbO8=">
+        <field:display field="archived" id="s_cm_adorsys_gpao_model_ManufacturingVoucherItem_archived" object="${manufacturingvoucheritem}" z="++Uaob/xcucmACYbbTTovXADCV8="/>
+        <field:display field="product" id="s_cm_adorsys_gpao_model_ManufacturingVoucherItem_product" object="${manufacturingvoucheritem}" z="jofxCHMei1vx6PPRqk8ghR5f8o4="/>
+        <field:display field="quantity" id="s_cm_adorsys_gpao_model_ManufacturingVoucherItem_quantity" object="${manufacturingvoucheritem}" z="7KE2TZBXslUSSGKMVHB77OFOt1g="/>
+        <field:display date="true" dateTimePattern="${manufacturingVoucherItem_delaydate_date_format}" field="delayDate" id="s_cm_adorsys_gpao_model_ManufacturingVoucherItem_delayDate" object="${manufacturingvoucheritem}" z="DADfc1vdGgFr6NwlzzqRnRAuPWs="/>
+        <field:display field="comment" id="s_cm_adorsys_gpao_model_ManufacturingVoucherItem_comment" object="${manufacturingvoucheritem}" z="WytCrmoypsUfT8AptW7KQ5HJAwM="/>
+        <field:display field="manufacturingVoucher" id="s_cm_adorsys_gpao_model_ManufacturingVoucherItem_manufacturingVoucher" object="${manufacturingvoucheritem}" z="HwGTVpJCcWG6MHMJ5eGYp9nm4Co="/>
+    </page:show>
+</div>

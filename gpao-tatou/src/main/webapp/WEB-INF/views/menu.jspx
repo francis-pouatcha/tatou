@@ -136,5 +136,21 @@
             <menu:item id="i_supplyitems_list" messageCode="global_menu_list" url="/deliveryitemses?page=1&amp;size=${empty param.size ? 10 : param.size}" z="JzhPjKXRK4MjSEn/BjjR9O19tXE="/>
             <menu:item id="fi_supplyitems_supply" messageCode="global_menu_find" url="/supplyitemses?find=BySupply&amp;form&amp;page=1&amp;size=${empty param.size ? 10 : param.size}" z="1WdUuGCYp/5BFrdOuUjlZnvng80="/>
         </menu:category>
+        <menu:category id="c_manufacturingvoucher" z="FUFQiXC3Fuduw1WJJ5b/wrK6rpE=">
+            <menu:item id="i_manufacturingvoucher_new" messageCode="global_menu_new" url="/manufacturingvouchers?form" z="fBsZ/75UlkqgZgk1N/dPTISeOy0="/>
+            <menu:item id="i_manufacturingvoucher_list" messageCode="global_menu_list" url="/manufacturingvouchers?page=1&amp;size=${empty param.size ? 10 : param.size}" z="8V4YrcdJvb53ZCm1UXHCaKmNyhI="/>
+        </menu:category>
+        <menu:category id="c_specificitytocaracteristicmap" z="xNVcYiclZlAhnzAYynCoyJrb0ro=">
+            <menu:item id="i_specificitytocaracteristicmap_new" messageCode="global_menu_new" url="/specificitytocaracteristicmaps?form" z="S3Eo2sle3IH9KiClGrSeOCBaSc8="/>
+            <menu:item id="i_specificitytocaracteristicmap_list" messageCode="global_menu_list" url="/specificitytocaracteristicmaps?page=1&amp;size=${empty param.size ? 10 : param.size}" z="iWzlVArbgKxVkRkFrM73IPY/S60="/>
+        </menu:category>
+        <menu:category id="c_manufacturingvoucheritem" z="Vj7vXGToheny6YcBtwVc/qLzeqk=">
+            <menu:item id="i_manufacturingvoucheritem_new" messageCode="global_menu_new" url="/manufacturingvoucheritems?form" z="xlq5xanL2FR0HUafzko1xT0m0+k="/>
+            <menu:item id="i_manufacturingvoucheritem_list" messageCode="global_menu_list" url="/manufacturingvoucheritems?page=1&amp;size=${empty param.size ? 10 : param.size}" z="DY/y8HxVYDqMSxo+z9X+LOxzXRs="/>
+        </menu:category>
+        <menu:category id="c_deliveryitem" z="pJj2keh6sqEJSemrQ2qwvkSnJuQ=">
+            <menu:item id="i_deliveryitem_new" messageCode="global_menu_new" url="/deliveryitems?form" z="sRABtvez4PaZX9LVQhnqEVo9/TA="/>
+            <menu:item id="i_deliveryitem_list" messageCode="global_menu_list" url="/deliveryitems?page=1&amp;size=${empty param.size ? 10 : param.size}" z="+ADOIUVIZXlZzg+CDf3u7kSeZTg="/>
+        </menu:category>
     </menu:menu>
 </div>

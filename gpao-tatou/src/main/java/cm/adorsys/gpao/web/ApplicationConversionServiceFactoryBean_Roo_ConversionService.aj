@@ -8,11 +8,15 @@ import cm.adorsys.gpao.model.Company;
 import cm.adorsys.gpao.model.Customer;
 import cm.adorsys.gpao.model.CustomerOrder;
 import cm.adorsys.gpao.model.CustomerOrderItem;
+import cm.adorsys.gpao.model.DeliveryItem;
 import cm.adorsys.gpao.model.Inventory;
 import cm.adorsys.gpao.model.InventoryItems;
 import cm.adorsys.gpao.model.Location;
+import cm.adorsys.gpao.model.ManufacturingVoucher;
+import cm.adorsys.gpao.model.ManufacturingVoucherItem;
 import cm.adorsys.gpao.model.ProductIntrant;
 import cm.adorsys.gpao.model.Specificity;
+import cm.adorsys.gpao.model.SpecificityToCaracteristicMap;
 import cm.adorsys.gpao.model.Supply;
 import cm.adorsys.gpao.model.SupplyItems;
 import cm.adorsys.gpao.model.TenderItems;
@@ -130,6 +134,30 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         };
     }
     
+    public Converter<DeliveryItem, String> ApplicationConversionServiceFactoryBean.getDeliveryItemToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<cm.adorsys.gpao.model.DeliveryItem, java.lang.String>() {
+            public String convert(DeliveryItem deliveryItem) {
+                return new StringBuilder().append(deliveryItem.getOrderedQty()).append(' ').append(deliveryItem.getDeliveredQty()).append(' ').append(deliveryItem.getUndeliveredQty()).append(' ').append(deliveryItem.getAmountHt()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, DeliveryItem> ApplicationConversionServiceFactoryBean.getIdToDeliveryItemConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, cm.adorsys.gpao.model.DeliveryItem>() {
+            public cm.adorsys.gpao.model.DeliveryItem convert(java.lang.Long id) {
+                return DeliveryItem.findDeliveryItem(id);
+            }
+        };
+    }
+    
+    public Converter<String, DeliveryItem> ApplicationConversionServiceFactoryBean.getStringToDeliveryItemConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, cm.adorsys.gpao.model.DeliveryItem>() {
+            public cm.adorsys.gpao.model.DeliveryItem convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), DeliveryItem.class);
+            }
+        };
+    }
+    
     public Converter<Long, Inventory> ApplicationConversionServiceFactoryBean.getIdToInventoryConverter() {
         return new org.springframework.core.convert.converter.Converter<java.lang.Long, cm.adorsys.gpao.model.Inventory>() {
             public cm.adorsys.gpao.model.Inventory convert(java.lang.Long id) {
@@ -194,6 +222,54 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         };
     }
     
+    public Converter<ManufacturingVoucher, String> ApplicationConversionServiceFactoryBean.getManufacturingVoucherToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<cm.adorsys.gpao.model.ManufacturingVoucher, java.lang.String>() {
+            public String convert(ManufacturingVoucher manufacturingVoucher) {
+                return new StringBuilder().append(manufacturingVoucher.getReference()).append(' ').append(manufacturingVoucher.getCreateDate()).append(' ').append(manufacturingVoucher.getCreatedBy()).append(' ').append(manufacturingVoucher.getDelayDate()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, ManufacturingVoucher> ApplicationConversionServiceFactoryBean.getIdToManufacturingVoucherConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, cm.adorsys.gpao.model.ManufacturingVoucher>() {
+            public cm.adorsys.gpao.model.ManufacturingVoucher convert(java.lang.Long id) {
+                return ManufacturingVoucher.findManufacturingVoucher(id);
+            }
+        };
+    }
+    
+    public Converter<String, ManufacturingVoucher> ApplicationConversionServiceFactoryBean.getStringToManufacturingVoucherConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, cm.adorsys.gpao.model.ManufacturingVoucher>() {
+            public cm.adorsys.gpao.model.ManufacturingVoucher convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), ManufacturingVoucher.class);
+            }
+        };
+    }
+    
+    public Converter<ManufacturingVoucherItem, String> ApplicationConversionServiceFactoryBean.getManufacturingVoucherItemToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<cm.adorsys.gpao.model.ManufacturingVoucherItem, java.lang.String>() {
+            public String convert(ManufacturingVoucherItem manufacturingVoucherItem) {
+                return new StringBuilder().append(manufacturingVoucherItem.getQuantity()).append(' ').append(manufacturingVoucherItem.getDelayDate()).append(' ').append(manufacturingVoucherItem.getComment()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, ManufacturingVoucherItem> ApplicationConversionServiceFactoryBean.getIdToManufacturingVoucherItemConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, cm.adorsys.gpao.model.ManufacturingVoucherItem>() {
+            public cm.adorsys.gpao.model.ManufacturingVoucherItem convert(java.lang.Long id) {
+                return ManufacturingVoucherItem.findManufacturingVoucherItem(id);
+            }
+        };
+    }
+    
+    public Converter<String, ManufacturingVoucherItem> ApplicationConversionServiceFactoryBean.getStringToManufacturingVoucherItemConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, cm.adorsys.gpao.model.ManufacturingVoucherItem>() {
+            public cm.adorsys.gpao.model.ManufacturingVoucherItem convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), ManufacturingVoucherItem.class);
+            }
+        };
+    }
+    
     public Converter<ProductIntrant, String> ApplicationConversionServiceFactoryBean.getProductIntrantToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<cm.adorsys.gpao.model.ProductIntrant, java.lang.String>() {
             public String convert(ProductIntrant productIntrant) {
@@ -238,6 +314,30 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         return new org.springframework.core.convert.converter.Converter<java.lang.String, cm.adorsys.gpao.model.Specificity>() {
             public cm.adorsys.gpao.model.Specificity convert(String id) {
                 return getObject().convert(getObject().convert(id, Long.class), Specificity.class);
+            }
+        };
+    }
+    
+    public Converter<SpecificityToCaracteristicMap, String> ApplicationConversionServiceFactoryBean.getSpecificityToCaracteristicMapToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<cm.adorsys.gpao.model.SpecificityToCaracteristicMap, java.lang.String>() {
+            public String convert(SpecificityToCaracteristicMap specificityToCaracteristicMap) {
+                return "(no displayable fields)";
+            }
+        };
+    }
+    
+    public Converter<Long, SpecificityToCaracteristicMap> ApplicationConversionServiceFactoryBean.getIdToSpecificityToCaracteristicMapConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, cm.adorsys.gpao.model.SpecificityToCaracteristicMap>() {
+            public cm.adorsys.gpao.model.SpecificityToCaracteristicMap convert(java.lang.Long id) {
+                return SpecificityToCaracteristicMap.findSpecificityToCaracteristicMap(id);
+            }
+        };
+    }
+    
+    public Converter<String, SpecificityToCaracteristicMap> ApplicationConversionServiceFactoryBean.getStringToSpecificityToCaracteristicMapConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, cm.adorsys.gpao.model.SpecificityToCaracteristicMap>() {
+            public cm.adorsys.gpao.model.SpecificityToCaracteristicMap convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), SpecificityToCaracteristicMap.class);
             }
         };
     }
@@ -349,6 +449,12 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         registry.addConverter(getCustomerOrderItemToStringConverter());
         registry.addConverter(getIdToCustomerOrderItemConverter());
         registry.addConverter(getStringToCustomerOrderItemConverter());
+        registry.addConverter(getDeliveryToStringConverter());
+        registry.addConverter(getIdToDeliveryConverter());
+        registry.addConverter(getStringToDeliveryConverter());
+        registry.addConverter(getDeliveryItemToStringConverter());
+        registry.addConverter(getIdToDeliveryItemConverter());
+        registry.addConverter(getStringToDeliveryItemConverter());
         registry.addConverter(getDeviseToStringConverter());
         registry.addConverter(getIdToDeviseConverter());
         registry.addConverter(getStringToDeviseConverter());
@@ -367,6 +473,12 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         registry.addConverter(getLocationToStringConverter());
         registry.addConverter(getIdToLocationConverter());
         registry.addConverter(getStringToLocationConverter());
+        registry.addConverter(getManufacturingVoucherToStringConverter());
+        registry.addConverter(getIdToManufacturingVoucherConverter());
+        registry.addConverter(getStringToManufacturingVoucherConverter());
+        registry.addConverter(getManufacturingVoucherItemToStringConverter());
+        registry.addConverter(getIdToManufacturingVoucherItemConverter());
+        registry.addConverter(getStringToManufacturingVoucherItemConverter());
         registry.addConverter(getOrderItemsToStringConverter());
         registry.addConverter(getIdToOrderItemsConverter());
         registry.addConverter(getStringToOrderItemsConverter());
@@ -394,6 +506,9 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         registry.addConverter(getSpecificityToStringConverter());
         registry.addConverter(getIdToSpecificityConverter());
         registry.addConverter(getStringToSpecificityConverter());
+        registry.addConverter(getSpecificityToCaracteristicMapToStringConverter());
+        registry.addConverter(getIdToSpecificityToCaracteristicMapConverter());
+        registry.addConverter(getStringToSpecificityToCaracteristicMapConverter());
         registry.addConverter(getSupplyToStringConverter());
         registry.addConverter(getIdToSupplyConverter());
         registry.addConverter(getStringToSupplyConverter());

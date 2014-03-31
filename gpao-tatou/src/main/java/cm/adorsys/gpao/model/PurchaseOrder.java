@@ -52,7 +52,7 @@ public class PurchaseOrder extends GpaoBaseEntity {
     private Partner supplier;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @DateTimeFormat(pattern = "dd-MM-yyy HH:mm")
+    @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm")
     private Date orderDate;
 
     @Value("false")
