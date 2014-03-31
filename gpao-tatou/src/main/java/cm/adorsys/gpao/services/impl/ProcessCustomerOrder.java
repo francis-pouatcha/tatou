@@ -22,7 +22,6 @@ import cm.adorsys.gpao.model.Partner;
 import cm.adorsys.gpao.model.Product;
 import cm.adorsys.gpao.model.PurchaseOrder;
 import cm.adorsys.gpao.security.SecurityUtil;
-import cm.adorsys.gpao.utils.CurrencyUtils;
 import cm.adorsys.gpao.utils.GpaoSequenceGenerator;
 import cm.adorsys.gpao.utils.UdmUtils;
 

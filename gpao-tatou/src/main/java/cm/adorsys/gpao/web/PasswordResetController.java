@@ -1,7 +1,5 @@
 package cm.adorsys.gpao.web;
 
-import java.util.Arrays;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -12,10 +10,7 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import cm.adorsys.gpao.model.Company;
-import cm.adorsys.gpao.model.Gender;
 import cm.adorsys.gpao.model.GpaoUser;
-import cm.adorsys.gpao.model.GpaoUserGroup;
 import cm.adorsys.gpao.model.uimodels.PasswordReset;
 import cm.adorsys.gpao.security.SecurityUtil;
 import cm.adorsys.gpao.utils.MessageType;

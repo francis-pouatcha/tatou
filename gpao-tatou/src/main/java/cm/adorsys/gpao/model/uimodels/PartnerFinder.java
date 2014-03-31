@@ -1,15 +1,12 @@
 package cm.adorsys.gpao.model.uimodels;
 import java.util.List;
-import javax.persistence.Column;
-import javax.persistence.Enumerated;
-import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotNull;
-import org.springframework.beans.factory.annotation.Value;
+
 import org.springframework.roo.addon.javabean.RooJavaBean;
+import org.springframework.roo.addon.json.RooJson;
+
 import cm.adorsys.gpao.model.Partner;
 import cm.adorsys.gpao.model.PartnerGroup;
 import cm.adorsys.gpao.model.PartnerType;
-import org.springframework.roo.addon.json.RooJson;
 
 @RooJavaBean
 @RooJson

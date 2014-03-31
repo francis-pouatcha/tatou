@@ -1,7 +1,5 @@
 package cm.adorsys.gpao.web;
 
-import java.util.Currency;
-
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.format.support.FormattingConversionServiceFactoryBean;
@@ -9,8 +7,6 @@ import org.springframework.roo.addon.web.mvc.controller.converter.RooConversionS
 
 import cm.adorsys.gpao.model.Company;
 import cm.adorsys.gpao.model.Contacts;
-import cm.adorsys.gpao.model.Supply;
-import cm.adorsys.gpao.model.SupplyItems;
 import cm.adorsys.gpao.model.Devise;
 import cm.adorsys.gpao.model.GpaoUser;
 import cm.adorsys.gpao.model.GpaoUserGroup;
@@ -22,6 +18,8 @@ import cm.adorsys.gpao.model.Product;
 import cm.adorsys.gpao.model.ProductFamily;
 import cm.adorsys.gpao.model.ProductSubFamily;
 import cm.adorsys.gpao.model.PurchaseOrder;
+import cm.adorsys.gpao.model.Supply;
+import cm.adorsys.gpao.model.SupplyItems;
 import cm.adorsys.gpao.model.Taxe;
 import cm.adorsys.gpao.model.Tenders;
 import cm.adorsys.gpao.model.UdmGroup;

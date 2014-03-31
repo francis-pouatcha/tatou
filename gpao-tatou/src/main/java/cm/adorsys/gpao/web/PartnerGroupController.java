@@ -1,13 +1,10 @@
 package cm.adorsys.gpao.web;
-import cm.adorsys.gpao.model.PartnerGroup;
-import cm.adorsys.gpao.model.Taxe;
-import cm.adorsys.gpao.model.TaxeType;
-import cm.adorsys.gpao.model.UdmGroup;
-import cm.adorsys.gpao.utils.MessageType;
 import java.util.Arrays;
 import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +13,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import cm.adorsys.gpao.model.PartnerGroup;
+import cm.adorsys.gpao.utils.MessageType;
 
 @RequestMapping("/partnergroups")
 @Controller

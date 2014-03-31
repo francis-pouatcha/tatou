@@ -1,14 +1,15 @@
 package cm.adorsys.gpao.web;
-import cm.adorsys.gpao.model.UdmGroup;
-import cm.adorsys.gpao.model.WareHouses;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import cm.adorsys.gpao.model.WareHouses;
 
 @RequestMapping("/warehouseses")
 @Controller

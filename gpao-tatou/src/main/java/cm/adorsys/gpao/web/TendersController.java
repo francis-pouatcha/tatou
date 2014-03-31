@@ -1,29 +1,15 @@
 package cm.adorsys.gpao.web;
-import cm.adorsys.gpao.model.Company;
-import cm.adorsys.gpao.model.DocumentStates;
-import cm.adorsys.gpao.model.OrderItems;
-import cm.adorsys.gpao.model.Product;
-import cm.adorsys.gpao.model.PurchaseOrder;
-import cm.adorsys.gpao.model.TenderItems;
-import cm.adorsys.gpao.model.Tenders;
-import cm.adorsys.gpao.model.UdmGroup;
-import cm.adorsys.gpao.model.UnitOfMesures;
-import cm.adorsys.gpao.model.uimodels.OrderItemUimodel;
-import cm.adorsys.gpao.model.uimodels.ProductFinder;
-import cm.adorsys.gpao.model.uimodels.TenderFinder;
-import cm.adorsys.gpao.services.impl.TatouPurchaseService;
-import cm.adorsys.gpao.utils.GpaoPdfProducer;
-import cm.adorsys.gpao.utils.GpaoRepportPath;
-import cm.adorsys.gpao.utils.MessageType;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
 import org.springframework.stereotype.Controller;
@@ -34,6 +20,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import cm.adorsys.gpao.model.Company;
+import cm.adorsys.gpao.model.DocumentStates;
+import cm.adorsys.gpao.model.Product;
+import cm.adorsys.gpao.model.TenderItems;
+import cm.adorsys.gpao.model.Tenders;
+import cm.adorsys.gpao.model.UdmGroup;
+import cm.adorsys.gpao.model.UnitOfMesures;
+import cm.adorsys.gpao.model.uimodels.OrderItemUimodel;
+import cm.adorsys.gpao.model.uimodels.TenderFinder;
+import cm.adorsys.gpao.services.impl.TatouPurchaseService;
+import cm.adorsys.gpao.utils.GpaoPdfProducer;
+import cm.adorsys.gpao.utils.GpaoRepportPath;
+import cm.adorsys.gpao.utils.MessageType;
 
 @RequestMapping("/tenderses")
 @Controller
