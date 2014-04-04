@@ -99,9 +99,9 @@
 			<c:if test="${not empty manufacturingVoucher.id }">
 				<c:if test="${manufacturingVoucher.documentState eq 'BROUILLON'}">
 					<div class="btn-group pull-rigth" data-toggle="buttons-checkbox">
-						<button id="addBtn" type="button" class=" btn-success">Ajouter</button>
-						<button id="delBtn" type="button" class=" btn-danger">Suprimer</button>
-						<button id="calculBtn" type="button" class=" btn-info">Calculer</button>
+						<button id="addBtn" type="button" class=" btn-success" disabled="disabled" >Ajouter</button>
+						<button id="delBtn" type="button" class=" btn-danger" disabled="disabled">Suprimer</button>
+						<button id="calculBtn" type="button" class=" btn-info" disabled="disabled">Calculer</button>
 					</div>
 				</c:if>
 			</c:if>

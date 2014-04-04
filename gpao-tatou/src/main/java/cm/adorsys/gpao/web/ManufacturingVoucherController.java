@@ -101,9 +101,13 @@ public class ManufacturingVoucherController {
     @RequestMapping(value = "/{manufacturingVoucherId}/removeItem", method = RequestMethod.GET)
     public String removeOrderItems(@PathVariable("manufacturingVoucherId") Long customerOrderId, @RequestParam("itemid") Long[] orderItemIds, Model uiModel) {
         ManufacturingVoucher manufacturingVoucher = ManufacturingVoucher.findManufacturingVoucher(customerOrderId);
-        productionService.deleteManufacturingOrderItems(Arrays.asList(orderItemIds));
-        populateEditForm(uiModel, manufacturingVoucher);
+        boolean deleteManufacturingOrderItems = productionService.deleteManufacturingOrderItems(Arrays.asList(orderItemIds));
+        if(!deleteManufacturingOrderItems) {
+            uiModel.addAttribute(MessageType.SUCCESS_MESSAGE, "Nothing deleted!");
+            populateEditForm(uiModel, manufacturingVoucher);
+        }
         uiModel.addAttribute(MessageType.SUCCESS_MESSAGE, "lignes supreimee avec success !");
+        populateEditForm(uiModel, manufacturingVoucher);
         return "manufacturingvouchers/manufacturingvoucherView";
     }
 
