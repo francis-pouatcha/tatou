@@ -39,4 +39,5 @@ public interface IProductionService {
 	void generateInternalRawMaterialOrder(ManufacturingVoucher manufacturingVoucher);
 	//TODO give the internal manufacturing order as parameter here.
 	void generateInternalDeliveryBordereau(ManufacturingVoucher manufacturingVoucher); */
+	public boolean deleteManufacturingOrderItems(List<Long> manufacturingVoucherItemIds);
 }

@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -97,6 +96,15 @@ public class ManufacturingVoucherController {
         manufacturingVoucherItem.setProduct(Product.findProduct(productId));
         productionService.addManufacturingVoucherItem(manufacturingVoucher, manufacturingVoucherItem);
         return  ManufacturingVoucherItem.toJsonArray(ManufacturingVoucherItem.findManufacturingVoucherItemsByManufacturingVoucher(manufacturingVoucher).getResultList());
+    }
+
+    @RequestMapping(value = "/{manufacturingVoucherId}/removeItem", method = RequestMethod.GET)
+    public String removeOrderItems(@PathVariable("manufacturingVoucherId") Long customerOrderId, @RequestParam("itemid") Long[] orderItemIds, Model uiModel) {
+        ManufacturingVoucher manufacturingVoucher = ManufacturingVoucher.findManufacturingVoucher(customerOrderId);
+        productionService.deleteManufacturingOrderItems(Arrays.asList(orderItemIds));
+        populateEditForm(uiModel, manufacturingVoucher);
+        uiModel.addAttribute(MessageType.SUCCESS_MESSAGE, "lignes supreimee avec success !");
+        return "manufacturingvouchers/manufacturingvoucherView";
     }
 
     private ManufacturingVoucher doAConsistantMerge(ManufacturingVoucher manufacturingVoucher) {

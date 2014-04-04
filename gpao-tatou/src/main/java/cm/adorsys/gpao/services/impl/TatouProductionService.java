@@ -64,4 +64,13 @@ public class TatouProductionService implements IProductionService {
 		manufacturingVoucher.persist();
 		return manufacturingVoucherItem;
 	}
+	public boolean deleteManufacturingOrderItems(List<Long> manufacturingVoucherItemIds) {
+		Assert.notNull(manufacturingVoucherItemIds, "Manufacturing vouchers items may not be nulls here");
+		for (Long manufacturingVoucherItemId : manufacturingVoucherItemIds) {
+			if(manufacturingVoucherItemId != null) {
+				ManufacturingVoucherItem.findManufacturingVoucherItem(manufacturingVoucherItemId).remove();
+			}
+		}
+		return true;
+	}
 }

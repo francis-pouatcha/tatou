@@ -23,7 +23,7 @@
 	<spring:url value="/manufacturingvouchers/${manufacturingVoucher.id}/validatedOrder"
 		var="validated_url" /> 
 	<spring:url
-		value="/manufacturingvouchers/${manufacturingVoucher.id}/removeOrderItem?itemid="
+		value="/manufacturingvouchers/${manufacturingVoucher.id}/removeItem?itemid="
 		var="remove_url" />
 	<spring:url value="/manufacturingvouchers/${manufacturingVoucher.id}/cancel" var="cancel_url" />
 	<spring:url value="/manufacturingvouchers/${manufacturingVoucher.id}/close" var="close_url" />  
