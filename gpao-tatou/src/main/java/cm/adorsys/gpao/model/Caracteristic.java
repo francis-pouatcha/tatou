@@ -8,8 +8,8 @@ import javax.persistence.ManyToOne;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord(inheritanceType = "TABLE_PER_CLASS")
 @RooJson
+@RooJpaActiveRecord(inheritanceType = "TABLE_PER_CLASS", finders = { "findCaracteristicsByProduct" })
 public class Caracteristic extends GpaoBaseEntity {
 
     /**

@@ -28,7 +28,7 @@ import cm.adorsys.gpao.model.uimodels.OrderItemUimodel;
 import cm.adorsys.gpao.services.BusinessOperation;
 import cm.adorsys.gpao.services.ICustomerOrderService;
 import cm.adorsys.gpao.services.IProductionService;
-import cm.adorsys.gpao.services.impl.ProcessCustomerOrder;
+import cm.adorsys.gpao.services.impl.function.ProcessCustomerOrder;
 import cm.adorsys.gpao.utils.MessageType;
 
 @RequestMapping("/customerorders")
@@ -54,7 +54,7 @@ public class CustomerOrderController extends AbstractOrderController {
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, customerOrder);
             uiModel.addAttribute(MessageType.ERROR_MESSAGE, "une erreur est Survenue durant l'enregistrement ! \n " + bindingResult.getFieldErrors());
-            return "purchaseorders/purchaseordersView";
+            return "customerorders/customerordersView";
         }
         if (customerOrder.getId() == null) {
             customerOrder.setOrderState(DocumentStates.BROUILLON);
@@ -68,7 +68,6 @@ public class CustomerOrderController extends AbstractOrderController {
         uiModel.addAttribute(MessageType.SUCCESS_MESSAGE, "Enregistre avec success !");
         return "customerorders/customerordersView";
     }
-
     private CustomerOrder doAConsistantMerge(CustomerOrder customerOrder) {
         try {
             customerOrder.merge();

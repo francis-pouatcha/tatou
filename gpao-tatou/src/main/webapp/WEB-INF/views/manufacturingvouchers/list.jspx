@@ -2,8 +2,8 @@
 <div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    <page:list showInPanel="false" id="pl_cm_adorsys_gpao_model_ManufacturingVoucher" items="${manufacturingvouchers}" z="user-manager">
-        <table:table queryParam="true" create="false" delete="false" update="false" data="${manufacturingvouchers}" id="l_cm_adorsys_gpao_model_ManufacturingVoucher" path="/manufacturingvouchers/addOrEditForm" z="Aa/YHwdyutJV/Ks6sCv5txdODV0=">
+    <page:list id="pl_cm_adorsys_gpao_model_ManufacturingVoucher" items="${manufacturingvouchers}" showInPanel="false" z="user-managed">
+        <table:table create="false" data="${manufacturingvouchers}" delete="false" id="l_cm_adorsys_gpao_model_ManufacturingVoucher" path="/manufacturingvouchers/addOrEditForm" queryParam="true" update="false" z="user-managed">
             <table:column id="c_cm_adorsys_gpao_model_ManufacturingVoucher_archived" property="archived" z="xVhZ8ZLuccaqVpQcGXko+nPILe4="/>
             <table:column id="c_cm_adorsys_gpao_model_ManufacturingVoucher_reference" property="reference" z="5YKGEKT2xWTzoNrAP9Q5tp/Z7qQ="/>
             <table:column date="true" dateTimePattern="${manufacturingVoucher_createdate_date_format}" id="c_cm_adorsys_gpao_model_ManufacturingVoucher_createDate" property="createDate" z="TDGb+y9/eJ7GJJpaV0wAfWhzZ00="/>

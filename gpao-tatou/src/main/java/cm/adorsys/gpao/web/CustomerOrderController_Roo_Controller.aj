@@ -11,8 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import org.joda.time.format.DateTimeFormat;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -97,7 +95,7 @@ privileged aspect CustomerOrderController_Roo_Controller {
     }
     
     void CustomerOrderController.addDateTimeFormatPatterns(Model uiModel) {
-        uiModel.addAttribute("customerOrder_orderdate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
+        uiModel.addAttribute("customerOrder_orderdate_date_format", "dd-MM-yyyy HH:mm");
     }
     
     String CustomerOrderController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

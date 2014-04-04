@@ -41,7 +41,7 @@ public class CustomerOrder extends GpaoBaseEntity {
     /**
      */
     @Temporal(TemporalType.TIMESTAMP)
-    @DateTimeFormat(style = "M-")
+    @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm")
     private Date orderDate;
 
     /**

@@ -13,4 +13,8 @@
 <definition extends="default" name="manufacturingvouchers/update">
         <put-attribute name="body" value="/WEB-INF/views/manufacturingvouchers/update.jspx"/>
     </definition>
+    
+    <definition extends="production" name="manufacturingvouchers/manufacturingvoucherView">
+        <put-attribute name="body" value="/WEB-INF/views/manufacturingvouchers/manufacturingvoucherView.jspx"/>
+    </definition>
 </tiles-definitions>

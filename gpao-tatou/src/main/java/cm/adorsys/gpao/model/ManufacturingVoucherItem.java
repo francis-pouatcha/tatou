@@ -10,10 +10,12 @@ import java.util.Date;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.roo.addon.json.RooJson;
 
 @RooJavaBean
 @RooToString
 @RooJpaActiveRecord(inheritanceType = "TABLE_PER_CLASS", finders = { "findManufacturingVoucherItemsByManufacturingVoucher" })
+@RooJson
 public class ManufacturingVoucherItem extends GpaoBaseEntity {
 
     /**

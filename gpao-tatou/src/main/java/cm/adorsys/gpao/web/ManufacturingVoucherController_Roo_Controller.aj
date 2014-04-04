@@ -3,13 +3,9 @@
 
 package cm.adorsys.gpao.web;
 
-import cm.adorsys.gpao.model.CustomerOrder;
-import cm.adorsys.gpao.model.DocumentStates;
 import cm.adorsys.gpao.model.ManufacturingVoucher;
-import cm.adorsys.gpao.model.Partner;
 import cm.adorsys.gpao.web.ManufacturingVoucherController;
 import java.io.UnsupportedEncodingException;
-import java.util.Arrays;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.joda.time.format.DateTimeFormat;
@@ -95,14 +91,6 @@ privileged aspect ManufacturingVoucherController_Roo_Controller {
     void ManufacturingVoucherController.addDateTimeFormatPatterns(Model uiModel) {
         uiModel.addAttribute("manufacturingVoucher_createdate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
         uiModel.addAttribute("manufacturingVoucher_delaydate_date_format", "dd-MM-yyy HH:mm");
-    }
-    
-    void ManufacturingVoucherController.populateEditForm(Model uiModel, ManufacturingVoucher manufacturingVoucher) {
-        uiModel.addAttribute("manufacturingVoucher", manufacturingVoucher);
-        addDateTimeFormatPatterns(uiModel);
-        uiModel.addAttribute("customerorders", CustomerOrder.findAllCustomerOrders());
-        uiModel.addAttribute("documentstateses", Arrays.asList(DocumentStates.values()));
-        uiModel.addAttribute("partners", Partner.findAllPartners());
     }
     
     String ManufacturingVoucherController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

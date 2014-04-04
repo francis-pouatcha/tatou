@@ -647,3 +647,15 @@ focus --class ~.model.Product
 field boolean --fieldName isRoundedProduct 
 field boolean --fieldName canBeProduce --value true
 focus --class ~.model.Delivery 
+focus --class ~.model.ManufacturingVoucherItem
+json add 
+class --class ~.model.uimodel.ManufacturingItemUiModel
+field reference --fieldName manufacturingVoucherItem --type ~.model.ManufacturingVoucherItem
+field reference --fieldName caracteristic --type ~.model.Caracteristic
+field set --fieldName specifycities --type ~.model.Specificity
+focus --class ~.model.Caracteristic
+finder list 
+finder add --finderName findCaracteristicsByProduct
+focus --class ~.model.Specificity
+finder list 
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-04-04 13:04:02

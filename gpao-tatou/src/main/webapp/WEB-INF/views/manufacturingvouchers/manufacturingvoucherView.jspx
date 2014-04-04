@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:page="urn:jsptagdir:/WEB-INF/tags/form"
+	xmlns:form="urn:jsptagdir:/WEB-INF/tags/form"
+	xmlns:util="urn:jsptagdir:/WEB-INF/tags/util"
+	xmlns:spring="http://www.springframework.org/tags"
+	xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+	<jsp:directive.page contentType="text/html;charset=UTF-8" />
+	<jsp:output omit-xml-declaration="yes" />
+	<spring:url value="/manufacturingvouchers/addOrEditForm" var="add_url"></spring:url>
+	<spring:url
+		value="/manufacturingvouchers/next/${ manufacturingVoucher.id}"
+		var="next_url" />
+	<spring:url
+		value="/manufacturingvouchers/orderNote/${ manufacturingVoucher.reference}.pdf"
+		var="print_order_url" />
+	<spring:url
+		value="/manufacturingvouchers/previous/${manufacturingVoucher.id}"
+		var="previous_url" />
+	<div class="row-fluid">
+		<div class="span3">
+			<c:if test="${not empty manufacturingVoucher.id}">
+				<p>
+					Reference :<span class="label label-info">${manufacturingVoucher.reference}</span>
+				</p>
+				<P>
+					Status ? :<span class="label label-info">${manufacturingVoucher.documentState}</span>
+				</P>
+			</c:if>
+
+		</div>
+
+		<div class="span6">
+			<jsp:include page="../gpaoMessages.jspx" />
+		</div>
+		<div style="vertical-align: top; margin-left: 2%;" class="span3">
+			<c:if test="${not empty manufacturingVoucher.id}">
+				<div style="float: right;" class="pagination">
+					<ul>
+						<li><a title="vider le formulaire" href="${add_url }">Add</a></li>
+						<li><a title="Groupe preccedant" href="${previous_url }">Prev</a></li>
+						<li><a title="Groupe suivant " href="${next_url}">Next</a></li>
+					</ul>
+				</div>
+			</c:if>
+
+		</div>
+	</div>
+	<form:update showLabel="false" showInPanel="false" method="POST"
+		id="fu_cm_adorsys_gpao_model_ManufacturingVoucher"
+		modelAttribute="manufacturingVoucher"
+		path="/manufacturingvouchers/addOrEdit" versionField="Version"
+		z="user-managed">
+		<!-- 		        <field:checkbox field="archived" id="c_cm_adorsys_gpao_model_CustomerOrder_archived" z="+ZNlMsaLus/rfGHJuxCfkokX2bw="/> -->
+		<div class="row-fluid">
+			<div class="span6">
+				<field:checkbox render="false" field="archived"
+					id="c_cm_adorsys_gpao_model_ManufacturingVoucher_archived"
+					z="IBDARgq+yNJ3KQgzXJDQGPzWCGg=" />
+				<field:gpao-display hiddenfield="true"
+					id="c_cm_adorsys_gpao_model_ManufacturingVoucher_reference"
+					object="${manufacturingVoucher }" field="reference"
+					z="E0UPmnhR9+CCpPJljCan+MSYHbU=" />
+
+				<field:gpao-display hiddenfield="true"
+					dateTimePattern="${manufacturingVoucher_createdate_date_format}"
+					field="createDate"
+					id="c_cm_adorsys_gpao_model_ManufacturingVoucher_createDate"
+					z="QHVmB1GLgT/94jyJoVL/jHFFv8g=" object="${manufacturingVoucher }" />
+				<field:gpao-display hiddenfield="true"
+					id="c_cm_adorsys_gpao_model_ManufacturingVoucher_createdBy"
+					object="${manufacturingVoucher }" field="createdBy"
+					z="O2qQ3JiiKdAt/DzSeRK2s1L14yI=" />
+			</div>
+			<div class="span6">
+
+				<field:gpao-display
+					id="c_cm_adorsys_gpao_model_ManufacturingVoucher_documentState"
+					object="${manufacturingVoucher }" field="documentState" hiddenfield="true"
+					isEnum="true" z="sg1iRA8rkt9P23RKWTuL9/cTCrA=" />
+				<field:select field="customer"
+					id="c_cm_adorsys_gpao_model_ManufacturingVoucher_customer"
+					itemValue="id" items="${partners}" path="/partners"
+					z="PNeYzR/gmLpXMpMrdjSnL6+JfoM=" />
+				<field:datetime
+					dateTimePattern="${manufacturingVoucher_delaydate_date_format}"
+					field="delayDate"
+					id="c_cm_adorsys_gpao_model_ManufacturingVoucher_delayDate"
+					z="CvyShHOMKaD9rflaYo2qY/mqHRA=" />
+				<field:select field="customerOrder" render="false"
+					id="c_cm_adorsys_gpao_model_ManufacturingVoucher_customerOrder"
+					itemValue="id" items="${manufacturingvouchers}"
+					path="/manufacturingvouchers" z="+ZRJHlcL89MZmPc6OqPBNcAhliM=" />
+			</div>
+		</div>
+		<div style="padding-right: 2%;" class="span10">
+			<c:if test="${not empty manufacturingVoucher.id }">
+				<c:if test="${manufacturingVoucher.documentState eq 'BROUILLON'}">
+					<div class="btn-group pull-rigth" data-toggle="buttons-checkbox">
+						<button id="addBtn" type="button" class=" btn-success">Ajouter</button>
+						<button id="delBtn" type="button" class=" btn-danger">Suprimer</button>
+						<button id="calculBtn" type="button" class=" btn-info">Calculer</button>
+					</div>
+				</c:if>
+			</c:if>
+			
+			<table id="orderIdems">
+				<thead>
+					<tr>
+						<th style="text-align: center; width: 45%;">Designation</th>
+						<th style="text-align: center;">famille</th>
+						<th style="text-align: center;">taille</th>
+						<th style="text-align: center;">couleur</th>
+						<th style="text-align: center;">specificites</th>
+						<th style="text-align: center;">qte</th>
+						<th style="text-align: center;">delai</th>
+						<!-- 				<th style="text-align: center;">prix</th> -->
+						<c:if test="${manufacturingVoucher.documentState eq 'BROUILLON' }">
+							<th style="text-align: center;"><input id="checkall"
+								type="checkbox" /></th>
+						</c:if>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${manufacturingItemUiModels}" var="items">
+						<tr id="${items.manufacturingVoucherItem.id}">
+							<td>${items.manufacturingVoucherItem.product.name}</td>
+							<td style="text-align: center;">${items.manufacturingVoucherItem.product.famille.name}</td>
+							<td style="text-align: center;">${items.caracteristic.productSize}</td>
+							<td style="text-align: center;">${items.caracteristic.color}</td>
+							<td style="text-align: center;">${items.specifycities}</td>
+							<td style="text-align: center;">${items.manufacturingVoucherItem.quantity}</td>
+							<td style="text-align: center;">${items.manufacturingVoucherItem.delayDate}</td>
+							<!-- 					<td style="text-align: center;">${items.amountHt}</td> -->
+							<c:if
+								test="${manufacturingVoucher.documentState eq 'BROUILLON' }">
+								<td style="text-align: center;"><input type="checkbox" /></td>
+							</c:if>
+						</tr>
+					</c:forEach>
+					<!--tr>
+				<td style="text-align: right; font-size: 20px; font-weight: bold;"
+					colspan="5">MontantHT :</td>
+				<td style="text-align: right;" colspan="2"><span
+					class="label label-info">${manufacturingVoucher.amountHt}
+						${manufacturingVoucher.currency.shortName} </span></td>
+			</tr>
+			<tr>
+				<td style="text-align: right; font-size: 20px; font-weight: bold;"
+					colspan="5">Taxes :</td>
+				<td style="text-align: right;" colspan="2"><span
+					class="label label-info">${manufacturingVoucher.taxeAmount}
+						${manufacturingVoucher.currency.shortName} </span></td>
+			</tr>
+			<tr>
+				<td style="text-align: right; font-size: 20px; font-weight: bold;"
+					colspan="5">MontantTTC :</td>
+				<td style="text-align: right;" colspan="2"><span
+					class="label label-info">${manufacturingVoucher.totalAmount}
+						${manufacturingVoucher.currency.shortName} </span></td>
+			</tr -->
+				</tbody>
+			</table>
+			<br />
+
+		</div>
+		<div class="span2">
+			<c:if test="${ not empty manufacturingVoucher.id}">
+				<c:if test="${manufacturingVoucher.documentState eq 'BROUILLON'}">
+					<p>
+						<button id="validerBtn" class="btn-success" style="width: 100%;"
+							type="button">valider la commande</button>
+					</p>
+				</c:if>
+				<p>
+					<button id="print_order_btn" class="btn-info" style="width: 100%;"
+						type="button">Imprimer le bon</button>
+				</p>
+				<c:if test="${manufacturingVoucher.documentState != 'ANNULER' }">
+					<p>
+						<button id="cancelBtn" class="btn-danger" style="width: 100%;"
+							type="button">Annuler commande</button>
+					</p>
+				</c:if>
+				<c:if test="${manufacturingVoucher.documentState eq 'VALIDER'}">
+					<p>
+						<button class="btn-info" id="deliveryBtn" style="width: 100%;"
+							type="button">Lister les livraisons</button>
+					</p>
+				</c:if>
+				<c:if test="${manufacturingVoucher.documentState eq 'VALIDER'}">
+					<p>
+						<button class="btn-info" id="closeBtn" style="width: 100%;"
+							type="button">Cloturer</button>
+					</p>
+				</c:if>
+			</c:if>
+		</div>
+	</form:update>
+	<script>
+		$('#print_order_btn').click(function() {
+			var url = '${print_order_url}';
+			window.location = url;
+		});
+	</script>
+	<jsp:include page="manufacturingvoucher-js.jspx" />
+</div>
