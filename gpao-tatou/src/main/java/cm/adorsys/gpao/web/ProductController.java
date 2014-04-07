@@ -1,12 +1,16 @@
 package cm.adorsys.gpao.web;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+
+import org.bouncycastle.jce.provider.JDKDSASigner.noneDSA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.roo.addon.web.mvc.controller.finder.RooWebFinder;
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
@@ -19,6 +23,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+
+import cm.adorsys.gpao.model.Caracteristic;
 import cm.adorsys.gpao.model.Devise;
 import cm.adorsys.gpao.model.Inventory;
 import cm.adorsys.gpao.model.Product;
@@ -198,15 +204,25 @@ public class ProductController {
         uiModel.addAttribute("taxes", Taxe.findActivedTaxe().getResultList());
         uiModel.addAttribute("unitofmesureses", UnitOfMesures.findAllUnitOfMesureses());
         uiModel.addAttribute("warehouseses", WareHouses.findAllWareHouseses());
-        populateIntrantForm(uiModel, product, new ProductIntrant());
+        populateIntrantForm(uiModel, product);
+        populateProductCaracteristicForm(uiModel, product);
     }
 
-    void populateIntrantForm(Model uiModel, Product product, ProductIntrant productIntrant) {
-        uiModel.addAttribute("productintrant", productIntrant == null ? new ProductIntrant() : productIntrant);
-        if (product != null && product.getId() != null) {
+    void populateIntrantForm(Model uiModel, Product product) {
+        if (isAPersistedProduct(product)) {
             uiModel.addAttribute("productintrants", ProductIntrant.findProductIntrantsByProduct(product).getResultList());
         }
     }
+    void populateProductCaracteristicForm(Model uiModel,Product product) {
+    	if(isAPersistedProduct(product)) {
+    		List<Caracteristic> resultList = Caracteristic.findCaracteristicsByProduct(product).getResultList();
+			uiModel.addAttribute("caracteristic", resultList.isEmpty() ? null : resultList.iterator().next());
+    	}
+    }
+
+	private boolean isAPersistedProduct(Product product) {
+		return product != null && product.getId() != null;
+	}
 
     void populateFindForm(Model uiModel, ProductFinder productFinder) {
         uiModel.addAttribute("productFinder", productFinder);

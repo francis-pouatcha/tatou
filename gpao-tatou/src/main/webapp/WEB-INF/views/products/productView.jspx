@@ -235,8 +235,11 @@
 					<div class="tab-pane" id="caracteristiques">
 						<c:choose>
 							<c:when test="${not empty product.id }">
+								<c:if test="${not empty caracteristic }">
+									<c:set value="${caracteristic.id}" var="caracteristicId"/>
+								</c:if>
 								<spring:url
-									value="/caracteristics/${product.id }/manage?page=1&amp;size=${empty param.size ? 10 : param.size}"
+									value="/caracteristics/${product.id }/manage?id=${caracteristicId }&amp;page=1&amp;size=${empty param.size ? 10 : param.size}"
 									var="manage_product_caracteristic_url" />
 								<a href="${manage_product_caracteristic_url }"
 									class="btn btn-primary">Gerer les caracteristiques</a>

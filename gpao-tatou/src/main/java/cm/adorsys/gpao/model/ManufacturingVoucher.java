@@ -2,11 +2,19 @@ package cm.adorsys.gpao.model;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
+
 import javax.validation.constraints.NotNull;
+
 import java.util.Date;
+
+import javax.persistence.PostPersist;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
 import org.springframework.format.annotation.DateTimeFormat;
+
+import cm.adorsys.gpao.utils.GpaoSequenceGenerator;
+
 import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
 
@@ -17,7 +25,6 @@ public class ManufacturingVoucher extends GpaoBaseEntity {
 
     /**
      */
-    @NotNull
     private String reference;
 
     /**
@@ -52,4 +59,9 @@ public class ManufacturingVoucher extends GpaoBaseEntity {
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "dd-MM-yyy HH:mm")
     private Date delayDate;
+    
+    @PostPersist
+    public void postPersist() {
+    	reference = GpaoSequenceGenerator.getSequence(getId(), GpaoSequenceGenerator.MANUFACTURINGVOUCHER_SEQUENSE_PREFIX);
+    }
 }

@@ -168,7 +168,6 @@ public class ProcessCustomerOrder implements Fonction<CustomerOrderItem,Void>{
 			manufacturingVoucher.setCustomerOrder(customerOrder);
 			manufacturingVoucher.setDelayDate(DateUtils.addDays(new Date(), 30));
 			manufacturingVoucher.setDocumentState(DocumentStates.BROUILLON);
-			manufacturingVoucher.setReference(GpaoSequenceGenerator.getSequence(Long.valueOf(7), GpaoSequenceGenerator.MANUFACTURINGVOUCHER_SEQUENSE_PREFIX));
 			manufacturingVoucher.persist();
 		}
 	}

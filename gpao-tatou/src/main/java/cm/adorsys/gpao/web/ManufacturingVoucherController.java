@@ -49,7 +49,7 @@ public class ManufacturingVoucherController {
 	IProductService productService;
 	
     @RequestMapping(value = "/addOrEditForm", method = RequestMethod.GET)
-    public String addOrEditCustomerOrdersForm(@RequestParam(value = "id", required = false) Long id, HttpServletRequest httpServletRequest, Model uiModel) {
+    public String addOrEditManufacturingVoucherForm(@RequestParam(value = "id", required = false) Long id, HttpServletRequest httpServletRequest, Model uiModel) {
         ManufacturingVoucher manufacturingVoucher =   id == null ? new ManufacturingVoucher() : ManufacturingVoucher.findManufacturingVoucher(id); 
         populateEditForm(uiModel, manufacturingVoucher);
         return "manufacturingvouchers/manufacturingvoucherView";
@@ -57,7 +57,7 @@ public class ManufacturingVoucherController {
 
 
     @RequestMapping(value = "/addOrEdit", method = RequestMethod.POST)
-    public String addOrEditCustomerOrders(@Valid ManufacturingVoucher manufacturingVoucher, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
+    public String addOrManufacturingVoucherOrders(@Valid ManufacturingVoucher manufacturingVoucher, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, manufacturingVoucher);
             uiModel.addAttribute(MessageType.ERROR_MESSAGE, "une erreur est Survenue durant l'enregistrement ! \n " + bindingResult.getFieldErrors());
