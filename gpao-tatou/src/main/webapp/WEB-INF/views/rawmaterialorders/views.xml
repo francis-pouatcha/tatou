@@ -13,4 +13,8 @@
 <definition extends="default" name="rawmaterialorders/update">
         <put-attribute name="body" value="/WEB-INF/views/rawmaterialorders/update.jspx"/>
     </definition>
+    
+    <definition extends="production" name="rawmaterialorders/rawmaterialordersView">
+        <put-attribute name="body" value="/WEB-INF/views/rawmaterialorders/rawmaterialordersView.jspx"/>
+    </definition>
 </tiles-definitions>

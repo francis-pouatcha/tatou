@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord(inheritanceType = "TABLE_PER_CLASS")
+@RooJpaActiveRecord(inheritanceType = "TABLE_PER_CLASS", finders = { "findRawMaterialOrderItemsByRawMaterialOrder" })
 public class RawMaterialOrderItem extends GpaoBaseEntity {
 
     /**

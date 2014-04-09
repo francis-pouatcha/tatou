@@ -680,3 +680,7 @@ finder add --finderName findRawMaterialOrdersByDocRefEquals
 finder add --finderName findRawMaterialOrdersByReferenceEquals
 finder add --finderName findRawMaterialOrdersByDeliveredNot
 finder add --finderName findRawMaterialOrdersByValidatedByEquals
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-04-09 10:11:05
+focus --class ~.model.RawMaterialOrderItem
+finder list 
+finder add --finderName findRawMaterialOrderItemsByRawMaterialOrder

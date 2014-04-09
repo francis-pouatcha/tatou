@@ -156,6 +156,10 @@ privileged aspect Product_Roo_JavaBean {
     public Boolean Product.getActived() {
         return this.actived;
     }
+    
+    public void Product.setActived(Boolean actived) {
+        this.actived = actived;
+    }
     public MultipartFile Product.getProductImage() {
         return this.productImage;
     }
@@ -164,9 +168,6 @@ privileged aspect Product_Roo_JavaBean {
         this.productImage = productImage;
     }
 
-    public void Product.setActived(Boolean actived) {
-        this.actived = actived;
-    }
     
     public String Product.getProductImagePath() {
         return this.productImagePath;

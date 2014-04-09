@@ -4,7 +4,7 @@
     <jsp:output omit-xml-declaration="yes"/>
     <form:update id="fu_cm_adorsys_gpao_model_ManufacturingVoucher" modelAttribute="manufacturingVoucher" path="/manufacturingvouchers" versionField="Version" z="/T5+z7BHO5ZGF9raoSDa3AEuWnk=">
         <field:checkbox field="archived" id="c_cm_adorsys_gpao_model_ManufacturingVoucher_archived" z="IBDARgq+yNJ3KQgzXJDQGPzWCGg="/>
-        <field:input field="reference" id="c_cm_adorsys_gpao_model_ManufacturingVoucher_reference" required="true" z="E0UPmnhR9+CCpPJljCan+MSYHbU="/>
+        <field:input field="reference" id="c_cm_adorsys_gpao_model_ManufacturingVoucher_reference" z="wJBd+zmh4LCmDNZ4PwiBgMQfS1U="/>
         <field:datetime dateTimePattern="${manufacturingVoucher_createdate_date_format}" field="createDate" id="c_cm_adorsys_gpao_model_ManufacturingVoucher_createDate" required="true" z="QHVmB1GLgT/94jyJoVL/jHFFv8g="/>
         <field:input field="createdBy" id="c_cm_adorsys_gpao_model_ManufacturingVoucher_createdBy" required="true" z="O2qQ3JiiKdAt/DzSeRK2s1L14yI="/>
         <field:select field="documentState" id="c_cm_adorsys_gpao_model_ManufacturingVoucher_documentState" items="${documentstateses}" path="documentstateses" z="sg1iRA8rkt9P23RKWTuL9/cTCrA="/>

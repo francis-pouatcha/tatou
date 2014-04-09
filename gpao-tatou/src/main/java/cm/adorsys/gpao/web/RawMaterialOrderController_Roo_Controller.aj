@@ -3,12 +3,9 @@
 
 package cm.adorsys.gpao.web;
 
-import cm.adorsys.gpao.model.DocumentStates;
 import cm.adorsys.gpao.model.RawMaterialOrder;
-import cm.adorsys.gpao.model.Taxe;
 import cm.adorsys.gpao.web.RawMaterialOrderController;
 import java.io.UnsupportedEncodingException;
-import java.util.Arrays;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.springframework.ui.Model;
@@ -91,13 +88,6 @@ privileged aspect RawMaterialOrderController_Roo_Controller {
     
     void RawMaterialOrderController.addDateTimeFormatPatterns(Model uiModel) {
         uiModel.addAttribute("rawMaterialOrder_orderdate_date_format", "dd-MM-yyyy HH:mm");
-    }
-    
-    void RawMaterialOrderController.populateEditForm(Model uiModel, RawMaterialOrder rawMaterialOrder) {
-        uiModel.addAttribute("rawMaterialOrder", rawMaterialOrder);
-        addDateTimeFormatPatterns(uiModel);
-        uiModel.addAttribute("documentstateses", Arrays.asList(DocumentStates.values()));
-        uiModel.addAttribute("taxes", Taxe.findAllTaxes());
     }
     
     String RawMaterialOrderController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {
