@@ -1,6 +1,5 @@
 package cm.adorsys.gpao.web;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -10,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
-import org.bouncycastle.jce.provider.JDKDSASigner.noneDSA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.roo.addon.web.mvc.controller.finder.RooWebFinder;
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
@@ -213,16 +211,17 @@ public class ProductController {
             uiModel.addAttribute("productintrants", ProductIntrant.findProductIntrantsByProduct(product).getResultList());
         }
     }
-    void populateProductCaracteristicForm(Model uiModel,Product product) {
-    	if(isAPersistedProduct(product)) {
-    		List<Caracteristic> resultList = Caracteristic.findCaracteristicsByProduct(product).getResultList();
-			uiModel.addAttribute("caracteristic", resultList.isEmpty() ? null : resultList.iterator().next());
-    	}
+
+    void populateProductCaracteristicForm(Model uiModel, Product product) {
+        if (isAPersistedProduct(product)) {
+            List<Caracteristic> resultList = Caracteristic.findCaracteristicsByProduct(product).getResultList();
+            uiModel.addAttribute("caracteristic", resultList.isEmpty() ? null : resultList.iterator().next());
+        }
     }
 
-	private boolean isAPersistedProduct(Product product) {
-		return product != null && product.getId() != null;
-	}
+    private boolean isAPersistedProduct(Product product) {
+        return product != null && product.getId() != null;
+    }
 
     void populateFindForm(Model uiModel, ProductFinder productFinder) {
         uiModel.addAttribute("productFinder", productFinder);

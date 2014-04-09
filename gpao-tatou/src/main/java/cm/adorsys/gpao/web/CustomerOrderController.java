@@ -27,7 +27,8 @@ import cm.adorsys.gpao.model.Taxe;
 import cm.adorsys.gpao.model.uimodels.OrderItemUimodel;
 import cm.adorsys.gpao.services.BusinessOperation;
 import cm.adorsys.gpao.services.ICustomerOrderService;
-import cm.adorsys.gpao.services.IProductionService;
+import cm.adorsys.gpao.services.IManufacturingVoucherService;
+import cm.adorsys.gpao.services.IRawMaterialOrderService;
 import cm.adorsys.gpao.services.impl.function.ProcessCustomerOrder;
 import cm.adorsys.gpao.utils.MessageType;
 
@@ -40,8 +41,11 @@ public class CustomerOrderController extends AbstractOrderController {
     ICustomerOrderService customerOrderService;
 
     @Autowired
-    IProductionService productionService;
+    IManufacturingVoucherService productionService;
     
+    @Autowired
+    IRawMaterialOrderService rawMaterialOrderService;
+
     @RequestMapping(value = "/addOrEditForm", method = RequestMethod.GET)
     public String addOrEditCustomerOrdersForm(@RequestParam(value = "id", required = false) Long id, HttpServletRequest httpServletRequest, Model uiModel) {
         CustomerOrder customerOrder = id == null ? new CustomerOrder() : CustomerOrder.findCustomerOrder(id);
@@ -68,6 +72,7 @@ public class CustomerOrderController extends AbstractOrderController {
         uiModel.addAttribute(MessageType.SUCCESS_MESSAGE, "Enregistre avec success !");
         return "customerorders/customerordersView";
     }
+
     private CustomerOrder doAConsistantMerge(CustomerOrder customerOrder) {
         try {
             customerOrder.merge();
@@ -119,7 +124,7 @@ public class CustomerOrderController extends AbstractOrderController {
         } else {
             customerOrder = customerOrderService.computeAndSetAmounts(customerOrder, customerOrderItems);
             customerOrder = customerOrderService.validateCustomerOrder(customerOrder);
-            productionService.processCustomerOrder(customerOrder, new ProcessCustomerOrder());
+            productionService.processCustomerOrder(customerOrder, new ProcessCustomerOrder(rawMaterialOrderService));
             customerOrder = doAConsistantMerge(customerOrder);
             uiModel.addAttribute(MessageType.SUCCESS_MESSAGE, "validation effectuee avec success !");
         }

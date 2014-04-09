@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_cm_adorsys_gpao_model_RawMaterialOrderItem" items="${rawmaterialorderitems}" z="JXu9822npl3mcD8RVwLhc4JkQeM=">
+        <table:table data="${rawmaterialorderitems}" id="l_cm_adorsys_gpao_model_RawMaterialOrderItem" path="/rawmaterialorderitems" z="0sBbnzmPnieQf1ic7br4XmRAoiI=">
+            <table:column id="c_cm_adorsys_gpao_model_RawMaterialOrderItem_archived" property="archived" z="84/ZXh07k4yP31Yt8xhi3w3WX0g="/>
+            <table:column id="c_cm_adorsys_gpao_model_RawMaterialOrderItem_rawMaterialOrder" property="rawMaterialOrder" z="aai3W9AMjY560JA04yM2LZWKZzg="/>
+            <table:column id="c_cm_adorsys_gpao_model_RawMaterialOrderItem_product" property="product" z="C4+2+rLhsaM/NUzjYlHC+f1uaw8="/>
+            <table:column id="c_cm_adorsys_gpao_model_RawMaterialOrderItem_udm" property="udm" z="OVM0r9yIi1iuPIy6Aj66RfRUFA8="/>
+            <table:column id="c_cm_adorsys_gpao_model_RawMaterialOrderItem_quantity" property="quantity" z="mGQAzcyhAs8JgJsGOPqVz18CWx0="/>
+        </table:table>
+    </page:list>
+</div>

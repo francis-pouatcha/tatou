@@ -15,6 +15,8 @@ import cm.adorsys.gpao.model.Location;
 import cm.adorsys.gpao.model.ManufacturingVoucher;
 import cm.adorsys.gpao.model.ManufacturingVoucherItem;
 import cm.adorsys.gpao.model.ProductIntrant;
+import cm.adorsys.gpao.model.RawMaterialOrder;
+import cm.adorsys.gpao.model.RawMaterialOrderItem;
 import cm.adorsys.gpao.model.Specificity;
 import cm.adorsys.gpao.model.SpecificityToCaracteristicMap;
 import cm.adorsys.gpao.model.Supply;
@@ -294,6 +296,54 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         };
     }
     
+    public Converter<RawMaterialOrder, String> ApplicationConversionServiceFactoryBean.getRawMaterialOrderToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<cm.adorsys.gpao.model.RawMaterialOrder, java.lang.String>() {
+            public String convert(RawMaterialOrder rawMaterialOrder) {
+                return new StringBuilder().append(rawMaterialOrder.getReference()).append(' ').append(rawMaterialOrder.getOrderDate()).append(' ').append(rawMaterialOrder.getCreatedBy()).append(' ').append(rawMaterialOrder.getValidatedBy()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, RawMaterialOrder> ApplicationConversionServiceFactoryBean.getIdToRawMaterialOrderConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, cm.adorsys.gpao.model.RawMaterialOrder>() {
+            public cm.adorsys.gpao.model.RawMaterialOrder convert(java.lang.Long id) {
+                return RawMaterialOrder.findRawMaterialOrder(id);
+            }
+        };
+    }
+    
+    public Converter<String, RawMaterialOrder> ApplicationConversionServiceFactoryBean.getStringToRawMaterialOrderConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, cm.adorsys.gpao.model.RawMaterialOrder>() {
+            public cm.adorsys.gpao.model.RawMaterialOrder convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), RawMaterialOrder.class);
+            }
+        };
+    }
+    
+    public Converter<RawMaterialOrderItem, String> ApplicationConversionServiceFactoryBean.getRawMaterialOrderItemToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<cm.adorsys.gpao.model.RawMaterialOrderItem, java.lang.String>() {
+            public String convert(RawMaterialOrderItem rawMaterialOrderItem) {
+                return new StringBuilder().append(rawMaterialOrderItem.getQuantity()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, RawMaterialOrderItem> ApplicationConversionServiceFactoryBean.getIdToRawMaterialOrderItemConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, cm.adorsys.gpao.model.RawMaterialOrderItem>() {
+            public cm.adorsys.gpao.model.RawMaterialOrderItem convert(java.lang.Long id) {
+                return RawMaterialOrderItem.findRawMaterialOrderItem(id);
+            }
+        };
+    }
+    
+    public Converter<String, RawMaterialOrderItem> ApplicationConversionServiceFactoryBean.getStringToRawMaterialOrderItemConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, cm.adorsys.gpao.model.RawMaterialOrderItem>() {
+            public cm.adorsys.gpao.model.RawMaterialOrderItem convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), RawMaterialOrderItem.class);
+            }
+        };
+    }
+    
     public Converter<Specificity, String> ApplicationConversionServiceFactoryBean.getSpecificityToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<cm.adorsys.gpao.model.Specificity, java.lang.String>() {
             public String convert(Specificity specificity) {
@@ -503,6 +553,12 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         registry.addConverter(getPurchaseOrderToStringConverter());
         registry.addConverter(getIdToPurchaseOrderConverter());
         registry.addConverter(getStringToPurchaseOrderConverter());
+        registry.addConverter(getRawMaterialOrderToStringConverter());
+        registry.addConverter(getIdToRawMaterialOrderConverter());
+        registry.addConverter(getStringToRawMaterialOrderConverter());
+        registry.addConverter(getRawMaterialOrderItemToStringConverter());
+        registry.addConverter(getIdToRawMaterialOrderItemConverter());
+        registry.addConverter(getStringToRawMaterialOrderItemConverter());
         registry.addConverter(getSpecificityToStringConverter());
         registry.addConverter(getIdToSpecificityConverter());
         registry.addConverter(getStringToSpecificityConverter());

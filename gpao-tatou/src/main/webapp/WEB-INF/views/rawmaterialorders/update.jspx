@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_cm_adorsys_gpao_model_RawMaterialOrder" modelAttribute="rawMaterialOrder" path="/rawmaterialorders" versionField="Version" z="WUSvM4jiHyGkOdVgZEpw0teqXJI=">
+        <field:checkbox field="archived" id="c_cm_adorsys_gpao_model_RawMaterialOrder_archived" z="SXX5zh9MMfJjuB3IZRVaqW6usuo="/>
+        <field:input field="reference" id="c_cm_adorsys_gpao_model_RawMaterialOrder_reference" z="UvAT/kvHo/qwvU9SjE0y+ongwck="/>
+        <field:datetime dateTimePattern="${rawMaterialOrder_orderdate_date_format}" field="orderDate" id="c_cm_adorsys_gpao_model_RawMaterialOrder_orderDate" z="TKlBqkJrNKgl9h5I2/M/gwF72Ik="/>
+        <field:input field="createdBy" id="c_cm_adorsys_gpao_model_RawMaterialOrder_createdBy" z="8moD34vEVtepht1gRdCAnhT4rcY="/>
+        <field:checkbox field="delivered" id="c_cm_adorsys_gpao_model_RawMaterialOrder_delivered" z="Nj+yzfB6/8n7bxUb/29fENIxBO4="/>
+        <field:input field="validatedBy" id="c_cm_adorsys_gpao_model_RawMaterialOrder_validatedBy" z="uaRm+GwAwzhBGmWwgFYxFMar7Sg="/>
+        <field:select field="taxes" id="c_cm_adorsys_gpao_model_RawMaterialOrder_taxes" itemValue="id" items="${taxes}" multiple="true" path="/taxes" z="rlGLlj28CVhdukaK5aYEtbR5Tg0="/>
+        <field:select field="orderState" id="c_cm_adorsys_gpao_model_RawMaterialOrder_orderState" items="${documentstateses}" path="documentstateses" z="jveZo7Jq+pFWhWM7iHRBrXkyvJQ="/>
+        <field:input field="docRef" id="c_cm_adorsys_gpao_model_RawMaterialOrder_docRef" z="UganGwYuxKdtWBTx14Fa228R5/0="/>
+    </form:update>
+</div>

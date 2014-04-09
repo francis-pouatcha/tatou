@@ -3,12 +3,16 @@
  */
 package cm.adorsys.gpao.services.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
+import cm.adorsys.gpao.model.Caracteristic;
 import cm.adorsys.gpao.model.Product;
+import cm.adorsys.gpao.model.Specificity;
+import cm.adorsys.gpao.model.SpecificityToCaracteristicMap;
 import cm.adorsys.gpao.services.IProductService;
 
 /**
@@ -25,6 +29,27 @@ public class TatouProductService implements IProductService{
 			max = 100;
 		}
 		return Product.findProductsByNameLike(name).setMaxResults(max).getResultList();
+	}
+
+	@Override
+	public Caracteristic getProductCaracteristic(Long productId) {
+		Assert.notNull(productId, "The product id should not be null here");
+		Product product = Product.findProduct(productId);
+		List<Caracteristic> caracteristics = Caracteristic.findCaracteristicsByProduct(product).getResultList();
+		if(caracteristics.isEmpty()) {
+			return null;
+		}
+		return caracteristics.iterator().next();
+	}
+
+	@Override
+	public List<Specificity> getProductSpecificitys(Long productId) {
+		Assert.notNull(productId, "The product id should not be null here");
+		Caracteristic productCaracteristic = getProductCaracteristic(productId);
+		if(productCaracteristic == null ) {
+			return new ArrayList<Specificity>();
+		}
+		return SpecificityToCaracteristicMap.findSpecificitysByCaracteristicsEquals(productCaracteristic).getResultList();
 	}
 
 }

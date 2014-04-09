@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_cm_adorsys_gpao_model_RawMaterialOrder" items="${rawmaterialorders}" z="user-managed" label="Bons de commandes de matieres premiere" showInPanel="false">
+        <table:table create="false" queryParam="true" delete="false" update="false" data="${rawmaterialorders}" id="l_cm_adorsys_gpao_model_RawMaterialOrder" path="/rawmaterialorders/addOrEdit" z="user-managed">
+            <table:column id="c_cm_adorsys_gpao_model_RawMaterialOrder_archived" property="archived" z="MJW+PyjFRxVR59fyPUi2VwuXuKA="/>
+            <table:column id="c_cm_adorsys_gpao_model_RawMaterialOrder_reference" property="reference" z="n5XGULYE1NHprsNTdP3WRJInmwg="/>
+            <table:column date="true" dateTimePattern="${rawMaterialOrder_orderdate_date_format}" id="c_cm_adorsys_gpao_model_RawMaterialOrder_orderDate" property="orderDate" z="IYZs3lH7coHsFaSFuGYizQ47JYU="/>
+            <table:column id="c_cm_adorsys_gpao_model_RawMaterialOrder_createdBy" property="createdBy" z="oJR2EembbspOdh9jXWe8IP4uRQY="/>
+            <table:column id="c_cm_adorsys_gpao_model_RawMaterialOrder_delivered" property="delivered" z="G9JFMYy1o5M3lg9kNOOCM0XR5Vk="/>
+            <table:column id="c_cm_adorsys_gpao_model_RawMaterialOrder_validatedBy" property="validatedBy" z="G1uR0UplXdWghiU5ycLckaIX4Q0="/>
+        </table:table>
+    </page:list>
+</div>

@@ -155,7 +155,7 @@
 										commande</button>
 								</p>
 							</c:if>
-							<p>
+							<!-- p>
 								<button id="print_order_btn" class="btn-info" style="width: 100%;" type="button">Imprimer
 									le bon</button>
 							</p>
@@ -176,7 +176,7 @@
 									<button class="btn-info" id="closeBtn" style="width: 100%;"
 										type="button">Cloturer</button>
 								</p>
-							</c:if>
+							</c:if> -->
 						</c:if>
 				</div>
 	</form:update>

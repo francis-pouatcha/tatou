@@ -99,9 +99,9 @@
 			<c:if test="${not empty manufacturingVoucher.id }">
 				<c:if test="${manufacturingVoucher.documentState eq 'BROUILLON'}">
 					<div class="btn-group pull-rigth" data-toggle="buttons-checkbox">
-						<button id="addBtn" type="button" class=" btn-success" disabled="disabled" >Ajouter</button>
+<!-- 						<button id="addBtn" type="button" class=" btn-success" disabled="disabled" >Ajouter</button> -->
 						<button id="delBtn" type="button" class=" btn-danger" disabled="disabled">Suprimer</button>
-						<button id="calculBtn" type="button" class=" btn-info" disabled="disabled">Calculer</button>
+<!-- 						<button id="calculBtn" type="button" class=" btn-info" disabled="disabled">Calculer</button> -->
 					</div>
 				</c:if>
 			</c:if>
@@ -174,7 +174,7 @@
 							type="button">valider la commande</button>
 					</p>
 				</c:if>
-				<p>
+				<!-- p>
 					<button id="print_order_btn" class="btn-info" style="width: 100%;"
 						type="button">Imprimer le bon</button>
 				</p>
@@ -195,7 +195,7 @@
 						<button class="btn-info" id="closeBtn" style="width: 100%;"
 							type="button">Cloturer</button>
 					</p>
-				</c:if>
+				</c:if -->
 			</c:if>
 		</div>
 	</form:update>

@@ -20,7 +20,7 @@
 	<spring:url value="/manufacturingvouchers/${manufacturingVoucher.id}/addOrderItem?"
 		var="add_url" /> <spring:url
 		value="/manufacturingvouchers/${manufacturingVoucher.id}/caculated" var="calcul_url" />
-	<spring:url value="/manufacturingvouchers/${manufacturingVoucher.id}/validatedOrder"
+	<spring:url value="/manufacturingvouchers/${manufacturingVoucher.id}/validatedVoucher"
 		var="validated_url" /> 
 	<spring:url
 		value="/manufacturingvouchers/${manufacturingVoucher.id}/removeItem?itemid="

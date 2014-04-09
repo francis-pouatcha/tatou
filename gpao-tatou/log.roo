@@ -659,3 +659,24 @@ finder add --finderName findCaracteristicsByProduct
 focus --class ~.model.Specificity
 finder list 
 // Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-04-04 13:04:02
+entity jpa --class ~.model.RawMaterialOrder --extends ~.model.GpaoBaseEntity --inheritanceType TABLE_PER_CLASS 
+field string --fieldName reference
+field date --fieldName orderDate --type java.util.Date --dateTimeFormatPattern "dd-MM-yyyy HH:mm"
+field string --fieldName createdBy
+field boolean --fieldName delivered --value false
+field string --fieldName validatedBy
+field set --fieldName taxes --type ~.model.Taxe
+field enum --fieldName orderState --type ~.model.DocumentStates
+entity jpa --class ~.model.RawMaterialOrderItem --extends ~.model.GpaoBaseEntity --inheritanceType TABLE_PER_CLASS 
+field reference --fieldName rawMaterialOrder --type ~.model.RawMaterialOrder
+field reference --fieldName product --type ~.model.Product --notNull 
+field reference --fieldName udm --type ~.model.UnitOfMesures 
+field number --fieldName quantity --type java.math.BigDecimal 
+web mvc all --package ~.web
+focus --class ~.model.RawMaterialOrder
+field string --fieldName docRef 
+finder list 
+finder add --finderName findRawMaterialOrdersByDocRefEquals
+finder add --finderName findRawMaterialOrdersByReferenceEquals
+finder add --finderName findRawMaterialOrdersByDeliveredNot
+finder add --finderName findRawMaterialOrdersByValidatedByEquals

@@ -22,6 +22,7 @@ import cm.adorsys.gpao.model.Partner;
 import cm.adorsys.gpao.model.Product;
 import cm.adorsys.gpao.model.PurchaseOrder;
 import cm.adorsys.gpao.security.SecurityUtil;
+import cm.adorsys.gpao.services.IRawMaterialOrderService;
 import cm.adorsys.gpao.utils.GpaoSequenceGenerator;
 import cm.adorsys.gpao.utils.UdmUtils;
 
@@ -29,9 +30,10 @@ public class ProcessCustomerOrder implements Fonction<CustomerOrderItem,Void>{
 	private Delivery delivery;
 	private ManufacturingVoucher manufacturingVoucher ;
 	private PurchaseOrder purchaseOrder;
-	
-	public ProcessCustomerOrder() {
+	private IRawMaterialOrderService materialOrderService;
+	public ProcessCustomerOrder(IRawMaterialOrderService materialOrderService) {
 		super();
+		this.materialOrderService = materialOrderService;
 	}
 	@Override
 	public Void doFunction(CustomerOrderItem ... customerOrderItems ) {
@@ -51,9 +53,14 @@ public class ProcessCustomerOrder implements Fonction<CustomerOrderItem,Void>{
 			convertedCustomerOrderItemQuantity = customerOrderItem.getQuantity();
 		}
 		
-		if(product.getVirtualStock().compareTo(BigDecimal.ZERO) == -1) {
+		if(product.getVirtualStock().compareTo(BigDecimal.ZERO) <= 0 && product.getCanBeProduce()==true) {//if no product available and the product can be produce by the company
 			initManufacturingVoucher(customerOrderItem.getCustomerOrder());
+			//let's check the availability of the raw material
 			createNewManufacturingVoucherItem(customerOrderItem, convertedCustomerOrderItemQuantity);
+			return null;
+		}else if(product.getVirtualStock().compareTo(BigDecimal.ZERO) <= 0 && product.getCanBeProduce()==false) {
+			initPurchaseOrder(manufacturingVoucher.getCustomerOrder());
+			createNewPurchaseOrderItem(customerOrderItem, product, convertedCustomerOrderItemQuantity);
 			return null;
 		}
 		

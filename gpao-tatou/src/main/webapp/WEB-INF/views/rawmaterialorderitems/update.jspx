@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_cm_adorsys_gpao_model_RawMaterialOrderItem" modelAttribute="rawMaterialOrderItem" path="/rawmaterialorderitems" versionField="Version" z="R302tNSzry+rL6DHS90jCa9mrPk=">
+        <field:checkbox field="archived" id="c_cm_adorsys_gpao_model_RawMaterialOrderItem_archived" z="WRHfuwpy34tg1IMRVkT6ab8fvsk="/>
+        <field:select field="rawMaterialOrder" id="c_cm_adorsys_gpao_model_RawMaterialOrderItem_rawMaterialOrder" itemValue="id" items="${rawmaterialorders}" path="/rawmaterialorders" z="wjvBcgzu/Gktk8swUpNn/zvmHlw="/>
+        <field:select field="product" id="c_cm_adorsys_gpao_model_RawMaterialOrderItem_product" itemValue="id" items="${products}" path="/products" required="true" z="TD+K8N2rzWADlXp88Y1iRD8DHy0="/>
+        <field:select field="udm" id="c_cm_adorsys_gpao_model_RawMaterialOrderItem_udm" itemValue="id" items="${unitofmesureses}" path="/unitofmesureses" z="jr/EDTvDwqzj81fbFBwh3WPMK8Q="/>
+        <field:input field="quantity" id="c_cm_adorsys_gpao_model_RawMaterialOrderItem_quantity" validationMessageCode="field_invalid_number" z="nVmGdvl0o/yusbZbUE2tvjb5dOg="/>
+    </form:update>
+</div>

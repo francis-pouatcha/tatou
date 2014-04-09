@@ -12,11 +12,14 @@ import org.springframework.util.Assert;
 import cm.adorsys.gpao.model.CustomerOrder;
 import cm.adorsys.gpao.model.CustomerOrderItem;
 import cm.adorsys.gpao.model.Delivery;
+import cm.adorsys.gpao.model.DocumentStates;
 import cm.adorsys.gpao.model.ManufacturingVoucher;
 import cm.adorsys.gpao.model.ManufacturingVoucherItem;
 import cm.adorsys.gpao.model.Product;
+import cm.adorsys.gpao.model.ProductIntrant;
 import cm.adorsys.gpao.model.PurchaseOrder;
-import cm.adorsys.gpao.services.IProductionService;
+import cm.adorsys.gpao.model.Specificity;
+import cm.adorsys.gpao.services.IManufacturingVoucherService;
 import cm.adorsys.gpao.services.impl.function.Fonction;
 
 /**
@@ -24,7 +27,7 @@ import cm.adorsys.gpao.services.impl.function.Fonction;
  *
  */
 @Service
-public class TatouProductionService implements IProductionService {
+public class TatouManufacturingVoucherService implements IManufacturingVoucherService {
 
 	public PurchaseOrder generatePurchaseOrder(List<Product> products) {
 		return null;
@@ -74,5 +77,27 @@ public class TatouProductionService implements IProductionService {
 			}
 		}
 		return true;
+	}
+	@Override
+	public boolean validateManufacturingVoucher(
+			ManufacturingVoucher manufacturingVoucher) {
+		if(manufacturingVoucher == null) {
+			return false;
+		}
+		List<ManufacturingVoucherItem> manufacturingVoucherItems = ManufacturingVoucherItem.findManufacturingVoucherItemsByManufacturingVoucher(manufacturingVoucher).getResultList();
+		if(manufacturingVoucherItems.isEmpty()) {
+			return false;
+		}
+		manufacturingVoucher.setDocumentState(DocumentStates.VALIDER);
+		manufacturingVoucher.merge();
+		return true;
+	}
+	public List<Specificity> findProductSpecificitysByManufacturingVoucherItem(ManufacturingVoucherItem manufacturingVoucherItem) {
+		return ManufacturingVoucherItem.findProductSpecificityByManufacturingVoucherItem(manufacturingVoucherItem).getResultList();
+    }
+	@Override
+	public List<ProductIntrant> getIntrant(ManufacturingVoucherItem manufacturingVoucherItem) {
+		Assert.notNull(manufacturingVoucherItem, "The manufacturing voucher item should not null here");
+		return ProductIntrant.findProductIntrantsByProduct(manufacturingVoucherItem.getProduct()).getResultList();
 	}
 }

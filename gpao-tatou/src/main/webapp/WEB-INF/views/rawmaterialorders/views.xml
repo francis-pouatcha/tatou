@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+    <definition extends="production" name="rawmaterialorders/list">
+        <put-attribute name="body" value="/WEB-INF/views/rawmaterialorders/list.jspx"/>
+    </definition>
+<definition extends="default" name="rawmaterialorders/show">
+        <put-attribute name="body" value="/WEB-INF/views/rawmaterialorders/show.jspx"/>
+    </definition>
+<definition extends="default" name="rawmaterialorders/create">
+        <put-attribute name="body" value="/WEB-INF/views/rawmaterialorders/create.jspx"/>
+    </definition>
+<definition extends="default" name="rawmaterialorders/update">
+        <put-attribute name="body" value="/WEB-INF/views/rawmaterialorders/update.jspx"/>
+    </definition>
+</tiles-definitions>
