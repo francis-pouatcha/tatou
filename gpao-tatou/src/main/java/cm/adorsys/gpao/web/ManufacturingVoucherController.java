@@ -96,9 +96,6 @@ public class ManufacturingVoucherController {
     @ResponseBody
     public String addOrderItem(@PathVariable("manufacturingVoucherId") Long manufacturingVoucherId, ManufacturingVoucherItem manufacturingVoucherItem, @RequestParam("productId") Long productId, Model uiModel) {
         ManufacturingVoucher manufacturingVoucher = ManufacturingVoucher.findManufacturingVoucher(manufacturingVoucherId);
-        /*if (!customerOrderService.isBusinessOperationAllowed(customerOrder, BusinessOperation.VALIDATE)) {
-         throw new RuntimeException("This operation is not allowed");
-         }*/
         manufacturingVoucherItem.setProduct(Product.findProduct(productId));
         manufacturingVoucherService.addManufacturingVoucherItem(manufacturingVoucher, manufacturingVoucherItem);
         return ManufacturingVoucherItem.toJsonArray(ManufacturingVoucherItem.findManufacturingVoucherItemsByManufacturingVoucher(manufacturingVoucher).getResultList());
@@ -138,7 +135,29 @@ public class ManufacturingVoucherController {
         populateEditForm(uiModel, manufacturingVoucher);
         return "manufacturingvouchers/manufacturingvoucherView";
     }
+    @RequestMapping(value = "/next/{id}", method = RequestMethod.GET, produces = "text/html")
+    public String getNextManufacturingVoucher(@PathVariable("id") Long id, Model uiModel) {
+        List<ManufacturingVoucher> manufacturingVouchers = ManufacturingVoucher.findManufacturingVouchersByIdUpperThan(id).setMaxResults(1).getResultList();
+        if (manufacturingVouchers.isEmpty()) {
+        	populateEditForm(uiModel, ManufacturingVoucher.findManufacturingVoucher(id));
+            uiModel.addAttribute(MessageType.ERROR_MESSAGE, "Aucun bon de fabrication interne trouve !");
+            return "manufacturingvouchers/manufacturingvoucherView";
+        }
+        populateEditForm(uiModel, manufacturingVouchers.iterator().next());
+        return "manufacturingvouchers/manufacturingvoucherView";
+    }
 
+    @RequestMapping(value = "/previous/{id}", method = RequestMethod.GET, produces = "text/html")
+    public String getManufacturingVoucher(@PathVariable("id") Long id, Model uiModel) {
+        List<ManufacturingVoucher> manufacturingVouchers = ManufacturingVoucher.findManufacturingVouchersByIdLowerThan(id).setMaxResults(1).getResultList();
+        if (manufacturingVouchers.isEmpty()) {
+        	populateEditForm(uiModel, ManufacturingVoucher.findManufacturingVoucher(id));
+            uiModel.addAttribute(MessageType.ERROR_MESSAGE, "Aucune commande trouve !");
+            return "manufacturingvouchers/manufacturingvoucherView";
+        }
+        populateEditForm(uiModel, manufacturingVouchers.iterator().next());
+        return "manufacturingvouchers/manufacturingvoucherView";
+    }
     private ManufacturingVoucher doAConsistantMerge(ManufacturingVoucher manufacturingVoucher) {
         try {
             manufacturingVoucher.merge();
@@ -158,24 +177,27 @@ public class ManufacturingVoucherController {
         uiModel.addAttribute("devises", Devise.findAllDevises());
         uiModel.addAttribute("companys", Company.findAllCompanys());
         uiModel.addAttribute("taxes", Taxe.findAllTaxes());
-        FindManufacturingVoucherItems processManufacturingVoucher = (FindManufacturingVoucherItems) manufacturingVoucherService.processManufacturingVoucher(manufacturingVoucher, new FindManufacturingVoucherItems());
-        List<ManufacturingVoucherItem> manufacturingVoucherItems = processManufacturingVoucher.getManufacturingVoucherItems();
-        List<ManufacturingItemUiModel> manufacturingItemUiModels = new ArrayList<ManufacturingItemUiModel>();
-        for (ManufacturingVoucherItem manufacturingVoucherItem : manufacturingVoucherItems) {
-            ManufacturingItemUiModel manufacturingItemUiModel = new ManufacturingItemUiModel();
-            manufacturingItemUiModel.setManufacturingVoucherItem(manufacturingVoucherItem);
-            List<Caracteristic> resultList = Caracteristic.findCaracteristicsByProduct(manufacturingVoucherItem.getProduct()).getResultList();
-            Caracteristic caracteristic = null;
-            if (!resultList.isEmpty()) {
-                caracteristic = resultList.iterator().next();
+        if(manufacturingVoucher.getId() != null) {
+
+            FindManufacturingVoucherItems processManufacturingVoucher = (FindManufacturingVoucherItems) manufacturingVoucherService.processManufacturingVoucher(manufacturingVoucher, new FindManufacturingVoucherItems());
+            List<ManufacturingVoucherItem> manufacturingVoucherItems = processManufacturingVoucher.getManufacturingVoucherItems();
+            List<ManufacturingItemUiModel> manufacturingItemUiModels = new ArrayList<ManufacturingItemUiModel>();
+            for (ManufacturingVoucherItem manufacturingVoucherItem : manufacturingVoucherItems) {
+                ManufacturingItemUiModel manufacturingItemUiModel = new ManufacturingItemUiModel();
+                manufacturingItemUiModel.setManufacturingVoucherItem(manufacturingVoucherItem);
+                List<Caracteristic> resultList = Caracteristic.findCaracteristicsByProduct(manufacturingVoucherItem.getProduct()).getResultList();
+                Caracteristic caracteristic = null;
+                if (!resultList.isEmpty()) {
+                    caracteristic = resultList.iterator().next();
+                }
+                manufacturingItemUiModel.setCaracteristic(caracteristic);
+                if (caracteristic != null) {
+                    Collection<Specificity> specificities = SpecificityToCaracteristicMap.findSpecificitysByCaracteristicsEquals(caracteristic).getResultList();
+                    manufacturingItemUiModel.setSpecifycities(new HashSet<Specificity>(specificities));
+                }
+                manufacturingItemUiModels.add(manufacturingItemUiModel);
             }
-            manufacturingItemUiModel.setCaracteristic(caracteristic);
-            if (caracteristic != null) {
-                Collection<Specificity> specificities = SpecificityToCaracteristicMap.findSpecificitysByCaracteristicsEquals(caracteristic).getResultList();
-                manufacturingItemUiModel.setSpecifycities(new HashSet<Specificity>(specificities));
-            }
-            manufacturingItemUiModels.add(manufacturingItemUiModel);
+            uiModel.addAttribute("manufacturingItemUiModels", manufacturingItemUiModels);
         }
-        uiModel.addAttribute("manufacturingItemUiModels", manufacturingItemUiModels);
     }
 }

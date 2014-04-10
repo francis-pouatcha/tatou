@@ -7,9 +7,11 @@ import javax.validation.constraints.NotNull;
 
 import java.util.Date;
 
+import javax.persistence.EntityManager;
 import javax.persistence.PostPersist;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.TypedQuery;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -63,5 +65,18 @@ public class ManufacturingVoucher extends GpaoBaseEntity {
     @PostPersist
     public void postPersist() {
     	reference = GpaoSequenceGenerator.getSequence(getId(), GpaoSequenceGenerator.MANUFACTURINGVOUCHER_SEQUENSE_PREFIX);
+    }
+    public static TypedQuery<cm.adorsys.gpao.model.ManufacturingVoucher> findManufacturingVouchersByIdUpperThan(Long id) {
+        EntityManager em = PurchaseOrder.entityManager();
+        TypedQuery<ManufacturingVoucher> q = em.createQuery("SELECT o FROM ManufacturingVoucher AS o WHERE  o.id > :id ORDER BY o.id ", ManufacturingVoucher.class);
+        q.setParameter("id", id);
+        return q;
+    }
+
+    public static TypedQuery<cm.adorsys.gpao.model.ManufacturingVoucher> findManufacturingVouchersByIdLowerThan(Long id) {
+        EntityManager em = PurchaseOrder.entityManager();
+        TypedQuery<ManufacturingVoucher> q = em.createQuery("SELECT o FROM ManufacturingVoucher AS o WHERE  o.id < :id ORDER BY o.id ", ManufacturingVoucher.class);
+        q.setParameter("id", id);
+        return q;
     }
 }

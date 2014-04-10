@@ -242,7 +242,7 @@
 									value="/caracteristics/${product.id }/manage?id=${caracteristicId }&amp;page=1&amp;size=${empty param.size ? 10 : param.size}"
 									var="manage_product_caracteristic_url" />
 								<a href="${manage_product_caracteristic_url }"
-									class="btn btn-primary btn-lnk">Gerer les caracteristiques</a>
+									class="btn btn-primary a-btn">Gerer les caracteristiques</a>
 							</c:when>
 							<c:otherwise>
 								<spring:message

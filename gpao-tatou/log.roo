@@ -684,3 +684,5 @@ finder add --finderName findRawMaterialOrdersByValidatedByEquals
 focus --class ~.model.RawMaterialOrderItem
 finder list 
 finder add --finderName findRawMaterialOrderItemsByRawMaterialOrder
+focus --class ~.model.ManufacturingVoucher
+finder list 

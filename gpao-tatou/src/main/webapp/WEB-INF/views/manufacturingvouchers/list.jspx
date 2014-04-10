@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
+    <spring:url value="/manufacturingvouchers/addOrEditForm" var="add_url"/>
+    <div class="btn-group">
+        <a class="btn a-btn" href="${add_url}">Nouveau</a>
+    </div>
     <page:list id="pl_cm_adorsys_gpao_model_ManufacturingVoucher" items="${manufacturingvouchers}" showInPanel="false" z="user-managed">
         <table:table create="false" data="${manufacturingvouchers}" delete="false" id="l_cm_adorsys_gpao_model_ManufacturingVoucher" path="/manufacturingvouchers/addOrEditForm" queryParam="true" update="false" z="user-managed">
             <table:column id="c_cm_adorsys_gpao_model_ManufacturingVoucher_archived" property="archived" z="xVhZ8ZLuccaqVpQcGXko+nPILe4="/>

@@ -4,11 +4,13 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.EntityManager;
 import javax.persistence.Enumerated;
 import javax.persistence.ManyToMany;
 import javax.persistence.PostPersist;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.TypedQuery;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -63,5 +65,19 @@ public class RawMaterialOrder extends GpaoBaseEntity {
     @PostPersist
     protected void postPersist() {
     	reference = GpaoSequenceGenerator.getSequence(getId(), GpaoSequenceGenerator.RAWMATERIAL_SEQUENSE_PREFIX);
+    }
+
+    public static TypedQuery<cm.adorsys.gpao.model.RawMaterialOrder> findRawMaterialOrdersByIdUpperThan(Long id) {
+        EntityManager em = PurchaseOrder.entityManager();
+        TypedQuery<RawMaterialOrder> q = em.createQuery("SELECT o FROM RawMaterialOrder AS o WHERE  o.id > :id ORDER BY o.id ", RawMaterialOrder.class);
+        q.setParameter("id", id);
+        return q;
+    }
+
+    public static TypedQuery<cm.adorsys.gpao.model.RawMaterialOrder> findRawMaterialOrdersByIdLowerThan(Long id) {
+        EntityManager em = PurchaseOrder.entityManager();
+        TypedQuery<RawMaterialOrder> q = em.createQuery("SELECT o FROM RawMaterialOrder AS o WHERE  o.id < :id ORDER BY o.id ", RawMaterialOrder.class);
+        q.setParameter("id", id);
+        return q;
     }
 }
