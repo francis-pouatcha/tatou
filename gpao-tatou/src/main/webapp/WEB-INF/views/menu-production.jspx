@@ -10,10 +10,10 @@
 		          <menu:item id="i_commandeinterne_list" label="Commandes interne" messageCode="global_menu_gpao"  url="/customerorders?page=1&amp;size=${empty param.size ? 10 : param.size}" z="sjbn8PJjmux3IevxVgghkHUTBFw="/>
 	          </security:authorize>
 	          <security:authorize ifAnyGranted="ROLE_MODULE_PRODUCTION,ROLE_ACCESS_BON_PRODUCTION,ROLE_ACCESS_BON_PRODUCTION_MATIEREPREMIERE,ROLE_ACCESS_CONTROLE_PRODUCTION">
-		          <menu:item id="i_bondeproduction_list" label="Bon de production" messageCode="global_menu_gpao"  url="/manufacturingvouchers?page=1&amp;size=${empty param.size ? 10 : param.size}" z="sjbn8PJjmux3IevxVgghkHUTBFw="/>
+		          <menu:item id="i_bondeproduction_list" label="Bon de production interne" messageCode="global_menu_gpao"  url="/manufacturingvouchers?page=1&amp;size=${empty param.size ? 10 : param.size}" z="sjbn8PJjmux3IevxVgghkHUTBFw="/>
 	          </security:authorize>
 	          <security:authorize ifAnyGranted="ROLE_MODULE_PRODUCTION,ROLE_ACCESS_BON_PRODUCTION,ROLE_ACCESS_BON_PRODUCTION_MATIEREPREMIERE,ROLE_ACCESS_CONTROLE_PRODUCTION">
-            	<menu:item id="i_rawmaterialorder_new" messageCode="global_menu_new" url="/rawmaterialorders?page=1&amp;size=${empty param.size ? 10 : param.size}" z="dIsTwq4DfB0Q0B64o5XHN0J3Mzs="/>
+            	<menu:item id="i_rawmaterialorder_new" label="Bon de commande interne de matiere premiere" messageCode="global_menu_gpao" url="/rawmaterialorders?page=1&amp;size=${empty param.size ? 10 : param.size}" z="dIsTwq4DfB0Q0B64o5XHN0J3Mzs="/>
 	          </security:authorize>
         </menu:category>
     </menu:menu>

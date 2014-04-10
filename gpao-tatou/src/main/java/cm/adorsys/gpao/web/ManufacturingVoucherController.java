@@ -11,6 +11,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
@@ -117,6 +118,7 @@ public class ManufacturingVoucherController {
     }
 
     @RequestMapping(value = "/{manufacturingVoucherId}/validatedVoucher", method = RequestMethod.GET)
+    @Transactional(rollbackFor=Throwable.class)
     public String validateManufacturingVoucher(@PathVariable("manufacturingVoucherId") Long manufacturingVoucherId, Model uiModel) {
         ManufacturingVoucher manufacturingVoucher = ManufacturingVoucher.findManufacturingVoucher(manufacturingVoucherId);
         List<ManufacturingVoucherItem> manufacturingVoucherItems = ManufacturingVoucherItem.findManufacturingVoucherItemsByManufacturingVoucher(manufacturingVoucher).getResultList();

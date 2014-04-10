@@ -7,6 +7,7 @@ package cm.adorsys.gpao.utils;
  */
 public class GpaoSequenceGenerator {
 	public static final String MANUFACTURINGVOUCHER_SEQUENSE_PREFIX = "MF";
+	public static final String RAWMATERIAL_SEQUENSE_PREFIX = "RM";
 	public static String PORCHASE_SEQUENCE_PREFIX = "CF";
 	public static String DELIVERY_SEQUENCE_PREFIX = "LV";
 	public static String SUPPLY_SEQUENCE_PREFIX = "AP";

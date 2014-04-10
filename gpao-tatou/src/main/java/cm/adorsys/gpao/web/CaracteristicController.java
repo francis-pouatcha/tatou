@@ -45,10 +45,15 @@ public class CaracteristicController {
             return "caracteristics/manage";
         }
         uiModel.asMap().clear();
-        caracteristic.merge();
-        paginatedListQuery(uiModel, caracteristic,productId, null, null, 1, 10, null, null);
+        if(caracteristic.getId() == null) {
+        	caracteristic.persist();
+        }else {
+			caracteristic.merge().flush();
+		}
+        return "redirect:/caracteristics/"+productId+"/save/"+encodeUrlPathSegment(caracteristic.getId().toString(), httpServletRequest);
+        /*paginatedListQuery(uiModel, caracteristic,productId, null, null, 1, 10, null, null);
         uiModel.addAttribute(MessageType.SUCCESS_MESSAGE, Arrays.asList("Caracteristique du produit enregistree avec success ! Veillez ajouter les specificites."));
-        return "caracteristics/manage";
+        return "caracteristics/manage";*/
     }
 
     @RequestMapping(value = "/save/{id}", produces = "text/html")
