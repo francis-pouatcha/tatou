@@ -21,7 +21,7 @@ import cm.adorsys.gpao.utils.MessageType;
 @RequestMapping("/rawmaterialorders")
 @Controller
 @RooWebScaffold(path = "rawmaterialorders", formBackingObject = RawMaterialOrder.class)
-public class RawMaterialOrderController {
+public class RawMaterialOrderController extends AbstractOrderController  {
 
     @RequestMapping(value = "/addOrEditForm", method = RequestMethod.GET)
     public String addOrEditManufacturingVoucherForm(@RequestParam(value = "id", required = false) Long id, HttpServletRequest httpServletRequest, Model uiModel) {

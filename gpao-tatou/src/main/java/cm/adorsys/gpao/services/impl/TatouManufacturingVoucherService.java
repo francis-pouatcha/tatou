@@ -64,7 +64,7 @@ public class TatouManufacturingVoucherService implements IManufacturingVoucherSe
 			ManufacturingVoucherItem manufacturingVoucherItem) {
 		Assert.noNullElements(new Object[] {manufacturingVoucher,manufacturingVoucherItem}, "Null arguments are not allowed here. Please check our params [manufacturingVoucher, manufacturingVoucherItem]");
 		manufacturingVoucherItem.setManufacturingVoucher(manufacturingVoucher);
-		manufacturingVoucher.persist();
+		manufacturingVoucherItem.persist();
 		return manufacturingVoucherItem;
 	}
 	public boolean deleteManufacturingOrderItems(List<Long> manufacturingVoucherItemIds) {

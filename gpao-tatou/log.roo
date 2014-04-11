@@ -686,3 +686,6 @@ finder list
 finder add --finderName findRawMaterialOrderItemsByRawMaterialOrder
 focus --class ~.model.ManufacturingVoucher
 finder list 
+field enum --fieldName origin --type ~.model.DeliveryOrigin
+focus --class ~.model.RawMaterialOrder
+field enum --fieldName origin --type ~.model.DeliveryOrigin

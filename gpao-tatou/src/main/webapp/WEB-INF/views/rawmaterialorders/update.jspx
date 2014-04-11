@@ -12,5 +12,6 @@
         <field:select field="taxes" id="c_cm_adorsys_gpao_model_RawMaterialOrder_taxes" itemValue="id" items="${taxes}" multiple="true" path="/taxes" z="rlGLlj28CVhdukaK5aYEtbR5Tg0="/>
         <field:select field="orderState" id="c_cm_adorsys_gpao_model_RawMaterialOrder_orderState" items="${documentstateses}" path="documentstateses" z="jveZo7Jq+pFWhWM7iHRBrXkyvJQ="/>
         <field:input field="docRef" id="c_cm_adorsys_gpao_model_RawMaterialOrder_docRef" z="UganGwYuxKdtWBTx14Fa228R5/0="/>
+        <field:select field="origin" id="c_cm_adorsys_gpao_model_RawMaterialOrder_origin" items="${deliveryorigins}" path="deliveryorigins" z="6Okrit/xj1mDyJRIwMw75FaX6hw="/>
     </form:update>
 </div>

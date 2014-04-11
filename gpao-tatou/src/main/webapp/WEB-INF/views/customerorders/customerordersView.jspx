@@ -153,6 +153,10 @@
 									<button id="validerBtn" class="btn-success"
 										style="width: 100%;" type="button">valider la
 										commande</button>
+										
+									<button id="validerAndGenerateManufacturingVoucherBtn" class="btn-success"
+										style="width: 100%;" type="button">valider la
+										commande et generer bon de fabrication</button>
 								</p>
 							</c:if>
 							<!-- p>

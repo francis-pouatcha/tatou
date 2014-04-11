@@ -4,6 +4,7 @@
 package cm.adorsys.gpao.model;
 
 import cm.adorsys.gpao.model.CustomerOrder;
+import cm.adorsys.gpao.model.DeliveryOrigin;
 import cm.adorsys.gpao.model.DocumentStates;
 import cm.adorsys.gpao.model.ManufacturingVoucher;
 import cm.adorsys.gpao.model.Partner;
@@ -65,6 +66,14 @@ privileged aspect ManufacturingVoucher_Roo_JavaBean {
     
     public void ManufacturingVoucher.setDelayDate(Date delayDate) {
         this.delayDate = delayDate;
+    }
+    
+    public DeliveryOrigin ManufacturingVoucher.getOrigin() {
+        return this.origin;
+    }
+    
+    public void ManufacturingVoucher.setOrigin(DeliveryOrigin origin) {
+        this.origin = origin;
     }
     
 }

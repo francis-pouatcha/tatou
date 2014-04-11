@@ -11,5 +11,6 @@
         <field:select field="customer" id="c_cm_adorsys_gpao_model_ManufacturingVoucher_customer" itemValue="id" items="${partners}" path="/partners" z="PNeYzR/gmLpXMpMrdjSnL6+JfoM="/>
         <field:datetime dateTimePattern="${manufacturingVoucher_delaydate_date_format}" field="delayDate" id="c_cm_adorsys_gpao_model_ManufacturingVoucher_delayDate" z="CvyShHOMKaD9rflaYo2qY/mqHRA="/>
         <field:select field="customerOrder" id="c_cm_adorsys_gpao_model_ManufacturingVoucher_customerOrder" itemValue="id" items="${customerorders}" path="/customerorders" z="+ZRJHlcL89MZmPc6OqPBNcAhliM="/>
+        <field:select field="origin" id="c_cm_adorsys_gpao_model_ManufacturingVoucher_origin" items="${deliveryorigins}" path="deliveryorigins" z="6Lx4+3sNkCLrQ2nULHU0IQO0nEc="/>
     </form:update>
 </div>

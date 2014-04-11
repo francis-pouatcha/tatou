@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 privileged aspect RawMaterialOrder_Roo_Jpa_ActiveRecord {
     
-    public static final List<String> RawMaterialOrder.fieldNames4OrderClauseFilter = java.util.Arrays.asList("reference", "orderDate", "createdBy", "delivered", "validatedBy", "taxes", "orderState", "docRef");
+    public static final List<String> RawMaterialOrder.fieldNames4OrderClauseFilter = java.util.Arrays.asList("reference", "orderDate", "createdBy", "delivered", "validatedBy", "taxes", "orderState", "docRef", "origin");
     
     public static long RawMaterialOrder.countRawMaterialOrders() {
         return entityManager().createQuery("SELECT COUNT(o) FROM RawMaterialOrder o", Long.class).getSingleResult();

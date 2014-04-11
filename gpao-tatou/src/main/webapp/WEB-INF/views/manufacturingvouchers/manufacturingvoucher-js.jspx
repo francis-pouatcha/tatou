@@ -10,106 +10,121 @@
 		contentType="text/html;charset=UTF-8" /> <jsp:output
 		omit-xml-declaration="yes" /> <!-- liste of link to use on this page  -->
 	<spring:url value="/manufacturingvouchers/findProductByNameLike/"
-		var="search_url" /> 
-	<spring:url
+		var="search_url" /> <spring:url
 		value="/manufacturingvouchers/findProductFromPurcharseOrder/${manufacturingVoucher.id}"
-		var="search_fromOrder_url" /> 
-	<spring:url
-		value="/manufacturingvouchers/getSelectedProduct/" var="selected_url" /> <spring:url
-		value="/manufacturingvouchers/getUdmListFromUdmGroup/" var="udmList_url" />
-	<spring:url value="/manufacturingvouchers/${manufacturingVoucher.id}/addOrderItem?"
+		var="search_fromOrder_url" /> <spring:url
+		value="/manufacturingvouchers/getSelectedProduct/" var="selected_url" />
+	<spring:url value="/manufacturingvouchers/getUdmListFromUdmGroup/"
+		var="udmList_url" /> <spring:url
+		value="/manufacturingvouchers/${manufacturingVoucher.id}/addManufacturingItem?"
 		var="add_url" /> <spring:url
-		value="/manufacturingvouchers/${manufacturingVoucher.id}/caculated" var="calcul_url" />
-	<spring:url value="/manufacturingvouchers/${manufacturingVoucher.id}/validatedVoucher"
-		var="validated_url" /> 
-	<spring:url
+		value="/manufacturingvouchers/${manufacturingVoucher.id}/caculated"
+		var="calcul_url" /> <spring:url
+		value="/manufacturingvouchers/${manufacturingVoucher.id}/validatedVoucher"
+		var="validated_url" />
+		 <spring:url
 		value="/manufacturingvouchers/${manufacturingVoucher.id}/removeItem?itemid="
-		var="remove_url" />
-	<spring:url value="/manufacturingvouchers/${manufacturingVoucher.id}/cancel" var="cancel_url" />
-	<spring:url value="/manufacturingvouchers/${manufacturingVoucher.id}/close" var="close_url" />  
-	<spring:url value="/tenderses/tenderNote/"
-		var="print_tender_url" /> 
-	<spring:url
+		var="remove_url" /> <spring:url
+		value="/manufacturingvouchers/${manufacturingVoucher.id}/cancel"
+		var="cancel_url" /> <spring:url
+		value="/manufacturingvouchers/${manufacturingVoucher.id}/close"
+		var="close_url" /> <spring:url value="/tenderses/tenderNote/"
+		var="print_tender_url" /> <spring:url
 		value="/resources/images/ajax-loader.gif" var="loadimage" /> <!-- Modal -->
-	<spring:url value="/deliverys/listByDocRef/${manufacturingVoucher.reference}" var="delivery_url" /> 
-		
-	<c:set value="false" var="whithTender" />
-	 <div id="dialog_simple" title="Rehercher des Articles">
-	 <div  style="margin-bottom: 10px;">
-			<table >
-						<thead>
-							<tr>
-								<th style="text-align: center;">reference</th>
-								<th style="text-align: center;">famille</th>
-								<th style="text-align: center;">udm</th>
-								<th style="text-align: center;">qte cmd</th>
-								<th style="text-align: center;">prix</th>
-								<th style="text-align: center;">action</th>
-							</tr>
-						</thead>
-						
-						<tbody>
-                               <form id="orderitem">
-                               <tr>
-								<td style="text-align: center; padding: 0px;"><input style="width: 94%;" type="text" id="productName" name="productName"
-									placeholder="designation" /> 
-									<input type="hidden" id="productId" name="productId" /></td>
-								<td style="text-align: center;"><input style="width: 94%;"  type="text" id="familleName" readonly="readonly" name="familleName" /></td>
-								<td style="text-align: center;"><select id="udm" style="width: 100px;" name="udm" > </select></td>
-								<td style="text-align: center;"><input style="width: 100px;" type="text" id="quantity" name="quantity"
-									placeholder="quantite" /></td>
-								<td style="text-align: center;"><input style="width: 100px;" type="text" id="unitPrice" name="unitPrice"
-									placeholder="prix Unitaire" /></td>
-								<td> <button id="save" type="submit" class="btn-success">Enregistrer</button></td>
-							 </tr>
-								</form>
+	<spring:url
+		value="/deliverys/listByDocRef/${manufacturingVoucher.reference}"
+		var="delivery_url" /> <c:set value="false" var="whithTender" />
+		<c:if test="${not empty manufacturingVoucher.id }">
+			<spring:url value="/manufacturingvouchers/addOrEditForm?id=${manufacturingVoucher.id}" var="manufacturingVoucher_edit_url" />
+		</c:if>
+	<div id="dialog_simple" title="Rehercher des Articles">
+		<div style="margin-bottom: 10px;">
+			<table>
+				<thead>
+					<tr>
+						<th style="text-align: center;">reference</th>
+						<th style="text-align: center;">famille</th>
+						<th style="text-align: center;">udm</th>
+						<th style="text-align: center;">qte cmd</th>
+						<th style="text-align: center;">prix</th>
+						<th style="text-align: center;">action</th>
+					</tr>
+				</thead>
 
-						</tbody>
-					</table>
-					
-				</div>
-		<div >
-		
-				<span style="color: maroon;"> Zone de recherche</span>
-				<div style="height: 300px; overflow-y: auto; " >
-					<div id="searchzone" class="input-append">
-					<form id="test">
-					<center>
-						<input autofocus="true"   style="font-size: 22px ; font-weight: bold; color: blue; width: 80%; height: 30px;" id="searchText" type="text" />
-					</center>
+				<tbody>
+					<form id="orderitem">
+						<tr>
+							<td style="text-align: center; padding: 0px;"><input
+								style="width: 94%;" type="text" id="productName"
+								name="productName" placeholder="designation" /> <input
+								type="hidden" id="productId" name="productId" /></td>
+							<td style="text-align: center;"><input style="width: 94%;"
+								type="text" id="familleName" readonly="readonly"
+								name="familleName" /></td>
+							<td style="text-align: center;"><select id="udm"
+								style="width: 100px;" name="udm">
+							</select></td>
+							<td style="text-align: center;"><input style="width: 100px;"
+								type="text" id="quantity" name="quantity" placeholder="quantite" /></td>
+							<td style="text-align: center;"><input style="width: 100px;"
+								type="text" id="unitPrice" name="unitPrice"
+								placeholder="prix Unitaire" /></td>
+							<td>
+								<button id="save" type="submit" class="btn-success">Enregistrer</button>
+							</td>
+						</tr>
 					</form>
-					</div> 
-					<table id="products">
-						<thead>
-							<tr>
-								<th style="text-align: center;">#</th>
-								<th style="text-align: center;">reference</th>
-								<th style="text-align: center;">famille</th>
-								<th style="text-align: center;">udm</th>
-								<th style="text-align: center;">Devise</th>
-								<th style="text-align: center;">prix</th>
-							</tr>
-						</thead>
-						<tbody>
 
-
-						</tbody>
-					</table>
-				</div>
+				</tbody>
+			</table>
 
 		</div>
-    </div>
-    
- <SCRIPT type="text/javascript">
+		<div>
+
+			<span style="color: maroon;"> Zone de recherche</span>
+			<div style="height: 300px; overflow-y: auto;">
+				<div id="searchzone" class="input-append">
+					<form id="test">
+						<center>
+							<input autofocus="true"
+								style="font-size: 22px; font-weight: bold; color: blue; width: 80%; height: 30px;"
+								id="searchText" type="text" />
+						</center>
+					</form>
+				</div>
+				<table id="products">
+					<thead>
+						<tr>
+							<th style="text-align: center;">#</th>
+							<th style="text-align: center;">reference</th>
+							<th style="text-align: center;">famille</th>
+							<th style="text-align: center;">udm</th>
+							<th style="text-align: center;">Devise</th>
+							<th style="text-align: center;">prix</th>
+						</tr>
+					</thead>
+					<tbody>
+
+
+					</tbody>
+				</table>
+			</div>
+
+		</div>
+	</div> <SCRIPT type="text/javascript">
 	// Dialog Simple
+	function reloadPage(pageUrl){
+		window.location = pageUrl;
+	}
 	$('#dialog_simple').dialog({
 	autoOpen: false,
 	width: 800,
 	modal:true,
 	buttons: {
 	"FERMER": function () {
-	$(this).dialog("close");
-	}
+		$(this).dialog("close");
+		reloadPage('${manufacturingVoucher_edit_url}');
+		}
 	}
 	});
 		function selectRow(row) {
@@ -159,6 +174,7 @@
 			var url = '${validated_url}';
 			window.location = url ;
 		});
+
 		$('#deliveryBtn').click(function() {
 			var url = '${delivery_url}';
 			window.open(url) ;
@@ -268,39 +284,40 @@
 			var url = '${selected_url}'+id;
 			$.getJSON( url,
 	                function(data){
-							$('#productId').val(data.product.id) ;
-							$('#productName').val(data.productName) ;
-							$('#familleName').val(data.product.famille.name);
-							$('#dd').text(data.productName) ;
+							$('#productId').val(data.id) ;
+							$('#productName').val(data.name) ;
+							$('#familleName').val(data.famille.name);
+// 							$('#dd').text(data.productName) ;
 							$('#unitPrice').val(data.unitPrice) ;
 							$('#quantity').val(data.quantity) ;
 							$("#udm").empty();
-							getUdmList(data.udm.unitGroup.id);
+							getUdmList(data.defaultUdm.unitGroup.id);
 						});
 					};
 					function addOrderItem(){
 						var url = '${add_url}'+$('#orderitem').serialize() ;
 						$.getJSON( url,
 				                function(data){
-							if(data){
-							$("#orderIdems tbody").empty();
-							$(data).each(function(){
-								$('#orderIdems tbody').append(
-								 '<tr id="'+this.id+'">
-									  <td>'+this.product.name+'</td>
-									  <td style="text-align: center;">'+this.product.famille.name+'</td>
-									  <td style="text-align: center;">'+this.quantity+'</td>
-									  <td style="text-align: center;">'+this.udm.name+'</td>
-									  <td style="text-align: center;">'+this.amountHt+'</td>
-									  <td  style="text-align: center;" ><input type="checkbox" /></td>
-									  </tr>'
-							);
-								
-							});
-							alert('enregistrer avec success !');
-						}
-									});
-								};
+									if(data){
+											/*$("#orderIdems tbody").empty();
+											$(data).each(function(){
+												console.log(this);
+												$('#orderIdems tbody').append(
+												 '<tr id="'+this.id+'">
+													  <td>'+this.product.name+'</td>
+													  <td style="text-align: center;">'+this.product.famille.name+'</td>
+													  <td style="text-align: center;">'+this.quantity+'</td>
+													  <td style="text-align: center;">'+this.defaultUdm.name+'</td>
+													  <td style="text-align: center;">'+this.amountHt+'</td>
+													  <td  style="text-align: center;" ><input type="checkbox" /></td>
+													  </tr>'
+											);
+												
+											});*/
+											alert('enregistrer avec success !');
+									}
+								});
+							};
 					
 					function getUdmList(id){
 						var url = '${udmList_url}'+id;

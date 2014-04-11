@@ -11,5 +11,6 @@
         <field:display field="customer" id="s_cm_adorsys_gpao_model_ManufacturingVoucher_customer" object="${manufacturingvoucher}" z="3C9bbTZIoOaboD8pDBOSiS9xJhc="/>
         <field:display date="true" dateTimePattern="${manufacturingVoucher_delaydate_date_format}" field="delayDate" id="s_cm_adorsys_gpao_model_ManufacturingVoucher_delayDate" object="${manufacturingvoucher}" z="egKTTCdPhBaxv0faICMpYA3vlAo="/>
         <field:display field="customerOrder" id="s_cm_adorsys_gpao_model_ManufacturingVoucher_customerOrder" object="${manufacturingvoucher}" z="g7A8zA3ZapJpCVd1AjAYJuFKDWA="/>
+        <field:display field="origin" id="s_cm_adorsys_gpao_model_ManufacturingVoucher_origin" object="${manufacturingvoucher}" z="JPnLomp+7xoPHwFnn+olgcnglBs="/>
     </page:show>
 </div>

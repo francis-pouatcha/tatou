@@ -19,7 +19,9 @@
 		var="add_url" /> <spring:url
 		value="/customerorders/${customerOrder.id}/caculated" var="calcul_url" />
 	<spring:url value="/customerorders/${customerOrder.id}/validatedOrder"
-		var="validated_url" /> <spring:url
+		var="validated_url" /> 
+		<spring:url value="/customerorders/${customerOrder.id}/validatedOrderAndGenerate"
+		var="validated_and_generate_manufacturingvoucher_url" /> <spring:url
 		value="/customerorders/${customerOrder.id}/removeOrderItem?itemid="
 		var="remove_url" />
 	<spring:url value="/customerorders/${customerOrder.id}/cancel" var="cancel_url" />
@@ -153,7 +155,16 @@
 		});
 		$('#validerBtn').click(function() {
 			var url = '${validated_url}';
-			window.location = url ;
+			if(window.confirm('Voulez vous simplement valider cette commande et rien d\'autre ?')){
+				window.location = url ;
+			}
+		});
+
+		$('#validerAndGenerateManufacturingVoucherBtn').click(function() {
+			var url = '${validated_and_generate_manufacturingvoucher_url}';
+			if(window.confirm('Voulez vous vraiment valider et generer un bon de fabrication de matiere premiere ?')){
+				window.location = url ;
+			}
 		});
 		$('#deliveryBtn').click(function() {
 			var url = '${delivery_url}';

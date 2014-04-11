@@ -56,56 +56,156 @@
 		<!-- 		        <field:checkbox field="archived" id="c_cm_adorsys_gpao_model_CustomerOrder_archived" z="+ZNlMsaLus/rfGHJuxCfkokX2bw="/> -->
 		<div class="row-fluid">
 			<div class="span6">
-				<field:checkbox render="false" field="archived"
-					id="c_cm_adorsys_gpao_model_ManufacturingVoucher_archived"
-					z="IBDARgq+yNJ3KQgzXJDQGPzWCGg=" />
-				<field:gpao-display hiddenfield="true"
-					id="c_cm_adorsys_gpao_model_ManufacturingVoucher_reference"
-					object="${manufacturingVoucher }" field="reference"
-					z="E0UPmnhR9+CCpPJljCan+MSYHbU=" />
+				<c:choose>
+					<c:when
+						test="${(not empty manufacturingVoucher.id) and (manufacturingVoucher.origin eq 'CREATED')}">
+						<!-- the entity is in edit mode -->
+						<field:checkbox render="false" field="archived"
+							id="c_cm_adorsys_gpao_model_ManufacturingVoucher_archived"
+							z="IBDARgq+yNJ3KQgzXJDQGPzWCGg=" />
+						<field:gpao-display hiddenfield="true"
+							id="c_cm_adorsys_gpao_model_ManufacturingVoucher_reference"
+							object="${manufacturingVoucher }" field="reference"
+							z="E0UPmnhR9+CCpPJljCan+MSYHbU=" />
 
-				<field:gpao-display hiddenfield="true"
-					dateTimePattern="${manufacturingVoucher_createdate_date_format}"
-					field="createDate"
-					id="c_cm_adorsys_gpao_model_ManufacturingVoucher_createDate"
-					z="QHVmB1GLgT/94jyJoVL/jHFFv8g=" object="${manufacturingVoucher }" />
-				<field:gpao-display hiddenfield="true"
-					id="c_cm_adorsys_gpao_model_ManufacturingVoucher_createdBy"
-					object="${manufacturingVoucher }" field="createdBy"
-					z="O2qQ3JiiKdAt/DzSeRK2s1L14yI=" />
+						<field:gpao-display hiddenfield="true"
+							dateTimePattern="${manufacturingVoucher_createdate_date_format}"
+							field="createDate"
+							id="c_cm_adorsys_gpao_model_ManufacturingVoucher_createDate"
+							z="QHVmB1GLgT/94jyJoVL/jHFFv8g="
+							object="${manufacturingVoucher }" />
+						<field:gpao-display hiddenfield="true"
+							id="c_cm_adorsys_gpao_model_ManufacturingVoucher_createdBy"
+							object="${manufacturingVoucher }" field="createdBy"
+							z="O2qQ3JiiKdAt/DzSeRK2s1L14yI=" />
+						<field:gpao-display hiddenfield="true" isEnum="true"
+							id="c_cm_adorsys_gpao_model_ManufacturingVoucher_createdBy"
+							object="${manufacturingVoucher }" field="createdBy" />
+					</c:when>
+					<c:when
+						test="${(not empty manufacturingVoucher.id) and (manufacturingVoucher.origin eq 'GENERATED')}">
+						<!-- the entity is only in read mode-->
+						<field:gpao-display hiddenfield="true"
+							id="c_cm_adorsys_gpao_model_ManufacturingVoucher_reference"
+							object="${manufacturingVoucher }" field="reference"
+							z="E0UPmnhR9+CCpPJljCan+MSYHbU=" />
+
+						<field:gpao-display hiddenfield="true"
+							dateTimePattern="${manufacturingVoucher_createdate_date_format}"
+							field="createDate"
+							id="c_cm_adorsys_gpao_model_ManufacturingVoucher_createDate"
+							z="QHVmB1GLgT/94jyJoVL/jHFFv8g="
+							object="${manufacturingVoucher }" />
+						<field:gpao-display hiddenfield="true"
+							id="c_cm_adorsys_gpao_model_ManufacturingVoucher_createdBy"
+							object="${manufacturingVoucher }" field="createdBy"
+							z="O2qQ3JiiKdAt/DzSeRK2s1L14yI=" />
+						<field:gpao-display hiddenfield="true" isEnum="true"
+							id="c_cm_adorsys_gpao_model_ManufacturingVoucher_createdBy"
+							object="${manufacturingVoucher }" field="createdBy" />
+					</c:when>
+					<c:otherwise>
+						<!-- It is in create mode -->
+						<field:checkbox render="false" field="archived"
+							id="c_cm_adorsys_gpao_model_ManufacturingVoucher_archived"
+							z="IBDARgq+yNJ3KQgzXJDQGPzWCGg=" />
+						<field:input-hidden object="${manufacturingVoucher }"
+							field="createdBy"
+							id="c_cm_adorsys_gpao_model_ManufacturingVoucher_createdBy" />
+
+						<field:datetime
+							dateTimePattern="${manufacturingVoucher_createdate_date_format}"
+							field="createDate"
+							id="c_cm_adorsys_gpao_model_ManufacturingVoucher_createDate"
+							required="true" z="QHVmB1GLgT/94jyJoVL/jHFFv8g=" />
+						<field:select field="origin"
+							id="c_cm_adorsys_gpao_model_ManufacturingVoucher_origin"
+							items="${deliveryorigins}" path="deliveryorigins"
+							z="6Lx4+3sNkCLrQ2nULHU0IQO0nEc=" />
+						<field:select field="customerOrder"
+							id="c_cm_adorsys_gpao_model_ManufacturingVoucher_customerOrder"
+							itemValue="id" items="${customerorders}" path="/customerorders"
+							z="+ZRJHlcL89MZmPc6OqPBNcAhliM=" />
+					</c:otherwise>
+				</c:choose>
 			</div>
 			<div class="span6">
+				<c:choose>
+					<c:when
+						test="${(not empty manufacturingVoucher.id) and (manufacturingVoucher.origin eq 'CREATED')}">
+						<!-- the entity is in edit mode -->
 
-				<field:gpao-display
-					id="c_cm_adorsys_gpao_model_ManufacturingVoucher_documentState"
-					object="${manufacturingVoucher }" field="documentState" hiddenfield="true"
-					isEnum="true" z="sg1iRA8rkt9P23RKWTuL9/cTCrA=" />
-				<field:select field="customer"
-					id="c_cm_adorsys_gpao_model_ManufacturingVoucher_customer"
-					itemValue="id" items="${partners}" path="/partners"
-					z="PNeYzR/gmLpXMpMrdjSnL6+JfoM=" />
-				<field:datetime
-					dateTimePattern="${manufacturingVoucher_delaydate_date_format}"
-					field="delayDate"
-					id="c_cm_adorsys_gpao_model_ManufacturingVoucher_delayDate"
-					z="CvyShHOMKaD9rflaYo2qY/mqHRA=" />
-				<field:select field="customerOrder" render="false"
-					id="c_cm_adorsys_gpao_model_ManufacturingVoucher_customerOrder"
-					itemValue="id" items="${manufacturingvouchers}"
-					path="/manufacturingvouchers" z="+ZRJHlcL89MZmPc6OqPBNcAhliM=" />
+						<field:gpao-display
+							id="c_cm_adorsys_gpao_model_ManufacturingVoucher_documentState"
+							object="${manufacturingVoucher }" field="documentState"
+							hiddenfield="true" isEnum="true" z="sg1iRA8rkt9P23RKWTuL9/cTCrA=" />
+						<field:select field="customer"
+							id="c_cm_adorsys_gpao_model_ManufacturingVoucher_customer"
+							itemValue="id" items="${partners}" path="/partners"
+							z="PNeYzR/gmLpXMpMrdjSnL6+JfoM=" />
+						<field:datetime
+							dateTimePattern="${manufacturingVoucher_delaydate_date_format}"
+							field="delayDate"
+							id="c_cm_adorsys_gpao_model_ManufacturingVoucher_delayDate"
+							z="CvyShHOMKaD9rflaYo2qY/mqHRA=" />
+						<field:select field="customerOrder" render="false"
+							id="c_cm_adorsys_gpao_model_ManufacturingVoucher_customerOrder"
+							itemValue="id" items="${manufacturingvouchers}"
+							path="/manufacturingvouchers" z="+ZRJHlcL89MZmPc6OqPBNcAhliM=" />
+					</c:when>
+					<c:when
+						test="${(not empty manufacturingVoucher.id) and (manufacturingVoucher.origin eq 'GENERATED')}">
+						<!-- the entity is only in read mode-->
+
+						<field:gpao-display
+							id="c_cm_adorsys_gpao_model_ManufacturingVoucher_documentState"
+							object="${manufacturingVoucher }" field="documentState"
+							hiddenfield="true" isEnum="true" z="sg1iRA8rkt9P23RKWTuL9/cTCrA=" />
+						<field:select field="customer"
+							id="c_cm_adorsys_gpao_model_ManufacturingVoucher_customer"
+							itemValue="id" items="${partners}" path="/partners"
+							z="PNeYzR/gmLpXMpMrdjSnL6+JfoM=" />
+						<field:datetime
+							dateTimePattern="${manufacturingVoucher_delaydate_date_format}"
+							field="delayDate"
+							id="c_cm_adorsys_gpao_model_ManufacturingVoucher_delayDate"
+							z="CvyShHOMKaD9rflaYo2qY/mqHRA=" />
+						<field:select field="customerOrder" render="false"
+							id="c_cm_adorsys_gpao_model_ManufacturingVoucher_customerOrder"
+							itemValue="id" items="${manufacturingvouchers}"
+							path="/manufacturingvouchers" z="+ZRJHlcL89MZmPc6OqPBNcAhliM=" />
+					</c:when>
+					<c:otherwise>
+						<!-- It is in create mode -->
+						<field:select field="customer"
+							id="c_cm_adorsys_gpao_model_ManufacturingVoucher_customer"
+							itemValue="id" items="${partners}" path="/partners"
+							z="PNeYzR/gmLpXMpMrdjSnL6+JfoM=" />
+						<field:datetime
+							dateTimePattern="${manufacturingVoucher_delaydate_date_format}"
+							field="delayDate"
+							id="c_cm_adorsys_gpao_model_ManufacturingVoucher_delayDate"
+							z="CvyShHOMKaD9rflaYo2qY/mqHRA=" />
+						<field:select field="customerOrder" render="false"
+							id="c_cm_adorsys_gpao_model_ManufacturingVoucher_customerOrder"
+							itemValue="id" items="${manufacturingvouchers}"
+							path="/manufacturingvouchers" z="+ZRJHlcL89MZmPc6OqPBNcAhliM=" />
+					</c:otherwise>
+				</c:choose>
 			</div>
 		</div>
 		<div style="padding-right: 2%;" class="span10">
 			<c:if test="${not empty manufacturingVoucher.id }">
-				<c:if test="${manufacturingVoucher.documentState eq 'BROUILLON'}">
+				<c:if
+					test="${(manufacturingVoucher.documentState eq 'BROUILLON')and (manufacturingVoucher.origin eq 'CREATED')}">
 					<div class="btn-group pull-rigth" data-toggle="buttons-checkbox">
-<!-- 						<button id="addBtn" type="button" class=" btn-success" disabled="disabled" >Ajouter</button> -->
-						<button id="delBtn" type="button" class=" btn-danger" disabled="disabled">Suprimer</button>
-<!-- 						<button id="calculBtn" type="button" class=" btn-info" disabled="disabled">Calculer</button> -->
+						<button id="addBtn" type="button" class=" btn-success">Ajouter</button>
+						<button id="delBtn" type="button" class=" btn-danger">Suprimer</button>
+						<button id="calculBtn" type="button" class=" btn-info">Calculer</button>
 					</div>
 				</c:if>
 			</c:if>
-			
+
 			<table id="orderIdems">
 				<thead>
 					<tr>

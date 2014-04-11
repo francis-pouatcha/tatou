@@ -12,5 +12,6 @@
         <field:display field="taxes" id="s_cm_adorsys_gpao_model_RawMaterialOrder_taxes" object="${rawmaterialorder}" z="mn6NMru+Pv7vfgRH6nVbxVQZljA="/>
         <field:display field="orderState" id="s_cm_adorsys_gpao_model_RawMaterialOrder_orderState" object="${rawmaterialorder}" z="DsiKgJ5ebncajnLBVKsTEfwidZo="/>
         <field:display field="docRef" id="s_cm_adorsys_gpao_model_RawMaterialOrder_docRef" object="${rawmaterialorder}" z="CeZ665lAn7I+V/4VbgpSLbPibR4="/>
+        <field:display field="origin" id="s_cm_adorsys_gpao_model_RawMaterialOrder_origin" object="${rawmaterialorder}" z="ZuC+7/uqQryEZm8iScCSmwaQNJU="/>
     </page:show>
 </div>

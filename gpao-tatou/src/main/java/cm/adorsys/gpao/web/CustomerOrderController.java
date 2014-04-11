@@ -126,7 +126,30 @@ public class CustomerOrderController extends AbstractOrderController {
         } else {
             customerOrder = customerOrderService.computeAndSetAmounts(customerOrder, customerOrderItems);
             customerOrder = customerOrderService.validateCustomerOrder(customerOrder);
-            productionService.processCustomerOrder(customerOrder, new ProcessCustomerOrder(rawMaterialOrderService));
+//            productionService.processCustomerOrder(customerOrder, new ProcessCustomerOrder(rawMaterialOrderService));
+            customerOrder = doAConsistantMerge(customerOrder);
+            uiModel.addAttribute(MessageType.SUCCESS_MESSAGE, "validation effectuee avec success !");
+        }
+        populateEditForm(uiModel, customerOrder);
+        return "customerorders/customerordersView";
+    }
+
+    @Transactional(rollbackFor=Throwable.class)
+    @RequestMapping(value = "/{customerOrderId}/validatedOrderAndGenerate", method = RequestMethod.GET)
+    public String validatedOrderAndGenerateManufacturingOrder(@PathVariable("customerOrderId") Long customerOrderId, Model uiModel) {
+        CustomerOrder customerOrder = CustomerOrder.findCustomerOrder(customerOrderId);
+        if (!customerOrderService.isBusinessOperationAllowed(customerOrder, BusinessOperation.VALIDATE)) {
+            populateEditForm(uiModel, customerOrder);
+            uiModel.addAttribute(MessageType.ERROR_MESSAGE, "Nous somme desole, il est impossible de valider cette commande! \n ");
+            return "purchaseorders/purchaseordersView";
+        }
+        List<CustomerOrderItem> customerOrderItems = customerOrderService.findCustomerOrderItems(customerOrder);
+        if (customerOrderItems.isEmpty()) {
+            uiModel.addAttribute(MessageType.ERROR_MESSAGE, "validation Impossible la commande est vide !");
+        } else {
+            customerOrder = customerOrderService.computeAndSetAmounts(customerOrder, customerOrderItems);
+            customerOrder = customerOrderService.validateCustomerOrder(customerOrder);
+            productionService.processCustomerOrder(customerOrder, new ProcessCustomerOrder(rawMaterialOrderService));//here is where we generate manufacturing order.
             customerOrder = doAConsistantMerge(customerOrder);
             uiModel.addAttribute(MessageType.SUCCESS_MESSAGE, "validation effectuee avec success !");
         }

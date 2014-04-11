@@ -2,6 +2,7 @@ package cm.adorsys.gpao.web;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import cm.adorsys.gpao.model.Caracteristic;
 import cm.adorsys.gpao.model.Company;
 import cm.adorsys.gpao.model.CustomerOrder;
+import cm.adorsys.gpao.model.DeliveryOrigin;
 import cm.adorsys.gpao.model.Devise;
 import cm.adorsys.gpao.model.DocumentStates;
 import cm.adorsys.gpao.model.ManufacturingVoucher;
@@ -35,8 +37,9 @@ import cm.adorsys.gpao.model.Specificity;
 import cm.adorsys.gpao.model.SpecificityToCaracteristicMap;
 import cm.adorsys.gpao.model.Taxe;
 import cm.adorsys.gpao.model.uimodel.ManufacturingItemUiModel;
-import cm.adorsys.gpao.services.IProductService;
+import cm.adorsys.gpao.security.SecurityUtil;
 import cm.adorsys.gpao.services.IManufacturingVoucherService;
+import cm.adorsys.gpao.services.IProductService;
 import cm.adorsys.gpao.services.IRawMaterialOrderService;
 import cm.adorsys.gpao.services.impl.function.FindManufacturingVoucherItems;
 import cm.adorsys.gpao.utils.MessageType;
@@ -44,7 +47,7 @@ import cm.adorsys.gpao.utils.MessageType;
 @RequestMapping("/manufacturingvouchers")
 @Controller
 @RooWebScaffold(path = "manufacturingvouchers", formBackingObject = ManufacturingVoucher.class)
-public class ManufacturingVoucherController {
+public class ManufacturingVoucherController extends AbstractOrderController {
 
     @Autowired
     IManufacturingVoucherService manufacturingVoucherService;
@@ -57,13 +60,20 @@ public class ManufacturingVoucherController {
     
     @RequestMapping(value = "/addOrEditForm", method = RequestMethod.GET)
     public String addOrEditManufacturingVoucherForm(@RequestParam(value = "id", required = false) Long id, HttpServletRequest httpServletRequest, Model uiModel) {
-        ManufacturingVoucher manufacturingVoucher = id == null ? new ManufacturingVoucher() : ManufacturingVoucher.findManufacturingVoucher(id);
+        ManufacturingVoucher manufacturingVoucher = null;
+        if(id == null ) {
+        	manufacturingVoucher = new ManufacturingVoucher();
+        	manufacturingVoucher.setCreateDate(new Date());
+        	manufacturingVoucher.setCreatedBy(SecurityUtil.getUserName());
+        }else {
+        	manufacturingVoucher =  ManufacturingVoucher.findManufacturingVoucher(id);
+        }
         populateEditForm(uiModel, manufacturingVoucher);
         return "manufacturingvouchers/manufacturingvoucherView";
     }
 
     @RequestMapping(value = "/addOrEdit", method = RequestMethod.POST)
-    public String addOrManufacturingVoucherOrders(@Valid ManufacturingVoucher manufacturingVoucher, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
+    public String addOrEditManufacturingVoucherOrders(@Valid ManufacturingVoucher manufacturingVoucher, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, manufacturingVoucher);
             uiModel.addAttribute(MessageType.ERROR_MESSAGE, "une erreur est Survenue durant l'enregistrement ! \n " + bindingResult.getFieldErrors());
@@ -71,6 +81,7 @@ public class ManufacturingVoucherController {
         }
         if (manufacturingVoucher.getId() == null) {
             manufacturingVoucher.setDocumentState(DocumentStates.BROUILLON);
+            manufacturingVoucher.setOrigin(DeliveryOrigin.CREATED);
             manufacturingVoucher.persist();
         }
         manufacturingVoucher = doAConsistantMerge(manufacturingVoucher);
@@ -173,6 +184,7 @@ public class ManufacturingVoucherController {
         uiModel.addAttribute("manufacturingVoucher", manufacturingVoucher);
         addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("documentstateses", Arrays.asList(DocumentStates.values()));
+        uiModel.addAttribute("customerorders", CustomerOrder.findCustomerOrdersByOrderState(DocumentStates.VALIDER).getResultList());
         uiModel.addAttribute("partners", Partner.findAllActiveProviders().getResultList());
         uiModel.addAttribute("devises", Devise.findAllDevises());
         uiModel.addAttribute("companys", Company.findAllCompanys());
@@ -198,6 +210,8 @@ public class ManufacturingVoucherController {
                 manufacturingItemUiModels.add(manufacturingItemUiModel);
             }
             uiModel.addAttribute("manufacturingItemUiModels", manufacturingItemUiModels);
+        }else {
+        	uiModel.addAttribute("deliveryorigins", Arrays.asList(DeliveryOrigin.CREATED));
         }
     }
 }

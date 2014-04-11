@@ -3,6 +3,7 @@
 
 package cm.adorsys.gpao.model;
 
+import cm.adorsys.gpao.model.DeliveryOrigin;
 import cm.adorsys.gpao.model.DocumentStates;
 import cm.adorsys.gpao.model.RawMaterialOrder;
 import cm.adorsys.gpao.model.Taxe;
@@ -73,6 +74,14 @@ privileged aspect RawMaterialOrder_Roo_JavaBean {
     
     public void RawMaterialOrder.setDocRef(String docRef) {
         this.docRef = docRef;
+    }
+    
+    public DeliveryOrigin RawMaterialOrder.getOrigin() {
+        return this.origin;
+    }
+    
+    public void RawMaterialOrder.setOrigin(DeliveryOrigin origin) {
+        this.origin = origin;
     }
     
 }

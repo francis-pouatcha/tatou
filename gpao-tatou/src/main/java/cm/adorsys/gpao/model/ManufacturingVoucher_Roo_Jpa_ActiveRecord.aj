@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 privileged aspect ManufacturingVoucher_Roo_Jpa_ActiveRecord {
     
-    public static final List<String> ManufacturingVoucher.fieldNames4OrderClauseFilter = java.util.Arrays.asList("reference", "createDate", "createdBy", "documentState", "customerOrder", "customer", "delayDate");
+    public static final List<String> ManufacturingVoucher.fieldNames4OrderClauseFilter = java.util.Arrays.asList("reference", "createDate", "createdBy", "documentState", "customerOrder", "customer", "delayDate", "origin");
     
     public static long ManufacturingVoucher.countManufacturingVouchers() {
         return entityManager().createQuery("SELECT COUNT(o) FROM ManufacturingVoucher o", Long.class).getSingleResult();
