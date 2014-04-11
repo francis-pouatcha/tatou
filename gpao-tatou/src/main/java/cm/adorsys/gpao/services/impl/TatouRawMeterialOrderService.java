@@ -1,5 +1,6 @@
 package cm.adorsys.gpao.services.impl;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -14,9 +15,11 @@ import cm.adorsys.gpao.model.CustomerOrderItem;
 import cm.adorsys.gpao.model.DocumentStates;
 import cm.adorsys.gpao.model.ManufacturingVoucher;
 import cm.adorsys.gpao.model.ManufacturingVoucherItem;
+import cm.adorsys.gpao.model.Product;
 import cm.adorsys.gpao.model.ProductIntrant;
 import cm.adorsys.gpao.model.RawMaterialOrder;
 import cm.adorsys.gpao.model.RawMaterialOrderItem;
+import cm.adorsys.gpao.model.excepions.InsufficientRawMaterialException;
 import cm.adorsys.gpao.security.SecurityUtil;
 import cm.adorsys.gpao.services.IManufacturingVoucherService;
 import cm.adorsys.gpao.services.IProductService;
@@ -32,7 +35,7 @@ public class TatouRawMeterialOrderService implements IRawMaterialOrderService{
 	@Autowired
 	IManufacturingVoucherService manufacturingVoucherService;
 	@Override
-	public RawMaterialOrder generateRawMaterialOrderFromManufacturingVoucher(ManufacturingVoucher manufacturingVoucher) {
+	public RawMaterialOrder generateRawMaterialOrderFromManufacturingVoucher(ManufacturingVoucher manufacturingVoucher) throws InsufficientRawMaterialException {
 		Assert.notNull(manufacturingVoucher, "The manufacturing voucher should not be null here");
 		List<ManufacturingVoucherItem> manufacturingVoucherItems = ManufacturingVoucherItem.findManufacturingVoucherItemsByManufacturingVoucher(manufacturingVoucher).getResultList();
 		Assert.notNull(manufacturingVoucherItems, "No manufacturing voucher items found");
@@ -62,18 +65,31 @@ public class TatouRawMeterialOrderService implements IRawMaterialOrderService{
 		rawMaterialOrder.setDocRef(manufacturingVoucher.getReference());
 		return rawMaterialOrder;
 	}
-	public RawMaterialOrderItem createRawMaterialOrderItem(RawMaterialOrder rawMaterialOrder,ManufacturingVoucherItem manufacturingVoucherItem,List<ProductIntrant> productIntrants){
+	public RawMaterialOrderItem createRawMaterialOrderItem(RawMaterialOrder rawMaterialOrder,ManufacturingVoucherItem manufacturingVoucherItem,List<ProductIntrant> productIntrants) throws InsufficientRawMaterialException{
 		Assert.notNull(rawMaterialOrder, "The raw material order should not be null here");
 		Assert.notNull(manufacturingVoucherItem, "The raw material order item should not be null here");
 		Assert.notEmpty(productIntrants, "The product intrant should not be null here");
 		RawMaterialOrderItem rawMaterialOrderItem = new RawMaterialOrderItem();
 		for (ProductIntrant productIntrant : productIntrants) {
 			rawMaterialOrderItem.setProduct(productIntrant.getRawMaterial());
-			rawMaterialOrderItem.setQuantity(manufacturingVoucherItem.getQuantity().multiply(productIntrant.getQuantity()));
+			BigDecimal rawMaterialOrderItemQuantity = manufacturingVoucherItem.getQuantity().multiply(productIntrant.getQuantity());
+			Product rawMaterial = productIntrant.getRawMaterial();
+			if(!checkSufficientRawMaterial(rawMaterialOrderItemQuantity, rawMaterial)) {
+				throw new InsufficientRawMaterialException(rawMaterialOrderItemQuantity, rawMaterial.getVirtualStock(), rawMaterial,"Impossible de traiter ce bon. Cause : Manque de matiere premiere en stock.");
+			}
+			updateProductVirtualStock(rawMaterial,rawMaterialOrderItemQuantity);
+			rawMaterialOrderItem.setQuantity(rawMaterialOrderItemQuantity);
 			rawMaterialOrderItem.setUdm(productIntrant.getUdm());
 		}
 		rawMaterialOrderItem.setRawMaterialOrder(rawMaterialOrder);
 		return rawMaterialOrderItem;
+	}
+	private void updateProductVirtualStock(Product product,BigDecimal rawMaterialOrderItemQuantity) {
+		product.setVirtualStock(product.getVirtualStock().subtract(rawMaterialOrderItemQuantity));
+		product.merge();
+	}
+	private boolean checkSufficientRawMaterial(BigDecimal rawMaterialOrderItemQuantity,Product product) {
+		return product.getVirtualStock().compareTo(rawMaterialOrderItemQuantity) >= 0;
 	}
 
 	public boolean areThereEnoughRawMaterial(CustomerOrderItem customerOrderItem) {

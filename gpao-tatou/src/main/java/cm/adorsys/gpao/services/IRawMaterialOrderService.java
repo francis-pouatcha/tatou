@@ -8,11 +8,12 @@ import cm.adorsys.gpao.model.ManufacturingVoucherItem;
 import cm.adorsys.gpao.model.ProductIntrant;
 import cm.adorsys.gpao.model.RawMaterialOrder;
 import cm.adorsys.gpao.model.RawMaterialOrderItem;
+import cm.adorsys.gpao.model.excepions.InsufficientRawMaterialException;
 
 public interface IRawMaterialOrderService {
 
-	public RawMaterialOrder generateRawMaterialOrderFromManufacturingVoucher(ManufacturingVoucher manufacturingVoucher);
+	public RawMaterialOrder generateRawMaterialOrderFromManufacturingVoucher(ManufacturingVoucher manufacturingVoucher) throws InsufficientRawMaterialException;
 	public RawMaterialOrder createRawMaterialOrder(ManufacturingVoucher manufacturingVoucher);
-	public RawMaterialOrderItem createRawMaterialOrderItem(RawMaterialOrder rawMaterialOrder,ManufacturingVoucherItem manufacturingVoucherItem,List<ProductIntrant> productIntrants);
+	public RawMaterialOrderItem createRawMaterialOrderItem(RawMaterialOrder rawMaterialOrder,ManufacturingVoucherItem manufacturingVoucherItem,List<ProductIntrant> productIntrants) throws InsufficientRawMaterialException;
 	public boolean areThereEnoughRawMaterial(CustomerOrderItem customerOrderItem) ;
 }

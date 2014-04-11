@@ -157,7 +157,8 @@
 		});
 		$('#validerBtn').click(function() {
 			var url = '${validated_url}';
-			window.location = url ;
+			alert('Work in progress, results are comming soon.');
+// 			window.location = url ;
 		});
 		$('#deliveryBtn').click(function() {
 			var url = '${delivery_url}';

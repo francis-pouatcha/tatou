@@ -14,7 +14,7 @@
 	<div class="row-fluid">
 		<c:if test="${not empty product.id }">
 			<spring:url value="/products/addOrEditForm/stock?id=${product.id }&amp;form" var="back_to_product_view_url" />
-			<a class="btn" href="${back_to_product_view_url }">Retour sur la vue du produit</a>
+			<a class="btn a-btn" href="${back_to_product_view_url }">Retour sur la vue du produit</a>
 		</c:if>
 		<DIV class="span5">
 			<form:update method="POST"
