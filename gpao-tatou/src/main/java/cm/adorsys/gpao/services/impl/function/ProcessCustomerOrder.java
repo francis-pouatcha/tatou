@@ -155,7 +155,7 @@ public class ProcessCustomerOrder implements Fonction<CustomerOrderItem,Void>{
 		if(this.delivery == null) {
 			Company company = Company.findCompany(new Long(0));
 			this.delivery = new Delivery();
-			delivery.setOrigin(DeliveryOrigin.PRODUCTION);
+			delivery.setOrigin(DeliveryOrigin.STOCK);
 			delivery.setCompany(company);
 			delivery.setCreatedDate(new Date());
 			delivery.setCurreny(customerOrder.getCurrency());
