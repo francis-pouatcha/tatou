@@ -33,7 +33,7 @@
 						
 					<c:forEach items="${productintrants}" var="productintrant">
 						<tr id="${productintrant.id}">
-							<td>${productintrant.product.name}</td>
+							<td>${productintrant.rawMaterial.name}</td>
 							<td style="text-align: center;">${productintrant.rawMaterial.famille.name}</td>
 							<td style="text-align: center;">${productintrant.quantity}</td>
 							<td style="text-align: center;">${productintrant.udm.name}</td>

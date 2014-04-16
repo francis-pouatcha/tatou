@@ -147,6 +147,7 @@ public class ProcessCustomerOrder implements Fonction<CustomerOrderItem,Void>{
 			purchaseOrder.setOrderState(DocumentStates.BROUILLON);
 			purchaseOrder.setSupplier(Partner.findAllPartners().iterator().next());
 			purchaseOrder.setReference(GpaoSequenceGenerator.getSequence(Long.valueOf(7), GpaoSequenceGenerator.PORCHASE_SEQUENCE_PREFIX));
+			purchaseOrder.setDocRef(customerOrder.getReference());
 			purchaseOrder.persist();
 		}
 	}

@@ -135,17 +135,26 @@ public class ManufacturingVoucherController extends AbstractOrderController {
                populateEditForm(uiModel, manufacturingVoucher);
                return "manufacturingvouchers/manufacturingvoucherView";
            }
-           doBusiness(manufacturingVoucher);
+           doValidationBusiness(manufacturingVoucher);
 	       populateEditForm(uiModel, manufacturingVoucher);
 		} catch (Exception e) {
 			uiModel.addAttribute(MessageType.ERROR_MESSAGE, e.getMessage());
 	       	populateEditForm(uiModel, ManufacturingVoucher.findManufacturingVoucher(manufacturingVoucherId));
+		}finally{
+			
 		}
         return "manufacturingvouchers/manufacturingvoucherView";
     }
 
+    /**
+     * Validate the manufacturing voucher.
+     * We have separated this method from the controller itself, because, we wanted to handle the transactional behaviour on it.
+     * @param manufacturingVoucher
+     * @return
+     * @throws InsufficientRawMaterialException
+     */
     @Transactional(rollbackFor=Throwable.class)
-    protected boolean doBusiness(ManufacturingVoucher manufacturingVoucher) throws InsufficientRawMaterialException {
+    protected boolean doValidationBusiness(ManufacturingVoucher manufacturingVoucher) throws InsufficientRawMaterialException {
 
         boolean validateManufacturingVoucher = manufacturingVoucherService.validateManufacturingVoucher(manufacturingVoucher);
         if(validateManufacturingVoucher) {

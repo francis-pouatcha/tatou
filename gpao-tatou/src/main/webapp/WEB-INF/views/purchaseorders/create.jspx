@@ -22,6 +22,7 @@
         <field:select field="tender" id="c_cm_adorsys_gpao_model_PurchaseOrder_tender" itemValue="id" items="${tenderses}" path="/tenderses" z="p8WGD0a+Si+Z+zGe5MiRHe87TBw="/>
         <field:checkbox field="archived" id="c_cm_adorsys_gpao_model_PurchaseOrder_archived" z="2+87Z11XO6dhewXUh/VjqxX/ChI="/>
         <field:select field="saleTaxes" id="c_cm_adorsys_gpao_model_PurchaseOrder_saleTaxes" itemValue="id" items="${taxes}" multiple="true" path="/taxes" z="AAfAG7R/aVRpE4PAJTAvXX34ArY="/>
+        <field:input field="docRef" id="c_cm_adorsys_gpao_model_PurchaseOrder_docRef" z="eYQyAE6NiRVSG3AxVatKZhiH1EM="/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_cm_adorsys_gpao_model_PurchaseOrder" render="${not empty dependencies}" z="WZWuLbTqT/PN/xmWMGD7uMAg4jc="/>
 </div>

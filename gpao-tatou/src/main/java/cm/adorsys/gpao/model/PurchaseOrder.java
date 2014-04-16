@@ -40,8 +40,8 @@ import org.springframework.roo.addon.json.RooJson;
  */
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord(inheritanceType = "TABLE_PER_CLASS")
 @RooJson
+@RooJpaActiveRecord(inheritanceType = "TABLE_PER_CLASS", finders = { "findPurchaseOrdersByDocRefEquals" })
 public class PurchaseOrder extends GpaoBaseEntity {
 
     @NotNull
@@ -103,6 +103,14 @@ public class PurchaseOrder extends GpaoBaseEntity {
     /** appel d'offre. */
     @ManyToOne
     private Tenders tender;
+
+    @ManyToMany
+    private Set<Taxe> saleTaxes = new HashSet<Taxe>();
+
+    /**
+     * reference of the entity (if any) used to generate this purchase order.
+     */
+    private String docRef;
 
     public void initAmount() {
         amountHt = BigDecimal.ZERO;
@@ -229,7 +237,4 @@ public class PurchaseOrder extends GpaoBaseEntity {
         this.taxeAmount = taxesAmount;
         this.totalAmount = this.amountHt.add(taxeAmount);
     }
-
-    @ManyToMany
-    private Set<Taxe> saleTaxes = new HashSet<Taxe>();
 }

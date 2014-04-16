@@ -691,3 +691,10 @@ focus --class ~.model.RawMaterialOrder
 field enum --fieldName origin --type ~.model.DeliveryOrigin
 focus --class ~.model.CustomerOrder
 field date --fieldName deliveryDate --type java.util.Date --dateTimeFormatPattern "dd-MM-yyyy hh:mm" --notNull 
+focus --class ~.model.PurchaseOrder 
+field string --fieldName docRef
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log closed at 2014-04-16 10:55:35
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-04-16 10:57:12
+focus --class ~.model.PurchaseOrder
+finder list 
+finder add --finderName findPurchaseOrdersByDocRefEquals

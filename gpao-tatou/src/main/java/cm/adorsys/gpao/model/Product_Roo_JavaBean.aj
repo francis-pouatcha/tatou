@@ -167,7 +167,6 @@ privileged aspect Product_Roo_JavaBean {
     public void Product.setProductImage(MultipartFile productImage) {
         this.productImage = productImage;
     }
-
     
     public String Product.getProductImagePath() {
         return this.productImagePath;

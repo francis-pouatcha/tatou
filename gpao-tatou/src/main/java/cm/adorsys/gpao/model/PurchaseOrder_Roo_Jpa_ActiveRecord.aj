@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 privileged aspect PurchaseOrder_Roo_Jpa_ActiveRecord {
     
-    public static final List<String> PurchaseOrder.fieldNames4OrderClauseFilter = java.util.Arrays.asList("reference", "supplier", "orderDate", "received", "invoiced", "isValided", "validatedBy", "validateDate", "amountHt", "taxeAmount", "totalAmount", "orderState", "createdBy", "created", "currency", "orderItems", "company", "tender", "saleTaxes");
+    public static final List<String> PurchaseOrder.fieldNames4OrderClauseFilter = java.util.Arrays.asList("reference", "supplier", "orderDate", "received", "invoiced", "isValided", "validatedBy", "validateDate", "amountHt", "taxeAmount", "totalAmount", "orderState", "createdBy", "created", "currency", "orderItems", "company", "tender", "saleTaxes", "docRef");
     
     public static long PurchaseOrder.countPurchaseOrders() {
         return entityManager().createQuery("SELECT COUNT(o) FROM PurchaseOrder o", Long.class).getSingleResult();

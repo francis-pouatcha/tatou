@@ -170,4 +170,12 @@ privileged aspect PurchaseOrder_Roo_JavaBean {
         this.saleTaxes = saleTaxes;
     }
     
+    public String PurchaseOrder.getDocRef() {
+        return this.docRef;
+    }
+    
+    public void PurchaseOrder.setDocRef(String docRef) {
+        this.docRef = docRef;
+    }
+    
 }

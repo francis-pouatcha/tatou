@@ -31,9 +31,7 @@ public class OrderItems extends GpaoBaseEntity {
 
     private BigDecimal quantity = BigDecimal.ONE;
 
-    ;
-
-    private BigDecimal subTotal;
+    private BigDecimal subTotal = BigDecimal.ZERO;
 
     /*
      private BigDecimal taxedSubTotal;

@@ -56,6 +56,11 @@ public class ManufacturingVoucher extends GpaoBaseEntity {
     @DateTimeFormat(pattern = "dd-MM-yyy HH:mm")
     private Date delayDate;
 
+    /**
+     */
+    @Enumerated
+    private DeliveryOrigin origin;
+
     @PostPersist
     public void postPersist() {
         reference = GpaoSequenceGenerator.getSequence(getId(), GpaoSequenceGenerator.MANUFACTURINGVOUCHER_SEQUENSE_PREFIX);
@@ -74,9 +79,4 @@ public class ManufacturingVoucher extends GpaoBaseEntity {
         q.setParameter("id", id);
         return q;
     }
-
-    /**
-     */
-    @Enumerated
-    private DeliveryOrigin origin;
 }
