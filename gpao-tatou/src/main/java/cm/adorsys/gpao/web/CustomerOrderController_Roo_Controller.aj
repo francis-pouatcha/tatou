@@ -96,6 +96,7 @@ privileged aspect CustomerOrderController_Roo_Controller {
     
     void CustomerOrderController.addDateTimeFormatPatterns(Model uiModel) {
         uiModel.addAttribute("customerOrder_orderdate_date_format", "dd-MM-yyyy HH:mm");
+        uiModel.addAttribute("customerOrder_deliverydate_date_format", "dd-MM-yyyy hh:mm");
     }
     
     String CustomerOrderController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

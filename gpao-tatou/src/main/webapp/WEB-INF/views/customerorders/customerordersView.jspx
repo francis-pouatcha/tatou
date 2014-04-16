@@ -59,6 +59,7 @@
 					        		<field:gpao-display hiddenfield="true" field="validatedBy" id="c_cm_adorsys_gpao_model_CustomerOrder_validatedBy" object="${customerOrder }" />
 					        	</c:when>
 					        	<c:otherwise>
+					        		<field:datetime dateTimePattern="${customerOrder_deliverydate_date_format}" field="deliveryDate" id="c_cm_adorsys_gpao_model_CustomerOrder_deliveryDate" required="true" z="NuMa9AViKM2wffj4pPHKHBZCrc4="/>
 					        		<field:datetime dateTimePattern="${customerOrder_orderdate_date_format}" field="orderDate" id="c_cm_adorsys_gpao_model_CustomerOrder_orderDate" z="fA/cypjgI+V9MPSppGs+2cPPERM="/>
 									<field:input-hidden object="${customerOrder }" field="createdBy" id="c_cm_adorsys_gpao_model_CustomerOrder_createdBy" />
 									<field:input-hidden object="${customerOrder }" field="validated" id="c_cm_adorsys_gpao_model_CustomerOrder_validated" />

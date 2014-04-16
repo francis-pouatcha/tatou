@@ -3,7 +3,6 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.EntityManager;
 import javax.persistence.Enumerated;
@@ -16,17 +15,15 @@ import javax.persistence.TemporalType;
 import javax.persistence.TypedQuery;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
-
 import cm.adorsys.gpao.security.SecurityUtil;
 import cm.adorsys.gpao.utils.GpaoSequenceGenerator;
-
 import org.springframework.roo.addon.json.RooJson;
+
 /**
  * bon de commande interne.
  * @author bwa
@@ -69,7 +66,7 @@ public class CustomerOrder extends GpaoBaseEntity {
 
     /**
      */
-    @ManyToMany(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Taxe> taxes = new HashSet<Taxe>();
 
     /**
@@ -122,4 +119,11 @@ public class CustomerOrder extends GpaoBaseEntity {
         q.setParameter("id", id);
         return q;
     }
+
+    /**
+     */
+    @NotNull
+    @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "dd-MM-yyyy hh:mm")
+    private Date deliveryDate;
 }

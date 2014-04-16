@@ -17,5 +17,6 @@
         <field:display field="orderState" id="s_cm_adorsys_gpao_model_CustomerOrder_orderState" object="${customerorder}" z="yFiwXR1F/tRXm2BkEiddnGxdtCo="/>
         <field:display field="currency" id="s_cm_adorsys_gpao_model_CustomerOrder_currency" object="${customerorder}" z="zf98kdccCafA8gNccBZvR2ues1Y="/>
         <field:display field="customer" id="s_cm_adorsys_gpao_model_CustomerOrder_customer" object="${customerorder}" z="8QznIn4AE/qncDkAMK/iyj9UQCk="/>
+        <field:display date="true" dateTimePattern="${customerOrder_deliverydate_date_format}" field="deliveryDate" id="s_cm_adorsys_gpao_model_CustomerOrder_deliveryDate" object="${customerorder}" z="Puiv9OHhF3pzoITnIsXudygSqqI="/>
     </page:show>
 </div>

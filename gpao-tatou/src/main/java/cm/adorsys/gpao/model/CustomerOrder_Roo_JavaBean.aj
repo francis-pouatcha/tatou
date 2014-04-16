@@ -118,4 +118,12 @@ privileged aspect CustomerOrder_Roo_JavaBean {
         this.customer = customer;
     }
     
+    public Date CustomerOrder.getDeliveryDate() {
+        return this.deliveryDate;
+    }
+    
+    public void CustomerOrder.setDeliveryDate(Date deliveryDate) {
+        this.deliveryDate = deliveryDate;
+    }
+    
 }

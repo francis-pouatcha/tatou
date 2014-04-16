@@ -689,3 +689,5 @@ finder list
 field enum --fieldName origin --type ~.model.DeliveryOrigin
 focus --class ~.model.RawMaterialOrder
 field enum --fieldName origin --type ~.model.DeliveryOrigin
+focus --class ~.model.CustomerOrder
+field date --fieldName deliveryDate --type java.util.Date --dateTimeFormatPattern "dd-MM-yyyy hh:mm" --notNull 

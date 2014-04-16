@@ -17,6 +17,7 @@
         <field:select field="orderState" id="c_cm_adorsys_gpao_model_CustomerOrder_orderState" items="${documentstateses}" path="documentstateses" z="LcEi3MUmJVgIDROw55O2/UPYC4g="/>
         <field:select field="currency" id="c_cm_adorsys_gpao_model_CustomerOrder_currency" itemValue="id" items="${devises}" path="/devises" z="L9q+3pjJXRvB2CcnR5+gNuGqnlY="/>
         <field:select field="customer" id="c_cm_adorsys_gpao_model_CustomerOrder_customer" itemValue="id" items="${partners}" path="/partners" required="true" z="BPrJOlRx+nKKYWSQnl4ASlR7HPc="/>
+        <field:datetime dateTimePattern="${customerOrder_deliverydate_date_format}" field="deliveryDate" id="c_cm_adorsys_gpao_model_CustomerOrder_deliveryDate" required="true" z="NuMa9AViKM2wffj4pPHKHBZCrc4="/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_cm_adorsys_gpao_model_CustomerOrder" render="${not empty dependencies}" z="vDumo+UZp0bGpoa5NexaStQ3pP8="/>
 </div>
