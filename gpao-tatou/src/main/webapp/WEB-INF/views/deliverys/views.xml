@@ -13,4 +13,7 @@
 <definition extends="default" name="deliverys/update">
         <put-attribute name="body" value="/WEB-INF/views/deliverys/update.jspx"/>
     </definition>
+    <definition extends="stock" name="deliverys/deliverysView">
+        <put-attribute name="body" value="/WEB-INF/views/deliverys/deliverysView.jspx"/>
+    </definition>
 </tiles-definitions>

@@ -3,7 +3,7 @@
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <page:list id="pl_cm_adorsys_gpao_model_Delivery" items="${deliverys}" showInPanel="false" z="user-managed">
-        <table:table create="false" data="${deliverys}" delete="false" id="l_cm_adorsys_gpao_model_Delivery" path="/deliverys" queryParam="true" update="false" z="user-managed">
+        <table:table create="false" data="${deliverys}" delete="false" id="l_cm_adorsys_gpao_model_Delivery" path="/deliverys/addOrEditForm" queryParam="true" update="false" z="user-managed">
             <table:column id="c_cm_adorsys_gpao_model_Delivery_archived" property="archived" render="false" z="user-managed"/>
             <table:column id="c_cm_adorsys_gpao_model_Delivery_reference" property="reference" z="hdHy7xt3A708D12OlWRhwjeFy3Q="/>
             <table:column id="c_cm_adorsys_gpao_model_Delivery_quantity" property="quantity" render="false" z="Mk2sQwebqdcQUxceRGC+7vUZ7BY="/>

@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<span xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields"
+	xmlns:spring="http://www.springframework.org/tags"
+	xmlns:form="urn:jsptagdir:/WEB-INF/tags/form"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:security="http://www.springframework.org/security/tags"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions" version="2.0"
+	style="margin: 10px;"> <jsp:directive.page
+		contentType="text/html;charset=UTF-8" /> <jsp:output
+		omit-xml-declaration="yes" /> <!-- liste of link to use on this page  -->
+	<spring:url value="/deliverys/findProductByNameLike/"
+		var="search_url" /> <spring:url
+		value="/deliverys/findProductFromPurcharseOrder/${delivery.id}"
+		var="search_fromOrder_url" /> <spring:url
+		value="/deliverys/getSelectedProduct/" var="selected_url" /> <spring:url
+		value="/deliverys/getUdmListFromUdmGroup/" var="udmList_url" />
+	<spring:url value="/deliverys/${delivery.id}/addOrderItem?"
+		var="add_url" /> <spring:url
+		value="/deliverys/${delivery.id}/caculated" var="calcul_url" />
+	<spring:url value="/deliverys/${delivery.id}/validatedOrder"
+		var="validated_url" /> 
+		<spring:url value="/deliverys/${delivery.id}/validatedOrderAndGenerate"
+		var="validated_and_generate_manufacturingvoucher_url" /> <spring:url
+		value="/deliverys/${delivery.id}/removeOrderItem?itemid="
+		var="remove_url" />
+	<spring:url value="/deliverys/${delivery.id}/cancel" var="cancel_url" />
+	<spring:url value="/deliverys/${delivery.id}/close" var="close_url" />  
+	<spring:url value="/tenderses/tenderNote/"
+		var="print_tender_url" /> <spring:url
+		value="/resources/images/ajax-loader.gif" var="loadimage" /> <!-- Modal -->
+	<spring:url value="/deliverys/listByDocRef/${delivery.reference}"
+		var="delivery_url" /> <c:set value="false" var="whithTender" />
+	 <div id="dialog_simple" title="Rehercher des Articles">
+	 annulerBtn
+	 <div  style="margin-bottom: 10px;">
+			<table >
+						<thead>
+							<tr>
+								<th style="text-align: center;">reference</th>
+								<th style="text-align: center;">famille</th>
+								<th style="text-align: center;">udm</th>
+								<th style="text-align: center;">qte cmd</th>
+								<th style="text-align: center;">prix</th>
+								<th style="text-align: center;">action</th>
+							</tr>
+						</thead>
+						
+						<tbody>
+                               <form id="orderitem">
+                               <tr>
+								<td style="text-align: center; padding: 0px;"><input style="width: 94%;" type="text" id="productName" name="productName"
+									placeholder="designation" /> 
+									<input type="hidden" id="productId" name="productId" /></td>
+								<td style="text-align: center;"><input style="width: 94%;"  type="text" id="familleName" readonly="readonly" name="familleName" /></td>
+								<td style="text-align: center;"><select id="udm" style="width: 100px;" name="udm" > </select></td>
+								<td style="text-align: center;"><input style="width: 100px;" type="text" id="quantity" name="quantity"
+									placeholder="quantite" /></td>
+								<td style="text-align: center;"><input style="width: 100px;" type="text" id="unitPrice" name="unitPrice"
+									placeholder="prix Unitaire" /></td>
+								<td> <button id="save" type="submit" class="btn-success">Enregistrer</button></td>
+							 </tr>
+								</form>
+
+						</tbody>
+					</table>
+					
+				</div>
+		<div >
+		
+				<span style="color: maroon;"> Zone de recherche</span>
+				<div style="height: 300px; overflow-y: auto; " >
+					<div id="searchzone" class="input-append">
+					<form id="test">
+					<center>
+						<input autofocus="true"   style="font-size: 22px ; font-weight: bold; color: blue; width: 80%; height: 30px;" id="searchText" type="text" />
+					</center>
+					</form>
+					</div> 
+					<table id="products">
+						<thead>
+							<tr>
+								<th style="text-align: center;">#</th>
+								<th style="text-align: center;">reference</th>
+								<th style="text-align: center;">famille</th>
+								<th style="text-align: center;">udm</th>
+								<th style="text-align: center;">Devise</th>
+								<th style="text-align: center;">prix</th>
+							</tr>
+						</thead>
+						<tbody>
+
+
+						</tbody>
+					</table>
+				</div>
+
+		</div>
+    </div>
+    
+ <SCRIPT type="text/javascript">
+	// Dialog Simple
+	$('#dialog_simple').dialog({
+	autoOpen: false,
+	width: 800,
+	modal:true,
+	buttons: {
+	"FERMER": function () {
+	$(this).dialog("close");
+	}
+	}
+	});
+		function selectRow(row) {
+			unselectRow(row);
+			$(row).addClass('row-selected');
+		};
+
+		function unselectRow() {
+			$(row).removeClass("row-selected");
+		};
+
+		function addRowClickListener(tableid) {
+			var table = '#' + tableid + ' tr' ;
+			$(table).each(function() {
+				this.onclick = function(event) {
+					getSelected(this.id);
+				};
+			});
+
+		};
+		function addrow(data){
+			var table = '#' + data +' tbody';
+			 $(table).append(rowTemplate) ;
+		};
+		
+		function cleartable(tableid){
+			var table = '#' + tableid +' tbody';
+			$(table).empty();
+			
+		};
+		$('#addBtn').click(function() {
+			$('#dialog_simple').dialog('open');
+			return false;
+		});
+	    $('#search').on('shown', function () {
+	    	var whithtender = ${whithTender} ;
+	    	if(whithtender){
+	    		$('div#searchzone').hide();
+	    		searchProduct();
+	    	}
+	        });
+		$('#delBtn').click(function() {
+			window.location = urlFromSelectedRow('orderIdems');
+			return false;
+		});
+		$('#validerBtn').click(function() {
+			var url = '${validated_url}';
+			/* if(window.confirm('Voulez vous simplement valider cette commande et rien d\'autre ?')){
+				window.location = url ;
+			} */
+			alert('work in progress ...');
+		});
+
+		$('#deliveryBtn').click(function() {
+			var url = '${delivery_url}';
+			window.open(url) ;
+		});
+		$('#cancelBtn').click(function(){
+			var url = '${cancel_url}';
+			window.open(url) ;
+		});
+		$('#closeBtn').click(function(){
+			var url = '${close_url}';
+			window.open(url) ;
+		});
+		$('#print_tender_btn').click(function() {
+			var selected_tender = $('#_tender_id :selected').text();
+			var whithtender = ${whithTender} ;
+	    	if(whithtender){
+	    		selected_tender = '${tenderRef}';
+	    	};
+			if(selected_tender){
+				var url = '${print_tender_url}'+selected_tender+'.pdf';
+				window.location = url ;
+			}else{
+				alert("selectionner un appel d offre");
+			}
+			
+		});
+		
+		
+		
+		$('#checkall').change(function() {
+			toggleAllRowFrom('orderIdems');
+			return false;
+		});
+		$('#calculBtn').click(function() {
+			var url = '${calcul_url}';
+			window.location = url ;
+		});
+		
+		
+		$('form#orderitem').submit(function() {
+			addOrderItem();
+			return false ;
+		});
+		
+		$('form#test').submit(function() {
+			searchProduct();
+			return false ;
+		});
+		
+		function removeSelectedRows(tableid) {
+			var table = '#' + tableid + ' tbody input:checkbox:checked' ;
+			$(table).parents("tr").remove();
+			$('#checkall').prop('checked', false);
+
+		};
+		
+		function toggleAllRowFrom(tableid){
+			var check = '#' + tableid + ' tbody input[type=checkbox]' ;
+			$(check).each(function() {
+			    $(this).prop('checked', $('#checkall').is(':checked'));
+			});
+			
+		}
+		
+		function urlFromSelectedRow(tableid){
+			var  url = '${remove_url}' ;
+			var check = '#' + tableid + ' tbody input:checkbox:checked' ;
+			$(check).each(function() {
+				url = url+$(this).parents("tr").attr('id')+',' ;
+			});
+			return url ;
+		}
+		
+		
+		function searchProduct(){
+			var whithtender = ${whithTender} ;
+			var url = '${search_url}'+$('#searchText').val();
+	    	if(whithtender){
+	    		url = '${search_fromOrder_url}';
+	    	}
+			var table = '#products tbody' ;
+			cleartable('products');
+			$.getJSON( url,
+	                function(data){
+						$(data).each(function(){
+							$('#products tbody').append(
+							 '<tr id="'+this.id+'">
+							      <td>'+this.id+'</td>
+								  <td>'+this.name+'</td>
+								  <td>'+this.famille.name+'</td>
+								  <td>'+this.defaultUdm.name+'</td>
+								  <td>'+this.defaultCurrency.name+'</td>
+								  <td>'+this.purchasePrice+'</td>
+								  </tr>'
+						);
+							
+						});
+						addRowClickListener	('products');
+
+					});
+			
+		} ;
+		
+		
+		
+		function getSelected(id){
+			var url = '${selected_url}'+id;
+			$.getJSON( url,
+	                function(data){
+							$('#productId').val(data.product.id) ;
+							$('#productName').val(data.productName) ;
+							$('#familleName').val(data.product.famille.name);
+							$('#dd').text(data.productName) ;
+							$('#unitPrice').val(data.unitPrice) ;
+							$('#quantity').val(data.quantity) ;
+							$("#udm").empty();
+							getUdmList(data.udm.unitGroup.id);
+						});
+					};
+					function addOrderItem(){
+						var url = '${add_url}'+$('#orderitem').serialize() ;
+						$.getJSON( url,
+				                function(data){
+							if(data){
+							$("#orderIdems tbody").empty();
+							$(data).each(function(){
+								$('#orderIdems tbody').append(
+								 '<tr id="'+this.id+'">
+									  <td>'+this.product.name+'</td>
+									  <td style="text-align: center;">'+this.product.famille.name+'</td>
+									  <td style="text-align: center;">'+this.quantity+'</td>
+									  <td style="text-align: center;">'+this.udm.name+'</td>
+									  <td style="text-align: center;">'+this.amountHt+'</td>
+									  <td  style="text-align: center;" ><input type="checkbox" /></td>
+									  </tr>'
+							);
+								
+							});
+							alert('enregistrer avec success !');
+						}
+									});
+								};
+					
+					function getUdmList(id){
+						var url = '${udmList_url}'+id;
+						$.getJSON( url,
+				                function(data){
+										$("#udm").empty();
+										$(data).each(function(){
+											var option = $('<option></option>').attr("value", this.id).text(this.name);	
+											$("#udm").append(option);
+											
+										});
+										
+									});
+								};
+		
+	</SCRIPT>
+</span>
+
+

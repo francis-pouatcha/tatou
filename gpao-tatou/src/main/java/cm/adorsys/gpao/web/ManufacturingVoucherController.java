@@ -32,7 +32,6 @@ import cm.adorsys.gpao.model.ManufacturingVoucher;
 import cm.adorsys.gpao.model.ManufacturingVoucherItem;
 import cm.adorsys.gpao.model.Partner;
 import cm.adorsys.gpao.model.Product;
-import cm.adorsys.gpao.model.RawMaterialOrder;
 import cm.adorsys.gpao.model.Specificity;
 import cm.adorsys.gpao.model.SpecificityToCaracteristicMap;
 import cm.adorsys.gpao.model.Taxe;

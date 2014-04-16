@@ -3,16 +3,11 @@
 
 package cm.adorsys.gpao.web;
 
-import cm.adorsys.gpao.model.Company;
 import cm.adorsys.gpao.model.Delivery;
-import cm.adorsys.gpao.model.DeliveryOrigin;
 import cm.adorsys.gpao.model.Devise;
-import cm.adorsys.gpao.model.DocumentStates;
-import cm.adorsys.gpao.model.Partner;
 import cm.adorsys.gpao.web.DeliveryController;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -101,16 +96,6 @@ privileged aspect DeliveryController_Roo_Controller {
     
     void DeliveryController.addDateTimeFormatPatterns(Model uiModel) {
         uiModel.addAttribute("delivery_createddate_date_format", "dd-MM-yyyy HH:mm");
-    }
-    
-    void DeliveryController.populateEditForm(Model uiModel, Delivery delivery) {
-        uiModel.addAttribute("delivery", delivery);
-        addDateTimeFormatPatterns(uiModel);
-        uiModel.addAttribute("companys", Company.findAllCompanys());
-        uiModel.addAttribute("deliveryorigins", Arrays.asList(DeliveryOrigin.values()));
-        uiModel.addAttribute("devises", Devise.findAllDevises());
-        uiModel.addAttribute("documentstateses", Arrays.asList(DocumentStates.values()));
-        uiModel.addAttribute("partners", Partner.findAllPartners());
     }
     
     String DeliveryController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {
