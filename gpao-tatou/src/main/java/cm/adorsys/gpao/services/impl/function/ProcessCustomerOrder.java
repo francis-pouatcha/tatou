@@ -173,7 +173,7 @@ public class ProcessCustomerOrder implements Fonction<CustomerOrderItem,Void>{
 			manufacturingVoucher.setCreatedBy(SecurityUtil.getUserName());
 			manufacturingVoucher.setCustomer(customerOrder.getCustomer());
 			manufacturingVoucher.setCustomerOrder(customerOrder);
-			manufacturingVoucher.setDelayDate(DateUtils.addDays(new Date(), 30));
+			manufacturingVoucher.setDelayDate(customerOrder.getDeliveryDate());
 			manufacturingVoucher.setDocumentState(DocumentStates.BROUILLON);
 			manufacturingVoucher.setOrigin(DeliveryOrigin.GENERATED);
 			manufacturingVoucher.persist();
