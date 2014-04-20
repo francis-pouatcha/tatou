@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_cm_adorsys_gpao_model_RawMaterialDeliveryNote" object="${rawmaterialdeliverynote}" path="/rawmaterialdeliverynotes" z="0cjDSWULGcudEdsVpgKN4tWsBFQ=">
+        <field:display field="archived" id="s_cm_adorsys_gpao_model_RawMaterialDeliveryNote_archived" object="${rawmaterialdeliverynote}" z="TJpD/8mxS36AX5yZSyXZK0TPTto="/>
+        <field:display field="reference" id="s_cm_adorsys_gpao_model_RawMaterialDeliveryNote_reference" object="${rawmaterialdeliverynote}" z="TCIdbJD2aeOsWZKg7/+vMHAUzUc="/>
+        <field:display date="true" dateTimePattern="${rawMaterialDeliveryNote_orderdate_date_format}" field="orderDate" id="s_cm_adorsys_gpao_model_RawMaterialDeliveryNote_orderDate" object="${rawmaterialdeliverynote}" z="FNlvwYevQUC0hKJbcUeJW9385MU="/>
+        <field:display field="createdBy" id="s_cm_adorsys_gpao_model_RawMaterialDeliveryNote_createdBy" object="${rawmaterialdeliverynote}" z="UErEnA6pwKG4L8/V6wspY7uMpXs="/>
+        <field:display field="validated" id="s_cm_adorsys_gpao_model_RawMaterialDeliveryNote_validated" object="${rawmaterialdeliverynote}" z="ItERhuSjidmEg3D27QqUrcwn1tg="/>
+        <field:display field="orderState" id="s_cm_adorsys_gpao_model_RawMaterialDeliveryNote_orderState" object="${rawmaterialdeliverynote}" z="QdF3CeYR/WB5ZnXRjl3CllM1CY4="/>
+        <field:display field="docRef" id="s_cm_adorsys_gpao_model_RawMaterialDeliveryNote_docRef" object="${rawmaterialdeliverynote}" z="SXNeX9VWVUxuvl5A3R8Qi0lkrrk="/>
+        <field:display field="origin" id="s_cm_adorsys_gpao_model_RawMaterialDeliveryNote_origin" object="${rawmaterialdeliverynote}" z="kkMJtY6DCaWrNL8jQ36zrMkDtCs="/>
+    </page:show>
+</div>

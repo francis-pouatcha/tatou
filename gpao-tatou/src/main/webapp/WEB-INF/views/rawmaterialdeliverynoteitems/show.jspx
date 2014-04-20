@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_cm_adorsys_gpao_model_RawMaterialDeliveryNoteItem" object="${rawmaterialdeliverynoteitem}" path="/rawmaterialdeliverynoteitems" z="0pN5YX8/shN+mpImN2/owo4F9rA=">
+        <field:display field="archived" id="s_cm_adorsys_gpao_model_RawMaterialDeliveryNoteItem_archived" object="${rawmaterialdeliverynoteitem}" z="5wIuvP4Bb4Su2LulQDKV7xd9tm4="/>
+        <field:display field="rawMaterial" id="s_cm_adorsys_gpao_model_RawMaterialDeliveryNoteItem_rawMaterial" object="${rawmaterialdeliverynoteitem}" z="Kn9y5ZOMc28VHXyL4IZOtfUNtnw="/>
+        <field:display field="orderedQty" id="s_cm_adorsys_gpao_model_RawMaterialDeliveryNoteItem_orderedQty" object="${rawmaterialdeliverynoteitem}" z="tCwsm02W1zPqeayinKKKml6t+8s="/>
+        <field:display field="deliveredQty" id="s_cm_adorsys_gpao_model_RawMaterialDeliveryNoteItem_deliveredQty" object="${rawmaterialdeliverynoteitem}" z="FwZ+30VwWVKDOq3i7EF70BMtcSs="/>
+        <field:display field="undeliveredQty" id="s_cm_adorsys_gpao_model_RawMaterialDeliveryNoteItem_undeliveredQty" object="${rawmaterialdeliverynoteitem}" z="WUP4jR5/hAhtZEd8WD4xLkS0BKs="/>
+        <field:display field="rawMaterialDelveryNote" id="s_cm_adorsys_gpao_model_RawMaterialDeliveryNoteItem_rawMaterialDelveryNote" object="${rawmaterialdeliverynoteitem}" z="vGCbetwQByL3AHTe2yWRikYg9Zk="/>
+    </page:show>
+</div>

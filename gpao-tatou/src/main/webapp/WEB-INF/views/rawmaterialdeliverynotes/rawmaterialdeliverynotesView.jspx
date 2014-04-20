@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:page="urn:jsptagdir:/WEB-INF/tags/form"
+	xmlns:form="urn:jsptagdir:/WEB-INF/tags/form"
+	xmlns:util="urn:jsptagdir:/WEB-INF/tags/util"
+	xmlns:spring="http://www.springframework.org/tags"
+	xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+	<jsp:directive.page contentType="text/html;charset=UTF-8" />
+	<jsp:output omit-xml-declaration="yes" />
+	<spring:url value="/rawmaterialdeliverynotes/addOrEditForm"
+		var="add_url"></spring:url>
+	<spring:url
+		value="/rawmaterialdeliverynotes/next/${ rawMaterialDeliveryNote.id}"
+		var="next_url" />
+	<spring:url
+		value="/rawmaterialdeliverynotes/orderNote/${ rawMaterialDeliveryNote.reference}.pdf"
+		var="print_order_url" />
+	<spring:url
+		value="/rawmaterialdeliverynotes/previous/${rawMaterialDeliveryNote.id}"
+		var="previous_url" />
+	<div class="row-fluid">
+		<div class="span3">
+			<c:if test="${not empty rawMaterialDeliveryNote.id}">
+				<p>
+					Reference :<span class="label label-info">${rawMaterialDeliveryNote.reference}</span>
+				</p>
+				<P>
+					Status ? :<span class="label label-info">${rawMaterialDeliveryNote.orderState}</span>
+				</P>
+			</c:if>
+
+		</div>
+
+		<div class="span6">
+			<jsp:include page="../gpaoMessages.jspx" />
+		</div>
+		<div style="vertical-align: top; margin-left: 2%;" class="span3">
+			<c:if test="${not empty rawMaterialDeliveryNote.id}">
+				<div style="float: right;" class="pagination">
+					<ul>
+						<li><a title="vider le formulaire" href="${add_url }">Add</a></li>
+						<li><a title="Groupe preccedant" href="${previous_url }">Prev</a></li>
+						<li><a title="Groupe suivant " href="${next_url}">Next</a></li>
+					</ul>
+				</div>
+			</c:if>
+		</div>
+	</div>
+	<form:update id="fu_cm_adorsys_gpao_model_RawMaterialDeliveryNote"
+		modelAttribute="rawMaterialDeliveryNote" method="POST" showInPanel="false"
+		path="/rawmaterialdeliverynotes/addOrEdit" versionField="Version"
+		z="qPmsj/IcQ/yIw/UNXlVyFlp303A=">
+		<!-- 		        <field:checkbox field="archived" id="c_cm_adorsys_gpao_model_CustomerOrder_archived" z="+ZNlMsaLus/rfGHJuxCfkokX2bw="/> -->
+		<div class="row-fluid">
+			<div class="span12">
+				<c:choose>
+					<c:when test="${ (not empty rawMaterialDeliveryNote.id) and (rawMaterialDeliveryNote.origin eq 'CREATED')}">
+					<!-- the date is editable -->
+				        <field:datetime dateTimePattern="${rawMaterialDeliveryNote_orderdate_date_format}" field="orderDate" id="c_cm_adorsys_gpao_model_RawMaterialDeliveryNote_orderDate" z="mYbW2gHq810uGy0zPVN8ozY/k4I="/>
+				        <field:gpao-display id="c_cm_adorsys_gpao_model_RawMaterialDeliveryNote_createdBy" object="${rawMaterialDeliveryNote }" field="createdBy"/>
+				        <field:gpao-display id="c_cm_adorsys_gpao_model_RawMaterialDeliveryNote_validated" object="${rawMaterialDeliveryNote }" field="validated" isBoolean="true"/>
+				        <field:gpao-display id="c_cm_adorsys_gpao_model_RawMaterialDeliveryNote_orderState" object="${rawMaterialDeliveryNote }" field="orderState" isEnum="true" />
+				        <field:gpao-display id="c_cm_adorsys_gpao_model_RawMaterialDeliveryNote_docRef" object="${rawMaterialDeliveryNote }" field="docRef" />
+				        <field:gpao-display id="c_cm_adorsys_gpao_model_RawMaterialDeliveryNote_origin" object="${rawMaterialDeliveryNote }" field="origin" isEnum="true" />
+					</c:when>
+					<c:when test="${(not empty rawMaterialDeliveryNote.id) and (rawMaterialDeliveryNote.origin eq 'GENERATED') }">
+				        <field:gpao-display id="c_cm_adorsys_gpao_model_RawMaterialDeliveryNote_orderDate" object="${rawMaterialDeliveryNote }" field="orderDate" dateTimePattern="${rawMaterialDeliveryNote_orderdate_date_format}" />
+				        <field:gpao-display id="c_cm_adorsys_gpao_model_RawMaterialDeliveryNote_createdBy" object="${rawMaterialDeliveryNote }" field="createdBy"/>
+				        <field:gpao-display id="c_cm_adorsys_gpao_model_RawMaterialDeliveryNote_validated" object="${rawMaterialDeliveryNote }" field="validated" isBoolean="true"/>
+				        <field:gpao-display id="c_cm_adorsys_gpao_model_RawMaterialDeliveryNote_orderState" object="${rawMaterialDeliveryNote }" field="orderState" isEnum="true" />
+				        <field:gpao-display id="c_cm_adorsys_gpao_model_RawMaterialDeliveryNote_docRef" object="${rawMaterialDeliveryNote }" field="docRef" />
+				        <field:gpao-display id="c_cm_adorsys_gpao_model_RawMaterialDeliveryNote_origin" object="${rawMaterialDeliveryNote }" field="origin" isEnum="true" />
+					</c:when>
+					<c:otherwise>
+				        <field:datetime dateTimePattern="${rawMaterialDeliveryNote_orderdate_date_format}" field="orderDate" id="c_cm_adorsys_gpao_model_RawMaterialDeliveryNote_orderDate" z="mYbW2gHq810uGy0zPVN8ozY/k4I="/>
+					</c:otherwise>
+				</c:choose>
+			</div>
+		</div>
+		<div style="padding-right: 2%;" class="span10">
+			<c:if test="${not empty rawMaterialDeliveryNote.id }">
+				<c:if
+					test="${(rawMaterialDeliveryNote.orderState eq 'BROUILLON')and (rawMaterialDeliveryNote.origin eq 'CREATED')}">
+					<div class="btn-group pull-rigth" data-toggle="buttons-checkbox">
+						<button id="addBtn" type="button" class=" btn-success">Ajouter</button>
+						<button id="delBtn" type="button" class=" btn-danger">Suprimer</button>
+					</div>
+				</c:if>
+				
+			<table id="orderIdems">
+				<thead>
+					<tr>
+						<th style="text-align: center; width: 45%;">Designation</th>
+						<th style="text-align: center;">famille</th>
+						<th style="text-align: center;">Quantite commandee</th>
+						<th style="text-align: center;">Quantite Livree</th>
+						<th style="text-align: center;">Quantitee manquante</th>
+						<!-- 				<th style="text-align: center;">prix</th> -->
+						<c:if test="${rawMaterialDeliveryNote.orderState eq 'BROUILLON' }">
+							<th style="text-align: center;"><input id="checkall"
+								type="checkbox" /></th>
+						</c:if>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${rawMaterialDeliveryNoteItems}" var="items">
+						<tr id="${items.rawMaterialDeliveryNote.id}">
+							<td>${items.rawMaterial.name}</td>
+							<td style="text-align: center;">${items.rawMaterial.famille.name}</td>
+							<td style="text-align: center;">${items.orderedQty}</td>
+							<td style="text-align: center;">${items.deliveredQty}</td>
+							<td style="text-align: center;">${items.undeliveredQty}</td>
+							<c:if
+								test="${rawMaterialDeliveryNote.orderState eq 'BROUILLON' }">
+								<td style="text-align: center;"><input type="checkbox" /></td>
+							</c:if>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+			</c:if>
+			<br />
+
+		</div>
+		<div class="span2">
+			<c:if test="${ not empty rawMaterialDeliveryNote.id}">
+				<c:if test="${rawMaterialDeliveryNote.orderState eq 'BROUILLON'}">
+					<p>
+						<button id="validerBtn" class="btn-success" style="width: 100%;"
+							type="button">valider la commande</button>
+					</p>
+				</c:if>
+				<!-- p>
+					<button id="print_order_btn" class="btn-info" style="width: 100%;"
+						type="button">Imprimer le bon</button>
+				</p>
+				<c:if test="${rawMaterialDeliveryNote.orderState != 'ANNULER' }">
+					<p>
+						<button id="cancelBtn" class="btn-danger" style="width: 100%;"
+							type="button">Annuler commande</button>
+					</p>
+				</c:if>
+				<c:if test="${rawMaterialDeliveryNote.orderState eq 'VALIDER'}">
+					<p>
+						<button class="btn-info" id="deliveryBtn" style="width: 100%;"
+							type="button">Lister les livraisons</button>
+					</p>
+				</c:if>
+				<c:if test="${rawMaterialDeliveryNote.orderState eq 'VALIDER'}">
+					<p>
+						<button class="btn-info" id="closeBtn" style="width: 100%;"
+							type="button">Cloturer</button>
+					</p>
+				</c:if -->
+			</c:if>
+		</div>
+	</form:update>
+	<script>
+		$('#print_order_btn').click(function() {
+			var url = '${print_order_url}';
+			window.location = url;
+		});
+	</script>
+	<jsp:include page="rawmaterialdeliverynotes-js.jspx" />
+</div>

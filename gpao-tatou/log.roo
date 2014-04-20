@@ -698,3 +698,27 @@ field string --fieldName docRef
 focus --class ~.model.PurchaseOrder
 finder list 
 finder add --finderName findPurchaseOrdersByDocRefEquals
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-04-20 08:38:26
+entity jpa --class ~.model.RawMaterialDeliveryNote --extends ~.model.GpaoBaseEntity --inheritanceType TABLE_PER_CLASS 
+field string --fieldName reference --notNull 
+field date --fieldName orderDate --type java.util.Date --dateTimeFormatPattern "dd-MM-yyyy HH:mm"
+field string --fieldName createdBy
+field boolean --fieldName validated --value false
+field enum --fieldName orderState --type ~.model.DocumentStates
+field string --fieldName docRef
+entity jpa --class ~.model.RawMaterialDeliveryNoteItem --extends ~.model.GpaoBaseEntity --inheritanceType TABLE_PER_CLASS 
+field reference --fieldName rawMaterial --type ~.model.Product --comment "The raw material"
+field number --fieldName quantity --type java.math.BigDecimal --notNull 
+field number --fieldName orderedQty --type java.math.BigDecimal --comment "ordered quantity"
+field number --fieldName deliveredQty --type java.math.BigDecimal --comment "delivered quantity"
+field number --fieldName undeliveredQty --type java.math.BigDecimal --comment "Undelivered quantity"
+web mvc all --package ~.web
+json add --class ~.model.RawMaterialDeliveryNote
+json add --class ~.model.RawMaterialDeliveryNoteItem
+field reference --fieldName rawMaterialDelveryNote --type ~.model.RawMaterialDeliveryNote --comment "The raw material delivery note"
+focus --class ~.model.RawMaterialDeliveryNote
+field enum --fieldName origin --type ~.model.DeliveryOrigin
+focus --class ~.model.RawMaterialDeliveryNoteItem
+finder list 
+finder add --finderName findRawMaterialDeliveryNoteItemsByRawMaterialDelveryNote
+finder add --finderName findRawMaterialDeliveryNoteItemsByRawMaterial

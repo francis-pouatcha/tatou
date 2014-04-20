@@ -15,6 +15,8 @@ import cm.adorsys.gpao.model.Location;
 import cm.adorsys.gpao.model.ManufacturingVoucher;
 import cm.adorsys.gpao.model.ManufacturingVoucherItem;
 import cm.adorsys.gpao.model.ProductIntrant;
+import cm.adorsys.gpao.model.RawMaterialDeliveryNote;
+import cm.adorsys.gpao.model.RawMaterialDeliveryNoteItem;
 import cm.adorsys.gpao.model.RawMaterialOrder;
 import cm.adorsys.gpao.model.RawMaterialOrderItem;
 import cm.adorsys.gpao.model.Specificity;
@@ -296,6 +298,54 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         };
     }
     
+    public Converter<RawMaterialDeliveryNote, String> ApplicationConversionServiceFactoryBean.getRawMaterialDeliveryNoteToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<cm.adorsys.gpao.model.RawMaterialDeliveryNote, java.lang.String>() {
+            public String convert(RawMaterialDeliveryNote rawMaterialDeliveryNote) {
+                return new StringBuilder().append(rawMaterialDeliveryNote.getReference()).append(' ').append(rawMaterialDeliveryNote.getOrderDate()).append(' ').append(rawMaterialDeliveryNote.getCreatedBy()).append(' ').append(rawMaterialDeliveryNote.getDocRef()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, RawMaterialDeliveryNote> ApplicationConversionServiceFactoryBean.getIdToRawMaterialDeliveryNoteConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, cm.adorsys.gpao.model.RawMaterialDeliveryNote>() {
+            public cm.adorsys.gpao.model.RawMaterialDeliveryNote convert(java.lang.Long id) {
+                return RawMaterialDeliveryNote.findRawMaterialDeliveryNote(id);
+            }
+        };
+    }
+    
+    public Converter<String, RawMaterialDeliveryNote> ApplicationConversionServiceFactoryBean.getStringToRawMaterialDeliveryNoteConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, cm.adorsys.gpao.model.RawMaterialDeliveryNote>() {
+            public cm.adorsys.gpao.model.RawMaterialDeliveryNote convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), RawMaterialDeliveryNote.class);
+            }
+        };
+    }
+    
+    public Converter<RawMaterialDeliveryNoteItem, String> ApplicationConversionServiceFactoryBean.getRawMaterialDeliveryNoteItemToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<cm.adorsys.gpao.model.RawMaterialDeliveryNoteItem, java.lang.String>() {
+            public String convert(RawMaterialDeliveryNoteItem rawMaterialDeliveryNoteItem) {
+                return new StringBuilder().append(rawMaterialDeliveryNoteItem.getOrderedQty()).append(' ').append(rawMaterialDeliveryNoteItem.getDeliveredQty()).append(' ').append(rawMaterialDeliveryNoteItem.getUndeliveredQty()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, RawMaterialDeliveryNoteItem> ApplicationConversionServiceFactoryBean.getIdToRawMaterialDeliveryNoteItemConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, cm.adorsys.gpao.model.RawMaterialDeliveryNoteItem>() {
+            public cm.adorsys.gpao.model.RawMaterialDeliveryNoteItem convert(java.lang.Long id) {
+                return RawMaterialDeliveryNoteItem.findRawMaterialDeliveryNoteItem(id);
+            }
+        };
+    }
+    
+    public Converter<String, RawMaterialDeliveryNoteItem> ApplicationConversionServiceFactoryBean.getStringToRawMaterialDeliveryNoteItemConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, cm.adorsys.gpao.model.RawMaterialDeliveryNoteItem>() {
+            public cm.adorsys.gpao.model.RawMaterialDeliveryNoteItem convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), RawMaterialDeliveryNoteItem.class);
+            }
+        };
+    }
+    
     public Converter<RawMaterialOrder, String> ApplicationConversionServiceFactoryBean.getRawMaterialOrderToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<cm.adorsys.gpao.model.RawMaterialOrder, java.lang.String>() {
             public String convert(RawMaterialOrder rawMaterialOrder) {
@@ -553,6 +603,12 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         registry.addConverter(getPurchaseOrderToStringConverter());
         registry.addConverter(getIdToPurchaseOrderConverter());
         registry.addConverter(getStringToPurchaseOrderConverter());
+        registry.addConverter(getRawMaterialDeliveryNoteToStringConverter());
+        registry.addConverter(getIdToRawMaterialDeliveryNoteConverter());
+        registry.addConverter(getStringToRawMaterialDeliveryNoteConverter());
+        registry.addConverter(getRawMaterialDeliveryNoteItemToStringConverter());
+        registry.addConverter(getIdToRawMaterialDeliveryNoteItemConverter());
+        registry.addConverter(getStringToRawMaterialDeliveryNoteItemConverter());
         registry.addConverter(getRawMaterialOrderToStringConverter());
         registry.addConverter(getIdToRawMaterialOrderConverter());
         registry.addConverter(getStringToRawMaterialOrderConverter());

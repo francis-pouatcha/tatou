@@ -5,10 +5,8 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
 import org.springframework.stereotype.Controller;
@@ -21,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import cm.adorsys.gpao.model.Caracteristic;
 import cm.adorsys.gpao.model.Company;
 import cm.adorsys.gpao.model.CustomerOrder;
@@ -57,16 +54,16 @@ public class ManufacturingVoucherController extends AbstractOrderController {
 
     @Autowired
     IRawMaterialOrderService rawMaterialOrderService;
-    
+
     @RequestMapping(value = "/addOrEditForm", method = RequestMethod.GET)
     public String addOrEditManufacturingVoucherForm(@RequestParam(value = "id", required = false) Long id, HttpServletRequest httpServletRequest, Model uiModel) {
         ManufacturingVoucher manufacturingVoucher = null;
-        if(id == null ) {
-        	manufacturingVoucher = new ManufacturingVoucher();
-        	manufacturingVoucher.setCreateDate(new Date());
-        	manufacturingVoucher.setCreatedBy(SecurityUtil.getUserName());
-        }else {
-        	manufacturingVoucher =  ManufacturingVoucher.findManufacturingVoucher(id);
+        if (id == null) {
+            manufacturingVoucher = new ManufacturingVoucher();
+            manufacturingVoucher.setCreateDate(new Date());
+            manufacturingVoucher.setCreatedBy(SecurityUtil.getUserName());
+        } else {
+            manufacturingVoucher = ManufacturingVoucher.findManufacturingVoucher(id);
         }
         populateEditForm(uiModel, manufacturingVoucher);
         return "manufacturingvouchers/manufacturingvoucherView";
@@ -124,25 +121,24 @@ public class ManufacturingVoucherController extends AbstractOrderController {
         populateEditForm(uiModel, manufacturingVoucher);
         return "manufacturingvouchers/manufacturingvoucherView";
     }
-    
+
     @RequestMapping(value = "/{manufacturingVoucherId}/validatedVoucher", method = RequestMethod.GET)
     public String validateManufacturingVoucher(@PathVariable("manufacturingVoucherId") Long manufacturingVoucherId, Model uiModel) {
-       try {
-    	   ManufacturingVoucher manufacturingVoucher = ManufacturingVoucher.findManufacturingVoucher(manufacturingVoucherId);
-           List<ManufacturingVoucherItem> manufacturingVoucherItems = ManufacturingVoucherItem.findManufacturingVoucherItemsByManufacturingVoucher(manufacturingVoucher).getResultList();
-           if (manufacturingVoucherItems.isEmpty()) {
-               uiModel.addAttribute(MessageType.ERROR_MESSAGE, "Ce bon de fabrication interne est vide, Impossible de supprimer");
-               populateEditForm(uiModel, manufacturingVoucher);
-               return "manufacturingvouchers/manufacturingvoucherView";
-           }
-           doValidationBusiness(manufacturingVoucher);
-	       populateEditForm(uiModel, manufacturingVoucher);
-		} catch (Exception e) {
-			uiModel.addAttribute(MessageType.ERROR_MESSAGE, e.getMessage());
-	       	populateEditForm(uiModel, ManufacturingVoucher.findManufacturingVoucher(manufacturingVoucherId));
-		}finally{
-			
-		}
+        try {
+            ManufacturingVoucher manufacturingVoucher = ManufacturingVoucher.findManufacturingVoucher(manufacturingVoucherId);
+            List<ManufacturingVoucherItem> manufacturingVoucherItems = ManufacturingVoucherItem.findManufacturingVoucherItemsByManufacturingVoucher(manufacturingVoucher).getResultList();
+            if (manufacturingVoucherItems.isEmpty()) {
+                uiModel.addAttribute(MessageType.ERROR_MESSAGE, "Ce bon de fabrication interne est vide, Impossible de supprimer");
+                populateEditForm(uiModel, manufacturingVoucher);
+                return "manufacturingvouchers/manufacturingvoucherView";
+            }
+            doValidationBusiness(manufacturingVoucher);
+            populateEditForm(uiModel, manufacturingVoucher);
+        } catch (Exception e) {
+            uiModel.addAttribute(MessageType.ERROR_MESSAGE, e.getMessage());
+            populateEditForm(uiModel, ManufacturingVoucher.findManufacturingVoucher(manufacturingVoucherId));
+        } finally {
+        }
         return "manufacturingvouchers/manufacturingvoucherView";
     }
 
@@ -153,20 +149,20 @@ public class ManufacturingVoucherController extends AbstractOrderController {
      * @return
      * @throws InsufficientRawMaterialException
      */
-    @Transactional(rollbackFor=Throwable.class)
+    @Transactional(rollbackFor = Throwable.class)
     protected boolean doValidationBusiness(ManufacturingVoucher manufacturingVoucher) throws InsufficientRawMaterialException {
-
         boolean validateManufacturingVoucher = manufacturingVoucherService.validateManufacturingVoucher(manufacturingVoucher);
-        if(validateManufacturingVoucher) {
+        if (validateManufacturingVoucher) {
             rawMaterialOrderService.generateRawMaterialOrderFromManufacturingVoucher(manufacturingVoucher);
         }
         return validateManufacturingVoucher;
-	}
+    }
+
     @RequestMapping(value = "/next/{id}", method = RequestMethod.GET, produces = "text/html")
     public String getNextManufacturingVoucher(@PathVariable("id") Long id, Model uiModel) {
         List<ManufacturingVoucher> manufacturingVouchers = ManufacturingVoucher.findManufacturingVouchersByIdUpperThan(id).setMaxResults(1).getResultList();
         if (manufacturingVouchers.isEmpty()) {
-        	populateEditForm(uiModel, ManufacturingVoucher.findManufacturingVoucher(id));
+            populateEditForm(uiModel, ManufacturingVoucher.findManufacturingVoucher(id));
             uiModel.addAttribute(MessageType.ERROR_MESSAGE, "Aucun bon de fabrication interne trouve !");
             return "manufacturingvouchers/manufacturingvoucherView";
         }
@@ -178,13 +174,14 @@ public class ManufacturingVoucherController extends AbstractOrderController {
     public String getManufacturingVoucher(@PathVariable("id") Long id, Model uiModel) {
         List<ManufacturingVoucher> manufacturingVouchers = ManufacturingVoucher.findManufacturingVouchersByIdLowerThan(id).setMaxResults(1).getResultList();
         if (manufacturingVouchers.isEmpty()) {
-        	populateEditForm(uiModel, ManufacturingVoucher.findManufacturingVoucher(id));
+            populateEditForm(uiModel, ManufacturingVoucher.findManufacturingVoucher(id));
             uiModel.addAttribute(MessageType.ERROR_MESSAGE, "Aucune commande trouve !");
             return "manufacturingvouchers/manufacturingvoucherView";
         }
         populateEditForm(uiModel, manufacturingVouchers.iterator().next());
         return "manufacturingvouchers/manufacturingvoucherView";
     }
+
     private ManufacturingVoucher doAConsistantMerge(ManufacturingVoucher manufacturingVoucher) {
         try {
             manufacturingVoucher.merge();
@@ -196,7 +193,7 @@ public class ManufacturingVoucherController extends AbstractOrderController {
     }
 
     void populateEditForm(Model uiModel, ManufacturingVoucher manufacturingVoucher) {
-    	Assert.notNull(manufacturingVoucher, "The manufacturing voucher should not be not null here");
+        Assert.notNull(manufacturingVoucher, "The manufacturing voucher should not be not null here");
         uiModel.addAttribute("manufacturingVoucher", manufacturingVoucher);
         addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("documentstateses", Arrays.asList(DocumentStates.values()));
@@ -205,8 +202,7 @@ public class ManufacturingVoucherController extends AbstractOrderController {
         uiModel.addAttribute("devises", Devise.findAllDevises());
         uiModel.addAttribute("companys", Company.findAllCompanys());
         uiModel.addAttribute("taxes", Taxe.findAllTaxes());
-        if(manufacturingVoucher.getId() != null) {
-
+        if (manufacturingVoucher.getId() != null) {
             FindManufacturingVoucherItems processManufacturingVoucher = (FindManufacturingVoucherItems) manufacturingVoucherService.processManufacturingVoucher(manufacturingVoucher, new FindManufacturingVoucherItems());
             List<ManufacturingVoucherItem> manufacturingVoucherItems = processManufacturingVoucher.getManufacturingVoucherItems();
             List<ManufacturingItemUiModel> manufacturingItemUiModels = new ArrayList<ManufacturingItemUiModel>();
@@ -226,9 +222,9 @@ public class ManufacturingVoucherController extends AbstractOrderController {
                 manufacturingItemUiModels.add(manufacturingItemUiModel);
             }
             uiModel.addAttribute("manufacturingItemUiModels", manufacturingItemUiModels);
-        	uiModel.addAttribute("deliveryorigins", Arrays.asList(DeliveryOrigin.GENERATED));
-        }else {
-        	uiModel.addAttribute("deliveryorigins", Arrays.asList(DeliveryOrigin.CREATED));
+            uiModel.addAttribute("deliveryorigins", Arrays.asList(DeliveryOrigin.GENERATED));
+        } else {
+            uiModel.addAttribute("deliveryorigins", Arrays.asList(DeliveryOrigin.CREATED));
         }
     }
 }

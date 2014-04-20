@@ -6,16 +6,17 @@ package cm.adorsys.gpao.utils;
  * @author bwa
  */
 public class GpaoSequenceGenerator {
+	public static final String PORCHASE_SEQUENCE_PREFIX = "CF";
+	public static final String DELIVERY_SEQUENCE_PREFIX = "LV";
+	public static final String SUPPLY_SEQUENCE_PREFIX = "AP";
+	public static final String LOT_SEQUENCE_PREFIX = "LO";
+	public static final String ARTICLE_SEQUENCE_PREFIX = "AR";
+	public static final String INVENTORY_SEQUENCE_PREFIX = "IN";
+	public static final String TENDER_SEQUENCE_PREFIX = "AP";
+	public static final String CUSTOMER_ORDER_SEQUENCE_PREFIX = "CO";
 	public static final String MANUFACTURINGVOUCHER_SEQUENSE_PREFIX = "MF";
 	public static final String RAWMATERIAL_SEQUENSE_PREFIX = "RM";
-	public static String PORCHASE_SEQUENCE_PREFIX = "CF";
-	public static String DELIVERY_SEQUENCE_PREFIX = "LV";
-	public static String SUPPLY_SEQUENCE_PREFIX = "AP";
-	public static String LOT_SEQUENCE_PREFIX = "LO";
-	public static String ARTICLE_SEQUENCE_PREFIX = "AR";
-	public static String INVENTORY_SEQUENCE_PREFIX = "IN";
-	public static String TENDER_SEQUENCE_PREFIX = "AP";
-	public static String CUSTOMER_ORDER_SEQUENCE_PREFIX = "CO";
+	public static final String RAWMATERIAL_DELIVERY_NOTE_SEQUENCE_PREFIX = "RDN";
 
 
 	public static String getSequence(Long index ,String prefixe){

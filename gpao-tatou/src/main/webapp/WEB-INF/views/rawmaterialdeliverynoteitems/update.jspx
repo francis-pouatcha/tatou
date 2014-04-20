@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_cm_adorsys_gpao_model_RawMaterialDeliveryNoteItem" modelAttribute="rawMaterialDeliveryNoteItem" path="/rawmaterialdeliverynoteitems" versionField="Version" z="iwr2lih2+tPsR/LDq0jGY6Qukf0=">
+        <field:checkbox field="archived" id="c_cm_adorsys_gpao_model_RawMaterialDeliveryNoteItem_archived" z="jcFHzkMOWxsi1LMxaefjswi6AHo="/>
+        <field:select field="rawMaterial" id="c_cm_adorsys_gpao_model_RawMaterialDeliveryNoteItem_rawMaterial" itemValue="id" items="${products}" path="/products" z="2zW91Tk5XlHry0jCQOB69jQyWzE="/>
+        <field:input field="orderedQty" id="c_cm_adorsys_gpao_model_RawMaterialDeliveryNoteItem_orderedQty" validationMessageCode="field_invalid_number" z="8DPDbcY6rupz7aBH1K47CHw7e1o="/>
+        <field:input field="deliveredQty" id="c_cm_adorsys_gpao_model_RawMaterialDeliveryNoteItem_deliveredQty" validationMessageCode="field_invalid_number" z="WyyAm0p/5AeEvt822OBH4OEpkRk="/>
+        <field:input field="undeliveredQty" id="c_cm_adorsys_gpao_model_RawMaterialDeliveryNoteItem_undeliveredQty" validationMessageCode="field_invalid_number" z="EPzurBv0cgWstZuO0pzBSvVbBdo="/>
+        <field:select field="rawMaterialDelveryNote" id="c_cm_adorsys_gpao_model_RawMaterialDeliveryNoteItem_rawMaterialDelveryNote" itemValue="id" items="${rawmaterialdeliverynotes}" path="/rawmaterialdeliverynotes" z="dm/xhTxlhacioPO9pKxIFyeJVqU="/>
+    </form:update>
+</div>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_cm_adorsys_gpao_model_RawMaterialDeliveryNoteItem" items="${rawmaterialdeliverynoteitems}" z="cqliSt2qKbBN11XR/OH033+/uu8=">
+        <table:table data="${rawmaterialdeliverynoteitems}" id="l_cm_adorsys_gpao_model_RawMaterialDeliveryNoteItem" path="/rawmaterialdeliverynoteitems" z="DNpLfHOnRuohj5qeviavBKzbVjY=">
+            <table:column id="c_cm_adorsys_gpao_model_RawMaterialDeliveryNoteItem_archived" property="archived" z="PJQZ7UTtdW9kep12hPSWrBIqBJI="/>
+            <table:column id="c_cm_adorsys_gpao_model_RawMaterialDeliveryNoteItem_rawMaterial" property="rawMaterial" z="0lLsFHgAbKBm7BfswLkrEDD9ZQc="/>
+            <table:column id="c_cm_adorsys_gpao_model_RawMaterialDeliveryNoteItem_orderedQty" property="orderedQty" z="gbVE4cQiNxXUbZWtEvlyCUGSIyU="/>
+            <table:column id="c_cm_adorsys_gpao_model_RawMaterialDeliveryNoteItem_deliveredQty" property="deliveredQty" z="FBjew/aPrbqUSUQsSbvCQypjtaU="/>
+            <table:column id="c_cm_adorsys_gpao_model_RawMaterialDeliveryNoteItem_undeliveredQty" property="undeliveredQty" z="eY1xlRCkp2gb6BwD1QwJJFzNHQo="/>
+            <table:column id="c_cm_adorsys_gpao_model_RawMaterialDeliveryNoteItem_rawMaterialDelveryNote" property="rawMaterialDelveryNote" z="P7uYqiFetd55nety6fVSEaznR5Q="/>
+        </table:table>
+    </page:list>
+</div>

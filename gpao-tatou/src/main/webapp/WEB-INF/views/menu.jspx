@@ -160,5 +160,13 @@
             <menu:item id="i_rawmaterialorderitem_new" messageCode="global_menu_new" url="/rawmaterialorderitems?form" z="fBNEkUHX5WQm9hopVIdifADqqBM="/>
             <menu:item id="i_rawmaterialorderitem_list" messageCode="global_menu_list" url="/rawmaterialorderitems?page=1&amp;size=${empty param.size ? 10 : param.size}" z="4AUopisigExSiarvaAPtgE5O72M="/>
         </menu:category>
+        <menu:category id="c_rawmaterialdeliverynote" z="JM09UPj0DJUGQga5VMSptI9L9yo=">
+            <menu:item id="i_rawmaterialdeliverynote_new" messageCode="global_menu_new" url="/rawmaterialdeliverynotes?form" z="ze4DWCLxoh5CsCdkrZV5mFRSVZ0="/>
+            <menu:item id="i_rawmaterialdeliverynote_list" messageCode="global_menu_list" url="/rawmaterialdeliverynotes?page=1&amp;size=${empty param.size ? 10 : param.size}" z="fzuhpCjCsYmQ4qYZo+wO4Bq4/Xo="/>
+        </menu:category>
+        <menu:category id="c_rawmaterialdeliverynoteitem" z="NvV1LkOrAOL6CX3WeVqixY//AUk=">
+            <menu:item id="i_rawmaterialdeliverynoteitem_new" messageCode="global_menu_new" url="/rawmaterialdeliverynoteitems?form" z="wLJu7pFObkuOWSM8EApZDQdIQVo="/>
+            <menu:item id="i_rawmaterialdeliverynoteitem_list" messageCode="global_menu_list" url="/rawmaterialdeliverynoteitems?page=1&amp;size=${empty param.size ? 10 : param.size}" z="xK0IxOrtDNWSCe5YMOa9RNB+Lwk="/>
+        </menu:category>
     </menu:menu>
 </div>

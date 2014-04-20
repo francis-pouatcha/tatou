@@ -1,10 +1,8 @@
 package cm.adorsys.gpao.web;
 import java.util.Arrays;
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
 import org.springframework.stereotype.Controller;
@@ -16,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import cm.adorsys.gpao.model.Company;
 import cm.adorsys.gpao.model.CustomerOrder;
 import cm.adorsys.gpao.model.CustomerOrderItem;
@@ -43,7 +40,7 @@ public class CustomerOrderController extends AbstractOrderController {
 
     @Autowired
     IManufacturingVoucherService productionService;
-    
+
     @Autowired
     IRawMaterialOrderService rawMaterialOrderService;
 
@@ -111,7 +108,7 @@ public class CustomerOrderController extends AbstractOrderController {
         return CustomerOrderItem.toJsonArray(customerOrderService.findCustomerOrderItems(customerOrder));
     }
 
-    @Transactional(rollbackFor=Throwable.class)
+    @Transactional(rollbackFor = Throwable.class)
     @RequestMapping(value = "/{customerOrderId}/validatedOrder", method = RequestMethod.GET)
     public String validatedOrder(@PathVariable("customerOrderId") Long customerOrderId, Model uiModel) {
         CustomerOrder customerOrder = CustomerOrder.findCustomerOrder(customerOrderId);
@@ -126,7 +123,7 @@ public class CustomerOrderController extends AbstractOrderController {
         } else {
             customerOrder = customerOrderService.computeAndSetAmounts(customerOrder, customerOrderItems);
             customerOrder = customerOrderService.validateCustomerOrder(customerOrder);
-//            productionService.processCustomerOrder(customerOrder, new ProcessCustomerOrder(rawMaterialOrderService));
+            //            productionService.processCustomerOrder(customerOrder, new ProcessCustomerOrder(rawMaterialOrderService));
             customerOrder = doAConsistantMerge(customerOrder);
             uiModel.addAttribute(MessageType.SUCCESS_MESSAGE, "validation effectuee avec success !");
         }
@@ -134,7 +131,7 @@ public class CustomerOrderController extends AbstractOrderController {
         return "customerorders/customerordersView";
     }
 
-    @Transactional(rollbackFor=Throwable.class)
+    @Transactional(rollbackFor = Throwable.class)
     @RequestMapping(value = "/{customerOrderId}/validatedOrderAndGenerate", method = RequestMethod.GET)
     public String validatedOrderAndGenerateManufacturingOrder(@PathVariable("customerOrderId") Long customerOrderId, Model uiModel) {
         CustomerOrder customerOrder = CustomerOrder.findCustomerOrder(customerOrderId);
@@ -149,7 +146,7 @@ public class CustomerOrderController extends AbstractOrderController {
         } else {
             customerOrder = customerOrderService.computeAndSetAmounts(customerOrder, customerOrderItems);
             customerOrder = customerOrderService.validateCustomerOrder(customerOrder);
-            productionService.processCustomerOrder(customerOrder, new ProcessCustomerOrder(rawMaterialOrderService));//here is where we generate manufacturing order.
+            productionService.processCustomerOrder(customerOrder, new ProcessCustomerOrder(rawMaterialOrderService)); //here is where we generate manufacturing order.
             customerOrder = doAConsistantMerge(customerOrder);
             uiModel.addAttribute(MessageType.SUCCESS_MESSAGE, "validation effectuee avec success !");
         }
