@@ -722,3 +722,7 @@ focus --class ~.model.RawMaterialDeliveryNoteItem
 finder list 
 finder add --finderName findRawMaterialDeliveryNoteItemsByRawMaterialDelveryNote
 finder add --finderName findRawMaterialDeliveryNoteItemsByRawMaterial
+focus --class ~.model.RawMaterialOrderItem
+json add 
+focus --class ~.model.RawMaterialOrder
+json add 

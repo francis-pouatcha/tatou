@@ -9,29 +9,29 @@
 	style="margin: 10px;"> <jsp:directive.page
 		contentType="text/html;charset=UTF-8" /> <jsp:output
 		omit-xml-declaration="yes" /> <!-- liste of link to use on this page  -->
-	<spring:url value="/manufacturingvouchers/findProductByNameLike/"
+	<spring:url value="/rawmaterialorders/findProductByNameLike/"
 		var="search_url" /> 
 	<spring:url
-		value="/manufacturingvouchers/findProductFromPurcharseOrder/${manufacturingVoucher.id}"
+		value="/rawmaterialorders/findProductFromPurcharseOrder/${rawMaterialOrder.id}"
 		var="search_fromOrder_url" /> 
 	<spring:url
-		value="/manufacturingvouchers/getSelectedProduct/" var="selected_url" /> <spring:url
-		value="/manufacturingvouchers/getUdmListFromUdmGroup/" var="udmList_url" />
-	<spring:url value="/manufacturingvouchers/${manufacturingVoucher.id}/addOrderItem?"
+		value="/rawmaterialorders/getSelectedProduct/" var="selected_url" /> <spring:url
+		value="/rawmaterialorders/getUdmListFromUdmGroup/" var="udmList_url" />
+	<spring:url value="/rawmaterialorders/${rawMaterialOrder.id}/addRawMaterialOrderItem?"
 		var="add_url" /> <spring:url
-		value="/manufacturingvouchers/${manufacturingVoucher.id}/caculated" var="calcul_url" />
-	<spring:url value="/manufacturingvouchers/${manufacturingVoucher.id}/validatedVoucher"
+		value="/rawmaterialorders/${rawMaterialOrder.id}/caculated" var="calcul_url" />
+	<spring:url value="/rawmaterialorders/${rawMaterialOrder.id}/validatedVoucher"
 		var="validated_url" /> 
 	<spring:url
-		value="/manufacturingvouchers/${manufacturingVoucher.id}/removeItem?itemid="
+		value="/rawmaterialorders/${rawMaterialOrder.id}/removeItem?itemid="
 		var="remove_url" />
-	<spring:url value="/manufacturingvouchers/${manufacturingVoucher.id}/cancel" var="cancel_url" />
-	<spring:url value="/manufacturingvouchers/${manufacturingVoucher.id}/close" var="close_url" />  
+	<spring:url value="/rawmaterialorders/${rawMaterialOrder.id}/cancel" var="cancel_url" />
+	<spring:url value="/rawmaterialorders/${rawMaterialOrder.id}/close" var="close_url" />  
 	<spring:url value="/tenderses/tenderNote/"
 		var="print_tender_url" /> 
 	<spring:url
 		value="/resources/images/ajax-loader.gif" var="loadimage" /> <!-- Modal -->
-	<spring:url value="/deliverys/listByDocRef/${manufacturingVoucher.reference}" var="delivery_url" /> 
+	<spring:url value="/deliverys/listByDocRef/${rawMaterialOrder.reference}" var="delivery_url" /> 
 		
 	<c:set value="false" var="whithTender" />
 	 <div id="dialog_simple" title="Rehercher des Articles">
@@ -269,14 +269,14 @@
 			var url = '${selected_url}'+id;
 			$.getJSON( url,
 	                function(data){
-							$('#productId').val(data.product.id) ;
-							$('#productName').val(data.productName) ;
-							$('#familleName').val(data.product.famille.name);
-							$('#dd').text(data.productName) ;
+							$('#productId').val(data.id) ;
+							$('#productName').val(data.name) ;
+							$('#familleName').val(data.famille.name);
+// 							$('#dd').text(data.productName) ;
 							$('#unitPrice').val(data.unitPrice) ;
 							$('#quantity').val(data.quantity) ;
 							$("#udm").empty();
-							getUdmList(data.udm.unitGroup.id);
+							getUdmList(data.defaultUdm.unitGroup.id);
 						});
 					};
 					function addOrderItem(){

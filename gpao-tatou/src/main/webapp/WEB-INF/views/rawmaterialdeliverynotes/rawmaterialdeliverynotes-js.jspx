@@ -270,7 +270,7 @@
 							$('#deliveredQty').val(data.virtualStock) ;
 							$('#undeliveredQty').val(data.undeliveredQty) ;
 							$("#udm").empty();
-							getUdmList(data.udm.unitGroup.id);
+							getUdmList(data.defaultUdm.unitGroup.id);
 						});
 					};
 					function addOrderItem(){

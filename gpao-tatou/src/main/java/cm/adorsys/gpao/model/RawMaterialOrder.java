@@ -16,10 +16,12 @@ import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
 import cm.adorsys.gpao.utils.GpaoSequenceGenerator;
+import org.springframework.roo.addon.json.RooJson;
 
 @RooJavaBean
 @RooToString
 @RooJpaActiveRecord(inheritanceType = "TABLE_PER_CLASS", finders = { "findRawMaterialOrdersByDocRefEquals", "findRawMaterialOrdersByReferenceEquals", "findRawMaterialOrdersByDeliveredNot", "findRawMaterialOrdersByValidatedByEquals" })
+@RooJson
 public class RawMaterialOrder extends GpaoBaseEntity {
 
     /**

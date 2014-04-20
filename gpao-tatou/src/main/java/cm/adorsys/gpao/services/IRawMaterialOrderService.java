@@ -21,4 +21,6 @@ public interface IRawMaterialOrderService {
 	@Transactional(rollbackFor=Exception.class)
 	public RawMaterialOrderItem createRawMaterialOrderItem(RawMaterialOrder rawMaterialOrder,ManufacturingVoucherItem manufacturingVoucherItem,List<ProductIntrant> productIntrants) throws InsufficientRawMaterialException;
 	public boolean areThereEnoughRawMaterial(CustomerOrderItem customerOrderItem) ;
+	public boolean addRawMaterialOrderItem(RawMaterialOrder rawMaterialOrder,RawMaterialOrderItem rawMaterialOrderItem);
+	public boolean removeItems(List<Long> rawMaterialOrderItems);
 }

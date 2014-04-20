@@ -10,8 +10,7 @@
 	<jsp:directive.page contentType="text/html;charset=UTF-8" />
 	<jsp:output omit-xml-declaration="yes" />
 	<spring:url value="/rawmaterialorders/addOrEditForm" var="add_url"></spring:url>
-	<spring:url value="/rawmaterialorders/next/${ rawMaterialOrder.id}"
-		var="next_url" />
+	<spring:url value="/rawmaterialorders/next/${ rawMaterialOrder.id}" var="next_url" />
 	<spring:url
 		value="/rawmaterialorders/orderNote/${ rawMaterialOrder.reference}.pdf"
 		var="print_order_url" />
@@ -95,9 +94,8 @@
 			<c:if test="${not empty rawMaterialOrder.id }">
 				<c:if test="${rawMaterialOrder.orderState eq 'BROUILLON'}">
 					<div class="btn-group pull-rigth" data-toggle="buttons-checkbox">
-						<!-- 						<button id="addBtn" type="button" class=" btn-success" disabled="disabled" >Ajouter</button> -->
-						<button id="delBtn" type="button" class=" btn-danger"
-							disabled="disabled">Suprimer</button>
+						<button id="addBtn" type="button" class=" btn-success" >Ajouter</button>
+						<button id="delBtn" type="button" class=" btn-danger" >Suprimer</button>
 						<!-- 						<button id="calculBtn" type="button" class=" btn-info" disabled="disabled">Calculer</button> -->
 					</div>
 				</c:if>

@@ -167,4 +167,35 @@ public class TatouRawMeterialOrderService implements IRawMaterialOrderService{
 		}
 		return unAvalaibleProductsWithQuantity;
 	}
+	@Override
+	public boolean addRawMaterialOrderItem(RawMaterialOrder rawMaterialOrder,
+			RawMaterialOrderItem rawMaterialOrderItem) {
+		Assert.isTrue(rawMaterialOrder == null || rawMaterialOrder.getId() != null, "Invalid ram material");
+		Assert.notNull(rawMaterialOrderItem, "The raw material should not be null here");
+		List<RawMaterialOrderItem> existingItems = RawMaterialOrderItem.findRawMaterialOrderItemsByRawMaterialOrder(rawMaterialOrder).getResultList();
+		boolean ligneExist= false;
+		for (RawMaterialOrderItem rawMaterialOrderItem2 : existingItems) {
+			if(rawMaterialOrderItem2.getProduct().getId().equals(rawMaterialOrderItem.getProduct().getId())) {
+				ligneExist = true;
+				rawMaterialOrderItem2.setUdm(rawMaterialOrderItem.getUdm());
+				rawMaterialOrderItem2.setQuantity(rawMaterialOrderItem.getQuantity());
+				rawMaterialOrderItem2.merge();
+			}
+		}
+		if(!ligneExist) {
+			rawMaterialOrderItem.setRawMaterialOrder(rawMaterialOrder);
+			rawMaterialOrderItem.persist();
+		}
+		return true;
+	}
+	@Override
+	public boolean removeItems(List<Long> rawMaterialOrderItems) {
+		Assert.notNull(rawMaterialOrderItems, "The raw material order items idsshould not be null");
+		for (Long rawMaterialOrderItem : rawMaterialOrderItems) {
+			if(rawMaterialOrderItem != null) {
+				RawMaterialOrderItem.findRawMaterialOrderItem(rawMaterialOrderItem).remove();
+			}
+		}
+		return true;
+	}
 }

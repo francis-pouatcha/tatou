@@ -5,10 +5,12 @@ import org.springframework.roo.addon.tostring.RooToString;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import org.springframework.roo.addon.json.RooJson;
 
 @RooJavaBean
 @RooToString
 @RooJpaActiveRecord(inheritanceType = "TABLE_PER_CLASS", finders = { "findRawMaterialOrderItemsByRawMaterialOrder" })
+@RooJson
 public class RawMaterialOrderItem extends GpaoBaseEntity {
 
     /**
