@@ -23,4 +23,6 @@ public interface IRawMaterialOrderService {
 	public boolean areThereEnoughRawMaterial(CustomerOrderItem customerOrderItem) ;
 	public boolean addRawMaterialOrderItem(RawMaterialOrder rawMaterialOrder,RawMaterialOrderItem rawMaterialOrderItem);
 	public boolean removeItems(List<Long> rawMaterialOrderItems);
+	@Transactional(rollbackFor=Exception.class)
+	public boolean validateRawMaterialOrderAndRawMaterialGenerateDeliveryNote(RawMaterialOrder rawMaterialOrder);
 }

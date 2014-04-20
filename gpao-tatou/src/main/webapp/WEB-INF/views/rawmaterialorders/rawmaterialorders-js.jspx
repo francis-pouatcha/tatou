@@ -20,7 +20,7 @@
 	<spring:url value="/rawmaterialorders/${rawMaterialOrder.id}/addRawMaterialOrderItem?"
 		var="add_url" /> <spring:url
 		value="/rawmaterialorders/${rawMaterialOrder.id}/caculated" var="calcul_url" />
-	<spring:url value="/rawmaterialorders/${rawMaterialOrder.id}/validatedVoucher"
+	<spring:url value="/rawmaterialorders/${rawMaterialOrder.id}/validateRawMaterialOrder"
 		var="validated_url" /> 
 	<spring:url
 		value="/rawmaterialorders/${rawMaterialOrder.id}/removeItem?itemid="
@@ -157,8 +157,9 @@
 		});
 		$('#validerBtn').click(function() {
 			var url = '${validated_url}';
-			alert('Work in progress, results are comming soon.');
-// 			window.location = url ;
+			if(window.confirm('Voulez vous vraiment valider ce bon ? cette action est irreversible [O/N]')){
+				window.location = url ;
+			}
 		});
 		$('#deliveryBtn').click(function() {
 			var url = '${delivery_url}';

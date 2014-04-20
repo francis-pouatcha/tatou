@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import cm.adorsys.gpao.model.CustomerOrder;
 import cm.adorsys.gpao.model.DeliveryOrigin;
 import cm.adorsys.gpao.model.DocumentStates;
+import cm.adorsys.gpao.model.ManufacturingVoucher;
+import cm.adorsys.gpao.model.ManufacturingVoucherItem;
 import cm.adorsys.gpao.model.Product;
 import cm.adorsys.gpao.model.RawMaterialDeliveryNote;
 import cm.adorsys.gpao.model.RawMaterialDeliveryNoteItem;
@@ -100,7 +102,28 @@ public class RawMaterialOrderController extends AbstractOrderController {
         populateEditForm(uiModel, rawMaterialOrder);
         return "rawmaterialorders/rawmaterialordersView";
     }
-    private RawMaterialOrder doAConsistantMerge(
+
+    @RequestMapping(value = "/{rawMaterialOrderId}/validateRawMaterialOrder", method = RequestMethod.GET)
+    public String validateRawMaterialOrder(@PathVariable("rawMaterialOrderId") Long rawMaterialOrderId, Model uiModel) {
+        try {
+            RawMaterialOrder rawMaterialOrder = RawMaterialOrder.findRawMaterialOrder(rawMaterialOrderId);
+            List<RawMaterialOrderItem> rawMaterialOrderItems = RawMaterialOrderItem.findRawMaterialOrderItemsByRawMaterialOrder(rawMaterialOrder).getResultList();
+            if (rawMaterialOrderItems.isEmpty()) {
+                uiModel.addAttribute(MessageType.ERROR_MESSAGE, "Ce bon de fabrication interne est vide, Impossible de supprimer");
+                populateEditForm(uiModel, rawMaterialOrder);
+                return "rawmaterialorders/rawmaterialordersView";
+			}
+            rawMaterialOrderService.validateRawMaterialOrderAndRawMaterialGenerateDeliveryNote(rawMaterialOrder);
+            populateEditForm(uiModel, rawMaterialOrder);
+        } catch (Exception e) {
+            uiModel.addAttribute(MessageType.ERROR_MESSAGE, e.getMessage());
+            populateEditForm(uiModel, RawMaterialOrder.findRawMaterialOrder(rawMaterialOrderId));
+        } finally {
+        }
+        return "rawmaterialorders/rawmaterialordersView";
+    }
+
+	private RawMaterialOrder doAConsistantMerge(
 			RawMaterialOrder rawMaterialOrder) {
     	try {
     		rawMaterialOrder.merge();

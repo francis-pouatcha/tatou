@@ -33,17 +33,20 @@ import cm.adorsys.gpao.model.excepions.InsufficientRawMaterialException;
 import cm.adorsys.gpao.security.SecurityUtil;
 import cm.adorsys.gpao.services.IManufacturingVoucherService;
 import cm.adorsys.gpao.services.IProductService;
+import cm.adorsys.gpao.services.IRawMaterialDeliveryNoteService;
 import cm.adorsys.gpao.services.IRawMaterialOrderService;
 
 @Service
-public class TatouRawMeterialOrderService implements IRawMaterialOrderService{
+public class TatouRawMaterialOrderService implements IRawMaterialOrderService{
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(TatouRawMeterialOrderService.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(TatouRawMaterialOrderService.class);
 	@Autowired
 	IProductService productService;
 	
 	@Autowired
 	IManufacturingVoucherService manufacturingVoucherService;
+	@Autowired
+	IRawMaterialDeliveryNoteService rawMaterialDeliveryNoteService;
 	@Override
 	public RawMaterialOrder generateRawMaterialOrderFromManufacturingVoucher(ManufacturingVoucher manufacturingVoucher) throws InsufficientRawMaterialException {
 		Assert.notNull(manufacturingVoucher, "The manufacturing voucher should not be null here");
@@ -54,7 +57,6 @@ public class TatouRawMeterialOrderService implements IRawMaterialOrderService{
 			return null;
 		}
 		RawMaterialOrder rawMaterialOrder = createRawMaterialOrder(manufacturingVoucher);
-		PurchaseOrder purchaseOrder = null;
 		rawMaterialOrder.persist();
 		for (ManufacturingVoucherItem manufacturingVoucherItem : manufacturingVoucherItems) {
 			List<ProductIntrant> intrants = manufacturingVoucherService.getIntrant(manufacturingVoucherItem);
@@ -196,6 +198,23 @@ public class TatouRawMeterialOrderService implements IRawMaterialOrderService{
 				RawMaterialOrderItem.findRawMaterialOrderItem(rawMaterialOrderItem).remove();
 			}
 		}
+		return true;
+	}
+	/**
+	 * This method validate the raw meterial, and generate the raw material delivery note.
+	 */
+	@Override
+	public boolean validateRawMaterialOrderAndRawMaterialGenerateDeliveryNote(RawMaterialOrder rawMaterialOrder) {
+		if(rawMaterialOrder == null || rawMaterialOrder.getId() == null) {
+			return false;
+		}
+		if(RawMaterialOrderItem.findRawMaterialOrderItemsByRawMaterialOrder(rawMaterialOrder).getResultList().isEmpty()) {
+			return false;
+		}
+		rawMaterialOrder.setOrderState(DocumentStates.VALIDER);
+		rawMaterialOrder.setValidatedBy(SecurityUtil.getUserName());
+		rawMaterialOrder.merge();
+		rawMaterialDeliveryNoteService.generateRawMaterialDeliveryNoteFromRawMaterialOrder(rawMaterialOrder);
 		return true;
 	}
 }

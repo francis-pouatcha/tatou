@@ -3,13 +3,19 @@
  */
 package cm.adorsys.gpao.services.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
+import cm.adorsys.gpao.model.DeliveryOrigin;
+import cm.adorsys.gpao.model.DocumentStates;
 import cm.adorsys.gpao.model.RawMaterialDeliveryNote;
 import cm.adorsys.gpao.model.RawMaterialDeliveryNoteItem;
+import cm.adorsys.gpao.model.RawMaterialOrder;
+import cm.adorsys.gpao.model.RawMaterialOrderItem;
+import cm.adorsys.gpao.security.SecurityUtil;
 import cm.adorsys.gpao.services.IRawMaterialDeliveryNoteService;
 
 /**
@@ -58,6 +64,28 @@ public class TatouRawMaterialDeliveryNoteService implements
 			}
 		}
 		return true;
+	}
+
+	@Override
+	public RawMaterialDeliveryNote generateRawMaterialDeliveryNoteFromRawMaterialOrder(
+			RawMaterialOrder rawMaterialOrder) {
+		Assert.isTrue(rawMaterialOrder != null && rawMaterialOrder.getId() != null,"The raw material should not be null, and should be a persited entity");
+		RawMaterialDeliveryNote rawMaterialDeliveryNote = new RawMaterialDeliveryNote();
+		rawMaterialDeliveryNote.setDocRef(rawMaterialOrder.getReference());
+		rawMaterialDeliveryNote.setCreatedBy(SecurityUtil.getUserName());
+		rawMaterialDeliveryNote.setOrderDate(new Date());
+		rawMaterialDeliveryNote.setOrderState(DocumentStates.BROUILLON);
+		rawMaterialDeliveryNote.setOrigin(DeliveryOrigin.GENERATED);
+		rawMaterialDeliveryNote.persist();
+		List<RawMaterialOrderItem> rawMaterialOrderItems = RawMaterialOrderItem.findRawMaterialOrderItemsByRawMaterialOrder(rawMaterialOrder).getResultList();
+		for (RawMaterialOrderItem rawMaterialOrderItem : rawMaterialOrderItems) {
+			RawMaterialDeliveryNoteItem rawMaterialDeliveryNoteItem = new RawMaterialDeliveryNoteItem();
+			rawMaterialDeliveryNoteItem.setRawMaterialDelveryNote(rawMaterialDeliveryNote);
+			rawMaterialDeliveryNoteItem.setOrderedQty(rawMaterialOrderItem.getQuantity());
+			rawMaterialDeliveryNoteItem.setRawMaterial(rawMaterialOrderItem.getProduct());
+			rawMaterialDeliveryNoteItem.persist();
+		}
+		return rawMaterialDeliveryNote;
 	}
 
 }
