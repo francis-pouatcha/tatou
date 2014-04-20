@@ -53,7 +53,7 @@ public class TatouRawMaterialDeliveryNoteService implements
 	public boolean removeItems(List<Long> rawMaterialDeliveryNoteItemIds) {
 		Assert.notNull(rawMaterialDeliveryNoteItemIds, "empty array list");
 		for (Long rawMaterialDeliveryNoteItemId : rawMaterialDeliveryNoteItemIds) {
-			if (rawMaterialDeliveryNoteItemIds != null) {
+			if (rawMaterialDeliveryNoteItemId != null) {
 				RawMaterialDeliveryNoteItem.findRawMaterialDeliveryNoteItem(rawMaterialDeliveryNoteItemId).remove();
 			}
 		}

@@ -106,7 +106,7 @@
 				</thead>
 				<tbody>
 					<c:forEach items="${rawMaterialDeliveryNoteItems}" var="items">
-						<tr id="${items.rawMaterialDeliveryNote.id}">
+						<tr id="${items.rawMaterialDelveryNote.id}">
 							<td>${items.rawMaterial.name}</td>
 							<td style="text-align: center;">${items.rawMaterial.famille.name}</td>
 							<td style="text-align: center;">${items.orderedQty}</td>
