@@ -70,6 +70,10 @@ public class TatouRawMaterialDeliveryNoteService implements
 	public RawMaterialDeliveryNote generateRawMaterialDeliveryNoteFromRawMaterialOrder(
 			RawMaterialOrder rawMaterialOrder) {
 		Assert.isTrue(rawMaterialOrder != null && rawMaterialOrder.getId() != null,"The raw material should not be null, and should be a persited entity");
+		List<RawMaterialDeliveryNote> foundedRawMaterialDeliveryNotes = RawMaterialDeliveryNote.findRawMaterialDeliveryNotesByDocRefEquals(rawMaterialOrder.getReference()).getResultList();
+		if(!foundedRawMaterialDeliveryNotes.isEmpty()) {
+			return foundedRawMaterialDeliveryNotes.iterator().next();
+		}
 		RawMaterialDeliveryNote rawMaterialDeliveryNote = new RawMaterialDeliveryNote();
 		rawMaterialDeliveryNote.setDocRef(rawMaterialOrder.getReference());
 		rawMaterialDeliveryNote.setCreatedBy(SecurityUtil.getUserName());

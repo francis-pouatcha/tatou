@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:spring="http://www.springframework.org/tags" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <spring:url value="/rawmaterialdeliverynotes/addOrEditForm" var="add_url"/>
     <div class="btn-group">
         <a class="btn a-btn" href="${add_url}">Nouveau</a>
     </div>
-    <page:list label="Bordereaux de livraison interne de matiere premiere" showInPanel="false" id="pl_cm_adorsys_gpao_model_RawMaterialDeliveryNote" items="${rawmaterialdeliverynotes}" z="AXsjHKtCyTULXYLyfKOG5vRCZBk=">
-        <table:table create="false" delete="false" show="false" queryParam="true" data="${rawmaterialdeliverynotes}" id="l_cm_adorsys_gpao_model_RawMaterialDeliveryNote" path="/rawmaterialdeliverynotes/addOrEditForm" z="+6n98qppW/b3PzKgzSGwkLMwnA0=">
+    <page:list id="pl_cm_adorsys_gpao_model_RawMaterialDeliveryNote" items="${rawmaterialdeliverynotes}" label="Bordereaux de livraison interne de matiere premiere" showInPanel="false" z="user-managed">
+        <table:table create="false" data="${rawmaterialdeliverynotes}" delete="false" id="l_cm_adorsys_gpao_model_RawMaterialDeliveryNote" path="/rawmaterialdeliverynotes/addOrEditForm" queryParam="true" show="false" z="user-managed">
             <table:column id="c_cm_adorsys_gpao_model_RawMaterialDeliveryNote_archived" property="archived" z="eBmwIav3uFzkIHMbuE15Jm8VDPM="/>
             <table:column id="c_cm_adorsys_gpao_model_RawMaterialDeliveryNote_reference" property="reference" z="82OV+Ki4LJ8yhbwSKfAX5HjN1dA="/>
             <table:column date="true" dateTimePattern="${rawMaterialDeliveryNote_orderdate_date_format}" id="c_cm_adorsys_gpao_model_RawMaterialDeliveryNote_orderDate" property="orderDate" z="hMh937qXKxceSSReMRQbF4k7MHU="/>

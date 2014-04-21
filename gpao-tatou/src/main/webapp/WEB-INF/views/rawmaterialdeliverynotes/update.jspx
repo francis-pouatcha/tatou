@@ -4,7 +4,7 @@
     <jsp:output omit-xml-declaration="yes"/>
     <form:update id="fu_cm_adorsys_gpao_model_RawMaterialDeliveryNote" modelAttribute="rawMaterialDeliveryNote" path="/rawmaterialdeliverynotes" versionField="Version" z="qPmsj/IcQ/yIw/UNXlVyFlp303A=">
         <field:checkbox field="archived" id="c_cm_adorsys_gpao_model_RawMaterialDeliveryNote_archived" z="97qNz3xV2YDIMVR3TUc9BCkMfyU="/>
-        <field:input field="reference" id="c_cm_adorsys_gpao_model_RawMaterialDeliveryNote_reference" required="true" z="omC0g9DOp8ZD3mR+Sqiva13YCEc="/>
+        <field:input field="reference" id="c_cm_adorsys_gpao_model_RawMaterialDeliveryNote_reference" z="glR074THr33L4IypF+b2JGmPqN0="/>
         <field:datetime dateTimePattern="${rawMaterialDeliveryNote_orderdate_date_format}" field="orderDate" id="c_cm_adorsys_gpao_model_RawMaterialDeliveryNote_orderDate" z="mYbW2gHq810uGy0zPVN8ozY/k4I="/>
         <field:input field="createdBy" id="c_cm_adorsys_gpao_model_RawMaterialDeliveryNote_createdBy" z="2oGSVkK7mKC9BjVUjYeuaNEn+zg="/>
         <field:checkbox field="validated" id="c_cm_adorsys_gpao_model_RawMaterialDeliveryNote_validated" z="7cQjCKT50M918Le1nzGs5mVop+M="/>

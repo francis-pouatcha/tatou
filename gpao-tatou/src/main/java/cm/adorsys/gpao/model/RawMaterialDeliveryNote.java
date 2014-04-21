@@ -1,29 +1,26 @@
 package cm.adorsys.gpao.model;
 import java.util.Date;
-
 import javax.persistence.Enumerated;
 import javax.persistence.PostPersist;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.json.RooJson;
 import org.springframework.roo.addon.tostring.RooToString;
-
 import cm.adorsys.gpao.utils.GpaoSequenceGenerator;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord(inheritanceType = "TABLE_PER_CLASS")
 @RooJson
+@RooJpaActiveRecord(inheritanceType = "TABLE_PER_CLASS", finders = { "findRawMaterialDeliveryNotesByDocRefEquals" })
 public class RawMaterialDeliveryNote extends GpaoBaseEntity {
 
     /**
      */
-	private String reference;
+    private String reference;
 
     /**
      */
@@ -53,9 +50,9 @@ public class RawMaterialDeliveryNote extends GpaoBaseEntity {
      */
     @Enumerated
     private DeliveryOrigin origin;
-    
+
     @PostPersist
     void postPersist() {
-    	this.reference = GpaoSequenceGenerator.getSequence(getId(), GpaoSequenceGenerator.RAWMATERIAL_DELIVERY_NOTE_SEQUENCE_PREFIX);
+        this.reference = GpaoSequenceGenerator.getSequence(getId(), GpaoSequenceGenerator.RAWMATERIAL_DELIVERY_NOTE_SEQUENCE_PREFIX);
     }
 }

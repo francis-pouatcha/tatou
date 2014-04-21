@@ -19,8 +19,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import cm.adorsys.gpao.model.CustomerOrder;
 import cm.adorsys.gpao.model.DeliveryOrigin;
 import cm.adorsys.gpao.model.DocumentStates;
-import cm.adorsys.gpao.model.ManufacturingVoucher;
-import cm.adorsys.gpao.model.ManufacturingVoucherItem;
 import cm.adorsys.gpao.model.Product;
 import cm.adorsys.gpao.model.RawMaterialDeliveryNote;
 import cm.adorsys.gpao.model.RawMaterialDeliveryNoteItem;
@@ -134,17 +132,6 @@ public class RawMaterialOrderController extends AbstractOrderController {
         return rawMaterialOrder;
 	}
 
-	void populateEditForm(Model uiModel, RawMaterialOrder rawMaterialOrder) {
-        if (rawMaterialOrder != null && rawMaterialOrder.getId() != null) {
-            List<RawMaterialOrderItem> rawMaterialOrderItems = RawMaterialOrderItem.findRawMaterialOrderItemsByRawMaterialOrder(rawMaterialOrder).getResultList();
-            uiModel.addAttribute("orderItems", rawMaterialOrderItems);
-        }
-        uiModel.addAttribute("rawMaterialOrder", rawMaterialOrder);
-        addDateTimeFormatPatterns(uiModel);
-        uiModel.addAttribute("documentstateses", Arrays.asList(DocumentStates.values()));
-        uiModel.addAttribute("taxes", Taxe.findAllTaxes());
-    }
-
     @RequestMapping(value = "/next/{id}", method = RequestMethod.GET, produces = "text/html")
     public String getNextManufacturingVoucher(@PathVariable("id") Long id, Model uiModel) {
         List<RawMaterialOrder> rawMaterialOrders = RawMaterialOrder.findRawMaterialOrdersByIdUpperThan(id).setMaxResults(1).getResultList();
@@ -167,5 +154,21 @@ public class RawMaterialOrderController extends AbstractOrderController {
         }
         populateEditForm(uiModel, rawMaterialOrders.iterator().next());
         return "rawmaterialorders/rawmaterialordersView";
+    }
+
+	void populateEditForm(Model uiModel, RawMaterialOrder rawMaterialOrder) {
+        if (rawMaterialOrder != null && rawMaterialOrder.getId() != null) {
+            List<RawMaterialOrderItem> rawMaterialOrderItems = RawMaterialOrderItem.findRawMaterialOrderItemsByRawMaterialOrder(rawMaterialOrder).getResultList();
+            uiModel.addAttribute("orderItems", rawMaterialOrderItems);
+            List<RawMaterialDeliveryNote> deliveryNotes = RawMaterialDeliveryNote.findRawMaterialDeliveryNotesByDocRefEquals(rawMaterialOrder.getReference()).getResultList();
+            uiModel.addAttribute("rawMaterialDeliveryNotes", deliveryNotes);
+            if(!deliveryNotes.isEmpty()) {
+            	uiModel.addAttribute("rawMaterialDeliveryNoteItems", RawMaterialDeliveryNoteItem.findRawMaterialDeliveryNoteItemsByRawMaterialDelveryNote(deliveryNotes.iterator().next()).getResultList());
+            }
+        }
+        uiModel.addAttribute("rawMaterialOrder", rawMaterialOrder);
+        addDateTimeFormatPatterns(uiModel);
+        uiModel.addAttribute("documentstateses", Arrays.asList(DocumentStates.values()));
+        uiModel.addAttribute("taxes", Taxe.findAllTaxes());
     }
 }
