@@ -23,6 +23,8 @@ import cm.adorsys.gpao.model.DocumentStates;
 import cm.adorsys.gpao.model.Product;
 import cm.adorsys.gpao.model.RawMaterialDeliveryNote;
 import cm.adorsys.gpao.model.RawMaterialDeliveryNoteItem;
+import cm.adorsys.gpao.model.RawMaterialOrder;
+import cm.adorsys.gpao.model.RawMaterialOrderItem;
 import cm.adorsys.gpao.security.SecurityUtil;
 import cm.adorsys.gpao.services.IProductService;
 import cm.adorsys.gpao.services.IRawMaterialDeliveryNoteService;
@@ -116,6 +118,26 @@ public class RawMaterialDeliveryNoteController extends AbstractOrderController{
         }
         uiModel.addAttribute(MessageType.SUCCESS_MESSAGE, "lignes supprimee avec success !");
         populateEditForm(uiModel, rawMaterialDeliveryNote);
+        return "rawmaterialdeliverynotes/rawmaterialdeliverynotesView";
+    }
+
+    @RequestMapping(value = "/{rawMaterialDeliveryNoteId}/validateRawMaterialDeliveryNote", method = RequestMethod.GET)
+    public String validateRawMaterialOrder(@PathVariable("rawMaterialDeliveryNoteId") Long rawMaterialDeliveryNoteId, Model uiModel) {
+        try {
+            RawMaterialDeliveryNote rawMaterialDeliveryNote = RawMaterialDeliveryNote.findRawMaterialDeliveryNote(rawMaterialDeliveryNoteId);
+            List<RawMaterialDeliveryNoteItem> rawMaterialDeliveryNoteItems = RawMaterialDeliveryNoteItem.findRawMaterialDeliveryNoteItemsByRawMaterialDelveryNote(rawMaterialDeliveryNote).getResultList();
+            if (rawMaterialDeliveryNoteItems.isEmpty()) {
+                uiModel.addAttribute(MessageType.ERROR_MESSAGE, "Ce bon de fabrication interne est vide, Impossible de supprimer");
+                populateEditForm(uiModel, rawMaterialDeliveryNote);
+                return "rawmaterialdeliverynotes/rawmaterialdeliverynotesView";
+			}
+            rawMaterialDeliveryNoteService.validateRawMaterialDeliveryNote(rawMaterialDeliveryNote);
+            populateEditForm(uiModel, rawMaterialDeliveryNote);
+        } catch (Exception e) {
+            uiModel.addAttribute(MessageType.ERROR_MESSAGE, e.getMessage());
+            populateEditForm(uiModel, RawMaterialDeliveryNote.findRawMaterialDeliveryNote(rawMaterialDeliveryNoteId));
+        } finally {
+        }
         return "rawmaterialdeliverynotes/rawmaterialdeliverynotesView";
     }
 

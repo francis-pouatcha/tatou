@@ -186,23 +186,13 @@
 	</form:update>
 	<c:if test="${not empty  rawMaterialDeliveryNotes}">
 	    <page:list id="pl_cm_adorsys_gpao_model_RawMaterialDeliveryNote" items="${rawMaterialDeliveryNotes}" label="Bordereaux de livraison interne de matiere premiere" showInPanel="false" z="user-managed">
-	        <table:table update="false" create="false" data="${rawMaterialDeliveryNotes}" delete="false" id="l_cm_adorsys_gpao_model_RawMaterialDeliveryNote" path="/rawmaterialdeliverynotes/addOrEditForm" queryParam="true" show="false" z="user-managed">
+	        <table:table create="false" data="${rawMaterialDeliveryNotes}" delete="false" id="l_cm_adorsys_gpao_model_RawMaterialDeliveryNote" path="/rawmaterialdeliverynotes/addOrEditForm" queryParam="true" show="false" z="user-managed">
 	            <table:column render="false" id="c_cm_adorsys_gpao_model_RawMaterialDeliveryNote_archived" property="archived" z="eBmwIav3uFzkIHMbuE15Jm8VDPM="/>
 	            <table:column id="c_cm_adorsys_gpao_model_RawMaterialDeliveryNote_reference" property="reference" z="82OV+Ki4LJ8yhbwSKfAX5HjN1dA="/>
 	            <table:column date="true" dateTimePattern="${rawMaterialDeliveryNote_orderdate_date_format}" id="c_cm_adorsys_gpao_model_RawMaterialDeliveryNote_orderDate" property="orderDate" z="hMh937qXKxceSSReMRQbF4k7MHU="/>
 	            <table:column id="c_cm_adorsys_gpao_model_RawMaterialDeliveryNote_createdBy" property="createdBy" z="qa0PXDXrlzWMLG2BNu0qj3XBFd0="/>
 	            <table:column id="c_cm_adorsys_gpao_model_RawMaterialDeliveryNote_validated" property="validated" z="xCr6Nb4wkun0SENcMfecBw20z40="/>
 	            <table:column id="c_cm_adorsys_gpao_model_RawMaterialDeliveryNote_orderState" property="orderState" z="rPcXmVw/KZZVLnvfKyv6Rk1anCo="/>
-	        </table:table>
-	    </page:list>
-	    <page:list showInPanel="false" label="Raw material delivery note items" id="pl_cm_adorsys_gpao_model_RawMaterialDeliveryNoteItem" items="${rawMaterialDeliveryNoteItems}" z="cqliSt2qKbBN11XR/OH033+/uu8=">
-	        <table:table update="false" create="false" delete="false" show="false" data="${rawMaterialDeliveryNoteItems}" id="l_cm_adorsys_gpao_model_RawMaterialDeliveryNoteItem" path="/rawmaterialdeliverynoteitems" z="DNpLfHOnRuohj5qeviavBKzbVjY=">
-	            <table:column render="false" id="c_cm_adorsys_gpao_model_RawMaterialDeliveryNoteItem_archived" property="archived" z="PJQZ7UTtdW9kep12hPSWrBIqBJI="/>
-	            <table:column id="c_cm_adorsys_gpao_model_RawMaterialDeliveryNoteItem_rawMaterial" property="rawMaterial" z="0lLsFHgAbKBm7BfswLkrEDD9ZQc="/>
-	            <table:column id="c_cm_adorsys_gpao_model_RawMaterialDeliveryNoteItem_orderedQty" property="orderedQty" z="gbVE4cQiNxXUbZWtEvlyCUGSIyU="/>
-	            <table:column id="c_cm_adorsys_gpao_model_RawMaterialDeliveryNoteItem_deliveredQty" property="deliveredQty" z="FBjew/aPrbqUSUQsSbvCQypjtaU="/>
-	            <table:column id="c_cm_adorsys_gpao_model_RawMaterialDeliveryNoteItem_undeliveredQty" property="undeliveredQty" z="eY1xlRCkp2gb6BwD1QwJJFzNHQo="/>
-	            <table:column id="c_cm_adorsys_gpao_model_RawMaterialDeliveryNoteItem_rawMaterialDelveryNote" property="rawMaterialDelveryNote" z="P7uYqiFetd55nety6fVSEaznR5Q="/>
 	        </table:table>
 	    </page:list>
 	</c:if>

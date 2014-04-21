@@ -92,7 +92,7 @@ public class TatouRawMaterialOrderService implements IRawMaterialOrderService{
 //				throw new InsufficientRawMaterialException(rawMaterialOrderItemQuantity, rawMaterial.getVirtualStock(), rawMaterial,"Impossible de traiter ce bon. Cause : Manque de matiere premiere en stock.");
 				rawMaterialOrderItemQuantity = rawMaterial.getVirtualStock();
 			}
-			updateProductVirtualStock(rawMaterial,rawMaterialOrderItemQuantity);
+//			updateProductVirtualStock(rawMaterial,rawMaterialOrderItemQuantity);
 			rawMaterialOrderItem.setQuantity(rawMaterialOrderItemQuantity);
 			rawMaterialOrderItem.setUdm(productIntrant.getUdm());
 		}
@@ -124,10 +124,6 @@ public class TatouRawMaterialOrderService implements IRawMaterialOrderService{
 		orderItems.setReference(purchaseOrders.iterator().next().getReference());
 		orderItems.setSubTotal(quantityToPurchase.multiply(rawMaterial.getPurchasePrice()));
 		orderItems.persist();
-	}
-	private void updateProductVirtualStock(Product product,BigDecimal rawMaterialOrderItemQuantity) {
-		product.setVirtualStock(product.getVirtualStock().subtract(rawMaterialOrderItemQuantity));
-		product.merge();
 	}
 	/**
 	 * check if there are enought raw material.
@@ -215,6 +211,11 @@ public class TatouRawMaterialOrderService implements IRawMaterialOrderService{
 		rawMaterialOrder.setValidatedBy(SecurityUtil.getUserName());
 		rawMaterialOrder.merge();
 		rawMaterialDeliveryNoteService.generateRawMaterialDeliveryNoteFromRawMaterialOrder(rawMaterialOrder);
+		return true;
+	}
+	public boolean changeState(RawMaterialOrder rawMaterialOrder,DocumentStates documentStates) {
+		rawMaterialOrder.setOrderState(documentStates);
+		rawMaterialOrder.merge();
 		return true;
 	}
 }

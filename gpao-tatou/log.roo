@@ -729,3 +729,6 @@ json add
 focus --class ~.model.RawMaterialDeliveryNote
 finder list 
 finder add --finderName findRawMaterialDeliveryNotesByDocRefEquals
+focus --class ~.model.RawMaterialOrder
+finder list 
+finder add --finderName findRawMaterialOrdersByReferenceEquals

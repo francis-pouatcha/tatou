@@ -3,6 +3,7 @@
  */
 package cm.adorsys.gpao.services.impl;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,4 +53,9 @@ public class TatouProductService implements IProductService{
 		return SpecificityToCaracteristicMap.findSpecificitysByCaracteristicsEquals(productCaracteristic).getResultList();
 	}
 
+	public boolean updateProductVirtualStock(Product product,BigDecimal rawMaterialOrderItemQuantity) {
+		product.setVirtualStock(product.getVirtualStock().subtract(rawMaterialOrderItemQuantity));
+		product.merge();
+		return true;
+	}
 }

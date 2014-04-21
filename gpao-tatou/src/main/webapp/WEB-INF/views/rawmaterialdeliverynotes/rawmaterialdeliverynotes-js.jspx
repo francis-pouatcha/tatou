@@ -14,7 +14,7 @@
 	<spring:url	value="/rawmaterialdeliverynotes/getSelectedProduct/" var="selected_url" /> 
 	<spring:url value="/rawmaterialdeliverynotes/getUdmListFromUdmGroup/" var="udmList_url" />
 	<spring:url value="/rawmaterialdeliverynotes/${rawMaterialDeliveryNote.id}/addRawMaterialDeliveryItem?" var="add_url" />
-	<spring:url value="/rawmaterialdeliverynotes/${rawMaterialDeliveryNote.id}/validatedOrder" var="validated_url" /> 
+	<spring:url value="/rawmaterialdeliverynotes/${rawMaterialDeliveryNote.id}/validateRawMaterialDeliveryNote" var="validated_url" /> 
 	<spring:url	value="/rawmaterialdeliverynotes/${rawMaterialDeliveryNote.id}/removeItem?itemid=" var="remove_url" />
 	<spring:url value="/rawmaterialdeliverynotes/${rawMaterialDeliveryNote.id}/cancel" var="cancel_url" />
 	<spring:url value="/rawmaterialdeliverynotes/${rawMaterialDeliveryNote.id}/close" var="close_url" />
@@ -149,7 +149,7 @@
 		});
 		$('#validerBtn').click(function() {
 			var url = '${validated_url}';
-			if(window.confirm('Voulez vous simplement valider cette commande et rien d\'autre ?')){
+			if(window.confirm('Voulez vous vraiment valider ce bon de commande ?')){
 				window.location = url ;
 			}
 		});
