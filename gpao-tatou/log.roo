@@ -732,3 +732,24 @@ finder add --finderName findRawMaterialDeliveryNotesByDocRefEquals
 focus --class ~.model.RawMaterialOrder
 finder list 
 finder add --finderName findRawMaterialOrdersByReferenceEquals
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-04-23 11:36:05
+entity jpa --class ~.model.ProductWorkshop --extends ~.model.GpaoBaseEntity --inheritanceType TABLE_PER_CLASS 
+field string --fieldName workshopName --notNull 
+field reference --fieldName manager --type ~.model.GpaoUser --notNull 
+field string --fieldName materials
+field string r
+field string --fieldName workflows
+field string --fieldName riskAndDangers
+field string --fieldName specialInstructions
+field date --fieldName dateOfCreation --type java.util.Date --dateTimeFormatPattern "dd-MM-yyyy HH:mm"
+field string --fieldName createdBy 
+web mvc all --package ~.web
+entity jpa --class ~.model.ProductionWorkshop --inheritanceType TABLE_PER_CLASS --extends ~.model.GpaoBaseEntity
+field string --fieldName name --notNull 
+field reference --fieldName manager --type ~.model.GpaoUser
+field string --fieldName materials
+field string --fieldName workflows
+field string --fieldName riskAndDangers
+field string --fieldName specialInstructions
+field date --fieldName dateCreated --type java.util.Date --dateTimeFormatPattern "dd-MM-yyyy HH:mm"
+web mvc all --package ~.web

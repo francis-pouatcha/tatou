@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <util:button-add baseUrl="/productionworkshops/addOrEditForm"/>
+    <page:list id="pl_cm_adorsys_gpao_model_ProductionWorkshop" items="${productionworkshops}" labelPlural="Liste des ateliers de production" showInPanel="false" z="user-managed">
+        <table:table create="false" data="${productionworkshops}" delete="false" id="l_cm_adorsys_gpao_model_ProductionWorkshop" path="/productionworkshops/addOrEditForm" queryParam="true" show="false" z="user-managed">
+            <table:column id="c_cm_adorsys_gpao_model_ProductionWorkshop_archived" property="archived" z="xCD9EIKxt7zUj8RQcE6fJSfbcig="/>
+            <table:column id="c_cm_adorsys_gpao_model_ProductionWorkshop_name" property="name" z="ICXQSPZTGtXRdbk43rS4TfTMUcI="/>
+            <table:column id="c_cm_adorsys_gpao_model_ProductionWorkshop_manager" property="manager" z="qZ55FR2LU0hq+9reOojaBvGieoI="/>
+            <table:column id="c_cm_adorsys_gpao_model_ProductionWorkshop_materials" property="materials" z="FEfxJeAN9LpCr3Kd5lKAmdbMZts="/>
+            <table:column id="c_cm_adorsys_gpao_model_ProductionWorkshop_workflows" property="workflows" z="jPJQaWy02aTyT9nUDE5LWVBwSZc="/>
+            <table:column id="c_cm_adorsys_gpao_model_ProductionWorkshop_riskAndDangers" property="riskAndDangers" z="k03LBNo2FqeOQ0amHfc1/lpfMyo="/>
+        </table:table>
+    </page:list>
+</div>

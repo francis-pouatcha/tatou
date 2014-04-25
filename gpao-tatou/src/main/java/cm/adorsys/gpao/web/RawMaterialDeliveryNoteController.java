@@ -2,10 +2,8 @@ package cm.adorsys.gpao.web;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
 import org.springframework.stereotype.Controller;
@@ -16,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import cm.adorsys.gpao.model.CustomerOrder;
 import cm.adorsys.gpao.model.DeliveryOrigin;
 import cm.adorsys.gpao.model.DocumentStates;
@@ -33,19 +30,20 @@ import cm.adorsys.gpao.utils.MessageType;
 @RequestMapping("/rawmaterialdeliverynotes")
 @Controller
 @RooWebScaffold(path = "rawmaterialdeliverynotes", formBackingObject = RawMaterialDeliveryNote.class)
-public class RawMaterialDeliveryNoteController extends AbstractOrderController{
+public class RawMaterialDeliveryNoteController extends AbstractOrderController {
 
-	@Autowired
-	SecurityUtil securityUtil;
-	
-	@Autowired
-	IProductService productService;
-	
-	@Autowired
-	IRawMaterialDeliveryNoteService  rawMaterialDeliveryNoteService;
+    @Autowired
+    SecurityUtil securityUtil;
+
+    @Autowired
+    IProductService productService;
+
+    @Autowired
+    IRawMaterialDeliveryNoteService rawMaterialDeliveryNoteService;
+
     @RequestMapping(value = "/addOrEditForm", method = RequestMethod.GET)
     public String addOrEditRawMaterialDeliveryNoteForm(@RequestParam(value = "id", required = false) Long id, HttpServletRequest httpServletRequest, Model uiModel) {
-    	RawMaterialDeliveryNote rawMaterialDeliveryNote = null;
+        RawMaterialDeliveryNote rawMaterialDeliveryNote = null;
         if (id == null) {
             rawMaterialDeliveryNote = new RawMaterialDeliveryNote();
             rawMaterialDeliveryNote.setOrderDate(new Date());
@@ -56,6 +54,7 @@ public class RawMaterialDeliveryNoteController extends AbstractOrderController{
         populateEditForm(uiModel, rawMaterialDeliveryNote);
         return "rawmaterialdeliverynotes/rawmaterialdeliverynotesView";
     }
+
     @RequestMapping(value = "/addOrEdit", method = RequestMethod.POST)
     public String addOrEditRawMaterialDeliveryNote(@Valid RawMaterialDeliveryNote rawMaterialDeliveryNote, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
@@ -64,9 +63,9 @@ public class RawMaterialDeliveryNoteController extends AbstractOrderController{
             return "rawmaterialdeliverynotes/rawmaterialdeliverynotesView";
         }
         if (rawMaterialDeliveryNote.getId() == null) {
-        	rawMaterialDeliveryNote.setOrderState(DocumentStates.BROUILLON);
-        	rawMaterialDeliveryNote.setOrigin(DeliveryOrigin.CREATED);
-        	rawMaterialDeliveryNote.persist();
+            rawMaterialDeliveryNote.setOrderState(DocumentStates.BROUILLON);
+            rawMaterialDeliveryNote.setOrigin(DeliveryOrigin.CREATED);
+            rawMaterialDeliveryNote.persist();
         }
         rawMaterialDeliveryNote = doAConsistantMerge(rawMaterialDeliveryNote);
         populateEditForm(uiModel, rawMaterialDeliveryNote);
@@ -76,14 +75,14 @@ public class RawMaterialDeliveryNoteController extends AbstractOrderController{
 
     private RawMaterialDeliveryNote doAConsistantMerge(RawMaterialDeliveryNote rawMaterialDeliveryNote) {
         try {
-        	rawMaterialDeliveryNote.merge();
+            rawMaterialDeliveryNote.merge();
         } catch (Exception e) {
-        	rawMaterialDeliveryNote.setVersion(CustomerOrder.findCustomerOrder(rawMaterialDeliveryNote.getId()).getVersion());
-        	rawMaterialDeliveryNote = rawMaterialDeliveryNote.merge();
+            rawMaterialDeliveryNote.setVersion(CustomerOrder.findCustomerOrder(rawMaterialDeliveryNote.getId()).getVersion());
+            rawMaterialDeliveryNote = rawMaterialDeliveryNote.merge();
         }
         return rawMaterialDeliveryNote;
     }
-    
+
     @RequestMapping(value = "/findProductByNameLike/{name}", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
     @ResponseBody
     public String findProductByNameLike(@PathVariable("name") String name) {
@@ -97,7 +96,6 @@ public class RawMaterialDeliveryNoteController extends AbstractOrderController{
         return Product.findProduct(productId).toJson();
     }
 
-    
     @RequestMapping(value = "/{rawMaterialDeliveryNoteId}/addRawMaterialDeliveryItem", method = RequestMethod.GET, params = { "productId" })
     @ResponseBody
     public String addOrderItem(@PathVariable("rawMaterialDeliveryNoteId") Long rawMaterialDeliveryNoteId, RawMaterialDeliveryNoteItem rawMaterialDeliveryNoteItem, @RequestParam("productId") Long productId, Model uiModel) {
@@ -107,10 +105,9 @@ public class RawMaterialDeliveryNoteController extends AbstractOrderController{
         return RawMaterialDeliveryNoteItem.toJsonArray(RawMaterialDeliveryNoteItem.findRawMaterialDeliveryNoteItemsByRawMaterialDelveryNote(rawMaterialDeliveryNote).getResultList());
     }
 
-    
     @RequestMapping(value = "/{rawMaterialDeliveryNoteId}/removeItem", method = RequestMethod.GET)
     public String removeOrderItems(@PathVariable("rawMaterialDeliveryNoteId") Long rawMaterialDeliveryNoteId, @RequestParam("itemid") Long[] orderItemIds, Model uiModel) {
-    	RawMaterialDeliveryNote rawMaterialDeliveryNote = RawMaterialDeliveryNote.findRawMaterialDeliveryNote(rawMaterialDeliveryNoteId);
+        RawMaterialDeliveryNote rawMaterialDeliveryNote = RawMaterialDeliveryNote.findRawMaterialDeliveryNote(rawMaterialDeliveryNoteId);
         boolean removeItems = rawMaterialDeliveryNoteService.removeItems(Arrays.asList(orderItemIds));
         if (!removeItems) {
             uiModel.addAttribute(MessageType.SUCCESS_MESSAGE, "Nothing deleted!");
@@ -130,7 +127,7 @@ public class RawMaterialDeliveryNoteController extends AbstractOrderController{
                 uiModel.addAttribute(MessageType.ERROR_MESSAGE, "Ce bon de fabrication interne est vide, Impossible de supprimer");
                 populateEditForm(uiModel, rawMaterialDeliveryNote);
                 return "rawmaterialdeliverynotes/rawmaterialdeliverynotesView";
-			}
+            }
             rawMaterialDeliveryNoteService.validateRawMaterialDeliveryNote(rawMaterialDeliveryNote);
             populateEditForm(uiModel, rawMaterialDeliveryNote);
         } catch (Exception e) {
@@ -145,8 +142,8 @@ public class RawMaterialDeliveryNoteController extends AbstractOrderController{
         uiModel.addAttribute("rawMaterialDeliveryNote", rawMaterialDeliveryNote);
         addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("documentstateses", Arrays.asList(DocumentStates.values()));
-        if(rawMaterialDeliveryNote.getId() != null) {
-        	uiModel.addAttribute("rawMaterialDeliveryNoteItems", RawMaterialDeliveryNoteItem.findRawMaterialDeliveryNoteItemsByRawMaterialDelveryNote(rawMaterialDeliveryNote).getResultList());
+        if (rawMaterialDeliveryNote.getId() != null) {
+            uiModel.addAttribute("rawMaterialDeliveryNoteItems", RawMaterialDeliveryNoteItem.findRawMaterialDeliveryNoteItemsByRawMaterialDelveryNote(rawMaterialDeliveryNote).getResultList());
         }
     }
 }

@@ -98,6 +98,7 @@ public class GpaoUser extends GpaoBaseEntity implements Serializable {
     public static void init() {
         if (GpaoUser.countGpaoUsers() <= 0) {
             GpaoUser gpaoUser = new GpaoUser("tatou", "gpao-admin", "tatou");
+            gpaoUser.setGender(Gender.Neutre);
             gpaoUser.setCompany(Company.findCompany(new Long(1)));
             gpaoUser.getGpaoUserGroups().add(GpaoUserGroup.findGpaoUserGroup(new Long(1)));
             gpaoUser.changePassword("test123");

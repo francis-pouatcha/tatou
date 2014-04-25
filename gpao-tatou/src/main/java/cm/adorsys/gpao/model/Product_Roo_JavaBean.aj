@@ -148,14 +148,7 @@ privileged aspect Product_Roo_JavaBean {
     public Boolean Product.getCanBeProduce() {
         return this.canBeProduce;
     }
-    public MultipartFile Product.getProductImage() {
-        return this.productImage;
-    }
     
-    public void Product.setProductImage(MultipartFile productImage) {
-        this.productImage = productImage;
-    }
-
     public void Product.setCanBeProduce(Boolean canBeProduce) {
         this.canBeProduce = canBeProduce;
     }
@@ -167,7 +160,14 @@ privileged aspect Product_Roo_JavaBean {
     public void Product.setActived(Boolean actived) {
         this.actived = actived;
     }
+    public MultipartFile Product.getProductImage() {
+        return this.productImage;
+    }
     
+    public void Product.setProductImage(MultipartFile productImage) {
+        this.productImage = productImage;
+    }
+
     public String Product.getProductImagePath() {
         return this.productImagePath;
     }

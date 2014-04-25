@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+    <definition extends="production" name="productionworkshops/list">
+        <put-attribute name="body" value="/WEB-INF/views/productionworkshops/list.jspx"/>
+    </definition>
+<definition extends="default" name="productionworkshops/show">
+        <put-attribute name="body" value="/WEB-INF/views/productionworkshops/show.jspx"/>
+    </definition>
+<definition extends="default" name="productionworkshops/create">
+        <put-attribute name="body" value="/WEB-INF/views/productionworkshops/create.jspx"/>
+    </definition>
+<definition extends="default" name="productionworkshops/update">
+        <put-attribute name="body" value="/WEB-INF/views/productionworkshops/update.jspx"/>
+    </definition>
+    
+	<definition extends="production" name="productionworkshops/view">
+        <put-attribute name="body" value="/WEB-INF/views/productionworkshops/productionworkshopView.jspx"/>
+    </definition>
+</tiles-definitions>

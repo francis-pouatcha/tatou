@@ -19,6 +19,12 @@
 	          <security:authorize ifAnyGranted="ROLE_MODULE_PRODUCTION,ROLE_ACCESS_BON_PRODUCTION,ROLE_ACCESS_BON_PRODUCTION_MATIEREPREMIERE,ROLE_ACCESS_CONTROLE_PRODUCTION">
 	            <menu:item id="i_rawmaterialdeliverynote_list" label="Borderaux interne de livraison de mat. premiere" messageCode="global_menu_gpao" url="/rawmaterialdeliverynotes?page=1&amp;size=${empty param.size ? 10 : param.size}" z="fzuhpCjCsYmQ4qYZo+wO4Bq4/Xo="/>
 	          </security:authorize>
+	          
+	          <security:authorize ifAnyGranted="ROLE_MODULE_PRODUCTION,ROLE_ACCESS_BON_PRODUCTION,ROLE_ACCESS_BON_PRODUCTION_MATIEREPREMIERE,ROLE_ACCESS_CONTROLE_PRODUCTION">
+		        <menu:category id="c_productionworkshop" z="lXSnhDDAwm93oX1VFxppotr8yvU=">
+		            <menu:item id="i_productionworkshop_list" label="Ateliers de production" messageCode="global_menu_gpao" url="/productionworkshops?page=1&amp;size=${empty param.size ? 10 : param.size}" z="OI91faQx7/Q6PS8t5H8jhGHAp8U="/>
+		        </menu:category>
+	          </security:authorize>
         </menu:category>
     </menu:menu>
 </div>

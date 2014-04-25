@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_cm_adorsys_gpao_model_ProductionWorkshop" object="${productionworkshop}" path="/productionworkshops" z="XusCyt0lJuXlJRyGwwldHdtJuTM=">
+        <field:display field="archived" id="s_cm_adorsys_gpao_model_ProductionWorkshop_archived" object="${productionworkshop}" z="00kPf8sEu/+PxQY2X5pfYG/bMKo="/>
+        <field:display field="name" id="s_cm_adorsys_gpao_model_ProductionWorkshop_name" object="${productionworkshop}" z="XVwFD7XMryD4khr/0ZzeVfRdzwg="/>
+        <field:display field="manager" id="s_cm_adorsys_gpao_model_ProductionWorkshop_manager" object="${productionworkshop}" z="S/5r8IevNoa0Cjrb8RjpR3xaQIE="/>
+        <field:display field="materials" id="s_cm_adorsys_gpao_model_ProductionWorkshop_materials" object="${productionworkshop}" z="80QChCS8vuqRMWzK/VSTSqHErMg="/>
+        <field:display field="workflows" id="s_cm_adorsys_gpao_model_ProductionWorkshop_workflows" object="${productionworkshop}" z="29knfjcWAYE7oN+cPxuB7XgGWYc="/>
+        <field:display field="riskAndDangers" id="s_cm_adorsys_gpao_model_ProductionWorkshop_riskAndDangers" object="${productionworkshop}" z="uFliTXRZmdl9n0oCdoctJE6N5E8="/>
+        <field:display field="specialInstructions" id="s_cm_adorsys_gpao_model_ProductionWorkshop_specialInstructions" object="${productionworkshop}" z="pbCNgnk3jMxa3DOLWt9ahxIIVQ4="/>
+        <field:display date="true" dateTimePattern="${productionWorkshop_datecreated_date_format}" field="dateCreated" id="s_cm_adorsys_gpao_model_ProductionWorkshop_dateCreated" object="${productionworkshop}" z="P9sQIQ/iA5+CidKeoktCqnscCXE="/>
+    </page:show>
+</div>

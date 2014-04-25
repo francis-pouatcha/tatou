@@ -168,5 +168,9 @@
             <menu:item id="i_rawmaterialdeliverynoteitem_new" messageCode="global_menu_new" url="/rawmaterialdeliverynoteitems?form" z="wLJu7pFObkuOWSM8EApZDQdIQVo="/>
             <menu:item id="i_rawmaterialdeliverynoteitem_list" messageCode="global_menu_list" url="/rawmaterialdeliverynoteitems?page=1&amp;size=${empty param.size ? 10 : param.size}" z="xK0IxOrtDNWSCe5YMOa9RNB+Lwk="/>
         </menu:category>
+        <menu:category id="c_productionworkshop" z="lXSnhDDAwm93oX1VFxppotr8yvU=">
+            <menu:item id="i_productionworkshop_new" messageCode="global_menu_new" url="/productionworkshops?form" z="zwl36do4Ko4e2vd8ZTeU0MtcwIA="/>
+            <menu:item id="i_productionworkshop_list" messageCode="global_menu_list" url="/productionworkshops?page=1&amp;size=${empty param.size ? 10 : param.size}" z="OI91faQx7/Q6PS8t5H8jhGHAp8U="/>
+        </menu:category>
     </menu:menu>
 </div>

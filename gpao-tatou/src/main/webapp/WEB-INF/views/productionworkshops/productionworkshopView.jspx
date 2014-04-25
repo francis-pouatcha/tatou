@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:page="urn:jsptagdir:/WEB-INF/tags/form"
+	xmlns:form="urn:jsptagdir:/WEB-INF/tags/form"
+	xmlns:spring="http://www.springframework.org/tags"
+	xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+	<jsp:directive.page contentType="text/html;charset=UTF-8" />
+	<jsp:output omit-xml-declaration="yes" />
+	<spring:url value="/productionworkshops/addOrEditForm" var="add_url"></spring:url>
+	<spring:url value="/productionworkshops/next/${ productionWorkshop.id}" var="next_url"></spring:url>
+	<spring:url value="/productionworkshops/previous/${productionWorkshop.id}"	var="previous_url"></spring:url>
+	<spring:url value="/productionworkshops/printLot/${productionWorkshop.id}.pdf"	var="print_lot_url" />
+	<spring:url value="/resources/${product.productImagePath}"	var="logo_url" />
+	<spring:url value="/resources/images/300x200.gif"
+		var="default_logo_url" />
+
+	<div class="row-fluid ">
+		<div class="span6">
+			<STRONG style="font-size: 25px;"><span
+				class="label label-info">Nom : 
+					${productionWorkshop.name}</span></STRONG>
+			<jsp:include page="../gpaoMessages.jspx" />
+		</div>
+		<div style="vertical-align: top;" class="span3">
+			<c:if test="${not empty productionWorkshop.id}">
+				<div style="float: right;" class="pagination">
+					<ul>
+						<li><a title="vider le formulaire" href="${add_url }">Add</a></li>
+						<li><a title="Partenaire preccedant" href="${previous_url }">Prev</a></li>
+						<li><a title="Partenaire suivant " href="${next_url}">Next</a></li>
+					</ul>
+				</div>
+			</c:if>
+		</div>
+	</div>
+	<div class="row-fluid ">
+		<div class="span10">
+			<form:update id="fu_cm_adorsys_gpao_model_ProductionWorkshop" showInPanel="false" method="POST" modelAttribute="productionWorkshop" path="/productionworkshops/addOrEdit" versionField="Version" z="VWb72wrZFg9uQwOyN5RgKVrwXRQ=">
+						        <field:checkbox render="false" field="archived" id="c_cm_adorsys_gpao_model_ProductionWorkshop_archived" z="xdcWNKZVQRqoWqaR7zehopRtanQ="/>
+						        <field:input field="name" id="c_cm_adorsys_gpao_model_ProductionWorkshop_name" required="true" z="4EV10K1vUulB+gaNXxbz6MZkcbo="/>
+						        <field:select field="manager" id="c_cm_adorsys_gpao_model_ProductionWorkshop_manager" itemValue="id" items="${gpaousers}" path="/gpaousers" z="GzDf0+IEbaMGk/0IGgXH2WxEIIA="/>
+						        <field:input field="materials" id="c_cm_adorsys_gpao_model_ProductionWorkshop_materials" z="zGRLqJaQVFV+ip1n1+2L7rZ/2JU="/>
+						        <field:input field="workflows" id="c_cm_adorsys_gpao_model_ProductionWorkshop_workflows" z="7he5J/PSI4HHfpSEFUrdqjqGPTc="/>
+						        <field:input field="riskAndDangers" id="c_cm_adorsys_gpao_model_ProductionWorkshop_riskAndDangers" z="FDn4yJ19rtpIGjm11Bkg0dmIav0="/>
+						        <field:input field="specialInstructions" id="c_cm_adorsys_gpao_model_ProductionWorkshop_specialInstructions" z="AFTrjnJUFMQ7AZHV+zO2ioMpBcI="/>
+						        <field:datetime dateTimePattern="${productionWorkshop_datecreated_date_format}" field="dateCreated" id="c_cm_adorsys_gpao_model_ProductionWorkshop_dateCreated" z="vaqPsBszO9Rx1ahsyPE5Arj1m8o="/>
+						    </form:update>
+		</div>
+		<div style="text-align: center;" class="span2">
+			<p>
+				<button style="width: 100%;" id="visu_lot" class="btn-success"
+					type="button">Visualiser les lots</button>
+			</p>
+
+		</div>
+
+	</div>
+
+	<script>
+		$('#tab a').click(function(e) {
+			e.preventDefault();
+			$(this).tab('show');
+		});
+		$('#visu_lot').click(function(e) {
+			var url = '${print_lot_url}'
+			window.location = url;
+		});
+	</script>
+
+
+</div>

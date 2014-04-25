@@ -15,6 +15,7 @@ import cm.adorsys.gpao.model.Location;
 import cm.adorsys.gpao.model.ManufacturingVoucher;
 import cm.adorsys.gpao.model.ManufacturingVoucherItem;
 import cm.adorsys.gpao.model.ProductIntrant;
+import cm.adorsys.gpao.model.ProductionWorkshop;
 import cm.adorsys.gpao.model.RawMaterialDeliveryNote;
 import cm.adorsys.gpao.model.RawMaterialDeliveryNoteItem;
 import cm.adorsys.gpao.model.RawMaterialOrder;
@@ -294,6 +295,30 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         return new org.springframework.core.convert.converter.Converter<java.lang.String, cm.adorsys.gpao.model.ProductIntrant>() {
             public cm.adorsys.gpao.model.ProductIntrant convert(String id) {
                 return getObject().convert(getObject().convert(id, Long.class), ProductIntrant.class);
+            }
+        };
+    }
+    
+    public Converter<ProductionWorkshop, String> ApplicationConversionServiceFactoryBean.getProductionWorkshopToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<cm.adorsys.gpao.model.ProductionWorkshop, java.lang.String>() {
+            public String convert(ProductionWorkshop productionWorkshop) {
+                return new StringBuilder().append(productionWorkshop.getName()).append(' ').append(productionWorkshop.getMaterials()).append(' ').append(productionWorkshop.getWorkflows()).append(' ').append(productionWorkshop.getRiskAndDangers()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, ProductionWorkshop> ApplicationConversionServiceFactoryBean.getIdToProductionWorkshopConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, cm.adorsys.gpao.model.ProductionWorkshop>() {
+            public cm.adorsys.gpao.model.ProductionWorkshop convert(java.lang.Long id) {
+                return ProductionWorkshop.findProductionWorkshop(id);
+            }
+        };
+    }
+    
+    public Converter<String, ProductionWorkshop> ApplicationConversionServiceFactoryBean.getStringToProductionWorkshopConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, cm.adorsys.gpao.model.ProductionWorkshop>() {
+            public cm.adorsys.gpao.model.ProductionWorkshop convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), ProductionWorkshop.class);
             }
         };
     }
@@ -600,6 +625,9 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         registry.addConverter(getProductSubFamilyToStringConverter());
         registry.addConverter(getIdToProductSubFamilyConverter());
         registry.addConverter(getStringToProductSubFamilyConverter());
+        registry.addConverter(getProductionWorkshopToStringConverter());
+        registry.addConverter(getIdToProductionWorkshopConverter());
+        registry.addConverter(getStringToProductionWorkshopConverter());
         registry.addConverter(getPurchaseOrderToStringConverter());
         registry.addConverter(getIdToPurchaseOrderConverter());
         registry.addConverter(getStringToPurchaseOrderConverter());

@@ -1,10 +1,8 @@
 package cm.adorsys.gpao.web;
 import java.util.Arrays;
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
 import org.springframework.stereotype.Controller;
@@ -15,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import cm.adorsys.gpao.model.CustomerOrder;
 import cm.adorsys.gpao.model.DeliveryOrigin;
 import cm.adorsys.gpao.model.DocumentStates;
@@ -34,10 +31,12 @@ import cm.adorsys.gpao.utils.MessageType;
 @RooWebScaffold(path = "rawmaterialorders", formBackingObject = RawMaterialOrder.class)
 public class RawMaterialOrderController extends AbstractOrderController {
 
-	@Autowired
-	IRawMaterialOrderService rawMaterialOrderService;
-	@Autowired
-	IProductService productService;
+    @Autowired
+    IRawMaterialOrderService rawMaterialOrderService;
+
+    @Autowired
+    IProductService productService;
+
     @RequestMapping(value = "/addOrEditForm", method = RequestMethod.GET)
     public String addOrEditManufacturingVoucherForm(@RequestParam(value = "id", required = false) Long id, HttpServletRequest httpServletRequest, Model uiModel) {
         RawMaterialOrder rawMaterialOrder = id == null ? new RawMaterialOrder() : RawMaterialOrder.findRawMaterialOrder(id);
@@ -53,16 +52,15 @@ public class RawMaterialOrderController extends AbstractOrderController {
             return "rawmaterialdeliverynotes/rawmaterialdeliverynotesView";
         }
         if (rawMaterialOrder.getId() == null) {
-        	rawMaterialOrder.setOrderState(DocumentStates.BROUILLON);
-        	rawMaterialOrder.setOrigin(DeliveryOrigin.CREATED);
-        	rawMaterialOrder.persist();
+            rawMaterialOrder.setOrderState(DocumentStates.BROUILLON);
+            rawMaterialOrder.setOrigin(DeliveryOrigin.CREATED);
+            rawMaterialOrder.persist();
         }
         rawMaterialOrder = doAConsistantMerge(rawMaterialOrder);
         populateEditForm(uiModel, rawMaterialOrder);
         uiModel.addAttribute(MessageType.SUCCESS_MESSAGE, "Enregistre avec success !");
         return "rawmaterialorders/rawmaterialordersView";
     }
-
 
     @RequestMapping(value = "/findProductByNameLike/{name}", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
     @ResponseBody
@@ -77,7 +75,6 @@ public class RawMaterialOrderController extends AbstractOrderController {
         return Product.findProduct(productId).toJson();
     }
 
-    
     @RequestMapping(value = "/{rawMaterialOrderId}/addRawMaterialOrderItem", method = RequestMethod.GET, params = { "productId" })
     @ResponseBody
     public String addOrderItem(@PathVariable("rawMaterialOrderId") Long rawMaterialOrderId, RawMaterialOrderItem rawMaterialOrderItem, @RequestParam("productId") Long productId, Model uiModel) {
@@ -90,7 +87,7 @@ public class RawMaterialOrderController extends AbstractOrderController {
 
     @RequestMapping(value = "/{rawMaterialOrderId}/removeItem", method = RequestMethod.GET)
     public String removeOrderItems(@PathVariable("rawMaterialOrderId") Long rawMaterialOrderId, @RequestParam("itemid") Long[] orderItemIds, Model uiModel) {
-    	RawMaterialOrder rawMaterialOrder = RawMaterialOrder.findRawMaterialOrder(rawMaterialOrderId);
+        RawMaterialOrder rawMaterialOrder = RawMaterialOrder.findRawMaterialOrder(rawMaterialOrderId);
         boolean removeItems = rawMaterialOrderService.removeItems(Arrays.asList(orderItemIds));
         if (!removeItems) {
             uiModel.addAttribute(MessageType.SUCCESS_MESSAGE, "Nothing deleted!");
@@ -110,7 +107,7 @@ public class RawMaterialOrderController extends AbstractOrderController {
                 uiModel.addAttribute(MessageType.ERROR_MESSAGE, "Ce bon de fabrication interne est vide, Impossible de supprimer");
                 populateEditForm(uiModel, rawMaterialOrder);
                 return "rawmaterialorders/rawmaterialordersView";
-			}
+            }
             rawMaterialOrderService.validateRawMaterialOrderAndRawMaterialGenerateDeliveryNote(rawMaterialOrder);
             populateEditForm(uiModel, rawMaterialOrder);
         } catch (Exception e) {
@@ -121,16 +118,15 @@ public class RawMaterialOrderController extends AbstractOrderController {
         return "rawmaterialorders/rawmaterialordersView";
     }
 
-	private RawMaterialOrder doAConsistantMerge(
-			RawMaterialOrder rawMaterialOrder) {
-    	try {
-    		rawMaterialOrder.merge();
+    private RawMaterialOrder doAConsistantMerge(RawMaterialOrder rawMaterialOrder) {
+        try {
+            rawMaterialOrder.merge();
         } catch (Exception e) {
-        	rawMaterialOrder.setVersion(CustomerOrder.findCustomerOrder(rawMaterialOrder.getId()).getVersion());
-        	rawMaterialOrder = rawMaterialOrder.merge();
+            rawMaterialOrder.setVersion(CustomerOrder.findCustomerOrder(rawMaterialOrder.getId()).getVersion());
+            rawMaterialOrder = rawMaterialOrder.merge();
         }
         return rawMaterialOrder;
-	}
+    }
 
     @RequestMapping(value = "/next/{id}", method = RequestMethod.GET, produces = "text/html")
     public String getNextManufacturingVoucher(@PathVariable("id") Long id, Model uiModel) {
@@ -156,14 +152,14 @@ public class RawMaterialOrderController extends AbstractOrderController {
         return "rawmaterialorders/rawmaterialordersView";
     }
 
-	void populateEditForm(Model uiModel, RawMaterialOrder rawMaterialOrder) {
+    void populateEditForm(Model uiModel, RawMaterialOrder rawMaterialOrder) {
         if (rawMaterialOrder != null && rawMaterialOrder.getId() != null) {
             List<RawMaterialOrderItem> rawMaterialOrderItems = RawMaterialOrderItem.findRawMaterialOrderItemsByRawMaterialOrder(rawMaterialOrder).getResultList();
             uiModel.addAttribute("orderItems", rawMaterialOrderItems);
             List<RawMaterialDeliveryNote> deliveryNotes = RawMaterialDeliveryNote.findRawMaterialDeliveryNotesByDocRefEquals(rawMaterialOrder.getReference()).getResultList();
             uiModel.addAttribute("rawMaterialDeliveryNotes", deliveryNotes);
-            if(!deliveryNotes.isEmpty()) {
-            	uiModel.addAttribute("rawMaterialDeliveryNoteItems", RawMaterialDeliveryNoteItem.findRawMaterialDeliveryNoteItemsByRawMaterialDelveryNote(deliveryNotes.iterator().next()).getResultList());
+            if (!deliveryNotes.isEmpty()) {
+                uiModel.addAttribute("rawMaterialDeliveryNoteItems", RawMaterialDeliveryNoteItem.findRawMaterialDeliveryNoteItemsByRawMaterialDelveryNote(deliveryNotes.iterator().next()).getResultList());
             }
         }
         uiModel.addAttribute("rawMaterialOrder", rawMaterialOrder);
