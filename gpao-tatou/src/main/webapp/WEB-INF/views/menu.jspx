@@ -172,5 +172,37 @@
             <menu:item id="i_productionworkshop_new" messageCode="global_menu_new" url="/productionworkshops?form" z="zwl36do4Ko4e2vd8ZTeU0MtcwIA="/>
             <menu:item id="i_productionworkshop_list" messageCode="global_menu_list" url="/productionworkshops?page=1&amp;size=${empty param.size ? 10 : param.size}" z="OI91faQx7/Q6PS8t5H8jhGHAp8U="/>
         </menu:category>
+        <menu:category id="c_productionproductligne" z="oSyFxw531ZZ+cBMUzEaXeD89dBY=">
+            <menu:item id="i_productionproductligne_new" messageCode="global_menu_new" url="/productionproductlignes?form" z="UwemJubUy5AFL2bkUDnSTy6F6aE="/>
+            <menu:item id="i_productionproductligne_list" messageCode="global_menu_list" url="/productionproductlignes?page=1&amp;size=${empty param.size ? 10 : param.size}" z="MJyNBru/l6Dg+y+Q6fOVHM7Qsus="/>
+        </menu:category>
+        <menu:category id="c_productionstepconfig" z="XZeArRz+WxIpLF+ue7dUkm67io4=">
+            <menu:item id="i_productionstepconfig_new" messageCode="global_menu_new" url="/productionstepconfigs?form" z="5K/Doo5etn07ZLaaUhZ+sVd88jE="/>
+            <menu:item id="i_productionstepconfig_list" messageCode="global_menu_list" url="/productionstepconfigs?page=1&amp;size=${empty param.size ? 10 : param.size}" z="5wBqdHWsocHCSJedfBFYnpR/p68="/>
+        </menu:category>
+        <menu:category id="c_productiontaskconfig" z="Wk6tWdD1a3qmd3ioN+aomcYEcsE=">
+            <menu:item id="i_productiontaskconfig_new" messageCode="global_menu_new" url="/productiontaskconfigs?form" z="66qN+YvzAKO3tFo0jXgfPaTHhic="/>
+            <menu:item id="i_productiontaskconfig_list" messageCode="global_menu_list" url="/productiontaskconfigs?page=1&amp;size=${empty param.size ? 10 : param.size}" z="gNcknBIyXOi4DV4mGKZ/4TF25TI="/>
+        </menu:category>
+        <menu:category id="c_productiontypeconfig" z="GGZFTTlxgvixHX9D2rTCWUcM2LQ=">
+            <menu:item id="i_productiontypeconfig_new" messageCode="global_menu_new" url="/productiontypeconfigs?form" z="h5v9y+oKhuTKI1NkgYgjirNe96c="/>
+            <menu:item id="i_productiontypeconfig_list" messageCode="global_menu_list" url="/productiontypeconfigs?page=1&amp;size=${empty param.size ? 10 : param.size}" z="UCG09zyhXYyGR4mi7H+uefDmQDY="/>
+        </menu:category>
+        <menu:category id="c_productionstep" z="fMEu6F+z0SByWYaudCTjzTq7Lbk=">
+            <menu:item id="i_productionstep_new" messageCode="global_menu_new" url="/productionsteps?form" z="QJ0HLj3YVTcV7gd/0RgSlXQ9Hj8="/>
+            <menu:item id="i_productionstep_list" messageCode="global_menu_list" url="/productionsteps?page=1&amp;size=${empty param.size ? 10 : param.size}" z="GVGkLv1nC/OXTxM1m/2X+TtDB/M="/>
+        </menu:category>
+        <menu:category id="c_productiontask" z="3M7h79RGF8vm9NmujRFsPLW4G0g=">
+            <menu:item id="i_productiontask_new" messageCode="global_menu_new" url="/productiontasks?form" z="9mADizhNCNHGRSYftFKJeM0iOW0="/>
+            <menu:item id="i_productiontask_list" messageCode="global_menu_list" url="/productiontasks?page=1&amp;size=${empty param.size ? 10 : param.size}" z="yWSVTqwJG6eaCpZkJWI8uM5uW4g="/>
+        </menu:category>
+        <menu:category id="c_production" z="lp++awgTEBC8DtG6Zwe8nXO0Ixc=">
+            <menu:item id="i_production_new" messageCode="global_menu_new" url="/productions?form" z="4TllNg60+zLj0vbz3tPdKlvT8WY="/>
+            <menu:item id="i_production_list" messageCode="global_menu_list" url="/productions?page=1&amp;size=${empty param.size ? 10 : param.size}" z="GIzoD+EMJ0Y/q2SuiyU6KMVLwI8="/>
+        </menu:category>
+        <menu:category id="c_productionproductligneconfig" z="fgLOP/5cGWiNXzyzU8/MT5Pa3Eg=">
+            <menu:item id="i_productionproductligneconfig_new" messageCode="global_menu_new" url="/productionproductligneconfigs?form" z="N+p9VX8Y6sjuh3wi2qB0TVD6etg="/>
+            <menu:item id="i_productionproductligneconfig_list" messageCode="global_menu_list" url="/productionproductligneconfigs?page=1&amp;size=${empty param.size ? 10 : param.size}" z="6GHQKXNki+B8JLVrLDmG5kalUSE="/>
+        </menu:category>
     </menu:menu>
 </div>

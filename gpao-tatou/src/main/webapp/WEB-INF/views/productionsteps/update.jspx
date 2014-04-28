@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_cm_adorsys_gpao_model_ProductionStep" modelAttribute="productionStep" path="/productionsteps" versionField="Version" z="auXNvHKmDDvvRk0IPkiYRsDyC5E=">
+        <field:checkbox field="archived" id="c_cm_adorsys_gpao_model_ProductionStep_archived" z="dbMzXJQx0u0XdNMdcPkKF5xp90I="/>
+        <field:select field="productionStepConfig" id="c_cm_adorsys_gpao_model_ProductionStep_productionStepConfig" itemValue="id" items="${productionstepconfigs}" path="/productionstepconfigs" z="N0KTN2E5Yj6igOB8PEH6fwq9nkw="/>
+        <field:datetime dateTimePattern="${productionStep_startdate_date_format}" field="startDate" id="c_cm_adorsys_gpao_model_ProductionStep_startDate" z="jxj2T8zKxnTm8pB6oeKD3cKzVUI="/>
+        <field:datetime dateTimePattern="${productionStep_enddate_date_format}" field="endDate" id="c_cm_adorsys_gpao_model_ProductionStep_endDate" z="KtilCcdYoUmuGJMckupPzjrWTes="/>
+        <field:select field="production" id="c_cm_adorsys_gpao_model_ProductionStep_production" itemValue="id" items="${productions}" path="/productions" z="WimG7uZuG8gvKlxorOy9sNN+jV0="/>
+    </form:update>
+</div>

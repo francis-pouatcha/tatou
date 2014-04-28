@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_cm_adorsys_gpao_model_ProductionTask" items="${productiontasks}" z="IUXZcg+d25NSEFOaMrIVb0JJGAI=">
+        <table:table data="${productiontasks}" id="l_cm_adorsys_gpao_model_ProductionTask" path="/productiontasks" z="ccHD+zI1mLWTWb/g2x82gh0eTTc=">
+            <table:column id="c_cm_adorsys_gpao_model_ProductionTask_archived" property="archived" z="hSXcBMc0u4HLStGXggieiDNCHOM="/>
+            <table:column id="c_cm_adorsys_gpao_model_ProductionTask_productionTaskConfig" property="productionTaskConfig" z="BDSij6TmuotqE2cd386JQv8LDGg="/>
+            <table:column date="true" dateTimePattern="${productionTask_startdate_date_format}" id="c_cm_adorsys_gpao_model_ProductionTask_startDate" property="startDate" z="GXrBSpLzyLtWs0kwL0ISM+//zYA="/>
+            <table:column date="true" dateTimePattern="${productionTask_enddate_date_format}" id="c_cm_adorsys_gpao_model_ProductionTask_endDate" property="endDate" z="Yc8RHZ709uev6nd3CdkADSomj/E="/>
+            <table:column id="c_cm_adorsys_gpao_model_ProductionTask_assignee" property="assignee" z="oE7vQMxBHm199MQQD7uNCwmorW0="/>
+        </table:table>
+    </page:list>
+</div>

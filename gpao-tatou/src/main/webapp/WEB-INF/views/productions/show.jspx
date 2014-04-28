@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_cm_adorsys_gpao_model_Production" object="${production}" path="/productions" z="LNYzYmKSZS8Hur5kgJFt7VjIvuI=">
+        <field:display field="archived" id="s_cm_adorsys_gpao_model_Production_archived" object="${production}" z="FQTv7KXmU3Qd6GHZmnkd80nS7C0="/>
+        <field:display field="manufacturingVoucher" id="s_cm_adorsys_gpao_model_Production_manufacturingVoucher" object="${production}" z="2Bu75bZCjyFKpDUxmMf5FPEqFI4="/>
+        <field:display field="rawMaterialOrder" id="s_cm_adorsys_gpao_model_Production_rawMaterialOrder" object="${production}" z="WJmysCbuh1qFrIsClESpsZ/EghA="/>
+        <field:display date="true" dateTimePattern="${production_startdate_date_format}" field="startDate" id="s_cm_adorsys_gpao_model_Production_startDate" object="${production}" z="IQ0PDgHdPrENe1woBZKz4IEL+oc="/>
+        <field:display date="true" dateTimePattern="${production_enddate_date_format}" field="endDate" id="s_cm_adorsys_gpao_model_Production_endDate" object="${production}" z="y1YLeABaaPBFQ9gCFLD5A2qDc98="/>
+        <field:display field="productionTypeConfig" id="s_cm_adorsys_gpao_model_Production_productionTypeConfig" object="${production}" z="ST6xwi3dS/Y9ko7/8bY6zJBfqLY="/>
+    </page:show>
+</div>

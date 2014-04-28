@@ -753,3 +753,72 @@ field string --fieldName riskAndDangers
 field string --fieldName specialInstructions
 field date --fieldName dateCreated --type java.util.Date --dateTimeFormatPattern "dd-MM-yyyy HH:mm"
 web mvc all --package ~.web
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-04-28 09:03:06
+enum type --class ~.model.ProductionProductLigneType
+enum constant --name INCOMMING,OUTGOING,WASTE,REBUS
+entity jpa --class ~.model.ProductionTypeConfig --extends ~.model.GpaoBaseEntity --inheritanceType TABLE_PER_CLASS 
+field string --fieldName name --notNull 
+field string --fieldName description
+entity jpa --class ~.model.ProductionStepConfig --extends ~.model.GpaoBaseEntity --inheritanceType TABLE_PER_CLASS 
+field string --fieldName name --notNull 
+field string --fieldName description
+field reference --fieldName productionWorkshop --type ~.model.ProductionWorkshop --notNull 
+field number --fieldName duration --type java.math.BigDecimal
+field number --fieldName rank --type int
+field set --fieldName employees --type ~.model.GpaoUser
+field reference --fieldName productionTypeConf --type ~.model.ProductionTypeConfig
+entity jpa --class ~.model.ProductionTaskConfig --extends ~.model.GpaoBaseEntity --inheritanceType TABLE_PER_CLASS 
+field string --fieldName name --notNull 
+field reference --fieldName productionStepConfig --type ~.model.ProductionStepConfig
+field reference --fieldName assignee --type ~.model.GpaoUser
+field number --fieldName duration --type int --comment "The estimated task's duration in hours"
+entity jpa --class ~.model.ProductionProductLigne --extends ~.model.GpaoBaseEntity --inheritanceType TABLE_PER_CLASS 
+field reference --fieldName product --type ~.model.Product --notNull 
+field number --fieldName quantity --type java.math.BigDecimal
+field enum --fieldName productLigneType --type ~.model.ProductionProductLigneType
+field reference --fieldName productionStepConfig --type ~.model.ProductionStepConfig
+field reference --fieldName productionTaskConfig --type ~.model.ProductionTaskConfig
+web mvc all --package ~.web
+entity jpa --class ~.model.Production --extends ~.model.GpaoBaseEntity --inheritanceType TABLE_PER_CLASS 
+field reference --fieldName manufacturingVoucher --type ~.model.ManufacturingVoucher
+field reference --fieldName rawMaterialOrder --type ~.model.RawMaterialOrder
+field date --fieldName startDate --type java.util.Date --dateTimeFormatPattern "dd-MM-yyyy HH:mm"
+field date --fieldName endDate --type java.util.Date --dateTimeFormatPattern "dd-MM-yyyy HH:mm"
+field reference --fieldName productionTypeConfig --type ~.model.ProductionTypeConfig
+entity jpa --class ~.model.ProductionStep --extends ~.model.GpaoBaseEntity --inheritanceType TABLE_PER_CLASS 
+field reference --fieldName productionStepConfig --type ~.model.ProductionStepConfig
+field date --fieldName startDate --type java.util.Date --dateTimeFormatPattern "dd-MM-yyyy HH:mm"
+field date --fieldName endDate --type java.util.Date --dateTimeFormatPattern "dd-MM-yyyy HH:mm"
+field reference --fieldName production --type ~.model.Production
+entity jpa --class ~.model.ProductionTask --extends ~.model.GpaoBaseEntity --inheritanceType TABLE_PER_CLASS 
+field reference --fieldName productionTaskConfig --type ~.model.ProductionTaskConfig
+field date --fieldName startDate --type java.util.Date --dateTimeFormatPattern "dd-MM-yyyy HH:mm"
+field date --fieldName endDate --type java.util.Date --dateTimeFormatPattern "dd-MM-yyyy HH:mm"
+field reference --fieldName assignee --type ~.model.GpaoUser
+entity jpa --class ~.model.ProductionProductLigne --extends ~.model.GpaoBaseEntity --inheritanceType TABLE_PER_CLASS 
+field reference --fieldName product --type ~.model.Product --notNull 
+
+field number --fieldName quantity --type java.math.BigDecimal
+
+field enum --fieldName productLigneType --type ~.model.ProductionProductLigneType
+
+field reference --fieldName productionStepConfig --type ~.model.ProductionStepConfig
+
+field reference --fieldName productionTaskConfig --type ~.model.ProductionTaskConfig
+
+entity jpa --class ~.model.ProductionProductLigneConfig --extends ~.model.GpaoBaseEntity --inheritanceType TABLE_PER_CLASS 
+field reference --fieldName product --type ~.model.Product --notNull 
+
+field number --fieldName quantity --type java.math.BigDecimal
+
+field enum --fieldName productLigneType --type ~.model.ProductionProductLigneType
+
+field reference --fieldName productionStepConfig --type ~.model.ProductionStepConfig
+
+field reference --fieldName productionTaskConfig --type ~.model.ProductionTaskConfig
+
+focus --class ~.model.ProductionProductLigne
+field reference --fieldName productionProductLigneConfig --type ~.model.ProductionProductLigneConfig
+field reference --fieldName productionStep --type ~.model.ProductionStep
+field reference --fieldName productionTask --type ~.model.ProductionTask 
+web mvc all --package ~.web

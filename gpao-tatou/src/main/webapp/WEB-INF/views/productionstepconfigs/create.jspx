@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:create id="fc_cm_adorsys_gpao_model_ProductionStepConfig" modelAttribute="productionStepConfig" path="/productionstepconfigs" render="${empty dependencies}" z="tkvXjZPkcZ1D8PUT5/9oPi7YIZw=">
+        <field:checkbox field="archived" id="c_cm_adorsys_gpao_model_ProductionStepConfig_archived" z="Mb5Shhp5HPdIEnfMkrvMNoQYWVg="/>
+        <field:input field="name" id="c_cm_adorsys_gpao_model_ProductionStepConfig_name" required="true" z="kuSX79g1cj9nE4Ug2v+NQRE2sqA="/>
+        <field:input field="description" id="c_cm_adorsys_gpao_model_ProductionStepConfig_description" z="i14uGxOt9oaK29rtUxbZ5IaOrQc="/>
+        <field:select field="productionWorkshop" id="c_cm_adorsys_gpao_model_ProductionStepConfig_productionWorkshop" itemValue="id" items="${productionworkshops}" path="/productionworkshops" required="true" z="W4bdQsNefzdS5JZnByYnD1q1d8M="/>
+        <field:input field="duration" id="c_cm_adorsys_gpao_model_ProductionStepConfig_duration" validationMessageCode="field_invalid_number" z="ut/qqsrvYK6m1LPkpFW17U9luH0="/>
+        <field:input field="rank" id="c_cm_adorsys_gpao_model_ProductionStepConfig_rank" z="j9DlSZX1htnsFGIcvPQuGGJguy4="/>
+        <field:select field="employees" id="c_cm_adorsys_gpao_model_ProductionStepConfig_employees" itemValue="id" items="${gpaousers}" multiple="true" path="/gpaousers" z="zOHJ8KocaSANn8itdrxEIuon2g4="/>
+        <field:select field="productionTypeConf" id="c_cm_adorsys_gpao_model_ProductionStepConfig_productionTypeConf" itemValue="id" items="${productiontypeconfigs}" path="/productiontypeconfigs" z="Xciv72U8SDrmIQKoN8IN12egPGQ="/>
+    </form:create>
+    <form:dependency dependencies="${dependencies}" id="d_cm_adorsys_gpao_model_ProductionStepConfig" render="${not empty dependencies}" z="cMEf1ljmWidohKRCNkwcbOFdT2o="/>
+</div>

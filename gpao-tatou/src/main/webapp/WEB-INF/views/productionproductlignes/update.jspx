@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_cm_adorsys_gpao_model_ProductionProductLigne" modelAttribute="productionProductLigne" path="/productionproductlignes" versionField="Version" z="+6ZJKq2f6FOpkRnbUICdvdVDSVM=">
+        <field:checkbox field="archived" id="c_cm_adorsys_gpao_model_ProductionProductLigne_archived" z="W6hUFhh1rhe6a2t3gcAVm1V64Go="/>
+        <field:select field="product" id="c_cm_adorsys_gpao_model_ProductionProductLigne_product" itemValue="id" items="${products}" path="/products" required="true" z="IJBBPTr+Wn0jInQ6XVNR72PSNEs="/>
+        <field:input field="quantity" id="c_cm_adorsys_gpao_model_ProductionProductLigne_quantity" validationMessageCode="field_invalid_number" z="0nQYhzuseyzTRViSgsS3cXPHUsw="/>
+        <field:select field="productLigneType" id="c_cm_adorsys_gpao_model_ProductionProductLigne_productLigneType" items="${productionproductlignetypes}" path="productionproductlignetypes" z="9FfRHT1j6UmTIfej6TfB7hpNzPI="/>
+        <field:select field="productionProductLigneConfig" id="c_cm_adorsys_gpao_model_ProductionProductLigne_productionProductLigneConfig" itemValue="id" items="${productionproductligneconfigs}" path="/productionproductligneconfigs" z="rnweXb/e3d3M2Tkmtxo5ybcMwHA="/>
+        <field:select field="productionStep" id="c_cm_adorsys_gpao_model_ProductionProductLigne_productionStep" itemValue="id" items="${productionsteps}" path="/productionsteps" z="Zq4K4idffs49ej3aEKWKx+h+Gmo="/>
+        <field:select field="productionTask" id="c_cm_adorsys_gpao_model_ProductionProductLigne_productionTask" itemValue="id" items="${productiontasks}" path="/productiontasks" z="u3aYVE3ASet1IjSNSohAkcTtAdI="/>
+    </form:update>
+</div>

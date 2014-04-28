@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_cm_adorsys_gpao_model_Production" items="${productions}" z="0E0y49SeZrJ7vGiNwfjOdDRCZdw=">
+        <table:table data="${productions}" id="l_cm_adorsys_gpao_model_Production" path="/productions" z="xB4bRXsbRfDZZNXRog45vUlWY9Q=">
+            <table:column id="c_cm_adorsys_gpao_model_Production_archived" property="archived" z="QTEFSOaIJVQGbB9uHM+UpGGpiXY="/>
+            <table:column id="c_cm_adorsys_gpao_model_Production_manufacturingVoucher" property="manufacturingVoucher" z="phfPeNPPa9qBtaMin/zarzapgXQ="/>
+            <table:column id="c_cm_adorsys_gpao_model_Production_rawMaterialOrder" property="rawMaterialOrder" z="uBB3yJCvX+HHHQ0KzZjEI01bNnY="/>
+            <table:column date="true" dateTimePattern="${production_startdate_date_format}" id="c_cm_adorsys_gpao_model_Production_startDate" property="startDate" z="fDm3T9C1SstoedjI8LI8TS5BPKk="/>
+            <table:column date="true" dateTimePattern="${production_enddate_date_format}" id="c_cm_adorsys_gpao_model_Production_endDate" property="endDate" z="IQzmEyoDexKJGfksfMX8zUh1F68="/>
+            <table:column id="c_cm_adorsys_gpao_model_Production_productionTypeConfig" property="productionTypeConfig" z="Q2CYCC5jJZa+xjU5jomaTzxaRr0="/>
+        </table:table>
+    </page:list>
+</div>

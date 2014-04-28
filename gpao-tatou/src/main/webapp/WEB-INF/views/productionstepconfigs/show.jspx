@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_cm_adorsys_gpao_model_ProductionStepConfig" object="${productionstepconfig}" path="/productionstepconfigs" z="rv/2xuimLtDW0Vzy1OnNgp78+EU=">
+        <field:display field="archived" id="s_cm_adorsys_gpao_model_ProductionStepConfig_archived" object="${productionstepconfig}" z="85NpcarN1i5s/cnSKLBETIey+ns="/>
+        <field:display field="name" id="s_cm_adorsys_gpao_model_ProductionStepConfig_name" object="${productionstepconfig}" z="PkznekqlcaWXfSqj41O2wZzduDk="/>
+        <field:display field="description" id="s_cm_adorsys_gpao_model_ProductionStepConfig_description" object="${productionstepconfig}" z="3Kzdwh/DEtw9rAbkdTryXfvLmyg="/>
+        <field:display field="productionWorkshop" id="s_cm_adorsys_gpao_model_ProductionStepConfig_productionWorkshop" object="${productionstepconfig}" z="ATI9KlYVZN/NmXMYZbAykl1vd8A="/>
+        <field:display field="duration" id="s_cm_adorsys_gpao_model_ProductionStepConfig_duration" object="${productionstepconfig}" z="jUCAVaHc7SvCHR80ZAaFqXkjtRQ="/>
+        <field:display field="rank" id="s_cm_adorsys_gpao_model_ProductionStepConfig_rank" object="${productionstepconfig}" z="RGE4GcHcajpoG9kfZQBRs9QlXWk="/>
+        <field:display field="employees" id="s_cm_adorsys_gpao_model_ProductionStepConfig_employees" object="${productionstepconfig}" z="1edGu8fWkmbWneWXDvpDUDyJvcU="/>
+        <field:display field="productionTypeConf" id="s_cm_adorsys_gpao_model_ProductionStepConfig_productionTypeConf" object="${productionstepconfig}" z="XhdG+71NjWGcI1te+ABOe/ko7sQ="/>
+    </page:show>
+</div>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_cm_adorsys_gpao_model_ProductionTaskConfig" object="${productiontaskconfig}" path="/productiontaskconfigs" z="N9yhXEwV+BogL5NSWM4NAYGr2ko=">
+        <field:display field="archived" id="s_cm_adorsys_gpao_model_ProductionTaskConfig_archived" object="${productiontaskconfig}" z="uHAidKduMw/PLrrbGuq2QVBdg2g="/>
+        <field:display field="name" id="s_cm_adorsys_gpao_model_ProductionTaskConfig_name" object="${productiontaskconfig}" z="A8zPqKgbJFU1lJGPDgPUqw9L6ZM="/>
+        <field:display field="productionStepConfig" id="s_cm_adorsys_gpao_model_ProductionTaskConfig_productionStepConfig" object="${productiontaskconfig}" z="IiMj8fmrtrMvl9VyC/FJas7Mytc="/>
+        <field:display field="assignee" id="s_cm_adorsys_gpao_model_ProductionTaskConfig_assignee" object="${productiontaskconfig}" z="9rTQOpirpHDC8KMbr5HOKHl+ONw="/>
+        <field:display field="duration" id="s_cm_adorsys_gpao_model_ProductionTaskConfig_duration" object="${productiontaskconfig}" z="LM6JScSJIai4IKHZzI2BrOV2xRA="/>
+    </page:show>
+</div>
