@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+<div xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
+    <util:button-add baseUrl="/productionstepconfigs/addOrEditForm" />
     <page:list showInPanel="false" label="Configuration des etapes de production" id="pl_cm_adorsys_gpao_model_ProductionStepConfig" items="${productionstepconfigs}" z="JbkZ6IwQv9ayf2R7LlcVlKMaPeU=">
-        <table:table create="false" delete="false" show="false" queryParam="true" data="${productionstepconfigs}" id="l_cm_adorsys_gpao_model_ProductionStepConfig" path="/productionstepconfigs" z="kFK8lOAcy2kA3LQd1mXrGNezrQQ=">
+        <table:table create="false" delete="false" show="false" queryParam="true" data="${productionstepconfigs}" id="l_cm_adorsys_gpao_model_ProductionStepConfig" path="/productionstepconfigs/addOrEditForm" z="kFK8lOAcy2kA3LQd1mXrGNezrQQ=">
             <table:column id="c_cm_adorsys_gpao_model_ProductionStepConfig_archived" property="archived" z="qBQOnBtWsDztPnhzmg9k/s8M90I="/>
             <table:column id="c_cm_adorsys_gpao_model_ProductionStepConfig_name" property="name" z="9g6kYFNh9iz57shIspfjstrw4XU="/>
             <table:column id="c_cm_adorsys_gpao_model_ProductionStepConfig_description" property="description" z="CciS+DD8t+pxB0r3hqJGSA3VDpM="/>
