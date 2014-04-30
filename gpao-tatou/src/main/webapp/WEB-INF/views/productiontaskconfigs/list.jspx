@@ -2,8 +2,8 @@
 <div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    <page:list id="pl_cm_adorsys_gpao_model_ProductionTaskConfig" items="${productiontaskconfigs}" z="2deTNu8EZ2HhZc/IwN5TnHHK28M=">
-        <table:table data="${productiontaskconfigs}" id="l_cm_adorsys_gpao_model_ProductionTaskConfig" path="/productiontaskconfigs" z="vHg5r+xSdP9kJgpQ56jj2AAc8jY=">
+    <page:list showInPanel="false" label="Configuration des taches de production" id="pl_cm_adorsys_gpao_model_ProductionTaskConfig" items="${productiontaskconfigs}" z="2deTNu8EZ2HhZc/IwN5TnHHK28M=">
+        <table:table create="false" delete="false" show="false" queryParam="true" data="${productiontaskconfigs}" id="l_cm_adorsys_gpao_model_ProductionTaskConfig" path="/productiontaskconfigs" z="vHg5r+xSdP9kJgpQ56jj2AAc8jY=">
             <table:column id="c_cm_adorsys_gpao_model_ProductionTaskConfig_archived" property="archived" z="BTF+FLz+dcUNGYehkhDcNAJD/YA="/>
             <table:column id="c_cm_adorsys_gpao_model_ProductionTaskConfig_name" property="name" z="DBvzt95ad0HUFFojbwRSMD8QpA8="/>
             <table:column id="c_cm_adorsys_gpao_model_ProductionTaskConfig_productionStepConfig" property="productionStepConfig" z="FEmsx43Zwv4c7+2QiYssSKZX+XI="/>

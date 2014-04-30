@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+<div xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    <page:list id="pl_cm_adorsys_gpao_model_ProductionTypeConfig" items="${productiontypeconfigs}" z="/pDkWsnhVlF6pZrX34ehk89/1UE=">
-        <table:table data="${productiontypeconfigs}" id="l_cm_adorsys_gpao_model_ProductionTypeConfig" path="/productiontypeconfigs" z="OuqFdw225XxxOxyhIIjypeIFPtU=">
+    <util:button-add baseUrl="/productiontypeconfigs/addOrEditForm"/>
+    <page:list showInPanel="false" label="Configuration des types de production" id="pl_cm_adorsys_gpao_model_ProductionTypeConfig" items="${productiontypeconfigs}" z="/pDkWsnhVlF6pZrX34ehk89/1UE=">
+        <table:table create="false" delete="false" show="false" queryParam="true" data="${productiontypeconfigs}" id="l_cm_adorsys_gpao_model_ProductionTypeConfig" path="/productiontypeconfigs/addOrEditForm" z="OuqFdw225XxxOxyhIIjypeIFPtU=">
             <table:column id="c_cm_adorsys_gpao_model_ProductionTypeConfig_archived" property="archived" z="1Atc3eCkUMXN+P2JhY6xxDRn1cA="/>
             <table:column id="c_cm_adorsys_gpao_model_ProductionTypeConfig_name" property="name" z="/ezjdtfpyfBhC86bzuFVabuAIM8="/>
             <table:column id="c_cm_adorsys_gpao_model_ProductionTypeConfig_description" property="description" z="lDUfkyaRl0gUsvzEO87aoBt/j6Y="/>

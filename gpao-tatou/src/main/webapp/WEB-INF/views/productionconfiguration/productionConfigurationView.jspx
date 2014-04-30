@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:spring="http://www.springframework.org/tags" 
+	xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    
+    <spring:url value="/productiontypeconfigs?page=1&amp;size=${empty param.size ? 10 : param.size}" var="productiontypeconfigs_url" />
+    <spring:url value="/productionproductligneconfigs?page=1&amp;size=${empty param.size ? 10 : param.size}" var="productionproductligneconfigs_url" />
+    <spring:url value="/productionstepconfigs?page=1&amp;size=${empty param.size ? 10 : param.size}" var="productionstepconfigs_url" />
+    <spring:url value="/productiontaskconfigs?page=1&amp;size=${empty param.size ? 10 : param.size}" var="productiontaskconfigs_url" />
+    
+    <div class="row">
+    	<span class="span3">  <a class="btn a-btn" href="${productiontypeconfigs_url }">Configuration des types de production</a> </span>
+    	<span class="span3">  <a class="btn a-btn" href="${productionproductligneconfigs_url }">Produits intermediaires</a> </span>
+    	<span class="span3">  <a class="btn a-btn" href="${productionstepconfigs_url }">Configuration des etapes de production</a> </span>
+    	<span class="span3">  <a class="btn a-btn" href="${productiontaskconfigs_url }">Configuration des taches</a> </span>
+    </div>
+</div>

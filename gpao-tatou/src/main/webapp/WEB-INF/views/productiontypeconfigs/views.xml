@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
 <tiles-definitions>
-    <definition extends="default" name="productiontypeconfigs/list">
+    <definition extends="production" name="productiontypeconfigs/list">
         <put-attribute name="body" value="/WEB-INF/views/productiontypeconfigs/list.jspx"/>
     </definition>
 <definition extends="default" name="productiontypeconfigs/show">
@@ -12,5 +12,8 @@
     </definition>
 <definition extends="default" name="productiontypeconfigs/update">
         <put-attribute name="body" value="/WEB-INF/views/productiontypeconfigs/update.jspx"/>
+    </definition>
+<definition extends="production" name="productiontypeconfigs/productiontypeconfigView">
+        <put-attribute name="body" value="/WEB-INF/views/productiontypeconfigs/productionTypeConfigView.jspx"/>
     </definition>
 </tiles-definitions>

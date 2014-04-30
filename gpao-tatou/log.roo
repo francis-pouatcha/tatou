@@ -822,3 +822,4 @@ field reference --fieldName productionProductLigneConfig --type ~.model.Producti
 field reference --fieldName productionStep --type ~.model.ProductionStep
 field reference --fieldName productionTask --type ~.model.ProductionTask 
 web mvc all --package ~.web
+web mvc all --package ~.web
