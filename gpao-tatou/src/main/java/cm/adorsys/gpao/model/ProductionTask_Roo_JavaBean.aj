@@ -3,7 +3,8 @@
 
 package cm.adorsys.gpao.model;
 
-import cm.adorsys.gpao.model.GpaoUser;
+import cm.adorsys.gpao.model.DocumentStates;
+import cm.adorsys.gpao.model.ProductionStep;
 import cm.adorsys.gpao.model.ProductionTask;
 import cm.adorsys.gpao.model.ProductionTaskConfig;
 import java.util.Date;
@@ -16,6 +17,14 @@ privileged aspect ProductionTask_Roo_JavaBean {
     
     public void ProductionTask.setProductionTaskConfig(ProductionTaskConfig productionTaskConfig) {
         this.productionTaskConfig = productionTaskConfig;
+    }
+    
+    public ProductionStep ProductionTask.getProductionStep() {
+        return this.productionStep;
+    }
+    
+    public void ProductionTask.setProductionStep(ProductionStep productionStep) {
+        this.productionStep = productionStep;
     }
     
     public Date ProductionTask.getStartDate() {
@@ -34,12 +43,12 @@ privileged aspect ProductionTask_Roo_JavaBean {
         this.endDate = endDate;
     }
     
-    public GpaoUser ProductionTask.getAssignee() {
-        return this.assignee;
+    public DocumentStates ProductionTask.getTaskState() {
+        return this.taskState;
     }
     
-    public void ProductionTask.setAssignee(GpaoUser assignee) {
-        this.assignee = assignee;
+    public void ProductionTask.setTaskState(DocumentStates taskState) {
+        this.taskState = taskState;
     }
     
 }

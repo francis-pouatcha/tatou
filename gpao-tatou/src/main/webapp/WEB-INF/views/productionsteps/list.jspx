@@ -5,10 +5,11 @@
     <page:list id="pl_cm_adorsys_gpao_model_ProductionStep" items="${productionsteps}" z="W5cZkrQGDTYR6ZfkM0QqBEKrGv0=">
         <table:table data="${productionsteps}" id="l_cm_adorsys_gpao_model_ProductionStep" path="/productionsteps" z="v5r+sBQiPp4xvfQZ//3tMCF2g/E=">
             <table:column id="c_cm_adorsys_gpao_model_ProductionStep_archived" property="archived" z="V8mfwEjBWfsEIHBQ5WZxPifgPh0="/>
+            <table:column id="c_cm_adorsys_gpao_model_ProductionStep_production" property="production" z="XwDAuGWeILOOOAXdBVb+9aOVhKs="/>
             <table:column id="c_cm_adorsys_gpao_model_ProductionStep_productionStepConfig" property="productionStepConfig" z="5b/tP17A57Ki4YbVmgu089UUi1A="/>
             <table:column date="true" dateTimePattern="${productionStep_startdate_date_format}" id="c_cm_adorsys_gpao_model_ProductionStep_startDate" property="startDate" z="8udL9as/HnWCfTmajNaYF5D0gjc="/>
             <table:column date="true" dateTimePattern="${productionStep_enddate_date_format}" id="c_cm_adorsys_gpao_model_ProductionStep_endDate" property="endDate" z="Z2c0ZscDRh8yzpDlOOTBlu8sfjo="/>
-            <table:column id="c_cm_adorsys_gpao_model_ProductionStep_production" property="production" z="XwDAuGWeILOOOAXdBVb+9aOVhKs="/>
+            <table:column id="c_cm_adorsys_gpao_model_ProductionStep_stepState" property="stepState" z="WnY3uboBft10PZrWP3O8itDkWtQ="/>
         </table:table>
     </page:list>
 </div>

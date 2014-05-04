@@ -3,12 +3,21 @@
 
 package cm.adorsys.gpao.model;
 
+import cm.adorsys.gpao.model.DocumentStates;
 import cm.adorsys.gpao.model.Production;
 import cm.adorsys.gpao.model.ProductionStep;
 import cm.adorsys.gpao.model.ProductionStepConfig;
 import java.util.Date;
 
 privileged aspect ProductionStep_Roo_JavaBean {
+    
+    public Production ProductionStep.getProduction() {
+        return this.production;
+    }
+    
+    public void ProductionStep.setProduction(Production production) {
+        this.production = production;
+    }
     
     public ProductionStepConfig ProductionStep.getProductionStepConfig() {
         return this.productionStepConfig;
@@ -34,12 +43,12 @@ privileged aspect ProductionStep_Roo_JavaBean {
         this.endDate = endDate;
     }
     
-    public Production ProductionStep.getProduction() {
-        return this.production;
+    public DocumentStates ProductionStep.getStepState() {
+        return this.stepState;
     }
     
-    public void ProductionStep.setProduction(Production production) {
-        this.production = production;
+    public void ProductionStep.setStepState(DocumentStates stepState) {
+        this.stepState = stepState;
     }
     
 }

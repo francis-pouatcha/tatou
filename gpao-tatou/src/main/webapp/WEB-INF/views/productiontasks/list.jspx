@@ -6,9 +6,10 @@
         <table:table data="${productiontasks}" id="l_cm_adorsys_gpao_model_ProductionTask" path="/productiontasks" z="ccHD+zI1mLWTWb/g2x82gh0eTTc=">
             <table:column id="c_cm_adorsys_gpao_model_ProductionTask_archived" property="archived" z="hSXcBMc0u4HLStGXggieiDNCHOM="/>
             <table:column id="c_cm_adorsys_gpao_model_ProductionTask_productionTaskConfig" property="productionTaskConfig" z="BDSij6TmuotqE2cd386JQv8LDGg="/>
+            <table:column id="c_cm_adorsys_gpao_model_ProductionTask_productionStep" property="productionStep" z="IGfehUPWTMze+s9jgML34/CE8qo="/>
             <table:column date="true" dateTimePattern="${productionTask_startdate_date_format}" id="c_cm_adorsys_gpao_model_ProductionTask_startDate" property="startDate" z="GXrBSpLzyLtWs0kwL0ISM+//zYA="/>
             <table:column date="true" dateTimePattern="${productionTask_enddate_date_format}" id="c_cm_adorsys_gpao_model_ProductionTask_endDate" property="endDate" z="Yc8RHZ709uev6nd3CdkADSomj/E="/>
-            <table:column id="c_cm_adorsys_gpao_model_ProductionTask_assignee" property="assignee" z="oE7vQMxBHm199MQQD7uNCwmorW0="/>
+            <table:column id="c_cm_adorsys_gpao_model_ProductionTask_taskState" property="taskState" z="P83nPiLKc01w5kru5+s4JuUZwNI="/>
         </table:table>
     </page:list>
 </div>

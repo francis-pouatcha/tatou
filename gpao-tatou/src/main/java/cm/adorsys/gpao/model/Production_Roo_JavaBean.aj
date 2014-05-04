@@ -3,13 +3,21 @@
 
 package cm.adorsys.gpao.model;
 
+import cm.adorsys.gpao.model.DocumentStates;
 import cm.adorsys.gpao.model.ManufacturingVoucher;
 import cm.adorsys.gpao.model.Production;
 import cm.adorsys.gpao.model.ProductionTypeConfig;
-import cm.adorsys.gpao.model.RawMaterialOrder;
 import java.util.Date;
 
 privileged aspect Production_Roo_JavaBean {
+    
+    public String Production.getReference() {
+        return this.reference;
+    }
+    
+    public void Production.setReference(String reference) {
+        this.reference = reference;
+    }
     
     public ManufacturingVoucher Production.getManufacturingVoucher() {
         return this.manufacturingVoucher;
@@ -17,14 +25,6 @@ privileged aspect Production_Roo_JavaBean {
     
     public void Production.setManufacturingVoucher(ManufacturingVoucher manufacturingVoucher) {
         this.manufacturingVoucher = manufacturingVoucher;
-    }
-    
-    public RawMaterialOrder Production.getRawMaterialOrder() {
-        return this.rawMaterialOrder;
-    }
-    
-    public void Production.setRawMaterialOrder(RawMaterialOrder rawMaterialOrder) {
-        this.rawMaterialOrder = rawMaterialOrder;
     }
     
     public Date Production.getStartDate() {
@@ -49,6 +49,22 @@ privileged aspect Production_Roo_JavaBean {
     
     public void Production.setProductionTypeConfig(ProductionTypeConfig productionTypeConfig) {
         this.productionTypeConfig = productionTypeConfig;
+    }
+    
+    public DocumentStates Production.getProductionState() {
+        return this.productionState;
+    }
+    
+    public void Production.setProductionState(DocumentStates productionState) {
+        this.productionState = productionState;
+    }
+    
+    public String Production.getUserName() {
+        return this.userName;
+    }
+    
+    public void Production.setUserName(String userName) {
+        this.userName = userName;
     }
     
 }

@@ -20,8 +20,10 @@ import cm.adorsys.gpao.model.ProductionProductLigne;
 import cm.adorsys.gpao.model.ProductionProductLigneConfig;
 import cm.adorsys.gpao.model.ProductionStep;
 import cm.adorsys.gpao.model.ProductionStepConfig;
+import cm.adorsys.gpao.model.ProductionStepLigne;
 import cm.adorsys.gpao.model.ProductionTask;
 import cm.adorsys.gpao.model.ProductionTaskConfig;
+import cm.adorsys.gpao.model.ProductionTaskLigne;
 import cm.adorsys.gpao.model.ProductionTypeConfig;
 import cm.adorsys.gpao.model.ProductionWorkshop;
 import cm.adorsys.gpao.model.RawMaterialDeliveryNote;
@@ -310,7 +312,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<Production, String> ApplicationConversionServiceFactoryBean.getProductionToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<cm.adorsys.gpao.model.Production, java.lang.String>() {
             public String convert(Production production) {
-                return new StringBuilder().append(production.getStartDate()).append(' ').append(production.getEndDate()).toString();
+                return new StringBuilder().append(production.getReference()).append(' ').append(production.getStartDate()).append(' ').append(production.getEndDate()).append(' ').append(production.getUserName()).toString();
             }
         };
     }
@@ -427,6 +429,30 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         };
     }
     
+    public Converter<ProductionStepLigne, String> ApplicationConversionServiceFactoryBean.getProductionStepLigneToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<cm.adorsys.gpao.model.ProductionStepLigne, java.lang.String>() {
+            public String convert(ProductionStepLigne productionStepLigne) {
+                return new StringBuilder().append(productionStepLigne.getQuantity()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, ProductionStepLigne> ApplicationConversionServiceFactoryBean.getIdToProductionStepLigneConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, cm.adorsys.gpao.model.ProductionStepLigne>() {
+            public cm.adorsys.gpao.model.ProductionStepLigne convert(java.lang.Long id) {
+                return ProductionStepLigne.findProductionStepLigne(id);
+            }
+        };
+    }
+    
+    public Converter<String, ProductionStepLigne> ApplicationConversionServiceFactoryBean.getStringToProductionStepLigneConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, cm.adorsys.gpao.model.ProductionStepLigne>() {
+            public cm.adorsys.gpao.model.ProductionStepLigne convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), ProductionStepLigne.class);
+            }
+        };
+    }
+    
     public Converter<ProductionTask, String> ApplicationConversionServiceFactoryBean.getProductionTaskToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<cm.adorsys.gpao.model.ProductionTask, java.lang.String>() {
             public String convert(ProductionTask productionTask) {
@@ -471,6 +497,30 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         return new org.springframework.core.convert.converter.Converter<java.lang.String, cm.adorsys.gpao.model.ProductionTaskConfig>() {
             public cm.adorsys.gpao.model.ProductionTaskConfig convert(String id) {
                 return getObject().convert(getObject().convert(id, Long.class), ProductionTaskConfig.class);
+            }
+        };
+    }
+    
+    public Converter<ProductionTaskLigne, String> ApplicationConversionServiceFactoryBean.getProductionTaskLigneToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<cm.adorsys.gpao.model.ProductionTaskLigne, java.lang.String>() {
+            public String convert(ProductionTaskLigne productionTaskLigne) {
+                return new StringBuilder().append(productionTaskLigne.getQuantity()).append(' ').append(productionTaskLigne.getCreateDate()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, ProductionTaskLigne> ApplicationConversionServiceFactoryBean.getIdToProductionTaskLigneConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, cm.adorsys.gpao.model.ProductionTaskLigne>() {
+            public cm.adorsys.gpao.model.ProductionTaskLigne convert(java.lang.Long id) {
+                return ProductionTaskLigne.findProductionTaskLigne(id);
+            }
+        };
+    }
+    
+    public Converter<String, ProductionTaskLigne> ApplicationConversionServiceFactoryBean.getStringToProductionTaskLigneConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, cm.adorsys.gpao.model.ProductionTaskLigne>() {
+            public cm.adorsys.gpao.model.ProductionTaskLigne convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), ProductionTaskLigne.class);
             }
         };
     }
@@ -840,12 +890,18 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         registry.addConverter(getProductionStepConfigToStringConverter());
         registry.addConverter(getIdToProductionStepConfigConverter());
         registry.addConverter(getStringToProductionStepConfigConverter());
+        registry.addConverter(getProductionStepLigneToStringConverter());
+        registry.addConverter(getIdToProductionStepLigneConverter());
+        registry.addConverter(getStringToProductionStepLigneConverter());
         registry.addConverter(getProductionTaskToStringConverter());
         registry.addConverter(getIdToProductionTaskConverter());
         registry.addConverter(getStringToProductionTaskConverter());
         registry.addConverter(getProductionTaskConfigToStringConverter());
         registry.addConverter(getIdToProductionTaskConfigConverter());
         registry.addConverter(getStringToProductionTaskConfigConverter());
+        registry.addConverter(getProductionTaskLigneToStringConverter());
+        registry.addConverter(getIdToProductionTaskLigneConverter());
+        registry.addConverter(getStringToProductionTaskLigneConverter());
         registry.addConverter(getProductionTypeConfigToStringConverter());
         registry.addConverter(getIdToProductionTypeConfigConverter());
         registry.addConverter(getStringToProductionTypeConfigConverter());

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_cm_adorsys_gpao_model_ProductionTaskLigne" items="${productiontasklignes}" z="2kDUH87icuamBrGfQIfILob8a10=">
+        <table:table data="${productiontasklignes}" id="l_cm_adorsys_gpao_model_ProductionTaskLigne" path="/productiontasklignes" z="i3It3bsuRObA4dl0bx6jl1xDjCw=">
+            <table:column id="c_cm_adorsys_gpao_model_ProductionTaskLigne_archived" property="archived" z="AKexqFqfFnSnhLQrGyYSN2N0JGE="/>
+            <table:column id="c_cm_adorsys_gpao_model_ProductionTaskLigne_product" property="product" z="1vzilzJkMQ4Ze7FicXVhgo4bY2k="/>
+            <table:column id="c_cm_adorsys_gpao_model_ProductionTaskLigne_productTask" property="productTask" z="IkHB5i8BnQl36zvqKnllN85BnbI="/>
+            <table:column id="c_cm_adorsys_gpao_model_ProductionTaskLigne_quantity" property="quantity" z="8BrERbjpzoup1y9jAvir81UGmJo="/>
+            <table:column id="c_cm_adorsys_gpao_model_ProductionTaskLigne_ligneType" property="ligneType" z="3Li8QYWFoF3PVs1T0BP3UYLnlVo="/>
+            <table:column date="true" dateTimePattern="${productionTaskLigne_createdate_date_format}" id="c_cm_adorsys_gpao_model_ProductionTaskLigne_createDate" property="createDate" z="bb63CTdJhgOQzLYZyvZFI9UBwuI="/>
+        </table:table>
+    </page:list>
+</div>

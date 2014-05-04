@@ -3,11 +3,13 @@
 
 package cm.adorsys.gpao.web;
 
-import cm.adorsys.gpao.model.GpaoUser;
+import cm.adorsys.gpao.model.DocumentStates;
+import cm.adorsys.gpao.model.ProductionStep;
 import cm.adorsys.gpao.model.ProductionTask;
 import cm.adorsys.gpao.model.ProductionTaskConfig;
 import cm.adorsys.gpao.web.ProductionTaskController;
 import java.io.UnsupportedEncodingException;
+import java.util.Arrays;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.springframework.ui.Model;
@@ -89,14 +91,15 @@ privileged aspect ProductionTaskController_Roo_Controller {
     }
     
     void ProductionTaskController.addDateTimeFormatPatterns(Model uiModel) {
-        uiModel.addAttribute("productionTask_startdate_date_format", "dd-MM-yyyy HH:mm");
-        uiModel.addAttribute("productionTask_enddate_date_format", "dd-MM-yyyy HH:mm");
+        uiModel.addAttribute("productionTask_startdate_date_format", "dd-MM-yyyy hh:mm");
+        uiModel.addAttribute("productionTask_enddate_date_format", "dd-MM-yyyy hh:mm");
     }
     
     void ProductionTaskController.populateEditForm(Model uiModel, ProductionTask productionTask) {
         uiModel.addAttribute("productionTask", productionTask);
         addDateTimeFormatPatterns(uiModel);
-        uiModel.addAttribute("gpaousers", GpaoUser.findAllGpaoUsers());
+        uiModel.addAttribute("documentstateses", Arrays.asList(DocumentStates.values()));
+        uiModel.addAttribute("productionsteps", ProductionStep.findAllProductionSteps());
         uiModel.addAttribute("productiontaskconfigs", ProductionTaskConfig.findAllProductionTaskConfigs());
     }
     

@@ -3,11 +3,15 @@
 
 package cm.adorsys.gpao.web;
 
+import cm.adorsys.gpao.model.DocumentStates;
 import cm.adorsys.gpao.model.Production;
 import cm.adorsys.gpao.model.ProductionStep;
 import cm.adorsys.gpao.model.ProductionStepConfig;
 import cm.adorsys.gpao.web.ProductionStepController;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.springframework.ui.Model;
@@ -35,6 +39,11 @@ privileged aspect ProductionStepController_Roo_Controller {
     @RequestMapping(params = "form", produces = "text/html")
     public String ProductionStepController.createForm(Model uiModel) {
         populateEditForm(uiModel, new ProductionStep());
+        List<String[]> dependencies = new ArrayList<String[]>();
+        if (ProductionStepConfig.countProductionStepConfigs() == 0) {
+            dependencies.add(new String[] { "productionstepconfig", "productionstepconfigs" });
+        }
+        uiModel.addAttribute("dependencies", dependencies);
         return "productionsteps/create";
     }
     
@@ -89,13 +98,14 @@ privileged aspect ProductionStepController_Roo_Controller {
     }
     
     void ProductionStepController.addDateTimeFormatPatterns(Model uiModel) {
-        uiModel.addAttribute("productionStep_startdate_date_format", "dd-MM-yyyy HH:mm");
-        uiModel.addAttribute("productionStep_enddate_date_format", "dd-MM-yyyy HH:mm");
+        uiModel.addAttribute("productionStep_startdate_date_format", "dd-MM-yyyy hh:mm");
+        uiModel.addAttribute("productionStep_enddate_date_format", "dd-MM-yyyy hh:mm");
     }
     
     void ProductionStepController.populateEditForm(Model uiModel, ProductionStep productionStep) {
         uiModel.addAttribute("productionStep", productionStep);
         addDateTimeFormatPatterns(uiModel);
+        uiModel.addAttribute("documentstateses", Arrays.asList(DocumentStates.values()));
         uiModel.addAttribute("productions", Production.findAllProductions());
         uiModel.addAttribute("productionstepconfigs", ProductionStepConfig.findAllProductionStepConfigs());
     }

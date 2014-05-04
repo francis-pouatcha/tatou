@@ -7,6 +7,7 @@ import java.util.Date;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
+import javax.persistence.Enumerated;
 
 @RooJavaBean
 @RooToString
@@ -20,18 +21,23 @@ public class ProductionTask extends GpaoBaseEntity {
 
     /**
      */
+    @ManyToOne
+    private ProductionStep productionStep;
+
+    /**
+     */
     @Temporal(TemporalType.TIMESTAMP)
-    @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm")
+    @DateTimeFormat(pattern = "dd-MM-yyyy hh:mm")
     private Date startDate;
 
     /**
      */
     @Temporal(TemporalType.TIMESTAMP)
-    @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm")
+    @DateTimeFormat(pattern = "dd-MM-yyyy hh:mm")
     private Date endDate;
 
     /**
      */
-    @ManyToOne
-    private GpaoUser assignee;
+    @Enumerated
+    private DocumentStates taskState;
 }

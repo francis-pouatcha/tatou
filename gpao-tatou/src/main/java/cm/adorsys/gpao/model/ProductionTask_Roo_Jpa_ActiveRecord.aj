@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 privileged aspect ProductionTask_Roo_Jpa_ActiveRecord {
     
-    public static final List<String> ProductionTask.fieldNames4OrderClauseFilter = java.util.Arrays.asList("productionTaskConfig", "startDate", "endDate", "assignee");
+    public static final List<String> ProductionTask.fieldNames4OrderClauseFilter = java.util.Arrays.asList("productionTaskConfig", "productionStep", "startDate", "endDate", "taskState");
     
     public static long ProductionTask.countProductionTasks() {
         return entityManager().createQuery("SELECT COUNT(o) FROM ProductionTask o", Long.class).getSingleResult();

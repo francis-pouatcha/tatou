@@ -4,9 +4,10 @@
     <jsp:output omit-xml-declaration="yes"/>
     <page:show id="ps_cm_adorsys_gpao_model_ProductionStep" object="${productionstep}" path="/productionsteps" z="m6fxP9AHspuMCZO20g5QTAZBNHY=">
         <field:display field="archived" id="s_cm_adorsys_gpao_model_ProductionStep_archived" object="${productionstep}" z="wKiMDOJXRJBMkhJRLK41YMJFJpw="/>
+        <field:display field="production" id="s_cm_adorsys_gpao_model_ProductionStep_production" object="${productionstep}" z="AD7wpuFQYvxxG1ygC/I0v7gvzzM="/>
         <field:display field="productionStepConfig" id="s_cm_adorsys_gpao_model_ProductionStep_productionStepConfig" object="${productionstep}" z="4emrx8+Nv+UgO61oPNqQaLLMQBU="/>
         <field:display date="true" dateTimePattern="${productionStep_startdate_date_format}" field="startDate" id="s_cm_adorsys_gpao_model_ProductionStep_startDate" object="${productionstep}" z="JExedy+h3nYKuSqLKVwhP/7QraM="/>
         <field:display date="true" dateTimePattern="${productionStep_enddate_date_format}" field="endDate" id="s_cm_adorsys_gpao_model_ProductionStep_endDate" object="${productionstep}" z="FNvfaKgBNR1EWAz4lWuX5c+Qgn0="/>
-        <field:display field="production" id="s_cm_adorsys_gpao_model_ProductionStep_production" object="${productionstep}" z="AD7wpuFQYvxxG1ygC/I0v7gvzzM="/>
+        <field:display field="stepState" id="s_cm_adorsys_gpao_model_ProductionStep_stepState" object="${productionstep}" z="wAWonINSv1xknehathmuOXVNMSU="/>
     </page:show>
 </div>

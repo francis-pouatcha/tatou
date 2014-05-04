@@ -204,5 +204,13 @@
             <menu:item id="i_productionproductligneconfig_new" messageCode="global_menu_new" url="/productionproductligneconfigs?form" z="N+p9VX8Y6sjuh3wi2qB0TVD6etg="/>
             <menu:item id="i_productionproductligneconfig_list" messageCode="global_menu_list" url="/productionproductligneconfigs?page=1&amp;size=${empty param.size ? 10 : param.size}" z="6GHQKXNki+B8JLVrLDmG5kalUSE="/>
         </menu:category>
+        <menu:category id="c_productionstepligne" z="ZmH8QhBK+vWTzkI6YTuFu9qbgmY=">
+            <menu:item id="i_productionstepligne_new" messageCode="global_menu_new" url="/productionsteplignes?form" z="77dYYxg+XvMT3B9XncuL8BJJnso="/>
+            <menu:item id="i_productionstepligne_list" messageCode="global_menu_list" url="/productionsteplignes?page=1&amp;size=${empty param.size ? 10 : param.size}" z="VnqMjOnSWqsxTPJTs4pCN/IuHJ8="/>
+        </menu:category>
+        <menu:category id="c_productiontaskligne" z="NaqHove8IFH84HxLL0op5R435Wc=">
+            <menu:item id="i_productiontaskligne_new" messageCode="global_menu_new" url="/productiontasklignes?form" z="VDdQvbBMEFxR81bWiR0ijuxCk0s="/>
+            <menu:item id="i_productiontaskligne_list" messageCode="global_menu_list" url="/productiontasklignes?page=1&amp;size=${empty param.size ? 10 : param.size}" z="bHHNgPbsZH/8a8akE2LT6Hl8/kc="/>
+        </menu:category>
     </menu:menu>
 </div>

@@ -5,8 +5,9 @@
     <form:update id="fu_cm_adorsys_gpao_model_ProductionTask" modelAttribute="productionTask" path="/productiontasks" versionField="Version" z="yeIvNvDCQoQKEeUW6LFjZY03TqM=">
         <field:checkbox field="archived" id="c_cm_adorsys_gpao_model_ProductionTask_archived" z="rqFxOjTLw9po12Svogsy4KoVv/c="/>
         <field:select field="productionTaskConfig" id="c_cm_adorsys_gpao_model_ProductionTask_productionTaskConfig" itemValue="id" items="${productiontaskconfigs}" path="/productiontaskconfigs" z="20e6IhqZ9rivHcMqKrXUtg35pxs="/>
+        <field:select field="productionStep" id="c_cm_adorsys_gpao_model_ProductionTask_productionStep" itemValue="id" items="${productionsteps}" path="/productionsteps" z="Esxw2gcQHnJLkRjuCLXbG42tkTw="/>
         <field:datetime dateTimePattern="${productionTask_startdate_date_format}" field="startDate" id="c_cm_adorsys_gpao_model_ProductionTask_startDate" z="7dVJTh5W8rAS6j0OAgY8iAuk0Cs="/>
         <field:datetime dateTimePattern="${productionTask_enddate_date_format}" field="endDate" id="c_cm_adorsys_gpao_model_ProductionTask_endDate" z="PqKZps3wY3vsVVuJ6j8UbdxDY0Y="/>
-        <field:select field="assignee" id="c_cm_adorsys_gpao_model_ProductionTask_assignee" itemValue="id" items="${gpaousers}" path="/gpaousers" z="dUd3FsikMSb6BWkE9f1wFlUGoe8="/>
+        <field:select field="taskState" id="c_cm_adorsys_gpao_model_ProductionTask_taskState" items="${documentstateses}" path="documentstateses" z="GtqF07+WtBQRDQmBfrZRbgjAdFE="/>
     </form:update>
 </div>

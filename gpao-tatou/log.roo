@@ -823,3 +823,45 @@ field reference --fieldName productionStep --type ~.model.ProductionStep
 field reference --fieldName productionTask --type ~.model.ProductionTask 
 web mvc all --package ~.web
 web mvc all --package ~.web
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log closed at 2014-05-04 13:30:07
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-05-04 13:30:39
+entity jpa --class ~.model.Production --extends ~.model.GpaoBaseEntity --inheritanceType TABLE_PER_CLASS 
+field string --fieldName reference 
+field reference --fieldName manufacturingVoucher --type ~.model.ManufacturingVoucher --notNull 
+field date --fieldName startDate --type java.util.Date --dateTimeFormatPattern "dd-MM-yyyy hh:mm"
+field date --fieldName endDate --type java.util.Date --dateTimeFormatPattern "dd-MM-yyyy hh:mm"
+field reference --fieldName productionTypeConfig --type ~.model.ProductionTypeConfig --notNull 
+field enum --fieldName productionState --type ~.model.DocumentStates
+field string --fieldName userName 
+entity jpa --class ~.model.ProductionStep --extends ~.model.GpaoBaseEntity --inheritanceType TABLE_PER_CLASS 
+field reference --fieldName production --type ~.model.Production
+field reference --fieldName productionStepConfig --type ~.model.ProductionStepConfig --notNull 
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log closed at 2014-05-04 14:11:37
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-05-04 14:16:55
+focus --class ~.model.ProductionStep
+field date --fieldName startDate --type java.util.Date --dateTimeFormatPattern "dd-MM-yyyy hh:mm"
+field date --fieldName endDate --type java.util.Date --dateTimeFormatPattern "dd-MM-yyyy hh:mm"
+field enum --fieldName stepState --type ~.model.DocumentStates
+entity jpa --class ~.model.ProductionStepLigne --extends ~.model.GpaoBaseEntity --inheritanceType TABLE_PER_CLASS 
+field reference --fieldName product --type ~.model.Product
+field number --fieldName quantity --type java.math.BigDecimal
+field reference --fieldName productionStep --type ~.model.ProductionStep
+field enum --fieldName ligneType --type ~.model.ProductionProductLigneType
+entity jpa --class ~.model.ProductionTask --extends ~.model.GpaoBaseEntity --inheritanceType TABLE_PER_CLASS 
+field reference --fieldName productionTaskConfig --type ~.model.ProductionTaskConfig
+field reference --fieldName productionStep --type ~.model.ProductionStep
+field date --fieldName startDate --type java.util.Date --dateTimeFormatPattern "dd-MM-yyyy hh:mm"
+field date --fieldName endDate --type java.util.Date --dateTimeFormatPattern "dd-MM-yyyy hh:mm"
+field enum --fieldName taskState --type ~.model.DocumentStates
+entity jpa --class ~.model.ProductionTaskLigne --extends ~.model.GpaoBaseEntity --inheritanceType TABLE_PER_CLASS 
+field reference --fieldName product --type ~.model.Product 
+// [failed] field reference --fieldName productTask --type ~.model.ProductionTass
+field reference --fieldName productTask --type ~.model.ProductionTask
+field number --fieldName quantity --type java.math.BigDecimal
+field enum --fieldName ligneType --type ~.model.ProductionProductLigneType
+field date --fieldName createDate --type java.util.Date --dateTimeFormatPattern "dd-MM-yyyy hh:mm"
+web mvc all --package ~.web
+focus --class ~.model.ProductionStepLigne
+field reference --fieldName productionProductLigneConfig --type ~.model.ProductionProductLigneConfig
+focus --class ~.model.ProductionTaskLigne
+field reference --fieldName productionProductLigneConfig --type ~.model.ProductionProductLigneConfig

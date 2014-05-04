@@ -3,10 +3,12 @@ import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
+import javax.persistence.Enumerated;
 
 @RooJavaBean
 @RooToString
@@ -16,22 +18,28 @@ public class ProductionStep extends GpaoBaseEntity {
     /**
      */
     @ManyToOne
+    private Production production;
+
+    /**
+     */
+    @NotNull
+    @ManyToOne
     private ProductionStepConfig productionStepConfig;
 
     /**
      */
     @Temporal(TemporalType.TIMESTAMP)
-    @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm")
+    @DateTimeFormat(pattern = "dd-MM-yyyy hh:mm")
     private Date startDate;
 
     /**
      */
     @Temporal(TemporalType.TIMESTAMP)
-    @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm")
+    @DateTimeFormat(pattern = "dd-MM-yyyy hh:mm")
     private Date endDate;
 
     /**
      */
-    @ManyToOne
-    private Production production;
+    @Enumerated
+    private DocumentStates stepState;
 }

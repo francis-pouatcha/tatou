@@ -3,12 +3,15 @@
 
 package cm.adorsys.gpao.web;
 
+import cm.adorsys.gpao.model.DocumentStates;
 import cm.adorsys.gpao.model.ManufacturingVoucher;
 import cm.adorsys.gpao.model.Production;
 import cm.adorsys.gpao.model.ProductionTypeConfig;
-import cm.adorsys.gpao.model.RawMaterialOrder;
 import cm.adorsys.gpao.web.ProductionController;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.springframework.ui.Model;
@@ -36,6 +39,14 @@ privileged aspect ProductionController_Roo_Controller {
     @RequestMapping(params = "form", produces = "text/html")
     public String ProductionController.createForm(Model uiModel) {
         populateEditForm(uiModel, new Production());
+        List<String[]> dependencies = new ArrayList<String[]>();
+        if (ManufacturingVoucher.countManufacturingVouchers() == 0) {
+            dependencies.add(new String[] { "manufacturingvoucher", "manufacturingvouchers" });
+        }
+        if (ProductionTypeConfig.countProductionTypeConfigs() == 0) {
+            dependencies.add(new String[] { "productiontypeconfig", "productiontypeconfigs" });
+        }
+        uiModel.addAttribute("dependencies", dependencies);
         return "productions/create";
     }
     
@@ -90,16 +101,16 @@ privileged aspect ProductionController_Roo_Controller {
     }
     
     void ProductionController.addDateTimeFormatPatterns(Model uiModel) {
-        uiModel.addAttribute("production_startdate_date_format", "dd-MM-yyyy HH:mm");
-        uiModel.addAttribute("production_enddate_date_format", "dd-MM-yyyy HH:mm");
+        uiModel.addAttribute("production_startdate_date_format", "dd-MM-yyyy hh:mm");
+        uiModel.addAttribute("production_enddate_date_format", "dd-MM-yyyy hh:mm");
     }
     
     void ProductionController.populateEditForm(Model uiModel, Production production) {
         uiModel.addAttribute("production", production);
         addDateTimeFormatPatterns(uiModel);
+        uiModel.addAttribute("documentstateses", Arrays.asList(DocumentStates.values()));
         uiModel.addAttribute("manufacturingvouchers", ManufacturingVoucher.findAllManufacturingVouchers());
         uiModel.addAttribute("productiontypeconfigs", ProductionTypeConfig.findAllProductionTypeConfigs());
-        uiModel.addAttribute("rawmaterialorders", RawMaterialOrder.findAllRawMaterialOrders());
     }
     
     String ProductionController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

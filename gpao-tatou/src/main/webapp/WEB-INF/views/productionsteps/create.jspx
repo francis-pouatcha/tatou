@@ -4,10 +4,11 @@
     <jsp:output omit-xml-declaration="yes"/>
     <form:create id="fc_cm_adorsys_gpao_model_ProductionStep" modelAttribute="productionStep" path="/productionsteps" render="${empty dependencies}" z="zh+fPJbijNMFjQ4QDxZ+M/nPpdI=">
         <field:checkbox field="archived" id="c_cm_adorsys_gpao_model_ProductionStep_archived" z="dbMzXJQx0u0XdNMdcPkKF5xp90I="/>
-        <field:select field="productionStepConfig" id="c_cm_adorsys_gpao_model_ProductionStep_productionStepConfig" itemValue="id" items="${productionstepconfigs}" path="/productionstepconfigs" z="N0KTN2E5Yj6igOB8PEH6fwq9nkw="/>
+        <field:select field="production" id="c_cm_adorsys_gpao_model_ProductionStep_production" itemValue="id" items="${productions}" path="/productions" z="WimG7uZuG8gvKlxorOy9sNN+jV0="/>
+        <field:select field="productionStepConfig" id="c_cm_adorsys_gpao_model_ProductionStep_productionStepConfig" itemValue="id" items="${productionstepconfigs}" path="/productionstepconfigs" required="true" z="BtFsk4T8vVLzpWgDiAYbTOo1ij0="/>
         <field:datetime dateTimePattern="${productionStep_startdate_date_format}" field="startDate" id="c_cm_adorsys_gpao_model_ProductionStep_startDate" z="jxj2T8zKxnTm8pB6oeKD3cKzVUI="/>
         <field:datetime dateTimePattern="${productionStep_enddate_date_format}" field="endDate" id="c_cm_adorsys_gpao_model_ProductionStep_endDate" z="KtilCcdYoUmuGJMckupPzjrWTes="/>
-        <field:select field="production" id="c_cm_adorsys_gpao_model_ProductionStep_production" itemValue="id" items="${productions}" path="/productions" z="WimG7uZuG8gvKlxorOy9sNN+jV0="/>
+        <field:select field="stepState" id="c_cm_adorsys_gpao_model_ProductionStep_stepState" items="${documentstateses}" path="documentstateses" z="qH7K6YEpMuorz11jcCcb8voVUMA="/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_cm_adorsys_gpao_model_ProductionStep" render="${not empty dependencies}" z="mijTIJd+vR2rdDcywao/7V36/WY="/>
 </div>
