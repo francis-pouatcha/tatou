@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    <page:list id="pl_cm_adorsys_gpao_model_Production" items="${productions}" z="0E0y49SeZrJ7vGiNwfjOdDRCZdw=">
-        <table:table data="${productions}" id="l_cm_adorsys_gpao_model_Production" path="/productions" z="xB4bRXsbRfDZZNXRog45vUlWY9Q=">
+    <util:button-add baseUrl="/productions/addOrEditForm"/>
+    <page:list showInPanel="false" label="Liste des productions" id="pl_cm_adorsys_gpao_model_Production" items="${productions}" z="0E0y49SeZrJ7vGiNwfjOdDRCZdw=">
+        <table:table create="false" show="false" delete="false" queryParam="true" data="${productions}" id="l_cm_adorsys_gpao_model_Production" path="/productions/addOrEditForm" z="xB4bRXsbRfDZZNXRog45vUlWY9Q=">
             <table:column id="c_cm_adorsys_gpao_model_Production_archived" property="archived" z="QTEFSOaIJVQGbB9uHM+UpGGpiXY="/>
             <table:column id="c_cm_adorsys_gpao_model_Production_reference" property="reference" z="Dxy8rg6BBkC9yv9Fgk7LFEBYPw8="/>
             <table:column id="c_cm_adorsys_gpao_model_Production_manufacturingVoucher" property="manufacturingVoucher" z="phfPeNPPa9qBtaMin/zarzapgXQ="/>

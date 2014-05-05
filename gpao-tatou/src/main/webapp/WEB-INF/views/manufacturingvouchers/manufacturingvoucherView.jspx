@@ -124,7 +124,7 @@
 							z="6Lx4+3sNkCLrQ2nULHU0IQO0nEc=" />
 						<field:select field="customerOrder"
 							id="c_cm_adorsys_gpao_model_ManufacturingVoucher_customerOrder"
-							itemValue="id" items="${customerorders}" path="/customerorders"
+							itemValue="id" items="${customerorders}" path="/customerorders/addOrEditForm"
 							z="+ZRJHlcL89MZmPc6OqPBNcAhliM=" />
 					</c:otherwise>
 				</c:choose>
