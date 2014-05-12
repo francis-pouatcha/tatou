@@ -230,7 +230,7 @@
 											$(data).each(function(){
 												$('#productIntrants tbody').append(
 												 '<tr id="'+this.id+'">
-													  <td>'+this.product.name+'</td>
+													  <td>'+this.rawMaterial.name+'</td>
 													  <td style="text-align: center;">'+this.rawMaterial.famille.name+'</td>
 													  <td style="text-align: center;">'+this.quantity+'</td>
 													  <td style="text-align: center;">'+this.udm.name+'</td>

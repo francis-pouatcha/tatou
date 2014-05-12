@@ -51,4 +51,20 @@ privileged aspect ProductionStep_Roo_JavaBean {
         this.stepState = stepState;
     }
     
+    public String ProductionStep.getName() {
+        return this.name;
+    }
+    
+    public void ProductionStep.setName(String name) {
+        this.name = name;
+    }
+    
+    public String ProductionStep.getDescription() {
+        return this.description;
+    }
+    
+    public void ProductionStep.setDescription(String description) {
+        this.description = description;
+    }
+    
 }

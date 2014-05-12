@@ -3,14 +3,12 @@
 
 package cm.adorsys.gpao.web;
 
-import cm.adorsys.gpao.model.DocumentStates;
 import cm.adorsys.gpao.model.ManufacturingVoucher;
 import cm.adorsys.gpao.model.Production;
 import cm.adorsys.gpao.model.ProductionTypeConfig;
 import cm.adorsys.gpao.web.ProductionController;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -103,14 +101,6 @@ privileged aspect ProductionController_Roo_Controller {
     void ProductionController.addDateTimeFormatPatterns(Model uiModel) {
         uiModel.addAttribute("production_startdate_date_format", "dd-MM-yyyy hh:mm");
         uiModel.addAttribute("production_enddate_date_format", "dd-MM-yyyy hh:mm");
-    }
-    
-    void ProductionController.populateEditForm(Model uiModel, Production production) {
-        uiModel.addAttribute("production", production);
-        addDateTimeFormatPatterns(uiModel);
-        uiModel.addAttribute("documentstateses", Arrays.asList(DocumentStates.values()));
-        uiModel.addAttribute("manufacturingvouchers", ManufacturingVoucher.findAllManufacturingVouchers());
-        uiModel.addAttribute("productiontypeconfigs", ProductionTypeConfig.findAllProductionTypeConfigs());
     }
     
     String ProductionController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

@@ -108,6 +108,11 @@ public class RawMaterialOrderController extends AbstractOrderController {
                 populateEditForm(uiModel, rawMaterialOrder);
                 return "rawmaterialorders/rawmaterialordersView";
             }
+            if(!rawMaterialOrderService.checkRawMaterialAvaibility(rawMaterialOrder)) {
+                uiModel.addAttribute(MessageType.ERROR_MESSAGE, "Il n'y a assez de matieres premieres pour cette commande");
+                populateEditForm(uiModel, rawMaterialOrder);
+                return "rawmaterialorders/rawmaterialordersView";
+            }
             rawMaterialOrderService.validateRawMaterialOrderAndRawMaterialGenerateDeliveryNote(rawMaterialOrder);
             populateEditForm(uiModel, rawMaterialOrder);
         } catch (Exception e) {

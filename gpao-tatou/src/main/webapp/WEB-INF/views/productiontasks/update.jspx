@@ -9,5 +9,7 @@
         <field:datetime dateTimePattern="${productionTask_startdate_date_format}" field="startDate" id="c_cm_adorsys_gpao_model_ProductionTask_startDate" z="7dVJTh5W8rAS6j0OAgY8iAuk0Cs="/>
         <field:datetime dateTimePattern="${productionTask_enddate_date_format}" field="endDate" id="c_cm_adorsys_gpao_model_ProductionTask_endDate" z="PqKZps3wY3vsVVuJ6j8UbdxDY0Y="/>
         <field:select field="taskState" id="c_cm_adorsys_gpao_model_ProductionTask_taskState" items="${documentstateses}" path="documentstateses" z="GtqF07+WtBQRDQmBfrZRbgjAdFE="/>
+        <field:input field="name" id="c_cm_adorsys_gpao_model_ProductionTask_name" z="EEpXYO5bXBsunnA09up6q+fou1U="/>
+        <field:input field="description" id="c_cm_adorsys_gpao_model_ProductionTask_description" z="LyE7DnbhKUSRyQM2/rTnVApG7p8="/>
     </form:update>
 </div>

@@ -34,4 +34,7 @@
     <definition extends="stock" name="products/stock/findProductView">
         <put-attribute name="body" value="/WEB-INF/views/products/findProductView.jspx"/>
     </definition>
+<definition extends="default" name="products/findProductsByProductionTypeConfig">
+        <put-attribute name="body" value="/WEB-INF/views/products/findProductsByProductionTypeConfig.jspx"/>
+    </definition>
 </tiles-definitions>

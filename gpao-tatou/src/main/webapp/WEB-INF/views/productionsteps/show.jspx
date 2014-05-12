@@ -9,5 +9,7 @@
         <field:display date="true" dateTimePattern="${productionStep_startdate_date_format}" field="startDate" id="s_cm_adorsys_gpao_model_ProductionStep_startDate" object="${productionstep}" z="JExedy+h3nYKuSqLKVwhP/7QraM="/>
         <field:display date="true" dateTimePattern="${productionStep_enddate_date_format}" field="endDate" id="s_cm_adorsys_gpao_model_ProductionStep_endDate" object="${productionstep}" z="FNvfaKgBNR1EWAz4lWuX5c+Qgn0="/>
         <field:display field="stepState" id="s_cm_adorsys_gpao_model_ProductionStep_stepState" object="${productionstep}" z="wAWonINSv1xknehathmuOXVNMSU="/>
+        <field:display field="name" id="s_cm_adorsys_gpao_model_ProductionStep_name" object="${productionstep}" z="+lcndYIBrxd2ApU56Aj1cONXL44="/>
+        <field:display field="description" id="s_cm_adorsys_gpao_model_ProductionStep_description" object="${productionstep}" z="DkJjH4mgzf+AD9VMT7+U1wXFVCM="/>
     </page:show>
 </div>

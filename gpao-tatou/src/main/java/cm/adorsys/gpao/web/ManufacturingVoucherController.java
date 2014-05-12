@@ -5,8 +5,10 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
 import org.springframework.stereotype.Controller;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import cm.adorsys.gpao.model.Caracteristic;
 import cm.adorsys.gpao.model.Company;
 import cm.adorsys.gpao.model.CustomerOrder;
@@ -29,6 +32,7 @@ import cm.adorsys.gpao.model.ManufacturingVoucher;
 import cm.adorsys.gpao.model.ManufacturingVoucherItem;
 import cm.adorsys.gpao.model.Partner;
 import cm.adorsys.gpao.model.Product;
+import cm.adorsys.gpao.model.Production;
 import cm.adorsys.gpao.model.Specificity;
 import cm.adorsys.gpao.model.SpecificityToCaracteristicMap;
 import cm.adorsys.gpao.model.Taxe;
@@ -37,6 +41,7 @@ import cm.adorsys.gpao.model.uimodel.ManufacturingItemUiModel;
 import cm.adorsys.gpao.security.SecurityUtil;
 import cm.adorsys.gpao.services.IManufacturingVoucherService;
 import cm.adorsys.gpao.services.IProductService;
+import cm.adorsys.gpao.services.IProductionService;
 import cm.adorsys.gpao.services.IRawMaterialOrderService;
 import cm.adorsys.gpao.services.impl.function.FindManufacturingVoucherItems;
 import cm.adorsys.gpao.utils.MessageType;
@@ -55,6 +60,9 @@ public class ManufacturingVoucherController extends AbstractOrderController {
     @Autowired
     IRawMaterialOrderService rawMaterialOrderService;
 
+    @Autowired
+    IProductionService productionService;
+    
     @RequestMapping(value = "/addOrEditForm", method = RequestMethod.GET)
     public String addOrEditManufacturingVoucherForm(@RequestParam(value = "id", required = false) Long id, HttpServletRequest httpServletRequest, Model uiModel) {
         ManufacturingVoucher manufacturingVoucher = null;
@@ -141,6 +149,28 @@ public class ManufacturingVoucherController extends AbstractOrderController {
         }
         return "manufacturingvouchers/manufacturingvoucherView";
     }
+    @RequestMapping(value = "/{manufacturingVoucherId}/generateProduction", method = RequestMethod.GET)
+    @Transactional(rollbackFor=Throwable.class)
+    public String generateProduction(@PathVariable("manufacturingVoucherId") Long manufacturingVoucherId, Model uiModel) {
+    	ManufacturingVoucher manufacturingVoucher = ManufacturingVoucher.findManufacturingVoucher(manufacturingVoucherId);
+    	Production production = null;
+    	try {
+			production = productionService.createProduction(manufacturingVoucher);
+		} catch (InsufficientRawMaterialException e) {
+			return errorMessage(uiModel, manufacturingVoucher,"Les matieres premieres ne sont pas suffisantes");
+		}
+    	if(production == null) {
+    		return errorMessage(uiModel, manufacturingVoucher, "Quelque a mal tourne durrant la creation de la production. Veillez re-essayer svp, si sa persiste contactez ...");
+    	}
+    	populateEditForm(uiModel, manufacturingVoucher);
+    	return "manufacturingvouchers/manufacturingvoucherView";
+    }
+
+	private String errorMessage(Model uiModel,ManufacturingVoucher manufacturingVoucher,String message) {
+		uiModel.addAttribute(MessageType.ERROR_MESSAGE, message);
+		populateEditForm(uiModel, manufacturingVoucher);
+		return "manufacturingvouchers/manufacturingvoucherView";
+	}
 
     /**
      * Validate the manufacturing voucher.
@@ -223,6 +253,10 @@ public class ManufacturingVoucherController extends AbstractOrderController {
             }
             uiModel.addAttribute("manufacturingItemUiModels", manufacturingItemUiModels);
             uiModel.addAttribute("deliveryorigins", Arrays.asList(DeliveryOrigin.GENERATED));
+            List<Production> productions = Production.findProductionsByManufacturingVoucher(manufacturingVoucher).getResultList();
+            if(productions.size() >= 1) {
+            	uiModel.addAttribute("production", productions.iterator().next());
+            }
         } else {
             uiModel.addAttribute("deliveryorigins", Arrays.asList(DeliveryOrigin.CREATED));
         }

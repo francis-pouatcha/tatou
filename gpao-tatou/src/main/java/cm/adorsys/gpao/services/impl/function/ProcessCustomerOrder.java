@@ -95,7 +95,7 @@ public class ProcessCustomerOrder implements Fonction<CustomerOrderItem,Void>{
 		ManufacturingVoucherItem manufacturingVoucherItem = new ManufacturingVoucherItem();
 		manufacturingVoucherItem.setManufacturingVoucher(manufacturingVoucher);
 		manufacturingVoucherItem.setProduct(customerOrderItem.getProduct());
-		manufacturingVoucherItem.setDelayDate(DateUtils.addDays(new Date(), 30));
+		manufacturingVoucherItem.setDelayDate(manufacturingVoucher.getDelayDate());
 		manufacturingVoucherItem.setQuantity(convertedCustomerOrderItemQuantity);
 		manufacturingVoucherItem.setComment(" ");
 		manufacturingVoucherItem.persist();
@@ -175,7 +175,7 @@ public class ProcessCustomerOrder implements Fonction<CustomerOrderItem,Void>{
 			manufacturingVoucher.setCustomer(customerOrder.getCustomer());
 			manufacturingVoucher.setCustomerOrder(customerOrder);
 			//set the manufacturing date delay, to be one day before the delivery day.
-			manufacturingVoucher.setDelayDate(DateUtils.addDays(customerOrder.getDeliveryDate(), -1));
+			manufacturingVoucher.setDelayDate(customerOrder.getDeliveryDate());
 			manufacturingVoucher.setDocumentState(DocumentStates.BROUILLON);
 			manufacturingVoucher.setOrigin(DeliveryOrigin.GENERATED);
 			manufacturingVoucher.persist();

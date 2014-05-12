@@ -8,5 +8,6 @@
         <field:display field="productionStepConfig" id="s_cm_adorsys_gpao_model_ProductionTaskConfig_productionStepConfig" object="${productiontaskconfig}" z="IiMj8fmrtrMvl9VyC/FJas7Mytc="/>
         <field:display field="assignee" id="s_cm_adorsys_gpao_model_ProductionTaskConfig_assignee" object="${productiontaskconfig}" z="9rTQOpirpHDC8KMbr5HOKHl+ONw="/>
         <field:display field="duration" id="s_cm_adorsys_gpao_model_ProductionTaskConfig_duration" object="${productiontaskconfig}" z="LM6JScSJIai4IKHZzI2BrOV2xRA="/>
+        <field:display field="rank" id="s_cm_adorsys_gpao_model_ProductionTaskConfig_rank" object="${productiontaskconfig}" z="IF9bfS4rqq3x3E3wbevfUgjbfMU="/>
     </page:show>
 </div>

@@ -384,7 +384,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<ProductionStep, String> ApplicationConversionServiceFactoryBean.getProductionStepToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<cm.adorsys.gpao.model.ProductionStep, java.lang.String>() {
             public String convert(ProductionStep productionStep) {
-                return new StringBuilder().append(productionStep.getStartDate()).append(' ').append(productionStep.getEndDate()).toString();
+                return new StringBuilder().append(productionStep.getStartDate()).append(' ').append(productionStep.getEndDate()).append(' ').append(productionStep.getName()).append(' ').append(productionStep.getDescription()).toString();
             }
         };
     }
@@ -456,7 +456,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<ProductionTask, String> ApplicationConversionServiceFactoryBean.getProductionTaskToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<cm.adorsys.gpao.model.ProductionTask, java.lang.String>() {
             public String convert(ProductionTask productionTask) {
-                return new StringBuilder().append(productionTask.getStartDate()).append(' ').append(productionTask.getEndDate()).toString();
+                return new StringBuilder().append(productionTask.getStartDate()).append(' ').append(productionTask.getEndDate()).append(' ').append(productionTask.getName()).append(' ').append(productionTask.getDescription()).toString();
             }
         };
     }
@@ -480,7 +480,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<ProductionTaskConfig, String> ApplicationConversionServiceFactoryBean.getProductionTaskConfigToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<cm.adorsys.gpao.model.ProductionTaskConfig, java.lang.String>() {
             public String convert(ProductionTaskConfig productionTaskConfig) {
-                return new StringBuilder().append(productionTaskConfig.getName()).append(' ').append(productionTaskConfig.getDuration()).toString();
+                return new StringBuilder().append(productionTaskConfig.getName()).append(' ').append(productionTaskConfig.getDuration()).append(' ').append(productionTaskConfig.getRank()).toString();
             }
         };
     }

@@ -13,4 +13,7 @@
 <definition extends="default" name="productions/update">
         <put-attribute name="body" value="/WEB-INF/views/productions/update.jspx"/>
     </definition>
+<definition extends="production" name="productions/productionsView">
+        <put-attribute name="body" value="/WEB-INF/views/productions/productionsView.jspx"/>
+    </definition>
 </tiles-definitions>

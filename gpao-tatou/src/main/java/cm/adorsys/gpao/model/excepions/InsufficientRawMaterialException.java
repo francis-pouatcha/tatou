@@ -14,6 +14,12 @@ public class InsufficientRawMaterialException extends Exception {
 	private BigDecimal quantityFound;
 	private Product rawMaterial;
 	
+	public InsufficientRawMaterialException() {
+	}
+	
+	public InsufficientRawMaterialException(String message) {
+		super(message);
+	}
 	public InsufficientRawMaterialException(BigDecimal minimalExpected,
 			BigDecimal quantityFound, Product rawMaterial,String message) {
 		super(message);

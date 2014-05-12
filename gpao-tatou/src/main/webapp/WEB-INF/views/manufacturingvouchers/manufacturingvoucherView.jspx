@@ -274,6 +274,12 @@
 							type="button">valider la commande</button>
 					</p>
 				</c:if>
+				<c:if test="${manufacturingVoucher.documentState eq 'VALIDER'}">
+					<p>
+						<button id="generateProductionBtn" class="btn-success" style="width: 100%;"
+							type="button">Lancer la production</button>
+					</p>
+				</c:if>
 				<!-- p>
 					<button id="print_order_btn" class="btn-info" style="width: 100%;"
 						type="button">Imprimer le bon</button>

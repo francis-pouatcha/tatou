@@ -25,6 +25,7 @@
         <field:checkbox field="archived" id="c_cm_adorsys_gpao_model_Product_archived" z="HZuclo+A6ttm93gd9mBPLvxqvwo="/>
         <field:checkbox field="isRoundedProduct" id="c_cm_adorsys_gpao_model_Product_isRoundedProduct" z="1zYMR95TwWIW3TS/X7Izg3h0/Bw="/>
         <field:checkbox field="canBeProduce" id="c_cm_adorsys_gpao_model_Product_canBeProduce" z="EeErHzzRqxgp3FHwKDp/cSPvGjg="/>
+        <field:select field="productionTypeConfig" id="c_cm_adorsys_gpao_model_Product_productionTypeConfig" itemValue="id" items="${productiontypeconfigs}" path="/productiontypeconfigs" z="enZ8ikuKak7O9C5Zlb9WBVWzO70="/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_cm_adorsys_gpao_model_Product" render="${not empty dependencies}" z="vgJeSEZ+GCbjqLTiSb8flIqJ5RA="/>
 </div>

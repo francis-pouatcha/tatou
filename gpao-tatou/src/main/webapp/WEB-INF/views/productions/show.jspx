@@ -5,11 +5,13 @@
     <page:show id="ps_cm_adorsys_gpao_model_Production" object="${production}" path="/productions" z="LNYzYmKSZS8Hur5kgJFt7VjIvuI=">
         <field:display field="archived" id="s_cm_adorsys_gpao_model_Production_archived" object="${production}" z="FQTv7KXmU3Qd6GHZmnkd80nS7C0="/>
         <field:display field="reference" id="s_cm_adorsys_gpao_model_Production_reference" object="${production}" z="skGOI34R2fNAx1pdIPtLtWAM4ao="/>
-        <field:display field="manufacturingVoucher" id="s_cm_adorsys_gpao_model_Production_manufacturingVoucher" object="${production}" z="2Bu75bZCjyFKpDUxmMf5FPEqFI4="/>
         <field:display date="true" dateTimePattern="${production_startdate_date_format}" field="startDate" id="s_cm_adorsys_gpao_model_Production_startDate" object="${production}" z="IQ0PDgHdPrENe1woBZKz4IEL+oc="/>
         <field:display date="true" dateTimePattern="${production_enddate_date_format}" field="endDate" id="s_cm_adorsys_gpao_model_Production_endDate" object="${production}" z="y1YLeABaaPBFQ9gCFLD5A2qDc98="/>
         <field:display field="productionTypeConfig" id="s_cm_adorsys_gpao_model_Production_productionTypeConfig" object="${production}" z="ST6xwi3dS/Y9ko7/8bY6zJBfqLY="/>
         <field:display field="productionState" id="s_cm_adorsys_gpao_model_Production_productionState" object="${production}" z="rWJ8Zn65ttN25yX4+pcQ9kPUKGs="/>
         <field:display field="userName" id="s_cm_adorsys_gpao_model_Production_userName" object="${production}" z="27cHl8BFDgspnjIVHF6iQoEvyjI="/>
+        <field:display field="docRef" id="s_cm_adorsys_gpao_model_Production_docRef" object="${production}" z="UohU+6/n0FvPNspTypGMHSxKNTI="/>
+        <field:display field="manufacturingVoucherItem" id="s_cm_adorsys_gpao_model_Production_manufacturingVoucherItem" object="${production}" z="OC3CHPAZZ6ljRgCHhxBn2ES1mY4="/>
+        <field:display field="manufacturingVoucher" id="s_cm_adorsys_gpao_model_Production_manufacturingVoucher" object="${production}" z="2Bu75bZCjyFKpDUxmMf5FPEqFI4="/>
     </page:show>
 </div>

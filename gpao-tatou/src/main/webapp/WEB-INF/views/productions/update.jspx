@@ -5,11 +5,13 @@
     <form:update id="fu_cm_adorsys_gpao_model_Production" modelAttribute="production" path="/productions" versionField="Version" z="v0NkKMOlopz6nc7Vs2Fl8N4tP8g=">
         <field:checkbox field="archived" id="c_cm_adorsys_gpao_model_Production_archived" z="RdUojEwtZbUbwmWinOEUN0d6Oxw="/>
         <field:input field="reference" id="c_cm_adorsys_gpao_model_Production_reference" z="F7asgXFupaEYPwwdg4Qk8yhjZNE="/>
-        <field:select field="manufacturingVoucher" id="c_cm_adorsys_gpao_model_Production_manufacturingVoucher" itemValue="id" items="${manufacturingvouchers}" path="/manufacturingvouchers" required="true" z="RKL7uHwYipG7SJ+v8PZcq10OisE="/>
         <field:datetime dateTimePattern="${production_startdate_date_format}" field="startDate" id="c_cm_adorsys_gpao_model_Production_startDate" z="aYNC3G3fOgSEjeFfvOL0sUk7+Y4="/>
         <field:datetime dateTimePattern="${production_enddate_date_format}" field="endDate" id="c_cm_adorsys_gpao_model_Production_endDate" z="T7cymJY+NOnfldp7JZ3lEEKJPqE="/>
         <field:select field="productionTypeConfig" id="c_cm_adorsys_gpao_model_Production_productionTypeConfig" itemValue="id" items="${productiontypeconfigs}" path="/productiontypeconfigs" required="true" z="cSNORozBrou+foO8qFHtVanX12Y="/>
         <field:select field="productionState" id="c_cm_adorsys_gpao_model_Production_productionState" items="${documentstateses}" path="documentstateses" z="pd7LOZIWbyzatbSgJ4hpqbU2+hk="/>
         <field:input field="userName" id="c_cm_adorsys_gpao_model_Production_userName" z="RhW2rUVdfGdaR74B3GUj6m74WGM="/>
+        <field:input field="docRef" id="c_cm_adorsys_gpao_model_Production_docRef" z="tjuJypD6Khg0Mm4AWOBfDRdWSG4="/>
+        <field:select field="manufacturingVoucherItem" id="c_cm_adorsys_gpao_model_Production_manufacturingVoucherItem" itemValue="id" items="${manufacturingvoucheritems}" path="/manufacturingvoucheritems" z="UwxF/VWX0Rqt8EmxPb5x0hX1y+s="/>
+        <field:select field="manufacturingVoucher" id="c_cm_adorsys_gpao_model_Production_manufacturingVoucher" itemValue="id" items="${manufacturingvouchers}" path="/manufacturingvouchers" required="true" z="RKL7uHwYipG7SJ+v8PZcq10OisE="/>
     </form:update>
 </div>

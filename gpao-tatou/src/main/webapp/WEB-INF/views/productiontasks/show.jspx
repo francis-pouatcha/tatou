@@ -9,5 +9,7 @@
         <field:display date="true" dateTimePattern="${productionTask_startdate_date_format}" field="startDate" id="s_cm_adorsys_gpao_model_ProductionTask_startDate" object="${productiontask}" z="4r77OABF9Fe3AYuhhUMltN0Yxok="/>
         <field:display date="true" dateTimePattern="${productionTask_enddate_date_format}" field="endDate" id="s_cm_adorsys_gpao_model_ProductionTask_endDate" object="${productiontask}" z="od6KoCQZ8bOLna/waLKxVICu4T0="/>
         <field:display field="taskState" id="s_cm_adorsys_gpao_model_ProductionTask_taskState" object="${productiontask}" z="8uDzDIezXwyIosbgQewJcegU/wA="/>
+        <field:display field="name" id="s_cm_adorsys_gpao_model_ProductionTask_name" object="${productiontask}" z="fne9alRqvVcRL72GX0JbT8d5yxc="/>
+        <field:display field="description" id="s_cm_adorsys_gpao_model_ProductionTask_description" object="${productiontask}" z="h950+y21+F76aEeWYaMzQNZM3SI="/>
     </page:show>
 </div>

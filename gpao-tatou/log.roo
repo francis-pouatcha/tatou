@@ -865,3 +865,57 @@ focus --class ~.model.ProductionStepLigne
 field reference --fieldName productionProductLigneConfig --type ~.model.ProductionProductLigneConfig
 focus --class ~.model.ProductionTaskLigne
 field reference --fieldName productionProductLigneConfig --type ~.model.ProductionProductLigneConfig
+focus --class ~.model.Production
+finder list 
+finder add --finderName findProductionsByProductionState
+focus --class ~.model.ProductionStep
+finder list
+finder add --finderName findProductionStepsByProduction
+focus --class ~.model.ProductionTask
+finder list
+finder add --finderName findProductionTasksByProductionStep
+finder list --depth 2
+finder add --finderName findProductionTasksByProductionStepAndTaskState
+focus --class ~.model.ProductionStep
+finder list --depth 2
+finder add --finderName findProductionStepsByProductionAndStepState
+focus --class ~.model.Production
+finder list 
+finder add --finderName findProductionsByManufacturingVoucher
+focus --class ~.model.ProductionStep
+field string --fieldName name --notNull 
+field string --fieldName description
+focus --class ~.model.ProductionTask
+field string --fieldName name
+field string --fieldName description
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log closed at 2014-05-09 16:50:56
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-05-09 16:51:16
+focus --class ~.model.Production
+finder list 
+finder add --finderName findProductionsByManufacturingVoucher
+finder add --finderName findProductionsByProductionState
+finder list --depth 
+finder list --depth 2
+finder add --finderName findProductionsByManufacturingVoucherAndProductionState
+finder add --finderName findProductionsByManufacturingVoucher
+focus --class ~.model.ProductionStepConfig
+finder list 
+finder add --finderName findProductionStepConfigsByProductionTypeConf
+finder add --finderName findProductionStepConfigsByProductionWorkshop
+finder list --depth 2 --filter findProductionStepConfigsByProductionTypeConf
+finder add --finderName findProductionStepConfigsByProductionTypeConfAndRank
+focus --class ~.model.ProductionTaskConfig
+field number --fieldName rank --type int
+finder list 
+finder add --finderName findProductionTaskConfigsByProductionStepConfig
+finder list --depth 2 --filter findProductionTaskConfigsByProductionStepConfigAnd
+finder add --finderName findProductionTaskConfigsByProductionStepConfigAndRank
+focus --class ~.model.Product
+field reference --fieldName productionTypeConfig --type ~.model.ProductionTypeConfig
+finder list
+finder add --finderName findProductsByProductionTypeConfig
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-05-12 10:55:28
+focus --class ~.model.Production
+field string --fieldName docRef 
+field reference --fieldName manufacturingVoucherItem --type ~.model.ManufacturingVoucherItem
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log closed at 2014-05-12 15:25:36

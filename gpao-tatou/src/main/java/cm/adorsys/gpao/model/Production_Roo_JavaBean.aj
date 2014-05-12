@@ -5,6 +5,7 @@ package cm.adorsys.gpao.model;
 
 import cm.adorsys.gpao.model.DocumentStates;
 import cm.adorsys.gpao.model.ManufacturingVoucher;
+import cm.adorsys.gpao.model.ManufacturingVoucherItem;
 import cm.adorsys.gpao.model.Production;
 import cm.adorsys.gpao.model.ProductionTypeConfig;
 import java.util.Date;
@@ -65,6 +66,22 @@ privileged aspect Production_Roo_JavaBean {
     
     public void Production.setUserName(String userName) {
         this.userName = userName;
+    }
+    
+    public String Production.getDocRef() {
+        return this.docRef;
+    }
+    
+    public void Production.setDocRef(String docRef) {
+        this.docRef = docRef;
+    }
+    
+    public ManufacturingVoucherItem Production.getManufacturingVoucherItem() {
+        return this.manufacturingVoucherItem;
+    }
+    
+    public void Production.setManufacturingVoucherItem(ManufacturingVoucherItem manufacturingVoucherItem) {
+        this.manufacturingVoucherItem = manufacturingVoucherItem;
     }
     
 }

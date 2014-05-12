@@ -27,4 +27,6 @@ public interface IRawMaterialOrderService {
 	@Transactional(rollbackFor=Throwable.class)
 	public boolean validateRawMaterialOrderAndRawMaterialGenerateDeliveryNote(RawMaterialOrder rawMaterialOrder);
 	public boolean changeState(RawMaterialOrder rawMaterialOrder, DocumentStates documentStates);
+	public boolean checkRawMaterialAvaibility(ManufacturingVoucher manufacturingVoucher);
+	public boolean checkRawMaterialAvaibility(RawMaterialOrder rawMaterialOrder) ;
 }

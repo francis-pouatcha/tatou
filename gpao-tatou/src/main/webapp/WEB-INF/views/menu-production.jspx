@@ -27,7 +27,7 @@
 		        </menu:category>
 		        
 		        <menu:category id="c_production" z="lp++awgTEBC8DtG6Zwe8nXO0Ixc=">
-		            <menu:item id="i_production_list" label="Productions" messageCode="global_menu_gpao" url="/productions?page=1&amp;size=${empty param.size ? 10 : param.size}" z="GIzoD+EMJ0Y/q2SuiyU6KMVLwI8="/>
+		            <menu:item id="i_production_list" label="Productions" messageCode="global_menu_gpao" url="/productions/list?page=1&amp;size=${empty param.size ? 10 : param.size}" z="GIzoD+EMJ0Y/q2SuiyU6KMVLwI8="/>
 		        </menu:category>
 	          </security:authorize>
         </menu:category>

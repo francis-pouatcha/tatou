@@ -4,6 +4,7 @@
 package cm.adorsys.gpao.model;
 
 import cm.adorsys.gpao.model.Product;
+import cm.adorsys.gpao.model.ProductionTypeConfig;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
@@ -21,6 +22,14 @@ privileged aspect Product_Roo_Finder {
         EntityManager em = Product.entityManager();
         TypedQuery q = em.createQuery("SELECT COUNT(o) FROM Product AS o WHERE LOWER(o.name) LIKE LOWER(:name)", Long.class);
         q.setParameter("name", name);
+        return ((Long) q.getSingleResult());
+    }
+    
+    public static Long Product.countFindProductsByProductionTypeConfig(ProductionTypeConfig productionTypeConfig) {
+        if (productionTypeConfig == null) throw new IllegalArgumentException("The productionTypeConfig argument is required");
+        EntityManager em = Product.entityManager();
+        TypedQuery q = em.createQuery("SELECT COUNT(o) FROM Product AS o WHERE o.productionTypeConfig = :productionTypeConfig", Long.class);
+        q.setParameter("productionTypeConfig", productionTypeConfig);
         return ((Long) q.getSingleResult());
     }
     
@@ -43,6 +52,29 @@ privileged aspect Product_Roo_Finder {
         }
         TypedQuery<Product> q = em.createQuery(jpaQuery, Product.class);
         q.setParameter("name", name);
+        return q;
+    }
+    
+    public static TypedQuery<Product> Product.findProductsByProductionTypeConfig(ProductionTypeConfig productionTypeConfig) {
+        if (productionTypeConfig == null) throw new IllegalArgumentException("The productionTypeConfig argument is required");
+        EntityManager em = Product.entityManager();
+        TypedQuery<Product> q = em.createQuery("SELECT o FROM Product AS o WHERE o.productionTypeConfig = :productionTypeConfig", Product.class);
+        q.setParameter("productionTypeConfig", productionTypeConfig);
+        return q;
+    }
+    
+    public static TypedQuery<Product> Product.findProductsByProductionTypeConfig(ProductionTypeConfig productionTypeConfig, String sortFieldName, String sortOrder) {
+        if (productionTypeConfig == null) throw new IllegalArgumentException("The productionTypeConfig argument is required");
+        EntityManager em = Product.entityManager();
+        String jpaQuery = "SELECT o FROM Product AS o WHERE o.productionTypeConfig = :productionTypeConfig";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        TypedQuery<Product> q = em.createQuery(jpaQuery, Product.class);
+        q.setParameter("productionTypeConfig", productionTypeConfig);
         return q;
     }
     

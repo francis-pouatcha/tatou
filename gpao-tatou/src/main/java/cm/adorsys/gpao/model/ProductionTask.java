@@ -11,7 +11,7 @@ import javax.persistence.Enumerated;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord(inheritanceType = "TABLE_PER_CLASS")
+@RooJpaActiveRecord(inheritanceType = "TABLE_PER_CLASS", finders = { "findProductionTasksByProductionStep", "findProductionTasksByProductionStepAndTaskState" })
 public class ProductionTask extends GpaoBaseEntity {
 
     /**
@@ -40,4 +40,12 @@ public class ProductionTask extends GpaoBaseEntity {
      */
     @Enumerated
     private DocumentStates taskState;
+
+    /**
+     */
+    private String name;
+
+    /**
+     */
+    private String description;
 }

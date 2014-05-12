@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 privileged aspect Product_Roo_Jpa_ActiveRecord {
     
-    public static final List<String> Product.fieldNames4OrderClauseFilter = java.util.Arrays.asList("productType", "reference", "name", "famille", "warehouse", "canBebuy", "canBeSale", "virtualStock", "minStock", "defaultUdm", "defaultCurrency", "purchasePrice", "salePrice", "epaisseur", "color", "description", "isRoundedProduct", "canBeProduce", "actived", "productImage", "productImagePath", "codeBare");
+    public static final List<String> Product.fieldNames4OrderClauseFilter = java.util.Arrays.asList("productType", "reference", "name", "famille", "warehouse", "canBebuy", "canBeSale", "virtualStock", "minStock", "defaultUdm", "defaultCurrency", "purchasePrice", "salePrice", "epaisseur", "color", "description", "isRoundedProduct", "canBeProduce", "actived", "productImage", "productImagePath", "codeBare", "productionTypeConfig");
     
     public static long Product.countProducts() {
         return entityManager().createQuery("SELECT COUNT(o) FROM Product o", Long.class).getSingleResult();

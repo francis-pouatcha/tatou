@@ -10,6 +10,7 @@
             <table:column id="c_cm_adorsys_gpao_model_ProductionTaskConfig_productionStepConfig" property="productionStepConfig" z="FEmsx43Zwv4c7+2QiYssSKZX+XI="/>
             <table:column id="c_cm_adorsys_gpao_model_ProductionTaskConfig_assignee" property="assignee" z="MOb8l9tZ0O+RwveMsxfxBsHN044="/>
             <table:column id="c_cm_adorsys_gpao_model_ProductionTaskConfig_duration" property="duration" z="1Uu327osw45fHuQVb3+3Z5aeli8="/>
+            <table:column id="c_cm_adorsys_gpao_model_ProductionTaskConfig_rank" property="rank" z="TymAmFf3BSu78+3UhNIpHY023UI="/>
         </table:table>
     </page:list>
 </div>

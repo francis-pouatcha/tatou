@@ -3,11 +3,20 @@
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <util:button-add baseUrl="/productions/addOrEditForm"/>
-    <page:list showInPanel="false" label="Liste des productions" id="pl_cm_adorsys_gpao_model_Production" items="${productions}" z="0E0y49SeZrJ7vGiNwfjOdDRCZdw=">
-        <table:table create="false" show="false" delete="false" queryParam="true" data="${productions}" id="l_cm_adorsys_gpao_model_Production" path="/productions/addOrEditForm" z="xB4bRXsbRfDZZNXRog45vUlWY9Q=">
+    <page:list id="pl_cm_adorsys_gpao_model_Production" items="${openProductions}" label="Production en cours" labelPlural="Productions en cours" showInPanel="false" z="user-managed">
+        <table:table create="false" data="${productions}" delete="false" id="l_cm_adorsys_gpao_model_Production" path="/productions/addOrEditForm" queryParam="true" show="false" z="user-managed">
             <table:column id="c_cm_adorsys_gpao_model_Production_archived" property="archived" z="QTEFSOaIJVQGbB9uHM+UpGGpiXY="/>
             <table:column id="c_cm_adorsys_gpao_model_Production_reference" property="reference" z="Dxy8rg6BBkC9yv9Fgk7LFEBYPw8="/>
+            <table:column date="true" dateTimePattern="${production_startdate_date_format}" id="c_cm_adorsys_gpao_model_Production_startDate" property="startDate" z="fDm3T9C1SstoedjI8LI8TS5BPKk="/>
+            <table:column date="true" dateTimePattern="${production_enddate_date_format}" id="c_cm_adorsys_gpao_model_Production_endDate" property="endDate" z="IQzmEyoDexKJGfksfMX8zUh1F68="/>
+            <table:column id="c_cm_adorsys_gpao_model_Production_productionTypeConfig" property="productionTypeConfig" z="Q2CYCC5jJZa+xjU5jomaTzxaRr0="/>
             <table:column id="c_cm_adorsys_gpao_model_Production_manufacturingVoucher" property="manufacturingVoucher" z="phfPeNPPa9qBtaMin/zarzapgXQ="/>
+        </table:table>
+    </page:list>
+    <page:list id="pl_cm_adorsys_gpao_model_Production" items="${productions}" label="Production" showInPanel="false" z="user-managed">
+        <table:table create="false" data="${productions}" delete="false" id="l_cm_adorsys_gpao_model_Production" path="/productions/addOrEditForm" queryParam="true" show="false" z="user-managed">
+            <table:column id="c_cm_adorsys_gpao_model_Production_archived" property="archived" z="QTEFSOaIJVQGbB9uHM+UpGGpiXY="/>
+            <table:column id="c_cm_adorsys_gpao_model_Production_reference" property="reference" z="Dxy8rg6BBkC9yv9Fgk7LFEBYPw8="/>
             <table:column date="true" dateTimePattern="${production_startdate_date_format}" id="c_cm_adorsys_gpao_model_Production_startDate" property="startDate" z="fDm3T9C1SstoedjI8LI8TS5BPKk="/>
             <table:column date="true" dateTimePattern="${production_enddate_date_format}" id="c_cm_adorsys_gpao_model_Production_endDate" property="endDate" z="IQzmEyoDexKJGfksfMX8zUh1F68="/>
             <table:column id="c_cm_adorsys_gpao_model_Production_productionTypeConfig" property="productionTypeConfig" z="Q2CYCC5jJZa+xjU5jomaTzxaRr0="/>

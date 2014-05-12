@@ -17,6 +17,7 @@ public class GpaoSequenceGenerator {
 	public static final String MANUFACTURINGVOUCHER_SEQUENSE_PREFIX = "MF";
 	public static final String RAWMATERIAL_SEQUENSE_PREFIX = "RM";
 	public static final String RAWMATERIAL_DELIVERY_NOTE_SEQUENCE_PREFIX = "RDN";
+	public static final String PRODUCTION_SEQUENSE_PREFIX = "PROD";
 
 
 	public static String getSequence(Long index ,String prefixe){

@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 privileged aspect Production_Roo_Jpa_ActiveRecord {
     
-    public static final List<String> Production.fieldNames4OrderClauseFilter = java.util.Arrays.asList("reference", "manufacturingVoucher", "startDate", "endDate", "productionTypeConfig", "productionState", "userName");
+    public static final List<String> Production.fieldNames4OrderClauseFilter = java.util.Arrays.asList("reference", "manufacturingVoucher", "startDate", "endDate", "productionTypeConfig", "productionState", "userName", "docRef", "manufacturingVoucherItem");
     
     public static long Production.countProductions() {
         return entityManager().createQuery("SELECT COUNT(o) FROM Production o", Long.class).getSingleResult();

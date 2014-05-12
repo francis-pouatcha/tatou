@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:page="urn:jsptagdir:/WEB-INF/tags/form"
+	xmlns:form="urn:jsptagdir:/WEB-INF/tags/form"
+	xmlns:util="urn:jsptagdir:/WEB-INF/tags/util"
+	xmlns:spring="http://www.springframework.org/tags"
+	xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+	<jsp:directive.page contentType="text/html;charset=UTF-8" />
+	<jsp:output omit-xml-declaration="yes" />
+	<spring:url value="/productions/addOrEditForm" var="add_url"></spring:url>
+	<spring:url value="/productions/next/${ production.id}" var="next_url" />
+	<spring:url
+		value="/productions/orderNote/${ production.reference}.pdf"
+		var="print_order_url" />
+	<spring:url value="/productions/previous/${production.id}"
+		var="previous_url" />
+	<div class="row-fluid">
+		<div class="span3">
+			<c:if test="${not empty production.id}">
+				<p>
+					Reference :<span class="label label-info">${production.reference}</span>
+				</p>
+				<P>
+					Status ? :<span class="label label-info">${production.productionState}</span>
+				</P>
+				<p>
+					<span>Date de debut : ${production.startDate }</span>
+					<span>Date de fin estimee: ${production.endDate }</span>
+				</p>
+			</c:if>
+
+		</div>
+
+		<div class="span6">
+			<jsp:include page="../gpaoMessages.jspx" />
+		</div>
+		<div style="vertical-align: top; margin-left: 2%;" class="span3">
+			<c:if test="${not empty production.id}">
+				<div style="float: right;" class="pagination">
+					<ul>
+						<li><a title="vider le formulaire" href="${add_url }">Add</a></li>
+						<li><a title="Groupe preccedant" href="${previous_url }">Prev</a></li>
+						<li><a title="Groupe suivant " href="${next_url}">Next</a></li>
+					</ul>
+				</div>
+			</c:if>
+
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span6">
+			<span>Matiere premieres</span>
+			<page:list labelPlural="" label="" id="pl_cm_adorsys_gpao_model_RawMaterialOrderItem" items="${rawMaterialOrderItems}" z="JXu9822npl3mcD8RVwLhc4JkQeM=">
+		        <table:table create="false" update="false" delete="false" show="false" data="${rawMaterialOrderItems}" id="l_cm_adorsys_gpao_model_RawMaterialOrderItem" path="/rawmaterialorderitems" z="0sBbnzmPnieQf1ic7br4XmRAoiI=">
+		            <table:column id="c_cm_adorsys_gpao_model_RawMaterialOrderItem_archived" render="false" property="archived" z="84/ZXh07k4yP31Yt8xhi3w3WX0g="/>
+		            <table:column id="c_cm_adorsys_gpao_model_RawMaterialOrderItem_rawMaterialOrder" property="rawMaterialOrder" z="aai3W9AMjY560JA04yM2LZWKZzg="/>
+		            <table:column id="c_cm_adorsys_gpao_model_RawMaterialOrderItem_product" property="product" z="C4+2+rLhsaM/NUzjYlHC+f1uaw8="/>
+		            <table:column id="c_cm_adorsys_gpao_model_RawMaterialOrderItem_udm" property="udm" z="OVM0r9yIi1iuPIy6Aj66RfRUFA8="/>
+		            <table:column id="c_cm_adorsys_gpao_model_RawMaterialOrderItem_quantity" property="quantity" z="mGQAzcyhAs8JgJsGOPqVz18CWx0="/>
+		        </table:table>
+		    </page:list>
+		</div>
+		<div class="span6">
+			<span>Produits a fabriquer</span>
+			<page:list labelPlural="" label="" id="pl_cm_adorsys_gpao_model_ManufacturingVoucherItem" items="${manufacturingVoucherItems}" z="18hCYbH0E6WxwwcaUYDUDfcQxpE=">
+		        <table:table create="false" update="false" delete="false" show="false" data="${manufacturingVoucherItems}" id="l_cm_adorsys_gpao_model_ManufacturingVoucherItem" path="/manufacturingvoucheritems" z="yua9y/fhzQRjgBDwKKPu4VA6/HM=">
+		            <table:column id="c_cm_adorsys_gpao_model_ManufacturingVoucherItem_archived" render="false" property="archived" z="RRNIKEYl/xPVgetWTgc9oie5dB8="/>
+		            <table:column id="c_cm_adorsys_gpao_model_ManufacturingVoucherItem_product" property="product" z="ClcLbYj9y/6yv9eqN0qvYO0RVUA="/>
+		            <table:column id="c_cm_adorsys_gpao_model_ManufacturingVoucherItem_quantity" property="quantity" z="cnRiWekouDd5/3w7gdliqvR7U08="/>
+		            <table:column date="true" dateTimePattern="${manufacturingVoucherItem_delaydate_date_format}" id="c_cm_adorsys_gpao_model_ManufacturingVoucherItem_delayDate" property="delayDate" z="cvEVUxAn2i9s6UJ3qWXGmLze+0A="/>
+		            <table:column id="c_cm_adorsys_gpao_model_ManufacturingVoucherItem_comment" property="comment" z="G4WoJ40AWWzB6wxe4NzzeMp43YE="/>
+		            <table:column id="c_cm_adorsys_gpao_model_ManufacturingVoucherItem_manufacturingVoucher" property="manufacturingVoucher" z="czp8sbQuorQo1gewjgYdXiqULJE="/>
+		        </table:table>
+		    </page:list>
+		</div>
+	</div>
+	<c:if test="${not empty activStep }">
+			
+		<div class="row">
+			<div class="span6">
+				<div class="row" title="${activStep.description }">
+					Etape de production en cour : ${ activStep.name}
+					<hr />
+				</div>
+			</div>
+			<div class="span6">
+				<a href="#">Previous</a>
+				<span>|</span>
+				<a href="#">Next</a>
+			</div>
+		</div>
+		<div class="row">
+			<span>Started By : </span>
+		</div>
+	</c:if>
+	<script>
+		$('#print_order_btn').click(function() {
+			var url = '${print_order_url}';
+			window.location = url;
+		});
+	</script>
+	<jsp:include page="productions-js.jspx" />
+</div>

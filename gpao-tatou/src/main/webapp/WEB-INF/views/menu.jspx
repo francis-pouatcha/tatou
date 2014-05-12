@@ -60,6 +60,7 @@
             <menu:item id="i_product_new" messageCode="global_menu_new" url="/products?form" z="Ezf8cTW61d2RkMNEcYkDJpG01kc="/>
             <menu:item id="i_product_list" messageCode="global_menu_list" url="/products?page=1&amp;size=${empty param.size ? 10 : param.size}" z="kEeyCmUUYXShbDEWwOLheaAkM50="/>
             <menu:item id="fi_product_namelike" messageCode="global_menu_find" url="/products?find=ByNameLike&amp;form&amp;page=1&amp;size=${empty param.size ? 10 : param.size}" z="WHz1M4hybqqHzxuGcAhUDuhZAMQ="/>
+            <menu:item id="fi_product_productiontypeconfig" messageCode="global_menu_find" url="/products?find=ByProductionTypeConfig&amp;form&amp;page=1&amp;size=${empty param.size ? 10 : param.size}" z="ibXu2j9gVQHUmStr5wxIjbbujVs="/>
         </menu:category>
         <menu:category id="c_purchaseorder" z="LdgN+Z53I4kIOyJx+mc8CFmbIuU=">
             <menu:item id="i_purchaseorder_new" messageCode="global_menu_new" url="/purchaseorders?form" z="I6gpOtV3+H+iGlPgmv55Zhufszk="/>

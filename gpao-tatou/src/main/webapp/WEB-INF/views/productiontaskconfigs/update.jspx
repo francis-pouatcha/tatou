@@ -8,5 +8,6 @@
         <field:select field="productionStepConfig" id="c_cm_adorsys_gpao_model_ProductionTaskConfig_productionStepConfig" itemValue="id" items="${productionstepconfigs}" path="/productionstepconfigs" z="HTyMgCAyhC5ovNyXHv4ejldiLns="/>
         <field:select field="assignee" id="c_cm_adorsys_gpao_model_ProductionTaskConfig_assignee" itemValue="id" items="${gpaousers}" path="/gpaousers" z="Yyv6j5ue8Gv9QCnoAkp1tVGpkI4="/>
         <field:input field="duration" id="c_cm_adorsys_gpao_model_ProductionTaskConfig_duration" z="D0iQXez9hiMSab+KRePJJELBcp0="/>
+        <field:input field="rank" id="c_cm_adorsys_gpao_model_ProductionTaskConfig_rank" z="u/x7P+deJ870tHLrjJn2vJeiNk4="/>
     </form:update>
 </div>

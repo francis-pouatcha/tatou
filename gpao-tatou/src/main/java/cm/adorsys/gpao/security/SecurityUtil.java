@@ -56,8 +56,4 @@ public class SecurityUtil {
 		}
 		return rolenames;
 	}
-
-
-
-
 }

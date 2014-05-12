@@ -51,4 +51,20 @@ privileged aspect ProductionTask_Roo_JavaBean {
         this.taskState = taskState;
     }
     
+    public String ProductionTask.getName() {
+        return this.name;
+    }
+    
+    public void ProductionTask.setName(String name) {
+        this.name = name;
+    }
+    
+    public String ProductionTask.getDescription() {
+        return this.description;
+    }
+    
+    public void ProductionTask.setDescription(String description) {
+        this.description = description;
+    }
+    
 }

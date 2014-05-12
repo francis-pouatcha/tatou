@@ -125,8 +125,56 @@ public class TatouRawMaterialOrderService implements IRawMaterialOrderService{
 		orderItems.setSubTotal(quantityToPurchase.multiply(rawMaterial.getPurchasePrice()));
 		orderItems.persist();
 	}
+	public boolean checkRawMaterialAvaibility(ManufacturingVoucher manufacturingVoucher) {
+		List<ManufacturingVoucherItem> manufacturingVoucherItems = ManufacturingVoucherItem.findManufacturingVoucherItemsByManufacturingVoucher(manufacturingVoucher).getResultList();
+		
+		for (ManufacturingVoucherItem manufacturingVoucherItem : manufacturingVoucherItems) {
+			Product product = manufacturingVoucherItem.getProduct();
+			List<ProductIntrant> productIntrants = ProductIntrant.findProductIntrantsByProduct(product).getResultList();
+			for (ProductIntrant productIntrant : productIntrants) {
+				Product rawMaterial = productIntrant.getRawMaterial();
+				BigDecimal qtyOfRawMaterialNeeded = manufacturingVoucherItem.getQuantity().multiply(productIntrant.getQuantity());
+				if(rawMaterial.getVirtualStock().compareTo(qtyOfRawMaterialNeeded) < 0) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+
+	public boolean checkRawMaterialAvaibility(RawMaterialOrder rawMaterialOrder) {
+		List<RawMaterialOrderItem> rawMaterialOrderItems = RawMaterialOrderItem.findRawMaterialOrderItemsByRawMaterialOrder(rawMaterialOrder).getResultList();
+		
+		for (RawMaterialOrderItem rawMaterialOrderItem : rawMaterialOrderItems) {
+			Product product = rawMaterialOrderItem.getProduct();
+			List<ProductIntrant> productIntrants = ProductIntrant.findProductIntrantsByProduct(product).getResultList();
+			for (ProductIntrant productIntrant : productIntrants) {
+				Product rawMaterial = productIntrant.getRawMaterial();
+				BigDecimal qtyOfRawMaterialNeeded = rawMaterialOrderItem.getQuantity().multiply(productIntrant.getQuantity());
+				if(rawMaterial.getVirtualStock().compareTo(qtyOfRawMaterialNeeded) < 0) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+	class FastKewValueModel <T,D> {
+		private T manufacturingVoucherItem;
+		private D productIntrant;
+		
+		public FastKewValueModel(T manufacturingVoucherItem,D productIntrant) {
+			this.manufacturingVoucherItem = manufacturingVoucherItem;
+			this.productIntrant = productIntrant;
+		}
+		public T getManufacturingVoucherItem() {
+			return this.manufacturingVoucherItem;
+		}
+		public D getProductIntrant() {
+			return this.productIntrant;
+		}
+	}
 	/**
-	 * check if there are enought raw material.
+	 * check if there are enough raw material.
 	 * @param rawMaterialOrderItemQuantity
 	 * @param product
 	 * @return

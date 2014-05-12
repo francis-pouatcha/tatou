@@ -41,4 +41,12 @@ privileged aspect ProductionTaskConfig_Roo_JavaBean {
         this.duration = duration;
     }
     
+    public int ProductionTaskConfig.getRank() {
+        return this.rank;
+    }
+    
+    public void ProductionTaskConfig.setRank(int rank) {
+        this.rank = rank;
+    }
+    
 }

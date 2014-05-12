@@ -184,4 +184,12 @@ privileged aspect Product_Roo_JavaBean {
         this.codeBare = codeBare;
     }
     
+    public ProductionTypeConfig Product.getProductionTypeConfig() {
+        return this.productionTypeConfig;
+    }
+    
+    public void Product.setProductionTypeConfig(ProductionTypeConfig productionTypeConfig) {
+        this.productionTypeConfig = productionTypeConfig;
+    }
+    
 }

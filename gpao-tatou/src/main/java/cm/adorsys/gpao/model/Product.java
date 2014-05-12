@@ -28,8 +28,8 @@ import org.springframework.roo.addon.json.RooJson;
  */
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord(inheritanceType = "TABLE_PER_CLASS", finders = { "findProductsByNameLike" })
 @RooJson
+@RooJpaActiveRecord(inheritanceType = "TABLE_PER_CLASS", finders = { "findProductsByNameLike", "findProductsByProductionTypeConfig" })
 public class Product extends GpaoBaseEntity {
 
     @Enumerated
@@ -92,7 +92,7 @@ public class Product extends GpaoBaseEntity {
      */
     @Value("true")
     private Boolean canBeProduce;
-    
+
     /*
      @ManyToMany(cascade = CascadeType.ALL)
      private Set<Taxe> saleTaxes = new HashSet<Taxe>();
@@ -197,4 +197,9 @@ public class Product extends GpaoBaseEntity {
         q.setParameter("name", name);
         return q;
     }
+
+    /**
+     */
+    @ManyToOne
+    private ProductionTypeConfig productionTypeConfig;
 }
